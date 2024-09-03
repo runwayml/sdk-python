@@ -42,7 +42,7 @@ image_to_video_create_response = client.image_to_video.create(
 print(image_to_video_create_response.id)
 ```
 
-While you can provide an `api_key` keyword argument,
+While you can provide a `api_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
 to add `RUNWAYML_API_SECRET="My API Key"` to your `.env` file
 so that your API Key is not stored in source control.
