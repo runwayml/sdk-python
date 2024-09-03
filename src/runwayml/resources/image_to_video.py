@@ -40,8 +40,6 @@ class ImageToVideoResource(SyncAPIResource):
         *,
         model: Literal["gen3a_turbo"],
         prompt_image: str,
-        x_runway_on_behalf_of: str,
-        x_runway_version: Literal["2023-09-06"],
         prompt_text: str | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
         watermark: bool | NotGiven = NOT_GIVEN,
@@ -79,11 +77,6 @@ class ImageToVideoResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {
-            "X-Runway-On-Behalf-Of": x_runway_on_behalf_of,
-            "X-Runway-Version": str(x_runway_version),
-            **(extra_headers or {}),
-        }
         return self._post(
             "/v1/image_to_video",
             body=maybe_transform(
@@ -117,8 +110,6 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         *,
         model: Literal["gen3a_turbo"],
         prompt_image: str,
-        x_runway_on_behalf_of: str,
-        x_runway_version: Literal["2023-09-06"],
         prompt_text: str | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
         watermark: bool | NotGiven = NOT_GIVEN,
@@ -156,11 +147,6 @@ class AsyncImageToVideoResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {
-            "X-Runway-On-Behalf-Of": x_runway_on_behalf_of,
-            "X-Runway-Version": str(x_runway_version),
-            **(extra_headers or {}),
-        }
         return await self._post(
             "/v1/image_to_video",
             body=await async_maybe_transform(

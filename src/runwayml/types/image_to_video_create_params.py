@@ -16,10 +16,6 @@ class ImageToVideoCreateParams(TypedDict, total=False):
     prompt_image: Required[Annotated[str, PropertyInfo(alias="promptImage")]]
     """A URL pointing to an image. See documentation on input URLs."""
 
-    x_runway_on_behalf_of: Required[Annotated[str, PropertyInfo(alias="X-Runway-On-Behalf-Of")]]
-
-    x_runway_version: Required[Annotated[Literal["2023-09-06"], PropertyInfo(alias="X-Runway-Version")]]
-
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """
     A non-empty string up to 512 UTF-16 code points in length (that is,

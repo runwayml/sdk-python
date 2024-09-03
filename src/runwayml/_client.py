@@ -25,7 +25,7 @@ from ._utils import (
 )
 from ._version import __version__
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
-from ._exceptions import APIStatusError
+from ._exceptions import RunwaymlError, APIStatusError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -52,10 +52,14 @@ class Runwayml(SyncAPIClient):
     with_streaming_response: RunwaymlWithStreamedResponse
 
     # client options
+    api_key: str
+    runway_version: str
 
     def __init__(
         self,
         *,
+        api_key: str | None = None,
+        runway_version: str | None = "2023-09-06",
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -75,7 +79,22 @@ class Runwayml(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous runwayml client instance."""
+        """Construct a new synchronous runwayml client instance.
+
+        This automatically infers the `api_key` argument from the `RUNWAYML_API_SECRET` environment variable if it is not provided.
+        """
+        if api_key is None:
+            api_key = os.environ.get("RUNWAYML_API_SECRET")
+        if api_key is None:
+            raise RunwaymlError(
+                "The api_key client option must be set either by passing api_key to the client or by setting the RUNWAYML_API_SECRET environment variable"
+            )
+        self.api_key = api_key
+
+        if runway_version is None:
+            runway_version = "2023-09-06"
+        self.runway_version = runway_version
+
         if base_url is None:
             base_url = os.environ.get("RUNWAYML_BASE_URL")
         if base_url is None:
@@ -104,16 +123,25 @@ class Runwayml(SyncAPIClient):
 
     @property
     @override
+    def auth_headers(self) -> dict[str, str]:
+        api_key = self.api_key
+        return {"Authorization": f"Bearer {api_key}"}
+
+    @property
+    @override
     def default_headers(self) -> dict[str, str | Omit]:
         return {
             **super().default_headers,
             "X-Stainless-Async": "false",
+            "X-Runway-Version": self.runway_version,
             **self._custom_headers,
         }
 
     def copy(
         self,
         *,
+        api_key: str | None = None,
+        runway_version: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -147,6 +175,8 @@ class Runwayml(SyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
+            api_key=api_key or self.api_key,
+            runway_version=runway_version or self.runway_version,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -201,10 +231,14 @@ class AsyncRunwayml(AsyncAPIClient):
     with_streaming_response: AsyncRunwaymlWithStreamedResponse
 
     # client options
+    api_key: str
+    runway_version: str
 
     def __init__(
         self,
         *,
+        api_key: str | None = None,
+        runway_version: str | None = "2023-09-06",
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -224,7 +258,22 @@ class AsyncRunwayml(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async runwayml client instance."""
+        """Construct a new async runwayml client instance.
+
+        This automatically infers the `api_key` argument from the `RUNWAYML_API_SECRET` environment variable if it is not provided.
+        """
+        if api_key is None:
+            api_key = os.environ.get("RUNWAYML_API_SECRET")
+        if api_key is None:
+            raise RunwaymlError(
+                "The api_key client option must be set either by passing api_key to the client or by setting the RUNWAYML_API_SECRET environment variable"
+            )
+        self.api_key = api_key
+
+        if runway_version is None:
+            runway_version = "2023-09-06"
+        self.runway_version = runway_version
+
         if base_url is None:
             base_url = os.environ.get("RUNWAYML_BASE_URL")
         if base_url is None:
@@ -253,16 +302,25 @@ class AsyncRunwayml(AsyncAPIClient):
 
     @property
     @override
+    def auth_headers(self) -> dict[str, str]:
+        api_key = self.api_key
+        return {"Authorization": f"Bearer {api_key}"}
+
+    @property
+    @override
     def default_headers(self) -> dict[str, str | Omit]:
         return {
             **super().default_headers,
             "X-Stainless-Async": f"async:{get_async_library()}",
+            "X-Runway-Version": self.runway_version,
             **self._custom_headers,
         }
 
     def copy(
         self,
         *,
+        api_key: str | None = None,
+        runway_version: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
@@ -296,6 +354,8 @@ class AsyncRunwayml(AsyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
+            api_key=api_key or self.api_key,
+            runway_version=runway_version or self.runway_version,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,

@@ -17,9 +17,10 @@ from respx import MockRouter
 from pydantic import ValidationError
 
 from runwayml import Runwayml, AsyncRunwayml, APIResponseValidationError
+from runwayml._types import Omit
 from runwayml._models import BaseModel, FinalRequestOptions
 from runwayml._constants import RAW_RESPONSE_HEADER
-from runwayml._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
+from runwayml._exceptions import RunwaymlError, APIStatusError, APITimeoutError, APIResponseValidationError
 from runwayml._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
@@ -30,6 +31,7 @@ from runwayml._base_client import (
 from .utils import update_env
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
+api_key = "My API Key"
 
 
 def _get_params(client: BaseClient[Any, Any]) -> dict[str, str]:
@@ -51,7 +53,7 @@ def _get_open_connections(client: Runwayml | AsyncRunwayml) -> int:
 
 
 class TestRunwayml:
-    client = Runwayml(base_url=base_url, _strict_response_validation=True)
+    client = Runwayml(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response(self, respx_mock: MockRouter) -> None:
@@ -77,6 +79,10 @@ class TestRunwayml:
         copied = self.client.copy()
         assert id(copied) != id(self.client)
 
+        copied = self.client.copy(api_key="another My API Key")
+        assert copied.api_key == "another My API Key"
+        assert self.client.api_key == "My API Key"
+
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
         copied = self.client.copy(max_retries=7)
@@ -94,7 +100,9 @@ class TestRunwayml:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = Runwayml(base_url=base_url, _strict_response_validation=True, default_headers={"X-Foo": "bar"})
+        client = Runwayml(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
+        )
         assert client.default_headers["X-Foo"] == "bar"
 
         # does not override the already given value when not specified
@@ -126,7 +134,9 @@ class TestRunwayml:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = Runwayml(base_url=base_url, _strict_response_validation=True, default_query={"foo": "bar"})
+        client = Runwayml(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
+        )
         assert _get_params(client)["foo"] == "bar"
 
         # does not override the already given value when not specified
@@ -249,7 +259,9 @@ class TestRunwayml:
         assert timeout == httpx.Timeout(100.0)
 
     def test_client_timeout_option(self) -> None:
-        client = Runwayml(base_url=base_url, _strict_response_validation=True, timeout=httpx.Timeout(0))
+        client = Runwayml(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
+        )
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -258,7 +270,9 @@ class TestRunwayml:
     def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         with httpx.Client(timeout=None) as http_client:
-            client = Runwayml(base_url=base_url, _strict_response_validation=True, http_client=http_client)
+            client = Runwayml(
+                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
+            )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -266,7 +280,9 @@ class TestRunwayml:
 
         # no timeout given to the httpx client should not use the httpx default
         with httpx.Client() as http_client:
-            client = Runwayml(base_url=base_url, _strict_response_validation=True, http_client=http_client)
+            client = Runwayml(
+                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
+            )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -274,7 +290,9 @@ class TestRunwayml:
 
         # explicitly passing the default timeout currently results in it being ignored
         with httpx.Client(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = Runwayml(base_url=base_url, _strict_response_validation=True, http_client=http_client)
+            client = Runwayml(
+                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
+            )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -283,16 +301,24 @@ class TestRunwayml:
     async def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             async with httpx.AsyncClient() as http_client:
-                Runwayml(base_url=base_url, _strict_response_validation=True, http_client=cast(Any, http_client))
+                Runwayml(
+                    base_url=base_url,
+                    api_key=api_key,
+                    _strict_response_validation=True,
+                    http_client=cast(Any, http_client),
+                )
 
     def test_default_headers_option(self) -> None:
-        client = Runwayml(base_url=base_url, _strict_response_validation=True, default_headers={"X-Foo": "bar"})
+        client = Runwayml(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
+        )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
         client2 = Runwayml(
             base_url=base_url,
+            api_key=api_key,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -303,8 +329,20 @@ class TestRunwayml:
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
+    def test_validate_headers(self) -> None:
+        client = Runwayml(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert request.headers.get("Authorization") == f"Bearer {api_key}"
+
+        with pytest.raises(RunwaymlError):
+            with update_env(**{"RUNWAYML_API_SECRET": Omit()}):
+                client2 = Runwayml(base_url=base_url, api_key=None, _strict_response_validation=True)
+            _ = client2
+
     def test_default_query_option(self) -> None:
-        client = Runwayml(base_url=base_url, _strict_response_validation=True, default_query={"query_param": "bar"})
+        client = Runwayml(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
+        )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         url = httpx.URL(request.url)
         assert dict(url.params) == {"query_param": "bar"}
@@ -503,7 +541,7 @@ class TestRunwayml:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = Runwayml(base_url="https://example.com/from_init", _strict_response_validation=True)
+        client = Runwayml(base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True)
         assert client.base_url == "https://example.com/from_init/"
 
         client.base_url = "https://example.com/from_setter"  # type: ignore[assignment]
@@ -512,15 +550,16 @@ class TestRunwayml:
 
     def test_base_url_env(self) -> None:
         with update_env(RUNWAYML_BASE_URL="http://localhost:5000/from/env"):
-            client = Runwayml(_strict_response_validation=True)
+            client = Runwayml(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
-            Runwayml(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
+            Runwayml(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
             Runwayml(
                 base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -540,9 +579,10 @@ class TestRunwayml:
     @pytest.mark.parametrize(
         "client",
         [
-            Runwayml(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
+            Runwayml(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
             Runwayml(
                 base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -562,9 +602,10 @@ class TestRunwayml:
     @pytest.mark.parametrize(
         "client",
         [
-            Runwayml(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
+            Runwayml(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
             Runwayml(
                 base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -582,7 +623,7 @@ class TestRunwayml:
         assert request.url == "https://myapi.com/foo"
 
     def test_copied_client_does_not_close_http(self) -> None:
-        client = Runwayml(base_url=base_url, _strict_response_validation=True)
+        client = Runwayml(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -593,7 +634,7 @@ class TestRunwayml:
         assert not client.is_closed()
 
     def test_client_context_manager(self) -> None:
-        client = Runwayml(base_url=base_url, _strict_response_validation=True)
+        client = Runwayml(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -614,7 +655,7 @@ class TestRunwayml:
 
     def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            Runwayml(base_url=base_url, _strict_response_validation=True, max_retries=cast(Any, None))
+            Runwayml(base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None))
 
     @pytest.mark.respx(base_url=base_url)
     def test_received_text_for_expected_json(self, respx_mock: MockRouter) -> None:
@@ -623,12 +664,12 @@ class TestRunwayml:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = Runwayml(base_url=base_url, _strict_response_validation=True)
+        strict_client = Runwayml(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             strict_client.get("/foo", cast_to=Model)
 
-        client = Runwayml(base_url=base_url, _strict_response_validation=False)
+        client = Runwayml(base_url=base_url, api_key=api_key, _strict_response_validation=False)
 
         response = client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -655,7 +696,7 @@ class TestRunwayml:
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = Runwayml(base_url=base_url, _strict_response_validation=True)
+        client = Runwayml(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
@@ -710,17 +751,14 @@ class TestRunwayml:
         respx_mock.post("/v1/image_to_video").mock(side_effect=retry_handler)
 
         response = client.image_to_video.with_raw_response.create(
-            model="gen3a_turbo",
-            prompt_image="https://example.com",
-            x_runway_on_behalf_of="mfsBGp24IE",
-            x_runway_version="2023-09-06",
+            model="gen3a_turbo", prompt_image="https://example.com"
         )
 
         assert response.retries_taken == failures_before_success
 
 
 class TestAsyncRunwayml:
-    client = AsyncRunwayml(base_url=base_url, _strict_response_validation=True)
+    client = AsyncRunwayml(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
@@ -748,6 +786,10 @@ class TestAsyncRunwayml:
         copied = self.client.copy()
         assert id(copied) != id(self.client)
 
+        copied = self.client.copy(api_key="another My API Key")
+        assert copied.api_key == "another My API Key"
+        assert self.client.api_key == "My API Key"
+
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
         copied = self.client.copy(max_retries=7)
@@ -765,7 +807,9 @@ class TestAsyncRunwayml:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = AsyncRunwayml(base_url=base_url, _strict_response_validation=True, default_headers={"X-Foo": "bar"})
+        client = AsyncRunwayml(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
+        )
         assert client.default_headers["X-Foo"] == "bar"
 
         # does not override the already given value when not specified
@@ -797,7 +841,9 @@ class TestAsyncRunwayml:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = AsyncRunwayml(base_url=base_url, _strict_response_validation=True, default_query={"foo": "bar"})
+        client = AsyncRunwayml(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
+        )
         assert _get_params(client)["foo"] == "bar"
 
         # does not override the already given value when not specified
@@ -920,7 +966,9 @@ class TestAsyncRunwayml:
         assert timeout == httpx.Timeout(100.0)
 
     async def test_client_timeout_option(self) -> None:
-        client = AsyncRunwayml(base_url=base_url, _strict_response_validation=True, timeout=httpx.Timeout(0))
+        client = AsyncRunwayml(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
+        )
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -929,7 +977,9 @@ class TestAsyncRunwayml:
     async def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         async with httpx.AsyncClient(timeout=None) as http_client:
-            client = AsyncRunwayml(base_url=base_url, _strict_response_validation=True, http_client=http_client)
+            client = AsyncRunwayml(
+                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
+            )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -937,7 +987,9 @@ class TestAsyncRunwayml:
 
         # no timeout given to the httpx client should not use the httpx default
         async with httpx.AsyncClient() as http_client:
-            client = AsyncRunwayml(base_url=base_url, _strict_response_validation=True, http_client=http_client)
+            client = AsyncRunwayml(
+                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
+            )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -945,7 +997,9 @@ class TestAsyncRunwayml:
 
         # explicitly passing the default timeout currently results in it being ignored
         async with httpx.AsyncClient(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = AsyncRunwayml(base_url=base_url, _strict_response_validation=True, http_client=http_client)
+            client = AsyncRunwayml(
+                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
+            )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -954,16 +1008,24 @@ class TestAsyncRunwayml:
     def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             with httpx.Client() as http_client:
-                AsyncRunwayml(base_url=base_url, _strict_response_validation=True, http_client=cast(Any, http_client))
+                AsyncRunwayml(
+                    base_url=base_url,
+                    api_key=api_key,
+                    _strict_response_validation=True,
+                    http_client=cast(Any, http_client),
+                )
 
     def test_default_headers_option(self) -> None:
-        client = AsyncRunwayml(base_url=base_url, _strict_response_validation=True, default_headers={"X-Foo": "bar"})
+        client = AsyncRunwayml(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
+        )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
         client2 = AsyncRunwayml(
             base_url=base_url,
+            api_key=api_key,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -974,9 +1036,19 @@ class TestAsyncRunwayml:
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
+    def test_validate_headers(self) -> None:
+        client = AsyncRunwayml(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert request.headers.get("Authorization") == f"Bearer {api_key}"
+
+        with pytest.raises(RunwaymlError):
+            with update_env(**{"RUNWAYML_API_SECRET": Omit()}):
+                client2 = AsyncRunwayml(base_url=base_url, api_key=None, _strict_response_validation=True)
+            _ = client2
+
     def test_default_query_option(self) -> None:
         client = AsyncRunwayml(
-            base_url=base_url, _strict_response_validation=True, default_query={"query_param": "bar"}
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         url = httpx.URL(request.url)
@@ -1176,7 +1248,9 @@ class TestAsyncRunwayml:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = AsyncRunwayml(base_url="https://example.com/from_init", _strict_response_validation=True)
+        client = AsyncRunwayml(
+            base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True
+        )
         assert client.base_url == "https://example.com/from_init/"
 
         client.base_url = "https://example.com/from_setter"  # type: ignore[assignment]
@@ -1185,15 +1259,18 @@ class TestAsyncRunwayml:
 
     def test_base_url_env(self) -> None:
         with update_env(RUNWAYML_BASE_URL="http://localhost:5000/from/env"):
-            client = AsyncRunwayml(_strict_response_validation=True)
+            client = AsyncRunwayml(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncRunwayml(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
+            AsyncRunwayml(
+                base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
+            ),
             AsyncRunwayml(
                 base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1213,9 +1290,12 @@ class TestAsyncRunwayml:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncRunwayml(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
+            AsyncRunwayml(
+                base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
+            ),
             AsyncRunwayml(
                 base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1235,9 +1315,12 @@ class TestAsyncRunwayml:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncRunwayml(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
+            AsyncRunwayml(
+                base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
+            ),
             AsyncRunwayml(
                 base_url="http://localhost:5000/custom/path/",
+                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1255,7 +1338,7 @@ class TestAsyncRunwayml:
         assert request.url == "https://myapi.com/foo"
 
     async def test_copied_client_does_not_close_http(self) -> None:
-        client = AsyncRunwayml(base_url=base_url, _strict_response_validation=True)
+        client = AsyncRunwayml(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -1267,7 +1350,7 @@ class TestAsyncRunwayml:
         assert not client.is_closed()
 
     async def test_client_context_manager(self) -> None:
-        client = AsyncRunwayml(base_url=base_url, _strict_response_validation=True)
+        client = AsyncRunwayml(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         async with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -1289,7 +1372,9 @@ class TestAsyncRunwayml:
 
     async def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            AsyncRunwayml(base_url=base_url, _strict_response_validation=True, max_retries=cast(Any, None))
+            AsyncRunwayml(
+                base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None)
+            )
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
@@ -1299,12 +1384,12 @@ class TestAsyncRunwayml:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = AsyncRunwayml(base_url=base_url, _strict_response_validation=True)
+        strict_client = AsyncRunwayml(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             await strict_client.get("/foo", cast_to=Model)
 
-        client = AsyncRunwayml(base_url=base_url, _strict_response_validation=False)
+        client = AsyncRunwayml(base_url=base_url, api_key=api_key, _strict_response_validation=False)
 
         response = await client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -1332,7 +1417,7 @@ class TestAsyncRunwayml:
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     @pytest.mark.asyncio
     async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = AsyncRunwayml(base_url=base_url, _strict_response_validation=True)
+        client = AsyncRunwayml(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
@@ -1390,10 +1475,7 @@ class TestAsyncRunwayml:
         respx_mock.post("/v1/image_to_video").mock(side_effect=retry_handler)
 
         response = await client.image_to_video.with_raw_response.create(
-            model="gen3a_turbo",
-            prompt_image="https://example.com",
-            x_runway_on_behalf_of="mfsBGp24IE",
-            x_runway_version="2023-09-06",
+            model="gen3a_turbo", prompt_image="https://example.com"
         )
 
         assert response.retries_taken == failures_before_success

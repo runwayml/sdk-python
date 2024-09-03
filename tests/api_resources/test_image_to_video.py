@@ -22,8 +22,6 @@ class TestImageToVideo:
         image_to_video = client.image_to_video.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
-            x_runway_on_behalf_of="mfsBGp24IE",
-            x_runway_version="2023-09-06",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -32,8 +30,6 @@ class TestImageToVideo:
         image_to_video = client.image_to_video.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
-            x_runway_on_behalf_of="mfsBGp24IE",
-            x_runway_version="2023-09-06",
             prompt_text="promptText",
             seed=0,
             watermark=True,
@@ -45,8 +41,6 @@ class TestImageToVideo:
         response = client.image_to_video.with_raw_response.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
-            x_runway_on_behalf_of="mfsBGp24IE",
-            x_runway_version="2023-09-06",
         )
 
         assert response.is_closed is True
@@ -59,8 +53,6 @@ class TestImageToVideo:
         with client.image_to_video.with_streaming_response.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
-            x_runway_on_behalf_of="mfsBGp24IE",
-            x_runway_version="2023-09-06",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -79,8 +71,6 @@ class TestAsyncImageToVideo:
         image_to_video = await async_client.image_to_video.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
-            x_runway_on_behalf_of="mfsBGp24IE",
-            x_runway_version="2023-09-06",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -89,8 +79,6 @@ class TestAsyncImageToVideo:
         image_to_video = await async_client.image_to_video.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
-            x_runway_on_behalf_of="mfsBGp24IE",
-            x_runway_version="2023-09-06",
             prompt_text="promptText",
             seed=0,
             watermark=True,
@@ -102,8 +90,6 @@ class TestAsyncImageToVideo:
         response = await async_client.image_to_video.with_raw_response.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
-            x_runway_on_behalf_of="mfsBGp24IE",
-            x_runway_version="2023-09-06",
         )
 
         assert response.is_closed is True
@@ -116,8 +102,6 @@ class TestAsyncImageToVideo:
         async with async_client.image_to_video.with_streaming_response.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
-            x_runway_on_behalf_of="mfsBGp24IE",
-            x_runway_version="2023-09-06",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
