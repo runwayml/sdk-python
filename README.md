@@ -27,36 +27,45 @@ pip install git+ssh://git@github.com/stainless-sdks/runwayml-python.git
 The full API of this library can be found in [api.md](api.md).
 
 ```python
+import os
 from runwayml import Runwayml
 
-client = Runwayml()
+client = Runwayml(
+    # This is the default and can be omitted
+    api_key=os.environ.get("RUNWAYML_API_SECRET"),
+)
 
 image_to_video_create_response = client.image_to_video.create(
     model="REPLACE_ME",
     prompt_image="REPLACE_ME",
-    x_runway_on_behalf_of="mfsBGp24IE",
-    x_runway_version="2023-09-06",
 )
 print(image_to_video_create_response.id)
 ```
+
+While you can provide an `api_key` keyword argument,
+we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
+to add `RUNWAYML_API_SECRET="My API Key"` to your `.env` file
+so that your API Key is not stored in source control.
 
 ## Async usage
 
 Simply import `AsyncRunwayml` instead of `Runwayml` and use `await` with each API call:
 
 ```python
+import os
 import asyncio
 from runwayml import AsyncRunwayml
 
-client = AsyncRunwayml()
+client = AsyncRunwayml(
+    # This is the default and can be omitted
+    api_key=os.environ.get("RUNWAYML_API_SECRET"),
+)
 
 
 async def main() -> None:
     image_to_video_create_response = await client.image_to_video.create(
         model="REPLACE_ME",
         prompt_image="REPLACE_ME",
-        x_runway_on_behalf_of="mfsBGp24IE",
-        x_runway_version="2023-09-06",
     )
     print(image_to_video_create_response.id)
 
@@ -94,8 +103,6 @@ try:
     client.image_to_video.create(
         model="REPLACE_ME",
         prompt_image="REPLACE_ME",
-        x_runway_on_behalf_of="mfsBGp24IE",
-        x_runway_version="2023-09-06",
     )
 except runwayml.APIConnectionError as e:
     print("The server could not be reached")
@@ -142,8 +149,6 @@ client = Runwayml(
 client.with_options(max_retries=5).image_to_video.create(
     model="REPLACE_ME",
     prompt_image="REPLACE_ME",
-    x_runway_on_behalf_of="mfsBGp24IE",
-    x_runway_version="2023-09-06",
 )
 ```
 
@@ -170,8 +175,6 @@ client = Runwayml(
 client.with_options(timeout=5.0).image_to_video.create(
     model="REPLACE_ME",
     prompt_image="REPLACE_ME",
-    x_runway_on_behalf_of="mfsBGp24IE",
-    x_runway_version="2023-09-06",
 )
 ```
 
@@ -214,8 +217,6 @@ client = Runwayml()
 response = client.image_to_video.with_raw_response.create(
     model="REPLACE_ME",
     prompt_image="REPLACE_ME",
-    x_runway_on_behalf_of="mfsBGp24IE",
-    x_runway_version="2023-09-06",
 )
 print(response.headers.get('X-My-Header'))
 
@@ -237,8 +238,6 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 with client.image_to_video.with_streaming_response.create(
     model="REPLACE_ME",
     prompt_image="REPLACE_ME",
-    x_runway_on_behalf_of="mfsBGp24IE",
-    x_runway_version="2023-09-06",
 ) as response:
     print(response.headers.get("X-My-Header"))
 

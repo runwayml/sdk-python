@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
-
 import httpx
 
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
@@ -34,7 +32,6 @@ class TasksResource(SyncAPIResource):
         self,
         id: str,
         *,
-        x_runway_version: Literal["2023-09-06"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -58,7 +55,6 @@ class TasksResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {"X-Runway-Version": str(x_runway_version), **(extra_headers or {})}
         return self._get(
             f"/v1/tasks/{id}",
             options=make_request_options(
@@ -71,7 +67,6 @@ class TasksResource(SyncAPIResource):
         self,
         id: str,
         *,
-        x_runway_version: Literal["2023-09-06"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -99,7 +94,6 @@ class TasksResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        extra_headers.update({"X-Runway-Version": str(x_runway_version)})
         return self._delete(
             f"/v1/tasks/{id}",
             options=make_request_options(
@@ -122,7 +116,6 @@ class AsyncTasksResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        x_runway_version: Literal["2023-09-06"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -146,7 +139,6 @@ class AsyncTasksResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {"X-Runway-Version": str(x_runway_version), **(extra_headers or {})}
         return await self._get(
             f"/v1/tasks/{id}",
             options=make_request_options(
@@ -159,7 +151,6 @@ class AsyncTasksResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        x_runway_version: Literal["2023-09-06"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -187,7 +178,6 @@ class AsyncTasksResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        extra_headers.update({"X-Runway-Version": str(x_runway_version)})
         return await self._delete(
             f"/v1/tasks/{id}",
             options=make_request_options(
