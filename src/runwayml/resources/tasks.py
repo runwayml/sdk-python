@@ -22,10 +22,21 @@ __all__ = ["TasksResource", "AsyncTasksResource"]
 class TasksResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TasksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/runwayml-python#accessing-raw-response-data-eg-headers
+        """
         return TasksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TasksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/runwayml-python#with_streaming_response
+        """
         return TasksResourceWithStreamingResponse(self)
 
     def retrieve(
@@ -106,10 +117,21 @@ class TasksResource(SyncAPIResource):
 class AsyncTasksResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTasksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/runwayml-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTasksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTasksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/runwayml-python#with_streaming_response
+        """
         return AsyncTasksResourceWithStreamingResponse(self)
 
     async def retrieve(
