@@ -29,10 +29,21 @@ __all__ = ["ImageToVideoResource", "AsyncImageToVideoResource"]
 class ImageToVideoResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ImageToVideoResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/runwayml-python#accessing-raw-response-data-eg-headers
+        """
         return ImageToVideoResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ImageToVideoResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/runwayml-python#with_streaming_response
+        """
         return ImageToVideoResourceWithStreamingResponse(self)
 
     def create(
@@ -99,10 +110,21 @@ class ImageToVideoResource(SyncAPIResource):
 class AsyncImageToVideoResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncImageToVideoResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/runwayml-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncImageToVideoResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncImageToVideoResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/runwayml-python#with_streaming_response
+        """
         return AsyncImageToVideoResourceWithStreamingResponse(self)
 
     async def create(
