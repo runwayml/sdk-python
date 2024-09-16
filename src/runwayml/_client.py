@@ -59,7 +59,7 @@ class RunwayML(SyncAPIClient):
         self,
         *,
         api_key: str | None = None,
-        runway_version: str | None = "2023-09-06",
+        runway_version: str | None = "2024-09-13",
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -92,13 +92,13 @@ class RunwayML(SyncAPIClient):
         self.api_key = api_key
 
         if runway_version is None:
-            runway_version = "2023-09-06"
+            runway_version = "2024-09-13"
         self.runway_version = runway_version
 
         if base_url is None:
             base_url = os.environ.get("RUNWAYML_BASE_URL")
         if base_url is None:
-            base_url = f"https://playdoh.runwayml.com"
+            base_url = f"https://api.dev.runwayml.com"
 
         super().__init__(
             version=__version__,
@@ -238,7 +238,7 @@ class AsyncRunwayML(AsyncAPIClient):
         self,
         *,
         api_key: str | None = None,
-        runway_version: str | None = "2023-09-06",
+        runway_version: str | None = "2024-09-13",
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -271,13 +271,13 @@ class AsyncRunwayML(AsyncAPIClient):
         self.api_key = api_key
 
         if runway_version is None:
-            runway_version = "2023-09-06"
+            runway_version = "2024-09-13"
         self.runway_version = runway_version
 
         if base_url is None:
             base_url = os.environ.get("RUNWAYML_BASE_URL")
         if base_url is None:
-            base_url = f"https://playdoh.runwayml.com"
+            base_url = f"https://api.dev.runwayml.com"
 
         super().__init__(
             version=__version__,
