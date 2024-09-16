@@ -6,7 +6,7 @@ import httpx
 import pytest
 import pydantic
 
-from runwayml import Runwayml, BaseModel, AsyncRunwayml
+from runwayml import RunwayML, BaseModel, AsyncRunwayML
 from runwayml._response import (
     APIResponse,
     BaseAPIResponse,
@@ -56,7 +56,7 @@ def test_extract_response_type_binary_response() -> None:
 class PydanticModel(pydantic.BaseModel): ...
 
 
-def test_response_parse_mismatched_basemodel(client: Runwayml) -> None:
+def test_response_parse_mismatched_basemodel(client: RunwayML) -> None:
     response = APIResponse(
         raw=httpx.Response(200, content=b"foo"),
         client=client,
@@ -74,7 +74,7 @@ def test_response_parse_mismatched_basemodel(client: Runwayml) -> None:
 
 
 @pytest.mark.asyncio
-async def test_async_response_parse_mismatched_basemodel(async_client: AsyncRunwayml) -> None:
+async def test_async_response_parse_mismatched_basemodel(async_client: AsyncRunwayML) -> None:
     response = AsyncAPIResponse(
         raw=httpx.Response(200, content=b"foo"),
         client=async_client,
@@ -91,7 +91,7 @@ async def test_async_response_parse_mismatched_basemodel(async_client: AsyncRunw
         await response.parse(to=PydanticModel)
 
 
-def test_response_parse_custom_stream(client: Runwayml) -> None:
+def test_response_parse_custom_stream(client: RunwayML) -> None:
     response = APIResponse(
         raw=httpx.Response(200, content=b"foo"),
         client=client,
@@ -106,7 +106,7 @@ def test_response_parse_custom_stream(client: Runwayml) -> None:
 
 
 @pytest.mark.asyncio
-async def test_async_response_parse_custom_stream(async_client: AsyncRunwayml) -> None:
+async def test_async_response_parse_custom_stream(async_client: AsyncRunwayML) -> None:
     response = AsyncAPIResponse(
         raw=httpx.Response(200, content=b"foo"),
         client=async_client,
@@ -125,7 +125,7 @@ class CustomModel(BaseModel):
     bar: int
 
 
-def test_response_parse_custom_model(client: Runwayml) -> None:
+def test_response_parse_custom_model(client: RunwayML) -> None:
     response = APIResponse(
         raw=httpx.Response(200, content=json.dumps({"foo": "hello!", "bar": 2})),
         client=client,
@@ -141,7 +141,7 @@ def test_response_parse_custom_model(client: Runwayml) -> None:
 
 
 @pytest.mark.asyncio
-async def test_async_response_parse_custom_model(async_client: AsyncRunwayml) -> None:
+async def test_async_response_parse_custom_model(async_client: AsyncRunwayML) -> None:
     response = AsyncAPIResponse(
         raw=httpx.Response(200, content=json.dumps({"foo": "hello!", "bar": 2})),
         client=async_client,
@@ -156,7 +156,7 @@ async def test_async_response_parse_custom_model(async_client: AsyncRunwayml) ->
     assert obj.bar == 2
 
 
-def test_response_parse_annotated_type(client: Runwayml) -> None:
+def test_response_parse_annotated_type(client: RunwayML) -> None:
     response = APIResponse(
         raw=httpx.Response(200, content=json.dumps({"foo": "hello!", "bar": 2})),
         client=client,
@@ -173,7 +173,7 @@ def test_response_parse_annotated_type(client: Runwayml) -> None:
     assert obj.bar == 2
 
 
-async def test_async_response_parse_annotated_type(async_client: AsyncRunwayml) -> None:
+async def test_async_response_parse_annotated_type(async_client: AsyncRunwayML) -> None:
     response = AsyncAPIResponse(
         raw=httpx.Response(200, content=json.dumps({"foo": "hello!", "bar": 2})),
         client=async_client,
@@ -195,7 +195,7 @@ class OtherModel(BaseModel):
 
 
 @pytest.mark.parametrize("client", [False], indirect=True)  # loose validation
-def test_response_parse_expect_model_union_non_json_content(client: Runwayml) -> None:
+def test_response_parse_expect_model_union_non_json_content(client: RunwayML) -> None:
     response = APIResponse(
         raw=httpx.Response(200, content=b"foo", headers={"Content-Type": "application/text"}),
         client=client,
@@ -212,7 +212,7 @@ def test_response_parse_expect_model_union_non_json_content(client: Runwayml) ->
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("async_client", [False], indirect=True)  # loose validation
-async def test_async_response_parse_expect_model_union_non_json_content(async_client: AsyncRunwayml) -> None:
+async def test_async_response_parse_expect_model_union_non_json_content(async_client: AsyncRunwayML) -> None:
     response = AsyncAPIResponse(
         raw=httpx.Response(200, content=b"foo", headers={"Content-Type": "application/text"}),
         client=async_client,

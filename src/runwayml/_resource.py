@@ -8,13 +8,13 @@ from typing import TYPE_CHECKING
 import anyio
 
 if TYPE_CHECKING:
-    from ._client import Runwayml, AsyncRunwayml
+    from ._client import RunwayML, AsyncRunwayML
 
 
 class SyncAPIResource:
-    _client: Runwayml
+    _client: RunwayML
 
-    def __init__(self, client: Runwayml) -> None:
+    def __init__(self, client: RunwayML) -> None:
         self._client = client
         self._get = client.get
         self._post = client.post
@@ -28,9 +28,9 @@ class SyncAPIResource:
 
 
 class AsyncAPIResource:
-    _client: AsyncRunwayml
+    _client: AsyncRunwayML
 
-    def __init__(self, client: AsyncRunwayml) -> None:
+    def __init__(self, client: AsyncRunwayML) -> None:
         self._client = client
         self._get = client.get
         self._post = client.post

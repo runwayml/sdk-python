@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from runwayml import Runwayml, AsyncRunwayml
+from runwayml import RunwayML, AsyncRunwayML
 from tests.utils import assert_matches_type
 from runwayml.types import ImageToVideoCreateResponse
 
@@ -18,7 +18,7 @@ class TestImageToVideo:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create(self, client: Runwayml) -> None:
+    def test_method_create(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
@@ -26,7 +26,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params(self, client: Runwayml) -> None:
+    def test_method_create_with_all_params(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
@@ -37,7 +37,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_raw_response_create(self, client: Runwayml) -> None:
+    def test_raw_response_create(self, client: RunwayML) -> None:
         response = client.image_to_video.with_raw_response.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
@@ -49,7 +49,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_streaming_response_create(self, client: Runwayml) -> None:
+    def test_streaming_response_create(self, client: RunwayML) -> None:
         with client.image_to_video.with_streaming_response.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
@@ -67,7 +67,7 @@ class TestAsyncImageToVideo:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_create(self, async_client: AsyncRunwayml) -> None:
+    async def test_method_create(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
@@ -75,7 +75,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncRunwayml) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
@@ -86,7 +86,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncRunwayml) -> None:
+    async def test_raw_response_create(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.image_to_video.with_raw_response.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
@@ -98,7 +98,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncRunwayml) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncRunwayML) -> None:
         async with async_client.image_to_video.with_streaming_response.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",

@@ -5,7 +5,7 @@ description = "The official Python library for the runwayml API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Runwayml", email = "dev-feedback@runwayml.com" },
+{ name = "RunwayML", email = "dev-feedback@runwayml.com" },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
