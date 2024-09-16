@@ -1,8 +1,8 @@
-# Runwayml Python API library
+# RunwayML Python API library
 
 [![PyPI version](https://img.shields.io/pypi/v/runwayml.svg)](https://pypi.org/project/runwayml/)
 
-The Runwayml Python library provides convenient access to the Runwayml REST API from any Python 3.7+
+The RunwayML Python library provides convenient access to the RunwayML REST API from any Python 3.7+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -28,9 +28,9 @@ The full API of this library can be found in [api.md](api.md).
 
 ```python
 import os
-from runwayml import Runwayml
+from runwayml import RunwayML
 
-client = Runwayml(
+client = RunwayML(
     # This is the default and can be omitted
     api_key=os.environ.get("RUNWAYML_API_SECRET"),
 )
@@ -49,14 +49,14 @@ so that your API Key is not stored in source control.
 
 ## Async usage
 
-Simply import `AsyncRunwayml` instead of `Runwayml` and use `await` with each API call:
+Simply import `AsyncRunwayML` instead of `RunwayML` and use `await` with each API call:
 
 ```python
 import os
 import asyncio
-from runwayml import AsyncRunwayml
+from runwayml import AsyncRunwayML
 
-client = AsyncRunwayml(
+client = AsyncRunwayML(
     # This is the default and can be omitted
     api_key=os.environ.get("RUNWAYML_API_SECRET"),
 )
@@ -95,9 +95,9 @@ All errors inherit from `runwayml.APIError`.
 
 ```python
 import runwayml
-from runwayml import Runwayml
+from runwayml import RunwayML
 
-client = Runwayml()
+client = RunwayML()
 
 try:
     client.image_to_video.create(
@@ -137,10 +137,10 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from runwayml import Runwayml
+from runwayml import RunwayML
 
 # Configure the default for all requests:
-client = Runwayml(
+client = RunwayML(
     # default is 2
     max_retries=0,
 )
@@ -158,16 +158,16 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
-from runwayml import Runwayml
+from runwayml import RunwayML
 
 # Configure the default for all requests:
-client = Runwayml(
+client = RunwayML(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
 )
 
 # More granular control:
-client = Runwayml(
+client = RunwayML(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
@@ -211,9 +211,9 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from runwayml import Runwayml
+from runwayml import RunwayML
 
-client = Runwayml()
+client = RunwayML()
 response = client.image_to_video.with_raw_response.create(
     model="REPLACE_ME",
     prompt_image="REPLACE_ME",
@@ -291,9 +291,9 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 - Additional [advanced](https://www.python-httpx.org/advanced/clients/) functionality
 
 ```python
-from runwayml import Runwayml, DefaultHttpxClient
+from runwayml import RunwayML, DefaultHttpxClient
 
-client = Runwayml(
+client = RunwayML(
     # Or use the `RUNWAYML_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(

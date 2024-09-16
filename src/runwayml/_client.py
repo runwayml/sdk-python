@@ -25,7 +25,7 @@ from ._utils import (
 )
 from ._version import __version__
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
-from ._exceptions import RunwaymlError, APIStatusError
+from ._exceptions import RunwayMLError, APIStatusError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -38,18 +38,18 @@ __all__ = [
     "ProxiesTypes",
     "RequestOptions",
     "resources",
-    "Runwayml",
-    "AsyncRunwayml",
+    "RunwayML",
+    "AsyncRunwayML",
     "Client",
     "AsyncClient",
 ]
 
 
-class Runwayml(SyncAPIClient):
+class RunwayML(SyncAPIClient):
     tasks: resources.TasksResource
     image_to_video: resources.ImageToVideoResource
-    with_raw_response: RunwaymlWithRawResponse
-    with_streaming_response: RunwaymlWithStreamedResponse
+    with_raw_response: RunwayMLWithRawResponse
+    with_streaming_response: RunwayMLWithStreamedResponse
 
     # client options
     api_key: str
@@ -86,7 +86,7 @@ class Runwayml(SyncAPIClient):
         if api_key is None:
             api_key = os.environ.get("RUNWAYML_API_SECRET")
         if api_key is None:
-            raise RunwaymlError(
+            raise RunwayMLError(
                 "The api_key client option must be set either by passing api_key to the client or by setting the RUNWAYML_API_SECRET environment variable"
             )
         self.api_key = api_key
@@ -113,8 +113,8 @@ class Runwayml(SyncAPIClient):
 
         self.tasks = resources.TasksResource(self)
         self.image_to_video = resources.ImageToVideoResource(self)
-        self.with_raw_response = RunwaymlWithRawResponse(self)
-        self.with_streaming_response = RunwaymlWithStreamedResponse(self)
+        self.with_raw_response = RunwayMLWithRawResponse(self)
+        self.with_streaming_response = RunwayMLWithStreamedResponse(self)
 
     @property
     @override
@@ -224,11 +224,11 @@ class Runwayml(SyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class AsyncRunwayml(AsyncAPIClient):
+class AsyncRunwayML(AsyncAPIClient):
     tasks: resources.AsyncTasksResource
     image_to_video: resources.AsyncImageToVideoResource
-    with_raw_response: AsyncRunwaymlWithRawResponse
-    with_streaming_response: AsyncRunwaymlWithStreamedResponse
+    with_raw_response: AsyncRunwayMLWithRawResponse
+    with_streaming_response: AsyncRunwayMLWithStreamedResponse
 
     # client options
     api_key: str
@@ -265,7 +265,7 @@ class AsyncRunwayml(AsyncAPIClient):
         if api_key is None:
             api_key = os.environ.get("RUNWAYML_API_SECRET")
         if api_key is None:
-            raise RunwaymlError(
+            raise RunwayMLError(
                 "The api_key client option must be set either by passing api_key to the client or by setting the RUNWAYML_API_SECRET environment variable"
             )
         self.api_key = api_key
@@ -292,8 +292,8 @@ class AsyncRunwayml(AsyncAPIClient):
 
         self.tasks = resources.AsyncTasksResource(self)
         self.image_to_video = resources.AsyncImageToVideoResource(self)
-        self.with_raw_response = AsyncRunwaymlWithRawResponse(self)
-        self.with_streaming_response = AsyncRunwaymlWithStreamedResponse(self)
+        self.with_raw_response = AsyncRunwayMLWithRawResponse(self)
+        self.with_streaming_response = AsyncRunwayMLWithStreamedResponse(self)
 
     @property
     @override
@@ -403,30 +403,30 @@ class AsyncRunwayml(AsyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class RunwaymlWithRawResponse:
-    def __init__(self, client: Runwayml) -> None:
+class RunwayMLWithRawResponse:
+    def __init__(self, client: RunwayML) -> None:
         self.tasks = resources.TasksResourceWithRawResponse(client.tasks)
         self.image_to_video = resources.ImageToVideoResourceWithRawResponse(client.image_to_video)
 
 
-class AsyncRunwaymlWithRawResponse:
-    def __init__(self, client: AsyncRunwayml) -> None:
+class AsyncRunwayMLWithRawResponse:
+    def __init__(self, client: AsyncRunwayML) -> None:
         self.tasks = resources.AsyncTasksResourceWithRawResponse(client.tasks)
         self.image_to_video = resources.AsyncImageToVideoResourceWithRawResponse(client.image_to_video)
 
 
-class RunwaymlWithStreamedResponse:
-    def __init__(self, client: Runwayml) -> None:
+class RunwayMLWithStreamedResponse:
+    def __init__(self, client: RunwayML) -> None:
         self.tasks = resources.TasksResourceWithStreamingResponse(client.tasks)
         self.image_to_video = resources.ImageToVideoResourceWithStreamingResponse(client.image_to_video)
 
 
-class AsyncRunwaymlWithStreamedResponse:
-    def __init__(self, client: AsyncRunwayml) -> None:
+class AsyncRunwayMLWithStreamedResponse:
+    def __init__(self, client: AsyncRunwayML) -> None:
         self.tasks = resources.AsyncTasksResourceWithStreamingResponse(client.tasks)
         self.image_to_video = resources.AsyncImageToVideoResourceWithStreamingResponse(client.image_to_video)
 
 
-Client = Runwayml
+Client = RunwayML
 
-AsyncClient = AsyncRunwayml
+AsyncClient = AsyncRunwayML

@@ -18,11 +18,11 @@ __all__ = [
 ]
 
 
-class RunwaymlError(Exception):
+class RunwayMLError(Exception):
     pass
 
 
-class APIError(RunwaymlError):
+class APIError(RunwayMLError):
     message: str
     request: httpx.Request
 
