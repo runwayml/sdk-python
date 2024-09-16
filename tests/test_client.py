@@ -711,7 +711,14 @@ class TestRunwayML:
         with pytest.raises(APITimeoutError):
             self.client.post(
                 "/v1/image_to_video",
-                body=cast(object, dict(model="REPLACE_ME", prompt_image="REPLACE_ME")),
+                body=cast(
+                    object,
+                    dict(
+                        model="gen3a_turbo",
+                        prompt_image="https://example.com/assets/bunny.jpg",
+                        prompt_text="The bunny is eating a carrot",
+                    ),
+                ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -726,7 +733,14 @@ class TestRunwayML:
         with pytest.raises(APIStatusError):
             self.client.post(
                 "/v1/image_to_video",
-                body=cast(object, dict(model="REPLACE_ME", prompt_image="REPLACE_ME")),
+                body=cast(
+                    object,
+                    dict(
+                        model="gen3a_turbo",
+                        prompt_image="https://example.com/assets/bunny.jpg",
+                        prompt_text="The bunny is eating a carrot",
+                    ),
+                ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1432,7 +1446,14 @@ class TestAsyncRunwayML:
         with pytest.raises(APITimeoutError):
             await self.client.post(
                 "/v1/image_to_video",
-                body=cast(object, dict(model="REPLACE_ME", prompt_image="REPLACE_ME")),
+                body=cast(
+                    object,
+                    dict(
+                        model="gen3a_turbo",
+                        prompt_image="https://example.com/assets/bunny.jpg",
+                        prompt_text="The bunny is eating a carrot",
+                    ),
+                ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1447,7 +1468,14 @@ class TestAsyncRunwayML:
         with pytest.raises(APIStatusError):
             await self.client.post(
                 "/v1/image_to_video",
-                body=cast(object, dict(model="REPLACE_ME", prompt_image="REPLACE_ME")),
+                body=cast(
+                    object,
+                    dict(
+                        model="gen3a_turbo",
+                        prompt_image="https://example.com/assets/bunny.jpg",
+                        prompt_text="The bunny is eating a carrot",
+                    ),
+                ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
