@@ -10,13 +10,13 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 
 ## Documentation
 
-The REST API documentation can be found on [docs.runwayml.com](https://docs.runwayml.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [dev.runwayml.com](https://dev.runwayml.com). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
 ```sh
-# install from this staging repo
-pip install git+ssh://git@github.com/stainless-sdks/runwayml-python.git
+# install from the production repo
+pip install git+ssh://git@github.com/runwayml/sdk-python.git
 ```
 
 > [!NOTE]
@@ -36,8 +36,9 @@ client = RunwayML(
 )
 
 image_to_video = client.image_to_video.create(
-    model="REPLACE_ME",
-    prompt_image="REPLACE_ME",
+    model="gen3a_turbo",
+    prompt_image="https://example.com/assets/bunny.jpg",
+    prompt_text="The bunny is eating a carrot",
 )
 print(image_to_video.id)
 ```
@@ -64,8 +65,9 @@ client = AsyncRunwayML(
 
 async def main() -> None:
     image_to_video = await client.image_to_video.create(
-        model="REPLACE_ME",
-        prompt_image="REPLACE_ME",
+        model="gen3a_turbo",
+        prompt_image="https://example.com/assets/bunny.jpg",
+        prompt_text="The bunny is eating a carrot",
     )
     print(image_to_video.id)
 
@@ -101,8 +103,9 @@ client = RunwayML()
 
 try:
     client.image_to_video.create(
-        model="REPLACE_ME",
-        prompt_image="REPLACE_ME",
+        model="gen3a_turbo",
+        prompt_image="https://example.com/assets/bunny.jpg",
+        prompt_text="The bunny is eating a carrot",
     )
 except runwayml.APIConnectionError as e:
     print("The server could not be reached")
@@ -147,8 +150,9 @@ client = RunwayML(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).image_to_video.create(
-    model="REPLACE_ME",
-    prompt_image="REPLACE_ME",
+    model="gen3a_turbo",
+    prompt_image="https://example.com/assets/bunny.jpg",
+    prompt_text="The bunny is eating a carrot",
 )
 ```
 
@@ -173,8 +177,9 @@ client = RunwayML(
 
 # Override per-request:
 client.with_options(timeout=5.0).image_to_video.create(
-    model="REPLACE_ME",
-    prompt_image="REPLACE_ME",
+    model="gen3a_turbo",
+    prompt_image="https://example.com/assets/bunny.jpg",
+    prompt_text="The bunny is eating a carrot",
 )
 ```
 
@@ -215,8 +220,9 @@ from runwayml import RunwayML
 
 client = RunwayML()
 response = client.image_to_video.with_raw_response.create(
-    model="REPLACE_ME",
-    prompt_image="REPLACE_ME",
+    model="gen3a_turbo",
+    prompt_image="https://example.com/assets/bunny.jpg",
+    prompt_text="The bunny is eating a carrot",
 )
 print(response.headers.get('X-My-Header'))
 
@@ -224,9 +230,9 @@ image_to_video = response.parse()  # get the object that `image_to_video.create(
 print(image_to_video.id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/stainless-sdks/runwayml-python/tree/main/src/runwayml/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/runwayml/sdk-python/tree/main/src/runwayml/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/runwayml-python/tree/main/src/runwayml/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/runwayml/sdk-python/tree/main/src/runwayml/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -236,8 +242,9 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.image_to_video.with_streaming_response.create(
-    model="REPLACE_ME",
-    prompt_image="REPLACE_ME",
+    model="gen3a_turbo",
+    prompt_image="https://example.com/assets/bunny.jpg",
+    prompt_text="The bunny is eating a carrot",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
@@ -323,7 +330,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/runwayml-python/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/runwayml/sdk-python/issues) with questions, bugs, or suggestions.
 
 ### Determining the installed version
 

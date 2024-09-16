@@ -33,7 +33,7 @@ class ImageToVideoResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/runwayml-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/runwayml/sdk-python#accessing-raw-response-data-eg-headers
         """
         return ImageToVideoResourceWithRawResponse(self)
 
@@ -42,7 +42,7 @@ class ImageToVideoResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/runwayml-python#with_streaming_response
+        For more information, see https://www.github.com/runwayml/sdk-python#with_streaming_response
         """
         return ImageToVideoResourceWithStreamingResponse(self)
 
@@ -67,11 +67,10 @@ class ImageToVideoResource(SyncAPIResource):
         Args:
           model: The model variant to use.
 
-          prompt_image: A URL pointing to an image. See documentation on input URLs.
+          prompt_image: A HTTPS URL pointing to an image. Images must be JPEG, PNG, or WebP and are
+              limited to 16MB. Responses must include a valid `Content-Length` header.
 
-          prompt_text: A non-empty string up to 512 UTF-16 code points in length (that is,
-              `promptText.length === 512` in JavaScript). This should describe in detail what
-              should appear in the output.
+          prompt_text
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -114,7 +113,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/runwayml-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/runwayml/sdk-python#accessing-raw-response-data-eg-headers
         """
         return AsyncImageToVideoResourceWithRawResponse(self)
 
@@ -123,7 +122,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/runwayml-python#with_streaming_response
+        For more information, see https://www.github.com/runwayml/sdk-python#with_streaming_response
         """
         return AsyncImageToVideoResourceWithStreamingResponse(self)
 
@@ -148,11 +147,10 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         Args:
           model: The model variant to use.
 
-          prompt_image: A URL pointing to an image. See documentation on input URLs.
+          prompt_image: A HTTPS URL pointing to an image. Images must be JPEG, PNG, or WebP and are
+              limited to 16MB. Responses must include a valid `Content-Length` header.
 
-          prompt_text: A non-empty string up to 512 UTF-16 code points in length (that is,
-              `promptText.length === 512` in JavaScript). This should describe in detail what
-              should appear in the output.
+          prompt_text
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed

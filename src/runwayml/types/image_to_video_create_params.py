@@ -14,14 +14,13 @@ class ImageToVideoCreateParams(TypedDict, total=False):
     """The model variant to use."""
 
     prompt_image: Required[Annotated[str, PropertyInfo(alias="promptImage")]]
-    """A URL pointing to an image. See documentation on input URLs."""
+    """A HTTPS URL pointing to an image.
+
+    Images must be JPEG, PNG, or WebP and are limited to 16MB. Responses must
+    include a valid `Content-Length` header.
+    """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
-    """
-    A non-empty string up to 512 UTF-16 code points in length (that is,
-    `promptText.length === 512` in JavaScript). This should describe in detail what
-    should appear in the output.
-    """
 
     seed: int
     """If unspecified, a random number is chosen.
