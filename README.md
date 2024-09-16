@@ -35,11 +35,11 @@ client = RunwayML(
     api_key=os.environ.get("RUNWAYML_API_SECRET"),
 )
 
-image_to_video_create_response = client.image_to_video.create(
+image_to_video = client.image_to_video.create(
     model="REPLACE_ME",
     prompt_image="REPLACE_ME",
 )
-print(image_to_video_create_response.id)
+print(image_to_video.id)
 ```
 
 While you can provide a `api_key` keyword argument,
@@ -63,11 +63,11 @@ client = AsyncRunwayML(
 
 
 async def main() -> None:
-    image_to_video_create_response = await client.image_to_video.create(
+    image_to_video = await client.image_to_video.create(
         model="REPLACE_ME",
         prompt_image="REPLACE_ME",
     )
-    print(image_to_video_create_response.id)
+    print(image_to_video.id)
 
 
 asyncio.run(main())
