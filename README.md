@@ -16,7 +16,7 @@ The REST API documentation can be found on [dev.runwayml.com](https://dev.runway
 
 ```sh
 # install from PyPI
-pip install --pre runwayml
+pip install runwayml
 ```
 
 ## Usage
