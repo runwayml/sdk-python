@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 (2024-09-18)
+
+Full Changelog: [v0.1.0-alpha.1...v1.0.0](https://github.com/runwayml/sdk-python/compare/v0.1.0-alpha.1...v1.0.0)
+
+### Chores
+
+* update SDK settings ([#4](https://github.com/runwayml/sdk-python/issues/4)) ([50c8fb7](https://github.com/runwayml/sdk-python/commit/50c8fb734438fc6a969d8d3acbe9134fa08ff839))
+
 ## 0.1.0-alpha.1 (2024-09-16)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/runwayml/sdk-python/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
