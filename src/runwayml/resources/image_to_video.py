@@ -51,7 +51,9 @@ class ImageToVideoResource(SyncAPIResource):
         *,
         model: Literal["gen3a_turbo"],
         prompt_image: str,
+        duration: Literal[5, 10] | NotGiven = NOT_GIVEN,
         prompt_text: str | NotGiven = NOT_GIVEN,
+        ratio: Literal["16:9", "9:16"] | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
         watermark: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -70,7 +72,11 @@ class ImageToVideoResource(SyncAPIResource):
           prompt_image: A HTTPS URL pointing to an image. Images must be JPEG, PNG, or WebP and are
               limited to 16MB. Responses must include a valid `Content-Length` header.
 
+          duration: The number of seconds of duration for the output video.
+
           prompt_text
+
+          ratio: The aspect ratio of the output video.
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -93,7 +99,9 @@ class ImageToVideoResource(SyncAPIResource):
                 {
                     "model": model,
                     "prompt_image": prompt_image,
+                    "duration": duration,
                     "prompt_text": prompt_text,
+                    "ratio": ratio,
                     "seed": seed,
                     "watermark": watermark,
                 },
@@ -131,7 +139,9 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         *,
         model: Literal["gen3a_turbo"],
         prompt_image: str,
+        duration: Literal[5, 10] | NotGiven = NOT_GIVEN,
         prompt_text: str | NotGiven = NOT_GIVEN,
+        ratio: Literal["16:9", "9:16"] | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
         watermark: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -150,7 +160,11 @@ class AsyncImageToVideoResource(AsyncAPIResource):
           prompt_image: A HTTPS URL pointing to an image. Images must be JPEG, PNG, or WebP and are
               limited to 16MB. Responses must include a valid `Content-Length` header.
 
+          duration: The number of seconds of duration for the output video.
+
           prompt_text
+
+          ratio: The aspect ratio of the output video.
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -173,7 +187,9 @@ class AsyncImageToVideoResource(AsyncAPIResource):
                 {
                     "model": model,
                     "prompt_image": prompt_image,
+                    "duration": duration,
                     "prompt_text": prompt_text,
+                    "ratio": ratio,
                     "seed": seed,
                     "watermark": watermark,
                 },

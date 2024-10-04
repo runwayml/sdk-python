@@ -30,7 +30,9 @@ class TestImageToVideo:
         image_to_video = client.image_to_video.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
+            duration=5,
             prompt_text="promptText",
+            ratio="16:9",
             seed=0,
             watermark=True,
         )
@@ -79,7 +81,9 @@ class TestAsyncImageToVideo:
         image_to_video = await async_client.image_to_video.create(
             model="gen3a_turbo",
             prompt_image="https://example.com",
+            duration=5,
             prompt_text="promptText",
+            ratio="16:9",
             seed=0,
             watermark=True,
         )
