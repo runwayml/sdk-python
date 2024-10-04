@@ -20,7 +20,13 @@ class ImageToVideoCreateParams(TypedDict, total=False):
     include a valid `Content-Length` header.
     """
 
+    duration: Literal[5, 10]
+    """The number of seconds of duration for the output video."""
+
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+
+    ratio: Literal["16:9", "9:16"]
+    """The aspect ratio of the output video."""
 
     seed: int
     """If unspecified, a random number is chosen.
