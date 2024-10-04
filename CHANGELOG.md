@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.0.0 (2024-10-04)
+
+Full Changelog: [v1.0.0...v2.0.0](https://github.com/runwayml/sdk-python/compare/v1.0.0...v2.0.0)
+
+### Features
+
+* **api:** update via SDK Studio ([#7](https://github.com/runwayml/sdk-python/issues/7)) ([e31ea2c](https://github.com/runwayml/sdk-python/commit/e31ea2ca5602245bd936d564b66752f592cc2fab))
+
+
+### Chores
+
+* **internal:** codegen related update ([#10](https://github.com/runwayml/sdk-python/issues/10)) ([b1b5a5f](https://github.com/runwayml/sdk-python/commit/b1b5a5f1eb6dadc9674e771a598d7269a6ed23b2))
+* **internal:** codegen related update ([#11](https://github.com/runwayml/sdk-python/issues/11)) ([6a8ccd0](https://github.com/runwayml/sdk-python/commit/6a8ccd00924f775851a9a8e9429ae4b2f1790dee))
+* **internal:** codegen related update ([#8](https://github.com/runwayml/sdk-python/issues/8)) ([c66ad91](https://github.com/runwayml/sdk-python/commit/c66ad91471c094e4c42bbbefdce4ea0d81fe487f))
+
 ## 1.0.0 (2024-09-18)
 
 Full Changelog: [v0.1.0-alpha.1...v1.0.0](https://github.com/runwayml/sdk-python/compare/v0.1.0-alpha.1...v1.0.0)
