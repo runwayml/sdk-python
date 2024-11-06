@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Union, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -50,10 +51,10 @@ class ImageToVideoResource(SyncAPIResource):
         self,
         *,
         model: Literal["gen3a_turbo"],
-        prompt_image: str,
+        prompt_image: Union[str, Iterable[image_to_video_create_params.PromptImagePromptImage]],
         duration: Literal[5, 10] | NotGiven = NOT_GIVEN,
         prompt_text: str | NotGiven = NOT_GIVEN,
-        ratio: Literal["16:9", "9:16"] | NotGiven = NOT_GIVEN,
+        ratio: Literal["1280:768", "768:1280"] | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
         watermark: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -69,14 +70,15 @@ class ImageToVideoResource(SyncAPIResource):
         Args:
           model: The model variant to use.
 
-          prompt_image: A HTTPS URL pointing to an image. Images must be JPEG, PNG, or WebP and are
-              limited to 16MB. Responses must include a valid `Content-Length` header.
+          prompt_image: A HTTPS URL or data URI containing an encoded image to be used as the first
+              frame of the generated video. See [our docs](/assets/inputs#images) on image
+              inputs for more information.
 
           duration: The number of seconds of duration for the output video.
 
           prompt_text
 
-          ratio: The aspect ratio of the output video.
+          ratio
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -138,10 +140,10 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         self,
         *,
         model: Literal["gen3a_turbo"],
-        prompt_image: str,
+        prompt_image: Union[str, Iterable[image_to_video_create_params.PromptImagePromptImage]],
         duration: Literal[5, 10] | NotGiven = NOT_GIVEN,
         prompt_text: str | NotGiven = NOT_GIVEN,
-        ratio: Literal["16:9", "9:16"] | NotGiven = NOT_GIVEN,
+        ratio: Literal["1280:768", "768:1280"] | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
         watermark: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -157,14 +159,15 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         Args:
           model: The model variant to use.
 
-          prompt_image: A HTTPS URL pointing to an image. Images must be JPEG, PNG, or WebP and are
-              limited to 16MB. Responses must include a valid `Content-Length` header.
+          prompt_image: A HTTPS URL or data URI containing an encoded image to be used as the first
+              frame of the generated video. See [our docs](/assets/inputs#images) on image
+              inputs for more information.
 
           duration: The number of seconds of duration for the output video.
 
           prompt_text
 
-          ratio: The aspect ratio of the output video.
+          ratio
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed

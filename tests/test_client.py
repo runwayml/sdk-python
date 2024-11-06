@@ -10,6 +10,7 @@ import inspect
 import tracemalloc
 from typing import Any, Union, cast
 from unittest import mock
+from typing_extensions import Literal
 
 import httpx
 import pytest
@@ -692,6 +693,7 @@ class TestRunwayML:
             [3, "", 0.5],
             [2, "", 0.5 * 2.0],
             [1, "", 0.5 * 4.0],
+            [-1100, "", 8],  # test large number potentially overflowing
         ],
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
@@ -750,7 +752,14 @@ class TestRunwayML:
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
     @mock.patch("runwayml._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retries_taken(self, client: RunwayML, failures_before_success: int, respx_mock: MockRouter) -> None:
+    @pytest.mark.parametrize("failure_mode", ["status", "exception"])
+    def test_retries_taken(
+        self,
+        client: RunwayML,
+        failures_before_success: int,
+        failure_mode: Literal["status", "exception"],
+        respx_mock: MockRouter,
+    ) -> None:
         client = client.with_options(max_retries=4)
 
         nb_retries = 0
@@ -759,6 +768,8 @@ class TestRunwayML:
             nonlocal nb_retries
             if nb_retries < failures_before_success:
                 nb_retries += 1
+                if failure_mode == "exception":
+                    raise RuntimeError("oops")
                 return httpx.Response(500)
             return httpx.Response(200)
 
@@ -1477,6 +1488,7 @@ class TestAsyncRunwayML:
             [3, "", 0.5],
             [2, "", 0.5 * 2.0],
             [1, "", 0.5 * 4.0],
+            [-1100, "", 8],  # test large number potentially overflowing
         ],
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
@@ -1537,8 +1549,13 @@ class TestAsyncRunwayML:
     @mock.patch("runwayml._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
+    @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     async def test_retries_taken(
-        self, async_client: AsyncRunwayML, failures_before_success: int, respx_mock: MockRouter
+        self,
+        async_client: AsyncRunwayML,
+        failures_before_success: int,
+        failure_mode: Literal["status", "exception"],
+        respx_mock: MockRouter,
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
@@ -1548,6 +1565,8 @@ class TestAsyncRunwayML:
             nonlocal nb_retries
             if nb_retries < failures_before_success:
                 nb_retries += 1
+                if failure_mode == "exception":
+                    raise RuntimeError("oops")
                 return httpx.Response(500)
             return httpx.Response(200)
 
