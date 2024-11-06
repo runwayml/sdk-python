@@ -59,7 +59,7 @@ class RunwayML(SyncAPIClient):
         self,
         *,
         api_key: str | None = None,
-        runway_version: str | None = "2024-09-13",
+        runway_version: str | None = "2024-11-06",
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -92,7 +92,7 @@ class RunwayML(SyncAPIClient):
         self.api_key = api_key
 
         if runway_version is None:
-            runway_version = "2024-09-13"
+            runway_version = "2024-11-06"
         self.runway_version = runway_version
 
         if base_url is None:
@@ -238,7 +238,7 @@ class AsyncRunwayML(AsyncAPIClient):
         self,
         *,
         api_key: str | None = None,
-        runway_version: str | None = "2024-09-13",
+        runway_version: str | None = "2024-11-06",
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -271,7 +271,7 @@ class AsyncRunwayML(AsyncAPIClient):
         self.api_key = api_key
 
         if runway_version is None:
-            runway_version = "2024-09-13"
+            runway_version = "2024-11-06"
         self.runway_version = runway_version
 
         if base_url is None:
