@@ -32,7 +32,7 @@ class TestImageToVideo:
             prompt_image="https://example.com",
             duration=5,
             prompt_text="promptText",
-            ratio="16:9",
+            ratio="1280:768",
             seed=0,
             watermark=True,
         )
@@ -83,7 +83,7 @@ class TestAsyncImageToVideo:
             prompt_image="https://example.com",
             duration=5,
             prompt_text="promptText",
-            ratio="16:9",
+            ratio="1280:768",
             seed=0,
             watermark=True,
         )

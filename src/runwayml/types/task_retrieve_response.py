@@ -13,6 +13,7 @@ __all__ = ["TaskRetrieveResponse"]
 
 class TaskRetrieveResponse(BaseModel):
     id: str
+    """The ID of the task being returned."""
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """The timestamp that the task was submitted at."""
