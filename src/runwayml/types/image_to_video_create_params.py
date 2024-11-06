@@ -2,22 +2,23 @@
 
 from __future__ import annotations
 
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["ImageToVideoCreateParams"]
+__all__ = ["ImageToVideoCreateParams", "PromptImagePromptImage"]
 
 
 class ImageToVideoCreateParams(TypedDict, total=False):
     model: Required[Literal["gen3a_turbo"]]
     """The model variant to use."""
 
-    prompt_image: Required[Annotated[str, PropertyInfo(alias="promptImage")]]
-    """A HTTPS URL pointing to an image.
-
-    Images must be JPEG, PNG, or WebP and are limited to 16MB. Responses must
-    include a valid `Content-Length` header.
+    prompt_image: Required[Annotated[Union[str, Iterable[PromptImagePromptImage]], PropertyInfo(alias="promptImage")]]
+    """
+    A HTTPS URL or data URI containing an encoded image to be used as the first
+    frame of the generated video. See [our docs](/assets/inputs#images) on image
+    inputs for more information.
     """
 
     duration: Literal[5, 10]
@@ -25,8 +26,7 @@ class ImageToVideoCreateParams(TypedDict, total=False):
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
 
-    ratio: Literal["16:9", "9:16"]
-    """The aspect ratio of the output video."""
+    ratio: Literal["1280:768", "768:1280"]
 
     seed: int
     """If unspecified, a random number is chosen.
@@ -40,4 +40,19 @@ class ImageToVideoCreateParams(TypedDict, total=False):
     """
     A boolean indicating whether or not the output video will contain a Runway
     watermark.
+    """
+
+
+class PromptImagePromptImage(TypedDict, total=False):
+    position: Required[Literal["first", "last"]]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame of the video, "last" will use the
+    image as the last frame of the video.
+    """
+
+    uri: Required[str]
+    """A HTTPS URL or data URI containing an encoded image.
+
+    See [our docs](/assets/inputs#images) on image inputs for more information.
     """
