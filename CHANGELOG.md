@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.0 (2024-11-06)
+
+Full Changelog: [v2.0.0...v2.1.0](https://github.com/runwayml/sdk-python/compare/v2.0.0...v2.1.0)
+
+### Features
+
+* **api:** API version 2024-11-06 ([#15](https://github.com/runwayml/sdk-python/issues/15)) ([39c096f](https://github.com/runwayml/sdk-python/commit/39c096fdc4784cc726e8688dcc3263e6cb322607))
+* **api:** Set latest default API version ([#17](https://github.com/runwayml/sdk-python/issues/17)) ([2ad66fd](https://github.com/runwayml/sdk-python/commit/2ad66fd753321eaae28fa09755bfdb6bbfc07949))
+
 ## 2.0.0 (2024-10-04)
 
 Full Changelog: [v1.0.0...v2.0.0](https://github.com/runwayml/sdk-python/compare/v1.0.0...v2.0.0)
