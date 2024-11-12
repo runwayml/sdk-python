@@ -28,8 +28,7 @@ import os
 from runwayml import RunwayML
 
 client = RunwayML(
-    # This is the default and can be omitted
-    api_key=os.environ.get("RUNWAYML_API_SECRET"),
+    api_key=os.environ.get("RUNWAYML_API_SECRET"),  # This is the default and can be omitted
 )
 
 image_to_video = client.image_to_video.create(
@@ -55,8 +54,7 @@ import asyncio
 from runwayml import AsyncRunwayML
 
 client = AsyncRunwayML(
-    # This is the default and can be omitted
-    api_key=os.environ.get("RUNWAYML_API_SECRET"),
+    api_key=os.environ.get("RUNWAYML_API_SECRET"),  # This is the default and can be omitted
 )
 
 
