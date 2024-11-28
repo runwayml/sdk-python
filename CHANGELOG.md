@@ -1,5 +1,28 @@
 # Changelog
 
+## 2.1.1 (2024-11-28)
+
+Full Changelog: [v2.1.0...v2.1.1](https://github.com/runwayml/sdk-python/compare/v2.1.0...v2.1.1)
+
+### Bug Fixes
+
+* **client:** compat with new httpx 0.28.0 release ([#28](https://github.com/runwayml/sdk-python/issues/28)) ([f5e637e](https://github.com/runwayml/sdk-python/commit/f5e637eb373bc6fa85ca6d123bbdaaa1161bc814))
+
+
+### Chores
+
+* **internal:** exclude mypy from running on tests ([#27](https://github.com/runwayml/sdk-python/issues/27)) ([d724387](https://github.com/runwayml/sdk-python/commit/d724387c6546ba476e2773f2249475285dca32c9))
+* **internal:** fix compat model_dump method when warnings are passed ([#24](https://github.com/runwayml/sdk-python/issues/24)) ([61c8490](https://github.com/runwayml/sdk-python/commit/61c849057b971f8b19846ed08b5145c4321adf04))
+* rebuild project due to codegen change ([#19](https://github.com/runwayml/sdk-python/issues/19)) ([2a4cf56](https://github.com/runwayml/sdk-python/commit/2a4cf56335868d88e07aac767260c0c7509b1c94))
+* rebuild project due to codegen change ([#21](https://github.com/runwayml/sdk-python/issues/21)) ([e680d5b](https://github.com/runwayml/sdk-python/commit/e680d5b5bf3ee7fcdede74c7d5c5a971ea18675e))
+* rebuild project due to codegen change ([#22](https://github.com/runwayml/sdk-python/issues/22)) ([ecddf51](https://github.com/runwayml/sdk-python/commit/ecddf51a41704e42f2612541d3841990f22f7220))
+* remove now unused `cached-property` dep ([#26](https://github.com/runwayml/sdk-python/issues/26)) ([21e64d0](https://github.com/runwayml/sdk-python/commit/21e64d0603003c58918dde0b5b6e94b7df28707c))
+
+
+### Documentation
+
+* add info log level to readme ([#25](https://github.com/runwayml/sdk-python/issues/25)) ([d6e4ed4](https://github.com/runwayml/sdk-python/commit/d6e4ed45841a88e13c30dd318706a18bf86a8550))
+
 ## 2.1.0 (2024-11-06)
 
 Full Changelog: [v2.0.0...v2.1.0](https://github.com/runwayml/sdk-python/compare/v2.0.0...v2.1.0)
