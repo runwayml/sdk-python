@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.2 (2024-12-03)
+
+Full Changelog: [v2.1.1...v2.1.2](https://github.com/runwayml/sdk-python/compare/v2.1.1...v2.1.2)
+
+### Chores
+
+* **internal:** bump pyright ([#32](https://github.com/runwayml/sdk-python/issues/32)) ([7d36972](https://github.com/runwayml/sdk-python/commit/7d36972a3afa9335141b848cb9783c649a4933ae))
+
 ## 2.1.1 (2024-11-28)
 
 Full Changelog: [v2.1.0...v2.1.1](https://github.com/runwayml/sdk-python/compare/v2.1.0...v2.1.1)
