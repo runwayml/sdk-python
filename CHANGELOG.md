@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.3 (2024-12-04)
+
+Full Changelog: [v2.1.2...v2.1.3](https://github.com/runwayml/sdk-python/compare/v2.1.2...v2.1.3)
+
+### Chores
+
+* make the `Omit` type public ([#35](https://github.com/runwayml/sdk-python/issues/35)) ([a333528](https://github.com/runwayml/sdk-python/commit/a3335281c52a8f6e6a85f98623c48e228245fa04))
+
 ## 2.1.2 (2024-12-03)
 
 Full Changelog: [v2.1.1...v2.1.2](https://github.com/runwayml/sdk-python/compare/v2.1.1...v2.1.2)
