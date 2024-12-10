@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.1.4 (2024-12-10)
+
+Full Changelog: [v2.1.3...v2.1.4](https://github.com/runwayml/sdk-python/compare/v2.1.3...v2.1.4)
+
+### Chores
+
+* **internal:** bump pydantic dependency ([#40](https://github.com/runwayml/sdk-python/issues/40)) ([ae3a845](https://github.com/runwayml/sdk-python/commit/ae3a8457855179ccc6e784e2e2cf39613fedddcd))
+
+
+### Documentation
+
+* **readme:** fix http client proxies example ([#42](https://github.com/runwayml/sdk-python/issues/42)) ([d1389f7](https://github.com/runwayml/sdk-python/commit/d1389f73504fc60d07be4742ea12c7f9d5841034))
+
 ## 2.1.3 (2024-12-04)
 
 Full Changelog: [v2.1.2...v2.1.3](https://github.com/runwayml/sdk-python/compare/v2.1.2...v2.1.3)
