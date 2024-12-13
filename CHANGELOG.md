@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.5 (2024-12-13)
+
+Full Changelog: [v2.1.4...v2.1.5](https://github.com/runwayml/sdk-python/compare/v2.1.4...v2.1.5)
+
+### Chores
+
+* **internal:** add support for TypeAliasType ([#46](https://github.com/runwayml/sdk-python/issues/46)) ([278afad](https://github.com/runwayml/sdk-python/commit/278afade7c0541db8a14f4dbb763ec6cd2797558))
+* **internal:** bump pyright ([#44](https://github.com/runwayml/sdk-python/issues/44)) ([eb51ffa](https://github.com/runwayml/sdk-python/commit/eb51ffa9ef89567501d19cf9183ac64792062559))
+
 ## 2.1.4 (2024-12-10)
 
 Full Changelog: [v2.1.3...v2.1.4](https://github.com/runwayml/sdk-python/compare/v2.1.3...v2.1.4)
