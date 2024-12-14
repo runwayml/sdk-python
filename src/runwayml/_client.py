@@ -8,7 +8,7 @@ from typing_extensions import Self, override
 
 import httpx
 
-from . import _exceptions
+from . import resources, _exceptions
 from ._qs import Querystring
 from ._types import (
     NOT_GIVEN,
@@ -24,7 +24,6 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import tasks, image_to_video
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import RunwayMLError, APIStatusError
 from ._base_client import (
@@ -38,6 +37,7 @@ __all__ = [
     "Transport",
     "ProxiesTypes",
     "RequestOptions",
+    "resources",
     "RunwayML",
     "AsyncRunwayML",
     "Client",
@@ -46,8 +46,8 @@ __all__ = [
 
 
 class RunwayML(SyncAPIClient):
-    tasks: tasks.TasksResource
-    image_to_video: image_to_video.ImageToVideoResource
+    tasks: resources.TasksResource
+    image_to_video: resources.ImageToVideoResource
     with_raw_response: RunwayMLWithRawResponse
     with_streaming_response: RunwayMLWithStreamedResponse
 
@@ -111,8 +111,8 @@ class RunwayML(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.tasks = tasks.TasksResource(self)
-        self.image_to_video = image_to_video.ImageToVideoResource(self)
+        self.tasks = resources.TasksResource(self)
+        self.image_to_video = resources.ImageToVideoResource(self)
         self.with_raw_response = RunwayMLWithRawResponse(self)
         self.with_streaming_response = RunwayMLWithStreamedResponse(self)
 
@@ -225,8 +225,8 @@ class RunwayML(SyncAPIClient):
 
 
 class AsyncRunwayML(AsyncAPIClient):
-    tasks: tasks.AsyncTasksResource
-    image_to_video: image_to_video.AsyncImageToVideoResource
+    tasks: resources.AsyncTasksResource
+    image_to_video: resources.AsyncImageToVideoResource
     with_raw_response: AsyncRunwayMLWithRawResponse
     with_streaming_response: AsyncRunwayMLWithStreamedResponse
 
@@ -290,8 +290,8 @@ class AsyncRunwayML(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.tasks = tasks.AsyncTasksResource(self)
-        self.image_to_video = image_to_video.AsyncImageToVideoResource(self)
+        self.tasks = resources.AsyncTasksResource(self)
+        self.image_to_video = resources.AsyncImageToVideoResource(self)
         self.with_raw_response = AsyncRunwayMLWithRawResponse(self)
         self.with_streaming_response = AsyncRunwayMLWithStreamedResponse(self)
 
@@ -405,26 +405,26 @@ class AsyncRunwayML(AsyncAPIClient):
 
 class RunwayMLWithRawResponse:
     def __init__(self, client: RunwayML) -> None:
-        self.tasks = tasks.TasksResourceWithRawResponse(client.tasks)
-        self.image_to_video = image_to_video.ImageToVideoResourceWithRawResponse(client.image_to_video)
+        self.tasks = resources.TasksResourceWithRawResponse(client.tasks)
+        self.image_to_video = resources.ImageToVideoResourceWithRawResponse(client.image_to_video)
 
 
 class AsyncRunwayMLWithRawResponse:
     def __init__(self, client: AsyncRunwayML) -> None:
-        self.tasks = tasks.AsyncTasksResourceWithRawResponse(client.tasks)
-        self.image_to_video = image_to_video.AsyncImageToVideoResourceWithRawResponse(client.image_to_video)
+        self.tasks = resources.AsyncTasksResourceWithRawResponse(client.tasks)
+        self.image_to_video = resources.AsyncImageToVideoResourceWithRawResponse(client.image_to_video)
 
 
 class RunwayMLWithStreamedResponse:
     def __init__(self, client: RunwayML) -> None:
-        self.tasks = tasks.TasksResourceWithStreamingResponse(client.tasks)
-        self.image_to_video = image_to_video.ImageToVideoResourceWithStreamingResponse(client.image_to_video)
+        self.tasks = resources.TasksResourceWithStreamingResponse(client.tasks)
+        self.image_to_video = resources.ImageToVideoResourceWithStreamingResponse(client.image_to_video)
 
 
 class AsyncRunwayMLWithStreamedResponse:
     def __init__(self, client: AsyncRunwayML) -> None:
-        self.tasks = tasks.AsyncTasksResourceWithStreamingResponse(client.tasks)
-        self.image_to_video = image_to_video.AsyncImageToVideoResourceWithStreamingResponse(client.image_to_video)
+        self.tasks = resources.AsyncTasksResourceWithStreamingResponse(client.tasks)
+        self.image_to_video = resources.AsyncImageToVideoResourceWithStreamingResponse(client.image_to_video)
 
 
 Client = RunwayML
