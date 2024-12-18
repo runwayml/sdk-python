@@ -1,5 +1,25 @@
 # Changelog
 
+## 2.1.6 (2024-12-18)
+
+Full Changelog: [v2.1.5...v2.1.6](https://github.com/runwayml/sdk-python/compare/v2.1.5...v2.1.6)
+
+### Chores
+
+* **internal:** codegen related update ([#48](https://github.com/runwayml/sdk-python/issues/48)) ([f999274](https://github.com/runwayml/sdk-python/commit/f999274cbc241f063e3f6abdd7bef93749066c05))
+* **internal:** codegen related update ([#50](https://github.com/runwayml/sdk-python/issues/50)) ([187e174](https://github.com/runwayml/sdk-python/commit/187e1747d62dc99718de5d2dfb5bc8fa8291ab34))
+* **internal:** codegen related update ([#51](https://github.com/runwayml/sdk-python/issues/51)) ([1c70164](https://github.com/runwayml/sdk-python/commit/1c701642c7797d49ce59bc938b0f18511f3c6d9e))
+* **internal:** codegen related update ([#52](https://github.com/runwayml/sdk-python/issues/52)) ([07e7dda](https://github.com/runwayml/sdk-python/commit/07e7ddaae96eb26063a88e6bc23adef2f9b0e7d5))
+* **internal:** codegen related update ([#54](https://github.com/runwayml/sdk-python/issues/54)) ([5540248](https://github.com/runwayml/sdk-python/commit/55402489160f4cb43244f90e5f85c90bd96a7729))
+* **internal:** codegen related update ([#55](https://github.com/runwayml/sdk-python/issues/55)) ([75daba1](https://github.com/runwayml/sdk-python/commit/75daba1936f201824daec2b8b08abf68a52b55d7))
+* **internal:** codegen related update ([#56](https://github.com/runwayml/sdk-python/issues/56)) ([c98ed80](https://github.com/runwayml/sdk-python/commit/c98ed80958344be95507a3c5ef7ede3006cf6bf5))
+* **internal:** fix some typos ([#58](https://github.com/runwayml/sdk-python/issues/58)) ([404c771](https://github.com/runwayml/sdk-python/commit/404c771242c581f9c618966a03b5de5f5db8a5da))
+
+
+### Documentation
+
+* **readme:** example snippet for client context manager ([#57](https://github.com/runwayml/sdk-python/issues/57)) ([e62b5e9](https://github.com/runwayml/sdk-python/commit/e62b5e9d1176d72c7285ede6200436bc994260ae))
+
 ## 2.1.5 (2024-12-13)
 
 Full Changelog: [v2.1.4...v2.1.5](https://github.com/runwayml/sdk-python/compare/v2.1.4...v2.1.5)
