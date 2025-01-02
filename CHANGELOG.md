@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.7 (2025-01-02)
+
+Full Changelog: [v2.1.6...v2.1.7](https://github.com/runwayml/sdk-python/compare/v2.1.6...v2.1.7)
+
+### Chores
+
+* **internal:** codegen related update ([#61](https://github.com/runwayml/sdk-python/issues/61)) ([6248aa2](https://github.com/runwayml/sdk-python/commit/6248aa2e561cecddc440e8cdfe0773ce0353e25b))
+
 ## 2.1.6 (2024-12-18)
 
 Full Changelog: [v2.1.5...v2.1.6](https://github.com/runwayml/sdk-python/compare/v2.1.5...v2.1.6)
