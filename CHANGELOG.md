@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.8 (2025-01-08)
+
+Full Changelog: [v2.1.7...v2.1.8](https://github.com/runwayml/sdk-python/compare/v2.1.7...v2.1.8)
+
+### Chores
+
+* add missing isclass check ([#64](https://github.com/runwayml/sdk-python/issues/64)) ([a90a201](https://github.com/runwayml/sdk-python/commit/a90a201eaecb4a70714a02d270281c1f4815876d))
+
 ## 2.1.7 (2025-01-02)
 
 Full Changelog: [v2.1.6...v2.1.7](https://github.com/runwayml/sdk-python/compare/v2.1.6...v2.1.7)
