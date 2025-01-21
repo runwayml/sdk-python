@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.1.9 (2025-01-21)
+
+Full Changelog: [v2.1.8...v2.1.9](https://github.com/runwayml/sdk-python/compare/v2.1.8...v2.1.9)
+
+### Bug Fixes
+
+* add back missing docstrings ([#73](https://github.com/runwayml/sdk-python/issues/73)) ([8eac71e](https://github.com/runwayml/sdk-python/commit/8eac71e781ff81d00129ea224863a20bb70f00f6))
+* **client:** only call .close() when needed ([#69](https://github.com/runwayml/sdk-python/issues/69)) ([4a48c73](https://github.com/runwayml/sdk-python/commit/4a48c73760d38c1f22aa73cc79f3eb1bc497e1c5))
+* correctly handle deserialising `cls` fields ([#71](https://github.com/runwayml/sdk-python/issues/71)) ([6db1a75](https://github.com/runwayml/sdk-python/commit/6db1a751d3be4f8905bfed74c99b2423acfcd003))
+* **tests:** make test_get_platform less flaky ([#75](https://github.com/runwayml/sdk-python/issues/75)) ([7199a24](https://github.com/runwayml/sdk-python/commit/7199a24ae13750d56648d5f4a7a2a6a2ad3ea9c4))
+
+
+### Chores
+
+* **internal:** avoid pytest-asyncio deprecation warning ([#76](https://github.com/runwayml/sdk-python/issues/76)) ([bff6464](https://github.com/runwayml/sdk-python/commit/bff646451b0b116acd763ff7d2432a9cd921fa2f))
+* **internal:** codegen related update ([#67](https://github.com/runwayml/sdk-python/issues/67)) ([027aa11](https://github.com/runwayml/sdk-python/commit/027aa11dabfccf461fb33aab458a50d96d715ff9))
+* **internal:** codegen related update ([#70](https://github.com/runwayml/sdk-python/issues/70)) ([38c71dc](https://github.com/runwayml/sdk-python/commit/38c71dc74ab8028b109a51266edac077549aea0b))
+* **internal:** codegen related update ([#72](https://github.com/runwayml/sdk-python/issues/72)) ([d4b14b4](https://github.com/runwayml/sdk-python/commit/d4b14b4a6dfecb7f5edc18442f8326213c63db40))
+
+
+### Documentation
+
+* **raw responses:** fix duplicate `the` ([#74](https://github.com/runwayml/sdk-python/issues/74)) ([0d563ee](https://github.com/runwayml/sdk-python/commit/0d563ee146cef940d78a026302229f3949c034fc))
+
 ## 2.1.8 (2025-01-08)
 
 Full Changelog: [v2.1.7...v2.1.8](https://github.com/runwayml/sdk-python/compare/v2.1.7...v2.1.8)
