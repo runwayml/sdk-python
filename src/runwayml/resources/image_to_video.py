@@ -78,6 +78,8 @@ class ImageToVideoResource(SyncAPIResource):
 
           prompt_text
 
+          ratio
+
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
               integer for an identical request will produce similar results.
@@ -164,6 +166,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
           duration: The number of seconds of duration for the output video.
 
           prompt_text
+
+          ratio
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
