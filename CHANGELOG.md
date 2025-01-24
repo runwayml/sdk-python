@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.10 (2025-01-24)
+
+Full Changelog: [v2.1.9...v2.1.10](https://github.com/runwayml/sdk-python/compare/v2.1.9...v2.1.10)
+
+### Chores
+
+* **internal:** minor formatting changes ([#80](https://github.com/runwayml/sdk-python/issues/80)) ([067f47a](https://github.com/runwayml/sdk-python/commit/067f47a1a59f15c71018bb28f3606832f223b42f))
+* **internal:** minor style changes ([#78](https://github.com/runwayml/sdk-python/issues/78)) ([bd0eb4a](https://github.com/runwayml/sdk-python/commit/bd0eb4a84756ca8e8cf40935513358eac470d750))
+
 ## 2.1.9 (2025-01-21)
 
 Full Changelog: [v2.1.8...v2.1.9](https://github.com/runwayml/sdk-python/compare/v2.1.8...v2.1.9)
