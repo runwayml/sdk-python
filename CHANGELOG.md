@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.11 (2025-02-04)
+
+Full Changelog: [v2.1.10...v2.1.11](https://github.com/runwayml/sdk-python/compare/v2.1.10...v2.1.11)
+
+### Chores
+
+* **internal:** bummp ruff dependency ([#83](https://github.com/runwayml/sdk-python/issues/83)) ([3d1be9d](https://github.com/runwayml/sdk-python/commit/3d1be9d17d6f1bc737cf416c08cc9710aa61c94b))
+* **internal:** change default timeout to an int ([#82](https://github.com/runwayml/sdk-python/issues/82)) ([38e5767](https://github.com/runwayml/sdk-python/commit/38e5767b267c108c8ef03b0fdb2508b20f74e018))
+
 ## 2.1.10 (2025-01-24)
 
 Full Changelog: [v2.1.9...v2.1.10](https://github.com/runwayml/sdk-python/compare/v2.1.9...v2.1.10)
