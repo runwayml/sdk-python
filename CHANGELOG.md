@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.0 (2025-02-06)
+
+Full Changelog: [v2.1.11...v2.2.0](https://github.com/runwayml/sdk-python/compare/v2.1.11...v2.2.0)
+
+### Features
+
+* **client:** send `X-Stainless-Read-Timeout` header ([#87](https://github.com/runwayml/sdk-python/issues/87)) ([43e6f00](https://github.com/runwayml/sdk-python/commit/43e6f005f611ddc87a11d4f7244c883a25a5c8ed))
+
 ## 2.1.11 (2025-02-04)
 
 Full Changelog: [v2.1.10...v2.1.11](https://github.com/runwayml/sdk-python/compare/v2.1.10...v2.1.11)
