@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.2.1 (2025-02-07)
+
+Full Changelog: [v2.2.0...v2.2.1](https://github.com/runwayml/sdk-python/compare/v2.2.0...v2.2.1)
+
+### Chores
+
+* **internal:** fix type traversing dictionary params ([#90](https://github.com/runwayml/sdk-python/issues/90)) ([49d44b9](https://github.com/runwayml/sdk-python/commit/49d44b9b3f234f9aa5c69e3694f1774a8a0a4581))
+* **internal:** minor type handling changes ([#92](https://github.com/runwayml/sdk-python/issues/92)) ([f4f122f](https://github.com/runwayml/sdk-python/commit/f4f122f97e7bd10d51250bdcca67f55cb8a76e4a))
+
 ## 2.2.0 (2025-02-06)
 
 Full Changelog: [v2.1.11...v2.2.0](https://github.com/runwayml/sdk-python/compare/v2.1.11...v2.2.0)
