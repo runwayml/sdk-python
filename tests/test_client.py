@@ -23,6 +23,7 @@ from pydantic import ValidationError
 
 from runwayml import RunwayML, AsyncRunwayML, APIResponseValidationError
 from runwayml._types import Omit
+from runwayml._utils import maybe_transform
 from runwayml._models import BaseModel, FinalRequestOptions
 from runwayml._constants import RAW_RESPONSE_HEADER
 from runwayml._exceptions import RunwayMLError, APIStatusError, APITimeoutError, APIResponseValidationError
@@ -32,6 +33,7 @@ from runwayml._base_client import (
     BaseClient,
     make_request_options,
 )
+from runwayml.types.image_to_video_create_params import ImageToVideoCreateParams
 
 from .utils import update_env
 
@@ -719,10 +721,13 @@ class TestRunwayML:
                 "/v1/image_to_video",
                 body=cast(
                     object,
-                    dict(
-                        model="gen3a_turbo",
-                        prompt_image="https://example.com/assets/bunny.jpg",
-                        prompt_text="The bunny is eating a carrot",
+                    maybe_transform(
+                        dict(
+                            model="gen3a_turbo",
+                            prompt_image="https://example.com/assets/bunny.jpg",
+                            prompt_text="The bunny is eating a carrot",
+                        ),
+                        ImageToVideoCreateParams,
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -741,10 +746,13 @@ class TestRunwayML:
                 "/v1/image_to_video",
                 body=cast(
                     object,
-                    dict(
-                        model="gen3a_turbo",
-                        prompt_image="https://example.com/assets/bunny.jpg",
-                        prompt_text="The bunny is eating a carrot",
+                    maybe_transform(
+                        dict(
+                            model="gen3a_turbo",
+                            prompt_image="https://example.com/assets/bunny.jpg",
+                            prompt_text="The bunny is eating a carrot",
+                        ),
+                        ImageToVideoCreateParams,
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1515,10 +1523,13 @@ class TestAsyncRunwayML:
                 "/v1/image_to_video",
                 body=cast(
                     object,
-                    dict(
-                        model="gen3a_turbo",
-                        prompt_image="https://example.com/assets/bunny.jpg",
-                        prompt_text="The bunny is eating a carrot",
+                    maybe_transform(
+                        dict(
+                            model="gen3a_turbo",
+                            prompt_image="https://example.com/assets/bunny.jpg",
+                            prompt_text="The bunny is eating a carrot",
+                        ),
+                        ImageToVideoCreateParams,
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1537,10 +1548,13 @@ class TestAsyncRunwayML:
                 "/v1/image_to_video",
                 body=cast(
                     object,
-                    dict(
-                        model="gen3a_turbo",
-                        prompt_image="https://example.com/assets/bunny.jpg",
-                        prompt_text="The bunny is eating a carrot",
+                    maybe_transform(
+                        dict(
+                            model="gen3a_turbo",
+                            prompt_image="https://example.com/assets/bunny.jpg",
+                            prompt_text="The bunny is eating a carrot",
+                        ),
+                        ImageToVideoCreateParams,
                     ),
                 ),
                 cast_to=httpx.Response,
