@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.2.2 (2025-02-14)
+
+Full Changelog: [v2.2.1...v2.2.2](https://github.com/runwayml/sdk-python/compare/v2.2.1...v2.2.2)
+
+### Bug Fixes
+
+* asyncify on non-asyncio runtimes ([#96](https://github.com/runwayml/sdk-python/issues/96)) ([c478bc7](https://github.com/runwayml/sdk-python/commit/c478bc7b5115c637a31cb7a0a60a35265500120a))
+
+
+### Chores
+
+* **internal:** update client tests ([#94](https://github.com/runwayml/sdk-python/issues/94)) ([d8892cd](https://github.com/runwayml/sdk-python/commit/d8892cd6e439347c04fb7ba1e97abb421803f379))
+
 ## 2.2.1 (2025-02-07)
 
 Full Changelog: [v2.2.0...v2.2.1](https://github.com/runwayml/sdk-python/compare/v2.2.0...v2.2.1)
