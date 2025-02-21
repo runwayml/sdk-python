@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.3.0 (2025-02-21)
+
+Full Changelog: [v2.2.2...v2.3.0](https://github.com/runwayml/sdk-python/compare/v2.2.2...v2.3.0)
+
+### Features
+
+* **client:** allow passing `NotGiven` for body ([#98](https://github.com/runwayml/sdk-python/issues/98)) ([fda401a](https://github.com/runwayml/sdk-python/commit/fda401a98a454b01de764269afb32492a38494d6))
+
+
+### Bug Fixes
+
+* **client:** mark some request bodies as optional ([fda401a](https://github.com/runwayml/sdk-python/commit/fda401a98a454b01de764269afb32492a38494d6))
+
 ## 2.2.2 (2025-02-14)
 
 Full Changelog: [v2.2.1...v2.2.2](https://github.com/runwayml/sdk-python/compare/v2.2.1...v2.2.2)
