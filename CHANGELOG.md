@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.1 (2025-02-22)
+
+Full Changelog: [v2.3.0...v2.3.1](https://github.com/runwayml/sdk-python/compare/v2.3.0...v2.3.1)
+
+### Chores
+
+* **internal:** fix devcontainers setup ([#101](https://github.com/runwayml/sdk-python/issues/101)) ([7a01b9a](https://github.com/runwayml/sdk-python/commit/7a01b9a9bc5576849475d3e4381312781dae4437))
+
 ## 2.3.0 (2025-02-21)
 
 Full Changelog: [v2.2.2...v2.3.0](https://github.com/runwayml/sdk-python/compare/v2.2.2...v2.3.0)
