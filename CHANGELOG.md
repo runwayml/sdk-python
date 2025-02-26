@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.2 (2025-02-26)
+
+Full Changelog: [v2.3.1...v2.3.2](https://github.com/runwayml/sdk-python/compare/v2.3.1...v2.3.2)
+
+### Chores
+
+* **internal:** properly set __pydantic_private__ ([#104](https://github.com/runwayml/sdk-python/issues/104)) ([2d7a59f](https://github.com/runwayml/sdk-python/commit/2d7a59f3fe37823974688fea161d7b663e227475))
+
 ## 2.3.1 (2025-02-22)
 
 Full Changelog: [v2.3.0...v2.3.1](https://github.com/runwayml/sdk-python/compare/v2.3.0...v2.3.1)
