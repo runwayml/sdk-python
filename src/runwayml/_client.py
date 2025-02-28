@@ -79,7 +79,7 @@ class RunwayML(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous runwayml client instance.
+        """Construct a new synchronous RunwayML client instance.
 
         This automatically infers the `api_key` argument from the `RUNWAYML_API_SECRET` environment variable if it is not provided.
         """
@@ -258,7 +258,7 @@ class AsyncRunwayML(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async runwayml client instance.
+        """Construct a new async AsyncRunwayML client instance.
 
         This automatically infers the `api_key` argument from the `RUNWAYML_API_SECRET` environment variable if it is not provided.
         """
