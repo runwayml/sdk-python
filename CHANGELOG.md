@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.4 (2025-03-04)
+
+Full Changelog: [v2.3.3...v2.3.4](https://github.com/runwayml/sdk-python/compare/v2.3.3...v2.3.4)
+
+### Chores
+
+* **internal:** remove unused http client options forwarding ([#111](https://github.com/runwayml/sdk-python/issues/111)) ([c0fa5a9](https://github.com/runwayml/sdk-python/commit/c0fa5a92d45c82402c68556772d93d9b3f1c6de4))
+
 ## 2.3.3 (2025-02-28)
 
 Full Changelog: [v2.3.2...v2.3.3](https://github.com/runwayml/sdk-python/compare/v2.3.2...v2.3.3)
