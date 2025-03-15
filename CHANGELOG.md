@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.3.6 (2025-03-15)
+
+Full Changelog: [v2.3.5...v2.3.6](https://github.com/runwayml/sdk-python/compare/v2.3.5...v2.3.6)
+
+### Bug Fixes
+
+* **types:** handle more discriminated union shapes ([#121](https://github.com/runwayml/sdk-python/issues/121)) ([51f8b42](https://github.com/runwayml/sdk-python/commit/51f8b42cf1efcb6294292d4a0b68522622ab95cd))
+
+
+### Chores
+
+* **internal:** bump rye to 0.44.0 ([#120](https://github.com/runwayml/sdk-python/issues/120)) ([ea18df4](https://github.com/runwayml/sdk-python/commit/ea18df47d97d7d085562eb8fa1b2406cd75c264c))
+* **internal:** codegen related update ([#119](https://github.com/runwayml/sdk-python/issues/119)) ([e72357e](https://github.com/runwayml/sdk-python/commit/e72357e9013730819d973a3efa128cd232574ebd))
+* **internal:** remove extra empty newlines ([#117](https://github.com/runwayml/sdk-python/issues/117)) ([4f0e93e](https://github.com/runwayml/sdk-python/commit/4f0e93e5741d2dc0a96c4e211dc74d1d272a2126))
+
 ## 2.3.5 (2025-03-11)
 
 Full Changelog: [v2.3.4...v2.3.5](https://github.com/runwayml/sdk-python/compare/v2.3.4...v2.3.5)
