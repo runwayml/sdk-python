@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.3.7 (2025-03-17)
+
+Full Changelog: [v2.3.6...v2.3.7](https://github.com/runwayml/sdk-python/compare/v2.3.6...v2.3.7)
+
+### Bug Fixes
+
+* **ci:** ensure pip is always available ([#123](https://github.com/runwayml/sdk-python/issues/123)) ([e456349](https://github.com/runwayml/sdk-python/commit/e45634973c0cb9263d83ce0c1e437e65ab6c48b3))
+* **ci:** remove publishing patch ([#125](https://github.com/runwayml/sdk-python/issues/125)) ([3592469](https://github.com/runwayml/sdk-python/commit/35924697f090e6198a03855d722627fc9194cdbc))
+
 ## 2.3.6 (2025-03-15)
 
 Full Changelog: [v2.3.5...v2.3.6](https://github.com/runwayml/sdk-python/compare/v2.3.5...v2.3.6)
