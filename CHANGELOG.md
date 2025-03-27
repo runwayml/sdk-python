@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.8 (2025-03-27)
+
+Full Changelog: [v2.3.7...v2.3.8](https://github.com/runwayml/sdk-python/compare/v2.3.7...v2.3.8)
+
+### Chores
+
+* fix typos ([#129](https://github.com/runwayml/sdk-python/issues/129)) ([c8047c8](https://github.com/runwayml/sdk-python/commit/c8047c87193c42b66edb7b0555c2dbc2f87b3441))
+
 ## 2.3.7 (2025-03-17)
 
 Full Changelog: [v2.3.6...v2.3.7](https://github.com/runwayml/sdk-python/compare/v2.3.6...v2.3.7)
