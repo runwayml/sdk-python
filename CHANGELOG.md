@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.0.0 (2025-04-09)
+
+Full Changelog: [v2.3.8...v3.0.0](https://github.com/runwayml/sdk-python/compare/v2.3.8...v3.0.0)
+
+### Features
+
+* **api:** Update with gen4_turbo, org endpoint ([#135](https://github.com/runwayml/sdk-python/issues/135)) ([7f5d1ae](https://github.com/runwayml/sdk-python/commit/7f5d1ae46c6d54576771b66abd3259641072c066))
+
+
+### Chores
+
+* **internal:** remove trailing character ([#132](https://github.com/runwayml/sdk-python/issues/132)) ([cd78e34](https://github.com/runwayml/sdk-python/commit/cd78e34930a48a8696947178ee92ae22b1210898))
+* **internal:** slight transform perf improvement ([#134](https://github.com/runwayml/sdk-python/issues/134)) ([33e5a68](https://github.com/runwayml/sdk-python/commit/33e5a68198c39c04edcf055c08f43e7800f8fbc0))
+
 ## 2.3.8 (2025-03-27)
 
 Full Changelog: [v2.3.7...v2.3.8](https://github.com/runwayml/sdk-python/compare/v2.3.7...v2.3.8)
