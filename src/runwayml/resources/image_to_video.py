@@ -50,13 +50,13 @@ class ImageToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
-        model: Literal["gen3a_turbo"],
+        model: Literal["gen4_turbo", "gen3a_turbo"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.PromptImagePromptImage]],
         duration: Literal[5, 10] | NotGiven = NOT_GIVEN,
         prompt_text: str | NotGiven = NOT_GIVEN,
-        ratio: Literal["1280:768", "768:1280"] | NotGiven = NOT_GIVEN,
+        ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672", "1280:768", "768:1280"]
+        | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
-        watermark: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -84,9 +84,6 @@ class ImageToVideoResource(SyncAPIResource):
               get different results for the same other request parameters. Using the same seed
               integer for an identical request will produce similar results.
 
-          watermark: A boolean indicating whether or not the output video will contain a Runway
-              watermark.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -105,7 +102,6 @@ class ImageToVideoResource(SyncAPIResource):
                     "prompt_text": prompt_text,
                     "ratio": ratio,
                     "seed": seed,
-                    "watermark": watermark,
                 },
                 image_to_video_create_params.ImageToVideoCreateParams,
             ),
@@ -139,13 +135,13 @@ class AsyncImageToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        model: Literal["gen3a_turbo"],
+        model: Literal["gen4_turbo", "gen3a_turbo"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.PromptImagePromptImage]],
         duration: Literal[5, 10] | NotGiven = NOT_GIVEN,
         prompt_text: str | NotGiven = NOT_GIVEN,
-        ratio: Literal["1280:768", "768:1280"] | NotGiven = NOT_GIVEN,
+        ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672", "1280:768", "768:1280"]
+        | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
-        watermark: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -173,9 +169,6 @@ class AsyncImageToVideoResource(AsyncAPIResource):
               get different results for the same other request parameters. Using the same seed
               integer for an identical request will produce similar results.
 
-          watermark: A boolean indicating whether or not the output video will contain a Runway
-              watermark.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -194,7 +187,6 @@ class AsyncImageToVideoResource(AsyncAPIResource):
                     "prompt_text": prompt_text,
                     "ratio": ratio,
                     "seed": seed,
-                    "watermark": watermark,
                 },
                 image_to_video_create_params.ImageToVideoCreateParams,
             ),

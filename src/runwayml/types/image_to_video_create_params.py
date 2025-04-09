@@ -11,7 +11,7 @@ __all__ = ["ImageToVideoCreateParams", "PromptImagePromptImage"]
 
 
 class ImageToVideoCreateParams(TypedDict, total=False):
-    model: Required[Literal["gen3a_turbo"]]
+    model: Required[Literal["gen4_turbo", "gen3a_turbo"]]
     """The model variant to use."""
 
     prompt_image: Required[Annotated[Union[str, Iterable[PromptImagePromptImage]], PropertyInfo(alias="promptImage")]]
@@ -26,7 +26,7 @@ class ImageToVideoCreateParams(TypedDict, total=False):
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
 
-    ratio: Literal["1280:768", "768:1280"]
+    ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672", "1280:768", "768:1280"]
 
     seed: int
     """If unspecified, a random number is chosen.
@@ -36,12 +36,6 @@ class ImageToVideoCreateParams(TypedDict, total=False):
     produce similar results.
     """
 
-    watermark: bool
-    """
-    A boolean indicating whether or not the output video will contain a Runway
-    watermark.
-    """
-
 
 class PromptImagePromptImage(TypedDict, total=False):
     position: Required[Literal["first", "last"]]
@@ -49,6 +43,8 @@ class PromptImagePromptImage(TypedDict, total=False):
 
     "first" will use the image as the first frame of the video, "last" will use the
     image as the last frame of the video.
+
+    "last" is currently supported for `gen3a_turbo` only.
     """
 
     uri: Required[str]
