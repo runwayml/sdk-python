@@ -22,3 +22,15 @@ from runwayml.types import ImageToVideoCreateResponse
 Methods:
 
 - <code title="post /v1/image_to_video">client.image_to_video.<a href="./src/runwayml/resources/image_to_video.py">create</a>(\*\*<a href="src/runwayml/types/image_to_video_create_params.py">params</a>) -> <a href="./src/runwayml/types/image_to_video_create_response.py">ImageToVideoCreateResponse</a></code>
+
+# Organization
+
+Types:
+
+```python
+from runwayml.types import OrganizationRetrieveResponse
+```
+
+Methods:
+
+- <code title="get /v1/organization">client.organization.<a href="./src/runwayml/resources/organization.py">retrieve</a>() -> <a href="./src/runwayml/types/organization_retrieve_response.py">OrganizationRetrieveResponse</a></code>
