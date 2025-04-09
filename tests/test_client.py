@@ -723,7 +723,7 @@ class TestRunwayML:
                     object,
                     maybe_transform(
                         dict(
-                            model="gen3a_turbo",
+                            model="gen4_turbo",
                             prompt_image="https://example.com/assets/bunny.jpg",
                             prompt_text="The bunny is eating a carrot",
                         ),
@@ -748,7 +748,7 @@ class TestRunwayML:
                     object,
                     maybe_transform(
                         dict(
-                            model="gen3a_turbo",
+                            model="gen4_turbo",
                             prompt_image="https://example.com/assets/bunny.jpg",
                             prompt_text="The bunny is eating a carrot",
                         ),
@@ -788,7 +788,7 @@ class TestRunwayML:
         respx_mock.post("/v1/image_to_video").mock(side_effect=retry_handler)
 
         response = client.image_to_video.with_raw_response.create(
-            model="gen3a_turbo", prompt_image="https://example.com"
+            model="gen4_turbo", prompt_image="https://example.com"
         )
 
         assert response.retries_taken == failures_before_success
@@ -814,7 +814,7 @@ class TestRunwayML:
         respx_mock.post("/v1/image_to_video").mock(side_effect=retry_handler)
 
         response = client.image_to_video.with_raw_response.create(
-            model="gen3a_turbo", prompt_image="https://example.com", extra_headers={"x-stainless-retry-count": Omit()}
+            model="gen4_turbo", prompt_image="https://example.com", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -839,7 +839,7 @@ class TestRunwayML:
         respx_mock.post("/v1/image_to_video").mock(side_effect=retry_handler)
 
         response = client.image_to_video.with_raw_response.create(
-            model="gen3a_turbo", prompt_image="https://example.com", extra_headers={"x-stainless-retry-count": "42"}
+            model="gen4_turbo", prompt_image="https://example.com", extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
@@ -1525,7 +1525,7 @@ class TestAsyncRunwayML:
                     object,
                     maybe_transform(
                         dict(
-                            model="gen3a_turbo",
+                            model="gen4_turbo",
                             prompt_image="https://example.com/assets/bunny.jpg",
                             prompt_text="The bunny is eating a carrot",
                         ),
@@ -1550,7 +1550,7 @@ class TestAsyncRunwayML:
                     object,
                     maybe_transform(
                         dict(
-                            model="gen3a_turbo",
+                            model="gen4_turbo",
                             prompt_image="https://example.com/assets/bunny.jpg",
                             prompt_text="The bunny is eating a carrot",
                         ),
@@ -1591,7 +1591,7 @@ class TestAsyncRunwayML:
         respx_mock.post("/v1/image_to_video").mock(side_effect=retry_handler)
 
         response = await client.image_to_video.with_raw_response.create(
-            model="gen3a_turbo", prompt_image="https://example.com"
+            model="gen4_turbo", prompt_image="https://example.com"
         )
 
         assert response.retries_taken == failures_before_success
@@ -1618,7 +1618,7 @@ class TestAsyncRunwayML:
         respx_mock.post("/v1/image_to_video").mock(side_effect=retry_handler)
 
         response = await client.image_to_video.with_raw_response.create(
-            model="gen3a_turbo", prompt_image="https://example.com", extra_headers={"x-stainless-retry-count": Omit()}
+            model="gen4_turbo", prompt_image="https://example.com", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -1644,7 +1644,7 @@ class TestAsyncRunwayML:
         respx_mock.post("/v1/image_to_video").mock(side_effect=retry_handler)
 
         response = await client.image_to_video.with_raw_response.create(
-            model="gen3a_turbo", prompt_image="https://example.com", extra_headers={"x-stainless-retry-count": "42"}
+            model="gen4_turbo", prompt_image="https://example.com", extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
