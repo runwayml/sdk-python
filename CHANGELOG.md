@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.0.1 (2025-04-15)
+
+Full Changelog: [v3.0.0...v3.0.1](https://github.com/runwayml/sdk-python/compare/v3.0.0...v3.0.1)
+
+### Bug Fixes
+
+* **perf:** optimize some hot paths ([0c187d1](https://github.com/runwayml/sdk-python/commit/0c187d1c445dd39661ec91f809ba1e51a9b5f0f2))
+* **perf:** skip traversing types for NotGiven values ([a65d4b0](https://github.com/runwayml/sdk-python/commit/a65d4b0375c412d1b707550a8e1b1d9ba9319130))
+
+
+### Chores
+
+* **client:** minor internal fixes ([09dd17f](https://github.com/runwayml/sdk-python/commit/09dd17fc639bc5c9aadfc033c131b133764d4e5b))
+* **internal:** expand CI branch coverage ([8bde5ff](https://github.com/runwayml/sdk-python/commit/8bde5ff981d4acd0696ad3b7ac778ca21a49a8ac))
+* **internal:** reduce CI branch coverage ([5892e7a](https://github.com/runwayml/sdk-python/commit/5892e7aa93fa9e091f111fd0590b239487ba61eb))
+* **internal:** update pyright settings ([8b3a8ae](https://github.com/runwayml/sdk-python/commit/8b3a8ae32a589680549054328996ae7314be3033))
+
 ## 3.0.0 (2025-04-09)
 
 Full Changelog: [v2.3.8...v3.0.0](https://github.com/runwayml/sdk-python/compare/v2.3.8...v3.0.0)
