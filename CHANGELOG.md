@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.0.2 (2025-04-17)
+
+Full Changelog: [v3.0.1...v3.0.2](https://github.com/runwayml/sdk-python/compare/v3.0.1...v3.0.2)
+
+### Chores
+
+* **internal:** base client updates ([6d4d8bb](https://github.com/runwayml/sdk-python/commit/6d4d8bb73df9c0985d12d349d783188de0cd7d7d))
+* **internal:** bump pyright version ([5693e26](https://github.com/runwayml/sdk-python/commit/5693e261dcbc21f6a900c514ba8e6659e0a2cd4f))
+
 ## 3.0.1 (2025-04-15)
 
 Full Changelog: [v3.0.0...v3.0.1](https://github.com/runwayml/sdk-python/compare/v3.0.0...v3.0.1)
