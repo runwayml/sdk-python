@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.3 (2025-04-19)
+
+Full Changelog: [v3.0.2...v3.0.3](https://github.com/runwayml/sdk-python/compare/v3.0.2...v3.0.3)
+
+### Chores
+
+* **internal:** update models test ([79488d6](https://github.com/runwayml/sdk-python/commit/79488d6e50b1075d8f7cad6e3fb3ed022332e42e))
+
 ## 3.0.2 (2025-04-17)
 
 Full Changelog: [v3.0.1...v3.0.2](https://github.com/runwayml/sdk-python/compare/v3.0.1...v3.0.2)
