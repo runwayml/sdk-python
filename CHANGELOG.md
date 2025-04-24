@@ -1,5 +1,26 @@
 # Changelog
 
+## 3.0.3 (2025-04-24)
+
+Full Changelog: [v3.0.2...v3.0.3](https://github.com/runwayml/sdk-python/compare/v3.0.2...v3.0.3)
+
+### Bug Fixes
+
+* **pydantic v1:** more robust ModelField.annotation check ([1f45aa4](https://github.com/runwayml/sdk-python/commit/1f45aa4ab023db52bc79a33492c4441f00d30d17))
+
+
+### Chores
+
+* broadly detect json family of content-type headers ([7adcad9](https://github.com/runwayml/sdk-python/commit/7adcad916636065b709d0bdff9c00047f48cf167))
+* **ci:** add timeout thresholds for CI jobs ([a59f6e6](https://github.com/runwayml/sdk-python/commit/a59f6e62adc33fe07b81088f9ed066fd06118f63))
+* **ci:** only use depot for staging repos ([bdd8635](https://github.com/runwayml/sdk-python/commit/bdd8635b236ca1686047d382f271e8a4954bc302))
+* **internal:** codegen related update ([6ec7118](https://github.com/runwayml/sdk-python/commit/6ec7118bb5e1d1737d42cb017e2c8b133aa471d0))
+* **internal:** fix list file params ([c745a86](https://github.com/runwayml/sdk-python/commit/c745a864dd1edcdc3ac38645963075e672723874))
+* **internal:** import reformatting ([a991a2d](https://github.com/runwayml/sdk-python/commit/a991a2d2ac36ee544470999eeef0fe536b040b62))
+* **internal:** minor formatting changes ([0f34a44](https://github.com/runwayml/sdk-python/commit/0f34a44ec0ee863d00e7656e7675ab43aa9ef973))
+* **internal:** refactor retries to not use recursion ([b5637fb](https://github.com/runwayml/sdk-python/commit/b5637fbfc50816122689694ed2e0acef3020da03))
+* **internal:** update models test ([79488d6](https://github.com/runwayml/sdk-python/commit/79488d6e50b1075d8f7cad6e3fb3ed022332e42e))
+
 ## 3.0.2 (2025-04-17)
 
 Full Changelog: [v3.0.1...v3.0.2](https://github.com/runwayml/sdk-python/compare/v3.0.1...v3.0.2)
