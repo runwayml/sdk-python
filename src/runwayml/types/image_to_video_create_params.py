@@ -24,11 +24,32 @@ class ImageToVideoCreateParams(TypedDict, total=False):
     ratio: Required[
         Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672", "1280:768", "768:1280"]
     ]
+    """The resolution of the output video.
+
+    `gen4_turbo` supports the following values:
+
+    - `1280:720`
+    - `720:1280`
+    - `1104:832`
+    - `832:1104`
+    - `960:960`
+    - `1584:672`
+
+    `gen3a_turbo` supports the following values:
+
+    - `1280:768`
+    - `768:1280`
+    """
 
     duration: Literal[5, 10]
     """The number of seconds of duration for the output video."""
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """
+    A non-empty string up to 1000 UTF-16 code points in length (that is,
+    `promptText.length === 1000` in JavaScript). This should describe in detail what
+    should appear in the output.
+    """
 
     seed: int
     """If unspecified, a random number is chosen.
