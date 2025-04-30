@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.0.4 (2025-04-30)
+
+Full Changelog: [v3.0.3...v3.0.4](https://github.com/runwayml/sdk-python/compare/v3.0.3...v3.0.4)
+
+### Bug Fixes
+
+* **api:** Fix for parameters with missing descriptions ([1ab27c6](https://github.com/runwayml/sdk-python/commit/1ab27c6285263701b69ed1ea05751a78a333e25f))
+* **api:** Make `ratio` a required parameter for i2v ([e1b73a5](https://github.com/runwayml/sdk-python/commit/e1b73a55073ae5d0d224b751726515d946a93607))
+
 ## 3.0.3 (2025-04-24)
 
 Full Changelog: [v3.0.2...v3.0.3](https://github.com/runwayml/sdk-python/compare/v3.0.2...v3.0.3)
