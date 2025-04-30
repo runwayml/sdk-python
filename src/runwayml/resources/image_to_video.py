@@ -70,11 +70,27 @@ class ImageToVideoResource(SyncAPIResource):
               frame of the generated video. See [our docs](/assets/inputs#images) on image
               inputs for more information.
 
-          ratio
+          ratio: The resolution of the output video.
+
+              `gen4_turbo` supports the following values:
+
+              - `1280:720`
+              - `720:1280`
+              - `1104:832`
+              - `832:1104`
+              - `960:960`
+              - `1584:672`
+
+              `gen3a_turbo` supports the following values:
+
+              - `1280:768`
+              - `768:1280`
 
           duration: The number of seconds of duration for the output video.
 
-          prompt_text
+          prompt_text: A non-empty string up to 1000 UTF-16 code points in length (that is,
+              `promptText.length === 1000` in JavaScript). This should describe in detail what
+              should appear in the output.
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -154,11 +170,27 @@ class AsyncImageToVideoResource(AsyncAPIResource):
               frame of the generated video. See [our docs](/assets/inputs#images) on image
               inputs for more information.
 
-          ratio
+          ratio: The resolution of the output video.
+
+              `gen4_turbo` supports the following values:
+
+              - `1280:720`
+              - `720:1280`
+              - `1104:832`
+              - `832:1104`
+              - `960:960`
+              - `1584:672`
+
+              `gen3a_turbo` supports the following values:
+
+              - `1280:768`
+              - `768:1280`
 
           duration: The number of seconds of duration for the output video.
 
-          prompt_text
+          prompt_text: A non-empty string up to 1000 UTF-16 code points in length (that is,
+              `promptText.length === 1000` in JavaScript). This should describe in detail what
+              should appear in the output.
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
