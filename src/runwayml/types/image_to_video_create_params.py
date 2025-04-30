@@ -21,12 +21,14 @@ class ImageToVideoCreateParams(TypedDict, total=False):
     inputs for more information.
     """
 
+    ratio: Required[
+        Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672", "1280:768", "768:1280"]
+    ]
+
     duration: Literal[5, 10]
     """The number of seconds of duration for the output video."""
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
-
-    ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672", "1280:768", "768:1280"]
 
     seed: int
     """If unspecified, a random number is chosen.
