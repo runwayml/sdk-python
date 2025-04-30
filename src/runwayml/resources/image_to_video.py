@@ -49,10 +49,9 @@ class ImageToVideoResource(SyncAPIResource):
         *,
         model: Literal["gen4_turbo", "gen3a_turbo"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.PromptImagePromptImage]],
+        ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672", "1280:768", "768:1280"],
         duration: Literal[5, 10] | NotGiven = NOT_GIVEN,
         prompt_text: str | NotGiven = NOT_GIVEN,
-        ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672", "1280:768", "768:1280"]
-        | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -71,11 +70,11 @@ class ImageToVideoResource(SyncAPIResource):
               frame of the generated video. See [our docs](/assets/inputs#images) on image
               inputs for more information.
 
+          ratio
+
           duration: The number of seconds of duration for the output video.
 
           prompt_text
-
-          ratio
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -95,9 +94,9 @@ class ImageToVideoResource(SyncAPIResource):
                 {
                     "model": model,
                     "prompt_image": prompt_image,
+                    "ratio": ratio,
                     "duration": duration,
                     "prompt_text": prompt_text,
-                    "ratio": ratio,
                     "seed": seed,
                 },
                 image_to_video_create_params.ImageToVideoCreateParams,
@@ -134,10 +133,9 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         *,
         model: Literal["gen4_turbo", "gen3a_turbo"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.PromptImagePromptImage]],
+        ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672", "1280:768", "768:1280"],
         duration: Literal[5, 10] | NotGiven = NOT_GIVEN,
         prompt_text: str | NotGiven = NOT_GIVEN,
-        ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672", "1280:768", "768:1280"]
-        | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -156,11 +154,11 @@ class AsyncImageToVideoResource(AsyncAPIResource):
               frame of the generated video. See [our docs](/assets/inputs#images) on image
               inputs for more information.
 
+          ratio
+
           duration: The number of seconds of duration for the output video.
 
           prompt_text
-
-          ratio
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -180,9 +178,9 @@ class AsyncImageToVideoResource(AsyncAPIResource):
                 {
                     "model": model,
                     "prompt_image": prompt_image,
+                    "ratio": ratio,
                     "duration": duration,
                     "prompt_text": prompt_text,
-                    "ratio": ratio,
                     "seed": seed,
                 },
                 image_to_video_create_params.ImageToVideoCreateParams,

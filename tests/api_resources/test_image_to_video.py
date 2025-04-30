@@ -22,6 +22,7 @@ class TestImageToVideo:
         image_to_video = client.image_to_video.create(
             model="gen4_turbo",
             prompt_image="https://example.com",
+            ratio="1280:720",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -30,9 +31,9 @@ class TestImageToVideo:
         image_to_video = client.image_to_video.create(
             model="gen4_turbo",
             prompt_image="https://example.com",
+            ratio="1280:720",
             duration=5,
             prompt_text="promptText",
-            ratio="1280:720",
             seed=0,
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -42,6 +43,7 @@ class TestImageToVideo:
         response = client.image_to_video.with_raw_response.create(
             model="gen4_turbo",
             prompt_image="https://example.com",
+            ratio="1280:720",
         )
 
         assert response.is_closed is True
@@ -54,6 +56,7 @@ class TestImageToVideo:
         with client.image_to_video.with_streaming_response.create(
             model="gen4_turbo",
             prompt_image="https://example.com",
+            ratio="1280:720",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -72,6 +75,7 @@ class TestAsyncImageToVideo:
         image_to_video = await async_client.image_to_video.create(
             model="gen4_turbo",
             prompt_image="https://example.com",
+            ratio="1280:720",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -80,9 +84,9 @@ class TestAsyncImageToVideo:
         image_to_video = await async_client.image_to_video.create(
             model="gen4_turbo",
             prompt_image="https://example.com",
+            ratio="1280:720",
             duration=5,
             prompt_text="promptText",
-            ratio="1280:720",
             seed=0,
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -92,6 +96,7 @@ class TestAsyncImageToVideo:
         response = await async_client.image_to_video.with_raw_response.create(
             model="gen4_turbo",
             prompt_image="https://example.com",
+            ratio="1280:720",
         )
 
         assert response.is_closed is True
@@ -104,6 +109,7 @@ class TestAsyncImageToVideo:
         async with async_client.image_to_video.with_streaming_response.create(
             model="gen4_turbo",
             prompt_image="https://example.com",
+            ratio="1280:720",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
