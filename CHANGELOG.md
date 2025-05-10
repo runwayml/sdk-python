@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.0.5 (2025-05-10)
+
+Full Changelog: [v3.0.4...v3.0.5](https://github.com/runwayml/sdk-python/compare/v3.0.4...v3.0.5)
+
+### Bug Fixes
+
+* **package:** support direct resource imports ([f317064](https://github.com/runwayml/sdk-python/commit/f3170641fd7e8a58bfc8135314407e887a3a0068))
+
+
+### Chores
+
+* **internal:** avoid errors for isinstance checks on proxies ([a549b98](https://github.com/runwayml/sdk-python/commit/a549b98239afa6984f306db53cd2ac4895a7f4ac))
+
 ## 3.0.4 (2025-04-30)
 
 Full Changelog: [v3.0.3...v3.0.4](https://github.com/runwayml/sdk-python/compare/v3.0.3...v3.0.4)
