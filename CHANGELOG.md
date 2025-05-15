@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.6 (2025-05-15)
+
+Full Changelog: [v3.0.5...v3.0.6](https://github.com/runwayml/sdk-python/compare/v3.0.5...v3.0.6)
+
+### Chores
+
+* **ci:** upload sdks to package manager ([23f0756](https://github.com/runwayml/sdk-python/commit/23f0756b5a8828ffa8477c51275df65f390193a7))
+
 ## 3.0.5 (2025-05-10)
 
 Full Changelog: [v3.0.4...v3.0.5](https://github.com/runwayml/sdk-python/compare/v3.0.4...v3.0.5)
