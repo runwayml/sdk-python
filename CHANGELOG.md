@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.1.0 (2025-05-16)
+
+Full Changelog: [v3.0.6...v3.1.0](https://github.com/runwayml/sdk-python/compare/v3.0.6...v3.1.0)
+
+### Features
+
+* **api:** Gen-4 Image (text-to-image) support ([8adcf96](https://github.com/runwayml/sdk-python/commit/8adcf96fa228c8694272175317587bf3c7b9e2fe))
+
+
+### Chores
+
+* **ci:** fix installation instructions ([a04350d](https://github.com/runwayml/sdk-python/commit/a04350dd31c9551695c1856a7f6d700d69960807))
+
 ## 3.0.6 (2025-05-15)
 
 Full Changelog: [v3.0.5...v3.0.6](https://github.com/runwayml/sdk-python/compare/v3.0.5...v3.0.6)
