@@ -23,6 +23,18 @@ Methods:
 
 - <code title="post /v1/image_to_video">client.image_to_video.<a href="./src/runwayml/resources/image_to_video.py">create</a>(\*\*<a href="src/runwayml/types/image_to_video_create_params.py">params</a>) -> <a href="./src/runwayml/types/image_to_video_create_response.py">ImageToVideoCreateResponse</a></code>
 
+# TextToImage
+
+Types:
+
+```python
+from runwayml.types import TextToImageCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/text_to_image">client.text_to_image.<a href="./src/runwayml/resources/text_to_image.py">create</a>(\*\*<a href="src/runwayml/types/text_to_image_create_params.py">params</a>) -> <a href="./src/runwayml/types/text_to_image_create_response.py">TextToImageCreateResponse</a></code>
+
 # Organization
 
 Types:
