@@ -45,10 +45,9 @@ class ImageToVideoCreateParams(TypedDict, total=False):
     """The number of seconds of duration for the output video."""
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
-    """
-    A non-empty string up to 1000 UTF-16 code points in length (that is,
-    `promptText.length === 1000` in JavaScript). This should describe in detail what
-    should appear in the output.
+    """A non-empty string up to 1000 characters (measured in UTF-16 code units).
+
+    This should describe in detail what should appear in the output.
     """
 
     seed: int

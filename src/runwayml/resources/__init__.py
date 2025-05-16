@@ -16,6 +16,14 @@ from .organization import (
     OrganizationResourceWithStreamingResponse,
     AsyncOrganizationResourceWithStreamingResponse,
 )
+from .text_to_image import (
+    TextToImageResource,
+    AsyncTextToImageResource,
+    TextToImageResourceWithRawResponse,
+    AsyncTextToImageResourceWithRawResponse,
+    TextToImageResourceWithStreamingResponse,
+    AsyncTextToImageResourceWithStreamingResponse,
+)
 from .image_to_video import (
     ImageToVideoResource,
     AsyncImageToVideoResource,
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncImageToVideoResourceWithRawResponse",
     "ImageToVideoResourceWithStreamingResponse",
     "AsyncImageToVideoResourceWithStreamingResponse",
+    "TextToImageResource",
+    "AsyncTextToImageResource",
+    "TextToImageResourceWithRawResponse",
+    "AsyncTextToImageResourceWithRawResponse",
+    "TextToImageResourceWithStreamingResponse",
+    "AsyncTextToImageResourceWithStreamingResponse",
     "OrganizationResource",
     "AsyncOrganizationResource",
     "OrganizationResourceWithRawResponse",
