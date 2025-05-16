@@ -83,6 +83,24 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
 
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from runwayml import RunwayML
+
+client = RunwayML()
+
+text_to_image = client.text_to_image.create(
+    model="gen4_image",
+    prompt_text="promptText",
+    ratio="1920:1080",
+    content_moderation={"public_figure_threshold": "auto"},
+)
+print(text_to_image.content_moderation)
+```
+
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `runwayml.APIConnectionError` is raised.
