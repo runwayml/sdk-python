@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.1.1 (2025-05-22)
+
+Full Changelog: [v3.1.0...v3.1.1](https://github.com/runwayml/sdk-python/compare/v3.1.0...v3.1.1)
+
+### Chores
+
+* **docs:** grammar improvements ([fbf2481](https://github.com/runwayml/sdk-python/commit/fbf2481cd6da85fb5ce2e6fea66cf8f1233a8e2e))
+
 ## 3.1.0 (2025-05-16)
 
 Full Changelog: [v3.0.6...v3.1.0](https://github.com/runwayml/sdk-python/compare/v3.0.6...v3.1.0)
