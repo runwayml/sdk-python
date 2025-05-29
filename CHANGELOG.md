@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.2.0 (2025-05-29)
+
+Full Changelog: [v3.1.0...v3.2.0](https://github.com/runwayml/sdk-python/compare/v3.1.0...v3.2.0)
+
+### Features
+
+* **api:** Add 720p t2i ratios ([b722686](https://github.com/runwayml/sdk-python/commit/b722686c0e4fa03768ce61380c77fe04c93cfc90))
+
+
+### Chores
+
+* **docs:** grammar improvements ([fbf2481](https://github.com/runwayml/sdk-python/commit/fbf2481cd6da85fb5ce2e6fea66cf8f1233a8e2e))
+
 ## 3.1.0 (2025-05-16)
 
 Full Changelog: [v3.0.6...v3.1.0](https://github.com/runwayml/sdk-python/compare/v3.0.6...v3.1.0)
