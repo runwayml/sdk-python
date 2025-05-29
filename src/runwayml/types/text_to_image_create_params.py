@@ -32,6 +32,12 @@ class TextToImageCreateParams(TypedDict, total=False):
             "1080:1440",
             "1808:768",
             "2112:912",
+            "1280:720",
+            "720:1280",
+            "720:720",
+            "960:720",
+            "720:960",
+            "1680:720",
         ]
     ]
     """The resolution of the output image(s)."""
