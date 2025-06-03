@@ -96,7 +96,7 @@ text_to_image = client.text_to_image.create(
     model="gen4_image",
     prompt_text="promptText",
     ratio="1920:1080",
-    content_moderation={"public_figure_threshold": "auto"},
+    content_moderation={},
 )
 print(text_to_image.content_moderation)
 ```
