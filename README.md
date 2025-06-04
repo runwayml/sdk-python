@@ -96,9 +96,8 @@ text_to_image = client.text_to_image.create(
     model="gen4_image",
     prompt_text="promptText",
     ratio="1920:1080",
-    content_moderation={},
 )
-print(text_to_image.content_moderation)
+print(text_to_image.id)
 ```
 
 ## Handling errors
