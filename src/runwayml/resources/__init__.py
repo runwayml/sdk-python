@@ -24,6 +24,14 @@ from .text_to_image import (
     TextToImageResourceWithStreamingResponse,
     AsyncTextToImageResourceWithStreamingResponse,
 )
+from .video_upscale import (
+    VideoUpscaleResource,
+    AsyncVideoUpscaleResource,
+    VideoUpscaleResourceWithRawResponse,
+    AsyncVideoUpscaleResourceWithRawResponse,
+    VideoUpscaleResourceWithStreamingResponse,
+    AsyncVideoUpscaleResourceWithStreamingResponse,
+)
 from .image_to_video import (
     ImageToVideoResource,
     AsyncImageToVideoResource,
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncTextToImageResourceWithRawResponse",
     "TextToImageResourceWithStreamingResponse",
     "AsyncTextToImageResourceWithStreamingResponse",
+    "VideoUpscaleResource",
+    "AsyncVideoUpscaleResource",
+    "VideoUpscaleResourceWithRawResponse",
+    "AsyncVideoUpscaleResourceWithRawResponse",
+    "VideoUpscaleResourceWithStreamingResponse",
+    "AsyncVideoUpscaleResourceWithStreamingResponse",
     "OrganizationResource",
     "AsyncOrganizationResource",
     "OrganizationResourceWithRawResponse",

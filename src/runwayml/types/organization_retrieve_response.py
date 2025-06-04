@@ -13,11 +13,13 @@ __all__ = [
     "TierModelsGen3aTurbo",
     "TierModelsGen4Image",
     "TierModelsGen4Turbo",
+    "TierModelsUpscaleV1",
     "Usage",
     "UsageModels",
     "UsageModelsGen3aTurbo",
     "UsageModelsGen4Image",
     "UsageModelsGen4Turbo",
+    "UsageModelsUpscaleV1",
 ]
 
 
@@ -45,6 +47,14 @@ class TierModelsGen4Turbo(BaseModel):
     """The maximum number of generations that can be created each day for this model."""
 
 
+class TierModelsUpscaleV1(BaseModel):
+    max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
+    """The maximum number of generations that can be run concurrently for this model."""
+
+    max_daily_generations: int = FieldInfo(alias="maxDailyGenerations")
+    """The maximum number of generations that can be created each day for this model."""
+
+
 class TierModels(BaseModel):
     gen3a_turbo: Optional[TierModelsGen3aTurbo] = None
     """Limits associated with the gen3a_turbo model."""
@@ -54,6 +64,9 @@ class TierModels(BaseModel):
 
     gen4_turbo: Optional[TierModelsGen4Turbo] = None
     """Limits associated with the gen4_turbo model."""
+
+    upscale_v1: Optional[TierModelsUpscaleV1] = None
+    """Limits associated with the upscale_v1 model."""
 
 
 class Tier(BaseModel):
@@ -79,6 +92,11 @@ class UsageModelsGen4Turbo(BaseModel):
     """The number of generations that have been run for this model in the past day."""
 
 
+class UsageModelsUpscaleV1(BaseModel):
+    daily_generations: int = FieldInfo(alias="dailyGenerations")
+    """The number of generations that have been run for this model in the past day."""
+
+
 class UsageModels(BaseModel):
     gen3a_turbo: Optional[UsageModelsGen3aTurbo] = None
     """Usage data for the gen3a_turbo model."""
@@ -88,6 +106,9 @@ class UsageModels(BaseModel):
 
     gen4_turbo: Optional[UsageModelsGen4Turbo] = None
     """Usage data for the gen4_turbo model."""
+
+    upscale_v1: Optional[UsageModelsUpscaleV1] = None
+    """Usage data for the upscale_v1 model."""
 
 
 class Usage(BaseModel):
