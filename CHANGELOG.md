@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.3.0 (2025-06-04)
+
+Full Changelog: [v3.2.0...v3.3.0](https://github.com/runwayml/sdk-python/compare/v3.2.0...v3.3.0)
+
+### Features
+
+* **client:** add follow_redirects request option ([742ca3b](https://github.com/runwayml/sdk-python/commit/742ca3bbd1f38ce28ef26ddee06d4c86cd2a6ff0))
+
+
+### Bug Fixes
+
+* **docs:** fix confusing example in README ([54904f7](https://github.com/runwayml/sdk-python/commit/54904f7ed5557b5b3972fc25d52ffc873d91be7e))
+
+
+### Chores
+
+* **docs:** remove reference to rye shell ([e207562](https://github.com/runwayml/sdk-python/commit/e207562118ec1583e90639bbfc6cea00f4bed138))
+* **docs:** remove unnecessary param examples ([d1ca063](https://github.com/runwayml/sdk-python/commit/d1ca06303f764543beda582da567ad182f25cf86))
+
 ## 3.2.0 (2025-05-29)
 
 Full Changelog: [v3.1.0...v3.2.0](https://github.com/runwayml/sdk-python/compare/v3.1.0...v3.2.0)
