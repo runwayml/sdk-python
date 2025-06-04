@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.4.0 (2025-06-04)
+
+Full Changelog: [v3.3.0...v3.4.0](https://github.com/runwayml/sdk-python/compare/v3.3.0...v3.4.0)
+
+### Features
+
+* **api:** Add video upscale endpoint ([aac6a70](https://github.com/runwayml/sdk-python/commit/aac6a707ca2925034fa141ceac8a9515958a77c1))
+
 ## 3.3.0 (2025-06-04)
 
 Full Changelog: [v3.2.0...v3.3.0](https://github.com/runwayml/sdk-python/compare/v3.2.0...v3.3.0)
