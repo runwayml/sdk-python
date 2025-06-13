@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.4.1 (2025-06-13)
+
+Full Changelog: [v3.4.0...v3.4.1](https://github.com/runwayml/sdk-python/compare/v3.4.0...v3.4.1)
+
+### Bug Fixes
+
+* **client:** correctly parse binary response | stream ([fc9bedb](https://github.com/runwayml/sdk-python/commit/fc9bedb3cbb47849e83a5982ed92a694796e80c7))
+
+
+### Chores
+
+* **tests:** run tests in parallel ([7edbcd1](https://github.com/runwayml/sdk-python/commit/7edbcd1db04ed139e026701fe24501199b4eaffd))
+
 ## 3.4.0 (2025-06-04)
 
 Full Changelog: [v3.3.0...v3.4.0](https://github.com/runwayml/sdk-python/compare/v3.3.0...v3.4.0)
