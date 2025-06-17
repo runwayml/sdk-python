@@ -1,5 +1,27 @@
 # Changelog
 
+## 3.5.0 (2025-06-17)
+
+Full Changelog: [v3.4.0...v3.5.0](https://github.com/runwayml/sdk-python/compare/v3.4.0...v3.5.0)
+
+### Features
+
+* **api:** SDK updates, contentModeration for i2v ([1286e32](https://github.com/runwayml/sdk-python/commit/1286e3239f388143404c4b0a61816f5f6282fe1c))
+* **api:** SDK updates, contentModeration for i2v ([8ff202e](https://github.com/runwayml/sdk-python/commit/8ff202ee39dc5856118bf1f3f5537e459a120967))
+
+
+### Bug Fixes
+
+* **client:** correctly parse binary response | stream ([fc9bedb](https://github.com/runwayml/sdk-python/commit/fc9bedb3cbb47849e83a5982ed92a694796e80c7))
+
+
+### Chores
+
+* **ci:** enable for pull requests ([4b439c9](https://github.com/runwayml/sdk-python/commit/4b439c99012918849be4fa64b1ab8d1802cee6e6))
+* **internal:** update conftest.py ([0ff71fd](https://github.com/runwayml/sdk-python/commit/0ff71fd67a421dbff729e98418b6cd72ed0e57b3))
+* **tests:** add tests for httpx client instantiation & proxies ([89e5fbe](https://github.com/runwayml/sdk-python/commit/89e5fbef9e8a64d050252f489b2d76e4c510c663))
+* **tests:** run tests in parallel ([7edbcd1](https://github.com/runwayml/sdk-python/commit/7edbcd1db04ed139e026701fe24501199b4eaffd))
+
 ## 3.4.0 (2025-06-04)
 
 Full Changelog: [v3.3.0...v3.4.0](https://github.com/runwayml/sdk-python/compare/v3.3.0...v3.4.0)
