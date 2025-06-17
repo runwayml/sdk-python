@@ -7,11 +7,11 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["ImageToVideoCreateParams", "PromptImagePromptImage"]
+__all__ = ["ImageToVideoCreateParams", "PromptImagePromptImage", "ContentModeration"]
 
 
 class ImageToVideoCreateParams(TypedDict, total=False):
-    model: Required[Literal["gen4_turbo", "gen3a_turbo"]]
+    model: Required[Literal["gen3a_turbo", "gen4_turbo"]]
     """The model variant to use."""
 
     prompt_image: Required[Annotated[Union[str, Iterable[PromptImagePromptImage]], PropertyInfo(alias="promptImage")]]
@@ -40,6 +40,9 @@ class ImageToVideoCreateParams(TypedDict, total=False):
     - `1280:768`
     - `768:1280`
     """
+
+    content_moderation: Annotated[ContentModeration, PropertyInfo(alias="contentModeration")]
+    """Settings that affect the behavior of the content moderation system."""
 
     duration: Literal[5, 10]
     """The number of seconds of duration for the output video."""
@@ -73,4 +76,12 @@ class PromptImagePromptImage(TypedDict, total=False):
     """A HTTPS URL or data URI containing an encoded image.
 
     See [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class ContentModeration(TypedDict, total=False):
+    public_figure_threshold: Annotated[Literal["auto", "low"], PropertyInfo(alias="publicFigureThreshold")]
+    """
+    When set to `low`, the content moderation system will be less strict about
+    preventing generations that include recognizable public figures.
     """

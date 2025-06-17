@@ -92,13 +92,13 @@ from runwayml import RunwayML
 
 client = RunwayML()
 
-text_to_image = client.text_to_image.create(
-    model="gen4_image",
-    prompt_text="promptText",
-    ratio="1920:1080",
+image_to_video = client.image_to_video.create(
+    model="gen3a_turbo",
+    prompt_image="https://example.com",
+    ratio="1280:720",
     content_moderation={},
 )
-print(text_to_image.content_moderation)
+print(image_to_video.content_moderation)
 ```
 
 ## Handling errors
