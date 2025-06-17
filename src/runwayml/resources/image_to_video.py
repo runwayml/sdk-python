@@ -18,6 +18,12 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..lib.polling import (
+    NewTaskCreatedResponse,
+    AsyncNewTaskCreatedResponse,
+    create_waitable_resource,
+    create_async_waitable_resource,
+)
 from .._base_client import make_request_options
 from ..types.image_to_video_create_response import ImageToVideoCreateResponse
 
@@ -47,9 +53,10 @@ class ImageToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
-        model: Literal["gen4_turbo", "gen3a_turbo"],
+        model: Literal["gen3a_turbo", "gen4_turbo"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.PromptImagePromptImage]],
         ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672", "1280:768", "768:1280"],
+        content_moderation: image_to_video_create_params.ContentModeration | NotGiven = NOT_GIVEN,
         duration: Literal[5, 10] | NotGiven = NOT_GIVEN,
         prompt_text: str | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
@@ -59,7 +66,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageToVideoCreateResponse:
+    ) -> NewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate a video from an image prompt.
 
@@ -86,6 +93,8 @@ class ImageToVideoResource(SyncAPIResource):
               - `1280:768`
               - `768:1280`
 
+          content_moderation: Settings that affect the behavior of the content moderation system.
+
           duration: The number of seconds of duration for the output video.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
@@ -110,6 +119,7 @@ class ImageToVideoResource(SyncAPIResource):
                     "model": model,
                     "prompt_image": prompt_image,
                     "ratio": ratio,
+                    "content_moderation": content_moderation,
                     "duration": duration,
                     "prompt_text": prompt_text,
                     "seed": seed,
@@ -119,7 +129,7 @@ class ImageToVideoResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ImageToVideoCreateResponse,
+            cast_to=create_waitable_resource(ImageToVideoCreateResponse, self._client),
         )
 
 
@@ -146,9 +156,10 @@ class AsyncImageToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        model: Literal["gen4_turbo", "gen3a_turbo"],
+        model: Literal["gen3a_turbo", "gen4_turbo"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.PromptImagePromptImage]],
         ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672", "1280:768", "768:1280"],
+        content_moderation: image_to_video_create_params.ContentModeration | NotGiven = NOT_GIVEN,
         duration: Literal[5, 10] | NotGiven = NOT_GIVEN,
         prompt_text: str | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
@@ -158,7 +169,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ImageToVideoCreateResponse:
+    ) -> AsyncNewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate a video from an image prompt.
 
@@ -185,6 +196,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
               - `1280:768`
               - `768:1280`
 
+          content_moderation: Settings that affect the behavior of the content moderation system.
+
           duration: The number of seconds of duration for the output video.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
@@ -209,6 +222,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
                     "model": model,
                     "prompt_image": prompt_image,
                     "ratio": ratio,
+                    "content_moderation": content_moderation,
                     "duration": duration,
                     "prompt_text": prompt_text,
                     "seed": seed,
@@ -218,7 +232,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ImageToVideoCreateResponse,
+            cast_to=create_async_waitable_resource(ImageToVideoCreateResponse, self._client),
         )
 
 

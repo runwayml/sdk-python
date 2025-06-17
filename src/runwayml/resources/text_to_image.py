@@ -18,6 +18,12 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..lib.polling import (
+    NewTaskCreatedResponse,
+    AsyncNewTaskCreatedResponse,
+    create_waitable_resource,
+    create_async_waitable_resource,
+)
 from .._base_client import make_request_options
 from ..types.text_to_image_create_response import TextToImageCreateResponse
 
@@ -76,7 +82,7 @@ class TextToImageResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TextToImageCreateResponse:
+    ) -> NewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate images from text.
 
@@ -121,7 +127,7 @@ class TextToImageResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TextToImageCreateResponse,
+            cast_to=create_waitable_resource(TextToImageCreateResponse, self._client),
         )
 
 
@@ -177,7 +183,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TextToImageCreateResponse:
+    ) -> AsyncNewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate images from text.
 
@@ -222,7 +228,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TextToImageCreateResponse,
+            cast_to=create_async_waitable_resource(TextToImageCreateResponse, self._client),
         )
 
 

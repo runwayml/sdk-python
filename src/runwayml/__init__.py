@@ -36,6 +36,7 @@ from ._exceptions import (
     UnprocessableEntityError,
     APIResponseValidationError,
 )
+from .lib.polling import TaskFailedError, TaskTimeoutError
 from ._base_client import DefaultHttpxClient, DefaultAsyncHttpxClient
 from ._utils._logs import setup_logging as _setup_logging
 
@@ -78,6 +79,8 @@ __all__ = [
     "DEFAULT_CONNECTION_LIMITS",
     "DefaultHttpxClient",
     "DefaultAsyncHttpxClient",
+    "TaskFailedError",
+    "TaskTimeoutError",
 ]
 
 if not _t.TYPE_CHECKING:

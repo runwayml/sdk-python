@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import cast
+
 import httpx
 
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
@@ -12,6 +14,12 @@ from .._response import (
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
+)
+from ..lib.polling import (
+    AwaitableTaskRetrieveResponse,
+    AsyncAwaitableTaskRetrieveResponse,
+    create_waitable_resource,
+    create_async_waitable_resource,
 )
 from .._base_client import make_request_options
 from ..types.task_retrieve_response import TaskRetrieveResponse
@@ -49,7 +57,7 @@ class TasksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TaskRetrieveResponse:
+    ) -> AwaitableTaskRetrieveResponse:
         """Return details about a task.
 
         Consumers of this API should not expect updates
@@ -71,7 +79,9 @@ class TasksResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TaskRetrieveResponse,
+            cast_to=cast(
+                type[AwaitableTaskRetrieveResponse], create_waitable_resource(TaskRetrieveResponse, self._client)
+            ),
         )
 
     def delete(
@@ -144,7 +154,7 @@ class AsyncTasksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TaskRetrieveResponse:
+    ) -> AsyncAwaitableTaskRetrieveResponse:
         """Return details about a task.
 
         Consumers of this API should not expect updates
@@ -166,7 +176,10 @@ class AsyncTasksResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TaskRetrieveResponse,
+            cast_to=cast(
+                type[AsyncAwaitableTaskRetrieveResponse],
+                create_async_waitable_resource(TaskRetrieveResponse, self._client),
+            ),
         )
 
     async def delete(
