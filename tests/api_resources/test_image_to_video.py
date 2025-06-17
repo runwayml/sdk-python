@@ -20,7 +20,7 @@ class TestImageToVideo:
     @parametrize
     def test_method_create(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="gen4_turbo",
+            model="gen3a_turbo",
             prompt_image="https://example.com",
             ratio="1280:720",
         )
@@ -29,9 +29,10 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_with_all_params(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="gen4_turbo",
+            model="gen3a_turbo",
             prompt_image="https://example.com",
             ratio="1280:720",
+            content_moderation={"public_figure_threshold": "auto"},
             duration=5,
             prompt_text="promptText",
             seed=0,
@@ -41,7 +42,7 @@ class TestImageToVideo:
     @parametrize
     def test_raw_response_create(self, client: RunwayML) -> None:
         response = client.image_to_video.with_raw_response.create(
-            model="gen4_turbo",
+            model="gen3a_turbo",
             prompt_image="https://example.com",
             ratio="1280:720",
         )
@@ -54,7 +55,7 @@ class TestImageToVideo:
     @parametrize
     def test_streaming_response_create(self, client: RunwayML) -> None:
         with client.image_to_video.with_streaming_response.create(
-            model="gen4_turbo",
+            model="gen3a_turbo",
             prompt_image="https://example.com",
             ratio="1280:720",
         ) as response:
@@ -73,7 +74,7 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="gen4_turbo",
+            model="gen3a_turbo",
             prompt_image="https://example.com",
             ratio="1280:720",
         )
@@ -82,9 +83,10 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="gen4_turbo",
+            model="gen3a_turbo",
             prompt_image="https://example.com",
             ratio="1280:720",
+            content_moderation={"public_figure_threshold": "auto"},
             duration=5,
             prompt_text="promptText",
             seed=0,
@@ -94,7 +96,7 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.image_to_video.with_raw_response.create(
-            model="gen4_turbo",
+            model="gen3a_turbo",
             prompt_image="https://example.com",
             ratio="1280:720",
         )
@@ -107,7 +109,7 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncRunwayML) -> None:
         async with async_client.image_to_video.with_streaming_response.create(
-            model="gen4_turbo",
+            model="gen3a_turbo",
             prompt_image="https://example.com",
             ratio="1280:720",
         ) as response:

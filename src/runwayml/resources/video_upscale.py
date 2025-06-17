@@ -17,6 +17,12 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..lib.polling import (
+    NewTaskCreatedResponse,
+    AsyncNewTaskCreatedResponse,
+    create_waitable_resource,
+    create_async_waitable_resource,
+)
 from .._base_client import make_request_options
 from ..types.video_upscale_create_response import VideoUpscaleCreateResponse
 
@@ -54,7 +60,7 @@ class VideoUpscaleResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VideoUpscaleCreateResponse:
+    ) -> NewTaskCreatedResponse:
         """This endpoint will start a new task to upscale a video.
 
         Videos will be upscaled
@@ -87,7 +93,7 @@ class VideoUpscaleResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VideoUpscaleCreateResponse,
+            cast_to=create_waitable_resource(VideoUpscaleCreateResponse, self._client),
         )
 
 
@@ -122,7 +128,7 @@ class AsyncVideoUpscaleResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VideoUpscaleCreateResponse:
+    ) -> AsyncNewTaskCreatedResponse:
         """This endpoint will start a new task to upscale a video.
 
         Videos will be upscaled
@@ -155,7 +161,7 @@ class AsyncVideoUpscaleResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=VideoUpscaleCreateResponse,
+            cast_to=create_async_waitable_resource(VideoUpscaleCreateResponse, self._client),
         )
 
 
