@@ -23,9 +23,7 @@ from pydantic import ValidationError
 
 from runwayml import RunwayML, AsyncRunwayML, APIResponseValidationError
 from runwayml._types import Omit
-from runwayml._utils import maybe_transform
 from runwayml._models import BaseModel, FinalRequestOptions
-from runwayml._constants import RAW_RESPONSE_HEADER
 from runwayml._exceptions import RunwayMLError, APIStatusError, APITimeoutError, APIResponseValidationError
 from runwayml._base_client import (
     DEFAULT_TIMEOUT,
@@ -35,7 +33,6 @@ from runwayml._base_client import (
     DefaultAsyncHttpxClient,
     make_request_options,
 )
-from runwayml.types.image_to_video_create_params import ImageToVideoCreateParams
 
 from .utils import update_env
 
@@ -715,54 +712,25 @@ class TestRunwayML:
 
     @mock.patch("runwayml._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: RunwayML) -> None:
         respx_mock.post("/v1/image_to_video").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            self.client.post(
-                "/v1/image_to_video",
-                body=cast(
-                    object,
-                    maybe_transform(
-                        dict(
-                            model="gen4_turbo",
-                            prompt_image="https://example.com/assets/bunny.jpg",
-                            ratio="1280:720",
-                            prompt_text="The bunny is eating a carrot",
-                        ),
-                        ImageToVideoCreateParams,
-                    ),
-                ),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
+            client.image_to_video.with_streaming_response.create(
+                model="gen3a_turbo", prompt_image="https://example.com", ratio="1280:720"
+            ).__enter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("runwayml._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: RunwayML) -> None:
         respx_mock.post("/v1/image_to_video").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            self.client.post(
-                "/v1/image_to_video",
-                body=cast(
-                    object,
-                    maybe_transform(
-                        dict(
-                            model="gen4_turbo",
-                            prompt_image="https://example.com/assets/bunny.jpg",
-                            ratio="1280:720",
-                            prompt_text="The bunny is eating a carrot",
-                        ),
-                        ImageToVideoCreateParams,
-                    ),
-                ),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
-
+            client.image_to_video.with_streaming_response.create(
+                model="gen3a_turbo", prompt_image="https://example.com", ratio="1280:720"
+            ).__enter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1574,54 +1542,29 @@ class TestAsyncRunwayML:
 
     @mock.patch("runwayml._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_timeout_errors_doesnt_leak(
+        self, respx_mock: MockRouter, async_client: AsyncRunwayML
+    ) -> None:
         respx_mock.post("/v1/image_to_video").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await self.client.post(
-                "/v1/image_to_video",
-                body=cast(
-                    object,
-                    maybe_transform(
-                        dict(
-                            model="gen4_turbo",
-                            prompt_image="https://example.com/assets/bunny.jpg",
-                            ratio="1280:720",
-                            prompt_text="The bunny is eating a carrot",
-                        ),
-                        ImageToVideoCreateParams,
-                    ),
-                ),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
+            await async_client.image_to_video.with_streaming_response.create(
+                model="gen3a_turbo", prompt_image="https://example.com", ratio="1280:720"
+            ).__aenter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("runwayml._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_status_errors_doesnt_leak(
+        self, respx_mock: MockRouter, async_client: AsyncRunwayML
+    ) -> None:
         respx_mock.post("/v1/image_to_video").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await self.client.post(
-                "/v1/image_to_video",
-                body=cast(
-                    object,
-                    maybe_transform(
-                        dict(
-                            model="gen4_turbo",
-                            prompt_image="https://example.com/assets/bunny.jpg",
-                            ratio="1280:720",
-                            prompt_text="The bunny is eating a carrot",
-                        ),
-                        ImageToVideoCreateParams,
-                    ),
-                ),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
-
+            await async_client.image_to_video.with_streaming_response.create(
+                model="gen3a_turbo", prompt_image="https://example.com", ratio="1280:720"
+            ).__aenter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
