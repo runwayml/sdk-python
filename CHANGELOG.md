@@ -1,5 +1,28 @@
 # Changelog
 
+## 3.6.0 (2025-06-23)
+
+Full Changelog: [v3.5.0...v3.6.0](https://github.com/runwayml/sdk-python/compare/v3.5.0...v3.6.0)
+
+### Features
+
+* **client:** add support for aiohttp ([7d5490c](https://github.com/runwayml/sdk-python/commit/7d5490ca015dd0ff55789889036cc1bd32a58c43))
+
+
+### Bug Fixes
+
+* **tests:** fix: tests which call HTTP endpoints directly with the example parameters ([33301dd](https://github.com/runwayml/sdk-python/commit/33301ddf84cc64581d715d6b8ce1eda48ff66ed5))
+
+
+### Chores
+
+* **readme:** update badges ([147dc95](https://github.com/runwayml/sdk-python/commit/147dc95f9ab390065ab96403a88ca5a87e59f597))
+
+
+### Documentation
+
+* **client:** fix httpx.Timeout documentation reference ([af9fecb](https://github.com/runwayml/sdk-python/commit/af9fecb38a4075fcc8f7687f2ef130ad8c813389))
+
 ## 3.5.0 (2025-06-17)
 
 Full Changelog: [v3.4.0...v3.5.0](https://github.com/runwayml/sdk-python/compare/v3.4.0...v3.5.0)
