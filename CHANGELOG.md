@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.6.1 (2025-06-24)
+
+Full Changelog: [v3.6.0...v3.6.1](https://github.com/runwayml/sdk-python/compare/v3.6.0...v3.6.1)
+
+### Chores
+
+* **tests:** skip some failing tests on the latest python versions ([732236d](https://github.com/runwayml/sdk-python/commit/732236d2ced9511c21179e9850bafcaf0b0a4edf))
+
 ## 3.6.0 (2025-06-23)
 
 Full Changelog: [v3.5.0...v3.6.0](https://github.com/runwayml/sdk-python/compare/v3.5.0...v3.6.0)
