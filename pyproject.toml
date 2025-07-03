@@ -14,6 +14,7 @@ dependencies = [
     "anyio>=3.5.0, <5",
     "distro>=1.7.0, <2",
     "sniffio",
+    "h11>=0.16",
 ]
 requires-python = ">= 3.8"
 classifiers = [
