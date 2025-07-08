@@ -1,5 +1,21 @@
 # Changelog
 
+## 3.6.2 (2025-07-08)
+
+Full Changelog: [v3.6.1...v3.6.2](https://github.com/runwayml/sdk-python/compare/v3.6.1...v3.6.2)
+
+### Bug Fixes
+
+* **ci:** correct conditional ([04df1e3](https://github.com/runwayml/sdk-python/commit/04df1e3c225dcfa89036bdbdc8dbe3fd3f0f6233))
+* **ci:** release-doctor — report correct token name ([5c77b20](https://github.com/runwayml/sdk-python/commit/5c77b20928d41e78f6b67136ebf6236078d3669b))
+
+
+### Chores
+
+* **ci:** change upload type ([1ca0a49](https://github.com/runwayml/sdk-python/commit/1ca0a49d43c99e8aa90b5781eb5a530f6a7038bb))
+* **ci:** only run for pushes and fork pull requests ([0821c24](https://github.com/runwayml/sdk-python/commit/0821c241c8364476413df18c1af16b95556c187f))
+* **internal:** codegen related update ([cfd7b38](https://github.com/runwayml/sdk-python/commit/cfd7b3830de1d53d5b55aecec5dc947851a26d04))
+
 ## 3.6.1 (2025-06-24)
 
 Full Changelog: [v3.6.0...v3.6.1](https://github.com/runwayml/sdk-python/compare/v3.6.0...v3.6.1)
