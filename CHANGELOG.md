@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.6.3 (2025-07-09)
+
+Full Changelog: [v3.6.2...v3.6.3](https://github.com/runwayml/sdk-python/compare/v3.6.2...v3.6.3)
+
+### Chores
+
+* **internal:** bump pinned h11 dep ([25ee0aa](https://github.com/runwayml/sdk-python/commit/25ee0aadb87786a3825169c3e84cc80398188ba5))
+* **package:** mark python 3.13 as supported ([b50298a](https://github.com/runwayml/sdk-python/commit/b50298a999f71b7ce49e640eac691ca71ee39135))
+
 ## 3.6.2 (2025-07-08)
 
 Full Changelog: [v3.6.1...v3.6.2](https://github.com/runwayml/sdk-python/compare/v3.6.1...v3.6.2)
