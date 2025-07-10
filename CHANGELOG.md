@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.6.4 (2025-07-10)
+
+Full Changelog: [v3.6.3...v3.6.4](https://github.com/runwayml/sdk-python/compare/v3.6.3...v3.6.4)
+
+### Bug Fixes
+
+* **parsing:** correctly handle nested discriminated unions ([813daf2](https://github.com/runwayml/sdk-python/commit/813daf265fdd93af5500a1b7cf2c7def33f31e08))
+
 ## 3.6.3 (2025-07-09)
 
 Full Changelog: [v3.6.2...v3.6.3](https://github.com/runwayml/sdk-python/compare/v3.6.2...v3.6.3)
