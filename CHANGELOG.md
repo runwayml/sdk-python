@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.6.5 (2025-07-12)
+
+Full Changelog: [v3.6.4...v3.6.5](https://github.com/runwayml/sdk-python/compare/v3.6.4...v3.6.5)
+
+### Bug Fixes
+
+* **client:** don't send Content-Type header on GET requests ([6567867](https://github.com/runwayml/sdk-python/commit/656786737e8ee74a40c731b6d2659b1c1b34ce20))
+
+
+### Chores
+
+* **readme:** fix version rendering on pypi ([f38de2a](https://github.com/runwayml/sdk-python/commit/f38de2a823870a12ce893324e4889a5aec5a3392))
+
 ## 3.6.4 (2025-07-10)
 
 Full Changelog: [v3.6.3...v3.6.4](https://github.com/runwayml/sdk-python/compare/v3.6.3...v3.6.4)
