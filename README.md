@@ -89,7 +89,6 @@ pip install runwayml[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
-import os
 import asyncio
 from runwayml import DefaultAioHttpClient
 from runwayml import AsyncRunwayML
@@ -97,7 +96,7 @@ from runwayml import AsyncRunwayML
 
 async def main() -> None:
     async with AsyncRunwayML(
-        api_key=os.environ.get("RUNWAYML_API_SECRET"),  # This is the default and can be omitted
+        api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
         image_to_video = await client.image_to_video.create(
