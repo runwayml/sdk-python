@@ -6,6 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
+
 from ..types import character_performance_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
@@ -16,6 +17,12 @@ from .._response import (
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
+)
+from ..lib.polling import (
+    NewTaskCreatedResponse,
+    AsyncNewTaskCreatedResponse,
+    create_waitable_resource,
+    create_async_waitable_resource,
 )
 from .._base_client import make_request_options
 from ..types.character_performance_create_response import CharacterPerformanceCreateResponse
@@ -60,7 +67,7 @@ class CharacterPerformanceResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CharacterPerformanceCreateResponse:
+    ) -> NewTaskCreatedResponse:
         """
         This endpoint will start a new task to control a character's facial expressions
         and body movements using a reference video.
@@ -112,7 +119,7 @@ class CharacterPerformanceResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CharacterPerformanceCreateResponse,
+            cast_to=create_waitable_resource(CharacterPerformanceCreateResponse, self._client),
         )
 
 
@@ -153,7 +160,7 @@ class AsyncCharacterPerformanceResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CharacterPerformanceCreateResponse:
+    ) -> AsyncNewTaskCreatedResponse:
         """
         This endpoint will start a new task to control a character's facial expressions
         and body movements using a reference video.
@@ -205,7 +212,7 @@ class AsyncCharacterPerformanceResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CharacterPerformanceCreateResponse,
+            cast_to=create_async_waitable_resource(CharacterPerformanceCreateResponse, self._client),
         )
 
 
