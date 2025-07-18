@@ -47,14 +47,27 @@ Methods:
 
 - <code title="post /v1/video_upscale">client.video_upscale.<a href="./src/runwayml/resources/video_upscale.py">create</a>(\*\*<a href="src/runwayml/types/video_upscale_create_params.py">params</a>) -> <a href="./src/runwayml/types/video_upscale_create_response.py">VideoUpscaleCreateResponse</a></code>
 
+# CharacterPerformance
+
+Types:
+
+```python
+from runwayml.types import CharacterPerformanceCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/character_performance">client.character_performance.<a href="./src/runwayml/resources/character_performance.py">create</a>(\*\*<a href="src/runwayml/types/character_performance_create_params.py">params</a>) -> <a href="./src/runwayml/types/character_performance_create_response.py">CharacterPerformanceCreateResponse</a></code>
+
 # Organization
 
 Types:
 
 ```python
-from runwayml.types import OrganizationRetrieveResponse
+from runwayml.types import OrganizationRetrieveResponse, OrganizationRetrieveUsageResponse
 ```
 
 Methods:
 
 - <code title="get /v1/organization">client.organization.<a href="./src/runwayml/resources/organization.py">retrieve</a>() -> <a href="./src/runwayml/types/organization_retrieve_response.py">OrganizationRetrieveResponse</a></code>
+- <code title="post /v1/organization/usage">client.organization.<a href="./src/runwayml/resources/organization.py">retrieve_usage</a>(\*\*<a href="src/runwayml/types/organization_retrieve_usage_params.py">params</a>) -> <a href="./src/runwayml/types/organization_retrieve_usage_response.py">OrganizationRetrieveUsageResponse</a></code>
