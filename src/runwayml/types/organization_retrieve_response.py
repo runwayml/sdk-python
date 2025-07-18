@@ -10,17 +10,27 @@ __all__ = [
     "OrganizationRetrieveResponse",
     "Tier",
     "TierModels",
+    "TierModelsActTwo",
     "TierModelsGen3aTurbo",
     "TierModelsGen4Image",
     "TierModelsGen4Turbo",
     "TierModelsUpscaleV1",
     "Usage",
     "UsageModels",
+    "UsageModelsActTwo",
     "UsageModelsGen3aTurbo",
     "UsageModelsGen4Image",
     "UsageModelsGen4Turbo",
     "UsageModelsUpscaleV1",
 ]
+
+
+class TierModelsActTwo(BaseModel):
+    max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
+    """The maximum number of generations that can be run concurrently for this model."""
+
+    max_daily_generations: int = FieldInfo(alias="maxDailyGenerations")
+    """The maximum number of generations that can be created each day for this model."""
 
 
 class TierModelsGen3aTurbo(BaseModel):
@@ -56,6 +66,9 @@ class TierModelsUpscaleV1(BaseModel):
 
 
 class TierModels(BaseModel):
+    act_two: Optional[TierModelsActTwo] = None
+    """Limits associated with the act_two model."""
+
     gen3a_turbo: Optional[TierModelsGen3aTurbo] = None
     """Limits associated with the gen3a_turbo model."""
 
@@ -75,6 +88,11 @@ class Tier(BaseModel):
 
     models: TierModels
     """An object containing model-specific limits. Each key represents a model."""
+
+
+class UsageModelsActTwo(BaseModel):
+    daily_generations: int = FieldInfo(alias="dailyGenerations")
+    """The number of generations that have been run for this model in the past day."""
 
 
 class UsageModelsGen3aTurbo(BaseModel):
@@ -98,6 +116,9 @@ class UsageModelsUpscaleV1(BaseModel):
 
 
 class UsageModels(BaseModel):
+    act_two: Optional[UsageModelsActTwo] = None
+    """Usage data for the act_two model."""
+
     gen3a_turbo: Optional[UsageModelsGen3aTurbo] = None
     """Usage data for the gen3a_turbo model."""
 

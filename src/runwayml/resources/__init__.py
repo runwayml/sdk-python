@@ -40,6 +40,14 @@ from .image_to_video import (
     ImageToVideoResourceWithStreamingResponse,
     AsyncImageToVideoResourceWithStreamingResponse,
 )
+from .character_performance import (
+    CharacterPerformanceResource,
+    AsyncCharacterPerformanceResource,
+    CharacterPerformanceResourceWithRawResponse,
+    AsyncCharacterPerformanceResourceWithRawResponse,
+    CharacterPerformanceResourceWithStreamingResponse,
+    AsyncCharacterPerformanceResourceWithStreamingResponse,
+)
 
 __all__ = [
     "TasksResource",
@@ -66,6 +74,12 @@ __all__ = [
     "AsyncVideoUpscaleResourceWithRawResponse",
     "VideoUpscaleResourceWithStreamingResponse",
     "AsyncVideoUpscaleResourceWithStreamingResponse",
+    "CharacterPerformanceResource",
+    "AsyncCharacterPerformanceResource",
+    "CharacterPerformanceResourceWithRawResponse",
+    "AsyncCharacterPerformanceResourceWithRawResponse",
+    "CharacterPerformanceResourceWithStreamingResponse",
+    "AsyncCharacterPerformanceResourceWithStreamingResponse",
     "OrganizationResource",
     "AsyncOrganizationResource",
     "OrganizationResourceWithRawResponse",

@@ -21,7 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import tasks, organization, text_to_image, video_upscale, image_to_video
+from .resources import tasks, organization, text_to_image, video_upscale, image_to_video, character_performance
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import RunwayMLError, APIStatusError
 from ._base_client import (
@@ -47,6 +47,7 @@ class RunwayML(SyncAPIClient):
     image_to_video: image_to_video.ImageToVideoResource
     text_to_image: text_to_image.TextToImageResource
     video_upscale: video_upscale.VideoUpscaleResource
+    character_performance: character_performance.CharacterPerformanceResource
     organization: organization.OrganizationResource
     with_raw_response: RunwayMLWithRawResponse
     with_streaming_response: RunwayMLWithStreamedResponse
@@ -115,6 +116,7 @@ class RunwayML(SyncAPIClient):
         self.image_to_video = image_to_video.ImageToVideoResource(self)
         self.text_to_image = text_to_image.TextToImageResource(self)
         self.video_upscale = video_upscale.VideoUpscaleResource(self)
+        self.character_performance = character_performance.CharacterPerformanceResource(self)
         self.organization = organization.OrganizationResource(self)
         self.with_raw_response = RunwayMLWithRawResponse(self)
         self.with_streaming_response = RunwayMLWithStreamedResponse(self)
@@ -232,6 +234,7 @@ class AsyncRunwayML(AsyncAPIClient):
     image_to_video: image_to_video.AsyncImageToVideoResource
     text_to_image: text_to_image.AsyncTextToImageResource
     video_upscale: video_upscale.AsyncVideoUpscaleResource
+    character_performance: character_performance.AsyncCharacterPerformanceResource
     organization: organization.AsyncOrganizationResource
     with_raw_response: AsyncRunwayMLWithRawResponse
     with_streaming_response: AsyncRunwayMLWithStreamedResponse
@@ -300,6 +303,7 @@ class AsyncRunwayML(AsyncAPIClient):
         self.image_to_video = image_to_video.AsyncImageToVideoResource(self)
         self.text_to_image = text_to_image.AsyncTextToImageResource(self)
         self.video_upscale = video_upscale.AsyncVideoUpscaleResource(self)
+        self.character_performance = character_performance.AsyncCharacterPerformanceResource(self)
         self.organization = organization.AsyncOrganizationResource(self)
         self.with_raw_response = AsyncRunwayMLWithRawResponse(self)
         self.with_streaming_response = AsyncRunwayMLWithStreamedResponse(self)
@@ -418,6 +422,9 @@ class RunwayMLWithRawResponse:
         self.image_to_video = image_to_video.ImageToVideoResourceWithRawResponse(client.image_to_video)
         self.text_to_image = text_to_image.TextToImageResourceWithRawResponse(client.text_to_image)
         self.video_upscale = video_upscale.VideoUpscaleResourceWithRawResponse(client.video_upscale)
+        self.character_performance = character_performance.CharacterPerformanceResourceWithRawResponse(
+            client.character_performance
+        )
         self.organization = organization.OrganizationResourceWithRawResponse(client.organization)
 
 
@@ -427,6 +434,9 @@ class AsyncRunwayMLWithRawResponse:
         self.image_to_video = image_to_video.AsyncImageToVideoResourceWithRawResponse(client.image_to_video)
         self.text_to_image = text_to_image.AsyncTextToImageResourceWithRawResponse(client.text_to_image)
         self.video_upscale = video_upscale.AsyncVideoUpscaleResourceWithRawResponse(client.video_upscale)
+        self.character_performance = character_performance.AsyncCharacterPerformanceResourceWithRawResponse(
+            client.character_performance
+        )
         self.organization = organization.AsyncOrganizationResourceWithRawResponse(client.organization)
 
 
@@ -436,6 +446,9 @@ class RunwayMLWithStreamedResponse:
         self.image_to_video = image_to_video.ImageToVideoResourceWithStreamingResponse(client.image_to_video)
         self.text_to_image = text_to_image.TextToImageResourceWithStreamingResponse(client.text_to_image)
         self.video_upscale = video_upscale.VideoUpscaleResourceWithStreamingResponse(client.video_upscale)
+        self.character_performance = character_performance.CharacterPerformanceResourceWithStreamingResponse(
+            client.character_performance
+        )
         self.organization = organization.OrganizationResourceWithStreamingResponse(client.organization)
 
 
@@ -445,6 +458,9 @@ class AsyncRunwayMLWithStreamedResponse:
         self.image_to_video = image_to_video.AsyncImageToVideoResourceWithStreamingResponse(client.image_to_video)
         self.text_to_image = text_to_image.AsyncTextToImageResourceWithStreamingResponse(client.text_to_image)
         self.video_upscale = video_upscale.AsyncVideoUpscaleResourceWithStreamingResponse(client.video_upscale)
+        self.character_performance = character_performance.AsyncCharacterPerformanceResourceWithStreamingResponse(
+            client.character_performance
+        )
         self.organization = organization.AsyncOrganizationResourceWithStreamingResponse(client.organization)
 
 
