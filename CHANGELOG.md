@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.7.0 (2025-07-19)
+
+Full Changelog: [v3.6.5...v3.7.0](https://github.com/runwayml/sdk-python/compare/v3.6.5...v3.7.0)
+
+### Features
+
+* **api:** Act Two, credit usage endpoints ([f1114e0](https://github.com/runwayml/sdk-python/commit/f1114e0be865f9e27e697dfcaeb5dc6c0be659ed))
+* **api:** Awaitability on new resources ([7612c78](https://github.com/runwayml/sdk-python/commit/7612c78ee6f64969138685312c4a3d539191beb9))
+* clean up environment call outs ([caa8eff](https://github.com/runwayml/sdk-python/commit/caa8eff7855430950fe4184c3db885e84a607d5f))
+
+
+### Chores
+
+* **client:** lint ([d745891](https://github.com/runwayml/sdk-python/commit/d74589104c8a15d5ab4e87b1f4de4ec915210a3e))
+
 ## 3.6.5 (2025-07-12)
 
 Full Changelog: [v3.6.4...v3.6.5](https://github.com/runwayml/sdk-python/compare/v3.6.4...v3.6.5)
