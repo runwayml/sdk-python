@@ -10,7 +10,7 @@ image_task = client.text_to_image.create(
 try:
     output = image_task.wait_for_task_output()
 except TaskFailedError as e:
-    print('The image failed to generate.')
+    print("The image failed to generate.")
     print(e.task_details)
 else:
     print(output.output[0])  # type: ignore
