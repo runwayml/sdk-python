@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.7.1 (2025-07-22)
+
+Full Changelog: [v3.7.0...v3.7.1](https://github.com/runwayml/sdk-python/compare/v3.7.0...v3.7.1)
+
+### Bug Fixes
+
+* **parsing:** ignore empty metadata ([33c5e49](https://github.com/runwayml/sdk-python/commit/33c5e498bb3903d63f7c9ef308a2e49db4dc5efd))
+
 ## 3.7.0 (2025-07-19)
 
 Full Changelog: [v3.6.5...v3.7.0](https://github.com/runwayml/sdk-python/compare/v3.6.5...v3.7.0)
