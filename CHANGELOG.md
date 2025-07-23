@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.7.2 (2025-07-23)
+
+Full Changelog: [v3.7.1...v3.7.2](https://github.com/runwayml/sdk-python/compare/v3.7.1...v3.7.2)
+
+### Bug Fixes
+
+* **parsing:** parse extra field types ([dc5dd24](https://github.com/runwayml/sdk-python/commit/dc5dd24d7ab7904c7c246ba7255c54c85e7dee40))
+
 ## 3.7.1 (2025-07-22)
 
 Full Changelog: [v3.7.0...v3.7.1](https://github.com/runwayml/sdk-python/compare/v3.7.0...v3.7.1)
