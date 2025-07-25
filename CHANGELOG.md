@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.7.3 (2025-07-25)
+
+Full Changelog: [v3.7.2...v3.7.3](https://github.com/runwayml/sdk-python/compare/v3.7.2...v3.7.3)
+
+### Chores
+
+* **project:** add settings file for vscode ([d2a3908](https://github.com/runwayml/sdk-python/commit/d2a3908101120d546238608608109960d9d9d0e1))
+
 ## 3.7.2 (2025-07-23)
 
 Full Changelog: [v3.7.1...v3.7.2](https://github.com/runwayml/sdk-python/compare/v3.7.1...v3.7.2)
