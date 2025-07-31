@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.8.0 (2025-07-31)
+
+Full Changelog: [v3.7.2...v3.8.0](https://github.com/runwayml/sdk-python/compare/v3.7.2...v3.8.0)
+
+### Features
+
+* **client:** support file upload requests ([9a12ee4](https://github.com/runwayml/sdk-python/commit/9a12ee479c6d796eaec598e33abf8e0664941cbb))
+
+
+### Chores
+
+* **project:** add settings file for vscode ([d2a3908](https://github.com/runwayml/sdk-python/commit/d2a3908101120d546238608608109960d9d9d0e1))
+
 ## 3.7.2 (2025-07-23)
 
 Full Changelog: [v3.7.1...v3.7.2](https://github.com/runwayml/sdk-python/compare/v3.7.1...v3.7.2)
