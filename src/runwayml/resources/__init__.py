@@ -40,6 +40,14 @@ from .image_to_video import (
     ImageToVideoResourceWithStreamingResponse,
     AsyncImageToVideoResourceWithStreamingResponse,
 )
+from .video_to_video import (
+    VideoToVideoResource,
+    AsyncVideoToVideoResource,
+    VideoToVideoResourceWithRawResponse,
+    AsyncVideoToVideoResourceWithRawResponse,
+    VideoToVideoResourceWithStreamingResponse,
+    AsyncVideoToVideoResourceWithStreamingResponse,
+)
 from .character_performance import (
     CharacterPerformanceResource,
     AsyncCharacterPerformanceResource,
@@ -62,6 +70,12 @@ __all__ = [
     "AsyncImageToVideoResourceWithRawResponse",
     "ImageToVideoResourceWithStreamingResponse",
     "AsyncImageToVideoResourceWithStreamingResponse",
+    "VideoToVideoResource",
+    "AsyncVideoToVideoResource",
+    "VideoToVideoResourceWithRawResponse",
+    "AsyncVideoToVideoResourceWithRawResponse",
+    "VideoToVideoResourceWithStreamingResponse",
+    "AsyncVideoToVideoResourceWithStreamingResponse",
     "TextToImageResource",
     "AsyncTextToImageResource",
     "TextToImageResourceWithRawResponse",

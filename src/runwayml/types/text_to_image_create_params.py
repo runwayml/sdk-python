@@ -48,7 +48,7 @@ class TextToImageCreateParams(TypedDict, total=False):
     reference_images: Annotated[Iterable[ReferenceImage], PropertyInfo(alias="referenceImages")]
     """An array of images to be used as references for the generated image output.
 
-    Up to three reference images can be provided.
+    Up to three reference images can be provided for `gen4_image`.
     """
 
     seed: int
