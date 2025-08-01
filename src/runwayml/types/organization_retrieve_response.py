@@ -12,6 +12,7 @@ __all__ = [
     "TierModels",
     "TierModelsActTwo",
     "TierModelsGen3aTurbo",
+    "TierModelsGen4Aleph",
     "TierModelsGen4Image",
     "TierModelsGen4Turbo",
     "TierModelsUpscaleV1",
@@ -19,6 +20,7 @@ __all__ = [
     "UsageModels",
     "UsageModelsActTwo",
     "UsageModelsGen3aTurbo",
+    "UsageModelsGen4Aleph",
     "UsageModelsGen4Image",
     "UsageModelsGen4Turbo",
     "UsageModelsUpscaleV1",
@@ -34,6 +36,14 @@ class TierModelsActTwo(BaseModel):
 
 
 class TierModelsGen3aTurbo(BaseModel):
+    max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
+    """The maximum number of generations that can be run concurrently for this model."""
+
+    max_daily_generations: int = FieldInfo(alias="maxDailyGenerations")
+    """The maximum number of generations that can be created each day for this model."""
+
+
+class TierModelsGen4Aleph(BaseModel):
     max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
     """The maximum number of generations that can be run concurrently for this model."""
 
@@ -72,6 +82,9 @@ class TierModels(BaseModel):
     gen3a_turbo: Optional[TierModelsGen3aTurbo] = None
     """Limits associated with the gen3a_turbo model."""
 
+    gen4_aleph: Optional[TierModelsGen4Aleph] = None
+    """Limits associated with the gen4_aleph model."""
+
     gen4_image: Optional[TierModelsGen4Image] = None
     """Limits associated with the gen4_image model."""
 
@@ -100,6 +113,11 @@ class UsageModelsGen3aTurbo(BaseModel):
     """The number of generations that have been run for this model in the past day."""
 
 
+class UsageModelsGen4Aleph(BaseModel):
+    daily_generations: int = FieldInfo(alias="dailyGenerations")
+    """The number of generations that have been run for this model in the past day."""
+
+
 class UsageModelsGen4Image(BaseModel):
     daily_generations: int = FieldInfo(alias="dailyGenerations")
     """The number of generations that have been run for this model in the past day."""
@@ -121,6 +139,9 @@ class UsageModels(BaseModel):
 
     gen3a_turbo: Optional[UsageModelsGen3aTurbo] = None
     """Usage data for the gen3a_turbo model."""
+
+    gen4_aleph: Optional[UsageModelsGen4Aleph] = None
+    """Usage data for the gen4_aleph model."""
 
     gen4_image: Optional[UsageModelsGen4Image] = None
     """Usage data for the gen4_image model."""
