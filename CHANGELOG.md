@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.9.0 (2025-08-01)
+
+Full Changelog: [v3.8.0...v3.9.0](https://github.com/runwayml/sdk-python/compare/v3.8.0...v3.9.0)
+
+### Features
+
+* **api:** Gen-4 Aleph ([b1cf4db](https://github.com/runwayml/sdk-python/commit/b1cf4db0265fa866abf31ac0ffaf6b1ee0b9140c))
+
 ## 3.8.0 (2025-07-31)
 
 Full Changelog: [v3.7.2...v3.8.0](https://github.com/runwayml/sdk-python/compare/v3.7.2...v3.8.0)
