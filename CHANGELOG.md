@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.10.0 (2025-08-05)
+
+Full Changelog: [v3.9.0...v3.10.0](https://github.com/runwayml/sdk-python/compare/v3.9.0...v3.10.0)
+
+### Features
+
+* **api:** Add gen4_image_turbo model ([5d5aab2](https://github.com/runwayml/sdk-python/commit/5d5aab25530e4a59e4873143ee53191f1714ebdb))
+* **readme:** Fix for readme example ([083bb47](https://github.com/runwayml/sdk-python/commit/083bb47e8634b156b4deabbe3030e100f8186b0d))
+* **readme:** gen4_turbo ratio ([7a5a486](https://github.com/runwayml/sdk-python/commit/7a5a486a2bd05f105616ad68d490defc134d333c))
+
 ## 3.9.0 (2025-08-01)
 
 Full Changelog: [v3.8.0...v3.9.0](https://github.com/runwayml/sdk-python/compare/v3.8.0...v3.9.0)
