@@ -35,7 +35,7 @@ client = RunwayML(
 image_to_video = client.image_to_video.create(
     model="gen4_turbo",
     prompt_image="https://example.com/assets/bunny.jpg",
-    ratio="1280:768",
+    ratio="1280:720",
     prompt_text="The bunny is eating a carrot",
 )
 print(image_to_video.id)
@@ -64,7 +64,7 @@ async def main() -> None:
     image_to_video = await client.image_to_video.create(
         model="gen4_turbo",
         prompt_image="https://example.com/assets/bunny.jpg",
-        ratio="1280:768",
+        ratio="1280:720",
         prompt_text="The bunny is eating a carrot",
     )
     print(image_to_video.id)
@@ -102,7 +102,7 @@ async def main() -> None:
         image_to_video = await client.image_to_video.create(
             model="gen4_turbo",
             prompt_image="https://example.com/assets/bunny.jpg",
-            ratio="1280:768",
+            ratio="1280:720",
             prompt_text="The bunny is eating a carrot",
         )
         print(image_to_video.id)
@@ -157,7 +157,7 @@ try:
     client.image_to_video.create(
         model="gen4_turbo",
         prompt_image="https://example.com/assets/bunny.jpg",
-        ratio="1280:768",
+        ratio="1280:720",
         prompt_text="The bunny is eating a carrot",
     )
 except runwayml.APIConnectionError as e:
@@ -205,7 +205,7 @@ client = RunwayML(
 client.with_options(max_retries=5).image_to_video.create(
     model="gen4_turbo",
     prompt_image="https://example.com/assets/bunny.jpg",
-    ratio="1280:768",
+    ratio="1280:720",
     prompt_text="The bunny is eating a carrot",
 )
 ```
@@ -233,7 +233,7 @@ client = RunwayML(
 client.with_options(timeout=5.0).image_to_video.create(
     model="gen4_turbo",
     prompt_image="https://example.com/assets/bunny.jpg",
-    ratio="1280:768",
+    ratio="1280:720",
     prompt_text="The bunny is eating a carrot",
 )
 ```
@@ -279,7 +279,7 @@ client = RunwayML()
 response = client.image_to_video.with_raw_response.create(
     model="gen4_turbo",
     prompt_image="https://example.com/assets/bunny.jpg",
-    ratio="1280:768",
+    ratio="1280:720",
     prompt_text="The bunny is eating a carrot",
 )
 print(response.headers.get('X-My-Header'))
@@ -302,7 +302,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 with client.image_to_video.with_streaming_response.create(
     model="gen4_turbo",
     prompt_image="https://example.com/assets/bunny.jpg",
-    ratio="1280:768",
+    ratio="1280:720",
     prompt_text="The bunny is eating a carrot",
 ) as response:
     print(response.headers.get("X-My-Header"))
