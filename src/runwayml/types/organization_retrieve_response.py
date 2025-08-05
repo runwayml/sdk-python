@@ -14,6 +14,7 @@ __all__ = [
     "TierModelsGen3aTurbo",
     "TierModelsGen4Aleph",
     "TierModelsGen4Image",
+    "TierModelsGen4ImageTurbo",
     "TierModelsGen4Turbo",
     "TierModelsUpscaleV1",
     "Usage",
@@ -22,6 +23,7 @@ __all__ = [
     "UsageModelsGen3aTurbo",
     "UsageModelsGen4Aleph",
     "UsageModelsGen4Image",
+    "UsageModelsGen4ImageTurbo",
     "UsageModelsGen4Turbo",
     "UsageModelsUpscaleV1",
 ]
@@ -59,6 +61,14 @@ class TierModelsGen4Image(BaseModel):
     """The maximum number of generations that can be created each day for this model."""
 
 
+class TierModelsGen4ImageTurbo(BaseModel):
+    max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
+    """The maximum number of generations that can be run concurrently for this model."""
+
+    max_daily_generations: int = FieldInfo(alias="maxDailyGenerations")
+    """The maximum number of generations that can be created each day for this model."""
+
+
 class TierModelsGen4Turbo(BaseModel):
     max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
     """The maximum number of generations that can be run concurrently for this model."""
@@ -87,6 +97,9 @@ class TierModels(BaseModel):
 
     gen4_image: Optional[TierModelsGen4Image] = None
     """Limits associated with the gen4_image model."""
+
+    gen4_image_turbo: Optional[TierModelsGen4ImageTurbo] = None
+    """Limits associated with the gen4_image_turbo model."""
 
     gen4_turbo: Optional[TierModelsGen4Turbo] = None
     """Limits associated with the gen4_turbo model."""
@@ -123,6 +136,11 @@ class UsageModelsGen4Image(BaseModel):
     """The number of generations that have been run for this model in the past day."""
 
 
+class UsageModelsGen4ImageTurbo(BaseModel):
+    daily_generations: int = FieldInfo(alias="dailyGenerations")
+    """The number of generations that have been run for this model in the past day."""
+
+
 class UsageModelsGen4Turbo(BaseModel):
     daily_generations: int = FieldInfo(alias="dailyGenerations")
     """The number of generations that have been run for this model in the past day."""
@@ -145,6 +163,9 @@ class UsageModels(BaseModel):
 
     gen4_image: Optional[UsageModelsGen4Image] = None
     """Usage data for the gen4_image model."""
+
+    gen4_image_turbo: Optional[UsageModelsGen4ImageTurbo] = None
+    """Usage data for the gen4_image_turbo model."""
 
     gen4_turbo: Optional[UsageModelsGen4Turbo] = None
     """Usage data for the gen4_turbo model."""

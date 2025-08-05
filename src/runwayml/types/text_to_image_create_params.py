@@ -11,7 +11,7 @@ __all__ = ["TextToImageCreateParams", "ContentModeration", "ReferenceImage"]
 
 
 class TextToImageCreateParams(TypedDict, total=False):
-    model: Required[Literal["gen4_image"]]
+    model: Required[Literal["gen4_image", "gen4_image_turbo"]]
     """The model variant to use."""
 
     prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
@@ -46,9 +46,11 @@ class TextToImageCreateParams(TypedDict, total=False):
     """Settings that affect the behavior of the content moderation system."""
 
     reference_images: Annotated[Iterable[ReferenceImage], PropertyInfo(alias="referenceImages")]
-    """An array of images to be used as references for the generated image output.
+    """
+    An array of up to three images to be used as references for the generated image
+    output.
 
-    Up to three reference images can be provided for `gen4_image`.
+    For `gen4_image_turbo`, _at least one_ reference image is required.
     """
 
     seed: int
