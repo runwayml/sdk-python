@@ -53,7 +53,7 @@ class TextToImageResource(SyncAPIResource):
     def create(
         self,
         *,
-        model: Literal["gen4_image"],
+        model: Literal["gen4_image", "gen4_image_turbo"],
         prompt_text: str,
         ratio: Literal[
             "1920:1080",
@@ -96,8 +96,10 @@ class TextToImageResource(SyncAPIResource):
 
           content_moderation: Settings that affect the behavior of the content moderation system.
 
-          reference_images: An array of images to be used as references for the generated image output. Up
-              to three reference images can be provided for `gen4_image`.
+          reference_images: An array of up to three images to be used as references for the generated image
+              output.
+
+              For `gen4_image_turbo`, _at least one_ reference image is required.
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -154,7 +156,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        model: Literal["gen4_image"],
+        model: Literal["gen4_image", "gen4_image_turbo"],
         prompt_text: str,
         ratio: Literal[
             "1920:1080",
@@ -197,8 +199,10 @@ class AsyncTextToImageResource(AsyncAPIResource):
 
           content_moderation: Settings that affect the behavior of the content moderation system.
 
-          reference_images: An array of images to be used as references for the generated image output. Up
-              to three reference images can be provided for `gen4_image`.
+          reference_images: An array of up to three images to be used as references for the generated image
+              output.
+
+              For `gen4_image_turbo`, _at least one_ reference image is required.
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
