@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.10.1 (2025-08-09)
+
+Full Changelog: [v3.10.0...v3.10.1](https://github.com/runwayml/sdk-python/compare/v3.10.0...v3.10.1)
+
+### Chores
+
+* **internal:** fix ruff target version ([cce2c55](https://github.com/runwayml/sdk-python/commit/cce2c5525e2d82ca277ee7922eadceb56d0a67cf))
+* update @stainless-api/prism-cli to v5.15.0 ([b1ea815](https://github.com/runwayml/sdk-python/commit/b1ea815380deccf434574dd5a4724f0a04468a24))
+
 ## 3.10.0 (2025-08-05)
 
 Full Changelog: [v3.9.0...v3.10.0](https://github.com/runwayml/sdk-python/compare/v3.9.0...v3.10.0)
