@@ -1,5 +1,21 @@
 # Changelog
 
+## 3.10.2 (2025-08-27)
+
+Full Changelog: [v3.10.1...v3.10.2](https://github.com/runwayml/sdk-python/compare/v3.10.1...v3.10.2)
+
+### Bug Fixes
+
+* avoid newer type syntax ([54dd3a0](https://github.com/runwayml/sdk-python/commit/54dd3a0e975beb87e853491386bdfd2d8b9f6712))
+
+
+### Chores
+
+* **internal:** change ci workflow machines ([986c007](https://github.com/runwayml/sdk-python/commit/986c0078bab1590f6004e79705db86b52413edb7))
+* **internal:** update comment in script ([48cad7b](https://github.com/runwayml/sdk-python/commit/48cad7be7285418786048d40d806be8670054df1))
+* **internal:** update pyright exclude list ([03a8696](https://github.com/runwayml/sdk-python/commit/03a8696ec24f5cb806640b4e09869416a88b609f))
+* update github action ([2fd7626](https://github.com/runwayml/sdk-python/commit/2fd7626b638775e84a69adad080c1099b7eef2c7))
+
 ## 3.10.1 (2025-08-09)
 
 Full Changelog: [v3.10.0...v3.10.1](https://github.com/runwayml/sdk-python/compare/v3.10.0...v3.10.1)
