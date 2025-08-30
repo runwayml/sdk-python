@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.10.3 (2025-08-30)
+
+Full Changelog: [v3.10.2...v3.10.3](https://github.com/runwayml/sdk-python/compare/v3.10.2...v3.10.3)
+
+### Chores
+
+* **internal:** add Sequence related utils ([520aeec](https://github.com/runwayml/sdk-python/commit/520aeecbeaf7f2891066ae4d7c880f7aa27d0522))
+
 ## 3.10.2 (2025-08-27)
 
 Full Changelog: [v3.10.1...v3.10.2](https://github.com/runwayml/sdk-python/compare/v3.10.1...v3.10.2)
