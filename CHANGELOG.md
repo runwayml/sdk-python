@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.11.0 (2025-09-03)
+
+Full Changelog: [v3.10.3...v3.11.0](https://github.com/runwayml/sdk-python/compare/v3.10.3...v3.11.0)
+
+### Features
+
+* **types:** replace List[str] with SequenceNotStr in params ([a55b44c](https://github.com/runwayml/sdk-python/commit/a55b44c27da0e2cbcfaefa753e6b2a1a351df126))
+
 ## 3.10.3 (2025-08-30)
 
 Full Changelog: [v3.10.2...v3.10.3](https://github.com/runwayml/sdk-python/compare/v3.10.2...v3.10.3)
