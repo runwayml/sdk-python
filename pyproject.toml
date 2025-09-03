@@ -1,6 +1,6 @@
 [project]
 name = "runwayml"
-version = "3.10.3"
+version = "3.11.0"
 description = "The official Python library for the runwayml API"
 dynamic = ["readme"]
 license = "Apache-2.0"
