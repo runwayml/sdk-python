@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.12.0 (2025-09-04)
+
+Full Changelog: [v3.11.0...v3.12.0](https://github.com/runwayml/sdk-python/compare/v3.11.0...v3.12.0)
+
+### Features
+
+* improve future compat with pydantic v3 ([9207df5](https://github.com/runwayml/sdk-python/commit/9207df5599921825e8138ddbe006f004c579c875))
+
 ## 3.11.0 (2025-09-03)
 
 Full Changelog: [v3.10.3...v3.11.0](https://github.com/runwayml/sdk-python/compare/v3.10.3...v3.11.0)
