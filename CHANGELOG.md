@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.12.1 (2025-09-06)
+
+Full Changelog: [v3.12.0...v3.12.1](https://github.com/runwayml/sdk-python/compare/v3.12.0...v3.12.1)
+
+### Chores
+
+* **internal:** move mypy configurations to `pyproject.toml` file ([0ff4ea5](https://github.com/runwayml/sdk-python/commit/0ff4ea5666ec784f6a5d72fa8df1daff3af86fbf))
+* **tests:** simplify `get_platform` test ([5b651b2](https://github.com/runwayml/sdk-python/commit/5b651b2b45dc7550e29fc970705bbb4806701433))
+
 ## 3.12.0 (2025-09-04)
 
 Full Changelog: [v3.11.0...v3.12.0](https://github.com/runwayml/sdk-python/compare/v3.11.0...v3.12.0)
