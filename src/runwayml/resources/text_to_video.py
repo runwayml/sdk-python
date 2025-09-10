@@ -46,9 +46,10 @@ class TextToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
+        duration: Literal[8],
         model: Literal["veo3"],
         prompt_text: str,
-        ratio: Literal["1280:720", "720:1280"] | NotGiven = NOT_GIVEN,
+        ratio: Literal["1280:720", "720:1280"],
         seed: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -61,6 +62,8 @@ class TextToVideoResource(SyncAPIResource):
         This endpoint will start a new task to generate a video from a text prompt.
 
         Args:
+          duration: Veo 3 videos must be 8 seconds long.
+
           model: The model variant to use.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
@@ -84,6 +87,7 @@ class TextToVideoResource(SyncAPIResource):
             "/v1/text_to_video",
             body=maybe_transform(
                 {
+                    "duration": duration,
                     "model": model,
                     "prompt_text": prompt_text,
                     "ratio": ratio,
@@ -121,9 +125,10 @@ class AsyncTextToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        duration: Literal[8],
         model: Literal["veo3"],
         prompt_text: str,
-        ratio: Literal["1280:720", "720:1280"] | NotGiven = NOT_GIVEN,
+        ratio: Literal["1280:720", "720:1280"],
         seed: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -136,6 +141,8 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         This endpoint will start a new task to generate a video from a text prompt.
 
         Args:
+          duration: Veo 3 videos must be 8 seconds long.
+
           model: The model variant to use.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
@@ -159,6 +166,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
             "/v1/text_to_video",
             body=await async_maybe_transform(
                 {
+                    "duration": duration,
                     "model": model,
                     "prompt_text": prompt_text,
                     "ratio": ratio,
