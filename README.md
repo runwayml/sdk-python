@@ -130,7 +130,7 @@ from runwayml import RunwayML
 client = RunwayML()
 
 image_to_video = client.image_to_video.create(
-    model="gen3a_turbo",
+    model="gen4_turbo",
     prompt_image="https://example.com",
     ratio="1280:720",
     content_moderation={},

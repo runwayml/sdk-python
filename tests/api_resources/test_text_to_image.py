@@ -20,7 +20,7 @@ class TestTextToImage:
     @parametrize
     def test_method_create(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
-            model="gen4_image",
+            model="gen4_image_turbo",
             prompt_text="promptText",
             ratio="1920:1080",
         )
@@ -29,7 +29,7 @@ class TestTextToImage:
     @parametrize
     def test_method_create_with_all_params(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
-            model="gen4_image",
+            model="gen4_image_turbo",
             prompt_text="promptText",
             ratio="1920:1080",
             content_moderation={"public_figure_threshold": "auto"},
@@ -46,7 +46,7 @@ class TestTextToImage:
     @parametrize
     def test_raw_response_create(self, client: RunwayML) -> None:
         response = client.text_to_image.with_raw_response.create(
-            model="gen4_image",
+            model="gen4_image_turbo",
             prompt_text="promptText",
             ratio="1920:1080",
         )
@@ -59,7 +59,7 @@ class TestTextToImage:
     @parametrize
     def test_streaming_response_create(self, client: RunwayML) -> None:
         with client.text_to_image.with_streaming_response.create(
-            model="gen4_image",
+            model="gen4_image_turbo",
             prompt_text="promptText",
             ratio="1920:1080",
         ) as response:
@@ -80,7 +80,7 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_method_create(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
-            model="gen4_image",
+            model="gen4_image_turbo",
             prompt_text="promptText",
             ratio="1920:1080",
         )
@@ -89,7 +89,7 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
-            model="gen4_image",
+            model="gen4_image_turbo",
             prompt_text="promptText",
             ratio="1920:1080",
             content_moderation={"public_figure_threshold": "auto"},
@@ -106,7 +106,7 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.text_to_image.with_raw_response.create(
-            model="gen4_image",
+            model="gen4_image_turbo",
             prompt_text="promptText",
             ratio="1920:1080",
         )
@@ -119,7 +119,7 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncRunwayML) -> None:
         async with async_client.text_to_image.with_streaming_response.create(
-            model="gen4_image",
+            model="gen4_image_turbo",
             prompt_text="promptText",
             ratio="1920:1080",
         ) as response:

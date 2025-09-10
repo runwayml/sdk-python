@@ -11,7 +11,7 @@ __all__ = ["ImageToVideoCreateParams", "PromptImagePromptImage", "ContentModerat
 
 
 class ImageToVideoCreateParams(TypedDict, total=False):
-    model: Required[Literal["gen3a_turbo", "gen4_turbo"]]
+    model: Required[Literal["gen4_turbo", "gen3a_turbo", "veo3"]]
     """The model variant to use."""
 
     prompt_image: Required[Annotated[Union[str, Iterable[PromptImagePromptImage]], PropertyInfo(alias="promptImage")]]
@@ -39,13 +39,28 @@ class ImageToVideoCreateParams(TypedDict, total=False):
 
     - `1280:768`
     - `768:1280`
+
+    `veo3` supports the following values:
+
+    - `1280:720`
+    - `720:1280`
     """
 
     content_moderation: Annotated[ContentModeration, PropertyInfo(alias="contentModeration")]
-    """Settings that affect the behavior of the content moderation system."""
+    """Settings that affect the behavior of the content moderation system.
 
-    duration: Literal[5, 10]
-    """The number of seconds of duration for the output video."""
+    `veo3` does not support this parameter.
+
+    This field is allowed for the following model variants: `gen4_turbo`,
+    `gen3a_turbo`
+    """
+
+    duration: Literal[5, 8, 10]
+    """The number of seconds of duration for the output video.
+
+    `veo3` requires a duration of 8. gen4_turbo, gen3a_turbo must specify a duration
+    of 5 or 10.
+    """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """A non-empty string up to 1000 characters (measured in UTF-16 code units).

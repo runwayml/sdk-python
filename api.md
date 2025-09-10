@@ -35,6 +35,18 @@ Methods:
 
 - <code title="post /v1/video_to_video">client.video_to_video.<a href="./src/runwayml/resources/video_to_video.py">create</a>(\*\*<a href="src/runwayml/types/video_to_video_create_params.py">params</a>) -> <a href="./src/runwayml/types/video_to_video_create_response.py">VideoToVideoCreateResponse</a></code>
 
+# TextToVideo
+
+Types:
+
+```python
+from runwayml.types import TextToVideoCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/text_to_video">client.text_to_video.<a href="./src/runwayml/resources/text_to_video.py">create</a>(\*\*<a href="src/runwayml/types/text_to_video_create_params.py">params</a>) -> <a href="./src/runwayml/types/text_to_video_create_response.py">TextToVideoCreateResponse</a></code>
+
 # TextToImage
 
 Types:
