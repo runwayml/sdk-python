@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.13.0 (2025-09-10)
+
+Full Changelog: [v3.12.1...v3.13.0](https://github.com/runwayml/sdk-python/compare/v3.12.1...v3.13.0)
+
+### Features
+
+* **api:** Update t2v parameters ([7163db8](https://github.com/runwayml/sdk-python/commit/7163db8841a5dca89b546e8d445105aeffe07d10))
+* **api:** Veo3 integration ([37e7224](https://github.com/runwayml/sdk-python/commit/37e7224b1e0de5450b69bb42a1dc6a9039e435af))
+* **client:** Make t2v waitable ([d21c4e4](https://github.com/runwayml/sdk-python/commit/d21c4e4da2c8760aceaf07579051ab1e486c08b2))
+
 ## 3.12.1 (2025-09-06)
 
 Full Changelog: [v3.12.0...v3.12.1](https://github.com/runwayml/sdk-python/compare/v3.12.0...v3.12.1)
