@@ -53,11 +53,11 @@ class ImageToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
-        model: Literal["gen3a_turbo", "gen4_turbo"],
+        model: Literal["gen4_turbo", "gen3a_turbo", "veo3"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.PromptImagePromptImage]],
         ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672", "1280:768", "768:1280"],
         content_moderation: image_to_video_create_params.ContentModeration | NotGiven = NOT_GIVEN,
-        duration: Literal[5, 10] | NotGiven = NOT_GIVEN,
+        duration: Literal[5, 8, 10] | NotGiven = NOT_GIVEN,
         prompt_text: str | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -93,9 +93,20 @@ class ImageToVideoResource(SyncAPIResource):
               - `1280:768`
               - `768:1280`
 
+              `veo3` supports the following values:
+
+              - `1280:720`
+              - `720:1280`
+
           content_moderation: Settings that affect the behavior of the content moderation system.
 
-          duration: The number of seconds of duration for the output video.
+              `veo3` does not support this parameter.
+
+              This field is allowed for the following model variants: `gen4_turbo`,
+              `gen3a_turbo`
+
+          duration: The number of seconds of duration for the output video. `veo3` requires a
+              duration of 8. gen4_turbo, gen3a_turbo must specify a duration of 5 or 10.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
@@ -156,11 +167,11 @@ class AsyncImageToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        model: Literal["gen3a_turbo", "gen4_turbo"],
+        model: Literal["gen4_turbo", "gen3a_turbo", "veo3"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.PromptImagePromptImage]],
         ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672", "1280:768", "768:1280"],
         content_moderation: image_to_video_create_params.ContentModeration | NotGiven = NOT_GIVEN,
-        duration: Literal[5, 10] | NotGiven = NOT_GIVEN,
+        duration: Literal[5, 8, 10] | NotGiven = NOT_GIVEN,
         prompt_text: str | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -196,9 +207,20 @@ class AsyncImageToVideoResource(AsyncAPIResource):
               - `1280:768`
               - `768:1280`
 
+              `veo3` supports the following values:
+
+              - `1280:720`
+              - `720:1280`
+
           content_moderation: Settings that affect the behavior of the content moderation system.
 
-          duration: The number of seconds of duration for the output video.
+              `veo3` does not support this parameter.
+
+              This field is allowed for the following model variants: `gen4_turbo`,
+              `gen3a_turbo`
+
+          duration: The number of seconds of duration for the output video. `veo3` requires a
+              duration of 8. gen4_turbo, gen3a_turbo must specify a duration of 5 or 10.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.

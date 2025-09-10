@@ -17,6 +17,7 @@ __all__ = [
     "TierModelsGen4ImageTurbo",
     "TierModelsGen4Turbo",
     "TierModelsUpscaleV1",
+    "TierModelsVeo3",
     "Usage",
     "UsageModels",
     "UsageModelsActTwo",
@@ -26,6 +27,7 @@ __all__ = [
     "UsageModelsGen4ImageTurbo",
     "UsageModelsGen4Turbo",
     "UsageModelsUpscaleV1",
+    "UsageModelsVeo3",
 ]
 
 
@@ -85,6 +87,14 @@ class TierModelsUpscaleV1(BaseModel):
     """The maximum number of generations that can be created each day for this model."""
 
 
+class TierModelsVeo3(BaseModel):
+    max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
+    """The maximum number of generations that can be run concurrently for this model."""
+
+    max_daily_generations: int = FieldInfo(alias="maxDailyGenerations")
+    """The maximum number of generations that can be created each day for this model."""
+
+
 class TierModels(BaseModel):
     act_two: Optional[TierModelsActTwo] = None
     """Limits associated with the act_two model."""
@@ -106,6 +116,9 @@ class TierModels(BaseModel):
 
     upscale_v1: Optional[TierModelsUpscaleV1] = None
     """Limits associated with the upscale_v1 model."""
+
+    veo3: Optional[TierModelsVeo3] = None
+    """Limits associated with the veo3 model."""
 
 
 class Tier(BaseModel):
@@ -151,6 +164,11 @@ class UsageModelsUpscaleV1(BaseModel):
     """The number of generations that have been run for this model in the past day."""
 
 
+class UsageModelsVeo3(BaseModel):
+    daily_generations: int = FieldInfo(alias="dailyGenerations")
+    """The number of generations that have been run for this model in the past day."""
+
+
 class UsageModels(BaseModel):
     act_two: Optional[UsageModelsActTwo] = None
     """Usage data for the act_two model."""
@@ -172,6 +190,9 @@ class UsageModels(BaseModel):
 
     upscale_v1: Optional[UsageModelsUpscaleV1] = None
     """Usage data for the upscale_v1 model."""
+
+    veo3: Optional[UsageModelsVeo3] = None
+    """Usage data for the veo3 model."""
 
 
 class Usage(BaseModel):
