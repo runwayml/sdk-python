@@ -20,14 +20,17 @@ class TestTextToVideo:
     @parametrize
     def test_method_create(self, client: RunwayML) -> None:
         text_to_video = client.text_to_video.create(
+            duration=8,
             model="veo3",
             prompt_text="promptText",
+            ratio="1280:720",
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: RunwayML) -> None:
         text_to_video = client.text_to_video.create(
+            duration=8,
             model="veo3",
             prompt_text="promptText",
             ratio="1280:720",
@@ -38,8 +41,10 @@ class TestTextToVideo:
     @parametrize
     def test_raw_response_create(self, client: RunwayML) -> None:
         response = client.text_to_video.with_raw_response.create(
+            duration=8,
             model="veo3",
             prompt_text="promptText",
+            ratio="1280:720",
         )
 
         assert response.is_closed is True
@@ -50,8 +55,10 @@ class TestTextToVideo:
     @parametrize
     def test_streaming_response_create(self, client: RunwayML) -> None:
         with client.text_to_video.with_streaming_response.create(
+            duration=8,
             model="veo3",
             prompt_text="promptText",
+            ratio="1280:720",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -70,14 +77,17 @@ class TestAsyncTextToVideo:
     @parametrize
     async def test_method_create(self, async_client: AsyncRunwayML) -> None:
         text_to_video = await async_client.text_to_video.create(
+            duration=8,
             model="veo3",
             prompt_text="promptText",
+            ratio="1280:720",
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncRunwayML) -> None:
         text_to_video = await async_client.text_to_video.create(
+            duration=8,
             model="veo3",
             prompt_text="promptText",
             ratio="1280:720",
@@ -88,8 +98,10 @@ class TestAsyncTextToVideo:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.text_to_video.with_raw_response.create(
+            duration=8,
             model="veo3",
             prompt_text="promptText",
+            ratio="1280:720",
         )
 
         assert response.is_closed is True
@@ -100,8 +112,10 @@ class TestAsyncTextToVideo:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncRunwayML) -> None:
         async with async_client.text_to_video.with_streaming_response.create(
+            duration=8,
             model="veo3",
             prompt_text="promptText",
+            ratio="1280:720",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
