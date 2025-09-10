@@ -11,7 +11,7 @@ __all__ = ["TextToImageCreateParams", "ContentModeration", "ReferenceImage"]
 
 
 class TextToImageCreateParams(TypedDict, total=False):
-    model: Required[Literal["gen4_image", "gen4_image_turbo"]]
+    model: Required[Literal["gen4_image_turbo", "gen4_image"]]
     """The model variant to use."""
 
     prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]

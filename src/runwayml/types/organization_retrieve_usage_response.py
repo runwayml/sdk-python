@@ -15,7 +15,9 @@ class ResultUsedCredit(BaseModel):
     amount: int
     """The number of credits used for the model."""
 
-    model: Literal["upscale_v1", "act_two", "gen4_image", "gen3a_turbo", "gen4_turbo", "gen4_aleph", "gen4_image_turbo"]
+    model: Literal[
+        "act_two", "gen3a_turbo", "gen4_aleph", "gen4_image", "gen4_image_turbo", "gen4_turbo", "upscale_v1", "veo3"
+    ]
     """The model whose usage resulted in the credit usage."""
 
 
@@ -32,7 +34,9 @@ class Result(BaseModel):
 
 class OrganizationRetrieveUsageResponse(BaseModel):
     models: List[
-        Literal["upscale_v1", "act_two", "gen4_image", "gen3a_turbo", "gen4_turbo", "gen4_aleph", "gen4_image_turbo"]
+        Literal[
+            "act_two", "gen3a_turbo", "gen4_aleph", "gen4_image", "gen4_image_turbo", "gen4_turbo", "upscale_v1", "veo3"
+        ]
     ]
     """The list of models with usage during the queried time range."""
 
