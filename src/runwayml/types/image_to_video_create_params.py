@@ -49,9 +49,7 @@ class ImageToVideoCreateParams(TypedDict, total=False):
     content_moderation: Annotated[ContentModeration, PropertyInfo(alias="contentModeration")]
     """Settings that affect the behavior of the content moderation system.
 
-    `veo3` does not support this parameter.
-
-    This field is allowed for the following model variants: `gen4_turbo`,
+    This field is allowed only for the following model variants: `gen4_turbo`,
     `gen3a_turbo`
     """
 
