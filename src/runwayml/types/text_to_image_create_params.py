@@ -11,7 +11,7 @@ __all__ = ["TextToImageCreateParams", "ContentModeration", "ReferenceImage"]
 
 
 class TextToImageCreateParams(TypedDict, total=False):
-    model: Required[Literal["gen4_image_turbo", "gen4_image"]]
+    model: Required[Literal["gen4_image_turbo", "gen4_image", "gemini_2.5_flash"]]
     """The model variant to use."""
 
     prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
@@ -38,12 +38,50 @@ class TextToImageCreateParams(TypedDict, total=False):
             "960:720",
             "720:960",
             "1680:720",
+            "1344:768",
+            "768:1344",
+            "1184:864",
+            "864:1184",
+            "1536:672",
         ]
     ]
-    """The resolution of the output image(s)."""
+    """The resolution of the output image.
+
+    `gen4_image_turbo`, `gen4_image` support the following values:
+
+    - `1920:1080`
+    - `1080:1920`
+    - `1024:1024`
+    - `1360:768`
+    - `1080:1080`
+    - `1168:880`
+    - `1440:1080`
+    - `1080:1440`
+    - `1808:768`
+    - `2112:912`
+    - `1280:720`
+    - `720:1280`
+    - `720:720`
+    - `960:720`
+    - `720:960`
+    - `1680:720`
+
+    `gemini_2.5_flash` supports the following values:
+
+    - `1344:768`
+    - `768:1344`
+    - `1024:1024`
+    - `1184:864`
+    - `864:1184`
+    - `1536:672`
+    """
 
     content_moderation: Annotated[ContentModeration, PropertyInfo(alias="contentModeration")]
-    """Settings that affect the behavior of the content moderation system."""
+    """Settings that affect the behavior of the content moderation system.
+
+    This field is allowed only for the following model variants: `gen4_image_turbo`,
+    `gen4_image`
+    """
 
     reference_images: Annotated[Iterable[ReferenceImage], PropertyInfo(alias="referenceImages")]
     """
