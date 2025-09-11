@@ -11,6 +11,7 @@ __all__ = [
     "Tier",
     "TierModels",
     "TierModelsActTwo",
+    "TierModelsGemini2_5Flash",
     "TierModelsGen3aTurbo",
     "TierModelsGen4Aleph",
     "TierModelsGen4Image",
@@ -21,6 +22,7 @@ __all__ = [
     "Usage",
     "UsageModels",
     "UsageModelsActTwo",
+    "UsageModelsGemini2_5Flash",
     "UsageModelsGen3aTurbo",
     "UsageModelsGen4Aleph",
     "UsageModelsGen4Image",
@@ -32,6 +34,14 @@ __all__ = [
 
 
 class TierModelsActTwo(BaseModel):
+    max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
+    """The maximum number of generations that can be run concurrently for this model."""
+
+    max_daily_generations: int = FieldInfo(alias="maxDailyGenerations")
+    """The maximum number of generations that can be created each day for this model."""
+
+
+class TierModelsGemini2_5Flash(BaseModel):
     max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
     """The maximum number of generations that can be run concurrently for this model."""
 
@@ -99,6 +109,9 @@ class TierModels(BaseModel):
     act_two: Optional[TierModelsActTwo] = None
     """Limits associated with the act_two model."""
 
+    gemini_2_5_flash: Optional[TierModelsGemini2_5Flash] = FieldInfo(alias="gemini_2.5_flash", default=None)
+    """Limits associated with the gemini_2.5_flash model."""
+
     gen3a_turbo: Optional[TierModelsGen3aTurbo] = None
     """Limits associated with the gen3a_turbo model."""
 
@@ -130,6 +143,11 @@ class Tier(BaseModel):
 
 
 class UsageModelsActTwo(BaseModel):
+    daily_generations: int = FieldInfo(alias="dailyGenerations")
+    """The number of generations that have been run for this model in the past day."""
+
+
+class UsageModelsGemini2_5Flash(BaseModel):
     daily_generations: int = FieldInfo(alias="dailyGenerations")
     """The number of generations that have been run for this model in the past day."""
 
@@ -172,6 +190,9 @@ class UsageModelsVeo3(BaseModel):
 class UsageModels(BaseModel):
     act_two: Optional[UsageModelsActTwo] = None
     """Usage data for the act_two model."""
+
+    gemini_2_5_flash: Optional[UsageModelsGemini2_5Flash] = FieldInfo(alias="gemini_2.5_flash", default=None)
+    """Usage data for the gemini_2.5_flash model."""
 
     gen3a_turbo: Optional[UsageModelsGen3aTurbo] = None
     """Usage data for the gen3a_turbo model."""

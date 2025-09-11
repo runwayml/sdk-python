@@ -100,9 +100,7 @@ class ImageToVideoResource(SyncAPIResource):
 
           content_moderation: Settings that affect the behavior of the content moderation system.
 
-              `veo3` does not support this parameter.
-
-              This field is allowed for the following model variants: `gen4_turbo`,
+              This field is allowed only for the following model variants: `gen4_turbo`,
               `gen3a_turbo`
 
           duration: The number of seconds of duration for the output video. `veo3` requires a
@@ -214,9 +212,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
 
           content_moderation: Settings that affect the behavior of the content moderation system.
 
-              `veo3` does not support this parameter.
-
-              This field is allowed for the following model variants: `gen4_turbo`,
+              This field is allowed only for the following model variants: `gen4_turbo`,
               `gen3a_turbo`
 
           duration: The number of seconds of duration for the output video. `veo3` requires a

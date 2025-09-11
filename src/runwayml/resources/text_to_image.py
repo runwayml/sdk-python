@@ -53,7 +53,7 @@ class TextToImageResource(SyncAPIResource):
     def create(
         self,
         *,
-        model: Literal["gen4_image_turbo", "gen4_image"],
+        model: Literal["gen4_image_turbo", "gen4_image", "gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
             "1920:1080",
@@ -72,6 +72,11 @@ class TextToImageResource(SyncAPIResource):
             "960:720",
             "720:960",
             "1680:720",
+            "1344:768",
+            "768:1344",
+            "1184:864",
+            "864:1184",
+            "1536:672",
         ],
         content_moderation: text_to_image_create_params.ContentModeration | NotGiven = NOT_GIVEN,
         reference_images: Iterable[text_to_image_create_params.ReferenceImage] | NotGiven = NOT_GIVEN,
@@ -92,9 +97,40 @@ class TextToImageResource(SyncAPIResource):
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
 
-          ratio: The resolution of the output image(s).
+          ratio: The resolution of the output image.
+
+              `gen4_image_turbo`, `gen4_image` support the following values:
+
+              - `1920:1080`
+              - `1080:1920`
+              - `1024:1024`
+              - `1360:768`
+              - `1080:1080`
+              - `1168:880`
+              - `1440:1080`
+              - `1080:1440`
+              - `1808:768`
+              - `2112:912`
+              - `1280:720`
+              - `720:1280`
+              - `720:720`
+              - `960:720`
+              - `720:960`
+              - `1680:720`
+
+              `gemini_2.5_flash` supports the following values:
+
+              - `1344:768`
+              - `768:1344`
+              - `1024:1024`
+              - `1184:864`
+              - `864:1184`
+              - `1536:672`
 
           content_moderation: Settings that affect the behavior of the content moderation system.
+
+              This field is allowed only for the following model variants: `gen4_image_turbo`,
+              `gen4_image`
 
           reference_images: An array of up to three images to be used as references for the generated image
               output.
@@ -156,7 +192,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        model: Literal["gen4_image_turbo", "gen4_image"],
+        model: Literal["gen4_image_turbo", "gen4_image", "gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
             "1920:1080",
@@ -175,6 +211,11 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "960:720",
             "720:960",
             "1680:720",
+            "1344:768",
+            "768:1344",
+            "1184:864",
+            "864:1184",
+            "1536:672",
         ],
         content_moderation: text_to_image_create_params.ContentModeration | NotGiven = NOT_GIVEN,
         reference_images: Iterable[text_to_image_create_params.ReferenceImage] | NotGiven = NOT_GIVEN,
@@ -195,9 +236,40 @@ class AsyncTextToImageResource(AsyncAPIResource):
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
 
-          ratio: The resolution of the output image(s).
+          ratio: The resolution of the output image.
+
+              `gen4_image_turbo`, `gen4_image` support the following values:
+
+              - `1920:1080`
+              - `1080:1920`
+              - `1024:1024`
+              - `1360:768`
+              - `1080:1080`
+              - `1168:880`
+              - `1440:1080`
+              - `1080:1440`
+              - `1808:768`
+              - `2112:912`
+              - `1280:720`
+              - `720:1280`
+              - `720:720`
+              - `960:720`
+              - `720:960`
+              - `1680:720`
+
+              `gemini_2.5_flash` supports the following values:
+
+              - `1344:768`
+              - `768:1344`
+              - `1024:1024`
+              - `1184:864`
+              - `864:1184`
+              - `1536:672`
 
           content_moderation: Settings that affect the behavior of the content moderation system.
+
+              This field is allowed only for the following model variants: `gen4_image_turbo`,
+              `gen4_image`
 
           reference_images: An array of up to three images to be used as references for the generated image
               output.
