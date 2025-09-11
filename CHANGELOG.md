@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.14.0 (2025-09-11)
+
+Full Changelog: [v3.13.0...v3.14.0](https://github.com/runwayml/sdk-python/compare/v3.13.0...v3.14.0)
+
+### Features
+
+* **api:** Add Gemini 2.5 Flash Image to t2i ([3cb044a](https://github.com/runwayml/sdk-python/commit/3cb044af287c1da1b0a648fdf91074f9a34abd6a))
+
 ## 3.13.0 (2025-09-10)
 
 Full Changelog: [v3.12.1...v3.13.0](https://github.com/runwayml/sdk-python/compare/v3.12.1...v3.13.0)
