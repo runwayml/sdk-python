@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.14.1 (2025-09-17)
+
+Full Changelog: [v3.14.0...v3.14.1](https://github.com/runwayml/sdk-python/compare/v3.14.0...v3.14.1)
+
+### Chores
+
+* **internal:** update pydantic dependency ([6d91907](https://github.com/runwayml/sdk-python/commit/6d919079a08b41120b006578077da07b70d6e47a))
+
 ## 3.14.0 (2025-09-11)
 
 Full Changelog: [v3.13.0...v3.14.0](https://github.com/runwayml/sdk-python/compare/v3.13.0...v3.14.0)
