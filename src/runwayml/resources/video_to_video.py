@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import video_to_video_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -51,15 +51,15 @@ class VideoToVideoResource(SyncAPIResource):
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"],
         video_uri: str,
-        content_moderation: video_to_video_create_params.ContentModeration | NotGiven = NOT_GIVEN,
-        references: Iterable[video_to_video_create_params.Reference] | NotGiven = NOT_GIVEN,
-        seed: int | NotGiven = NOT_GIVEN,
+        content_moderation: video_to_video_create_params.ContentModeration | Omit = omit,
+        references: Iterable[video_to_video_create_params.Reference] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
@@ -140,15 +140,15 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"],
         video_uri: str,
-        content_moderation: video_to_video_create_params.ContentModeration | NotGiven = NOT_GIVEN,
-        references: Iterable[video_to_video_create_params.Reference] | NotGiven = NOT_GIVEN,
-        seed: int | NotGiven = NOT_GIVEN,
+        content_moderation: video_to_video_create_params.ContentModeration | Omit = omit,
+        references: Iterable[video_to_video_create_params.Reference] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
