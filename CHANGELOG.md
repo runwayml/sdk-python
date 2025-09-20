@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.14.2 (2025-09-20)
+
+Full Changelog: [v3.14.1...v3.14.2](https://github.com/runwayml/sdk-python/compare/v3.14.1...v3.14.2)
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([579613c](https://github.com/runwayml/sdk-python/commit/579613ca26e930215d9e0f3c0be4c36c66618740))
+* **types:** change optional parameter type from NotGiven to Omit ([1d63c89](https://github.com/runwayml/sdk-python/commit/1d63c89f7761a01e8a5863dd7ecf19e9e62307ab))
+
 ## 3.14.1 (2025-09-17)
 
 Full Changelog: [v3.14.0...v3.14.1](https://github.com/runwayml/sdk-python/compare/v3.14.0...v3.14.1)
