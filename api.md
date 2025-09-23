@@ -83,6 +83,18 @@ Methods:
 
 - <code title="post /v1/character_performance">client.character_performance.<a href="./src/runwayml/resources/character_performance.py">create</a>(\*\*<a href="src/runwayml/types/character_performance_create_params.py">params</a>) -> <a href="./src/runwayml/types/character_performance_create_response.py">CharacterPerformanceCreateResponse</a></code>
 
+# TextToSpeech
+
+Types:
+
+```python
+from runwayml.types import TextToSpeechCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/text_to_speech">client.text_to_speech.<a href="./src/runwayml/resources/text_to_speech.py">create</a>(\*\*<a href="src/runwayml/types/text_to_speech_create_params.py">params</a>) -> <a href="./src/runwayml/types/text_to_speech_create_response.py">TextToSpeechCreateResponse</a></code>
+
 # Organization
 
 Types:

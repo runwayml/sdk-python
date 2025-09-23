@@ -83,7 +83,7 @@ class TextToImageResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TextToImageCreateResponse:
         """
-        This endpoint will start a new task to generate images from text.
+        This endpoint will start a new task to generate images from text and/or image(s)
 
         Args:
           model: The model variant to use.
@@ -222,7 +222,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TextToImageCreateResponse:
         """
-        This endpoint will start a new task to generate images from text.
+        This endpoint will start a new task to generate images from text and/or image(s)
 
         Args:
           model: The model variant to use.
