@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.15.0 (2025-09-23)
+
+Full Changelog: [v3.14.2...v3.15.0](https://github.com/runwayml/sdk-python/compare/v3.14.2...v3.15.0)
+
+### Features
+
+* **api:** Text to Speech update ([c43cd76](https://github.com/runwayml/sdk-python/commit/c43cd7622a283efd385137cfab8231b290224242))
+* **client:** Make t2s awaitable ([068275c](https://github.com/runwayml/sdk-python/commit/068275c79d77696d3851c5a77082ca27396cd2db))
+* **docs:** Update docs URL ([7ab9607](https://github.com/runwayml/sdk-python/commit/7ab9607a2f9ab133bf7f54ff3a44c4474a1cb2ae))
+
 ## 3.14.2 (2025-09-20)
 
 Full Changelog: [v3.14.1...v3.14.2](https://github.com/runwayml/sdk-python/compare/v3.14.1...v3.14.2)
