@@ -17,6 +17,7 @@ class ResultUsedCredit(BaseModel):
 
     model: Literal[
         "act_two",
+        "eleven_multilingual_v2",
         "gemini_2.5_flash",
         "gen3a_turbo",
         "gen4_aleph",
@@ -44,6 +45,7 @@ class OrganizationRetrieveUsageResponse(BaseModel):
     models: List[
         Literal[
             "act_two",
+            "eleven_multilingual_v2",
             "gemini_2.5_flash",
             "gen3a_turbo",
             "gen4_aleph",
