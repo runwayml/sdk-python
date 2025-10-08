@@ -33,7 +33,7 @@ class TestImageToVideo:
             prompt_image="https://example.com",
             ratio="1280:720",
             content_moderation={"public_figure_threshold": "auto"},
-            duration=5,
+            duration=2,
             prompt_text="promptText",
             seed=0,
         )
@@ -89,7 +89,7 @@ class TestAsyncImageToVideo:
             prompt_image="https://example.com",
             ratio="1280:720",
             content_moderation={"public_figure_threshold": "auto"},
-            duration=5,
+            duration=2,
             prompt_text="promptText",
             seed=0,
         )

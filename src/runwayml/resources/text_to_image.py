@@ -71,6 +71,10 @@ class TextToImageResource(SyncAPIResource):
             "1184:864",
             "864:1184",
             "1536:672",
+            "832x1248",
+            "1248x832",
+            "896x1152",
+            "1152x896",
         ],
         content_moderation: text_to_image_create_params.ContentModeration | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.ReferenceImage] | Omit = omit,
@@ -120,6 +124,10 @@ class TextToImageResource(SyncAPIResource):
               - `1184:864`
               - `864:1184`
               - `1536:672`
+              - `832x1248`
+              - `1248x832`
+              - `896x1152`
+              - `1152x896`
 
           content_moderation: Settings that affect the behavior of the content moderation system.
 
@@ -210,6 +218,10 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "1184:864",
             "864:1184",
             "1536:672",
+            "832x1248",
+            "1248x832",
+            "896x1152",
+            "1152x896",
         ],
         content_moderation: text_to_image_create_params.ContentModeration | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.ReferenceImage] | Omit = omit,
@@ -259,6 +271,10 @@ class AsyncTextToImageResource(AsyncAPIResource):
               - `1184:864`
               - `864:1184`
               - `1536:672`
+              - `832x1248`
+              - `1248x832`
+              - `896x1152`
+              - `1152x896`
 
           content_moderation: Settings that affect the behavior of the content moderation system.
 
