@@ -43,6 +43,10 @@ class TextToImageCreateParams(TypedDict, total=False):
             "1184:864",
             "864:1184",
             "1536:672",
+            "832x1248",
+            "1248x832",
+            "896x1152",
+            "1152x896",
         ]
     ]
     """The resolution of the output image.
@@ -74,6 +78,10 @@ class TextToImageCreateParams(TypedDict, total=False):
     - `1184:864`
     - `864:1184`
     - `1536:672`
+    - `832x1248`
+    - `1248x832`
+    - `896x1152`
+    - `1152x896`
     """
 
     content_moderation: Annotated[ContentModeration, PropertyInfo(alias="contentModeration")]

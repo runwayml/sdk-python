@@ -57,7 +57,7 @@ class ImageToVideoResource(SyncAPIResource):
         prompt_image: Union[str, Iterable[image_to_video_create_params.PromptImagePromptImage]],
         ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672", "1280:768", "768:1280"],
         content_moderation: image_to_video_create_params.ContentModeration | Omit = omit,
-        duration: Literal[5, 8, 10] | Omit = omit,
+        duration: Literal[2, 3, 4, 5, 6, 7, 8, 9, 10] | Omit = omit,
         prompt_text: str | Omit = omit,
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -104,7 +104,8 @@ class ImageToVideoResource(SyncAPIResource):
               `gen3a_turbo`
 
           duration: The number of seconds of duration for the output video. `veo3` requires a
-              duration of 8. gen4_turbo, gen3a_turbo must specify a duration of 5 or 10.
+              duration of 8. `gen3a_turbo` requires a duration of 5 or 10. gen4_turbo must
+              specify a duration of 2-10 seconds.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
@@ -169,7 +170,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         prompt_image: Union[str, Iterable[image_to_video_create_params.PromptImagePromptImage]],
         ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672", "1280:768", "768:1280"],
         content_moderation: image_to_video_create_params.ContentModeration | Omit = omit,
-        duration: Literal[5, 8, 10] | Omit = omit,
+        duration: Literal[2, 3, 4, 5, 6, 7, 8, 9, 10] | Omit = omit,
         prompt_text: str | Omit = omit,
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -216,7 +217,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
               `gen3a_turbo`
 
           duration: The number of seconds of duration for the output video. `veo3` requires a
-              duration of 8. gen4_turbo, gen3a_turbo must specify a duration of 5 or 10.
+              duration of 8. `gen3a_turbo` requires a duration of 5 or 10. gen4_turbo must
+              specify a duration of 2-10 seconds.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.

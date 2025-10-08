@@ -53,11 +53,11 @@ class ImageToVideoCreateParams(TypedDict, total=False):
     `gen3a_turbo`
     """
 
-    duration: Literal[5, 8, 10]
+    duration: Literal[2, 3, 4, 5, 6, 7, 8, 9, 10]
     """The number of seconds of duration for the output video.
 
-    `veo3` requires a duration of 8. gen4_turbo, gen3a_turbo must specify a duration
-    of 5 or 10.
+    `veo3` requires a duration of 8. `gen3a_turbo` requires a duration of 5 or 10.
+    gen4_turbo must specify a duration of 2-10 seconds.
     """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
