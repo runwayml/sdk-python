@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.16.0 (2025-10-08)
+
+Full Changelog: [v3.15.0...v3.16.0](https://github.com/runwayml/sdk-python/compare/v3.15.0...v3.16.0)
+
+### Features
+
+* **api:** Additional i2v durations ([6990b2f](https://github.com/runwayml/sdk-python/commit/6990b2f5c12e040ad2ef1656390dc7e5cf308a08))
+
 ## 3.15.0 (2025-09-23)
 
 Full Changelog: [v3.14.2...v3.15.0](https://github.com/runwayml/sdk-python/compare/v3.14.2...v3.15.0)
