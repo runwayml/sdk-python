@@ -16,6 +16,14 @@ from .organization import (
     OrganizationResourceWithStreamingResponse,
     AsyncOrganizationResourceWithStreamingResponse,
 )
+from .sound_effect import (
+    SoundEffectResource,
+    AsyncSoundEffectResource,
+    SoundEffectResourceWithRawResponse,
+    AsyncSoundEffectResourceWithRawResponse,
+    SoundEffectResourceWithStreamingResponse,
+    AsyncSoundEffectResourceWithStreamingResponse,
+)
 from .text_to_image import (
     TextToImageResource,
     AsyncTextToImageResource,
@@ -122,6 +130,12 @@ __all__ = [
     "AsyncTextToSpeechResourceWithRawResponse",
     "TextToSpeechResourceWithStreamingResponse",
     "AsyncTextToSpeechResourceWithStreamingResponse",
+    "SoundEffectResource",
+    "AsyncSoundEffectResource",
+    "SoundEffectResourceWithRawResponse",
+    "AsyncSoundEffectResourceWithRawResponse",
+    "SoundEffectResourceWithStreamingResponse",
+    "AsyncSoundEffectResourceWithStreamingResponse",
     "OrganizationResource",
     "AsyncOrganizationResource",
     "OrganizationResourceWithRawResponse",
