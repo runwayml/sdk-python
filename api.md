@@ -95,6 +95,18 @@ Methods:
 
 - <code title="post /v1/text_to_speech">client.text_to_speech.<a href="./src/runwayml/resources/text_to_speech.py">create</a>(\*\*<a href="src/runwayml/types/text_to_speech_create_params.py">params</a>) -> <a href="./src/runwayml/types/text_to_speech_create_response.py">TextToSpeechCreateResponse</a></code>
 
+# SoundEffect
+
+Types:
+
+```python
+from runwayml.types import SoundEffectCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/sound_effect">client.sound_effect.<a href="./src/runwayml/resources/sound_effect.py">create</a>(\*\*<a href="src/runwayml/types/sound_effect_create_params.py">params</a>) -> <a href="./src/runwayml/types/sound_effect_create_response.py">SoundEffectCreateResponse</a></code>
+
 # Organization
 
 Types:

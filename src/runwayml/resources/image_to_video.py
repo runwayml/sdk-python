@@ -104,7 +104,7 @@ class ImageToVideoResource(SyncAPIResource):
               `gen3a_turbo`
 
           duration: The number of seconds of duration for the output video. `veo3` requires a
-              duration of 8. `gen3a_turbo` requires a duration of 5 or 10. gen4_turbo must
+              duration of 8. `gen3a_turbo` requires a duration of 5 or 10. `gen4_turbo` must
               specify a duration of 2-10 seconds.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
@@ -217,7 +217,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
               `gen3a_turbo`
 
           duration: The number of seconds of duration for the output video. `veo3` requires a
-              duration of 8. `gen3a_turbo` requires a duration of 5 or 10. gen4_turbo must
+              duration of 8. `gen3a_turbo` requires a duration of 5 or 10. `gen4_turbo` must
               specify a duration of 2-10 seconds.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
