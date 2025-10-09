@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.17.0 (2025-10-09)
+
+Full Changelog: [v3.16.0...v3.17.0](https://github.com/runwayml/sdk-python/compare/v3.16.0...v3.17.0)
+
+### Features
+
+* **api:** Sound effects endpoint ([dbb791b](https://github.com/runwayml/sdk-python/commit/dbb791bb464d897661621f16cb3c7ece395cec65))
+
 ## 3.16.0 (2025-10-08)
 
 Full Changelog: [v3.15.0...v3.16.0](https://github.com/runwayml/sdk-python/compare/v3.15.0...v3.16.0)
