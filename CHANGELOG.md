@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.17.1 (2025-10-11)
+
+Full Changelog: [v3.17.0...v3.17.1](https://github.com/runwayml/sdk-python/compare/v3.17.0...v3.17.1)
+
+### Chores
+
+* **internal:** detect missing future annotations with ruff ([b85be28](https://github.com/runwayml/sdk-python/commit/b85be28503c3ae03eea12945814a78af83030740))
+
 ## 3.17.0 (2025-10-09)
 
 Full Changelog: [v3.16.0...v3.17.0](https://github.com/runwayml/sdk-python/compare/v3.16.0...v3.17.0)
