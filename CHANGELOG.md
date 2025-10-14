@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.18.0 (2025-10-14)
+
+Full Changelog: [v3.17.0...v3.18.0](https://github.com/runwayml/sdk-python/compare/v3.17.0...v3.18.0)
+
+### Features
+
+* **api:** Voice dubbing and isolation ([0bdaaed](https://github.com/runwayml/sdk-python/commit/0bdaaedf44a1cd2231d229db9f9a4647caf58ad9))
+
+
+### Chores
+
+* **internal:** detect missing future annotations with ruff ([b85be28](https://github.com/runwayml/sdk-python/commit/b85be28503c3ae03eea12945814a78af83030740))
+
 ## 3.17.0 (2025-10-09)
 
 Full Changelog: [v3.16.0...v3.17.0](https://github.com/runwayml/sdk-python/compare/v3.16.0...v3.17.0)
