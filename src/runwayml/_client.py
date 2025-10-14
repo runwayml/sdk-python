@@ -28,9 +28,11 @@ from .resources import (
     text_to_image,
     text_to_video,
     video_upscale,
+    voice_dubbing,
     image_to_video,
     text_to_speech,
     video_to_video,
+    voice_isolation,
     character_performance,
 )
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
@@ -63,6 +65,8 @@ class RunwayML(SyncAPIClient):
     character_performance: character_performance.CharacterPerformanceResource
     text_to_speech: text_to_speech.TextToSpeechResource
     sound_effect: sound_effect.SoundEffectResource
+    voice_isolation: voice_isolation.VoiceIsolationResource
+    voice_dubbing: voice_dubbing.VoiceDubbingResource
     organization: organization.OrganizationResource
     with_raw_response: RunwayMLWithRawResponse
     with_streaming_response: RunwayMLWithStreamedResponse
@@ -136,6 +140,8 @@ class RunwayML(SyncAPIClient):
         self.character_performance = character_performance.CharacterPerformanceResource(self)
         self.text_to_speech = text_to_speech.TextToSpeechResource(self)
         self.sound_effect = sound_effect.SoundEffectResource(self)
+        self.voice_isolation = voice_isolation.VoiceIsolationResource(self)
+        self.voice_dubbing = voice_dubbing.VoiceDubbingResource(self)
         self.organization = organization.OrganizationResource(self)
         self.with_raw_response = RunwayMLWithRawResponse(self)
         self.with_streaming_response = RunwayMLWithStreamedResponse(self)
@@ -258,6 +264,8 @@ class AsyncRunwayML(AsyncAPIClient):
     character_performance: character_performance.AsyncCharacterPerformanceResource
     text_to_speech: text_to_speech.AsyncTextToSpeechResource
     sound_effect: sound_effect.AsyncSoundEffectResource
+    voice_isolation: voice_isolation.AsyncVoiceIsolationResource
+    voice_dubbing: voice_dubbing.AsyncVoiceDubbingResource
     organization: organization.AsyncOrganizationResource
     with_raw_response: AsyncRunwayMLWithRawResponse
     with_streaming_response: AsyncRunwayMLWithStreamedResponse
@@ -331,6 +339,8 @@ class AsyncRunwayML(AsyncAPIClient):
         self.character_performance = character_performance.AsyncCharacterPerformanceResource(self)
         self.text_to_speech = text_to_speech.AsyncTextToSpeechResource(self)
         self.sound_effect = sound_effect.AsyncSoundEffectResource(self)
+        self.voice_isolation = voice_isolation.AsyncVoiceIsolationResource(self)
+        self.voice_dubbing = voice_dubbing.AsyncVoiceDubbingResource(self)
         self.organization = organization.AsyncOrganizationResource(self)
         self.with_raw_response = AsyncRunwayMLWithRawResponse(self)
         self.with_streaming_response = AsyncRunwayMLWithStreamedResponse(self)
@@ -456,6 +466,8 @@ class RunwayMLWithRawResponse:
         )
         self.text_to_speech = text_to_speech.TextToSpeechResourceWithRawResponse(client.text_to_speech)
         self.sound_effect = sound_effect.SoundEffectResourceWithRawResponse(client.sound_effect)
+        self.voice_isolation = voice_isolation.VoiceIsolationResourceWithRawResponse(client.voice_isolation)
+        self.voice_dubbing = voice_dubbing.VoiceDubbingResourceWithRawResponse(client.voice_dubbing)
         self.organization = organization.OrganizationResourceWithRawResponse(client.organization)
 
 
@@ -472,6 +484,8 @@ class AsyncRunwayMLWithRawResponse:
         )
         self.text_to_speech = text_to_speech.AsyncTextToSpeechResourceWithRawResponse(client.text_to_speech)
         self.sound_effect = sound_effect.AsyncSoundEffectResourceWithRawResponse(client.sound_effect)
+        self.voice_isolation = voice_isolation.AsyncVoiceIsolationResourceWithRawResponse(client.voice_isolation)
+        self.voice_dubbing = voice_dubbing.AsyncVoiceDubbingResourceWithRawResponse(client.voice_dubbing)
         self.organization = organization.AsyncOrganizationResourceWithRawResponse(client.organization)
 
 
@@ -488,6 +502,8 @@ class RunwayMLWithStreamedResponse:
         )
         self.text_to_speech = text_to_speech.TextToSpeechResourceWithStreamingResponse(client.text_to_speech)
         self.sound_effect = sound_effect.SoundEffectResourceWithStreamingResponse(client.sound_effect)
+        self.voice_isolation = voice_isolation.VoiceIsolationResourceWithStreamingResponse(client.voice_isolation)
+        self.voice_dubbing = voice_dubbing.VoiceDubbingResourceWithStreamingResponse(client.voice_dubbing)
         self.organization = organization.OrganizationResourceWithStreamingResponse(client.organization)
 
 
@@ -504,6 +520,8 @@ class AsyncRunwayMLWithStreamedResponse:
         )
         self.text_to_speech = text_to_speech.AsyncTextToSpeechResourceWithStreamingResponse(client.text_to_speech)
         self.sound_effect = sound_effect.AsyncSoundEffectResourceWithStreamingResponse(client.sound_effect)
+        self.voice_isolation = voice_isolation.AsyncVoiceIsolationResourceWithStreamingResponse(client.voice_isolation)
+        self.voice_dubbing = voice_dubbing.AsyncVoiceDubbingResourceWithStreamingResponse(client.voice_dubbing)
         self.organization = organization.AsyncOrganizationResourceWithStreamingResponse(client.organization)
 
 
