@@ -107,6 +107,30 @@ Methods:
 
 - <code title="post /v1/sound_effect">client.sound_effect.<a href="./src/runwayml/resources/sound_effect.py">create</a>(\*\*<a href="src/runwayml/types/sound_effect_create_params.py">params</a>) -> <a href="./src/runwayml/types/sound_effect_create_response.py">SoundEffectCreateResponse</a></code>
 
+# VoiceIsolation
+
+Types:
+
+```python
+from runwayml.types import VoiceIsolationCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/voice_isolation">client.voice_isolation.<a href="./src/runwayml/resources/voice_isolation.py">create</a>(\*\*<a href="src/runwayml/types/voice_isolation_create_params.py">params</a>) -> <a href="./src/runwayml/types/voice_isolation_create_response.py">VoiceIsolationCreateResponse</a></code>
+
+# VoiceDubbing
+
+Types:
+
+```python
+from runwayml.types import VoiceDubbingCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/voice_dubbing">client.voice_dubbing.<a href="./src/runwayml/resources/voice_dubbing.py">create</a>(\*\*<a href="src/runwayml/types/voice_dubbing_create_params.py">params</a>) -> <a href="./src/runwayml/types/voice_dubbing_create_response.py">VoiceDubbingCreateResponse</a></code>
+
 # Organization
 
 Types:

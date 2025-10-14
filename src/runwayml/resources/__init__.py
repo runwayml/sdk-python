@@ -48,6 +48,14 @@ from .video_upscale import (
     VideoUpscaleResourceWithStreamingResponse,
     AsyncVideoUpscaleResourceWithStreamingResponse,
 )
+from .voice_dubbing import (
+    VoiceDubbingResource,
+    AsyncVoiceDubbingResource,
+    VoiceDubbingResourceWithRawResponse,
+    AsyncVoiceDubbingResourceWithRawResponse,
+    VoiceDubbingResourceWithStreamingResponse,
+    AsyncVoiceDubbingResourceWithStreamingResponse,
+)
 from .image_to_video import (
     ImageToVideoResource,
     AsyncImageToVideoResource,
@@ -71,6 +79,14 @@ from .video_to_video import (
     AsyncVideoToVideoResourceWithRawResponse,
     VideoToVideoResourceWithStreamingResponse,
     AsyncVideoToVideoResourceWithStreamingResponse,
+)
+from .voice_isolation import (
+    VoiceIsolationResource,
+    AsyncVoiceIsolationResource,
+    VoiceIsolationResourceWithRawResponse,
+    AsyncVoiceIsolationResourceWithRawResponse,
+    VoiceIsolationResourceWithStreamingResponse,
+    AsyncVoiceIsolationResourceWithStreamingResponse,
 )
 from .character_performance import (
     CharacterPerformanceResource,
@@ -136,6 +152,18 @@ __all__ = [
     "AsyncSoundEffectResourceWithRawResponse",
     "SoundEffectResourceWithStreamingResponse",
     "AsyncSoundEffectResourceWithStreamingResponse",
+    "VoiceIsolationResource",
+    "AsyncVoiceIsolationResource",
+    "VoiceIsolationResourceWithRawResponse",
+    "AsyncVoiceIsolationResourceWithRawResponse",
+    "VoiceIsolationResourceWithStreamingResponse",
+    "AsyncVoiceIsolationResourceWithStreamingResponse",
+    "VoiceDubbingResource",
+    "AsyncVoiceDubbingResource",
+    "VoiceDubbingResourceWithRawResponse",
+    "AsyncVoiceDubbingResourceWithRawResponse",
+    "VoiceDubbingResourceWithStreamingResponse",
+    "AsyncVoiceDubbingResourceWithStreamingResponse",
     "OrganizationResource",
     "AsyncOrganizationResource",
     "OrganizationResourceWithRawResponse",

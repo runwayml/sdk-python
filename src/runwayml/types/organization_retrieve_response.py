@@ -13,6 +13,8 @@ __all__ = [
     "TierModelsActTwo",
     "TierModelsElevenMultilingualV2",
     "TierModelsElevenTextToSoundV2",
+    "TierModelsElevenVoiceDubbing",
+    "TierModelsElevenVoiceIsolation",
     "TierModelsGemini2_5Flash",
     "TierModelsGen3aTurbo",
     "TierModelsGen4Aleph",
@@ -26,6 +28,8 @@ __all__ = [
     "UsageModelsActTwo",
     "UsageModelsElevenMultilingualV2",
     "UsageModelsElevenTextToSoundV2",
+    "UsageModelsElevenVoiceDubbing",
+    "UsageModelsElevenVoiceIsolation",
     "UsageModelsGemini2_5Flash",
     "UsageModelsGen3aTurbo",
     "UsageModelsGen4Aleph",
@@ -54,6 +58,22 @@ class TierModelsElevenMultilingualV2(BaseModel):
 
 
 class TierModelsElevenTextToSoundV2(BaseModel):
+    max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
+    """The maximum number of generations that can be run concurrently for this model."""
+
+    max_daily_generations: int = FieldInfo(alias="maxDailyGenerations")
+    """The maximum number of generations that can be created each day for this model."""
+
+
+class TierModelsElevenVoiceDubbing(BaseModel):
+    max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
+    """The maximum number of generations that can be run concurrently for this model."""
+
+    max_daily_generations: int = FieldInfo(alias="maxDailyGenerations")
+    """The maximum number of generations that can be created each day for this model."""
+
+
+class TierModelsElevenVoiceIsolation(BaseModel):
     max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
     """The maximum number of generations that can be run concurrently for this model."""
 
@@ -135,6 +155,12 @@ class TierModels(BaseModel):
     eleven_text_to_sound_v2: Optional[TierModelsElevenTextToSoundV2] = None
     """Limits associated with the eleven_text_to_sound_v2 model."""
 
+    eleven_voice_dubbing: Optional[TierModelsElevenVoiceDubbing] = None
+    """Limits associated with the eleven_voice_dubbing model."""
+
+    eleven_voice_isolation: Optional[TierModelsElevenVoiceIsolation] = None
+    """Limits associated with the eleven_voice_isolation model."""
+
     gemini_2_5_flash: Optional[TierModelsGemini2_5Flash] = FieldInfo(alias="gemini_2.5_flash", default=None)
     """Limits associated with the gemini_2.5_flash model."""
 
@@ -179,6 +205,16 @@ class UsageModelsElevenMultilingualV2(BaseModel):
 
 
 class UsageModelsElevenTextToSoundV2(BaseModel):
+    daily_generations: int = FieldInfo(alias="dailyGenerations")
+    """The number of generations that have been run for this model in the past day."""
+
+
+class UsageModelsElevenVoiceDubbing(BaseModel):
+    daily_generations: int = FieldInfo(alias="dailyGenerations")
+    """The number of generations that have been run for this model in the past day."""
+
+
+class UsageModelsElevenVoiceIsolation(BaseModel):
     daily_generations: int = FieldInfo(alias="dailyGenerations")
     """The number of generations that have been run for this model in the past day."""
 
@@ -232,6 +268,12 @@ class UsageModels(BaseModel):
 
     eleven_text_to_sound_v2: Optional[UsageModelsElevenTextToSoundV2] = None
     """Usage data for the eleven_text_to_sound_v2 model."""
+
+    eleven_voice_dubbing: Optional[UsageModelsElevenVoiceDubbing] = None
+    """Usage data for the eleven_voice_dubbing model."""
+
+    eleven_voice_isolation: Optional[UsageModelsElevenVoiceIsolation] = None
+    """Usage data for the eleven_voice_isolation model."""
 
     gemini_2_5_flash: Optional[UsageModelsGemini2_5Flash] = FieldInfo(alias="gemini_2.5_flash", default=None)
     """Usage data for the gemini_2.5_flash model."""
