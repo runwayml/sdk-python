@@ -23,6 +23,8 @@ __all__ = [
     "TierModelsGen4Turbo",
     "TierModelsUpscaleV1",
     "TierModelsVeo3",
+    "TierModelsVeo3_1",
+    "TierModelsVeo3_1Fast",
     "Usage",
     "UsageModels",
     "UsageModelsActTwo",
@@ -38,6 +40,8 @@ __all__ = [
     "UsageModelsGen4Turbo",
     "UsageModelsUpscaleV1",
     "UsageModelsVeo3",
+    "UsageModelsVeo3_1",
+    "UsageModelsVeo3_1Fast",
 ]
 
 
@@ -145,6 +149,22 @@ class TierModelsVeo3(BaseModel):
     """The maximum number of generations that can be created each day for this model."""
 
 
+class TierModelsVeo3_1(BaseModel):
+    max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
+    """The maximum number of generations that can be run concurrently for this model."""
+
+    max_daily_generations: int = FieldInfo(alias="maxDailyGenerations")
+    """The maximum number of generations that can be created each day for this model."""
+
+
+class TierModelsVeo3_1Fast(BaseModel):
+    max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
+    """The maximum number of generations that can be run concurrently for this model."""
+
+    max_daily_generations: int = FieldInfo(alias="maxDailyGenerations")
+    """The maximum number of generations that can be created each day for this model."""
+
+
 class TierModels(BaseModel):
     act_two: Optional[TierModelsActTwo] = None
     """Limits associated with the act_two model."""
@@ -184,6 +204,12 @@ class TierModels(BaseModel):
 
     veo3: Optional[TierModelsVeo3] = None
     """Limits associated with the veo3 model."""
+
+    veo3_1: Optional[TierModelsVeo3_1] = FieldInfo(alias="veo3.1", default=None)
+    """Limits associated with the veo3.1 model."""
+
+    veo3_1_fast: Optional[TierModelsVeo3_1Fast] = FieldInfo(alias="veo3.1_fast", default=None)
+    """Limits associated with the veo3.1_fast model."""
 
 
 class Tier(BaseModel):
@@ -259,6 +285,16 @@ class UsageModelsVeo3(BaseModel):
     """The number of generations that have been run for this model in the past day."""
 
 
+class UsageModelsVeo3_1(BaseModel):
+    daily_generations: int = FieldInfo(alias="dailyGenerations")
+    """The number of generations that have been run for this model in the past day."""
+
+
+class UsageModelsVeo3_1Fast(BaseModel):
+    daily_generations: int = FieldInfo(alias="dailyGenerations")
+    """The number of generations that have been run for this model in the past day."""
+
+
 class UsageModels(BaseModel):
     act_two: Optional[UsageModelsActTwo] = None
     """Usage data for the act_two model."""
@@ -298,6 +334,12 @@ class UsageModels(BaseModel):
 
     veo3: Optional[UsageModelsVeo3] = None
     """Usage data for the veo3 model."""
+
+    veo3_1: Optional[UsageModelsVeo3_1] = FieldInfo(alias="veo3.1", default=None)
+    """Usage data for the veo3.1 model."""
+
+    veo3_1_fast: Optional[UsageModelsVeo3_1Fast] = FieldInfo(alias="veo3.1_fast", default=None)
+    """Usage data for the veo3.1_fast model."""
 
 
 class Usage(BaseModel):

@@ -52,10 +52,10 @@ class TextToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
-        duration: Literal[8],
-        model: Literal["veo3"],
+        duration: Literal[4, 6, 8],
+        model: Literal["veo3.1", "veo3.1_fast", "veo3"],
         prompt_text: str,
-        ratio: Literal["1280:720", "720:1280"],
+        ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -68,7 +68,8 @@ class TextToVideoResource(SyncAPIResource):
         This endpoint will start a new task to generate a video from a text prompt.
 
         Args:
-          duration: Veo 3 videos must be 8 seconds long.
+          duration: `veo3` videos must be 8 seconds long. `veo3.1` and `veo3.1_fast` videos must be
+              4, 6, or 8 seconds long.
 
           model: The model variant to use.
 
@@ -131,10 +132,10 @@ class AsyncTextToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        duration: Literal[8],
-        model: Literal["veo3"],
+        duration: Literal[4, 6, 8],
+        model: Literal["veo3.1", "veo3.1_fast", "veo3"],
         prompt_text: str,
-        ratio: Literal["1280:720", "720:1280"],
+        ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -147,7 +148,8 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         This endpoint will start a new task to generate a video from a text prompt.
 
         Args:
-          duration: Veo 3 videos must be 8 seconds long.
+          duration: `veo3` videos must be 8 seconds long. `veo3.1` and `veo3.1_fast` videos must be
+              4, 6, or 8 seconds long.
 
           model: The model variant to use.
 

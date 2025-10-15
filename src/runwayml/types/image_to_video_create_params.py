@@ -11,7 +11,7 @@ __all__ = ["ImageToVideoCreateParams", "PromptImagePromptImage", "ContentModerat
 
 
 class ImageToVideoCreateParams(TypedDict, total=False):
-    model: Required[Literal["gen4_turbo", "gen3a_turbo", "veo3"]]
+    model: Required[Literal["gen4_turbo", "gen3a_turbo", "veo3.1", "veo3.1_fast", "veo3"]]
     """The model variant to use."""
 
     prompt_image: Required[Annotated[Union[str, Iterable[PromptImagePromptImage]], PropertyInfo(alias="promptImage")]]
@@ -40,10 +40,12 @@ class ImageToVideoCreateParams(TypedDict, total=False):
     - `1280:768`
     - `768:1280`
 
-    `veo3` supports the following values:
+    `veo3`, `veo3.1`, `veo3.1_fast` support the following values:
 
     - `1280:720`
     - `720:1280`
+    - `1080:1920`
+    - `1920:1080`
     """
 
     content_moderation: Annotated[ContentModeration, PropertyInfo(alias="contentModeration")]
@@ -56,8 +58,9 @@ class ImageToVideoCreateParams(TypedDict, total=False):
     duration: Literal[2, 3, 4, 5, 6, 7, 8, 9, 10]
     """The number of seconds of duration for the output video.
 
-    `veo3` requires a duration of 8. `gen3a_turbo` requires a duration of 5 or 10.
-    `gen4_turbo` must specify a duration of 2-10 seconds.
+    `veo3` requires a duration of 8. `veo3.1` and `veo3.1_fast` require a duration
+    of 4, 6, or 8. `gen3a_turbo` requires a duration of 5 or 10. `gen4_turbo` must
+    specify a duration of 2-10 seconds.
     """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
@@ -82,7 +85,8 @@ class PromptImagePromptImage(TypedDict, total=False):
     "first" will use the image as the first frame of the video, "last" will use the
     image as the last frame of the video.
 
-    "last" is currently supported for `gen3a_turbo` only.
+    "last" is currently supported for `gen3a_turbo`, `veo3.1`, and `veo3.1_fast`
+    only. `veo3.1` and `veo3.1_fast` require a `first` frame to be provided.
     """
 
     uri: Required[str]
