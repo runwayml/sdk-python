@@ -10,10 +10,13 @@ __all__ = ["TextToVideoCreateParams"]
 
 
 class TextToVideoCreateParams(TypedDict, total=False):
-    duration: Required[Literal[8]]
-    """Veo 3 videos must be 8 seconds long."""
+    duration: Required[Literal[4, 6, 8]]
+    """`veo3` videos must be 8 seconds long.
 
-    model: Required[Literal["veo3"]]
+    `veo3.1` and `veo3.1_fast` videos must be 4, 6, or 8 seconds long.
+    """
+
+    model: Required[Literal["veo3.1", "veo3.1_fast", "veo3"]]
     """The model variant to use."""
 
     prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
@@ -22,7 +25,7 @@ class TextToVideoCreateParams(TypedDict, total=False):
     This should describe in detail what should appear in the output.
     """
 
-    ratio: Required[Literal["1280:720", "720:1280"]]
+    ratio: Required[Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]]
     """A string representing the aspect ratio of the output video."""
 
     seed: int
