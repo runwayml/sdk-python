@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.19.0 (2025-10-15)
+
+Full Changelog: [v3.18.0...v3.19.0](https://github.com/runwayml/sdk-python/compare/v3.18.0...v3.19.0)
+
+### Features
+
+* **api:** Veo 3.1 and Veo 3.1 Fast ([9486ec1](https://github.com/runwayml/sdk-python/commit/9486ec19a5321ef555a498877cbc6811645ad205))
+
+
+### Bug Fixes
+
+* **api:** Add missing 1080p sizes ([2c66c5a](https://github.com/runwayml/sdk-python/commit/2c66c5a4d9cdb7c213c7454d2716ba0d81b7d6e8))
+
 ## 3.18.0 (2025-10-14)
 
 Full Changelog: [v3.17.0...v3.18.0](https://github.com/runwayml/sdk-python/compare/v3.17.0...v3.18.0)
