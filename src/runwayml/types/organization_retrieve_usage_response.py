@@ -29,6 +29,8 @@ class ResultUsedCredit(BaseModel):
         "gen4_turbo",
         "upscale_v1",
         "veo3",
+        "veo3.1",
+        "veo3.1_fast",
     ]
     """The model whose usage resulted in the credit usage."""
 
@@ -60,6 +62,8 @@ class OrganizationRetrieveUsageResponse(BaseModel):
             "gen4_turbo",
             "upscale_v1",
             "veo3",
+            "veo3.1",
+            "veo3.1_fast",
         ]
     ]
     """The list of models with usage during the queried time range."""
