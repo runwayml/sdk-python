@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.19.1 (2025-10-18)
+
+Full Changelog: [v3.19.0...v3.19.1](https://github.com/runwayml/sdk-python/compare/v3.19.0...v3.19.1)
+
+### Chores
+
+* bump `httpx-aiohttp` version to 0.1.9 ([7a11662](https://github.com/runwayml/sdk-python/commit/7a116620fda0ab42325f4a1428725b7c490c014f))
+
 ## 3.19.0 (2025-10-15)
 
 Full Changelog: [v3.18.0...v3.19.0](https://github.com/runwayml/sdk-python/compare/v3.18.0...v3.19.0)
