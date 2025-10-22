@@ -6,12 +6,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..lib.polling import (
-    AsyncNewTaskCreatedResponse,
-    NewTaskCreatedResponse,
-    create_waitable_resource,
-    create_async_waitable_resource,
-)
 from ..types import speech_to_speech_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
@@ -22,6 +16,12 @@ from .._response import (
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
+)
+from ..lib.polling import (
+    NewTaskCreatedResponse,
+    AsyncNewTaskCreatedResponse,
+    create_waitable_resource,
+    create_async_waitable_resource,
 )
 from .._base_client import make_request_options
 from ..types.speech_to_speech_create_response import SpeechToSpeechCreateResponse
@@ -95,9 +95,7 @@ class SpeechToSpeechResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
             ),
-            cast_to=create_waitable_resource(
-                SpeechToSpeechCreateResponse, self._client
-            ),
+            cast_to=create_waitable_resource(SpeechToSpeechCreateResponse, self._client),
         )
 
 
@@ -169,9 +167,7 @@ class AsyncSpeechToSpeechResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
             ),
-            cast_to=create_async_waitable_resource(
-                SpeechToSpeechCreateResponse, self._client
-            ),
+            cast_to=create_async_waitable_resource(SpeechToSpeechCreateResponse, self._client),
         )
 
 
