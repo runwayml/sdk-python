@@ -21,14 +21,13 @@ class TestCharacterPerformance:
     def test_method_create(self, client: RunwayML) -> None:
         character_performance = client.character_performance.create(
             character={
-                "type": "video",
-                "uri": "https://example.com",
+                "type": "image",
+                "uri": "data:image/J!",
             },
             model="act_two",
-            ratio="1280:720",
             reference={
                 "type": "video",
-                "uri": "https://example.com",
+                "uri": "data:video/J!",
             },
         )
         assert_matches_type(CharacterPerformanceCreateResponse, character_performance, path=["response"])
@@ -37,18 +36,18 @@ class TestCharacterPerformance:
     def test_method_create_with_all_params(self, client: RunwayML) -> None:
         character_performance = client.character_performance.create(
             character={
-                "type": "video",
-                "uri": "https://example.com",
+                "type": "image",
+                "uri": "data:image/J!",
             },
             model="act_two",
-            ratio="1280:720",
             reference={
                 "type": "video",
-                "uri": "https://example.com",
+                "uri": "data:video/J!",
             },
             body_control=True,
             content_moderation={"public_figure_threshold": "auto"},
             expression_intensity=1,
+            ratio="1280:720",
             seed=0,
         )
         assert_matches_type(CharacterPerformanceCreateResponse, character_performance, path=["response"])
@@ -57,14 +56,13 @@ class TestCharacterPerformance:
     def test_raw_response_create(self, client: RunwayML) -> None:
         response = client.character_performance.with_raw_response.create(
             character={
-                "type": "video",
-                "uri": "https://example.com",
+                "type": "image",
+                "uri": "data:image/J!",
             },
             model="act_two",
-            ratio="1280:720",
             reference={
                 "type": "video",
-                "uri": "https://example.com",
+                "uri": "data:video/J!",
             },
         )
 
@@ -77,14 +75,13 @@ class TestCharacterPerformance:
     def test_streaming_response_create(self, client: RunwayML) -> None:
         with client.character_performance.with_streaming_response.create(
             character={
-                "type": "video",
-                "uri": "https://example.com",
+                "type": "image",
+                "uri": "data:image/J!",
             },
             model="act_two",
-            ratio="1280:720",
             reference={
                 "type": "video",
-                "uri": "https://example.com",
+                "uri": "data:video/J!",
             },
         ) as response:
             assert not response.is_closed
@@ -105,14 +102,13 @@ class TestAsyncCharacterPerformance:
     async def test_method_create(self, async_client: AsyncRunwayML) -> None:
         character_performance = await async_client.character_performance.create(
             character={
-                "type": "video",
-                "uri": "https://example.com",
+                "type": "image",
+                "uri": "data:image/J!",
             },
             model="act_two",
-            ratio="1280:720",
             reference={
                 "type": "video",
-                "uri": "https://example.com",
+                "uri": "data:video/J!",
             },
         )
         assert_matches_type(CharacterPerformanceCreateResponse, character_performance, path=["response"])
@@ -121,18 +117,18 @@ class TestAsyncCharacterPerformance:
     async def test_method_create_with_all_params(self, async_client: AsyncRunwayML) -> None:
         character_performance = await async_client.character_performance.create(
             character={
-                "type": "video",
-                "uri": "https://example.com",
+                "type": "image",
+                "uri": "data:image/J!",
             },
             model="act_two",
-            ratio="1280:720",
             reference={
                 "type": "video",
-                "uri": "https://example.com",
+                "uri": "data:video/J!",
             },
             body_control=True,
             content_moderation={"public_figure_threshold": "auto"},
             expression_intensity=1,
+            ratio="1280:720",
             seed=0,
         )
         assert_matches_type(CharacterPerformanceCreateResponse, character_performance, path=["response"])
@@ -141,14 +137,13 @@ class TestAsyncCharacterPerformance:
     async def test_raw_response_create(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.character_performance.with_raw_response.create(
             character={
-                "type": "video",
-                "uri": "https://example.com",
+                "type": "image",
+                "uri": "data:image/J!",
             },
             model="act_two",
-            ratio="1280:720",
             reference={
                 "type": "video",
-                "uri": "https://example.com",
+                "uri": "data:video/J!",
             },
         )
 
@@ -161,14 +156,13 @@ class TestAsyncCharacterPerformance:
     async def test_streaming_response_create(self, async_client: AsyncRunwayML) -> None:
         async with async_client.character_performance.with_streaming_response.create(
             character={
-                "type": "video",
-                "uri": "https://example.com",
+                "type": "image",
+                "uri": "data:image/J!",
             },
             model="act_two",
-            ratio="1280:720",
             reference={
                 "type": "video",
-                "uri": "https://example.com",
+                "uri": "data:video/J!",
             },
         ) as response:
             assert not response.is_closed

@@ -62,15 +62,13 @@ class SoundEffectResource(SyncAPIResource):
         description.
 
         Args:
-          model: The model variant to use.
-
           prompt_text: A text description of the sound effect to generate.
 
           duration: The duration of the sound effect in seconds, between 0.5 and 30 seconds. If not
               provided, the duration will be determined automatically based on the text
               description.
 
-          loop: Whether the sound effect should be designed to loop seamlessly.
+          loop: Whether the output sound effect should be designed to loop seamlessly.
 
           extra_headers: Send extra headers
 
@@ -137,15 +135,13 @@ class AsyncSoundEffectResource(AsyncAPIResource):
         description.
 
         Args:
-          model: The model variant to use.
-
           prompt_text: A text description of the sound effect to generate.
 
           duration: The duration of the sound effect in seconds, between 0.5 and 30 seconds. If not
               provided, the duration will be determined automatically based on the text
               description.
 
-          loop: Whether the sound effect should be designed to loop seamlessly.
+          loop: Whether the output sound effect should be designed to loop seamlessly.
 
           extra_headers: Send extra headers
 

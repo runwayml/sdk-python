@@ -7,4 +7,3 @@ __all__ = ["SoundEffectCreateResponse"]
 
 class SoundEffectCreateResponse(BaseModel):
     id: str
-    """The ID of the newly created task."""

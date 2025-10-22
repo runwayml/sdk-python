@@ -7,4 +7,3 @@ __all__ = ["VoiceDubbingCreateResponse"]
 
 class VoiceDubbingCreateResponse(BaseModel):
     id: str
-    """The ID of the newly created task."""

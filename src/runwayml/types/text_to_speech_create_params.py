@@ -11,7 +11,6 @@ __all__ = ["TextToSpeechCreateParams", "Voice"]
 
 class TextToSpeechCreateParams(TypedDict, total=False):
     model: Required[Literal["eleven_multilingual_v2"]]
-    """The model variant to use."""
 
     prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
     """A non-empty string up to 1000 characters (measured in UTF-16 code units).
@@ -80,6 +79,6 @@ class Voice(TypedDict, total=False):
             PropertyInfo(alias="presetId"),
         ]
     ]
-    """The name of the voice to use for the generated speech."""
+    """The preset voice ID to use for the generated speech."""
 
     type: Required[Literal["runway-preset"]]

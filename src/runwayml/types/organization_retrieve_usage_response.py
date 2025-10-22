@@ -17,6 +17,7 @@ class ResultUsedCredit(BaseModel):
 
     model: Literal[
         "act_two",
+        "eleven_multilingual_sts_v2",
         "eleven_multilingual_v2",
         "eleven_text_to_sound_v2",
         "eleven_voice_dubbing",
@@ -50,6 +51,7 @@ class OrganizationRetrieveUsageResponse(BaseModel):
     models: List[
         Literal[
             "act_two",
+            "eleven_multilingual_sts_v2",
             "eleven_multilingual_v2",
             "eleven_text_to_sound_v2",
             "eleven_voice_dubbing",

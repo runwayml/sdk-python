@@ -11,6 +11,7 @@ __all__ = [
     "Tier",
     "TierModels",
     "TierModelsActTwo",
+    "TierModelsElevenMultilingualStsV2",
     "TierModelsElevenMultilingualV2",
     "TierModelsElevenTextToSoundV2",
     "TierModelsElevenVoiceDubbing",
@@ -28,6 +29,7 @@ __all__ = [
     "Usage",
     "UsageModels",
     "UsageModelsActTwo",
+    "UsageModelsElevenMultilingualStsV2",
     "UsageModelsElevenMultilingualV2",
     "UsageModelsElevenTextToSoundV2",
     "UsageModelsElevenVoiceDubbing",
@@ -46,6 +48,14 @@ __all__ = [
 
 
 class TierModelsActTwo(BaseModel):
+    max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
+    """The maximum number of generations that can be run concurrently for this model."""
+
+    max_daily_generations: int = FieldInfo(alias="maxDailyGenerations")
+    """The maximum number of generations that can be created each day for this model."""
+
+
+class TierModelsElevenMultilingualStsV2(BaseModel):
     max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
     """The maximum number of generations that can be run concurrently for this model."""
 
@@ -169,6 +179,9 @@ class TierModels(BaseModel):
     act_two: Optional[TierModelsActTwo] = None
     """Limits associated with the act_two model."""
 
+    eleven_multilingual_sts_v2: Optional[TierModelsElevenMultilingualStsV2] = None
+    """Limits associated with the eleven_multilingual_sts_v2 model."""
+
     eleven_multilingual_v2: Optional[TierModelsElevenMultilingualV2] = None
     """Limits associated with the eleven_multilingual_v2 model."""
 
@@ -221,6 +234,11 @@ class Tier(BaseModel):
 
 
 class UsageModelsActTwo(BaseModel):
+    daily_generations: int = FieldInfo(alias="dailyGenerations")
+    """The number of generations that have been run for this model in the past day."""
+
+
+class UsageModelsElevenMultilingualStsV2(BaseModel):
     daily_generations: int = FieldInfo(alias="dailyGenerations")
     """The number of generations that have been run for this model in the past day."""
 
@@ -298,6 +316,9 @@ class UsageModelsVeo3_1Fast(BaseModel):
 class UsageModels(BaseModel):
     act_two: Optional[UsageModelsActTwo] = None
     """Usage data for the act_two model."""
+
+    eleven_multilingual_sts_v2: Optional[UsageModelsElevenMultilingualStsV2] = None
+    """Usage data for the eleven_multilingual_sts_v2 model."""
 
     eleven_multilingual_v2: Optional[UsageModelsElevenMultilingualV2] = None
     """Usage data for the eleven_multilingual_v2 model."""

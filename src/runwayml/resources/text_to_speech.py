@@ -60,8 +60,6 @@ class TextToSpeechResource(SyncAPIResource):
         This endpoint will start a new task to generate speech from text.
 
         Args:
-          model: The model variant to use.
-
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
 
@@ -129,8 +127,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         This endpoint will start a new task to generate speech from text.
 
         Args:
-          model: The model variant to use.
-
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
 
