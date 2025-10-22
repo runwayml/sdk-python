@@ -52,7 +52,7 @@ class VoiceIsolationResource(SyncAPIResource):
     def create(
         self,
         *,
-        audio_url: str,
+        audio_uri: str,
         model: Literal["eleven_voice_isolation"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -62,13 +62,11 @@ class VoiceIsolationResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NewTaskCreatedResponse:
         """
-        This endpoint will start a new task to isolate and enhance voices in audio.
+        This endpoint will start a new task to isolate the voice from the background
+        audio.
 
         Args:
-          audio_url: A HTTPS URL or data URI containing the audio file to process. See
-              [our docs](/assets/inputs#audio) on audio inputs for more information.
-
-          model: The model variant to use.
+          audio_uri: A data URI containing encoded audio.
 
           extra_headers: Send extra headers
 
@@ -82,7 +80,7 @@ class VoiceIsolationResource(SyncAPIResource):
             "/v1/voice_isolation",
             body=maybe_transform(
                 {
-                    "audio_url": audio_url,
+                    "audio_uri": audio_uri,
                     "model": model,
                 },
                 voice_isolation_create_params.VoiceIsolationCreateParams,
@@ -117,7 +115,7 @@ class AsyncVoiceIsolationResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        audio_url: str,
+        audio_uri: str,
         model: Literal["eleven_voice_isolation"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -127,13 +125,11 @@ class AsyncVoiceIsolationResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncNewTaskCreatedResponse:
         """
-        This endpoint will start a new task to isolate and enhance voices in audio.
+        This endpoint will start a new task to isolate the voice from the background
+        audio.
 
         Args:
-          audio_url: A HTTPS URL or data URI containing the audio file to process. See
-              [our docs](/assets/inputs#audio) on audio inputs for more information.
-
-          model: The model variant to use.
+          audio_uri: A data URI containing encoded audio.
 
           extra_headers: Send extra headers
 
@@ -147,7 +143,7 @@ class AsyncVoiceIsolationResource(AsyncAPIResource):
             "/v1/voice_isolation",
             body=await async_maybe_transform(
                 {
-                    "audio_url": audio_url,
+                    "audio_uri": audio_uri,
                     "model": model,
                 },
                 voice_isolation_create_params.VoiceIsolationCreateParams,

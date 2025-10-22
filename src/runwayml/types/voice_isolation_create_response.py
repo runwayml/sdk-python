@@ -7,4 +7,3 @@ __all__ = ["VoiceIsolationCreateResponse"]
 
 class VoiceIsolationCreateResponse(BaseModel):
     id: str
-    """The ID of the newly created task."""

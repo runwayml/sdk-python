@@ -99,10 +99,7 @@ class VoiceDubbingResource(SyncAPIResource):
         This endpoint will start a new task to dub audio content to a target language.
 
         Args:
-          audio_uri: A HTTPS URL or data URI containing the audio file to dub. See
-              [our docs](/assets/inputs#audio) on audio inputs for more information.
-
-          model: The model variant to use.
+          audio_uri: A data URI containing encoded audio.
 
           target_lang: The target language code to dub the audio to (e.g., "es" for Spanish, "fr" for
               French).
@@ -212,10 +209,7 @@ class AsyncVoiceDubbingResource(AsyncAPIResource):
         This endpoint will start a new task to dub audio content to a target language.
 
         Args:
-          audio_uri: A HTTPS URL or data URI containing the audio file to dub. See
-              [our docs](/assets/inputs#audio) on audio inputs for more information.
-
-          model: The model variant to use.
+          audio_uri: A data URI containing encoded audio.
 
           target_lang: The target language code to dub the audio to (e.g., "es" for Spanish, "fr" for
               French).

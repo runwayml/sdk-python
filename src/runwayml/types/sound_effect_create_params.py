@@ -11,7 +11,6 @@ __all__ = ["SoundEffectCreateParams"]
 
 class SoundEffectCreateParams(TypedDict, total=False):
     model: Required[Literal["eleven_text_to_sound_v2"]]
-    """The model variant to use."""
 
     prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
     """A text description of the sound effect to generate."""
@@ -24,4 +23,4 @@ class SoundEffectCreateParams(TypedDict, total=False):
     """
 
     loop: bool
-    """Whether the sound effect should be designed to loop seamlessly."""
+    """Whether the output sound effect should be designed to loop seamlessly."""

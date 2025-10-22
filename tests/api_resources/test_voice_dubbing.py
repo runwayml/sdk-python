@@ -20,7 +20,7 @@ class TestVoiceDubbing:
     @parametrize
     def test_method_create(self, client: RunwayML) -> None:
         voice_dubbing = client.voice_dubbing.create(
-            audio_uri="https://example.com",
+            audio_uri="data:audio/J!",
             model="eleven_voice_dubbing",
             target_lang="en",
         )
@@ -29,19 +29,19 @@ class TestVoiceDubbing:
     @parametrize
     def test_method_create_with_all_params(self, client: RunwayML) -> None:
         voice_dubbing = client.voice_dubbing.create(
-            audio_uri="https://example.com",
+            audio_uri="data:audio/J!",
             model="eleven_voice_dubbing",
             target_lang="en",
             disable_voice_cloning=True,
             drop_background_audio=True,
-            num_speakers=1,
+            num_speakers=9007199254740991,
         )
         assert_matches_type(VoiceDubbingCreateResponse, voice_dubbing, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: RunwayML) -> None:
         response = client.voice_dubbing.with_raw_response.create(
-            audio_uri="https://example.com",
+            audio_uri="data:audio/J!",
             model="eleven_voice_dubbing",
             target_lang="en",
         )
@@ -54,7 +54,7 @@ class TestVoiceDubbing:
     @parametrize
     def test_streaming_response_create(self, client: RunwayML) -> None:
         with client.voice_dubbing.with_streaming_response.create(
-            audio_uri="https://example.com",
+            audio_uri="data:audio/J!",
             model="eleven_voice_dubbing",
             target_lang="en",
         ) as response:
@@ -75,7 +75,7 @@ class TestAsyncVoiceDubbing:
     @parametrize
     async def test_method_create(self, async_client: AsyncRunwayML) -> None:
         voice_dubbing = await async_client.voice_dubbing.create(
-            audio_uri="https://example.com",
+            audio_uri="data:audio/J!",
             model="eleven_voice_dubbing",
             target_lang="en",
         )
@@ -84,19 +84,19 @@ class TestAsyncVoiceDubbing:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncRunwayML) -> None:
         voice_dubbing = await async_client.voice_dubbing.create(
-            audio_uri="https://example.com",
+            audio_uri="data:audio/J!",
             model="eleven_voice_dubbing",
             target_lang="en",
             disable_voice_cloning=True,
             drop_background_audio=True,
-            num_speakers=1,
+            num_speakers=9007199254740991,
         )
         assert_matches_type(VoiceDubbingCreateResponse, voice_dubbing, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.voice_dubbing.with_raw_response.create(
-            audio_uri="https://example.com",
+            audio_uri="data:audio/J!",
             model="eleven_voice_dubbing",
             target_lang="en",
         )
@@ -109,7 +109,7 @@ class TestAsyncVoiceDubbing:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncRunwayML) -> None:
         async with async_client.voice_dubbing.with_streaming_response.create(
-            audio_uri="https://example.com",
+            audio_uri="data:audio/J!",
             model="eleven_voice_dubbing",
             target_lang="en",
         ) as response:

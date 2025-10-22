@@ -21,7 +21,7 @@ class TestTextToSpeech:
     def test_method_create(self, client: RunwayML) -> None:
         text_to_speech = client.text_to_speech.create(
             model="eleven_multilingual_v2",
-            prompt_text="promptText",
+            prompt_text="x",
             voice={
                 "preset_id": "Maya",
                 "type": "runway-preset",
@@ -33,7 +33,7 @@ class TestTextToSpeech:
     def test_raw_response_create(self, client: RunwayML) -> None:
         response = client.text_to_speech.with_raw_response.create(
             model="eleven_multilingual_v2",
-            prompt_text="promptText",
+            prompt_text="x",
             voice={
                 "preset_id": "Maya",
                 "type": "runway-preset",
@@ -49,7 +49,7 @@ class TestTextToSpeech:
     def test_streaming_response_create(self, client: RunwayML) -> None:
         with client.text_to_speech.with_streaming_response.create(
             model="eleven_multilingual_v2",
-            prompt_text="promptText",
+            prompt_text="x",
             voice={
                 "preset_id": "Maya",
                 "type": "runway-preset",
@@ -73,7 +73,7 @@ class TestAsyncTextToSpeech:
     async def test_method_create(self, async_client: AsyncRunwayML) -> None:
         text_to_speech = await async_client.text_to_speech.create(
             model="eleven_multilingual_v2",
-            prompt_text="promptText",
+            prompt_text="x",
             voice={
                 "preset_id": "Maya",
                 "type": "runway-preset",
@@ -85,7 +85,7 @@ class TestAsyncTextToSpeech:
     async def test_raw_response_create(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.text_to_speech.with_raw_response.create(
             model="eleven_multilingual_v2",
-            prompt_text="promptText",
+            prompt_text="x",
             voice={
                 "preset_id": "Maya",
                 "type": "runway-preset",
@@ -101,7 +101,7 @@ class TestAsyncTextToSpeech:
     async def test_streaming_response_create(self, async_client: AsyncRunwayML) -> None:
         async with async_client.text_to_speech.with_streaming_response.create(
             model="eleven_multilingual_v2",
-            prompt_text="promptText",
+            prompt_text="x",
             voice={
                 "preset_id": "Maya",
                 "type": "runway-preset",
