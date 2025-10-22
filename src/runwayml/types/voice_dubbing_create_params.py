@@ -11,13 +11,9 @@ __all__ = ["VoiceDubbingCreateParams"]
 
 class VoiceDubbingCreateParams(TypedDict, total=False):
     audio_uri: Required[Annotated[str, PropertyInfo(alias="audioUri")]]
-    """A HTTPS URL or data URI containing the audio file to dub.
-
-    See [our docs](/assets/inputs#audio) on audio inputs for more information.
-    """
+    """A data URI containing encoded audio."""
 
     model: Required[Literal["eleven_voice_dubbing"]]
-    """The model variant to use."""
 
     target_lang: Required[
         Annotated[

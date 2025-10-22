@@ -10,8 +10,8 @@ from .._utils import PropertyInfo
 __all__ = [
     "CharacterPerformanceCreateParams",
     "Character",
-    "CharacterVideo",
     "CharacterImage",
+    "CharacterVideo",
     "Reference",
     "ContentModeration",
 ]
@@ -26,12 +26,9 @@ class CharacterPerformanceCreateParams(TypedDict, total=False):
     """
 
     model: Required[Literal["act_two"]]
-    """The model variant to use."""
-
-    ratio: Required[Literal["1280:720", "720:1280", "960:960", "1104:832", "832:1104", "1584:672"]]
-    """The resolution of the output video."""
 
     reference: Required[Reference]
+    """The reference video containing the performance to apply to the character."""
 
     body_control: Annotated[bool, PropertyInfo(alias="bodyControl")]
     """A boolean indicating whether to enable body control.
@@ -49,55 +46,35 @@ class CharacterPerformanceCreateParams(TypedDict, total=False):
     A larger value increases the intensity of the character's expression.
     """
 
+    ratio: Literal["1280:720", "720:1280", "960:960", "1104:832", "832:1104", "1584:672"]
+    """The resolution of the output video."""
+
     seed: int
-    """If unspecified, a random number is chosen.
-
-    Varying the seed integer is a way to get different results for the same other
-    request parameters. Using the same seed integer for an identical request will
-    produce similar results.
-    """
-
-
-class CharacterVideo(TypedDict, total=False):
-    type: Required[Literal["video"]]
-
-    uri: Required[str]
-    """
-    A HTTPS URL pointing to a video or a data URI containing a video of your
-    character. See [our docs](/assets/inputs#videos) on video inputs for more
-    information.
-    """
 
 
 class CharacterImage(TypedDict, total=False):
     type: Required[Literal["image"]]
 
     uri: Required[str]
-    """
-    A HTTPS URL pointing to an image or a data URI containing an image of your
-    character. See [our docs](/assets/inputs#images) on image inputs for more
-    information.
-    """
+    """A data URI containing an encoded image."""
 
 
-Character: TypeAlias = Union[CharacterVideo, CharacterImage]
+class CharacterVideo(TypedDict, total=False):
+    type: Required[Literal["video"]]
+
+    uri: Required[str]
+    """A data URI containing an encoded video."""
+
+
+Character: TypeAlias = Union[CharacterImage, CharacterVideo]
 
 
 class Reference(TypedDict, total=False):
     type: Required[Literal["video"]]
 
     uri: Required[str]
-    """
-    A HTTPS URL pointing to a video or a data URI containing a video of a person
-    performing in the manner that you would like your character to perform. The
-    video must be between 3 and 30 seconds in duration. See
-    [our docs](/assets/inputs#videos) on video inputs for more information.
-    """
+    """A data URI containing an encoded video."""
 
 
 class ContentModeration(TypedDict, total=False):
     public_figure_threshold: Annotated[Literal["auto", "low"], PropertyInfo(alias="publicFigureThreshold")]
-    """
-    When set to `low`, the content moderation system will be less strict about
-    preventing generations that include recognizable public figures.
-    """
