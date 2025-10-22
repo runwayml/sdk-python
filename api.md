@@ -131,6 +131,18 @@ Methods:
 
 - <code title="post /v1/voice_dubbing">client.voice_dubbing.<a href="./src/runwayml/resources/voice_dubbing.py">create</a>(\*\*<a href="src/runwayml/types/voice_dubbing_create_params.py">params</a>) -> <a href="./src/runwayml/types/voice_dubbing_create_response.py">VoiceDubbingCreateResponse</a></code>
 
+# SpeechToSpeech
+
+Types:
+
+```python
+from runwayml.types import SpeechToSpeechCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/speech_to_speech">client.speech_to_speech.<a href="./src/runwayml/resources/speech_to_speech.py">create</a>(\*\*<a href="src/runwayml/types/speech_to_speech_create_params.py">params</a>) -> <a href="./src/runwayml/types/speech_to_speech_create_response.py">SpeechToSpeechCreateResponse</a></code>
+
 # Organization
 
 Types:
