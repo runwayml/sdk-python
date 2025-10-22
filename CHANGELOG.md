@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.20.0 (2025-10-22)
+
+Full Changelog: [v3.19.0...v3.20.0](https://github.com/runwayml/sdk-python/compare/v3.19.0...v3.20.0)
+
+### Features
+
+* **api:** Add speech to speech ([8757b22](https://github.com/runwayml/sdk-python/commit/8757b22c5df8c804b02b1ef88d1110ae0ffe80ad))
+* **api:** Added speech to speech ([a2cb1d2](https://github.com/runwayml/sdk-python/commit/a2cb1d2b5e6f9ff0d68b86fb473e8ca02c6fdff8))
+
+
+### Chores
+
+* bump `httpx-aiohttp` version to 0.1.9 ([7a11662](https://github.com/runwayml/sdk-python/commit/7a116620fda0ab42325f4a1428725b7c490c014f))
+
 ## 3.19.0 (2025-10-15)
 
 Full Changelog: [v3.18.0...v3.19.0](https://github.com/runwayml/sdk-python/compare/v3.18.0...v3.19.0)
