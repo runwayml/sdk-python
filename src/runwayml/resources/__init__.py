@@ -88,6 +88,14 @@ from .voice_isolation import (
     VoiceIsolationResourceWithStreamingResponse,
     AsyncVoiceIsolationResourceWithStreamingResponse,
 )
+from .speech_to_speech import (
+    SpeechToSpeechResource,
+    AsyncSpeechToSpeechResource,
+    SpeechToSpeechResourceWithRawResponse,
+    AsyncSpeechToSpeechResourceWithRawResponse,
+    SpeechToSpeechResourceWithStreamingResponse,
+    AsyncSpeechToSpeechResourceWithStreamingResponse,
+)
 from .character_performance import (
     CharacterPerformanceResource,
     AsyncCharacterPerformanceResource,
@@ -164,6 +172,12 @@ __all__ = [
     "AsyncVoiceDubbingResourceWithRawResponse",
     "VoiceDubbingResourceWithStreamingResponse",
     "AsyncVoiceDubbingResourceWithStreamingResponse",
+    "SpeechToSpeechResource",
+    "AsyncSpeechToSpeechResource",
+    "SpeechToSpeechResourceWithRawResponse",
+    "AsyncSpeechToSpeechResourceWithRawResponse",
+    "SpeechToSpeechResourceWithStreamingResponse",
+    "AsyncSpeechToSpeechResourceWithStreamingResponse",
     "OrganizationResource",
     "AsyncOrganizationResource",
     "OrganizationResourceWithRawResponse",
