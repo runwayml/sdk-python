@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.20.1 (2025-10-30)
+
+Full Changelog: [v3.20.0...v3.20.1](https://github.com/runwayml/sdk-python/compare/v3.20.0...v3.20.1)
+
+### Bug Fixes
+
+* **client:** close streams without requiring full consumption ([2c8d121](https://github.com/runwayml/sdk-python/commit/2c8d121873da7f2bee590c9ce6dc7d93ebe8009e))
+
 ## 3.20.0 (2025-10-22)
 
 Full Changelog: [v3.19.0...v3.20.0](https://github.com/runwayml/sdk-python/compare/v3.19.0...v3.20.0)
