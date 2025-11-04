@@ -23,6 +23,7 @@ from ._utils import is_given, get_async_library
 from ._version import __version__
 from .resources import (
     tasks,
+    uploads,
     organization,
     sound_effect,
     text_to_image,
@@ -70,6 +71,7 @@ class RunwayML(SyncAPIClient):
     voice_dubbing: voice_dubbing.VoiceDubbingResource
     speech_to_speech: speech_to_speech.SpeechToSpeechResource
     organization: organization.OrganizationResource
+    uploads: uploads.UploadsResource
     with_raw_response: RunwayMLWithRawResponse
     with_streaming_response: RunwayMLWithStreamedResponse
 
@@ -146,6 +148,7 @@ class RunwayML(SyncAPIClient):
         self.voice_dubbing = voice_dubbing.VoiceDubbingResource(self)
         self.speech_to_speech = speech_to_speech.SpeechToSpeechResource(self)
         self.organization = organization.OrganizationResource(self)
+        self.uploads = uploads.UploadsResource(self)
         self.with_raw_response = RunwayMLWithRawResponse(self)
         self.with_streaming_response = RunwayMLWithStreamedResponse(self)
 
@@ -271,6 +274,7 @@ class AsyncRunwayML(AsyncAPIClient):
     voice_dubbing: voice_dubbing.AsyncVoiceDubbingResource
     speech_to_speech: speech_to_speech.AsyncSpeechToSpeechResource
     organization: organization.AsyncOrganizationResource
+    uploads: uploads.AsyncUploadsResource
     with_raw_response: AsyncRunwayMLWithRawResponse
     with_streaming_response: AsyncRunwayMLWithStreamedResponse
 
@@ -347,6 +351,7 @@ class AsyncRunwayML(AsyncAPIClient):
         self.voice_dubbing = voice_dubbing.AsyncVoiceDubbingResource(self)
         self.speech_to_speech = speech_to_speech.AsyncSpeechToSpeechResource(self)
         self.organization = organization.AsyncOrganizationResource(self)
+        self.uploads = uploads.AsyncUploadsResource(self)
         self.with_raw_response = AsyncRunwayMLWithRawResponse(self)
         self.with_streaming_response = AsyncRunwayMLWithStreamedResponse(self)
 
@@ -475,6 +480,7 @@ class RunwayMLWithRawResponse:
         self.voice_dubbing = voice_dubbing.VoiceDubbingResourceWithRawResponse(client.voice_dubbing)
         self.speech_to_speech = speech_to_speech.SpeechToSpeechResourceWithRawResponse(client.speech_to_speech)
         self.organization = organization.OrganizationResourceWithRawResponse(client.organization)
+        self.uploads = uploads.UploadsResourceWithRawResponse(client.uploads)
 
 
 class AsyncRunwayMLWithRawResponse:
@@ -494,6 +500,7 @@ class AsyncRunwayMLWithRawResponse:
         self.voice_dubbing = voice_dubbing.AsyncVoiceDubbingResourceWithRawResponse(client.voice_dubbing)
         self.speech_to_speech = speech_to_speech.AsyncSpeechToSpeechResourceWithRawResponse(client.speech_to_speech)
         self.organization = organization.AsyncOrganizationResourceWithRawResponse(client.organization)
+        self.uploads = uploads.AsyncUploadsResourceWithRawResponse(client.uploads)
 
 
 class RunwayMLWithStreamedResponse:
@@ -513,6 +520,7 @@ class RunwayMLWithStreamedResponse:
         self.voice_dubbing = voice_dubbing.VoiceDubbingResourceWithStreamingResponse(client.voice_dubbing)
         self.speech_to_speech = speech_to_speech.SpeechToSpeechResourceWithStreamingResponse(client.speech_to_speech)
         self.organization = organization.OrganizationResourceWithStreamingResponse(client.organization)
+        self.uploads = uploads.UploadsResourceWithStreamingResponse(client.uploads)
 
 
 class AsyncRunwayMLWithStreamedResponse:
@@ -534,6 +542,7 @@ class AsyncRunwayMLWithStreamedResponse:
             client.speech_to_speech
         )
         self.organization = organization.AsyncOrganizationResourceWithStreamingResponse(client.organization)
+        self.uploads = uploads.AsyncUploadsResourceWithStreamingResponse(client.uploads)
 
 
 Client = RunwayML
