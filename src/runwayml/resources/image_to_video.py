@@ -570,7 +570,12 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Literal["veo3.1"]
         | Literal["veo3.1_fast"]
         | Literal["veo3"],
-        prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Gen3aTurboPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Veo3PromptImagePromptImage]],
         ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
         | Literal["768:1280", "1280:768"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
