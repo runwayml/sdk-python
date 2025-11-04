@@ -7,4 +7,3 @@ __all__ = ["VideoToVideoCreateResponse"]
 
 class VideoToVideoCreateResponse(BaseModel):
     id: str
-    """The ID of the newly created task."""

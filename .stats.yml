@@ -1,4 +1,4 @@
 configured_endpoints: 15
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/runwayml%2Frunwayml-8448e1c9a8620f12c5c89979927802d42d864e56bcee22663496266f3dee8eba.yml
-openapi_spec_hash: c4856e9414b1116a3f6b8bdc44770fc3
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/runwayml%2Frunwayml-6902fa9494c5c74a6d438ddaa06508fd1ed8d9d22c6d31978ee051a523dc8e45.yml
+openapi_spec_hash: a004f339d52d958b8f81a7efe0c20aad
 config_hash: 590ccad5fefa843078c23b0cf95a081f

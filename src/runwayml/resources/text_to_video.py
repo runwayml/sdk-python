@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
+from typing_extensions import Literal, overload
 
 import httpx
 
 from ..types import text_to_video_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -43,14 +43,14 @@ class TextToVideoResource(SyncAPIResource):
         """
         return TextToVideoResourceWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         *,
-        duration: Literal[4, 6, 8],
-        model: Literal["veo3.1", "veo3.1_fast", "veo3"],
+        model: Literal["veo3.1"],
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
-        seed: int | Omit = omit,
+        duration: Literal[4, 6, 8] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -62,19 +62,12 @@ class TextToVideoResource(SyncAPIResource):
         This endpoint will start a new task to generate a video from a text prompt.
 
         Args:
-          duration: `veo3` videos must be 8 seconds long. `veo3.1` and `veo3.1_fast` videos must be
-              4, 6, or 8 seconds long.
-
-          model: The model variant to use.
-
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
 
-          ratio: A string representing the aspect ratio of the output video.
+          ratio: The resolution of the output video.
 
-          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
-              get different results for the same other request parameters. Using the same seed
-              integer for an identical request will produce similar results.
+          duration: The number of seconds of duration for the output video.
 
           extra_headers: Send extra headers
 
@@ -84,15 +77,103 @@ class TextToVideoResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["veo3.1_fast"],
+        prompt_text: str,
+        ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        duration: Literal[4, 6, 8] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a text prompt.
+
+        Args:
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          ratio: The resolution of the output video.
+
+          duration: The number of seconds of duration for the output video.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        duration: Literal[8],
+        model: Literal["veo3"],
+        prompt_text: str,
+        ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a text prompt.
+
+        Args:
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          ratio: The resolution of the output video.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["model", "prompt_text", "ratio"], ["duration", "model", "prompt_text", "ratio"])
+    def create(
+        self,
+        *,
+        model: Literal["veo3.1"] | Literal["veo3.1_fast"] | Literal["veo3"],
+        prompt_text: str,
+        ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        duration: Literal[4, 6, 8] | Literal[8] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToVideoCreateResponse:
         return self._post(
             "/v1/text_to_video",
             body=maybe_transform(
                 {
-                    "duration": duration,
                     "model": model,
                     "prompt_text": prompt_text,
                     "ratio": ratio,
-                    "seed": seed,
+                    "duration": duration,
                 },
                 text_to_video_create_params.TextToVideoCreateParams,
             ),
@@ -123,14 +204,14 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         """
         return AsyncTextToVideoResourceWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         *,
-        duration: Literal[4, 6, 8],
-        model: Literal["veo3.1", "veo3.1_fast", "veo3"],
+        model: Literal["veo3.1"],
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
-        seed: int | Omit = omit,
+        duration: Literal[4, 6, 8] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -142,19 +223,12 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         This endpoint will start a new task to generate a video from a text prompt.
 
         Args:
-          duration: `veo3` videos must be 8 seconds long. `veo3.1` and `veo3.1_fast` videos must be
-              4, 6, or 8 seconds long.
-
-          model: The model variant to use.
-
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
 
-          ratio: A string representing the aspect ratio of the output video.
+          ratio: The resolution of the output video.
 
-          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
-              get different results for the same other request parameters. Using the same seed
-              integer for an identical request will produce similar results.
+          duration: The number of seconds of duration for the output video.
 
           extra_headers: Send extra headers
 
@@ -164,15 +238,103 @@ class AsyncTextToVideoResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["veo3.1_fast"],
+        prompt_text: str,
+        ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        duration: Literal[4, 6, 8] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a text prompt.
+
+        Args:
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          ratio: The resolution of the output video.
+
+          duration: The number of seconds of duration for the output video.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        duration: Literal[8],
+        model: Literal["veo3"],
+        prompt_text: str,
+        ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a text prompt.
+
+        Args:
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          ratio: The resolution of the output video.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["model", "prompt_text", "ratio"], ["duration", "model", "prompt_text", "ratio"])
+    async def create(
+        self,
+        *,
+        model: Literal["veo3.1"] | Literal["veo3.1_fast"] | Literal["veo3"],
+        prompt_text: str,
+        ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        duration: Literal[4, 6, 8] | Literal[8] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToVideoCreateResponse:
         return await self._post(
             "/v1/text_to_video",
             body=await async_maybe_transform(
                 {
-                    "duration": duration,
                     "model": model,
                     "prompt_text": prompt_text,
                     "ratio": ratio,
-                    "seed": seed,
+                    "duration": duration,
                 },
                 text_to_video_create_params.TextToVideoCreateParams,
             ),

@@ -11,6 +11,6 @@ __all__ = ["VoiceIsolationCreateParams"]
 
 class VoiceIsolationCreateParams(TypedDict, total=False):
     audio_uri: Required[Annotated[str, PropertyInfo(alias="audioUri")]]
-    """A data URI containing encoded audio."""
+    """A HTTPS URL."""
 
     model: Required[Literal["eleven_voice_isolation"]]

@@ -69,7 +69,8 @@ class CharacterPerformanceResource(SyncAPIResource):
           character: The character to control. You can either provide a video or an image. A visually
               recognizable face must be visible and stay within the frame.
 
-          reference: The reference video containing the performance to apply to the character.
+          reference: A video of a person performing in the manner that you would like your character
+              to perform. The video must be between 3 and 30 seconds in duration.
 
           body_control: A boolean indicating whether to enable body control. When enabled, non-facial
               movements and gestures will be applied to the character in addition to facial
@@ -81,6 +82,10 @@ class CharacterPerformanceResource(SyncAPIResource):
               of the character's expression.
 
           ratio: The resolution of the output video.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -158,7 +163,8 @@ class AsyncCharacterPerformanceResource(AsyncAPIResource):
           character: The character to control. You can either provide a video or an image. A visually
               recognizable face must be visible and stay within the frame.
 
-          reference: The reference video containing the performance to apply to the character.
+          reference: A video of a person performing in the manner that you would like your character
+              to perform. The video must be between 3 and 30 seconds in duration.
 
           body_control: A boolean indicating whether to enable body control. When enabled, non-facial
               movements and gestures will be applied to the character in addition to facial
@@ -170,6 +176,10 @@ class AsyncCharacterPerformanceResource(AsyncAPIResource):
               of the character's expression.
 
           ratio: The resolution of the output video.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 

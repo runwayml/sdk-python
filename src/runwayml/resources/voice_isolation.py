@@ -57,10 +57,11 @@ class VoiceIsolationResource(SyncAPIResource):
     ) -> VoiceIsolationCreateResponse:
         """
         This endpoint will start a new task to isolate the voice from the background
-        audio.
+        audio. Audio duration must be greater than 4.6 seconds and less than 3600
+        seconds.
 
         Args:
-          audio_uri: A data URI containing encoded audio.
+          audio_uri: A HTTPS URL.
 
           extra_headers: Send extra headers
 
@@ -120,10 +121,11 @@ class AsyncVoiceIsolationResource(AsyncAPIResource):
     ) -> VoiceIsolationCreateResponse:
         """
         This endpoint will start a new task to isolate the voice from the background
-        audio.
+        audio. Audio duration must be greater than 4.6 seconds and less than 3600
+        seconds.
 
         Args:
-          audio_uri: A data URI containing encoded audio.
+          audio_uri: A HTTPS URL.
 
           extra_headers: Send extra headers
 

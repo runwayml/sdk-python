@@ -62,7 +62,11 @@ class SpeechToSpeechResource(SyncAPIResource):
         in audio or video.
 
         Args:
-          voice: The voice to use for the generated speech.
+          media: The media to use as a source for the dialogue for the generated speech.
+
+          voice: A voice preset from the RunwayML API.
+
+          remove_background_noise: Whether to remove background noise from the generated speech.
 
           extra_headers: Send extra headers
 
@@ -129,7 +133,11 @@ class AsyncSpeechToSpeechResource(AsyncAPIResource):
         in audio or video.
 
         Args:
-          voice: The voice to use for the generated speech.
+          media: The media to use as a source for the dialogue for the generated speech.
+
+          voice: A voice preset from the RunwayML API.
+
+          remove_background_noise: Whether to remove background noise from the generated speech.
 
           extra_headers: Send extra headers
 

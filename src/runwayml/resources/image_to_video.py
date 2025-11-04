@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Literal
+from typing_extensions import Literal, overload
 
 import httpx
 
 from ..types import image_to_video_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -44,25 +44,15 @@ class ImageToVideoResource(SyncAPIResource):
         """
         return ImageToVideoResourceWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         *,
-        model: Literal["gen4_turbo", "gen3a_turbo", "veo3.1", "veo3.1_fast", "veo3"],
-        prompt_image: Union[str, Iterable[image_to_video_create_params.PromptImagePromptImage]],
-        ratio: Literal[
-            "1280:720",
-            "720:1280",
-            "1104:832",
-            "832:1104",
-            "960:960",
-            "1584:672",
-            "1280:768",
-            "768:1280",
-            "1080:1920",
-            "1920:1080",
-        ],
-        content_moderation: image_to_video_create_params.ContentModeration | Omit = omit,
-        duration: Literal[2, 3, 4, 5, 6, 7, 8, 9, 10] | Omit = omit,
+        model: Literal["gen4_turbo"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]],
+        ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"],
+        content_moderation: image_to_video_create_params.Gen4TurboContentModeration | Omit = omit,
+        duration: int | Omit = omit,
         prompt_text: str | Omit = omit,
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -73,47 +63,16 @@ class ImageToVideoResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImageToVideoCreateResponse:
         """
-        This endpoint will start a new task to generate a video from an image prompt.
+        This endpoint will start a new task to generate a video from an image.
 
         Args:
-          model: The model variant to use.
-
-          prompt_image: A HTTPS URL or data URI containing an encoded image to be used as the first
-              frame of the generated video. See [our docs](/assets/inputs#images) on image
-              inputs for more information.
+          prompt_image: A HTTPS URL.
 
           ratio: The resolution of the output video.
 
-              `gen4_turbo` supports the following values:
-
-              - `1280:720`
-              - `720:1280`
-              - `1104:832`
-              - `832:1104`
-              - `960:960`
-              - `1584:672`
-
-              `gen3a_turbo` supports the following values:
-
-              - `1280:768`
-              - `768:1280`
-
-              `veo3`, `veo3.1`, `veo3.1_fast` support the following values:
-
-              - `1280:720`
-              - `720:1280`
-              - `1080:1920`
-              - `1920:1080`
-
           content_moderation: Settings that affect the behavior of the content moderation system.
 
-              This field is allowed only for the following model variants: `gen4_turbo`,
-              `gen3a_turbo`
-
-          duration: The number of seconds of duration for the output video. `veo3` requires a
-              duration of 8. `veo3.1` and `veo3.1_fast` require a duration of 4, 6, or 8.
-              `gen3a_turbo` requires a duration of 5 or 10. `gen4_turbo` must specify a
-              duration of 2-10 seconds.
+          duration: The number of seconds of duration for the output video.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
@@ -130,6 +89,207 @@ class ImageToVideoResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["gen3a_turbo"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Gen3aTurboPromptImagePromptImage]],
+        prompt_text: str,
+        content_moderation: image_to_video_create_params.Gen3aTurboContentModeration | Omit = omit,
+        duration: Literal[5, 10] | Omit = omit,
+        ratio: Literal["768:1280", "1280:768"] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: A HTTPS URL.
+
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          content_moderation: Settings that affect the behavior of the content moderation system.
+
+          duration: The duration of the output video in seconds.
+
+          ratio: The resolution of the output video.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["veo3.1"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]],
+        ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        duration: Literal[4, 6, 8] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: You may specify an image to use as the first frame of the output video, or an
+              array with a first frame and optionally a last frame. This model does not
+              support generating with only a last frame.
+
+          ratio: The resolution of the output video.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["veo3.1_fast"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]],
+        ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        duration: Literal[4, 6, 8] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: You may specify an image to use as the first frame of the output video, or an
+              array with a first frame and optionally a last frame. This model does not
+              support generating with only a last frame.
+
+          ratio: The resolution of the output video.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        duration: Literal[8],
+        model: Literal["veo3"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Veo3PromptImagePromptImage]],
+        ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        prompt_text: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          duration: The number of seconds of duration for the output video.
+
+          prompt_image: A HTTPS URL.
+
+          ratio: The resolution of the output video.
+
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["model", "prompt_image", "ratio"],
+        ["model", "prompt_image", "prompt_text"],
+        ["duration", "model", "prompt_image", "ratio"],
+    )
+    def create(
+        self,
+        *,
+        model: Literal["gen4_turbo"]
+        | Literal["gen3a_turbo"]
+        | Literal["veo3.1"]
+        | Literal["veo3.1_fast"]
+        | Literal["veo3"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]],
+        ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
+        | Literal["768:1280", "1280:768"]
+        | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
+        | Omit = omit,
+        content_moderation: image_to_video_create_params.Gen4TurboContentModeration
+        | image_to_video_create_params.Gen3aTurboContentModeration
+        | Omit = omit,
+        duration: int | Literal[5, 10] | Literal[4, 6, 8] | Literal[8] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
         return self._post(
             "/v1/image_to_video",
             body=maybe_transform(
@@ -171,25 +331,15 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         """
         return AsyncImageToVideoResourceWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         *,
-        model: Literal["gen4_turbo", "gen3a_turbo", "veo3.1", "veo3.1_fast", "veo3"],
-        prompt_image: Union[str, Iterable[image_to_video_create_params.PromptImagePromptImage]],
-        ratio: Literal[
-            "1280:720",
-            "720:1280",
-            "1104:832",
-            "832:1104",
-            "960:960",
-            "1584:672",
-            "1280:768",
-            "768:1280",
-            "1080:1920",
-            "1920:1080",
-        ],
-        content_moderation: image_to_video_create_params.ContentModeration | Omit = omit,
-        duration: Literal[2, 3, 4, 5, 6, 7, 8, 9, 10] | Omit = omit,
+        model: Literal["gen4_turbo"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]],
+        ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"],
+        content_moderation: image_to_video_create_params.Gen4TurboContentModeration | Omit = omit,
+        duration: int | Omit = omit,
         prompt_text: str | Omit = omit,
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -200,47 +350,16 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImageToVideoCreateResponse:
         """
-        This endpoint will start a new task to generate a video from an image prompt.
+        This endpoint will start a new task to generate a video from an image.
 
         Args:
-          model: The model variant to use.
-
-          prompt_image: A HTTPS URL or data URI containing an encoded image to be used as the first
-              frame of the generated video. See [our docs](/assets/inputs#images) on image
-              inputs for more information.
+          prompt_image: A HTTPS URL.
 
           ratio: The resolution of the output video.
 
-              `gen4_turbo` supports the following values:
-
-              - `1280:720`
-              - `720:1280`
-              - `1104:832`
-              - `832:1104`
-              - `960:960`
-              - `1584:672`
-
-              `gen3a_turbo` supports the following values:
-
-              - `1280:768`
-              - `768:1280`
-
-              `veo3`, `veo3.1`, `veo3.1_fast` support the following values:
-
-              - `1280:720`
-              - `720:1280`
-              - `1080:1920`
-              - `1920:1080`
-
           content_moderation: Settings that affect the behavior of the content moderation system.
 
-              This field is allowed only for the following model variants: `gen4_turbo`,
-              `gen3a_turbo`
-
-          duration: The number of seconds of duration for the output video. `veo3` requires a
-              duration of 8. `veo3.1` and `veo3.1_fast` require a duration of 4, 6, or 8.
-              `gen3a_turbo` requires a duration of 5 or 10. `gen4_turbo` must specify a
-              duration of 2-10 seconds.
+          duration: The number of seconds of duration for the output video.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
@@ -257,6 +376,207 @@ class AsyncImageToVideoResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["gen3a_turbo"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Gen3aTurboPromptImagePromptImage]],
+        prompt_text: str,
+        content_moderation: image_to_video_create_params.Gen3aTurboContentModeration | Omit = omit,
+        duration: Literal[5, 10] | Omit = omit,
+        ratio: Literal["768:1280", "1280:768"] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: A HTTPS URL.
+
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          content_moderation: Settings that affect the behavior of the content moderation system.
+
+          duration: The duration of the output video in seconds.
+
+          ratio: The resolution of the output video.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["veo3.1"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]],
+        ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        duration: Literal[4, 6, 8] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: You may specify an image to use as the first frame of the output video, or an
+              array with a first frame and optionally a last frame. This model does not
+              support generating with only a last frame.
+
+          ratio: The resolution of the output video.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["veo3.1_fast"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]],
+        ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        duration: Literal[4, 6, 8] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: You may specify an image to use as the first frame of the output video, or an
+              array with a first frame and optionally a last frame. This model does not
+              support generating with only a last frame.
+
+          ratio: The resolution of the output video.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        duration: Literal[8],
+        model: Literal["veo3"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Veo3PromptImagePromptImage]],
+        ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        prompt_text: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          duration: The number of seconds of duration for the output video.
+
+          prompt_image: A HTTPS URL.
+
+          ratio: The resolution of the output video.
+
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["model", "prompt_image", "ratio"],
+        ["model", "prompt_image", "prompt_text"],
+        ["duration", "model", "prompt_image", "ratio"],
+    )
+    async def create(
+        self,
+        *,
+        model: Literal["gen4_turbo"]
+        | Literal["gen3a_turbo"]
+        | Literal["veo3.1"]
+        | Literal["veo3.1_fast"]
+        | Literal["veo3"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]],
+        ratio: Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
+        | Literal["768:1280", "1280:768"]
+        | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
+        | Omit = omit,
+        content_moderation: image_to_video_create_params.Gen4TurboContentModeration
+        | image_to_video_create_params.Gen3aTurboContentModeration
+        | Omit = omit,
+        duration: int | Literal[5, 10] | Literal[4, 6, 8] | Literal[8] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
         return await self._post(
             "/v1/image_to_video",
             body=await async_maybe_transform(
