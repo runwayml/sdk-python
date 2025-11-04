@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.21.0 (2025-11-04)
+
+Full Changelog: [v3.20.1...v3.21.0](https://github.com/runwayml/sdk-python/compare/v3.20.1...v3.21.0)
+
+### Features
+
+* **api:** Resolve missing prompt_image unions ([c5dca58](https://github.com/runwayml/sdk-python/commit/c5dca58de0841888e096217dbf6f376562514caf))
+* **api:** Update discriminated union schema ([65b09c3](https://github.com/runwayml/sdk-python/commit/65b09c3799565c3f730c1ad5df75257a6c11f6fa))
+* **client:** Resolve i2v overload return type conflict ([17a5eb8](https://github.com/runwayml/sdk-python/commit/17a5eb8c8452e124587ae690f8291fa8565b61bf))
+* **client:** Resolve t2v overload return type conflict ([dfdf65b](https://github.com/runwayml/sdk-python/commit/dfdf65be76d9d45acfc4112abd8a77508bbbea3e))
+
+
+### Chores
+
+* **internal/tests:** avoid race condition with implicit client cleanup ([0c8aaf7](https://github.com/runwayml/sdk-python/commit/0c8aaf7ac787b1be0144999ab0678ee6623adc3e))
+* **internal:** grammar fix (it's -&gt; its) ([ca4ee8d](https://github.com/runwayml/sdk-python/commit/ca4ee8d67eb050b12aad828c36a0dae1d7121287))
+
 ## 3.20.1 (2025-10-30)
 
 Full Changelog: [v3.20.0...v3.20.1](https://github.com/runwayml/sdk-python/compare/v3.20.0...v3.20.1)
