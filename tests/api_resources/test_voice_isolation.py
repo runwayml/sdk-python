@@ -20,7 +20,7 @@ class TestVoiceIsolation:
     @parametrize
     def test_method_create(self, client: RunwayML) -> None:
         voice_isolation = client.voice_isolation.create(
-            audio_uri="data:audio/J!",
+            audio_uri="https://example.com/audio.mp3",
             model="eleven_voice_isolation",
         )
         assert_matches_type(VoiceIsolationCreateResponse, voice_isolation, path=["response"])
@@ -28,7 +28,7 @@ class TestVoiceIsolation:
     @parametrize
     def test_raw_response_create(self, client: RunwayML) -> None:
         response = client.voice_isolation.with_raw_response.create(
-            audio_uri="data:audio/J!",
+            audio_uri="https://example.com/audio.mp3",
             model="eleven_voice_isolation",
         )
 
@@ -40,7 +40,7 @@ class TestVoiceIsolation:
     @parametrize
     def test_streaming_response_create(self, client: RunwayML) -> None:
         with client.voice_isolation.with_streaming_response.create(
-            audio_uri="data:audio/J!",
+            audio_uri="https://example.com/audio.mp3",
             model="eleven_voice_isolation",
         ) as response:
             assert not response.is_closed
@@ -60,7 +60,7 @@ class TestAsyncVoiceIsolation:
     @parametrize
     async def test_method_create(self, async_client: AsyncRunwayML) -> None:
         voice_isolation = await async_client.voice_isolation.create(
-            audio_uri="data:audio/J!",
+            audio_uri="https://example.com/audio.mp3",
             model="eleven_voice_isolation",
         )
         assert_matches_type(VoiceIsolationCreateResponse, voice_isolation, path=["response"])
@@ -68,7 +68,7 @@ class TestAsyncVoiceIsolation:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.voice_isolation.with_raw_response.create(
-            audio_uri="data:audio/J!",
+            audio_uri="https://example.com/audio.mp3",
             model="eleven_voice_isolation",
         )
 
@@ -80,7 +80,7 @@ class TestAsyncVoiceIsolation:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncRunwayML) -> None:
         async with async_client.voice_isolation.with_streaming_response.create(
-            audio_uri="data:audio/J!",
+            audio_uri="https://example.com/audio.mp3",
             model="eleven_voice_isolation",
         ) as response:
             assert not response.is_closed

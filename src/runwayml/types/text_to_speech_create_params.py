@@ -19,7 +19,7 @@ class TextToSpeechCreateParams(TypedDict, total=False):
     """
 
     voice: Required[Voice]
-    """The voice to use for the generated speech."""
+    """A voice preset from the RunwayML API."""
 
 
 class Voice(TypedDict, total=False):

@@ -28,7 +28,10 @@ class CharacterPerformanceCreateParams(TypedDict, total=False):
     model: Required[Literal["act_two"]]
 
     reference: Required[Reference]
-    """The reference video containing the performance to apply to the character."""
+    """
+    A video of a person performing in the manner that you would like your character
+    to perform. The video must be between 3 and 30 seconds in duration.
+    """
 
     body_control: Annotated[bool, PropertyInfo(alias="bodyControl")]
     """A boolean indicating whether to enable body control.
@@ -50,20 +53,26 @@ class CharacterPerformanceCreateParams(TypedDict, total=False):
     """The resolution of the output video."""
 
     seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
+    """
 
 
 class CharacterImage(TypedDict, total=False):
     type: Required[Literal["image"]]
 
     uri: Required[str]
-    """A data URI containing an encoded image."""
+    """A HTTPS URL."""
 
 
 class CharacterVideo(TypedDict, total=False):
     type: Required[Literal["video"]]
 
     uri: Required[str]
-    """A data URI containing an encoded video."""
+    """A HTTPS URL."""
 
 
 Character: TypeAlias = Union[CharacterImage, CharacterVideo]
@@ -73,8 +82,12 @@ class Reference(TypedDict, total=False):
     type: Required[Literal["video"]]
 
     uri: Required[str]
-    """A data URI containing an encoded video."""
+    """A HTTPS URL."""
 
 
 class ContentModeration(TypedDict, total=False):
     public_figure_threshold: Annotated[Literal["auto", "low"], PropertyInfo(alias="publicFigureThreshold")]
+    """
+    When set to `low`, the content moderation system will be less strict about
+    preventing generations that include recognizable public figures.
+    """

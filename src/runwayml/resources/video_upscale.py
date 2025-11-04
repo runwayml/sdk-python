@@ -67,11 +67,7 @@ class VideoUpscaleResource(SyncAPIResource):
         by a factor of 4X, capped at a maximum of 4096px along each side.
 
         Args:
-          model: The model variant to use.
-
-          video_uri: A HTTPS URL pointing to a video or a data URI containing a video. The video must
-              be less than 4096px on each side. The video duration may not exceed 40 seconds.
-              See [our docs](/assets/inputs#videos) on video inputs for more information.
+          video_uri: A HTTPS URL.
 
           extra_headers: Send extra headers
 
@@ -135,11 +131,7 @@ class AsyncVideoUpscaleResource(AsyncAPIResource):
         by a factor of 4X, capped at a maximum of 4096px along each side.
 
         Args:
-          model: The model variant to use.
-
-          video_uri: A HTTPS URL pointing to a video or a data URI containing a video. The video must
-              be less than 4096px on each side. The video duration may not exceed 40 seconds.
-              See [our docs](/assets/inputs#videos) on video inputs for more information.
+          video_uri: A HTTPS URL.
 
           extra_headers: Send extra headers
 

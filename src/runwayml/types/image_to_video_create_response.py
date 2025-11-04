@@ -7,7 +7,3 @@ __all__ = ["ImageToVideoCreateResponse"]
 
 class ImageToVideoCreateResponse(BaseModel):
     id: str
-    """The ID of the newly created task.
-
-    Use this ID to query the task status and retrieve the generated video.
-    """

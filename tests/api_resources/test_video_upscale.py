@@ -21,7 +21,7 @@ class TestVideoUpscale:
     def test_method_create(self, client: RunwayML) -> None:
         video_upscale = client.video_upscale.create(
             model="upscale_v1",
-            video_uri="https://example.com",
+            video_uri="https://example.com/video.mp4",
         )
         assert_matches_type(VideoUpscaleCreateResponse, video_upscale, path=["response"])
 
@@ -29,7 +29,7 @@ class TestVideoUpscale:
     def test_raw_response_create(self, client: RunwayML) -> None:
         response = client.video_upscale.with_raw_response.create(
             model="upscale_v1",
-            video_uri="https://example.com",
+            video_uri="https://example.com/video.mp4",
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestVideoUpscale:
     def test_streaming_response_create(self, client: RunwayML) -> None:
         with client.video_upscale.with_streaming_response.create(
             model="upscale_v1",
-            video_uri="https://example.com",
+            video_uri="https://example.com/video.mp4",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,7 +61,7 @@ class TestAsyncVideoUpscale:
     async def test_method_create(self, async_client: AsyncRunwayML) -> None:
         video_upscale = await async_client.video_upscale.create(
             model="upscale_v1",
-            video_uri="https://example.com",
+            video_uri="https://example.com/video.mp4",
         )
         assert_matches_type(VideoUpscaleCreateResponse, video_upscale, path=["response"])
 
@@ -69,7 +69,7 @@ class TestAsyncVideoUpscale:
     async def test_raw_response_create(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.video_upscale.with_raw_response.create(
             model="upscale_v1",
-            video_uri="https://example.com",
+            video_uri="https://example.com/video.mp4",
         )
 
         assert response.is_closed is True
@@ -81,7 +81,7 @@ class TestAsyncVideoUpscale:
     async def test_streaming_response_create(self, async_client: AsyncRunwayML) -> None:
         async with async_client.video_upscale.with_streaming_response.create(
             model="upscale_v1",
-            video_uri="https://example.com",
+            video_uri="https://example.com/video.mp4",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
