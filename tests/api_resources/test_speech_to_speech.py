@@ -22,7 +22,7 @@ class TestSpeechToSpeech:
         speech_to_speech = client.speech_to_speech.create(
             media={
                 "type": "audio",
-                "uri": "data:audio/J!",
+                "uri": "https://example.com/file",
             },
             model="eleven_multilingual_sts_v2",
             voice={
@@ -37,7 +37,7 @@ class TestSpeechToSpeech:
         speech_to_speech = client.speech_to_speech.create(
             media={
                 "type": "audio",
-                "uri": "data:audio/J!",
+                "uri": "https://example.com/file",
             },
             model="eleven_multilingual_sts_v2",
             voice={
@@ -53,7 +53,7 @@ class TestSpeechToSpeech:
         response = client.speech_to_speech.with_raw_response.create(
             media={
                 "type": "audio",
-                "uri": "data:audio/J!",
+                "uri": "https://example.com/file",
             },
             model="eleven_multilingual_sts_v2",
             voice={
@@ -72,7 +72,7 @@ class TestSpeechToSpeech:
         with client.speech_to_speech.with_streaming_response.create(
             media={
                 "type": "audio",
-                "uri": "data:audio/J!",
+                "uri": "https://example.com/file",
             },
             model="eleven_multilingual_sts_v2",
             voice={
@@ -99,7 +99,7 @@ class TestAsyncSpeechToSpeech:
         speech_to_speech = await async_client.speech_to_speech.create(
             media={
                 "type": "audio",
-                "uri": "data:audio/J!",
+                "uri": "https://example.com/file",
             },
             model="eleven_multilingual_sts_v2",
             voice={
@@ -114,7 +114,7 @@ class TestAsyncSpeechToSpeech:
         speech_to_speech = await async_client.speech_to_speech.create(
             media={
                 "type": "audio",
-                "uri": "data:audio/J!",
+                "uri": "https://example.com/file",
             },
             model="eleven_multilingual_sts_v2",
             voice={
@@ -130,7 +130,7 @@ class TestAsyncSpeechToSpeech:
         response = await async_client.speech_to_speech.with_raw_response.create(
             media={
                 "type": "audio",
-                "uri": "data:audio/J!",
+                "uri": "https://example.com/file",
             },
             model="eleven_multilingual_sts_v2",
             voice={
@@ -149,7 +149,7 @@ class TestAsyncSpeechToSpeech:
         async with async_client.speech_to_speech.with_streaming_response.create(
             media={
                 "type": "audio",
-                "uri": "data:audio/J!",
+                "uri": "https://example.com/file",
             },
             model="eleven_multilingual_sts_v2",
             voice={

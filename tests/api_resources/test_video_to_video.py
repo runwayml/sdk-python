@@ -21,9 +21,9 @@ class TestVideoToVideo:
     def test_method_create(self, client: RunwayML) -> None:
         video_to_video = client.video_to_video.create(
             model="gen4_aleph",
-            prompt_text="promptText",
+            prompt_text="x",
             ratio="1280:720",
-            video_uri="https://example.com",
+            video_uri="https://example.com/video.mp4",
         )
         assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
 
@@ -31,14 +31,14 @@ class TestVideoToVideo:
     def test_method_create_with_all_params(self, client: RunwayML) -> None:
         video_to_video = client.video_to_video.create(
             model="gen4_aleph",
-            prompt_text="promptText",
+            prompt_text="x",
             ratio="1280:720",
-            video_uri="https://example.com",
+            video_uri="https://example.com/video.mp4",
             content_moderation={"public_figure_threshold": "auto"},
             references=[
                 {
                     "type": "image",
-                    "uri": "https://example.com",
+                    "uri": "https://example.com/file",
                 }
             ],
             seed=0,
@@ -49,9 +49,9 @@ class TestVideoToVideo:
     def test_raw_response_create(self, client: RunwayML) -> None:
         response = client.video_to_video.with_raw_response.create(
             model="gen4_aleph",
-            prompt_text="promptText",
+            prompt_text="x",
             ratio="1280:720",
-            video_uri="https://example.com",
+            video_uri="https://example.com/video.mp4",
         )
 
         assert response.is_closed is True
@@ -63,9 +63,9 @@ class TestVideoToVideo:
     def test_streaming_response_create(self, client: RunwayML) -> None:
         with client.video_to_video.with_streaming_response.create(
             model="gen4_aleph",
-            prompt_text="promptText",
+            prompt_text="x",
             ratio="1280:720",
-            video_uri="https://example.com",
+            video_uri="https://example.com/video.mp4",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -85,9 +85,9 @@ class TestAsyncVideoToVideo:
     async def test_method_create(self, async_client: AsyncRunwayML) -> None:
         video_to_video = await async_client.video_to_video.create(
             model="gen4_aleph",
-            prompt_text="promptText",
+            prompt_text="x",
             ratio="1280:720",
-            video_uri="https://example.com",
+            video_uri="https://example.com/video.mp4",
         )
         assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
 
@@ -95,14 +95,14 @@ class TestAsyncVideoToVideo:
     async def test_method_create_with_all_params(self, async_client: AsyncRunwayML) -> None:
         video_to_video = await async_client.video_to_video.create(
             model="gen4_aleph",
-            prompt_text="promptText",
+            prompt_text="x",
             ratio="1280:720",
-            video_uri="https://example.com",
+            video_uri="https://example.com/video.mp4",
             content_moderation={"public_figure_threshold": "auto"},
             references=[
                 {
                     "type": "image",
-                    "uri": "https://example.com",
+                    "uri": "https://example.com/file",
                 }
             ],
             seed=0,
@@ -113,9 +113,9 @@ class TestAsyncVideoToVideo:
     async def test_raw_response_create(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.video_to_video.with_raw_response.create(
             model="gen4_aleph",
-            prompt_text="promptText",
+            prompt_text="x",
             ratio="1280:720",
-            video_uri="https://example.com",
+            video_uri="https://example.com/video.mp4",
         )
 
         assert response.is_closed is True
@@ -127,9 +127,9 @@ class TestAsyncVideoToVideo:
     async def test_streaming_response_create(self, async_client: AsyncRunwayML) -> None:
         async with async_client.video_to_video.with_streaming_response.create(
             model="gen4_aleph",
-            prompt_text="promptText",
+            prompt_text="x",
             ratio="1280:720",
-            video_uri="https://example.com",
+            video_uri="https://example.com/video.mp4",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

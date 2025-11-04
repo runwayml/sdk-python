@@ -12,27 +12,29 @@ __all__ = ["SpeechToSpeechCreateParams", "Media", "MediaAudio", "MediaVideo", "V
 
 class SpeechToSpeechCreateParams(TypedDict, total=False):
     media: Required[Media]
+    """The media to use as a source for the dialogue for the generated speech."""
 
     model: Required[Literal["eleven_multilingual_sts_v2"]]
 
     voice: Required[Voice]
-    """The voice to use for the generated speech."""
+    """A voice preset from the RunwayML API."""
 
     remove_background_noise: Annotated[bool, PropertyInfo(alias="removeBackgroundNoise")]
+    """Whether to remove background noise from the generated speech."""
 
 
 class MediaAudio(TypedDict, total=False):
     type: Required[Literal["audio"]]
 
     uri: Required[str]
-    """A data URI containing encoded audio."""
+    """A HTTPS URL."""
 
 
 class MediaVideo(TypedDict, total=False):
     type: Required[Literal["video"]]
 
     uri: Required[str]
-    """A data URI containing an encoded video."""
+    """A HTTPS URL."""
 
 
 Media: TypeAlias = Union[MediaAudio, MediaVideo]

@@ -22,12 +22,12 @@ class TestCharacterPerformance:
         character_performance = client.character_performance.create(
             character={
                 "type": "image",
-                "uri": "data:image/J!",
+                "uri": "https://example.com/file",
             },
             model="act_two",
             reference={
                 "type": "video",
-                "uri": "data:video/J!",
+                "uri": "https://example.com/reference-performance.mp4",
             },
         )
         assert_matches_type(CharacterPerformanceCreateResponse, character_performance, path=["response"])
@@ -37,16 +37,16 @@ class TestCharacterPerformance:
         character_performance = client.character_performance.create(
             character={
                 "type": "image",
-                "uri": "data:image/J!",
+                "uri": "https://example.com/file",
             },
             model="act_two",
             reference={
                 "type": "video",
-                "uri": "data:video/J!",
+                "uri": "https://example.com/reference-performance.mp4",
             },
             body_control=True,
             content_moderation={"public_figure_threshold": "auto"},
-            expression_intensity=1,
+            expression_intensity=3,
             ratio="1280:720",
             seed=0,
         )
@@ -57,12 +57,12 @@ class TestCharacterPerformance:
         response = client.character_performance.with_raw_response.create(
             character={
                 "type": "image",
-                "uri": "data:image/J!",
+                "uri": "https://example.com/file",
             },
             model="act_two",
             reference={
                 "type": "video",
-                "uri": "data:video/J!",
+                "uri": "https://example.com/reference-performance.mp4",
             },
         )
 
@@ -76,12 +76,12 @@ class TestCharacterPerformance:
         with client.character_performance.with_streaming_response.create(
             character={
                 "type": "image",
-                "uri": "data:image/J!",
+                "uri": "https://example.com/file",
             },
             model="act_two",
             reference={
                 "type": "video",
-                "uri": "data:video/J!",
+                "uri": "https://example.com/reference-performance.mp4",
             },
         ) as response:
             assert not response.is_closed
@@ -103,12 +103,12 @@ class TestAsyncCharacterPerformance:
         character_performance = await async_client.character_performance.create(
             character={
                 "type": "image",
-                "uri": "data:image/J!",
+                "uri": "https://example.com/file",
             },
             model="act_two",
             reference={
                 "type": "video",
-                "uri": "data:video/J!",
+                "uri": "https://example.com/reference-performance.mp4",
             },
         )
         assert_matches_type(CharacterPerformanceCreateResponse, character_performance, path=["response"])
@@ -118,16 +118,16 @@ class TestAsyncCharacterPerformance:
         character_performance = await async_client.character_performance.create(
             character={
                 "type": "image",
-                "uri": "data:image/J!",
+                "uri": "https://example.com/file",
             },
             model="act_two",
             reference={
                 "type": "video",
-                "uri": "data:video/J!",
+                "uri": "https://example.com/reference-performance.mp4",
             },
             body_control=True,
             content_moderation={"public_figure_threshold": "auto"},
-            expression_intensity=1,
+            expression_intensity=3,
             ratio="1280:720",
             seed=0,
         )
@@ -138,12 +138,12 @@ class TestAsyncCharacterPerformance:
         response = await async_client.character_performance.with_raw_response.create(
             character={
                 "type": "image",
-                "uri": "data:image/J!",
+                "uri": "https://example.com/file",
             },
             model="act_two",
             reference={
                 "type": "video",
-                "uri": "data:video/J!",
+                "uri": "https://example.com/reference-performance.mp4",
             },
         )
 
@@ -157,12 +157,12 @@ class TestAsyncCharacterPerformance:
         async with async_client.character_performance.with_streaming_response.create(
             character={
                 "type": "image",
-                "uri": "data:image/J!",
+                "uri": "https://example.com/file",
             },
             model="act_two",
             reference={
                 "type": "video",
-                "uri": "data:video/J!",
+                "uri": "https://example.com/reference-performance.mp4",
             },
         ) as response:
             assert not response.is_closed

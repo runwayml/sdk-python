@@ -71,15 +71,12 @@ class VideoToVideoResource(SyncAPIResource):
         This endpoint will start a new task to generate a video from a video.
 
         Args:
-          model: The model variant to use.
-
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
 
           ratio: The resolution of the output video.
 
-          video_uri: A HTTPS URL pointing to a video or a data URI containing a video. See
-              [our docs](/assets/inputs#videos) on video inputs for more information.
+          video_uri: A HTTPS URL.
 
           content_moderation: Settings that affect the behavior of the content moderation system.
 
@@ -160,15 +157,12 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         This endpoint will start a new task to generate a video from a video.
 
         Args:
-          model: The model variant to use.
-
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
 
           ratio: The resolution of the output video.
 
-          video_uri: A HTTPS URL pointing to a video or a data URI containing a video. See
-              [our docs](/assets/inputs#videos) on video inputs for more information.
+          video_uri: A HTTPS URL.
 
           content_moderation: Settings that affect the behavior of the content moderation system.
 

@@ -738,7 +738,7 @@ class TestRunwayML:
 
         with pytest.raises(APITimeoutError):
             client.image_to_video.with_streaming_response.create(
-                model="gen4_turbo", prompt_image="https://example.com", ratio="1280:720"
+                model="gen4_turbo", prompt_image="https://example.com/file", ratio="1280:720"
             ).__enter__()
 
         assert _get_open_connections(client) == 0
@@ -750,7 +750,7 @@ class TestRunwayML:
 
         with pytest.raises(APIStatusError):
             client.image_to_video.with_streaming_response.create(
-                model="gen4_turbo", prompt_image="https://example.com", ratio="1280:720"
+                model="gen4_turbo", prompt_image="https://example.com/file", ratio="1280:720"
             ).__enter__()
         assert _get_open_connections(client) == 0
 
@@ -781,7 +781,7 @@ class TestRunwayML:
         respx_mock.post("/v1/image_to_video").mock(side_effect=retry_handler)
 
         response = client.image_to_video.with_raw_response.create(
-            model="gen4_turbo", prompt_image="https://example.com", ratio="1280:720"
+            model="gen4_turbo", prompt_image="https://example.com/file", ratio="1280:720"
         )
 
         assert response.retries_taken == failures_before_success
@@ -808,7 +808,7 @@ class TestRunwayML:
 
         response = client.image_to_video.with_raw_response.create(
             model="gen4_turbo",
-            prompt_image="https://example.com",
+            prompt_image="https://example.com/file",
             ratio="1280:720",
             extra_headers={"x-stainless-retry-count": Omit()},
         )
@@ -836,7 +836,7 @@ class TestRunwayML:
 
         response = client.image_to_video.with_raw_response.create(
             model="gen4_turbo",
-            prompt_image="https://example.com",
+            prompt_image="https://example.com/file",
             ratio="1280:720",
             extra_headers={"x-stainless-retry-count": "42"},
         )
@@ -1588,7 +1588,7 @@ class TestAsyncRunwayML:
 
         with pytest.raises(APITimeoutError):
             await async_client.image_to_video.with_streaming_response.create(
-                model="gen4_turbo", prompt_image="https://example.com", ratio="1280:720"
+                model="gen4_turbo", prompt_image="https://example.com/file", ratio="1280:720"
             ).__aenter__()
 
         assert _get_open_connections(async_client) == 0
@@ -1602,7 +1602,7 @@ class TestAsyncRunwayML:
 
         with pytest.raises(APIStatusError):
             await async_client.image_to_video.with_streaming_response.create(
-                model="gen4_turbo", prompt_image="https://example.com", ratio="1280:720"
+                model="gen4_turbo", prompt_image="https://example.com/file", ratio="1280:720"
             ).__aenter__()
         assert _get_open_connections(async_client) == 0
 
@@ -1633,7 +1633,7 @@ class TestAsyncRunwayML:
         respx_mock.post("/v1/image_to_video").mock(side_effect=retry_handler)
 
         response = await client.image_to_video.with_raw_response.create(
-            model="gen4_turbo", prompt_image="https://example.com", ratio="1280:720"
+            model="gen4_turbo", prompt_image="https://example.com/file", ratio="1280:720"
         )
 
         assert response.retries_taken == failures_before_success
@@ -1660,7 +1660,7 @@ class TestAsyncRunwayML:
 
         response = await client.image_to_video.with_raw_response.create(
             model="gen4_turbo",
-            prompt_image="https://example.com",
+            prompt_image="https://example.com/file",
             ratio="1280:720",
             extra_headers={"x-stainless-retry-count": Omit()},
         )
@@ -1688,7 +1688,7 @@ class TestAsyncRunwayML:
 
         response = await client.image_to_video.with_raw_response.create(
             model="gen4_turbo",
-            prompt_image="https://example.com",
+            prompt_image="https://example.com/file",
             ratio="1280:720",
             extra_headers={"x-stainless-retry-count": "42"},
         )

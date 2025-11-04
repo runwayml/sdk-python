@@ -3,76 +3,43 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["ImageToVideoCreateParams", "PromptImagePromptImage", "ContentModeration"]
+__all__ = [
+    "ImageToVideoCreateParams",
+    "Gen4Turbo",
+    "Gen4TurboPromptImagePromptImage",
+    "Gen4TurboContentModeration",
+    "Gen3aTurbo",
+    "Gen3aTurboPromptImagePromptImage",
+    "Gen3aTurboContentModeration",
+    "Veo3_1",
+    "Veo3_1PromptImagePromptImage",
+    "Veo3_1Fast",
+    "Veo3_1FastPromptImagePromptImage",
+    "Veo3",
+    "Veo3PromptImagePromptImage",
+]
 
 
-class ImageToVideoCreateParams(TypedDict, total=False):
-    model: Required[Literal["gen4_turbo", "gen3a_turbo", "veo3.1", "veo3.1_fast", "veo3"]]
-    """The model variant to use."""
+class Gen4Turbo(TypedDict, total=False):
+    model: Required[Literal["gen4_turbo"]]
 
-    prompt_image: Required[Annotated[Union[str, Iterable[PromptImagePromptImage]], PropertyInfo(alias="promptImage")]]
-    """
-    A HTTPS URL or data URI containing an encoded image to be used as the first
-    frame of the generated video. See [our docs](/assets/inputs#images) on image
-    inputs for more information.
-    """
-
-    ratio: Required[
-        Literal[
-            "1280:720",
-            "720:1280",
-            "1104:832",
-            "832:1104",
-            "960:960",
-            "1584:672",
-            "1280:768",
-            "768:1280",
-            "1080:1920",
-            "1920:1080",
-        ]
+    prompt_image: Required[
+        Annotated[Union[str, Iterable[Gen4TurboPromptImagePromptImage]], PropertyInfo(alias="promptImage")]
     ]
-    """The resolution of the output video.
+    """A HTTPS URL."""
 
-    `gen4_turbo` supports the following values:
+    ratio: Required[Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]]
+    """The resolution of the output video."""
 
-    - `1280:720`
-    - `720:1280`
-    - `1104:832`
-    - `832:1104`
-    - `960:960`
-    - `1584:672`
+    content_moderation: Annotated[Gen4TurboContentModeration, PropertyInfo(alias="contentModeration")]
+    """Settings that affect the behavior of the content moderation system."""
 
-    `gen3a_turbo` supports the following values:
-
-    - `1280:768`
-    - `768:1280`
-
-    `veo3`, `veo3.1`, `veo3.1_fast` support the following values:
-
-    - `1280:720`
-    - `720:1280`
-    - `1080:1920`
-    - `1920:1080`
-    """
-
-    content_moderation: Annotated[ContentModeration, PropertyInfo(alias="contentModeration")]
-    """Settings that affect the behavior of the content moderation system.
-
-    This field is allowed only for the following model variants: `gen4_turbo`,
-    `gen3a_turbo`
-    """
-
-    duration: Literal[2, 3, 4, 5, 6, 7, 8, 9, 10]
-    """The number of seconds of duration for the output video.
-
-    `veo3` requires a duration of 8. `veo3.1` and `veo3.1_fast` require a duration
-    of 4, 6, or 8. `gen3a_turbo` requires a duration of 5 or 10. `gen4_turbo` must
-    specify a duration of 2-10 seconds.
-    """
+    duration: int
+    """The number of seconds of duration for the output video."""
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """A non-empty string up to 1000 characters (measured in UTF-16 code units).
@@ -89,27 +56,181 @@ class ImageToVideoCreateParams(TypedDict, total=False):
     """
 
 
-class PromptImagePromptImage(TypedDict, total=False):
-    position: Required[Literal["first", "last"]]
+class Gen4TurboPromptImagePromptImage(TypedDict, total=False):
+    position: Required[Literal["first"]]
     """The position of the image in the output video.
 
-    "first" will use the image as the first frame of the video, "last" will use the
-    image as the last frame of the video.
-
-    "last" is currently supported for `gen3a_turbo`, `veo3.1`, and `veo3.1_fast`
-    only. `veo3.1` and `veo3.1_fast` require a `first` frame to be provided.
+    "first" will use the image as the first frame of the video.
     """
 
     uri: Required[str]
-    """A HTTPS URL or data URI containing an encoded image.
-
-    See [our docs](/assets/inputs#images) on image inputs for more information.
-    """
+    """A HTTPS URL."""
 
 
-class ContentModeration(TypedDict, total=False):
+class Gen4TurboContentModeration(TypedDict, total=False):
     public_figure_threshold: Annotated[Literal["auto", "low"], PropertyInfo(alias="publicFigureThreshold")]
     """
     When set to `low`, the content moderation system will be less strict about
     preventing generations that include recognizable public figures.
     """
+
+
+class Gen3aTurbo(TypedDict, total=False):
+    model: Required[Literal["gen3a_turbo"]]
+
+    prompt_image: Required[
+        Annotated[Union[str, Iterable[Gen3aTurboPromptImagePromptImage]], PropertyInfo(alias="promptImage")]
+    ]
+    """A HTTPS URL."""
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty string up to 1000 characters (measured in UTF-16 code units).
+
+    This should describe in detail what should appear in the output.
+    """
+
+    content_moderation: Annotated[Gen3aTurboContentModeration, PropertyInfo(alias="contentModeration")]
+    """Settings that affect the behavior of the content moderation system."""
+
+    duration: Literal[5, 10]
+    """The duration of the output video in seconds."""
+
+    ratio: Literal["768:1280", "1280:768"]
+    """The resolution of the output video."""
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
+    """
+
+
+class Gen3aTurboPromptImagePromptImage(TypedDict, total=False):
+    position: Required[Literal["first", "last"]]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame of the video, "last" will use the
+    image as the last frame of the video.
+    """
+
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
+class Gen3aTurboContentModeration(TypedDict, total=False):
+    public_figure_threshold: Annotated[Literal["auto", "low"], PropertyInfo(alias="publicFigureThreshold")]
+    """
+    When set to `low`, the content moderation system will be less strict about
+    preventing generations that include recognizable public figures.
+    """
+
+
+class Veo3_1(TypedDict, total=False):
+    model: Required[Literal["veo3.1"]]
+
+    prompt_image: Required[
+        Annotated[Union[str, Iterable[Veo3_1PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
+    ]
+    """
+    You may specify an image to use as the first frame of the output video, or an
+    array with a first frame and optionally a last frame. This model does not
+    support generating with only a last frame.
+    """
+
+    ratio: Required[Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]]
+    """The resolution of the output video."""
+
+    duration: Literal[4, 6, 8]
+    """The number of seconds of duration for the output video."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """A non-empty string up to 1000 characters (measured in UTF-16 code units).
+
+    This should describe in detail what should appear in the output.
+    """
+
+
+class Veo3_1PromptImagePromptImage(TypedDict, total=False):
+    position: Required[Literal["first", "last"]]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame of the video, "last" will use the
+    image as the last frame of the video.
+    """
+
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
+class Veo3_1Fast(TypedDict, total=False):
+    model: Required[Literal["veo3.1_fast"]]
+
+    prompt_image: Required[
+        Annotated[Union[str, Iterable[Veo3_1FastPromptImagePromptImage]], PropertyInfo(alias="promptImage")]
+    ]
+    """
+    You may specify an image to use as the first frame of the output video, or an
+    array with a first frame and optionally a last frame. This model does not
+    support generating with only a last frame.
+    """
+
+    ratio: Required[Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]]
+    """The resolution of the output video."""
+
+    duration: Literal[4, 6, 8]
+    """The number of seconds of duration for the output video."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """A non-empty string up to 1000 characters (measured in UTF-16 code units).
+
+    This should describe in detail what should appear in the output.
+    """
+
+
+class Veo3_1FastPromptImagePromptImage(TypedDict, total=False):
+    position: Required[Literal["first", "last"]]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame of the video, "last" will use the
+    image as the last frame of the video.
+    """
+
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
+class Veo3(TypedDict, total=False):
+    duration: Required[Literal[8]]
+    """The number of seconds of duration for the output video."""
+
+    model: Required[Literal["veo3"]]
+
+    prompt_image: Required[
+        Annotated[Union[str, Iterable[Veo3PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
+    ]
+    """A HTTPS URL."""
+
+    ratio: Required[Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]]
+    """The resolution of the output video."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """A non-empty string up to 1000 characters (measured in UTF-16 code units).
+
+    This should describe in detail what should appear in the output.
+    """
+
+
+class Veo3PromptImagePromptImage(TypedDict, total=False):
+    position: Required[Literal["first"]]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame of the video.
+    """
+
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
+ImageToVideoCreateParams: TypeAlias = Union[Gen4Turbo, Gen3aTurbo, Veo3_1, Veo3_1Fast, Veo3]

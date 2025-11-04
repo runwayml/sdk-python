@@ -69,7 +69,7 @@ class TextToSpeechResource(SyncAPIResource):
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
 
-          voice: The voice to use for the generated speech.
+          voice: A voice preset from the RunwayML API.
 
           extra_headers: Send extra headers
 
@@ -136,7 +136,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
 
-          voice: The voice to use for the generated speech.
+          voice: A voice preset from the RunwayML API.
 
           extra_headers: Send extra headers
 
