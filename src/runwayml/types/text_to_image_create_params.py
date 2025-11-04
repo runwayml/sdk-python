@@ -119,9 +119,9 @@ class ContentModeration(TypedDict, total=False):
 class ReferenceImage(TypedDict, total=False):
     uri: Required[str]
     """
-    A HTTPS URL or data URI containing an encoded image to be used as reference for
-    the generated output image. See [our docs](/assets/inputs#images) on image
-    inputs for more information.
+    A HTTPS URL, Runway or data URI containing an encoded image to be used as
+    reference for the generated output image. See [our docs](/assets/inputs#images)
+    on image inputs for more information.
     """
 
     tag: str
