@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.22.0 (2025-11-06)
+
+Full Changelog: [v3.21.0...v3.22.0](https://github.com/runwayml/sdk-python/compare/v3.21.0...v3.22.0)
+
+### Features
+
+* **api:** Support ephemeral uploads ([d310ee0](https://github.com/runwayml/sdk-python/commit/d310ee05c5a315209504228e6e06c2c24ef09202))
+
 ## 3.21.0 (2025-11-04)
 
 Full Changelog: [v3.20.1...v3.21.0](https://github.com/runwayml/sdk-python/compare/v3.20.1...v3.21.0)
