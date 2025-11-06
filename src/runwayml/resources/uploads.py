@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import io
 import os
 from typing import Literal, Mapping
 
@@ -54,13 +53,20 @@ def _infer_filename(file: FileTypes) -> str:
     if isinstance(file_content, os.PathLike):
         return os.path.basename(str(file_content))
 
-    # If it's an IO object, try to get the name attribute
-    if isinstance(file_content, io.IOBase):
-        name = getattr(file_content, "name", None)
-        if name is not None and isinstance(name, str):
-            return str(os.path.basename(name))
+    # If it's bytes, we cannot infer
+    if isinstance(file_content, bytes):
+        raise ValueError(
+            "Cannot infer filename from file. Please use the tuple format: "
+            "(filename, file_content) where filename is a string. "
+            "For example: ('myfile.jpg', file_content)"
+        )
 
-    # If it's bytes or BytesIO without a name, we cannot infer
+    # If it's an IO object, try to get the name attribute
+    name = getattr(file_content, "name", None)
+    if name is not None and isinstance(name, str):
+        return str(os.path.basename(name))
+
+    # If it's an IO object without a name, we cannot infer
     raise ValueError(
         "Cannot infer filename from file. Please use the tuple format: "
         "(filename, file_content) where filename is a string. "
