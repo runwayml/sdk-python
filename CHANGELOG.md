@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.0.0 (2025-11-11)
+
+Full Changelog: [v3.22.0...v4.0.0](https://github.com/runwayml/sdk-python/compare/v3.22.0...v4.0.0)
+
+### Bug Fixes
+
+* compat with Python 3.14 ([66b332c](https://github.com/runwayml/sdk-python/commit/66b332c6bf56dc3366a469b31c38917a01e4177b))
+
+
+### Chores
+
+* **package:** drop Python 3.8 support ([0bb6132](https://github.com/runwayml/sdk-python/commit/0bb6132256c3d8ce99ca8c206799321e63d7d0ff))
+
 ## 3.22.0 (2025-11-06)
 
 Full Changelog: [v3.21.0...v3.22.0](https://github.com/runwayml/sdk-python/compare/v3.21.0...v3.22.0)
