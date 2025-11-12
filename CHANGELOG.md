@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.0.1 (2025-11-12)
+
+Full Changelog: [v4.0.0...v4.0.1](https://github.com/runwayml/sdk-python/compare/v4.0.0...v4.0.1)
+
+### Bug Fixes
+
+* **compat:** update signatures of `model_dump` and `model_dump_json` for Pydantic v1 ([4404c28](https://github.com/runwayml/sdk-python/commit/4404c281102615ec712ff22248ed53cb376d4bad))
+
 ## 4.0.0 (2025-11-11)
 
 Full Changelog: [v3.22.0...v4.0.0](https://github.com/runwayml/sdk-python/compare/v3.22.0...v4.0.0)
