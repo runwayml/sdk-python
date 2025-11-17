@@ -68,7 +68,7 @@ class SpeechToSpeechResource(SyncAPIResource):
         in audio or video.
 
         Args:
-          media: The media to use as a source for the dialogue for the generated speech.
+          media: An audio file containing dialogue to be processed.
 
           voice: A voice preset from the RunwayML API.
 
@@ -144,7 +144,7 @@ class AsyncSpeechToSpeechResource(AsyncAPIResource):
         in audio or video.
 
         Args:
-          media: The media to use as a source for the dialogue for the generated speech.
+          media: An audio file containing dialogue to be processed.
 
           voice: A voice preset from the RunwayML API.
 

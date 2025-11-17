@@ -2,17 +2,26 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing import Union, Iterable
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["TextToImageCreateParams", "ContentModeration", "ReferenceImage"]
+__all__ = [
+    "TextToImageCreateParams",
+    "Gen4ImageTurbo",
+    "Gen4ImageTurboReferenceImage",
+    "Gen4ImageTurboContentModeration",
+    "Gen4Image",
+    "Gen4ImageContentModeration",
+    "Gen4ImageReferenceImage",
+    "Gemini2_5Flash",
+    "Gemini2_5FlashReferenceImage",
+]
 
 
-class TextToImageCreateParams(TypedDict, total=False):
-    model: Required[Literal["gen4_image_turbo", "gen4_image", "gemini_2.5_flash"]]
-    """The model variant to use."""
+class Gen4ImageTurbo(TypedDict, total=False):
+    model: Required[Literal["gen4_image_turbo"]]
 
     prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
     """A non-empty string up to 1000 characters (measured in UTF-16 code units).
@@ -22,15 +31,15 @@ class TextToImageCreateParams(TypedDict, total=False):
 
     ratio: Required[
         Literal[
-            "1920:1080",
-            "1080:1920",
             "1024:1024",
-            "1360:768",
             "1080:1080",
             "1168:880",
+            "1360:768",
             "1440:1080",
             "1080:1440",
             "1808:768",
+            "1920:1080",
+            "1080:1920",
             "2112:912",
             "1280:720",
             "720:1280",
@@ -38,65 +47,81 @@ class TextToImageCreateParams(TypedDict, total=False):
             "960:720",
             "720:960",
             "1680:720",
-            "1344:768",
-            "768:1344",
-            "1184:864",
-            "864:1184",
-            "1536:672",
-            "832x1248",
-            "1248x832",
-            "896x1152",
-            "1152x896",
         ]
     ]
-    """The resolution of the output image.
+    """The resolution of the output image."""
 
-    `gen4_image_turbo`, `gen4_image` support the following values:
-
-    - `1920:1080`
-    - `1080:1920`
-    - `1024:1024`
-    - `1360:768`
-    - `1080:1080`
-    - `1168:880`
-    - `1440:1080`
-    - `1080:1440`
-    - `1808:768`
-    - `2112:912`
-    - `1280:720`
-    - `720:1280`
-    - `720:720`
-    - `960:720`
-    - `720:960`
-    - `1680:720`
-
-    `gemini_2.5_flash` supports the following values:
-
-    - `1344:768`
-    - `768:1344`
-    - `1024:1024`
-    - `1184:864`
-    - `864:1184`
-    - `1536:672`
-    - `832x1248`
-    - `1248x832`
-    - `896x1152`
-    - `1152x896`
+    reference_images: Required[Annotated[Iterable[Gen4ImageTurboReferenceImage], PropertyInfo(alias="referenceImages")]]
+    """
+    An array of one to three images to be used as references for the generated image
+    output.
     """
 
-    content_moderation: Annotated[ContentModeration, PropertyInfo(alias="contentModeration")]
-    """Settings that affect the behavior of the content moderation system.
+    content_moderation: Annotated[Gen4ImageTurboContentModeration, PropertyInfo(alias="contentModeration")]
+    """Settings that affect the behavior of the content moderation system."""
 
-    This field is allowed only for the following model variants: `gen4_image_turbo`,
-    `gen4_image`
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
     """
 
-    reference_images: Annotated[Iterable[ReferenceImage], PropertyInfo(alias="referenceImages")]
+
+class Gen4ImageTurboReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL."""
+
+    tag: str
+
+
+class Gen4ImageTurboContentModeration(TypedDict, total=False):
+    public_figure_threshold: Annotated[Literal["auto", "low"], PropertyInfo(alias="publicFigureThreshold")]
+    """
+    When set to `low`, the content moderation system will be less strict about
+    preventing generations that include recognizable public figures.
+    """
+
+
+class Gen4Image(TypedDict, total=False):
+    model: Required[Literal["gen4_image"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty string up to 1000 characters (measured in UTF-16 code units).
+
+    This should describe in detail what should appear in the output.
+    """
+
+    ratio: Required[
+        Literal[
+            "1024:1024",
+            "1080:1080",
+            "1168:880",
+            "1360:768",
+            "1440:1080",
+            "1080:1440",
+            "1808:768",
+            "1920:1080",
+            "1080:1920",
+            "2112:912",
+            "1280:720",
+            "720:1280",
+            "720:720",
+            "960:720",
+            "720:960",
+            "1680:720",
+        ]
+    ]
+    """The resolution of the output image."""
+
+    content_moderation: Annotated[Gen4ImageContentModeration, PropertyInfo(alias="contentModeration")]
+    """Settings that affect the behavior of the content moderation system."""
+
+    reference_images: Annotated[Iterable[Gen4ImageReferenceImage], PropertyInfo(alias="referenceImages")]
     """
     An array of up to three images to be used as references for the generated image
     output.
-
-    For `gen4_image_turbo`, _at least one_ reference image is required.
     """
 
     seed: int
@@ -108,7 +133,7 @@ class TextToImageCreateParams(TypedDict, total=False):
     """
 
 
-class ContentModeration(TypedDict, total=False):
+class Gen4ImageContentModeration(TypedDict, total=False):
     public_figure_threshold: Annotated[Literal["auto", "low"], PropertyInfo(alias="publicFigureThreshold")]
     """
     When set to `low`, the content moderation system will be less strict about
@@ -116,18 +141,50 @@ class ContentModeration(TypedDict, total=False):
     """
 
 
-class ReferenceImage(TypedDict, total=False):
+class Gen4ImageReferenceImage(TypedDict, total=False):
     uri: Required[str]
-    """
-    A HTTPS URL, Runway or data URI containing an encoded image to be used as
-    reference for the generated output image. See [our docs](/assets/inputs#images)
-    on image inputs for more information.
-    """
+    """A HTTPS URL."""
 
     tag: str
-    """A name used to refer to the image reference, from 3 to 16 characters in length.
 
-    Tags must be alphanumeric (plus underscores) and start with a letter. You can
-    refer to the reference image's tag in the prompt text with at-mention syntax:
-    `@tag`. Tags are case-sensitive.
+
+class Gemini2_5Flash(TypedDict, total=False):
+    model: Required[Literal["gemini_2.5_flash"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty string up to 1000 characters (measured in UTF-16 code units).
+
+    This should describe in detail what should appear in the output.
     """
+
+    ratio: Required[
+        Literal[
+            "1344:768",
+            "768:1344",
+            "1024:1024",
+            "1184:864",
+            "864:1184",
+            "1536:672",
+            "832:1248",
+            "1248:832",
+            "896:1152",
+            "1152:896",
+        ]
+    ]
+    """The resolution of the output image."""
+
+    reference_images: Annotated[Iterable[Gemini2_5FlashReferenceImage], PropertyInfo(alias="referenceImages")]
+    """
+    An array of up to three images to be used as references for the generated image
+    output.
+    """
+
+
+class Gemini2_5FlashReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL."""
+
+    tag: str
+
+
+TextToImageCreateParams: TypeAlias = Union[Gen4ImageTurbo, Gen4Image, Gemini2_5Flash]

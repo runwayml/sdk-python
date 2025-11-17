@@ -32,6 +32,7 @@ class TestTextToVideo:
             model="veo3.1",
             prompt_text="x",
             ratio="1280:720",
+            audio=True,
             duration=4,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
@@ -79,6 +80,7 @@ class TestTextToVideo:
             model="veo3.1_fast",
             prompt_text="x",
             ratio="1280:720",
+            audio=True,
             duration=4,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
@@ -172,6 +174,7 @@ class TestAsyncTextToVideo:
             model="veo3.1",
             prompt_text="x",
             ratio="1280:720",
+            audio=True,
             duration=4,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
@@ -219,6 +222,7 @@ class TestAsyncTextToVideo:
             model="veo3.1_fast",
             prompt_text="x",
             ratio="1280:720",
+            audio=True,
             duration=4,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
