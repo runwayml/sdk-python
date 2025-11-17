@@ -22,6 +22,9 @@ class Veo3_1(TypedDict, total=False):
     ratio: Required[Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]]
     """The resolution of the output video."""
 
+    audio: bool
+    """Whether to generate audio for the video. Audio inclusion affects pricing."""
+
     duration: Literal[4, 6, 8]
     """The number of seconds of duration for the output video."""
 
@@ -37,6 +40,9 @@ class Veo3_1Fast(TypedDict, total=False):
 
     ratio: Required[Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]]
     """The resolution of the output video."""
+
+    audio: bool
+    """Whether to generate audio for the video. Audio inclusion affects pricing."""
 
     duration: Literal[4, 6, 8]
     """The number of seconds of duration for the output video."""
