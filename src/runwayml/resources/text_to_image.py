@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal
+from typing_extensions import Literal, overload
 
 import httpx
 
 from ..types import text_to_image_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -44,21 +44,22 @@ class TextToImageResource(SyncAPIResource):
         """
         return TextToImageResourceWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         *,
-        model: Literal["gen4_image_turbo", "gen4_image", "gemini_2.5_flash"],
+        model: Literal["gen4_image_turbo"],
         prompt_text: str,
         ratio: Literal[
-            "1920:1080",
-            "1080:1920",
             "1024:1024",
-            "1360:768",
             "1080:1080",
             "1168:880",
+            "1360:768",
             "1440:1080",
             "1080:1440",
             "1808:768",
+            "1920:1080",
+            "1080:1920",
             "2112:912",
             "1280:720",
             "720:1280",
@@ -66,18 +67,9 @@ class TextToImageResource(SyncAPIResource):
             "960:720",
             "720:960",
             "1680:720",
-            "1344:768",
-            "768:1344",
-            "1184:864",
-            "864:1184",
-            "1536:672",
-            "832x1248",
-            "1248x832",
-            "896x1152",
-            "1152x896",
         ],
-        content_moderation: text_to_image_create_params.ContentModeration | Omit = omit,
-        reference_images: Iterable[text_to_image_create_params.ReferenceImage] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.Gen4ImageTurboReferenceImage],
+        content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration | Omit = omit,
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -90,54 +82,15 @@ class TextToImageResource(SyncAPIResource):
         This endpoint will start a new task to generate images from text and/or image(s)
 
         Args:
-          model: The model variant to use.
-
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
 
           ratio: The resolution of the output image.
 
-              `gen4_image_turbo`, `gen4_image` support the following values:
-
-              - `1920:1080`
-              - `1080:1920`
-              - `1024:1024`
-              - `1360:768`
-              - `1080:1080`
-              - `1168:880`
-              - `1440:1080`
-              - `1080:1440`
-              - `1808:768`
-              - `2112:912`
-              - `1280:720`
-              - `720:1280`
-              - `720:720`
-              - `960:720`
-              - `720:960`
-              - `1680:720`
-
-              `gemini_2.5_flash` supports the following values:
-
-              - `1344:768`
-              - `768:1344`
-              - `1024:1024`
-              - `1184:864`
-              - `864:1184`
-              - `1536:672`
-              - `832x1248`
-              - `1248x832`
-              - `896x1152`
-              - `1152x896`
-
-          content_moderation: Settings that affect the behavior of the content moderation system.
-
-              This field is allowed only for the following model variants: `gen4_image_turbo`,
-              `gen4_image`
-
-          reference_images: An array of up to three images to be used as references for the generated image
+          reference_images: An array of one to three images to be used as references for the generated image
               output.
 
-              For `gen4_image_turbo`, _at least one_ reference image is required.
+          content_moderation: Settings that affect the behavior of the content moderation system.
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -151,6 +104,169 @@ class TextToImageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["gen4_image"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "1080:1080",
+            "1168:880",
+            "1360:768",
+            "1440:1080",
+            "1080:1440",
+            "1808:768",
+            "1920:1080",
+            "1080:1920",
+            "2112:912",
+            "1280:720",
+            "720:1280",
+            "720:720",
+            "960:720",
+            "720:960",
+            "1680:720",
+        ],
+        content_moderation: text_to_image_create_params.Gen4ImageContentModeration | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.Gen4ImageReferenceImage] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          ratio: The resolution of the output image.
+
+          content_moderation: Settings that affect the behavior of the content moderation system.
+
+          reference_images: An array of up to three images to be used as references for the generated image
+              output.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["gemini_2.5_flash"],
+        prompt_text: str,
+        ratio: Literal[
+            "1344:768",
+            "768:1344",
+            "1024:1024",
+            "1184:864",
+            "864:1184",
+            "1536:672",
+            "832:1248",
+            "1248:832",
+            "896:1152",
+            "1152:896",
+        ],
+        reference_images: Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          ratio: The resolution of the output image.
+
+          reference_images: An array of up to three images to be used as references for the generated image
+              output.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["model", "prompt_text", "ratio", "reference_images"], ["model", "prompt_text", "ratio"])
+    def create(
+        self,
+        *,
+        model: Literal["gen4_image_turbo"] | Literal["gen4_image"] | Literal["gemini_2.5_flash"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "1080:1080",
+            "1168:880",
+            "1360:768",
+            "1440:1080",
+            "1080:1440",
+            "1808:768",
+            "1920:1080",
+            "1080:1920",
+            "2112:912",
+            "1280:720",
+            "720:1280",
+            "720:720",
+            "960:720",
+            "720:960",
+            "1680:720",
+        ]
+        | Literal[
+            "1344:768",
+            "768:1344",
+            "1024:1024",
+            "1184:864",
+            "864:1184",
+            "1536:672",
+            "832:1248",
+            "1248:832",
+            "896:1152",
+            "1152:896",
+        ],
+        reference_images: Iterable[text_to_image_create_params.Gen4ImageTurboReferenceImage]
+        | Iterable[text_to_image_create_params.Gen4ImageReferenceImage]
+        | Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage]
+        | Omit = omit,
+        content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration
+        | text_to_image_create_params.Gen4ImageContentModeration
+        | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
         return self._post(
             "/v1/text_to_image",
             body=maybe_transform(
@@ -158,8 +274,8 @@ class TextToImageResource(SyncAPIResource):
                     "model": model,
                     "prompt_text": prompt_text,
                     "ratio": ratio,
-                    "content_moderation": content_moderation,
                     "reference_images": reference_images,
+                    "content_moderation": content_moderation,
                     "seed": seed,
                 },
                 text_to_image_create_params.TextToImageCreateParams,
@@ -191,21 +307,22 @@ class AsyncTextToImageResource(AsyncAPIResource):
         """
         return AsyncTextToImageResourceWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         *,
-        model: Literal["gen4_image_turbo", "gen4_image", "gemini_2.5_flash"],
+        model: Literal["gen4_image_turbo"],
         prompt_text: str,
         ratio: Literal[
-            "1920:1080",
-            "1080:1920",
             "1024:1024",
-            "1360:768",
             "1080:1080",
             "1168:880",
+            "1360:768",
             "1440:1080",
             "1080:1440",
             "1808:768",
+            "1920:1080",
+            "1080:1920",
             "2112:912",
             "1280:720",
             "720:1280",
@@ -213,18 +330,9 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "960:720",
             "720:960",
             "1680:720",
-            "1344:768",
-            "768:1344",
-            "1184:864",
-            "864:1184",
-            "1536:672",
-            "832x1248",
-            "1248x832",
-            "896x1152",
-            "1152x896",
         ],
-        content_moderation: text_to_image_create_params.ContentModeration | Omit = omit,
-        reference_images: Iterable[text_to_image_create_params.ReferenceImage] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.Gen4ImageTurboReferenceImage],
+        content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration | Omit = omit,
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -237,54 +345,15 @@ class AsyncTextToImageResource(AsyncAPIResource):
         This endpoint will start a new task to generate images from text and/or image(s)
 
         Args:
-          model: The model variant to use.
-
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
 
           ratio: The resolution of the output image.
 
-              `gen4_image_turbo`, `gen4_image` support the following values:
-
-              - `1920:1080`
-              - `1080:1920`
-              - `1024:1024`
-              - `1360:768`
-              - `1080:1080`
-              - `1168:880`
-              - `1440:1080`
-              - `1080:1440`
-              - `1808:768`
-              - `2112:912`
-              - `1280:720`
-              - `720:1280`
-              - `720:720`
-              - `960:720`
-              - `720:960`
-              - `1680:720`
-
-              `gemini_2.5_flash` supports the following values:
-
-              - `1344:768`
-              - `768:1344`
-              - `1024:1024`
-              - `1184:864`
-              - `864:1184`
-              - `1536:672`
-              - `832x1248`
-              - `1248x832`
-              - `896x1152`
-              - `1152x896`
-
-          content_moderation: Settings that affect the behavior of the content moderation system.
-
-              This field is allowed only for the following model variants: `gen4_image_turbo`,
-              `gen4_image`
-
-          reference_images: An array of up to three images to be used as references for the generated image
+          reference_images: An array of one to three images to be used as references for the generated image
               output.
 
-              For `gen4_image_turbo`, _at least one_ reference image is required.
+          content_moderation: Settings that affect the behavior of the content moderation system.
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -298,6 +367,169 @@ class AsyncTextToImageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["gen4_image"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "1080:1080",
+            "1168:880",
+            "1360:768",
+            "1440:1080",
+            "1080:1440",
+            "1808:768",
+            "1920:1080",
+            "1080:1920",
+            "2112:912",
+            "1280:720",
+            "720:1280",
+            "720:720",
+            "960:720",
+            "720:960",
+            "1680:720",
+        ],
+        content_moderation: text_to_image_create_params.Gen4ImageContentModeration | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.Gen4ImageReferenceImage] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          ratio: The resolution of the output image.
+
+          content_moderation: Settings that affect the behavior of the content moderation system.
+
+          reference_images: An array of up to three images to be used as references for the generated image
+              output.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["gemini_2.5_flash"],
+        prompt_text: str,
+        ratio: Literal[
+            "1344:768",
+            "768:1344",
+            "1024:1024",
+            "1184:864",
+            "864:1184",
+            "1536:672",
+            "832:1248",
+            "1248:832",
+            "896:1152",
+            "1152:896",
+        ],
+        reference_images: Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          ratio: The resolution of the output image.
+
+          reference_images: An array of up to three images to be used as references for the generated image
+              output.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["model", "prompt_text", "ratio", "reference_images"], ["model", "prompt_text", "ratio"])
+    async def create(
+        self,
+        *,
+        model: Literal["gen4_image_turbo"] | Literal["gen4_image"] | Literal["gemini_2.5_flash"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "1080:1080",
+            "1168:880",
+            "1360:768",
+            "1440:1080",
+            "1080:1440",
+            "1808:768",
+            "1920:1080",
+            "1080:1920",
+            "2112:912",
+            "1280:720",
+            "720:1280",
+            "720:720",
+            "960:720",
+            "720:960",
+            "1680:720",
+        ]
+        | Literal[
+            "1344:768",
+            "768:1344",
+            "1024:1024",
+            "1184:864",
+            "864:1184",
+            "1536:672",
+            "832:1248",
+            "1248:832",
+            "896:1152",
+            "1152:896",
+        ],
+        reference_images: Iterable[text_to_image_create_params.Gen4ImageTurboReferenceImage]
+        | Iterable[text_to_image_create_params.Gen4ImageReferenceImage]
+        | Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage]
+        | Omit = omit,
+        content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration
+        | text_to_image_create_params.Gen4ImageContentModeration
+        | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
         return await self._post(
             "/v1/text_to_image",
             body=await async_maybe_transform(
@@ -305,8 +537,8 @@ class AsyncTextToImageResource(AsyncAPIResource):
                     "model": model,
                     "prompt_text": prompt_text,
                     "ratio": ratio,
-                    "content_moderation": content_moderation,
                     "reference_images": reference_images,
+                    "content_moderation": content_moderation,
                     "seed": seed,
                 },
                 text_to_image_create_params.TextToImageCreateParams,

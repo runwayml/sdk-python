@@ -50,6 +50,7 @@ class TextToVideoResource(SyncAPIResource):
         model: Literal["veo3.1"],
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        audio: bool | Omit = omit,
         duration: Literal[4, 6, 8] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -66,6 +67,8 @@ class TextToVideoResource(SyncAPIResource):
               should describe in detail what should appear in the output.
 
           ratio: The resolution of the output video.
+
+          audio: Whether to generate audio for the video. Audio inclusion affects pricing.
 
           duration: The number of seconds of duration for the output video.
 
@@ -86,6 +89,7 @@ class TextToVideoResource(SyncAPIResource):
         model: Literal["veo3.1_fast"],
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        audio: bool | Omit = omit,
         duration: Literal[4, 6, 8] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -102,6 +106,8 @@ class TextToVideoResource(SyncAPIResource):
               should describe in detail what should appear in the output.
 
           ratio: The resolution of the output video.
+
+          audio: Whether to generate audio for the video. Audio inclusion affects pricing.
 
           duration: The number of seconds of duration for the output video.
 
@@ -158,6 +164,7 @@ class TextToVideoResource(SyncAPIResource):
         model: Literal["veo3.1"] | Literal["veo3.1_fast"] | Literal["veo3"],
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        audio: bool | Omit = omit,
         duration: Literal[4, 6, 8] | Literal[8] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -173,6 +180,7 @@ class TextToVideoResource(SyncAPIResource):
                     "model": model,
                     "prompt_text": prompt_text,
                     "ratio": ratio,
+                    "audio": audio,
                     "duration": duration,
                 },
                 text_to_video_create_params.TextToVideoCreateParams,
@@ -211,6 +219,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         model: Literal["veo3.1"],
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        audio: bool | Omit = omit,
         duration: Literal[4, 6, 8] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -227,6 +236,8 @@ class AsyncTextToVideoResource(AsyncAPIResource):
               should describe in detail what should appear in the output.
 
           ratio: The resolution of the output video.
+
+          audio: Whether to generate audio for the video. Audio inclusion affects pricing.
 
           duration: The number of seconds of duration for the output video.
 
@@ -247,6 +258,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         model: Literal["veo3.1_fast"],
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        audio: bool | Omit = omit,
         duration: Literal[4, 6, 8] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -263,6 +275,8 @@ class AsyncTextToVideoResource(AsyncAPIResource):
               should describe in detail what should appear in the output.
 
           ratio: The resolution of the output video.
+
+          audio: Whether to generate audio for the video. Audio inclusion affects pricing.
 
           duration: The number of seconds of duration for the output video.
 
@@ -319,6 +333,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         model: Literal["veo3.1"] | Literal["veo3.1_fast"] | Literal["veo3"],
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        audio: bool | Omit = omit,
         duration: Literal[4, 6, 8] | Literal[8] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -334,6 +349,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
                     "model": model,
                     "prompt_text": prompt_text,
                     "ratio": ratio,
+                    "audio": audio,
                     "duration": duration,
                 },
                 text_to_video_create_params.TextToVideoCreateParams,

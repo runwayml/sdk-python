@@ -12,7 +12,7 @@ __all__ = ["SpeechToSpeechCreateParams", "Media", "MediaAudio", "MediaVideo", "V
 
 class SpeechToSpeechCreateParams(TypedDict, total=False):
     media: Required[Media]
-    """The media to use as a source for the dialogue for the generated speech."""
+    """An audio file containing dialogue to be processed."""
 
     model: Required[Literal["eleven_multilingual_sts_v2"]]
 
