@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.1.0 (2025-11-17)
+
+Full Changelog: [v4.0.1...v4.1.0](https://github.com/runwayml/sdk-python/compare/v4.0.1...v4.1.0)
+
+### Features
+
+* **api:** veo3.1 audio parameter ([0c12058](https://github.com/runwayml/sdk-python/commit/0c1205803cfb83c1e37dc314a6883cc47b7c78bd))
+
 ## 4.0.1 (2025-11-12)
 
 Full Changelog: [v4.0.0...v4.0.1](https://github.com/runwayml/sdk-python/compare/v4.0.0...v4.0.1)
