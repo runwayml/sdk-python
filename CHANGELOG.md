@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.1.1 (2025-11-22)
+
+Full Changelog: [v4.1.0...v4.1.1](https://github.com/runwayml/sdk-python/compare/v4.1.0...v4.1.1)
+
+### Chores
+
+* add Python 3.14 classifier and testing ([6dd0b91](https://github.com/runwayml/sdk-python/commit/6dd0b91a29bbd56aeaca20fa5678b496ae4da2ef))
+
 ## 4.1.0 (2025-11-17)
 
 Full Changelog: [v4.0.1...v4.1.0](https://github.com/runwayml/sdk-python/compare/v4.0.1...v4.1.0)
