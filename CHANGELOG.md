@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.1.1 (2025-11-28)
+
+Full Changelog: [v4.1.0...v4.1.1](https://github.com/runwayml/sdk-python/compare/v4.1.0...v4.1.1)
+
+### Bug Fixes
+
+* ensure streams are always closed ([22486c4](https://github.com/runwayml/sdk-python/commit/22486c4eaed6a5d0d6ad419764f15c04967410da))
+
+
+### Chores
+
+* add Python 3.14 classifier and testing ([6dd0b91](https://github.com/runwayml/sdk-python/commit/6dd0b91a29bbd56aeaca20fa5678b496ae4da2ef))
+* **deps:** mypy 1.18.1 has a regression, pin to 1.17 ([1813032](https://github.com/runwayml/sdk-python/commit/1813032170ecfd473b19cfaf953dfdb71c027a68))
+
 ## 4.1.0 (2025-11-17)
 
 Full Changelog: [v4.0.1...v4.1.0](https://github.com/runwayml/sdk-python/compare/v4.0.1...v4.1.0)
