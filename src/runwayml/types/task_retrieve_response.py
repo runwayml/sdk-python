@@ -1,59 +1,99 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, Annotated, TypeAlias
 
 from pydantic import Field as FieldInfo
 
+from .._utils import PropertyInfo
 from .._models import BaseModel
 
-__all__ = ["TaskRetrieveResponse"]
+__all__ = ["TaskRetrieveResponse", "Pending", "Throttled", "Cancelled", "Running", "Failed", "Succeeded"]
 
 
-class TaskRetrieveResponse(BaseModel):
+class Pending(BaseModel):
     id: str
     """The ID of the task being returned."""
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """The timestamp that the task was submitted at."""
 
-    status: Literal["RUNNING", "SUCCEEDED", "FAILED", "PENDING", "CANCELLED", "THROTTLED"]
-    """
-    - `PENDING` tasks have been enqueued and are waiting to run.
-    - `THROTTLED` tasks are waiting to be enqueued until other jobs have finished
-      running.
-    - `RUNNING` tasks are currently being processed.
-    - `SUCCEEDED` tasks have completed successfully.
-    - `FAILED` tasks have failed.
-    - `CANCELLED` tasks have been aborted.
+    status: Literal["PENDING"]
+
+
+class Throttled(BaseModel):
+    id: str
+    """The ID of the task being returned."""
+
+    created_at: datetime = FieldInfo(alias="createdAt")
+    """The timestamp that the task was submitted at."""
+
+    status: Literal["THROTTLED"]
+
+
+class Cancelled(BaseModel):
+    id: str
+    """The ID of the task being returned."""
+
+    created_at: datetime = FieldInfo(alias="createdAt")
+    """The timestamp that the task was submitted at."""
+
+    status: Literal["CANCELLED"]
+
+
+class Running(BaseModel):
+    id: str
+    """The ID of the task being returned."""
+
+    created_at: datetime = FieldInfo(alias="createdAt")
+    """The timestamp that the task was submitted at."""
+
+    progress: float
+
+    status: Literal["RUNNING"]
+
+
+class Failed(BaseModel):
+    id: str
+    """The ID of the task being returned."""
+
+    created_at: datetime = FieldInfo(alias="createdAt")
+    """The timestamp that the task was submitted at."""
+
+    failure: str
+    """A human-friendly reason for the failure.
+
+    We do not recommend returning this to users directly without adding context.
     """
 
-    failure: Optional[str] = None
-    """
-    If the status is `FAILED`, this will contain a human-friendly reason for the
-    failure.
-    """
+    status: Literal["FAILED"]
 
     failure_code: Optional[str] = FieldInfo(alias="failureCode", default=None)
-    """
-    If the task has a status of `FAILED`, this contains a machine-readable error
-    code. This is a dot-separated string, with the leftmost segment being the most
-    generic and the rightmost segment being the most specific. For example,
-    `SAFETY.INPUT.TEXT` would indicate that the task failed due to a content
-    moderation error on the input text.
+    """A machine-readable error code for the failure.
+
+    See https://docs.dev.runwayml.com/errors/task-failures/ for more information.
     """
 
-    output: Optional[List[str]] = None
-    """If the status is `SUCCEEDED`, this will contain an array of strings.
 
-    Each string will be a URL that returns an output from the task. URLs expire
-    within 24-48 hours; fetch the task again to get fresh URLs. It is expected that
-    you download the assets at these URLs and store them in your own storage system.
+class Succeeded(BaseModel):
+    id: str
+    """The ID of the task being returned."""
+
+    created_at: datetime = FieldInfo(alias="createdAt")
+    """The timestamp that the task was submitted at."""
+
+    output: List[str]
+    """An array of URLs that return the output of the task.
+
+    These URLs will expire within 24-48 hours; fetch the task again to get fresh
+    URLs. It is expected that you download the assets at these URLs and store them
+    in your own storage system.
     """
 
-    progress: Optional[float] = None
-    """
-    If the task has a status of `RUNNING`, this will contain a floating point number
-    between 0 and 1 representing the progress of the generation.
-    """
+    status: Literal["SUCCEEDED"]
+
+
+TaskRetrieveResponse: TypeAlias = Annotated[
+    Union[Pending, Throttled, Cancelled, Running, Failed, Succeeded], PropertyInfo(discriminator="status")
+]

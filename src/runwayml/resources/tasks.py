@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import cast
+from typing import Any, cast
 
 import httpx
 
@@ -74,10 +75,16 @@ class TasksResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get(
-            f"/v1/tasks/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        return cast(
+            TaskRetrieveResponse,
+            self._get(
+                f"/v1/tasks/{id}",
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, TaskRetrieveResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
             cast_to=cast(
                 type[AwaitableTaskRetrieveResponse], create_waitable_resource(TaskRetrieveResponse, self._client)
@@ -171,10 +178,16 @@ class AsyncTasksResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._get(
-            f"/v1/tasks/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        return cast(
+            TaskRetrieveResponse,
+            await self._get(
+                f"/v1/tasks/{id}",
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, TaskRetrieveResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
             cast_to=cast(
                 type[AsyncAwaitableTaskRetrieveResponse],
