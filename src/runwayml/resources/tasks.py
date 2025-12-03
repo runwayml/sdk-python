@@ -2,9 +2,6 @@
 
 from __future__ import annotations
 
-from typing import cast
-from typing import Any, cast
-
 import httpx
 
 from .._types import Body, Query, Headers, NoneType, NotGiven, not_given
@@ -19,11 +16,10 @@ from .._response import (
 from ..lib.polling import (
     AwaitableTaskRetrieveResponse,
     AsyncAwaitableTaskRetrieveResponse,
-    create_waitable_resource,
-    create_async_waitable_resource,
+    create_waitable_task_retrieve_response,
+    create_async_waitable_task_retrieve_response,
 )
 from .._base_client import make_request_options
-from ..types.task_retrieve_response import TaskRetrieveResponse
 
 __all__ = ["TasksResource", "AsyncTasksResource"]
 
@@ -75,20 +71,12 @@ class TasksResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return cast(
-            TaskRetrieveResponse,
-            self._get(
-                f"/v1/tasks/{id}",
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, TaskRetrieveResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/v1/tasks/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(
-                type[AwaitableTaskRetrieveResponse], create_waitable_resource(TaskRetrieveResponse, self._client)
-            ),
+            cast_to=create_waitable_task_retrieve_response(self._client)
         )
 
     def delete(
@@ -178,21 +166,12 @@ class AsyncTasksResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return cast(
-            TaskRetrieveResponse,
-            await self._get(
-                f"/v1/tasks/{id}",
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, TaskRetrieveResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/v1/tasks/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(
-                type[AsyncAwaitableTaskRetrieveResponse],
-                create_async_waitable_resource(TaskRetrieveResponse, self._client),
-            ),
+            cast_to=create_async_waitable_task_retrieve_response(self._client)
         )
 
     async def delete(

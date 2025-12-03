@@ -1,12 +1,22 @@
 import time
 import random
-from typing import TYPE_CHECKING, Type, Union, TypeVar, cast
-from typing_extensions import ParamSpec
+from typing import TYPE_CHECKING, Type, Union, TypeVar, Annotated, cast
+from typing_extensions import ParamSpec, TypeAlias
 
 import anyio
 
+from runwayml._utils import PropertyInfo
+
 from .._models import BaseModel
-from ..types.task_retrieve_response import TaskRetrieveResponse
+from ..types.task_retrieve_response import (
+    Failed,
+    Pending,
+    Running,
+    Cancelled,
+    Succeeded,
+    Throttled,
+    TaskRetrieveResponse,
+)
 
 if TYPE_CHECKING:
     from .._client import RunwayML, AsyncRunwayML
@@ -40,10 +50,6 @@ class NewTaskCreatedResponse(AwaitableTaskResponseMixin, BaseModel):
     id: str
 
 
-class AwaitableTaskRetrieveResponse(AwaitableTaskResponseMixin, TaskRetrieveResponse):
-    pass
-
-
 class AsyncAwaitableTaskResponseMixin:
     async def wait_for_task_output(self, timeout: Union[float, None] = 60 * 10) -> TaskRetrieveResponse:  # type: ignore[empty-body]
         """
@@ -65,10 +71,6 @@ class AsyncAwaitableTaskResponseMixin:
 
 class AsyncNewTaskCreatedResponse(AsyncAwaitableTaskResponseMixin, BaseModel):
     id: str
-
-
-class AsyncAwaitableTaskRetrieveResponse(AsyncAwaitableTaskResponseMixin, TaskRetrieveResponse):
-    pass
 
 
 def create_waitable_resource(base_class: Type[T], client: "RunwayML") -> Type[NewTaskCreatedResponse]:
@@ -125,3 +127,70 @@ class TaskTimeoutError(Exception):
     def __init__(self, task_details: TaskRetrieveResponse):
         self.task_details = task_details
         super().__init__(f"Task timed out")
+
+
+
+class AwaitablePending(AwaitableTaskResponseMixin, Pending): ...
+class AwaitableThrottled(AwaitableTaskResponseMixin, Throttled): ...
+class AwaitableCancelled(AwaitableTaskResponseMixin, Cancelled): ...
+class AwaitableRunning(AwaitableTaskResponseMixin, Running): ...
+class AwaitableFailed(AwaitableTaskResponseMixin, Failed): ...
+class AwaitableSucceeded(AwaitableTaskResponseMixin, Succeeded): ...
+
+AwaitableTaskRetrieveResponse: TypeAlias = Annotated[
+    Union[AwaitablePending, AwaitableThrottled, AwaitableCancelled, AwaitableRunning, AwaitableFailed, AwaitableSucceeded],
+    PropertyInfo(discriminator="status")
+]
+
+class AsyncAwaitablePending(AsyncAwaitableTaskResponseMixin, Pending): ...
+class AsyncAwaitableThrottled(AsyncAwaitableTaskResponseMixin, Throttled): ...
+class AsyncAwaitableCancelled(AsyncAwaitableTaskResponseMixin, Cancelled): ...
+class AsyncAwaitableRunning(AsyncAwaitableTaskResponseMixin, Running): ...
+class AsyncAwaitableFailed(AsyncAwaitableTaskResponseMixin, Failed): ...
+class AsyncAwaitableSucceeded(AsyncAwaitableTaskResponseMixin, Succeeded): ...
+
+AsyncAwaitableTaskRetrieveResponse: TypeAlias = Annotated[
+    Union[AsyncAwaitablePending, AsyncAwaitableThrottled, AsyncAwaitableCancelled, AsyncAwaitableRunning, AsyncAwaitableFailed, AsyncAwaitableSucceeded],
+    PropertyInfo(discriminator="status")
+]
+
+def create_waitable_task_retrieve_response(client: "RunwayML") -> Type[AwaitableTaskRetrieveResponse]:
+    class WithClient(AwaitableTaskRetrieveResponse):  # type: ignore[valid-type,misc]
+        id: str
+
+        def wait_for_task_output(self, timeout: Union[float, None] = 60 * 10) -> TaskRetrieveResponse:
+            start_time = time.time()
+            while True:
+                time.sleep(POLL_TIME + random.random() * POLL_JITTER - POLL_JITTER / 2)
+                task_details = client.tasks.retrieve(self.id)
+                if task_details.status == "SUCCEEDED":
+                    return task_details
+                if task_details.status == "FAILED":
+                    raise TaskFailedError(task_details)
+                if timeout is not None and time.time() - start_time > timeout:
+                    raise TaskTimeoutError(task_details)
+
+    WithClient.__name__ = "TaskRetrieveResponse"
+
+    return WithClient
+
+
+def create_async_waitable_task_retrieve_response(client: "AsyncRunwayML") -> Type[AsyncAwaitableTaskRetrieveResponse]:
+    class WithClient(AsyncAwaitableTaskRetrieveResponse):  # type: ignore[valid-type,misc]
+        id: str
+
+        async def wait_for_task_output(self, timeout: Union[float, None] = 60 * 10) -> TaskRetrieveResponse:
+            start_time = anyio.current_time()
+            while True:
+                await anyio.sleep(POLL_TIME + random.random() * POLL_JITTER - POLL_JITTER / 2)
+                task_details = await client.tasks.retrieve(self.id)
+                if task_details.status == "SUCCEEDED":
+                    return task_details
+                if task_details.status == "FAILED" or task_details.status == "CANCELLED":
+                    raise TaskFailedError(task_details)
+                if timeout is not None and anyio.current_time() - start_time > timeout:
+                    raise TaskTimeoutError(task_details)
+
+    WithClient.__name__ = "TaskRetrieveResponse"
+
+    return WithClient
