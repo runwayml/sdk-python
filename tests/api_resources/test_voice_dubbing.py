@@ -34,7 +34,7 @@ class TestVoiceDubbing:
             target_lang="en",
             disable_voice_cloning=True,
             drop_background_audio=True,
-            num_speakers=1,
+            num_speakers=9007199254740991,
         )
         assert_matches_type(VoiceDubbingCreateResponse, voice_dubbing, path=["response"])
 
@@ -89,7 +89,7 @@ class TestAsyncVoiceDubbing:
             target_lang="en",
             disable_voice_cloning=True,
             drop_background_audio=True,
-            num_speakers=1,
+            num_speakers=9007199254740991,
         )
         assert_matches_type(VoiceDubbingCreateResponse, voice_dubbing, path=["response"])
 
