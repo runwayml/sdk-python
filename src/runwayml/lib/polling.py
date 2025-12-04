@@ -1,6 +1,6 @@
 import time
 import random
-from typing import TYPE_CHECKING, Type, Union, TypeVar, Annotated, cast
+from typing import TYPE_CHECKING, Type, Union, TypeVar, Callable, Annotated, Coroutine, cast
 from typing_extensions import ParamSpec, TypeAlias
 
 import anyio
@@ -154,43 +154,47 @@ AsyncAwaitableTaskRetrieveResponse: TypeAlias = Annotated[
     PropertyInfo(discriminator="status")
 ]
 
-def create_waitable_task_retrieve_response(client: "RunwayML") -> Type[AwaitableTaskRetrieveResponse]:
-    class WithClient(AwaitableTaskRetrieveResponse):  # type: ignore[valid-type,misc]
-        id: str
-
-        def wait_for_task_output(self, timeout: Union[float, None] = 60 * 10) -> TaskRetrieveResponse:
-            start_time = time.time()
-            while True:
-                time.sleep(POLL_TIME + random.random() * POLL_JITTER - POLL_JITTER / 2)
-                task_details = client.tasks.retrieve(self.id)
-                if task_details.status == "SUCCEEDED":
-                    return task_details
-                if task_details.status == "FAILED":
-                    raise TaskFailedError(task_details)
-                if timeout is not None and time.time() - start_time > timeout:
-                    raise TaskTimeoutError(task_details)
-
-    WithClient.__name__ = "TaskRetrieveResponse"
-
-    return WithClient
+def _make_sync_wait_for_task_output(client: "RunwayML") -> Callable[["AwaitableTaskResponseMixin", Union[float, None]], TaskRetrieveResponse]:
+    """Create a wait_for_task_output method bound to the given client."""
+    def wait_for_task_output(self: "AwaitableTaskResponseMixin", timeout: Union[float, None] = 60 * 10) -> TaskRetrieveResponse:
+        start_time = time.time()
+        while True:
+            time.sleep(POLL_TIME + random.random() * POLL_JITTER - POLL_JITTER / 2)
+            task_details = client.tasks.retrieve(self.id)  # type: ignore[attr-defined]
+            if task_details.status == "SUCCEEDED":
+                return task_details
+            if task_details.status == "FAILED":
+                raise TaskFailedError(task_details)
+            if timeout is not None and time.time() - start_time > timeout:
+                raise TaskTimeoutError(task_details)
+    return wait_for_task_output
 
 
-def create_async_waitable_task_retrieve_response(client: "AsyncRunwayML") -> Type[AsyncAwaitableTaskRetrieveResponse]:
-    class WithClient(AsyncAwaitableTaskRetrieveResponse):  # type: ignore[valid-type,misc]
-        id: str
+def inject_sync_wait_method(client: "RunwayML", response: T) -> T:
+    """Inject the wait_for_task_output method onto the response instance."""
+    import types
+    response.wait_for_task_output = types.MethodType(_make_sync_wait_for_task_output(client), response)  # type: ignore[attr-defined]
+    return response
 
-        async def wait_for_task_output(self, timeout: Union[float, None] = 60 * 10) -> TaskRetrieveResponse:
-            start_time = anyio.current_time()
-            while True:
-                await anyio.sleep(POLL_TIME + random.random() * POLL_JITTER - POLL_JITTER / 2)
-                task_details = await client.tasks.retrieve(self.id)
-                if task_details.status == "SUCCEEDED":
-                    return task_details
-                if task_details.status == "FAILED" or task_details.status == "CANCELLED":
-                    raise TaskFailedError(task_details)
-                if timeout is not None and anyio.current_time() - start_time > timeout:
-                    raise TaskTimeoutError(task_details)
 
-    WithClient.__name__ = "TaskRetrieveResponse"
+def _make_async_wait_for_task_output(client: "AsyncRunwayML") -> Callable[["AsyncAwaitableTaskResponseMixin", Union[float, None]], Coroutine[None, None, TaskRetrieveResponse]]:
+    """Create an async wait_for_task_output method bound to the given client."""
+    async def wait_for_task_output(self: "AsyncAwaitableTaskResponseMixin", timeout: Union[float, None] = 60 * 10) -> TaskRetrieveResponse:
+        start_time = anyio.current_time()
+        while True:
+            await anyio.sleep(POLL_TIME + random.random() * POLL_JITTER - POLL_JITTER / 2)
+            task_details = await client.tasks.retrieve(self.id)  # type: ignore[attr-defined]
+            if task_details.status == "SUCCEEDED":
+                return task_details
+            if task_details.status == "FAILED" or task_details.status == "CANCELLED":
+                raise TaskFailedError(task_details)
+            if timeout is not None and anyio.current_time() - start_time > timeout:
+                raise TaskTimeoutError(task_details)
+    return wait_for_task_output
 
-    return WithClient
+
+def inject_async_wait_method(client: "AsyncRunwayML", response: T) -> T:
+    """Inject the async wait_for_task_output method onto the response instance."""
+    import types
+    response.wait_for_task_output = types.MethodType(_make_async_wait_for_task_output(client), response)  # type: ignore[attr-defined]
+    return response
