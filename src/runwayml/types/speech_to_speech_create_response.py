@@ -7,4 +7,3 @@ __all__ = ["SpeechToSpeechCreateResponse"]
 
 class SpeechToSpeechCreateResponse(BaseModel):
     id: str
-    """The ID of the task that was created. Use this to retrieve the task later."""

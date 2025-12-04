@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import cast
 
 import httpx
 
@@ -18,10 +18,11 @@ from .._response import (
 from ..lib.polling import (
     AwaitableTaskRetrieveResponse,
     AsyncAwaitableTaskRetrieveResponse,
-    inject_sync_wait_method,
-    inject_async_wait_method,
+    create_waitable_resource,
+    create_async_waitable_resource,
 )
 from .._base_client import make_request_options
+from ..types.task_retrieve_response import TaskRetrieveResponse
 
 __all__ = ["TasksResource", "AsyncTasksResource"]
 
@@ -73,14 +74,15 @@ class TasksResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        response = self._get(
+        return self._get(
             f"/v1/tasks/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Any, AwaitableTaskRetrieveResponse),  # Union types cannot be passed in as arguments in the type system
+            cast_to=cast(
+                type[AwaitableTaskRetrieveResponse], create_waitable_resource(TaskRetrieveResponse, self._client)
+            ),
         )
-        return cast(AwaitableTaskRetrieveResponse, inject_sync_wait_method(self._client, response))
 
     def delete(
         self,
@@ -169,14 +171,16 @@ class AsyncTasksResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        response = await self._get(
+        return await self._get(
             f"/v1/tasks/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Any, AsyncAwaitableTaskRetrieveResponse),  # Union types cannot be passed in as arguments in the type system
+            cast_to=cast(
+                type[AsyncAwaitableTaskRetrieveResponse],
+                create_async_waitable_resource(TaskRetrieveResponse, self._client),
+            ),
         )
-        return cast(AsyncAwaitableTaskRetrieveResponse, inject_async_wait_method(self._client, response))
 
     async def delete(
         self,
