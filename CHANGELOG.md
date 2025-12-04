@@ -1,5 +1,23 @@
 # Changelog
 
+## 4.2.0 (2025-12-04)
+
+Full Changelog: [v4.1.1...v4.2.0](https://github.com/runwayml/sdk-python/compare/v4.1.1...v4.2.0)
+
+### Features
+
+* **api:** Autogen spec updates ([e9d2114](https://github.com/runwayml/sdk-python/commit/e9d2114b819a6a641e716c0823ba1f182c3b5400))
+* **api:** gemini_3_pro t2i ([1f1fcfa](https://github.com/runwayml/sdk-python/commit/1f1fcfa6bac257df24a383613389010d0c481f5d))
+* **api:** gemini_3_pro t2i ([ea8a4ec](https://github.com/runwayml/sdk-python/commit/ea8a4ec3e05e27e5b4db85481846678c0fc0c009))
+* **api:** Remove unreleased model ([ee474d5](https://github.com/runwayml/sdk-python/commit/ee474d50717cd5517f2bbcb072fd044205587260))
+* **api:** Revert G3P changes ([3959ddf](https://github.com/runwayml/sdk-python/commit/3959ddfb5bfee6a7beff2cd6d294b59204dd6fae))
+
+
+### Chores
+
+* **docs:** use environment variables for authentication in code snippets ([cd6776e](https://github.com/runwayml/sdk-python/commit/cd6776ecdccbb9bebb88db16a4b3ef46b246d23d))
+* update lockfile ([7199587](https://github.com/runwayml/sdk-python/commit/719958796a3c89ff20b2e4e2b0db1e375f836125))
+
 ## 4.1.1 (2025-11-28)
 
 Full Changelog: [v4.1.0...v4.1.1](https://github.com/runwayml/sdk-python/compare/v4.1.0...v4.1.1)
