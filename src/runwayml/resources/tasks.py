@@ -80,7 +80,7 @@ class TasksResource(SyncAPIResource):
             ),
             cast_to=cast(Any, AwaitableTaskRetrieveResponse),  # Union types cannot be passed in as arguments in the type system
         )
-        return inject_sync_wait_method(self._client, response)
+        return cast(AwaitableTaskRetrieveResponse, inject_sync_wait_method(self._client, response))
 
     def delete(
         self,
@@ -174,9 +174,9 @@ class AsyncTasksResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Any, AsyncAwaitableTaskRetrieveResponse)  # Union types cannot be passed in as arguments in the type system
+            cast_to=cast(Any, AsyncAwaitableTaskRetrieveResponse),  # Union types cannot be passed in as arguments in the type system
         )
-        return inject_async_wait_method(self._client, response)
+        return cast(AsyncAwaitableTaskRetrieveResponse, inject_async_wait_method(self._client, response))
 
     async def delete(
         self,
