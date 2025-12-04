@@ -74,6 +74,10 @@ class Gen4ImageTurboReferenceImage(TypedDict, total=False):
     """A HTTPS URL."""
 
     tag: str
+    """A tag to identify the reference image.
+
+    This is used to reference the image in prompt text.
+    """
 
 
 class Gen4ImageTurboContentModeration(TypedDict, total=False):
@@ -146,6 +150,10 @@ class Gen4ImageReferenceImage(TypedDict, total=False):
     """A HTTPS URL."""
 
     tag: str
+    """A tag to identify the reference image.
+
+    This is used to reference the image in prompt text.
+    """
 
 
 class Gemini2_5Flash(TypedDict, total=False):
@@ -185,6 +193,10 @@ class Gemini2_5FlashReferenceImage(TypedDict, total=False):
     """A HTTPS URL."""
 
     tag: str
+    """A tag to identify the reference image.
+
+    This is used to reference the image in prompt text.
+    """
 
 
 TextToImageCreateParams: TypeAlias = Union[Gen4ImageTurbo, Gen4Image, Gemini2_5Flash]
