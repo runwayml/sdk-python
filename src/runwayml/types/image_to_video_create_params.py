@@ -68,6 +68,8 @@ class Gen4TurboPromptImagePromptImage(TypedDict, total=False):
 
 
 class Gen4TurboContentModeration(TypedDict, total=False):
+    """Settings that affect the behavior of the content moderation system."""
+
     public_figure_threshold: Annotated[Literal["auto", "low"], PropertyInfo(alias="publicFigureThreshold")]
     """
     When set to `low`, the content moderation system will be less strict about
@@ -160,6 +162,8 @@ class Gen3aTurboPromptImagePromptImage(TypedDict, total=False):
 
 
 class Gen3aTurboContentModeration(TypedDict, total=False):
+    """Settings that affect the behavior of the content moderation system."""
+
     public_figure_threshold: Annotated[Literal["auto", "low"], PropertyInfo(alias="publicFigureThreshold")]
     """
     When set to `low`, the content moderation system will be less strict about

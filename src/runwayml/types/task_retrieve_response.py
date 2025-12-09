@@ -13,6 +13,8 @@ __all__ = ["TaskRetrieveResponse", "Pending", "Throttled", "Cancelled", "Running
 
 
 class Pending(BaseModel):
+    """A pending task"""
+
     id: str
     """The ID of the task being returned."""
 
@@ -23,6 +25,8 @@ class Pending(BaseModel):
 
 
 class Throttled(BaseModel):
+    """A throttled task"""
+
     id: str
     """The ID of the task being returned."""
 
@@ -33,6 +37,8 @@ class Throttled(BaseModel):
 
 
 class Cancelled(BaseModel):
+    """A cancelled or deleted task"""
+
     id: str
     """The ID of the task being returned."""
 
@@ -43,6 +49,8 @@ class Cancelled(BaseModel):
 
 
 class Running(BaseModel):
+    """A running task"""
+
     id: str
     """The ID of the task being returned."""
 
@@ -55,6 +63,8 @@ class Running(BaseModel):
 
 
 class Failed(BaseModel):
+    """A failed task"""
+
     id: str
     """The ID of the task being returned."""
 
@@ -77,6 +87,8 @@ class Failed(BaseModel):
 
 
 class Succeeded(BaseModel):
+    """A succeeded task"""
+
     id: str
     """The ID of the task being returned."""
 
