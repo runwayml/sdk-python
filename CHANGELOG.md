@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.2.1 (2025-12-09)
+
+Full Changelog: [v4.2.0...v4.2.1](https://github.com/runwayml/sdk-python/compare/v4.2.0...v4.2.1)
+
+### Bug Fixes
+
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([9d4f77c](https://github.com/runwayml/sdk-python/commit/9d4f77c847837f20ef333a10e5a0d1d9e6a25cf5))
+
+
+### Chores
+
+* add missing docstrings ([4c14222](https://github.com/runwayml/sdk-python/commit/4c142226410821c794e9e3bf43c7bf9a7d5bf6c1))
+
 ## 4.2.0 (2025-12-04)
 
 Full Changelog: [v4.1.1...v4.2.0](https://github.com/runwayml/sdk-python/compare/v4.1.1...v4.2.0)
