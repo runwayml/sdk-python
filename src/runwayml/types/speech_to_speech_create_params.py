@@ -24,6 +24,8 @@ class SpeechToSpeechCreateParams(TypedDict, total=False):
 
 
 class MediaAudio(TypedDict, total=False):
+    """An audio file containing dialogue to be processed."""
+
     type: Required[Literal["audio"]]
 
     uri: Required[str]
@@ -31,6 +33,8 @@ class MediaAudio(TypedDict, total=False):
 
 
 class MediaVideo(TypedDict, total=False):
+    """A video file containing dialogue to be processed."""
+
     type: Required[Literal["video"]]
 
     uri: Required[str]
@@ -41,6 +45,8 @@ Media: TypeAlias = Union[MediaAudio, MediaVideo]
 
 
 class Voice(TypedDict, total=False):
+    """A voice preset from the RunwayML API."""
+
     preset_id: Required[
         Annotated[
             Literal[

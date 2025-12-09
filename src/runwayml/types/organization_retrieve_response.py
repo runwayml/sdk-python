@@ -10,6 +10,8 @@ __all__ = ["OrganizationRetrieveResponse", "Tier", "TierModels", "Usage", "Usage
 
 
 class TierModels(BaseModel):
+    """Limits associated with the model."""
+
     max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
     """The maximum number of generations that can be run concurrently for this model."""
 
@@ -18,6 +20,8 @@ class TierModels(BaseModel):
 
 
 class Tier(BaseModel):
+    """Limits associated with the organization's tier."""
+
     max_monthly_credit_spend: int = FieldInfo(alias="maxMonthlyCreditSpend")
     """The maximum number of credits that can be purchased in a month."""
 
@@ -26,11 +30,15 @@ class Tier(BaseModel):
 
 
 class UsageModels(BaseModel):
+    """Usage data for the model."""
+
     daily_generations: int = FieldInfo(alias="dailyGenerations")
     """The number of generations that have been run for this model in the past day."""
 
 
 class Usage(BaseModel):
+    """Usage data for the organization."""
+
     models: Dict[str, UsageModels]
 
 
