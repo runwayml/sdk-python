@@ -23,6 +23,8 @@ class TextToSpeechCreateParams(TypedDict, total=False):
 
 
 class Voice(TypedDict, total=False):
+    """A voice preset from the RunwayML API."""
+
     preset_id: Required[
         Annotated[
             Literal[

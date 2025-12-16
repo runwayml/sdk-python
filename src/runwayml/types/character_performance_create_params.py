@@ -62,6 +62,11 @@ class CharacterPerformanceCreateParams(TypedDict, total=False):
 
 
 class CharacterImage(TypedDict, total=False):
+    """An image of your character.
+
+    In the output, the character will use the reference video performance in its original static environment.
+    """
+
     type: Required[Literal["image"]]
 
     uri: Required[str]
@@ -69,6 +74,11 @@ class CharacterImage(TypedDict, total=False):
 
 
 class CharacterVideo(TypedDict, total=False):
+    """A video of your character.
+
+    In the output, the character will use the reference video performance in its original animated environment and some of the character's own movements.
+    """
+
     type: Required[Literal["video"]]
 
     uri: Required[str]
@@ -79,6 +89,10 @@ Character: TypeAlias = Union[CharacterImage, CharacterVideo]
 
 
 class Reference(TypedDict, total=False):
+    """
+    A video of a person performing in the manner that you would like your character to perform. The video must be between 3 and 30 seconds in duration.
+    """
+
     type: Required[Literal["video"]]
 
     uri: Required[str]
@@ -86,6 +100,8 @@ class Reference(TypedDict, total=False):
 
 
 class ContentModeration(TypedDict, total=False):
+    """Settings that affect the behavior of the content moderation system."""
+
     public_figure_threshold: Annotated[Literal["auto", "low"], PropertyInfo(alias="publicFigureThreshold")]
     """
     When set to `low`, the content moderation system will be less strict about
