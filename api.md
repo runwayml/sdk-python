@@ -59,18 +59,6 @@ Methods:
 
 - <code title="post /v1/text_to_image">client.text_to_image.<a href="./src/runwayml/resources/text_to_image.py">create</a>(\*\*<a href="src/runwayml/types/text_to_image_create_params.py">params</a>) -> <a href="./src/runwayml/types/text_to_image_create_response.py">TextToImageCreateResponse</a></code>
 
-# VideoUpscale
-
-Types:
-
-```python
-from runwayml.types import VideoUpscaleCreateResponse
-```
-
-Methods:
-
-- <code title="post /v1/video_upscale">client.video_upscale.<a href="./src/runwayml/resources/video_upscale.py">create</a>(\*\*<a href="src/runwayml/types/video_upscale_create_params.py">params</a>) -> <a href="./src/runwayml/types/video_upscale_create_response.py">VideoUpscaleCreateResponse</a></code>
-
 # CharacterPerformance
 
 Types:

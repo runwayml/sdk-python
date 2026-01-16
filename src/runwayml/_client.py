@@ -37,7 +37,6 @@ if TYPE_CHECKING:
         sound_effect,
         text_to_image,
         text_to_video,
-        video_upscale,
         voice_dubbing,
         image_to_video,
         text_to_speech,
@@ -51,7 +50,6 @@ if TYPE_CHECKING:
     from .resources.sound_effect import SoundEffectResource, AsyncSoundEffectResource
     from .resources.text_to_image import TextToImageResource, AsyncTextToImageResource
     from .resources.text_to_video import TextToVideoResource, AsyncTextToVideoResource
-    from .resources.video_upscale import VideoUpscaleResource, AsyncVideoUpscaleResource
     from .resources.voice_dubbing import VoiceDubbingResource, AsyncVoiceDubbingResource
     from .resources.image_to_video import ImageToVideoResource, AsyncImageToVideoResource
     from .resources.text_to_speech import TextToSpeechResource, AsyncTextToSpeechResource
@@ -162,12 +160,6 @@ class RunwayML(SyncAPIClient):
         from .resources.text_to_image import TextToImageResource
 
         return TextToImageResource(self)
-
-    @cached_property
-    def video_upscale(self) -> VideoUpscaleResource:
-        from .resources.video_upscale import VideoUpscaleResource
-
-        return VideoUpscaleResource(self)
 
     @cached_property
     def character_performance(self) -> CharacterPerformanceResource:
@@ -419,12 +411,6 @@ class AsyncRunwayML(AsyncAPIClient):
         return AsyncTextToImageResource(self)
 
     @cached_property
-    def video_upscale(self) -> AsyncVideoUpscaleResource:
-        from .resources.video_upscale import AsyncVideoUpscaleResource
-
-        return AsyncVideoUpscaleResource(self)
-
-    @cached_property
     def character_performance(self) -> AsyncCharacterPerformanceResource:
         from .resources.character_performance import AsyncCharacterPerformanceResource
 
@@ -619,12 +605,6 @@ class RunwayMLWithRawResponse:
         return TextToImageResourceWithRawResponse(self._client.text_to_image)
 
     @cached_property
-    def video_upscale(self) -> video_upscale.VideoUpscaleResourceWithRawResponse:
-        from .resources.video_upscale import VideoUpscaleResourceWithRawResponse
-
-        return VideoUpscaleResourceWithRawResponse(self._client.video_upscale)
-
-    @cached_property
     def character_performance(self) -> character_performance.CharacterPerformanceResourceWithRawResponse:
         from .resources.character_performance import CharacterPerformanceResourceWithRawResponse
 
@@ -702,12 +682,6 @@ class AsyncRunwayMLWithRawResponse:
         from .resources.text_to_image import AsyncTextToImageResourceWithRawResponse
 
         return AsyncTextToImageResourceWithRawResponse(self._client.text_to_image)
-
-    @cached_property
-    def video_upscale(self) -> video_upscale.AsyncVideoUpscaleResourceWithRawResponse:
-        from .resources.video_upscale import AsyncVideoUpscaleResourceWithRawResponse
-
-        return AsyncVideoUpscaleResourceWithRawResponse(self._client.video_upscale)
 
     @cached_property
     def character_performance(self) -> character_performance.AsyncCharacterPerformanceResourceWithRawResponse:
@@ -789,12 +763,6 @@ class RunwayMLWithStreamedResponse:
         return TextToImageResourceWithStreamingResponse(self._client.text_to_image)
 
     @cached_property
-    def video_upscale(self) -> video_upscale.VideoUpscaleResourceWithStreamingResponse:
-        from .resources.video_upscale import VideoUpscaleResourceWithStreamingResponse
-
-        return VideoUpscaleResourceWithStreamingResponse(self._client.video_upscale)
-
-    @cached_property
     def character_performance(self) -> character_performance.CharacterPerformanceResourceWithStreamingResponse:
         from .resources.character_performance import CharacterPerformanceResourceWithStreamingResponse
 
@@ -872,12 +840,6 @@ class AsyncRunwayMLWithStreamedResponse:
         from .resources.text_to_image import AsyncTextToImageResourceWithStreamingResponse
 
         return AsyncTextToImageResourceWithStreamingResponse(self._client.text_to_image)
-
-    @cached_property
-    def video_upscale(self) -> video_upscale.AsyncVideoUpscaleResourceWithStreamingResponse:
-        from .resources.video_upscale import AsyncVideoUpscaleResourceWithStreamingResponse
-
-        return AsyncVideoUpscaleResourceWithStreamingResponse(self._client.video_upscale)
 
     @cached_property
     def character_performance(self) -> character_performance.AsyncCharacterPerformanceResourceWithStreamingResponse:
