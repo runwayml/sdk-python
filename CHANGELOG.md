@@ -1,5 +1,29 @@
 # Changelog
 
+## 4.3.0 (2026-01-17)
+
+Full Changelog: [v4.2.0...v4.3.0](https://github.com/runwayml/sdk-python/compare/v4.2.0...v4.3.0)
+
+### Features
+
+* **api:** Sunset upscale endpoint ([a0b9bbe](https://github.com/runwayml/sdk-python/commit/a0b9bbe40fcde1c6286a19b77c8ac1c8425b2327))
+* **client:** add support for binary request streaming ([384cd8b](https://github.com/runwayml/sdk-python/commit/384cd8bc9a23b0d9b7b37c737e8cb19d581f5198))
+
+
+### Bug Fixes
+
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([9d4f77c](https://github.com/runwayml/sdk-python/commit/9d4f77c847837f20ef333a10e5a0d1d9e6a25cf5))
+* use async_to_httpx_files in patch method ([c6b8802](https://github.com/runwayml/sdk-python/commit/c6b880232812c60dce1b0b23678a70c7e158ae84))
+
+
+### Chores
+
+* add missing docstrings ([4c14222](https://github.com/runwayml/sdk-python/commit/4c142226410821c794e9e3bf43c7bf9a7d5bf6c1))
+* **internal:** add `--fix` argument to lint script ([4e5931e](https://github.com/runwayml/sdk-python/commit/4e5931e064f4596d31f9c5c71abb24ad5f8a1727))
+* **internal:** add missing files argument to base client ([1c5f3af](https://github.com/runwayml/sdk-python/commit/1c5f3af332fdd873865234b11c0b1b24aa9df688))
+* **internal:** codegen related update ([feac569](https://github.com/runwayml/sdk-python/commit/feac56919d1a635a1b3b577591d5a528c587c14e))
+* speedup initial import ([cfcc2e9](https://github.com/runwayml/sdk-python/commit/cfcc2e96de68498e8b1cbca4b02567283d8af207))
+
 ## 4.2.0 (2025-12-04)
 
 Full Changelog: [v4.1.1...v4.2.0](https://github.com/runwayml/sdk-python/compare/v4.1.1...v4.2.0)
