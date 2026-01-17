@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.3.1 (2026-01-17)
+
+Full Changelog: [v4.3.0...v4.3.1](https://github.com/runwayml/sdk-python/compare/v4.3.0...v4.3.1)
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([ab246dd](https://github.com/runwayml/sdk-python/commit/ab246dd99a9ece8fbfcd40fc80dc886ce6e9f8be))
+
 ## 4.3.0 (2026-01-17)
 
 Full Changelog: [v4.2.0...v4.3.0](https://github.com/runwayml/sdk-python/compare/v4.2.0...v4.3.0)
