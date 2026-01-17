@@ -8,4 +8,3 @@ __all__ = ["UploadCreateEphemeralResponse"]
 class UploadCreateEphemeralResponse(BaseModel):
     uri: str
     """The Runway upload URI to use in other API generation requests."""
-

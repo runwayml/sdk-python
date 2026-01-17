@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -20,23 +20,8 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import (
-    tasks,
-    uploads,
-    organization,
-    sound_effect,
-    text_to_image,
-    text_to_video,
-    video_upscale,
-    voice_dubbing,
-    image_to_video,
-    text_to_speech,
-    video_to_video,
-    voice_isolation,
-    speech_to_speech,
-    character_performance,
-)
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import RunwayMLError, APIStatusError
 from ._base_client import (
@@ -44,6 +29,38 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
+
+if TYPE_CHECKING:
+    from .resources import (
+        tasks,
+        uploads,
+        organization,
+        sound_effect,
+        text_to_image,
+        text_to_video,
+        video_upscale,
+        voice_dubbing,
+        image_to_video,
+        text_to_speech,
+        video_to_video,
+        voice_isolation,
+        speech_to_speech,
+        character_performance,
+    )
+    from .resources.tasks import TasksResource, AsyncTasksResource
+    from .resources.uploads import UploadsResource, AsyncUploadsResource
+    from .resources.organization import OrganizationResource, AsyncOrganizationResource
+    from .resources.sound_effect import SoundEffectResource, AsyncSoundEffectResource
+    from .resources.text_to_image import TextToImageResource, AsyncTextToImageResource
+    from .resources.text_to_video import TextToVideoResource, AsyncTextToVideoResource
+    from .resources.video_upscale import VideoUpscaleResource, AsyncVideoUpscaleResource
+    from .resources.voice_dubbing import VoiceDubbingResource, AsyncVoiceDubbingResource
+    from .resources.image_to_video import ImageToVideoResource, AsyncImageToVideoResource
+    from .resources.text_to_speech import TextToSpeechResource, AsyncTextToSpeechResource
+    from .resources.video_to_video import VideoToVideoResource, AsyncVideoToVideoResource
+    from .resources.voice_isolation import VoiceIsolationResource, AsyncVoiceIsolationResource
+    from .resources.speech_to_speech import SpeechToSpeechResource, AsyncSpeechToSpeechResource
+    from .resources.character_performance import CharacterPerformanceResource, AsyncCharacterPerformanceResource
 
 __all__ = [
     "Timeout",
@@ -58,23 +75,6 @@ __all__ = [
 
 
 class RunwayML(SyncAPIClient):
-    tasks: tasks.TasksResource
-    image_to_video: image_to_video.ImageToVideoResource
-    video_to_video: video_to_video.VideoToVideoResource
-    text_to_video: text_to_video.TextToVideoResource
-    text_to_image: text_to_image.TextToImageResource
-    video_upscale: video_upscale.VideoUpscaleResource
-    character_performance: character_performance.CharacterPerformanceResource
-    text_to_speech: text_to_speech.TextToSpeechResource
-    sound_effect: sound_effect.SoundEffectResource
-    voice_isolation: voice_isolation.VoiceIsolationResource
-    voice_dubbing: voice_dubbing.VoiceDubbingResource
-    speech_to_speech: speech_to_speech.SpeechToSpeechResource
-    organization: organization.OrganizationResource
-    uploads: uploads.UploadsResource
-    with_raw_response: RunwayMLWithRawResponse
-    with_streaming_response: RunwayMLWithStreamedResponse
-
     # client options
     api_key: str
     runway_version: str
@@ -135,22 +135,97 @@ class RunwayML(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.tasks = tasks.TasksResource(self)
-        self.image_to_video = image_to_video.ImageToVideoResource(self)
-        self.video_to_video = video_to_video.VideoToVideoResource(self)
-        self.text_to_video = text_to_video.TextToVideoResource(self)
-        self.text_to_image = text_to_image.TextToImageResource(self)
-        self.video_upscale = video_upscale.VideoUpscaleResource(self)
-        self.character_performance = character_performance.CharacterPerformanceResource(self)
-        self.text_to_speech = text_to_speech.TextToSpeechResource(self)
-        self.sound_effect = sound_effect.SoundEffectResource(self)
-        self.voice_isolation = voice_isolation.VoiceIsolationResource(self)
-        self.voice_dubbing = voice_dubbing.VoiceDubbingResource(self)
-        self.speech_to_speech = speech_to_speech.SpeechToSpeechResource(self)
-        self.organization = organization.OrganizationResource(self)
-        self.uploads = uploads.UploadsResource(self)
-        self.with_raw_response = RunwayMLWithRawResponse(self)
-        self.with_streaming_response = RunwayMLWithStreamedResponse(self)
+    @cached_property
+    def tasks(self) -> TasksResource:
+        from .resources.tasks import TasksResource
+
+        return TasksResource(self)
+
+    @cached_property
+    def uploads(self) -> UploadsResource:
+        from .resources.uploads import UploadsResource
+
+        return UploadsResource(self)
+
+    @cached_property
+    def image_to_video(self) -> ImageToVideoResource:
+        from .resources.image_to_video import ImageToVideoResource
+
+        return ImageToVideoResource(self)
+
+    @cached_property
+    def video_to_video(self) -> VideoToVideoResource:
+        from .resources.video_to_video import VideoToVideoResource
+
+        return VideoToVideoResource(self)
+
+    @cached_property
+    def text_to_video(self) -> TextToVideoResource:
+        from .resources.text_to_video import TextToVideoResource
+
+        return TextToVideoResource(self)
+
+    @cached_property
+    def text_to_image(self) -> TextToImageResource:
+        from .resources.text_to_image import TextToImageResource
+
+        return TextToImageResource(self)
+
+    @cached_property
+    def video_upscale(self) -> VideoUpscaleResource:
+        from .resources.video_upscale import VideoUpscaleResource
+
+        return VideoUpscaleResource(self)
+
+    @cached_property
+    def character_performance(self) -> CharacterPerformanceResource:
+        from .resources.character_performance import CharacterPerformanceResource
+
+        return CharacterPerformanceResource(self)
+
+    @cached_property
+    def text_to_speech(self) -> TextToSpeechResource:
+        from .resources.text_to_speech import TextToSpeechResource
+
+        return TextToSpeechResource(self)
+
+    @cached_property
+    def sound_effect(self) -> SoundEffectResource:
+        from .resources.sound_effect import SoundEffectResource
+
+        return SoundEffectResource(self)
+
+    @cached_property
+    def voice_isolation(self) -> VoiceIsolationResource:
+        from .resources.voice_isolation import VoiceIsolationResource
+
+        return VoiceIsolationResource(self)
+
+    @cached_property
+    def voice_dubbing(self) -> VoiceDubbingResource:
+        from .resources.voice_dubbing import VoiceDubbingResource
+
+        return VoiceDubbingResource(self)
+
+    @cached_property
+    def speech_to_speech(self) -> SpeechToSpeechResource:
+        from .resources.speech_to_speech import SpeechToSpeechResource
+
+        return SpeechToSpeechResource(self)
+
+    @cached_property
+    def organization(self) -> OrganizationResource:
+        from .resources.organization import OrganizationResource
+
+        return OrganizationResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> RunwayMLWithRawResponse:
+        return RunwayMLWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> RunwayMLWithStreamedResponse:
+        return RunwayMLWithStreamedResponse(self)
 
     @property
     @override
@@ -261,23 +336,6 @@ class RunwayML(SyncAPIClient):
 
 
 class AsyncRunwayML(AsyncAPIClient):
-    tasks: tasks.AsyncTasksResource
-    image_to_video: image_to_video.AsyncImageToVideoResource
-    video_to_video: video_to_video.AsyncVideoToVideoResource
-    text_to_video: text_to_video.AsyncTextToVideoResource
-    text_to_image: text_to_image.AsyncTextToImageResource
-    video_upscale: video_upscale.AsyncVideoUpscaleResource
-    character_performance: character_performance.AsyncCharacterPerformanceResource
-    text_to_speech: text_to_speech.AsyncTextToSpeechResource
-    sound_effect: sound_effect.AsyncSoundEffectResource
-    voice_isolation: voice_isolation.AsyncVoiceIsolationResource
-    voice_dubbing: voice_dubbing.AsyncVoiceDubbingResource
-    speech_to_speech: speech_to_speech.AsyncSpeechToSpeechResource
-    organization: organization.AsyncOrganizationResource
-    uploads: uploads.AsyncUploadsResource
-    with_raw_response: AsyncRunwayMLWithRawResponse
-    with_streaming_response: AsyncRunwayMLWithStreamedResponse
-
     # client options
     api_key: str
     runway_version: str
@@ -338,22 +396,97 @@ class AsyncRunwayML(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.tasks = tasks.AsyncTasksResource(self)
-        self.image_to_video = image_to_video.AsyncImageToVideoResource(self)
-        self.video_to_video = video_to_video.AsyncVideoToVideoResource(self)
-        self.text_to_video = text_to_video.AsyncTextToVideoResource(self)
-        self.text_to_image = text_to_image.AsyncTextToImageResource(self)
-        self.video_upscale = video_upscale.AsyncVideoUpscaleResource(self)
-        self.character_performance = character_performance.AsyncCharacterPerformanceResource(self)
-        self.text_to_speech = text_to_speech.AsyncTextToSpeechResource(self)
-        self.sound_effect = sound_effect.AsyncSoundEffectResource(self)
-        self.voice_isolation = voice_isolation.AsyncVoiceIsolationResource(self)
-        self.voice_dubbing = voice_dubbing.AsyncVoiceDubbingResource(self)
-        self.speech_to_speech = speech_to_speech.AsyncSpeechToSpeechResource(self)
-        self.organization = organization.AsyncOrganizationResource(self)
-        self.uploads = uploads.AsyncUploadsResource(self)
-        self.with_raw_response = AsyncRunwayMLWithRawResponse(self)
-        self.with_streaming_response = AsyncRunwayMLWithStreamedResponse(self)
+    @cached_property
+    def tasks(self) -> AsyncTasksResource:
+        from .resources.tasks import AsyncTasksResource
+
+        return AsyncTasksResource(self)
+
+    @cached_property
+    def uploads(self) -> AsyncUploadsResource:
+        from .resources.uploads import AsyncUploadsResource
+
+        return AsyncUploadsResource(self)
+
+    @cached_property
+    def image_to_video(self) -> AsyncImageToVideoResource:
+        from .resources.image_to_video import AsyncImageToVideoResource
+
+        return AsyncImageToVideoResource(self)
+
+    @cached_property
+    def video_to_video(self) -> AsyncVideoToVideoResource:
+        from .resources.video_to_video import AsyncVideoToVideoResource
+
+        return AsyncVideoToVideoResource(self)
+
+    @cached_property
+    def text_to_video(self) -> AsyncTextToVideoResource:
+        from .resources.text_to_video import AsyncTextToVideoResource
+
+        return AsyncTextToVideoResource(self)
+
+    @cached_property
+    def text_to_image(self) -> AsyncTextToImageResource:
+        from .resources.text_to_image import AsyncTextToImageResource
+
+        return AsyncTextToImageResource(self)
+
+    @cached_property
+    def video_upscale(self) -> AsyncVideoUpscaleResource:
+        from .resources.video_upscale import AsyncVideoUpscaleResource
+
+        return AsyncVideoUpscaleResource(self)
+
+    @cached_property
+    def character_performance(self) -> AsyncCharacterPerformanceResource:
+        from .resources.character_performance import AsyncCharacterPerformanceResource
+
+        return AsyncCharacterPerformanceResource(self)
+
+    @cached_property
+    def text_to_speech(self) -> AsyncTextToSpeechResource:
+        from .resources.text_to_speech import AsyncTextToSpeechResource
+
+        return AsyncTextToSpeechResource(self)
+
+    @cached_property
+    def sound_effect(self) -> AsyncSoundEffectResource:
+        from .resources.sound_effect import AsyncSoundEffectResource
+
+        return AsyncSoundEffectResource(self)
+
+    @cached_property
+    def voice_isolation(self) -> AsyncVoiceIsolationResource:
+        from .resources.voice_isolation import AsyncVoiceIsolationResource
+
+        return AsyncVoiceIsolationResource(self)
+
+    @cached_property
+    def voice_dubbing(self) -> AsyncVoiceDubbingResource:
+        from .resources.voice_dubbing import AsyncVoiceDubbingResource
+
+        return AsyncVoiceDubbingResource(self)
+
+    @cached_property
+    def speech_to_speech(self) -> AsyncSpeechToSpeechResource:
+        from .resources.speech_to_speech import AsyncSpeechToSpeechResource
+
+        return AsyncSpeechToSpeechResource(self)
+
+    @cached_property
+    def organization(self) -> AsyncOrganizationResource:
+        from .resources.organization import AsyncOrganizationResource
+
+        return AsyncOrganizationResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncRunwayMLWithRawResponse:
+        return AsyncRunwayMLWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncRunwayMLWithStreamedResponse:
+        return AsyncRunwayMLWithStreamedResponse(self)
 
     @property
     @override
@@ -464,85 +597,367 @@ class AsyncRunwayML(AsyncAPIClient):
 
 
 class RunwayMLWithRawResponse:
+    _client: RunwayML
+
     def __init__(self, client: RunwayML) -> None:
-        self.tasks = tasks.TasksResourceWithRawResponse(client.tasks)
-        self.image_to_video = image_to_video.ImageToVideoResourceWithRawResponse(client.image_to_video)
-        self.video_to_video = video_to_video.VideoToVideoResourceWithRawResponse(client.video_to_video)
-        self.text_to_video = text_to_video.TextToVideoResourceWithRawResponse(client.text_to_video)
-        self.text_to_image = text_to_image.TextToImageResourceWithRawResponse(client.text_to_image)
-        self.video_upscale = video_upscale.VideoUpscaleResourceWithRawResponse(client.video_upscale)
-        self.character_performance = character_performance.CharacterPerformanceResourceWithRawResponse(
-            client.character_performance
-        )
-        self.text_to_speech = text_to_speech.TextToSpeechResourceWithRawResponse(client.text_to_speech)
-        self.sound_effect = sound_effect.SoundEffectResourceWithRawResponse(client.sound_effect)
-        self.voice_isolation = voice_isolation.VoiceIsolationResourceWithRawResponse(client.voice_isolation)
-        self.voice_dubbing = voice_dubbing.VoiceDubbingResourceWithRawResponse(client.voice_dubbing)
-        self.speech_to_speech = speech_to_speech.SpeechToSpeechResourceWithRawResponse(client.speech_to_speech)
-        self.organization = organization.OrganizationResourceWithRawResponse(client.organization)
-        self.uploads = uploads.UploadsResourceWithRawResponse(client.uploads)
+        self._client = client
+
+    @cached_property
+    def tasks(self) -> tasks.TasksResourceWithRawResponse:
+        from .resources.tasks import TasksResourceWithRawResponse
+
+        return TasksResourceWithRawResponse(self._client.tasks)
+
+    @cached_property
+    def uploads(self) -> uploads.UploadsResourceWithRawResponse:
+        from .resources.uploads import UploadsResourceWithRawResponse
+
+        return UploadsResourceWithRawResponse(self._client.uploads)
+
+    @cached_property
+    def image_to_video(self) -> image_to_video.ImageToVideoResourceWithRawResponse:
+        from .resources.image_to_video import ImageToVideoResourceWithRawResponse
+
+        return ImageToVideoResourceWithRawResponse(self._client.image_to_video)
+
+    @cached_property
+    def video_to_video(self) -> video_to_video.VideoToVideoResourceWithRawResponse:
+        from .resources.video_to_video import VideoToVideoResourceWithRawResponse
+
+        return VideoToVideoResourceWithRawResponse(self._client.video_to_video)
+
+    @cached_property
+    def text_to_video(self) -> text_to_video.TextToVideoResourceWithRawResponse:
+        from .resources.text_to_video import TextToVideoResourceWithRawResponse
+
+        return TextToVideoResourceWithRawResponse(self._client.text_to_video)
+
+    @cached_property
+    def text_to_image(self) -> text_to_image.TextToImageResourceWithRawResponse:
+        from .resources.text_to_image import TextToImageResourceWithRawResponse
+
+        return TextToImageResourceWithRawResponse(self._client.text_to_image)
+
+    @cached_property
+    def video_upscale(self) -> video_upscale.VideoUpscaleResourceWithRawResponse:
+        from .resources.video_upscale import VideoUpscaleResourceWithRawResponse
+
+        return VideoUpscaleResourceWithRawResponse(self._client.video_upscale)
+
+    @cached_property
+    def character_performance(self) -> character_performance.CharacterPerformanceResourceWithRawResponse:
+        from .resources.character_performance import CharacterPerformanceResourceWithRawResponse
+
+        return CharacterPerformanceResourceWithRawResponse(self._client.character_performance)
+
+    @cached_property
+    def text_to_speech(self) -> text_to_speech.TextToSpeechResourceWithRawResponse:
+        from .resources.text_to_speech import TextToSpeechResourceWithRawResponse
+
+        return TextToSpeechResourceWithRawResponse(self._client.text_to_speech)
+
+    @cached_property
+    def sound_effect(self) -> sound_effect.SoundEffectResourceWithRawResponse:
+        from .resources.sound_effect import SoundEffectResourceWithRawResponse
+
+        return SoundEffectResourceWithRawResponse(self._client.sound_effect)
+
+    @cached_property
+    def voice_isolation(self) -> voice_isolation.VoiceIsolationResourceWithRawResponse:
+        from .resources.voice_isolation import VoiceIsolationResourceWithRawResponse
+
+        return VoiceIsolationResourceWithRawResponse(self._client.voice_isolation)
+
+    @cached_property
+    def voice_dubbing(self) -> voice_dubbing.VoiceDubbingResourceWithRawResponse:
+        from .resources.voice_dubbing import VoiceDubbingResourceWithRawResponse
+
+        return VoiceDubbingResourceWithRawResponse(self._client.voice_dubbing)
+
+    @cached_property
+    def speech_to_speech(self) -> speech_to_speech.SpeechToSpeechResourceWithRawResponse:
+        from .resources.speech_to_speech import SpeechToSpeechResourceWithRawResponse
+
+        return SpeechToSpeechResourceWithRawResponse(self._client.speech_to_speech)
+
+    @cached_property
+    def organization(self) -> organization.OrganizationResourceWithRawResponse:
+        from .resources.organization import OrganizationResourceWithRawResponse
+
+        return OrganizationResourceWithRawResponse(self._client.organization)
 
 
 class AsyncRunwayMLWithRawResponse:
+    _client: AsyncRunwayML
+
     def __init__(self, client: AsyncRunwayML) -> None:
-        self.tasks = tasks.AsyncTasksResourceWithRawResponse(client.tasks)
-        self.image_to_video = image_to_video.AsyncImageToVideoResourceWithRawResponse(client.image_to_video)
-        self.video_to_video = video_to_video.AsyncVideoToVideoResourceWithRawResponse(client.video_to_video)
-        self.text_to_video = text_to_video.AsyncTextToVideoResourceWithRawResponse(client.text_to_video)
-        self.text_to_image = text_to_image.AsyncTextToImageResourceWithRawResponse(client.text_to_image)
-        self.video_upscale = video_upscale.AsyncVideoUpscaleResourceWithRawResponse(client.video_upscale)
-        self.character_performance = character_performance.AsyncCharacterPerformanceResourceWithRawResponse(
-            client.character_performance
-        )
-        self.text_to_speech = text_to_speech.AsyncTextToSpeechResourceWithRawResponse(client.text_to_speech)
-        self.sound_effect = sound_effect.AsyncSoundEffectResourceWithRawResponse(client.sound_effect)
-        self.voice_isolation = voice_isolation.AsyncVoiceIsolationResourceWithRawResponse(client.voice_isolation)
-        self.voice_dubbing = voice_dubbing.AsyncVoiceDubbingResourceWithRawResponse(client.voice_dubbing)
-        self.speech_to_speech = speech_to_speech.AsyncSpeechToSpeechResourceWithRawResponse(client.speech_to_speech)
-        self.organization = organization.AsyncOrganizationResourceWithRawResponse(client.organization)
-        self.uploads = uploads.AsyncUploadsResourceWithRawResponse(client.uploads)
+        self._client = client
+
+    @cached_property
+    def tasks(self) -> tasks.AsyncTasksResourceWithRawResponse:
+        from .resources.tasks import AsyncTasksResourceWithRawResponse
+
+        return AsyncTasksResourceWithRawResponse(self._client.tasks)
+
+    @cached_property
+    def uploads(self) -> uploads.AsyncUploadsResourceWithRawResponse:
+        from .resources.uploads import AsyncUploadsResourceWithRawResponse
+
+        return AsyncUploadsResourceWithRawResponse(self._client.uploads)
+
+    @cached_property
+    def image_to_video(self) -> image_to_video.AsyncImageToVideoResourceWithRawResponse:
+        from .resources.image_to_video import AsyncImageToVideoResourceWithRawResponse
+
+        return AsyncImageToVideoResourceWithRawResponse(self._client.image_to_video)
+
+    @cached_property
+    def video_to_video(self) -> video_to_video.AsyncVideoToVideoResourceWithRawResponse:
+        from .resources.video_to_video import AsyncVideoToVideoResourceWithRawResponse
+
+        return AsyncVideoToVideoResourceWithRawResponse(self._client.video_to_video)
+
+    @cached_property
+    def text_to_video(self) -> text_to_video.AsyncTextToVideoResourceWithRawResponse:
+        from .resources.text_to_video import AsyncTextToVideoResourceWithRawResponse
+
+        return AsyncTextToVideoResourceWithRawResponse(self._client.text_to_video)
+
+    @cached_property
+    def text_to_image(self) -> text_to_image.AsyncTextToImageResourceWithRawResponse:
+        from .resources.text_to_image import AsyncTextToImageResourceWithRawResponse
+
+        return AsyncTextToImageResourceWithRawResponse(self._client.text_to_image)
+
+    @cached_property
+    def video_upscale(self) -> video_upscale.AsyncVideoUpscaleResourceWithRawResponse:
+        from .resources.video_upscale import AsyncVideoUpscaleResourceWithRawResponse
+
+        return AsyncVideoUpscaleResourceWithRawResponse(self._client.video_upscale)
+
+    @cached_property
+    def character_performance(self) -> character_performance.AsyncCharacterPerformanceResourceWithRawResponse:
+        from .resources.character_performance import AsyncCharacterPerformanceResourceWithRawResponse
+
+        return AsyncCharacterPerformanceResourceWithRawResponse(self._client.character_performance)
+
+    @cached_property
+    def text_to_speech(self) -> text_to_speech.AsyncTextToSpeechResourceWithRawResponse:
+        from .resources.text_to_speech import AsyncTextToSpeechResourceWithRawResponse
+
+        return AsyncTextToSpeechResourceWithRawResponse(self._client.text_to_speech)
+
+    @cached_property
+    def sound_effect(self) -> sound_effect.AsyncSoundEffectResourceWithRawResponse:
+        from .resources.sound_effect import AsyncSoundEffectResourceWithRawResponse
+
+        return AsyncSoundEffectResourceWithRawResponse(self._client.sound_effect)
+
+    @cached_property
+    def voice_isolation(self) -> voice_isolation.AsyncVoiceIsolationResourceWithRawResponse:
+        from .resources.voice_isolation import AsyncVoiceIsolationResourceWithRawResponse
+
+        return AsyncVoiceIsolationResourceWithRawResponse(self._client.voice_isolation)
+
+    @cached_property
+    def voice_dubbing(self) -> voice_dubbing.AsyncVoiceDubbingResourceWithRawResponse:
+        from .resources.voice_dubbing import AsyncVoiceDubbingResourceWithRawResponse
+
+        return AsyncVoiceDubbingResourceWithRawResponse(self._client.voice_dubbing)
+
+    @cached_property
+    def speech_to_speech(self) -> speech_to_speech.AsyncSpeechToSpeechResourceWithRawResponse:
+        from .resources.speech_to_speech import AsyncSpeechToSpeechResourceWithRawResponse
+
+        return AsyncSpeechToSpeechResourceWithRawResponse(self._client.speech_to_speech)
+
+    @cached_property
+    def organization(self) -> organization.AsyncOrganizationResourceWithRawResponse:
+        from .resources.organization import AsyncOrganizationResourceWithRawResponse
+
+        return AsyncOrganizationResourceWithRawResponse(self._client.organization)
 
 
 class RunwayMLWithStreamedResponse:
+    _client: RunwayML
+
     def __init__(self, client: RunwayML) -> None:
-        self.tasks = tasks.TasksResourceWithStreamingResponse(client.tasks)
-        self.image_to_video = image_to_video.ImageToVideoResourceWithStreamingResponse(client.image_to_video)
-        self.video_to_video = video_to_video.VideoToVideoResourceWithStreamingResponse(client.video_to_video)
-        self.text_to_video = text_to_video.TextToVideoResourceWithStreamingResponse(client.text_to_video)
-        self.text_to_image = text_to_image.TextToImageResourceWithStreamingResponse(client.text_to_image)
-        self.video_upscale = video_upscale.VideoUpscaleResourceWithStreamingResponse(client.video_upscale)
-        self.character_performance = character_performance.CharacterPerformanceResourceWithStreamingResponse(
-            client.character_performance
-        )
-        self.text_to_speech = text_to_speech.TextToSpeechResourceWithStreamingResponse(client.text_to_speech)
-        self.sound_effect = sound_effect.SoundEffectResourceWithStreamingResponse(client.sound_effect)
-        self.voice_isolation = voice_isolation.VoiceIsolationResourceWithStreamingResponse(client.voice_isolation)
-        self.voice_dubbing = voice_dubbing.VoiceDubbingResourceWithStreamingResponse(client.voice_dubbing)
-        self.speech_to_speech = speech_to_speech.SpeechToSpeechResourceWithStreamingResponse(client.speech_to_speech)
-        self.organization = organization.OrganizationResourceWithStreamingResponse(client.organization)
-        self.uploads = uploads.UploadsResourceWithStreamingResponse(client.uploads)
+        self._client = client
+
+    @cached_property
+    def tasks(self) -> tasks.TasksResourceWithStreamingResponse:
+        from .resources.tasks import TasksResourceWithStreamingResponse
+
+        return TasksResourceWithStreamingResponse(self._client.tasks)
+
+    @cached_property
+    def uploads(self) -> uploads.UploadsResourceWithStreamingResponse:
+        from .resources.uploads import UploadsResourceWithStreamingResponse
+
+        return UploadsResourceWithStreamingResponse(self._client.uploads)
+
+    @cached_property
+    def image_to_video(self) -> image_to_video.ImageToVideoResourceWithStreamingResponse:
+        from .resources.image_to_video import ImageToVideoResourceWithStreamingResponse
+
+        return ImageToVideoResourceWithStreamingResponse(self._client.image_to_video)
+
+    @cached_property
+    def video_to_video(self) -> video_to_video.VideoToVideoResourceWithStreamingResponse:
+        from .resources.video_to_video import VideoToVideoResourceWithStreamingResponse
+
+        return VideoToVideoResourceWithStreamingResponse(self._client.video_to_video)
+
+    @cached_property
+    def text_to_video(self) -> text_to_video.TextToVideoResourceWithStreamingResponse:
+        from .resources.text_to_video import TextToVideoResourceWithStreamingResponse
+
+        return TextToVideoResourceWithStreamingResponse(self._client.text_to_video)
+
+    @cached_property
+    def text_to_image(self) -> text_to_image.TextToImageResourceWithStreamingResponse:
+        from .resources.text_to_image import TextToImageResourceWithStreamingResponse
+
+        return TextToImageResourceWithStreamingResponse(self._client.text_to_image)
+
+    @cached_property
+    def video_upscale(self) -> video_upscale.VideoUpscaleResourceWithStreamingResponse:
+        from .resources.video_upscale import VideoUpscaleResourceWithStreamingResponse
+
+        return VideoUpscaleResourceWithStreamingResponse(self._client.video_upscale)
+
+    @cached_property
+    def character_performance(self) -> character_performance.CharacterPerformanceResourceWithStreamingResponse:
+        from .resources.character_performance import CharacterPerformanceResourceWithStreamingResponse
+
+        return CharacterPerformanceResourceWithStreamingResponse(self._client.character_performance)
+
+    @cached_property
+    def text_to_speech(self) -> text_to_speech.TextToSpeechResourceWithStreamingResponse:
+        from .resources.text_to_speech import TextToSpeechResourceWithStreamingResponse
+
+        return TextToSpeechResourceWithStreamingResponse(self._client.text_to_speech)
+
+    @cached_property
+    def sound_effect(self) -> sound_effect.SoundEffectResourceWithStreamingResponse:
+        from .resources.sound_effect import SoundEffectResourceWithStreamingResponse
+
+        return SoundEffectResourceWithStreamingResponse(self._client.sound_effect)
+
+    @cached_property
+    def voice_isolation(self) -> voice_isolation.VoiceIsolationResourceWithStreamingResponse:
+        from .resources.voice_isolation import VoiceIsolationResourceWithStreamingResponse
+
+        return VoiceIsolationResourceWithStreamingResponse(self._client.voice_isolation)
+
+    @cached_property
+    def voice_dubbing(self) -> voice_dubbing.VoiceDubbingResourceWithStreamingResponse:
+        from .resources.voice_dubbing import VoiceDubbingResourceWithStreamingResponse
+
+        return VoiceDubbingResourceWithStreamingResponse(self._client.voice_dubbing)
+
+    @cached_property
+    def speech_to_speech(self) -> speech_to_speech.SpeechToSpeechResourceWithStreamingResponse:
+        from .resources.speech_to_speech import SpeechToSpeechResourceWithStreamingResponse
+
+        return SpeechToSpeechResourceWithStreamingResponse(self._client.speech_to_speech)
+
+    @cached_property
+    def organization(self) -> organization.OrganizationResourceWithStreamingResponse:
+        from .resources.organization import OrganizationResourceWithStreamingResponse
+
+        return OrganizationResourceWithStreamingResponse(self._client.organization)
 
 
 class AsyncRunwayMLWithStreamedResponse:
+    _client: AsyncRunwayML
+
     def __init__(self, client: AsyncRunwayML) -> None:
-        self.tasks = tasks.AsyncTasksResourceWithStreamingResponse(client.tasks)
-        self.image_to_video = image_to_video.AsyncImageToVideoResourceWithStreamingResponse(client.image_to_video)
-        self.video_to_video = video_to_video.AsyncVideoToVideoResourceWithStreamingResponse(client.video_to_video)
-        self.text_to_video = text_to_video.AsyncTextToVideoResourceWithStreamingResponse(client.text_to_video)
-        self.text_to_image = text_to_image.AsyncTextToImageResourceWithStreamingResponse(client.text_to_image)
-        self.video_upscale = video_upscale.AsyncVideoUpscaleResourceWithStreamingResponse(client.video_upscale)
-        self.character_performance = character_performance.AsyncCharacterPerformanceResourceWithStreamingResponse(
-            client.character_performance
-        )
-        self.text_to_speech = text_to_speech.AsyncTextToSpeechResourceWithStreamingResponse(client.text_to_speech)
-        self.sound_effect = sound_effect.AsyncSoundEffectResourceWithStreamingResponse(client.sound_effect)
-        self.voice_isolation = voice_isolation.AsyncVoiceIsolationResourceWithStreamingResponse(client.voice_isolation)
-        self.voice_dubbing = voice_dubbing.AsyncVoiceDubbingResourceWithStreamingResponse(client.voice_dubbing)
-        self.speech_to_speech = speech_to_speech.AsyncSpeechToSpeechResourceWithStreamingResponse(
-            client.speech_to_speech
-        )
-        self.organization = organization.AsyncOrganizationResourceWithStreamingResponse(client.organization)
-        self.uploads = uploads.AsyncUploadsResourceWithStreamingResponse(client.uploads)
+        self._client = client
+
+    @cached_property
+    def tasks(self) -> tasks.AsyncTasksResourceWithStreamingResponse:
+        from .resources.tasks import AsyncTasksResourceWithStreamingResponse
+
+        return AsyncTasksResourceWithStreamingResponse(self._client.tasks)
+
+    @cached_property
+    def uploads(self) -> uploads.AsyncUploadsResourceWithStreamingResponse:
+        from .resources.uploads import AsyncUploadsResourceWithStreamingResponse
+
+        return AsyncUploadsResourceWithStreamingResponse(self._client.uploads)
+
+    @cached_property
+    def image_to_video(self) -> image_to_video.AsyncImageToVideoResourceWithStreamingResponse:
+        from .resources.image_to_video import AsyncImageToVideoResourceWithStreamingResponse
+
+        return AsyncImageToVideoResourceWithStreamingResponse(self._client.image_to_video)
+
+    @cached_property
+    def video_to_video(self) -> video_to_video.AsyncVideoToVideoResourceWithStreamingResponse:
+        from .resources.video_to_video import AsyncVideoToVideoResourceWithStreamingResponse
+
+        return AsyncVideoToVideoResourceWithStreamingResponse(self._client.video_to_video)
+
+    @cached_property
+    def text_to_video(self) -> text_to_video.AsyncTextToVideoResourceWithStreamingResponse:
+        from .resources.text_to_video import AsyncTextToVideoResourceWithStreamingResponse
+
+        return AsyncTextToVideoResourceWithStreamingResponse(self._client.text_to_video)
+
+    @cached_property
+    def text_to_image(self) -> text_to_image.AsyncTextToImageResourceWithStreamingResponse:
+        from .resources.text_to_image import AsyncTextToImageResourceWithStreamingResponse
+
+        return AsyncTextToImageResourceWithStreamingResponse(self._client.text_to_image)
+
+    @cached_property
+    def video_upscale(self) -> video_upscale.AsyncVideoUpscaleResourceWithStreamingResponse:
+        from .resources.video_upscale import AsyncVideoUpscaleResourceWithStreamingResponse
+
+        return AsyncVideoUpscaleResourceWithStreamingResponse(self._client.video_upscale)
+
+    @cached_property
+    def character_performance(self) -> character_performance.AsyncCharacterPerformanceResourceWithStreamingResponse:
+        from .resources.character_performance import AsyncCharacterPerformanceResourceWithStreamingResponse
+
+        return AsyncCharacterPerformanceResourceWithStreamingResponse(self._client.character_performance)
+
+    @cached_property
+    def text_to_speech(self) -> text_to_speech.AsyncTextToSpeechResourceWithStreamingResponse:
+        from .resources.text_to_speech import AsyncTextToSpeechResourceWithStreamingResponse
+
+        return AsyncTextToSpeechResourceWithStreamingResponse(self._client.text_to_speech)
+
+    @cached_property
+    def sound_effect(self) -> sound_effect.AsyncSoundEffectResourceWithStreamingResponse:
+        from .resources.sound_effect import AsyncSoundEffectResourceWithStreamingResponse
+
+        return AsyncSoundEffectResourceWithStreamingResponse(self._client.sound_effect)
+
+    @cached_property
+    def voice_isolation(self) -> voice_isolation.AsyncVoiceIsolationResourceWithStreamingResponse:
+        from .resources.voice_isolation import AsyncVoiceIsolationResourceWithStreamingResponse
+
+        return AsyncVoiceIsolationResourceWithStreamingResponse(self._client.voice_isolation)
+
+    @cached_property
+    def voice_dubbing(self) -> voice_dubbing.AsyncVoiceDubbingResourceWithStreamingResponse:
+        from .resources.voice_dubbing import AsyncVoiceDubbingResourceWithStreamingResponse
+
+        return AsyncVoiceDubbingResourceWithStreamingResponse(self._client.voice_dubbing)
+
+    @cached_property
+    def speech_to_speech(self) -> speech_to_speech.AsyncSpeechToSpeechResourceWithStreamingResponse:
+        from .resources.speech_to_speech import AsyncSpeechToSpeechResourceWithStreamingResponse
+
+        return AsyncSpeechToSpeechResourceWithStreamingResponse(self._client.speech_to_speech)
+
+    @cached_property
+    def organization(self) -> organization.AsyncOrganizationResourceWithStreamingResponse:
+        from .resources.organization import AsyncOrganizationResourceWithStreamingResponse
+
+        return AsyncOrganizationResourceWithStreamingResponse(self._client.organization)
 
 
 Client = RunwayML

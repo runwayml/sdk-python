@@ -123,4 +123,3 @@ class TestAsyncUploads:
         finally:
             if file_type == "file_object":
                 file.close()
-

@@ -78,7 +78,9 @@ class TasksResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Any, AwaitableTaskRetrieveResponse),  # Union types cannot be passed in as arguments in the type system
+            cast_to=cast(
+                Any, AwaitableTaskRetrieveResponse
+            ),  # Union types cannot be passed in as arguments in the type system
         )
         return cast(AwaitableTaskRetrieveResponse, inject_sync_wait_method(self._client, response))
 
@@ -174,7 +176,9 @@ class AsyncTasksResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Any, AsyncAwaitableTaskRetrieveResponse),  # Union types cannot be passed in as arguments in the type system
+            cast_to=cast(
+                Any, AsyncAwaitableTaskRetrieveResponse
+            ),  # Union types cannot be passed in as arguments in the type system
         )
         return cast(AsyncAwaitableTaskRetrieveResponse, inject_async_wait_method(self._client, response))
 
