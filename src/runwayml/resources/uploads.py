@@ -202,13 +202,11 @@ class UploadsResource(SyncAPIResource):
             ),
             cast_to=_RunwayUploadStartedResponse,
         )
-        
-        file_tuple = _build_file_tuple_with_filename(
-            filename, _transform_file(file)
-        )
+
+        file_tuple = _build_file_tuple_with_filename(filename, _transform_file(file))
         form_data = _prepare_upload_data(upload_placeholder.fields, file_metadata)
         upload_timeout = _get_upload_timeout(timeout, self._client.timeout)
-        
+
         with httpx.Client(timeout=upload_timeout) as client:
             response = client.post(
                 upload_placeholder.uploadUrl,
@@ -216,7 +214,7 @@ class UploadsResource(SyncAPIResource):
                 files={"file": file_tuple},
             )
             _handle_upload_errors(response, upload_placeholder.uploadUrl)
-        
+
         return UploadCreateEphemeralResponse(uri=upload_placeholder.runwayUri)
 
 
@@ -286,13 +284,11 @@ class AsyncUploadsResource(AsyncAPIResource):
             ),
             cast_to=_RunwayUploadStartedResponse,
         )
-        
-        file_tuple = _build_file_tuple_with_filename(
-            filename, await _async_transform_file(file)
-        )
+
+        file_tuple = _build_file_tuple_with_filename(filename, await _async_transform_file(file))
         form_data = _prepare_upload_data(upload_placeholder.fields, file_metadata)
         upload_timeout = _get_upload_timeout(timeout, self._client.timeout)
-        
+
         async with httpx.AsyncClient(timeout=upload_timeout) as client:
             response = await client.post(
                 upload_placeholder.uploadUrl,
@@ -300,7 +296,7 @@ class AsyncUploadsResource(AsyncAPIResource):
                 files={"file": file_tuple},
             )
             _handle_upload_errors(response, upload_placeholder.uploadUrl)
-        
+
         return UploadCreateEphemeralResponse(uri=upload_placeholder.runwayUri)
 
 

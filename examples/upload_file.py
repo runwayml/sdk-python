@@ -20,7 +20,7 @@ async def async_upload() -> None:
     client = AsyncRunwayML()
     upload_response = await client.uploads.create_ephemeral(file=file_path)
     print(f"Upload successful! URI: {upload_response.uri}")
-    
+
     if args.i:
         image_task = await client.text_to_image.create(
             model="gen4_image",
@@ -35,7 +35,7 @@ def sync_upload() -> None:
     client = RunwayML()
     upload_response = client.uploads.create_ephemeral(file=file_path)
     print(f"Upload successful! URI: {upload_response.uri}")
-    
+
     if args.i:
         image_task = client.text_to_image.create(
             model="gen4_image",
