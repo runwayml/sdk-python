@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.4.0 (2026-01-30)
+
+Full Changelog: [v4.3.0...v4.4.0](https://github.com/runwayml/sdk-python/compare/v4.3.0...v4.4.0)
+
+### Features
+
+* **client:** add custom JSON encoder for extended type support ([b04154d](https://github.com/runwayml/sdk-python/commit/b04154de06565dfd711e7bc1f60a8c0782e863c0))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([c05f08a](https://github.com/runwayml/sdk-python/commit/c05f08ab9736c3293f86fc8c2d6c246d44bba299))
+* **internal:** update `actions/checkout` version ([ab246dd](https://github.com/runwayml/sdk-python/commit/ab246dd99a9ece8fbfcd40fc80dc886ce6e9f8be))
+
 ## 4.3.0 (2026-01-17)
 
 Full Changelog: [v4.2.0...v4.3.0](https://github.com/runwayml/sdk-python/compare/v4.2.0...v4.3.0)
