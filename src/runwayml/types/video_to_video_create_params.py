@@ -19,16 +19,18 @@ class VideoToVideoCreateParams(TypedDict, total=False):
     This should describe in detail what should appear in the output.
     """
 
-    ratio: Required[
-        Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"]
-    ]
-    """The resolution of the output video."""
-
     video_uri: Required[Annotated[str, PropertyInfo(alias="videoUri")]]
     """A HTTPS URL."""
 
     content_moderation: Annotated[ContentModeration, PropertyInfo(alias="contentModeration")]
     """Settings that affect the behavior of the content moderation system."""
+
+    ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"]
+    """Deprecated.
+
+    This field is ignored. The resolution of the output video is determined by the
+    input video.
+    """
 
     references: Iterable[Reference]
     """An array of references.

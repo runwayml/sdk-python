@@ -49,9 +49,10 @@ class VideoToVideoResource(SyncAPIResource):
         *,
         model: Literal["gen4_aleph"],
         prompt_text: str,
-        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"],
         video_uri: str,
         content_moderation: video_to_video_create_params.ContentModeration | Omit = omit,
+        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"]
+        | Omit = omit,
         references: Iterable[video_to_video_create_params.Reference] | Omit = omit,
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -68,11 +69,12 @@ class VideoToVideoResource(SyncAPIResource):
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
 
-          ratio: The resolution of the output video.
-
           video_uri: A HTTPS URL.
 
           content_moderation: Settings that affect the behavior of the content moderation system.
+
+          ratio: Deprecated. This field is ignored. The resolution of the output video is
+              determined by the input video.
 
           references: An array of references. Currently up to one reference is supported. See
               [our docs](/assets/inputs#images) on image inputs for more information.
@@ -95,9 +97,9 @@ class VideoToVideoResource(SyncAPIResource):
                 {
                     "model": model,
                     "prompt_text": prompt_text,
-                    "ratio": ratio,
                     "video_uri": video_uri,
                     "content_moderation": content_moderation,
+                    "ratio": ratio,
                     "references": references,
                     "seed": seed,
                 },
@@ -135,9 +137,10 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         *,
         model: Literal["gen4_aleph"],
         prompt_text: str,
-        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"],
         video_uri: str,
         content_moderation: video_to_video_create_params.ContentModeration | Omit = omit,
+        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"]
+        | Omit = omit,
         references: Iterable[video_to_video_create_params.Reference] | Omit = omit,
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -154,11 +157,12 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
 
-          ratio: The resolution of the output video.
-
           video_uri: A HTTPS URL.
 
           content_moderation: Settings that affect the behavior of the content moderation system.
+
+          ratio: Deprecated. This field is ignored. The resolution of the output video is
+              determined by the input video.
 
           references: An array of references. Currently up to one reference is supported. See
               [our docs](/assets/inputs#images) on image inputs for more information.
@@ -181,9 +185,9 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
                 {
                     "model": model,
                     "prompt_text": prompt_text,
-                    "ratio": ratio,
                     "video_uri": video_uri,
                     "content_moderation": content_moderation,
+                    "ratio": ratio,
                     "references": references,
                     "seed": seed,
                 },
