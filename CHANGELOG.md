@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.5.0 (2026-02-03)
+
+Full Changelog: [v4.4.0...v4.5.0](https://github.com/runwayml/sdk-python/compare/v4.4.0...v4.5.0)
+
+### Features
+
+* **api:** Deprecate v2v ratio ([16eb2de](https://github.com/runwayml/sdk-python/commit/16eb2de0cec373e65e50f641f8c8cd4f82954687))
+
 ## 4.4.0 (2026-01-30)
 
 Full Changelog: [v4.3.0...v4.4.0](https://github.com/runwayml/sdk-python/compare/v4.3.0...v4.4.0)
