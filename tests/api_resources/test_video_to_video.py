@@ -22,7 +22,6 @@ class TestVideoToVideo:
         video_to_video = client.video_to_video.create(
             model="gen4_aleph",
             prompt_text="x",
-            ratio="1280:720",
             video_uri="https://example.com/video.mp4",
         )
         assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
@@ -32,9 +31,9 @@ class TestVideoToVideo:
         video_to_video = client.video_to_video.create(
             model="gen4_aleph",
             prompt_text="x",
-            ratio="1280:720",
             video_uri="https://example.com/video.mp4",
             content_moderation={"public_figure_threshold": "auto"},
+            ratio="1280:720",
             references=[
                 {
                     "type": "image",
@@ -50,7 +49,6 @@ class TestVideoToVideo:
         response = client.video_to_video.with_raw_response.create(
             model="gen4_aleph",
             prompt_text="x",
-            ratio="1280:720",
             video_uri="https://example.com/video.mp4",
         )
 
@@ -64,7 +62,6 @@ class TestVideoToVideo:
         with client.video_to_video.with_streaming_response.create(
             model="gen4_aleph",
             prompt_text="x",
-            ratio="1280:720",
             video_uri="https://example.com/video.mp4",
         ) as response:
             assert not response.is_closed
@@ -86,7 +83,6 @@ class TestAsyncVideoToVideo:
         video_to_video = await async_client.video_to_video.create(
             model="gen4_aleph",
             prompt_text="x",
-            ratio="1280:720",
             video_uri="https://example.com/video.mp4",
         )
         assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
@@ -96,9 +92,9 @@ class TestAsyncVideoToVideo:
         video_to_video = await async_client.video_to_video.create(
             model="gen4_aleph",
             prompt_text="x",
-            ratio="1280:720",
             video_uri="https://example.com/video.mp4",
             content_moderation={"public_figure_threshold": "auto"},
+            ratio="1280:720",
             references=[
                 {
                     "type": "image",
@@ -114,7 +110,6 @@ class TestAsyncVideoToVideo:
         response = await async_client.video_to_video.with_raw_response.create(
             model="gen4_aleph",
             prompt_text="x",
-            ratio="1280:720",
             video_uri="https://example.com/video.mp4",
         )
 
@@ -128,7 +123,6 @@ class TestAsyncVideoToVideo:
         async with async_client.video_to_video.with_streaming_response.create(
             model="gen4_aleph",
             prompt_text="x",
-            ratio="1280:720",
             video_uri="https://example.com/video.mp4",
         ) as response:
             assert not response.is_closed
