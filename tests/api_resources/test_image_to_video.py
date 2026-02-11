@@ -20,8 +20,10 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_overload_1(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="gen4_turbo",
+            duration=2,
+            model="gen4.5",
             prompt_image="https://example.com/file",
+            prompt_text="x",
             ratio="1280:720",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -29,12 +31,12 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_with_all_params_overload_1(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="gen4_turbo",
+            duration=2,
+            model="gen4.5",
             prompt_image="https://example.com/file",
+            prompt_text="x",
             ratio="1280:720",
             content_moderation={"public_figure_threshold": "auto"},
-            duration=2,
-            prompt_text="x",
             seed=0,
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -42,8 +44,10 @@ class TestImageToVideo:
     @parametrize
     def test_raw_response_create_overload_1(self, client: RunwayML) -> None:
         response = client.image_to_video.with_raw_response.create(
-            model="gen4_turbo",
+            duration=2,
+            model="gen4.5",
             prompt_image="https://example.com/file",
+            prompt_text="x",
             ratio="1280:720",
         )
 
@@ -55,8 +59,10 @@ class TestImageToVideo:
     @parametrize
     def test_streaming_response_create_overload_1(self, client: RunwayML) -> None:
         with client.image_to_video.with_streaming_response.create(
-            model="gen4_turbo",
+            duration=2,
+            model="gen4.5",
             prompt_image="https://example.com/file",
+            prompt_text="x",
             ratio="1280:720",
         ) as response:
             assert not response.is_closed
@@ -70,7 +76,7 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_overload_2(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="veo3.1",
+            model="gen4_turbo",
             prompt_image="https://example.com/file",
             ratio="1280:720",
         )
@@ -79,19 +85,20 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="veo3.1",
+            model="gen4_turbo",
             prompt_image="https://example.com/file",
             ratio="1280:720",
-            audio=True,
-            duration=4,
+            content_moderation={"public_figure_threshold": "auto"},
+            duration=2,
             prompt_text="x",
+            seed=0,
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
     def test_raw_response_create_overload_2(self, client: RunwayML) -> None:
         response = client.image_to_video.with_raw_response.create(
-            model="veo3.1",
+            model="gen4_turbo",
             prompt_image="https://example.com/file",
             ratio="1280:720",
         )
@@ -104,7 +111,7 @@ class TestImageToVideo:
     @parametrize
     def test_streaming_response_create_overload_2(self, client: RunwayML) -> None:
         with client.image_to_video.with_streaming_response.create(
-            model="veo3.1",
+            model="gen4_turbo",
             prompt_image="https://example.com/file",
             ratio="1280:720",
         ) as response:
@@ -119,31 +126,30 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_overload_3(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="gen3a_turbo",
+            model="veo3.1",
             prompt_image="https://example.com/file",
-            prompt_text="A beautiful sunset over a calm ocean.",
+            ratio="1280:720",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params_overload_3(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="gen3a_turbo",
+            model="veo3.1",
             prompt_image="https://example.com/file",
-            prompt_text="A beautiful sunset over a calm ocean.",
-            content_moderation={"public_figure_threshold": "auto"},
-            duration=5,
-            ratio="1280:768",
-            seed=0,
+            ratio="1280:720",
+            audio=True,
+            duration=4,
+            prompt_text="x",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
     def test_raw_response_create_overload_3(self, client: RunwayML) -> None:
         response = client.image_to_video.with_raw_response.create(
-            model="gen3a_turbo",
+            model="veo3.1",
             prompt_image="https://example.com/file",
-            prompt_text="A beautiful sunset over a calm ocean.",
+            ratio="1280:720",
         )
 
         assert response.is_closed is True
@@ -154,9 +160,9 @@ class TestImageToVideo:
     @parametrize
     def test_streaming_response_create_overload_3(self, client: RunwayML) -> None:
         with client.image_to_video.with_streaming_response.create(
-            model="gen3a_turbo",
+            model="veo3.1",
             prompt_image="https://example.com/file",
-            prompt_text="A beautiful sunset over a calm ocean.",
+            ratio="1280:720",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -169,6 +175,56 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_overload_4(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
+            model="gen3a_turbo",
+            prompt_image="https://example.com/file",
+            prompt_text="A beautiful sunset over a calm ocean.",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_4(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="gen3a_turbo",
+            prompt_image="https://example.com/file",
+            prompt_text="A beautiful sunset over a calm ocean.",
+            content_moderation={"public_figure_threshold": "auto"},
+            duration=5,
+            ratio="1280:768",
+            seed=0,
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_4(self, client: RunwayML) -> None:
+        response = client.image_to_video.with_raw_response.create(
+            model="gen3a_turbo",
+            prompt_image="https://example.com/file",
+            prompt_text="A beautiful sunset over a calm ocean.",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_4(self, client: RunwayML) -> None:
+        with client.image_to_video.with_streaming_response.create(
+            model="gen3a_turbo",
+            prompt_image="https://example.com/file",
+            prompt_text="A beautiful sunset over a calm ocean.",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_5(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
             model="veo3.1_fast",
             prompt_image="https://example.com/file",
             ratio="1280:720",
@@ -176,7 +232,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params_overload_4(self, client: RunwayML) -> None:
+    def test_method_create_with_all_params_overload_5(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
             model="veo3.1_fast",
             prompt_image="https://example.com/file",
@@ -188,7 +244,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_raw_response_create_overload_4(self, client: RunwayML) -> None:
+    def test_raw_response_create_overload_5(self, client: RunwayML) -> None:
         response = client.image_to_video.with_raw_response.create(
             model="veo3.1_fast",
             prompt_image="https://example.com/file",
@@ -201,7 +257,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_overload_4(self, client: RunwayML) -> None:
+    def test_streaming_response_create_overload_5(self, client: RunwayML) -> None:
         with client.image_to_video.with_streaming_response.create(
             model="veo3.1_fast",
             prompt_image="https://example.com/file",
@@ -216,7 +272,7 @@ class TestImageToVideo:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_create_overload_5(self, client: RunwayML) -> None:
+    def test_method_create_overload_6(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
             duration=8,
             model="veo3",
@@ -226,7 +282,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params_overload_5(self, client: RunwayML) -> None:
+    def test_method_create_with_all_params_overload_6(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
             duration=8,
             model="veo3",
@@ -237,7 +293,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_raw_response_create_overload_5(self, client: RunwayML) -> None:
+    def test_raw_response_create_overload_6(self, client: RunwayML) -> None:
         response = client.image_to_video.with_raw_response.create(
             duration=8,
             model="veo3",
@@ -251,7 +307,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_overload_5(self, client: RunwayML) -> None:
+    def test_streaming_response_create_overload_6(self, client: RunwayML) -> None:
         with client.image_to_video.with_streaming_response.create(
             duration=8,
             model="veo3",
@@ -275,8 +331,10 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_overload_1(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="gen4_turbo",
+            duration=2,
+            model="gen4.5",
             prompt_image="https://example.com/file",
+            prompt_text="x",
             ratio="1280:720",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -284,12 +342,12 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="gen4_turbo",
+            duration=2,
+            model="gen4.5",
             prompt_image="https://example.com/file",
+            prompt_text="x",
             ratio="1280:720",
             content_moderation={"public_figure_threshold": "auto"},
-            duration=2,
-            prompt_text="x",
             seed=0,
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -297,8 +355,10 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.image_to_video.with_raw_response.create(
-            model="gen4_turbo",
+            duration=2,
+            model="gen4.5",
             prompt_image="https://example.com/file",
+            prompt_text="x",
             ratio="1280:720",
         )
 
@@ -310,8 +370,10 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncRunwayML) -> None:
         async with async_client.image_to_video.with_streaming_response.create(
-            model="gen4_turbo",
+            duration=2,
+            model="gen4.5",
             prompt_image="https://example.com/file",
+            prompt_text="x",
             ratio="1280:720",
         ) as response:
             assert not response.is_closed
@@ -325,7 +387,7 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="veo3.1",
+            model="gen4_turbo",
             prompt_image="https://example.com/file",
             ratio="1280:720",
         )
@@ -334,19 +396,20 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="veo3.1",
+            model="gen4_turbo",
             prompt_image="https://example.com/file",
             ratio="1280:720",
-            audio=True,
-            duration=4,
+            content_moderation={"public_figure_threshold": "auto"},
+            duration=2,
             prompt_text="x",
+            seed=0,
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.image_to_video.with_raw_response.create(
-            model="veo3.1",
+            model="gen4_turbo",
             prompt_image="https://example.com/file",
             ratio="1280:720",
         )
@@ -359,7 +422,7 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncRunwayML) -> None:
         async with async_client.image_to_video.with_streaming_response.create(
-            model="veo3.1",
+            model="gen4_turbo",
             prompt_image="https://example.com/file",
             ratio="1280:720",
         ) as response:
@@ -374,31 +437,30 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_overload_3(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="gen3a_turbo",
+            model="veo3.1",
             prompt_image="https://example.com/file",
-            prompt_text="A beautiful sunset over a calm ocean.",
+            ratio="1280:720",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params_overload_3(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="gen3a_turbo",
+            model="veo3.1",
             prompt_image="https://example.com/file",
-            prompt_text="A beautiful sunset over a calm ocean.",
-            content_moderation={"public_figure_threshold": "auto"},
-            duration=5,
-            ratio="1280:768",
-            seed=0,
+            ratio="1280:720",
+            audio=True,
+            duration=4,
+            prompt_text="x",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
     async def test_raw_response_create_overload_3(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.image_to_video.with_raw_response.create(
-            model="gen3a_turbo",
+            model="veo3.1",
             prompt_image="https://example.com/file",
-            prompt_text="A beautiful sunset over a calm ocean.",
+            ratio="1280:720",
         )
 
         assert response.is_closed is True
@@ -409,9 +471,9 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_streaming_response_create_overload_3(self, async_client: AsyncRunwayML) -> None:
         async with async_client.image_to_video.with_streaming_response.create(
-            model="gen3a_turbo",
+            model="veo3.1",
             prompt_image="https://example.com/file",
-            prompt_text="A beautiful sunset over a calm ocean.",
+            ratio="1280:720",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -424,6 +486,56 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_overload_4(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
+            model="gen3a_turbo",
+            prompt_image="https://example.com/file",
+            prompt_text="A beautiful sunset over a calm ocean.",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_4(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="gen3a_turbo",
+            prompt_image="https://example.com/file",
+            prompt_text="A beautiful sunset over a calm ocean.",
+            content_moderation={"public_figure_threshold": "auto"},
+            duration=5,
+            ratio="1280:768",
+            seed=0,
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_4(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.image_to_video.with_raw_response.create(
+            model="gen3a_turbo",
+            prompt_image="https://example.com/file",
+            prompt_text="A beautiful sunset over a calm ocean.",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = await response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_4(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.image_to_video.with_streaming_response.create(
+            model="gen3a_turbo",
+            prompt_image="https://example.com/file",
+            prompt_text="A beautiful sunset over a calm ocean.",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = await response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_5(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
             model="veo3.1_fast",
             prompt_image="https://example.com/file",
             ratio="1280:720",
@@ -431,7 +543,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params_overload_4(self, async_client: AsyncRunwayML) -> None:
+    async def test_method_create_with_all_params_overload_5(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
             model="veo3.1_fast",
             prompt_image="https://example.com/file",
@@ -443,7 +555,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_overload_4(self, async_client: AsyncRunwayML) -> None:
+    async def test_raw_response_create_overload_5(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.image_to_video.with_raw_response.create(
             model="veo3.1_fast",
             prompt_image="https://example.com/file",
@@ -456,7 +568,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_overload_4(self, async_client: AsyncRunwayML) -> None:
+    async def test_streaming_response_create_overload_5(self, async_client: AsyncRunwayML) -> None:
         async with async_client.image_to_video.with_streaming_response.create(
             model="veo3.1_fast",
             prompt_image="https://example.com/file",
@@ -471,7 +583,7 @@ class TestAsyncImageToVideo:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_create_overload_5(self, async_client: AsyncRunwayML) -> None:
+    async def test_method_create_overload_6(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
             duration=8,
             model="veo3",
@@ -481,7 +593,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params_overload_5(self, async_client: AsyncRunwayML) -> None:
+    async def test_method_create_with_all_params_overload_6(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
             duration=8,
             model="veo3",
@@ -492,7 +604,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_overload_5(self, async_client: AsyncRunwayML) -> None:
+    async def test_raw_response_create_overload_6(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.image_to_video.with_raw_response.create(
             duration=8,
             model="veo3",
@@ -506,7 +618,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_overload_5(self, async_client: AsyncRunwayML) -> None:
+    async def test_streaming_response_create_overload_6(self, async_client: AsyncRunwayML) -> None:
         async with async_client.image_to_video.with_streaming_response.create(
             duration=8,
             model="veo3",

@@ -20,7 +20,8 @@ class TestTextToVideo:
     @parametrize
     def test_method_create_overload_1(self, client: RunwayML) -> None:
         text_to_video = client.text_to_video.create(
-            model="veo3.1",
+            duration=2,
+            model="gen4.5",
             prompt_text="x",
             ratio="1280:720",
         )
@@ -29,18 +30,20 @@ class TestTextToVideo:
     @parametrize
     def test_method_create_with_all_params_overload_1(self, client: RunwayML) -> None:
         text_to_video = client.text_to_video.create(
-            model="veo3.1",
+            duration=2,
+            model="gen4.5",
             prompt_text="x",
             ratio="1280:720",
-            audio=True,
-            duration=4,
+            content_moderation={"public_figure_threshold": "auto"},
+            seed=0,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
     @parametrize
     def test_raw_response_create_overload_1(self, client: RunwayML) -> None:
         response = client.text_to_video.with_raw_response.create(
-            model="veo3.1",
+            duration=2,
+            model="gen4.5",
             prompt_text="x",
             ratio="1280:720",
         )
@@ -53,7 +56,8 @@ class TestTextToVideo:
     @parametrize
     def test_streaming_response_create_overload_1(self, client: RunwayML) -> None:
         with client.text_to_video.with_streaming_response.create(
-            model="veo3.1",
+            duration=2,
+            model="gen4.5",
             prompt_text="x",
             ratio="1280:720",
         ) as response:
@@ -68,7 +72,7 @@ class TestTextToVideo:
     @parametrize
     def test_method_create_overload_2(self, client: RunwayML) -> None:
         text_to_video = client.text_to_video.create(
-            model="veo3.1_fast",
+            model="veo3.1",
             prompt_text="x",
             ratio="1280:720",
         )
@@ -77,7 +81,7 @@ class TestTextToVideo:
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: RunwayML) -> None:
         text_to_video = client.text_to_video.create(
-            model="veo3.1_fast",
+            model="veo3.1",
             prompt_text="x",
             ratio="1280:720",
             audio=True,
@@ -88,7 +92,7 @@ class TestTextToVideo:
     @parametrize
     def test_raw_response_create_overload_2(self, client: RunwayML) -> None:
         response = client.text_to_video.with_raw_response.create(
-            model="veo3.1_fast",
+            model="veo3.1",
             prompt_text="x",
             ratio="1280:720",
         )
@@ -101,7 +105,7 @@ class TestTextToVideo:
     @parametrize
     def test_streaming_response_create_overload_2(self, client: RunwayML) -> None:
         with client.text_to_video.with_streaming_response.create(
-            model="veo3.1_fast",
+            model="veo3.1",
             prompt_text="x",
             ratio="1280:720",
         ) as response:
@@ -116,6 +120,54 @@ class TestTextToVideo:
     @parametrize
     def test_method_create_overload_3(self, client: RunwayML) -> None:
         text_to_video = client.text_to_video.create(
+            model="veo3.1_fast",
+            prompt_text="x",
+            ratio="1280:720",
+        )
+        assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_3(self, client: RunwayML) -> None:
+        text_to_video = client.text_to_video.create(
+            model="veo3.1_fast",
+            prompt_text="x",
+            ratio="1280:720",
+            audio=True,
+            duration=4,
+        )
+        assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_3(self, client: RunwayML) -> None:
+        response = client.text_to_video.with_raw_response.create(
+            model="veo3.1_fast",
+            prompt_text="x",
+            ratio="1280:720",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        text_to_video = response.parse()
+        assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_3(self, client: RunwayML) -> None:
+        with client.text_to_video.with_streaming_response.create(
+            model="veo3.1_fast",
+            prompt_text="x",
+            ratio="1280:720",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            text_to_video = response.parse()
+            assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_4(self, client: RunwayML) -> None:
+        text_to_video = client.text_to_video.create(
             duration=8,
             model="veo3",
             prompt_text="x",
@@ -124,7 +176,7 @@ class TestTextToVideo:
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
     @parametrize
-    def test_raw_response_create_overload_3(self, client: RunwayML) -> None:
+    def test_raw_response_create_overload_4(self, client: RunwayML) -> None:
         response = client.text_to_video.with_raw_response.create(
             duration=8,
             model="veo3",
@@ -138,7 +190,7 @@ class TestTextToVideo:
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_overload_3(self, client: RunwayML) -> None:
+    def test_streaming_response_create_overload_4(self, client: RunwayML) -> None:
         with client.text_to_video.with_streaming_response.create(
             duration=8,
             model="veo3",
@@ -162,7 +214,8 @@ class TestAsyncTextToVideo:
     @parametrize
     async def test_method_create_overload_1(self, async_client: AsyncRunwayML) -> None:
         text_to_video = await async_client.text_to_video.create(
-            model="veo3.1",
+            duration=2,
+            model="gen4.5",
             prompt_text="x",
             ratio="1280:720",
         )
@@ -171,18 +224,20 @@ class TestAsyncTextToVideo:
     @parametrize
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncRunwayML) -> None:
         text_to_video = await async_client.text_to_video.create(
-            model="veo3.1",
+            duration=2,
+            model="gen4.5",
             prompt_text="x",
             ratio="1280:720",
-            audio=True,
-            duration=4,
+            content_moderation={"public_figure_threshold": "auto"},
+            seed=0,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.text_to_video.with_raw_response.create(
-            model="veo3.1",
+            duration=2,
+            model="gen4.5",
             prompt_text="x",
             ratio="1280:720",
         )
@@ -195,7 +250,8 @@ class TestAsyncTextToVideo:
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncRunwayML) -> None:
         async with async_client.text_to_video.with_streaming_response.create(
-            model="veo3.1",
+            duration=2,
+            model="gen4.5",
             prompt_text="x",
             ratio="1280:720",
         ) as response:
@@ -210,7 +266,7 @@ class TestAsyncTextToVideo:
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncRunwayML) -> None:
         text_to_video = await async_client.text_to_video.create(
-            model="veo3.1_fast",
+            model="veo3.1",
             prompt_text="x",
             ratio="1280:720",
         )
@@ -219,7 +275,7 @@ class TestAsyncTextToVideo:
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncRunwayML) -> None:
         text_to_video = await async_client.text_to_video.create(
-            model="veo3.1_fast",
+            model="veo3.1",
             prompt_text="x",
             ratio="1280:720",
             audio=True,
@@ -230,7 +286,7 @@ class TestAsyncTextToVideo:
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.text_to_video.with_raw_response.create(
-            model="veo3.1_fast",
+            model="veo3.1",
             prompt_text="x",
             ratio="1280:720",
         )
@@ -243,7 +299,7 @@ class TestAsyncTextToVideo:
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncRunwayML) -> None:
         async with async_client.text_to_video.with_streaming_response.create(
-            model="veo3.1_fast",
+            model="veo3.1",
             prompt_text="x",
             ratio="1280:720",
         ) as response:
@@ -258,6 +314,54 @@ class TestAsyncTextToVideo:
     @parametrize
     async def test_method_create_overload_3(self, async_client: AsyncRunwayML) -> None:
         text_to_video = await async_client.text_to_video.create(
+            model="veo3.1_fast",
+            prompt_text="x",
+            ratio="1280:720",
+        )
+        assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_3(self, async_client: AsyncRunwayML) -> None:
+        text_to_video = await async_client.text_to_video.create(
+            model="veo3.1_fast",
+            prompt_text="x",
+            ratio="1280:720",
+            audio=True,
+            duration=4,
+        )
+        assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_3(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.text_to_video.with_raw_response.create(
+            model="veo3.1_fast",
+            prompt_text="x",
+            ratio="1280:720",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        text_to_video = await response.parse()
+        assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_3(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.text_to_video.with_streaming_response.create(
+            model="veo3.1_fast",
+            prompt_text="x",
+            ratio="1280:720",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            text_to_video = await response.parse()
+            assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_4(self, async_client: AsyncRunwayML) -> None:
+        text_to_video = await async_client.text_to_video.create(
             duration=8,
             model="veo3",
             prompt_text="x",
@@ -266,7 +370,7 @@ class TestAsyncTextToVideo:
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_overload_3(self, async_client: AsyncRunwayML) -> None:
+    async def test_raw_response_create_overload_4(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.text_to_video.with_raw_response.create(
             duration=8,
             model="veo3",
@@ -280,7 +384,7 @@ class TestAsyncTextToVideo:
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_overload_3(self, async_client: AsyncRunwayML) -> None:
+    async def test_streaming_response_create_overload_4(self, async_client: AsyncRunwayML) -> None:
         async with async_client.text_to_video.with_streaming_response.create(
             duration=8,
             model="veo3",

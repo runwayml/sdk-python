@@ -53,6 +53,51 @@ class TextToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
+        duration: int,
+        model: Literal["gen4.5"],
+        prompt_text: str,
+        ratio: Literal["1280:720", "720:1280"],
+        content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a text prompt.
+
+        Args:
+          duration: The number of seconds of duration for the output video. Must be an integer from
+              2 to 10.
+
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          ratio: The resolution of the output video.
+
+          content_moderation: Settings that affect the behavior of the content moderation system.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["veo3.1"],
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
@@ -163,15 +208,17 @@ class TextToVideoResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["model", "prompt_text", "ratio"], ["duration", "model", "prompt_text", "ratio"])
+    @required_args(["duration", "model", "prompt_text", "ratio"], ["model", "prompt_text", "ratio"])
     def create(
         self,
         *,
-        model: Literal["veo3.1"] | Literal["veo3.1_fast"] | Literal["veo3"],
+        duration: int | Literal[4, 6, 8] | Literal[8] | Omit = omit,
+        model: Literal["gen4.5"] | Literal["veo3.1"] | Literal["veo3.1_fast"] | Literal["veo3"],
         prompt_text: str,
-        ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        ratio: Literal["1280:720", "720:1280"] | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
+        seed: int | Omit = omit,
         audio: bool | Omit = omit,
-        duration: Literal[4, 6, 8] | Literal[8] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -183,11 +230,13 @@ class TextToVideoResource(SyncAPIResource):
             "/v1/text_to_video",
             body=maybe_transform(
                 {
+                    "duration": duration,
                     "model": model,
                     "prompt_text": prompt_text,
                     "ratio": ratio,
+                    "content_moderation": content_moderation,
+                    "seed": seed,
                     "audio": audio,
-                    "duration": duration,
                 },
                 text_to_video_create_params.TextToVideoCreateParams,
             ),
@@ -222,6 +271,51 @@ class AsyncTextToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        duration: int,
+        model: Literal["gen4.5"],
+        prompt_text: str,
+        ratio: Literal["1280:720", "720:1280"],
+        content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a text prompt.
+
+        Args:
+          duration: The number of seconds of duration for the output video. Must be an integer from
+              2 to 10.
+
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          ratio: The resolution of the output video.
+
+          content_moderation: Settings that affect the behavior of the content moderation system.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["veo3.1"],
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
@@ -332,15 +426,17 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["model", "prompt_text", "ratio"], ["duration", "model", "prompt_text", "ratio"])
+    @required_args(["duration", "model", "prompt_text", "ratio"], ["model", "prompt_text", "ratio"])
     async def create(
         self,
         *,
-        model: Literal["veo3.1"] | Literal["veo3.1_fast"] | Literal["veo3"],
+        duration: int | Literal[4, 6, 8] | Literal[8] | Omit = omit,
+        model: Literal["gen4.5"] | Literal["veo3.1"] | Literal["veo3.1_fast"] | Literal["veo3"],
         prompt_text: str,
-        ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        ratio: Literal["1280:720", "720:1280"] | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
+        seed: int | Omit = omit,
         audio: bool | Omit = omit,
-        duration: Literal[4, 6, 8] | Literal[8] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -352,11 +448,13 @@ class AsyncTextToVideoResource(AsyncAPIResource):
             "/v1/text_to_video",
             body=await async_maybe_transform(
                 {
+                    "duration": duration,
                     "model": model,
                     "prompt_text": prompt_text,
                     "ratio": ratio,
+                    "content_moderation": content_moderation,
+                    "seed": seed,
                     "audio": audio,
-                    "duration": duration,
                 },
                 text_to_video_create_params.TextToVideoCreateParams,
             ),
