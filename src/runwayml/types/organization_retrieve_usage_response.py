@@ -16,6 +16,7 @@ class ResultUsedCredit(BaseModel):
     """The number of credits spent on the model."""
 
     model: Literal[
+        "gen4.5",
         "gen3a_turbo",
         "gen4_turbo",
         "gen4_image",
@@ -49,6 +50,7 @@ class Result(BaseModel):
 class OrganizationRetrieveUsageResponse(BaseModel):
     models: List[
         Literal[
+            "gen4.5",
             "gen3a_turbo",
             "gen4_turbo",
             "gen4_image",
