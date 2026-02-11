@@ -9,6 +9,9 @@ from .._utils import PropertyInfo
 
 __all__ = [
     "ImageToVideoCreateParams",
+    "Gen4_5",
+    "Gen4_5PromptImagePromptImage",
+    "Gen4_5ContentModeration",
     "Gen4Turbo",
     "Gen4TurboPromptImagePromptImage",
     "Gen4TurboContentModeration",
@@ -22,6 +25,62 @@ __all__ = [
     "Veo3",
     "Veo3PromptImagePromptImage",
 ]
+
+
+class Gen4_5(TypedDict, total=False):
+    duration: Required[int]
+    """The number of seconds of duration for the output video.
+
+    Must be an integer from 2 to 10.
+    """
+
+    model: Required[Literal["gen4.5"]]
+
+    prompt_image: Required[
+        Annotated[Union[str, Iterable[Gen4_5PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
+    ]
+    """A HTTPS URL."""
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty string up to 1000 characters (measured in UTF-16 code units).
+
+    This should describe in detail what should appear in the output.
+    """
+
+    ratio: Required[Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "672:1584"]]
+    """The resolution of the output video."""
+
+    content_moderation: Annotated[Gen4_5ContentModeration, PropertyInfo(alias="contentModeration")]
+    """Settings that affect the behavior of the content moderation system."""
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
+    """
+
+
+class Gen4_5PromptImagePromptImage(TypedDict, total=False):
+    position: Required[Literal["first"]]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame of the video.
+    """
+
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
+class Gen4_5ContentModeration(TypedDict, total=False):
+    """Settings that affect the behavior of the content moderation system."""
+
+    public_figure_threshold: Annotated[Literal["auto", "low"], PropertyInfo(alias="publicFigureThreshold")]
+    """
+    When set to `low`, the content moderation system will be less strict about
+    preventing generations that include recognizable public figures.
+    """
 
 
 class Gen4Turbo(TypedDict, total=False):
@@ -243,4 +302,4 @@ class Veo3PromptImagePromptImage(TypedDict, total=False):
     """A HTTPS URL."""
 
 
-ImageToVideoCreateParams: TypeAlias = Union[Gen4Turbo, Veo3_1, Gen3aTurbo, Veo3_1Fast, Veo3]
+ImageToVideoCreateParams: TypeAlias = Union[Gen4_5, Gen4Turbo, Veo3_1, Gen3aTurbo, Veo3_1Fast, Veo3]

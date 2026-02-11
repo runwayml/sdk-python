@@ -131,6 +131,7 @@ from runwayml import RunwayML
 client = RunwayML()
 
 text_to_image = client.text_to_image.create(
+    duration=2,
     model="gen4_image",
     prompt_text="promptText",
     ratio="1920:1080",
