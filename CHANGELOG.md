@@ -1,5 +1,23 @@
 # Changelog
 
+## 4.6.0 (2026-02-11)
+
+Full Changelog: [v4.5.0...v4.6.0](https://github.com/runwayml/sdk-python/compare/v4.5.0...v4.6.0)
+
+### Features
+
+* **api:** Gen-4.5 t2v+i2v ([cd2b196](https://github.com/runwayml/sdk-python/commit/cd2b196bb387e38cb27c06f9c7b15a1ac35c7a3d))
+
+
+### Bug Fixes
+
+* **client:** Update generated types for 4.5 t2v ([f024d8e](https://github.com/runwayml/sdk-python/commit/f024d8e35ca7687ac7e5815e2e7bfbf784316e21))
+
+
+### Chores
+
+* **internal:** bump dependencies ([c8073c8](https://github.com/runwayml/sdk-python/commit/c8073c8aa4a7f6f985fd2d405909aafcfccc63d0))
+
 ## 4.5.0 (2026-02-03)
 
 Full Changelog: [v4.4.0...v4.5.0](https://github.com/runwayml/sdk-python/compare/v4.4.0...v4.5.0)
