@@ -58,7 +58,7 @@ class ImageToVideoResource(SyncAPIResource):
         model: Literal["gen4.5"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]],
         prompt_text: str,
-        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "672:1584"],
+        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"],
         content_moderation: image_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -342,7 +342,7 @@ class ImageToVideoResource(SyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3PromptImagePromptImage]],
         prompt_text: str | Omit = omit,
-        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "672:1584"]
+        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
         | Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
         | Literal["768:1280", "1280:768"]
@@ -410,7 +410,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         model: Literal["gen4.5"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]],
         prompt_text: str,
-        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "672:1584"],
+        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"],
         content_moderation: image_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -694,7 +694,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3PromptImagePromptImage]],
         prompt_text: str | Omit = omit,
-        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "672:1584"]
+        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
         | Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
         | Literal["768:1280", "1280:768"]
