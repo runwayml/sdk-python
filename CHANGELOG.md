@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.6.1 (2026-02-13)
+
+Full Changelog: [v4.6.0...v4.6.1](https://github.com/runwayml/sdk-python/compare/v4.6.0...v4.6.1)
+
+### Bug Fixes
+
+* **api:** Remove invalid 4.5 i2v ratio ([f2fa3d1](https://github.com/runwayml/sdk-python/commit/f2fa3d1703fedf53aff177b2650fd96cf84116ce))
+
+
+### Chores
+
+* format all `api.md` files ([83ca516](https://github.com/runwayml/sdk-python/commit/83ca516ce15c5d307eebadf0633e203b4a84b395))
+* **internal:** fix lint error on Python 3.14 ([73b877b](https://github.com/runwayml/sdk-python/commit/73b877b4d6a4b46161cb10f3beb863ac53f2eba8))
+
 ## 4.6.0 (2026-02-11)
 
 Full Changelog: [v4.5.0...v4.6.0](https://github.com/runwayml/sdk-python/compare/v4.5.0...v4.6.0)
