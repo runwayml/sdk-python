@@ -47,7 +47,7 @@ class Gen4_5(TypedDict, total=False):
     This should describe in detail what should appear in the output.
     """
 
-    ratio: Required[Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "672:1584"]]
+    ratio: Required[Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]]
     """The resolution of the output video."""
 
     content_moderation: Annotated[Gen4_5ContentModeration, PropertyInfo(alias="contentModeration")]
