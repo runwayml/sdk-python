@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.6.2 (2026-02-23)
+
+Full Changelog: [v4.6.1...v4.6.2](https://github.com/runwayml/sdk-python/compare/v4.6.1...v4.6.2)
+
+### Chores
+
+* **internal:** add request options to SSE classes ([3728b09](https://github.com/runwayml/sdk-python/commit/3728b09c52fdea6b145b00bebe9ba173cbdc3f7a))
+* update mock server docs ([2cd81c5](https://github.com/runwayml/sdk-python/commit/2cd81c5af998bbc6cc98926ef4439bade192f9c4))
+
 ## 4.6.1 (2026-02-13)
 
 Full Changelog: [v4.6.0...v4.6.1](https://github.com/runwayml/sdk-python/compare/v4.6.0...v4.6.1)
