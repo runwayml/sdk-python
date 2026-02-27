@@ -135,6 +135,7 @@ class RunwayML(SyncAPIClient):
 
     @cached_property
     def tasks(self) -> TasksResource:
+        """Endpoints for managing tasks that have been submitted."""
         from .resources.tasks import TasksResource
 
         return TasksResource(self)
@@ -147,60 +148,70 @@ class RunwayML(SyncAPIClient):
 
     @cached_property
     def image_to_video(self) -> ImageToVideoResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.image_to_video import ImageToVideoResource
 
         return ImageToVideoResource(self)
 
     @cached_property
     def video_to_video(self) -> VideoToVideoResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.video_to_video import VideoToVideoResource
 
         return VideoToVideoResource(self)
 
     @cached_property
     def text_to_video(self) -> TextToVideoResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_video import TextToVideoResource
 
         return TextToVideoResource(self)
 
     @cached_property
     def text_to_image(self) -> TextToImageResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_image import TextToImageResource
 
         return TextToImageResource(self)
 
     @cached_property
     def character_performance(self) -> CharacterPerformanceResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.character_performance import CharacterPerformanceResource
 
         return CharacterPerformanceResource(self)
 
     @cached_property
     def text_to_speech(self) -> TextToSpeechResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_speech import TextToSpeechResource
 
         return TextToSpeechResource(self)
 
     @cached_property
     def sound_effect(self) -> SoundEffectResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.sound_effect import SoundEffectResource
 
         return SoundEffectResource(self)
 
     @cached_property
     def voice_isolation(self) -> VoiceIsolationResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.voice_isolation import VoiceIsolationResource
 
         return VoiceIsolationResource(self)
 
     @cached_property
     def voice_dubbing(self) -> VoiceDubbingResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.voice_dubbing import VoiceDubbingResource
 
         return VoiceDubbingResource(self)
 
     @cached_property
     def speech_to_speech(self) -> SpeechToSpeechResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.speech_to_speech import SpeechToSpeechResource
 
         return SpeechToSpeechResource(self)
@@ -390,6 +401,7 @@ class AsyncRunwayML(AsyncAPIClient):
 
     @cached_property
     def tasks(self) -> AsyncTasksResource:
+        """Endpoints for managing tasks that have been submitted."""
         from .resources.tasks import AsyncTasksResource
 
         return AsyncTasksResource(self)
@@ -402,60 +414,70 @@ class AsyncRunwayML(AsyncAPIClient):
 
     @cached_property
     def image_to_video(self) -> AsyncImageToVideoResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.image_to_video import AsyncImageToVideoResource
 
         return AsyncImageToVideoResource(self)
 
     @cached_property
     def video_to_video(self) -> AsyncVideoToVideoResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.video_to_video import AsyncVideoToVideoResource
 
         return AsyncVideoToVideoResource(self)
 
     @cached_property
     def text_to_video(self) -> AsyncTextToVideoResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_video import AsyncTextToVideoResource
 
         return AsyncTextToVideoResource(self)
 
     @cached_property
     def text_to_image(self) -> AsyncTextToImageResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_image import AsyncTextToImageResource
 
         return AsyncTextToImageResource(self)
 
     @cached_property
     def character_performance(self) -> AsyncCharacterPerformanceResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.character_performance import AsyncCharacterPerformanceResource
 
         return AsyncCharacterPerformanceResource(self)
 
     @cached_property
     def text_to_speech(self) -> AsyncTextToSpeechResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_speech import AsyncTextToSpeechResource
 
         return AsyncTextToSpeechResource(self)
 
     @cached_property
     def sound_effect(self) -> AsyncSoundEffectResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.sound_effect import AsyncSoundEffectResource
 
         return AsyncSoundEffectResource(self)
 
     @cached_property
     def voice_isolation(self) -> AsyncVoiceIsolationResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.voice_isolation import AsyncVoiceIsolationResource
 
         return AsyncVoiceIsolationResource(self)
 
     @cached_property
     def voice_dubbing(self) -> AsyncVoiceDubbingResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.voice_dubbing import AsyncVoiceDubbingResource
 
         return AsyncVoiceDubbingResource(self)
 
     @cached_property
     def speech_to_speech(self) -> AsyncSpeechToSpeechResource:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.speech_to_speech import AsyncSpeechToSpeechResource
 
         return AsyncSpeechToSpeechResource(self)
@@ -590,6 +612,7 @@ class RunwayMLWithRawResponse:
 
     @cached_property
     def tasks(self) -> tasks.TasksResourceWithRawResponse:
+        """Endpoints for managing tasks that have been submitted."""
         from .resources.tasks import TasksResourceWithRawResponse
 
         return TasksResourceWithRawResponse(self._client.tasks)
@@ -602,60 +625,70 @@ class RunwayMLWithRawResponse:
 
     @cached_property
     def image_to_video(self) -> image_to_video.ImageToVideoResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.image_to_video import ImageToVideoResourceWithRawResponse
 
         return ImageToVideoResourceWithRawResponse(self._client.image_to_video)
 
     @cached_property
     def video_to_video(self) -> video_to_video.VideoToVideoResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.video_to_video import VideoToVideoResourceWithRawResponse
 
         return VideoToVideoResourceWithRawResponse(self._client.video_to_video)
 
     @cached_property
     def text_to_video(self) -> text_to_video.TextToVideoResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_video import TextToVideoResourceWithRawResponse
 
         return TextToVideoResourceWithRawResponse(self._client.text_to_video)
 
     @cached_property
     def text_to_image(self) -> text_to_image.TextToImageResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_image import TextToImageResourceWithRawResponse
 
         return TextToImageResourceWithRawResponse(self._client.text_to_image)
 
     @cached_property
     def character_performance(self) -> character_performance.CharacterPerformanceResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.character_performance import CharacterPerformanceResourceWithRawResponse
 
         return CharacterPerformanceResourceWithRawResponse(self._client.character_performance)
 
     @cached_property
     def text_to_speech(self) -> text_to_speech.TextToSpeechResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_speech import TextToSpeechResourceWithRawResponse
 
         return TextToSpeechResourceWithRawResponse(self._client.text_to_speech)
 
     @cached_property
     def sound_effect(self) -> sound_effect.SoundEffectResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.sound_effect import SoundEffectResourceWithRawResponse
 
         return SoundEffectResourceWithRawResponse(self._client.sound_effect)
 
     @cached_property
     def voice_isolation(self) -> voice_isolation.VoiceIsolationResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.voice_isolation import VoiceIsolationResourceWithRawResponse
 
         return VoiceIsolationResourceWithRawResponse(self._client.voice_isolation)
 
     @cached_property
     def voice_dubbing(self) -> voice_dubbing.VoiceDubbingResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.voice_dubbing import VoiceDubbingResourceWithRawResponse
 
         return VoiceDubbingResourceWithRawResponse(self._client.voice_dubbing)
 
     @cached_property
     def speech_to_speech(self) -> speech_to_speech.SpeechToSpeechResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.speech_to_speech import SpeechToSpeechResourceWithRawResponse
 
         return SpeechToSpeechResourceWithRawResponse(self._client.speech_to_speech)
@@ -675,6 +708,7 @@ class AsyncRunwayMLWithRawResponse:
 
     @cached_property
     def tasks(self) -> tasks.AsyncTasksResourceWithRawResponse:
+        """Endpoints for managing tasks that have been submitted."""
         from .resources.tasks import AsyncTasksResourceWithRawResponse
 
         return AsyncTasksResourceWithRawResponse(self._client.tasks)
@@ -687,60 +721,70 @@ class AsyncRunwayMLWithRawResponse:
 
     @cached_property
     def image_to_video(self) -> image_to_video.AsyncImageToVideoResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.image_to_video import AsyncImageToVideoResourceWithRawResponse
 
         return AsyncImageToVideoResourceWithRawResponse(self._client.image_to_video)
 
     @cached_property
     def video_to_video(self) -> video_to_video.AsyncVideoToVideoResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.video_to_video import AsyncVideoToVideoResourceWithRawResponse
 
         return AsyncVideoToVideoResourceWithRawResponse(self._client.video_to_video)
 
     @cached_property
     def text_to_video(self) -> text_to_video.AsyncTextToVideoResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_video import AsyncTextToVideoResourceWithRawResponse
 
         return AsyncTextToVideoResourceWithRawResponse(self._client.text_to_video)
 
     @cached_property
     def text_to_image(self) -> text_to_image.AsyncTextToImageResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_image import AsyncTextToImageResourceWithRawResponse
 
         return AsyncTextToImageResourceWithRawResponse(self._client.text_to_image)
 
     @cached_property
     def character_performance(self) -> character_performance.AsyncCharacterPerformanceResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.character_performance import AsyncCharacterPerformanceResourceWithRawResponse
 
         return AsyncCharacterPerformanceResourceWithRawResponse(self._client.character_performance)
 
     @cached_property
     def text_to_speech(self) -> text_to_speech.AsyncTextToSpeechResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_speech import AsyncTextToSpeechResourceWithRawResponse
 
         return AsyncTextToSpeechResourceWithRawResponse(self._client.text_to_speech)
 
     @cached_property
     def sound_effect(self) -> sound_effect.AsyncSoundEffectResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.sound_effect import AsyncSoundEffectResourceWithRawResponse
 
         return AsyncSoundEffectResourceWithRawResponse(self._client.sound_effect)
 
     @cached_property
     def voice_isolation(self) -> voice_isolation.AsyncVoiceIsolationResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.voice_isolation import AsyncVoiceIsolationResourceWithRawResponse
 
         return AsyncVoiceIsolationResourceWithRawResponse(self._client.voice_isolation)
 
     @cached_property
     def voice_dubbing(self) -> voice_dubbing.AsyncVoiceDubbingResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.voice_dubbing import AsyncVoiceDubbingResourceWithRawResponse
 
         return AsyncVoiceDubbingResourceWithRawResponse(self._client.voice_dubbing)
 
     @cached_property
     def speech_to_speech(self) -> speech_to_speech.AsyncSpeechToSpeechResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.speech_to_speech import AsyncSpeechToSpeechResourceWithRawResponse
 
         return AsyncSpeechToSpeechResourceWithRawResponse(self._client.speech_to_speech)
@@ -760,6 +804,7 @@ class RunwayMLWithStreamedResponse:
 
     @cached_property
     def tasks(self) -> tasks.TasksResourceWithStreamingResponse:
+        """Endpoints for managing tasks that have been submitted."""
         from .resources.tasks import TasksResourceWithStreamingResponse
 
         return TasksResourceWithStreamingResponse(self._client.tasks)
@@ -772,60 +817,70 @@ class RunwayMLWithStreamedResponse:
 
     @cached_property
     def image_to_video(self) -> image_to_video.ImageToVideoResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.image_to_video import ImageToVideoResourceWithStreamingResponse
 
         return ImageToVideoResourceWithStreamingResponse(self._client.image_to_video)
 
     @cached_property
     def video_to_video(self) -> video_to_video.VideoToVideoResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.video_to_video import VideoToVideoResourceWithStreamingResponse
 
         return VideoToVideoResourceWithStreamingResponse(self._client.video_to_video)
 
     @cached_property
     def text_to_video(self) -> text_to_video.TextToVideoResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_video import TextToVideoResourceWithStreamingResponse
 
         return TextToVideoResourceWithStreamingResponse(self._client.text_to_video)
 
     @cached_property
     def text_to_image(self) -> text_to_image.TextToImageResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_image import TextToImageResourceWithStreamingResponse
 
         return TextToImageResourceWithStreamingResponse(self._client.text_to_image)
 
     @cached_property
     def character_performance(self) -> character_performance.CharacterPerformanceResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.character_performance import CharacterPerformanceResourceWithStreamingResponse
 
         return CharacterPerformanceResourceWithStreamingResponse(self._client.character_performance)
 
     @cached_property
     def text_to_speech(self) -> text_to_speech.TextToSpeechResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_speech import TextToSpeechResourceWithStreamingResponse
 
         return TextToSpeechResourceWithStreamingResponse(self._client.text_to_speech)
 
     @cached_property
     def sound_effect(self) -> sound_effect.SoundEffectResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.sound_effect import SoundEffectResourceWithStreamingResponse
 
         return SoundEffectResourceWithStreamingResponse(self._client.sound_effect)
 
     @cached_property
     def voice_isolation(self) -> voice_isolation.VoiceIsolationResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.voice_isolation import VoiceIsolationResourceWithStreamingResponse
 
         return VoiceIsolationResourceWithStreamingResponse(self._client.voice_isolation)
 
     @cached_property
     def voice_dubbing(self) -> voice_dubbing.VoiceDubbingResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.voice_dubbing import VoiceDubbingResourceWithStreamingResponse
 
         return VoiceDubbingResourceWithStreamingResponse(self._client.voice_dubbing)
 
     @cached_property
     def speech_to_speech(self) -> speech_to_speech.SpeechToSpeechResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.speech_to_speech import SpeechToSpeechResourceWithStreamingResponse
 
         return SpeechToSpeechResourceWithStreamingResponse(self._client.speech_to_speech)
@@ -845,6 +900,7 @@ class AsyncRunwayMLWithStreamedResponse:
 
     @cached_property
     def tasks(self) -> tasks.AsyncTasksResourceWithStreamingResponse:
+        """Endpoints for managing tasks that have been submitted."""
         from .resources.tasks import AsyncTasksResourceWithStreamingResponse
 
         return AsyncTasksResourceWithStreamingResponse(self._client.tasks)
@@ -857,60 +913,70 @@ class AsyncRunwayMLWithStreamedResponse:
 
     @cached_property
     def image_to_video(self) -> image_to_video.AsyncImageToVideoResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.image_to_video import AsyncImageToVideoResourceWithStreamingResponse
 
         return AsyncImageToVideoResourceWithStreamingResponse(self._client.image_to_video)
 
     @cached_property
     def video_to_video(self) -> video_to_video.AsyncVideoToVideoResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.video_to_video import AsyncVideoToVideoResourceWithStreamingResponse
 
         return AsyncVideoToVideoResourceWithStreamingResponse(self._client.video_to_video)
 
     @cached_property
     def text_to_video(self) -> text_to_video.AsyncTextToVideoResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_video import AsyncTextToVideoResourceWithStreamingResponse
 
         return AsyncTextToVideoResourceWithStreamingResponse(self._client.text_to_video)
 
     @cached_property
     def text_to_image(self) -> text_to_image.AsyncTextToImageResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_image import AsyncTextToImageResourceWithStreamingResponse
 
         return AsyncTextToImageResourceWithStreamingResponse(self._client.text_to_image)
 
     @cached_property
     def character_performance(self) -> character_performance.AsyncCharacterPerformanceResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.character_performance import AsyncCharacterPerformanceResourceWithStreamingResponse
 
         return AsyncCharacterPerformanceResourceWithStreamingResponse(self._client.character_performance)
 
     @cached_property
     def text_to_speech(self) -> text_to_speech.AsyncTextToSpeechResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.text_to_speech import AsyncTextToSpeechResourceWithStreamingResponse
 
         return AsyncTextToSpeechResourceWithStreamingResponse(self._client.text_to_speech)
 
     @cached_property
     def sound_effect(self) -> sound_effect.AsyncSoundEffectResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.sound_effect import AsyncSoundEffectResourceWithStreamingResponse
 
         return AsyncSoundEffectResourceWithStreamingResponse(self._client.sound_effect)
 
     @cached_property
     def voice_isolation(self) -> voice_isolation.AsyncVoiceIsolationResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.voice_isolation import AsyncVoiceIsolationResourceWithStreamingResponse
 
         return AsyncVoiceIsolationResourceWithStreamingResponse(self._client.voice_isolation)
 
     @cached_property
     def voice_dubbing(self) -> voice_dubbing.AsyncVoiceDubbingResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.voice_dubbing import AsyncVoiceDubbingResourceWithStreamingResponse
 
         return AsyncVoiceDubbingResourceWithStreamingResponse(self._client.voice_dubbing)
 
     @cached_property
     def speech_to_speech(self) -> speech_to_speech.AsyncSpeechToSpeechResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
         from .resources.speech_to_speech import AsyncSpeechToSpeechResourceWithStreamingResponse
 
         return AsyncSpeechToSpeechResourceWithStreamingResponse(self._client.speech_to_speech)

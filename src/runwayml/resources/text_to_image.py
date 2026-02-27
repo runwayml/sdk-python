@@ -31,6 +31,8 @@ __all__ = ["TextToImageResource", "AsyncTextToImageResource"]
 
 
 class TextToImageResource(SyncAPIResource):
+    """These endpoints all kick off tasks to create generations."""
+
     @cached_property
     def with_raw_response(self) -> TextToImageResourceWithRawResponse:
         """
@@ -294,6 +296,8 @@ class TextToImageResource(SyncAPIResource):
 
 
 class AsyncTextToImageResource(AsyncAPIResource):
+    """These endpoints all kick off tasks to create generations."""
+
     @cached_property
     def with_raw_response(self) -> AsyncTextToImageResourceWithRawResponse:
         """

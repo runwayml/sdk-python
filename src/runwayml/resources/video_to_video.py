@@ -31,6 +31,8 @@ __all__ = ["VideoToVideoResource", "AsyncVideoToVideoResource"]
 
 
 class VideoToVideoResource(SyncAPIResource):
+    """These endpoints all kick off tasks to create generations."""
+
     @cached_property
     def with_raw_response(self) -> VideoToVideoResourceWithRawResponse:
         """
@@ -119,6 +121,8 @@ class VideoToVideoResource(SyncAPIResource):
 
 
 class AsyncVideoToVideoResource(AsyncAPIResource):
+    """These endpoints all kick off tasks to create generations."""
+
     @cached_property
     def with_raw_response(self) -> AsyncVideoToVideoResourceWithRawResponse:
         """
