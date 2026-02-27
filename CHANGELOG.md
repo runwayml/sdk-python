@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.6.3 (2026-02-27)
+
+Full Changelog: [v4.6.2...v4.6.3](https://github.com/runwayml/sdk-python/compare/v4.6.2...v4.6.3)
+
+### Chores
+
+* **docs:** add missing descriptions ([f64ea7b](https://github.com/runwayml/sdk-python/commit/f64ea7b144eedc7f46282fb38292169dbbe3e2a7))
+* **internal:** make `test_proxy_environment_variables` more resilient ([b0a3688](https://github.com/runwayml/sdk-python/commit/b0a36886187e3b4c2ead1e5b869fcb9852458e68))
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([dd8ca18](https://github.com/runwayml/sdk-python/commit/dd8ca187566df553496628846a5b388dee8a067c))
+
 ## 4.6.2 (2026-02-23)
 
 Full Changelog: [v4.6.1...v4.6.2](https://github.com/runwayml/sdk-python/compare/v4.6.1...v4.6.2)
