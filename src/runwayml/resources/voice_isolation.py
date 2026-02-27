@@ -30,6 +30,8 @@ __all__ = ["VoiceIsolationResource", "AsyncVoiceIsolationResource"]
 
 
 class VoiceIsolationResource(SyncAPIResource):
+    """These endpoints all kick off tasks to create generations."""
+
     @cached_property
     def with_raw_response(self) -> VoiceIsolationResourceWithRawResponse:
         """
@@ -94,6 +96,8 @@ class VoiceIsolationResource(SyncAPIResource):
 
 
 class AsyncVoiceIsolationResource(AsyncAPIResource):
+    """These endpoints all kick off tasks to create generations."""
+
     @cached_property
     def with_raw_response(self) -> AsyncVoiceIsolationResourceWithRawResponse:
         """

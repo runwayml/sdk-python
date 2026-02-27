@@ -30,6 +30,8 @@ __all__ = ["SoundEffectResource", "AsyncSoundEffectResource"]
 
 
 class SoundEffectResource(SyncAPIResource):
+    """These endpoints all kick off tasks to create generations."""
+
     @cached_property
     def with_raw_response(self) -> SoundEffectResourceWithRawResponse:
         """
@@ -103,6 +105,8 @@ class SoundEffectResource(SyncAPIResource):
 
 
 class AsyncSoundEffectResource(AsyncAPIResource):
+    """These endpoints all kick off tasks to create generations."""
+
     @cached_property
     def with_raw_response(self) -> AsyncSoundEffectResourceWithRawResponse:
         """
