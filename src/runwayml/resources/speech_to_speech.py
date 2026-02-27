@@ -24,6 +24,8 @@ __all__ = ["SpeechToSpeechResource", "AsyncSpeechToSpeechResource"]
 
 
 class SpeechToSpeechResource(SyncAPIResource):
+    """These endpoints all kick off tasks to create generations."""
+
     @cached_property
     def with_raw_response(self) -> SpeechToSpeechResourceWithRawResponse:
         """
@@ -95,6 +97,8 @@ class SpeechToSpeechResource(SyncAPIResource):
 
 
 class AsyncSpeechToSpeechResource(AsyncAPIResource):
+    """These endpoints all kick off tasks to create generations."""
+
     @cached_property
     def with_raw_response(self) -> AsyncSpeechToSpeechResourceWithRawResponse:
         """

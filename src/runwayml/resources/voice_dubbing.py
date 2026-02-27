@@ -24,6 +24,8 @@ __all__ = ["VoiceDubbingResource", "AsyncVoiceDubbingResource"]
 
 
 class VoiceDubbingResource(SyncAPIResource):
+    """These endpoints all kick off tasks to create generations."""
+
     @cached_property
     def with_raw_response(self) -> VoiceDubbingResourceWithRawResponse:
         """
@@ -134,6 +136,8 @@ class VoiceDubbingResource(SyncAPIResource):
 
 
 class AsyncVoiceDubbingResource(AsyncAPIResource):
+    """These endpoints all kick off tasks to create generations."""
+
     @cached_property
     def with_raw_response(self) -> AsyncVoiceDubbingResourceWithRawResponse:
         """

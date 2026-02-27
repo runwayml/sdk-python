@@ -24,6 +24,8 @@ __all__ = ["CharacterPerformanceResource", "AsyncCharacterPerformanceResource"]
 
 
 class CharacterPerformanceResource(SyncAPIResource):
+    """These endpoints all kick off tasks to create generations."""
+
     @cached_property
     def with_raw_response(self) -> CharacterPerformanceResourceWithRawResponse:
         """
@@ -118,6 +120,8 @@ class CharacterPerformanceResource(SyncAPIResource):
 
 
 class AsyncCharacterPerformanceResource(AsyncAPIResource):
+    """These endpoints all kick off tasks to create generations."""
+
     @cached_property
     def with_raw_response(self) -> AsyncCharacterPerformanceResourceWithRawResponse:
         """

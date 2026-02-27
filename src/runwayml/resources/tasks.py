@@ -22,6 +22,8 @@ __all__ = ["TasksResource", "AsyncTasksResource"]
 
 
 class TasksResource(SyncAPIResource):
+    """Endpoints for managing tasks that have been submitted."""
+
     @cached_property
     def with_raw_response(self) -> TasksResourceWithRawResponse:
         """
@@ -122,6 +124,8 @@ class TasksResource(SyncAPIResource):
 
 
 class AsyncTasksResource(AsyncAPIResource):
+    """Endpoints for managing tasks that have been submitted."""
+
     @cached_property
     def with_raw_response(self) -> AsyncTasksResourceWithRawResponse:
         """
