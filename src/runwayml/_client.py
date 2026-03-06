@@ -48,7 +48,6 @@ if TYPE_CHECKING:
         character_performance,
     )
     from .resources.tasks import TasksResource, AsyncTasksResource
-
     from .resources.organization import OrganizationResource, AsyncOrganizationResource
     from .resources.sound_effect import SoundEffectResource, AsyncSoundEffectResource
     from .resources.text_to_image import TextToImageResource, AsyncTextToImageResource

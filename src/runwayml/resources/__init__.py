@@ -186,5 +186,16 @@ __all__ = [
     "AsyncOrganizationResourceWithRawResponse",
     "OrganizationResourceWithStreamingResponse",
     "AsyncOrganizationResourceWithStreamingResponse",
-
+    "UploadsResource",
+    "AsyncUploadsResource",
+    "UploadsResourceWithRawResponse",
+    "AsyncUploadsResourceWithRawResponse",
+    "UploadsResourceWithStreamingResponse",
+    "AsyncUploadsResourceWithStreamingResponse",
+    "RealtimeSessionsResource",
+    "AsyncRealtimeSessionsResource",
+    "RealtimeSessionsResourceWithRawResponse",
+    "AsyncRealtimeSessionsResourceWithRawResponse",
+    "RealtimeSessionsResourceWithStreamingResponse",
+    "AsyncRealtimeSessionsResourceWithStreamingResponse",
 ]
