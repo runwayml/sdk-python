@@ -33,7 +33,10 @@ from ._base_client import (
 if TYPE_CHECKING:
     from .resources import (
         tasks,
+        voices,
+        avatars,
         uploads,
+        documents,
         organization,
         sound_effect,
         text_to_image,
@@ -48,6 +51,10 @@ if TYPE_CHECKING:
         character_performance,
     )
     from .resources.tasks import TasksResource, AsyncTasksResource
+    from .resources.voices import VoicesResource, AsyncVoicesResource
+    from .resources.avatars import AvatarsResource, AsyncAvatarsResource
+    from .resources.uploads import UploadsResource, AsyncUploadsResource
+    from .resources.documents import DocumentsResource, AsyncDocumentsResource
     from .resources.organization import OrganizationResource, AsyncOrganizationResource
     from .resources.sound_effect import SoundEffectResource, AsyncSoundEffectResource
     from .resources.text_to_image import TextToImageResource, AsyncTextToImageResource
