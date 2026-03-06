@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.7.0 (2026-03-06)
+
+Full Changelog: [v4.6.3...v4.7.0](https://github.com/runwayml/sdk-python/compare/v4.6.3...v4.7.0)
+
+### Features
+
+* **api:** add avatar, voice, document, and realtime session endpoints ([18b1573](https://github.com/runwayml/sdk-python/commit/18b15733d52e1ddb60d1f9a847e4fd7a712b4701))
+
+
+### Chores
+
+* **test:** do not count install time for mock server timeout ([84988e1](https://github.com/runwayml/sdk-python/commit/84988e1eeaa6d25b265bfb77863ed6a4ce271201))
+
 ## 4.6.3 (2026-02-27)
 
 Full Changelog: [v4.6.2...v4.6.3](https://github.com/runwayml/sdk-python/compare/v4.6.2...v4.6.3)
