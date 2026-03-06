@@ -33,6 +33,9 @@ from ._base_client import (
 if TYPE_CHECKING:
     from .resources import (
         tasks,
+        voices,
+        avatars,
+        documents,
         organization,
         sound_effect,
         text_to_image,
@@ -43,9 +46,13 @@ if TYPE_CHECKING:
         video_to_video,
         voice_isolation,
         speech_to_speech,
+        realtime_sessions,
         character_performance,
     )
     from .resources.tasks import TasksResource, AsyncTasksResource
+    from .resources.voices import VoicesResource, AsyncVoicesResource
+    from .resources.avatars import AvatarsResource, AsyncAvatarsResource
+    from .resources.documents import DocumentsResource, AsyncDocumentsResource
     from .resources.organization import OrganizationResource, AsyncOrganizationResource
     from .resources.sound_effect import SoundEffectResource, AsyncSoundEffectResource
     from .resources.text_to_image import TextToImageResource, AsyncTextToImageResource
@@ -56,6 +63,7 @@ if TYPE_CHECKING:
     from .resources.video_to_video import VideoToVideoResource, AsyncVideoToVideoResource
     from .resources.voice_isolation import VoiceIsolationResource, AsyncVoiceIsolationResource
     from .resources.speech_to_speech import SpeechToSpeechResource, AsyncSpeechToSpeechResource
+    from .resources.realtime_sessions import RealtimeSessionsResource, AsyncRealtimeSessionsResource
     from .resources.character_performance import CharacterPerformanceResource, AsyncCharacterPerformanceResource
 
 __all__ = [
@@ -213,6 +221,30 @@ class RunwayML(SyncAPIClient):
         from .resources.organization import OrganizationResource
 
         return OrganizationResource(self)
+
+    @cached_property
+    def avatars(self) -> AvatarsResource:
+        from .resources.avatars import AvatarsResource
+
+        return AvatarsResource(self)
+
+    @cached_property
+    def documents(self) -> DocumentsResource:
+        from .resources.documents import DocumentsResource
+
+        return DocumentsResource(self)
+
+    @cached_property
+    def realtime_sessions(self) -> RealtimeSessionsResource:
+        from .resources.realtime_sessions import RealtimeSessionsResource
+
+        return RealtimeSessionsResource(self)
+
+    @cached_property
+    def voices(self) -> VoicesResource:
+        from .resources.voices import VoicesResource
+
+        return VoicesResource(self)
 
     @cached_property
     def with_raw_response(self) -> RunwayMLWithRawResponse:
@@ -475,6 +507,30 @@ class AsyncRunwayML(AsyncAPIClient):
         return AsyncOrganizationResource(self)
 
     @cached_property
+    def avatars(self) -> AsyncAvatarsResource:
+        from .resources.avatars import AsyncAvatarsResource
+
+        return AsyncAvatarsResource(self)
+
+    @cached_property
+    def documents(self) -> AsyncDocumentsResource:
+        from .resources.documents import AsyncDocumentsResource
+
+        return AsyncDocumentsResource(self)
+
+    @cached_property
+    def realtime_sessions(self) -> AsyncRealtimeSessionsResource:
+        from .resources.realtime_sessions import AsyncRealtimeSessionsResource
+
+        return AsyncRealtimeSessionsResource(self)
+
+    @cached_property
+    def voices(self) -> AsyncVoicesResource:
+        from .resources.voices import AsyncVoicesResource
+
+        return AsyncVoicesResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncRunwayMLWithRawResponse:
         return AsyncRunwayMLWithRawResponse(self)
 
@@ -679,6 +735,30 @@ class RunwayMLWithRawResponse:
 
         return OrganizationResourceWithRawResponse(self._client.organization)
 
+    @cached_property
+    def avatars(self) -> avatars.AvatarsResourceWithRawResponse:
+        from .resources.avatars import AvatarsResourceWithRawResponse
+
+        return AvatarsResourceWithRawResponse(self._client.avatars)
+
+    @cached_property
+    def documents(self) -> documents.DocumentsResourceWithRawResponse:
+        from .resources.documents import DocumentsResourceWithRawResponse
+
+        return DocumentsResourceWithRawResponse(self._client.documents)
+
+    @cached_property
+    def realtime_sessions(self) -> realtime_sessions.RealtimeSessionsResourceWithRawResponse:
+        from .resources.realtime_sessions import RealtimeSessionsResourceWithRawResponse
+
+        return RealtimeSessionsResourceWithRawResponse(self._client.realtime_sessions)
+
+    @cached_property
+    def voices(self) -> voices.VoicesResourceWithRawResponse:
+        from .resources.voices import VoicesResourceWithRawResponse
+
+        return VoicesResourceWithRawResponse(self._client.voices)
+
 
 class AsyncRunwayMLWithRawResponse:
     _client: AsyncRunwayML
@@ -768,6 +848,30 @@ class AsyncRunwayMLWithRawResponse:
         from .resources.organization import AsyncOrganizationResourceWithRawResponse
 
         return AsyncOrganizationResourceWithRawResponse(self._client.organization)
+
+    @cached_property
+    def avatars(self) -> avatars.AsyncAvatarsResourceWithRawResponse:
+        from .resources.avatars import AsyncAvatarsResourceWithRawResponse
+
+        return AsyncAvatarsResourceWithRawResponse(self._client.avatars)
+
+    @cached_property
+    def documents(self) -> documents.AsyncDocumentsResourceWithRawResponse:
+        from .resources.documents import AsyncDocumentsResourceWithRawResponse
+
+        return AsyncDocumentsResourceWithRawResponse(self._client.documents)
+
+    @cached_property
+    def realtime_sessions(self) -> realtime_sessions.AsyncRealtimeSessionsResourceWithRawResponse:
+        from .resources.realtime_sessions import AsyncRealtimeSessionsResourceWithRawResponse
+
+        return AsyncRealtimeSessionsResourceWithRawResponse(self._client.realtime_sessions)
+
+    @cached_property
+    def voices(self) -> voices.AsyncVoicesResourceWithRawResponse:
+        from .resources.voices import AsyncVoicesResourceWithRawResponse
+
+        return AsyncVoicesResourceWithRawResponse(self._client.voices)
 
 
 class RunwayMLWithStreamedResponse:
@@ -859,6 +963,30 @@ class RunwayMLWithStreamedResponse:
 
         return OrganizationResourceWithStreamingResponse(self._client.organization)
 
+    @cached_property
+    def avatars(self) -> avatars.AvatarsResourceWithStreamingResponse:
+        from .resources.avatars import AvatarsResourceWithStreamingResponse
+
+        return AvatarsResourceWithStreamingResponse(self._client.avatars)
+
+    @cached_property
+    def documents(self) -> documents.DocumentsResourceWithStreamingResponse:
+        from .resources.documents import DocumentsResourceWithStreamingResponse
+
+        return DocumentsResourceWithStreamingResponse(self._client.documents)
+
+    @cached_property
+    def realtime_sessions(self) -> realtime_sessions.RealtimeSessionsResourceWithStreamingResponse:
+        from .resources.realtime_sessions import RealtimeSessionsResourceWithStreamingResponse
+
+        return RealtimeSessionsResourceWithStreamingResponse(self._client.realtime_sessions)
+
+    @cached_property
+    def voices(self) -> voices.VoicesResourceWithStreamingResponse:
+        from .resources.voices import VoicesResourceWithStreamingResponse
+
+        return VoicesResourceWithStreamingResponse(self._client.voices)
+
 
 class AsyncRunwayMLWithStreamedResponse:
     _client: AsyncRunwayML
@@ -948,6 +1076,30 @@ class AsyncRunwayMLWithStreamedResponse:
         from .resources.organization import AsyncOrganizationResourceWithStreamingResponse
 
         return AsyncOrganizationResourceWithStreamingResponse(self._client.organization)
+
+    @cached_property
+    def avatars(self) -> avatars.AsyncAvatarsResourceWithStreamingResponse:
+        from .resources.avatars import AsyncAvatarsResourceWithStreamingResponse
+
+        return AsyncAvatarsResourceWithStreamingResponse(self._client.avatars)
+
+    @cached_property
+    def documents(self) -> documents.AsyncDocumentsResourceWithStreamingResponse:
+        from .resources.documents import AsyncDocumentsResourceWithStreamingResponse
+
+        return AsyncDocumentsResourceWithStreamingResponse(self._client.documents)
+
+    @cached_property
+    def realtime_sessions(self) -> realtime_sessions.AsyncRealtimeSessionsResourceWithStreamingResponse:
+        from .resources.realtime_sessions import AsyncRealtimeSessionsResourceWithStreamingResponse
+
+        return AsyncRealtimeSessionsResourceWithStreamingResponse(self._client.realtime_sessions)
+
+    @cached_property
+    def voices(self) -> voices.AsyncVoicesResourceWithStreamingResponse:
+        from .resources.voices import AsyncVoicesResourceWithStreamingResponse
+
+        return AsyncVoicesResourceWithStreamingResponse(self._client.voices)
 
 
 Client = RunwayML

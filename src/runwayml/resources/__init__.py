@@ -8,6 +8,30 @@ from .tasks import (
     TasksResourceWithStreamingResponse,
     AsyncTasksResourceWithStreamingResponse,
 )
+from .voices import (
+    VoicesResource,
+    AsyncVoicesResource,
+    VoicesResourceWithRawResponse,
+    AsyncVoicesResourceWithRawResponse,
+    VoicesResourceWithStreamingResponse,
+    AsyncVoicesResourceWithStreamingResponse,
+)
+from .avatars import (
+    AvatarsResource,
+    AsyncAvatarsResource,
+    AvatarsResourceWithRawResponse,
+    AsyncAvatarsResourceWithRawResponse,
+    AvatarsResourceWithStreamingResponse,
+    AsyncAvatarsResourceWithStreamingResponse,
+)
+from .documents import (
+    DocumentsResource,
+    AsyncDocumentsResource,
+    DocumentsResourceWithRawResponse,
+    AsyncDocumentsResourceWithRawResponse,
+    DocumentsResourceWithStreamingResponse,
+    AsyncDocumentsResourceWithStreamingResponse,
+)
 from .organization import (
     OrganizationResource,
     AsyncOrganizationResource,
@@ -87,6 +111,14 @@ from .speech_to_speech import (
     AsyncSpeechToSpeechResourceWithRawResponse,
     SpeechToSpeechResourceWithStreamingResponse,
     AsyncSpeechToSpeechResourceWithStreamingResponse,
+)
+from .realtime_sessions import (
+    RealtimeSessionsResource,
+    AsyncRealtimeSessionsResource,
+    RealtimeSessionsResourceWithRawResponse,
+    AsyncRealtimeSessionsResourceWithRawResponse,
+    RealtimeSessionsResourceWithStreamingResponse,
+    AsyncRealtimeSessionsResourceWithStreamingResponse,
 )
 from .character_performance import (
     CharacterPerformanceResource,
@@ -170,4 +202,28 @@ __all__ = [
     "AsyncOrganizationResourceWithRawResponse",
     "OrganizationResourceWithStreamingResponse",
     "AsyncOrganizationResourceWithStreamingResponse",
+    "AvatarsResource",
+    "AsyncAvatarsResource",
+    "AvatarsResourceWithRawResponse",
+    "AsyncAvatarsResourceWithRawResponse",
+    "AvatarsResourceWithStreamingResponse",
+    "AsyncAvatarsResourceWithStreamingResponse",
+    "DocumentsResource",
+    "AsyncDocumentsResource",
+    "DocumentsResourceWithRawResponse",
+    "AsyncDocumentsResourceWithRawResponse",
+    "DocumentsResourceWithStreamingResponse",
+    "AsyncDocumentsResourceWithStreamingResponse",
+    "RealtimeSessionsResource",
+    "AsyncRealtimeSessionsResource",
+    "RealtimeSessionsResourceWithRawResponse",
+    "AsyncRealtimeSessionsResourceWithRawResponse",
+    "RealtimeSessionsResourceWithStreamingResponse",
+    "AsyncRealtimeSessionsResourceWithStreamingResponse",
+    "VoicesResource",
+    "AsyncVoicesResource",
+    "VoicesResourceWithRawResponse",
+    "AsyncVoicesResourceWithRawResponse",
+    "VoicesResourceWithStreamingResponse",
+    "AsyncVoicesResourceWithStreamingResponse",
 ]
