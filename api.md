@@ -143,3 +143,74 @@ Methods:
 
 - <code title="get /v1/organization">client.organization.<a href="./src/runwayml/resources/organization.py">retrieve</a>() -> <a href="./src/runwayml/types/organization_retrieve_response.py">OrganizationRetrieveResponse</a></code>
 - <code title="post /v1/organization/usage">client.organization.<a href="./src/runwayml/resources/organization.py">retrieve_usage</a>(\*\*<a href="src/runwayml/types/organization_retrieve_usage_params.py">params</a>) -> <a href="./src/runwayml/types/organization_retrieve_usage_response.py">OrganizationRetrieveUsageResponse</a></code>
+
+# Avatars
+
+Types:
+
+```python
+from runwayml.types import (
+    AvatarCreateResponse,
+    AvatarRetrieveResponse,
+    AvatarUpdateResponse,
+    AvatarListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v1/avatars">client.avatars.<a href="./src/runwayml/resources/avatars.py">create</a>(\*\*<a href="src/runwayml/types/avatar_create_params.py">params</a>) -> <a href="./src/runwayml/types/avatar_create_response.py">AvatarCreateResponse</a></code>
+- <code title="get /v1/avatars/{id}">client.avatars.<a href="./src/runwayml/resources/avatars.py">retrieve</a>(id) -> <a href="./src/runwayml/types/avatar_retrieve_response.py">AvatarRetrieveResponse</a></code>
+- <code title="patch /v1/avatars/{id}">client.avatars.<a href="./src/runwayml/resources/avatars.py">update</a>(id, \*\*<a href="src/runwayml/types/avatar_update_params.py">params</a>) -> <a href="./src/runwayml/types/avatar_update_response.py">AvatarUpdateResponse</a></code>
+- <code title="get /v1/avatars">client.avatars.<a href="./src/runwayml/resources/avatars.py">list</a>(\*\*<a href="src/runwayml/types/avatar_list_params.py">params</a>) -> <a href="./src/runwayml/types/avatar_list_response.py">SyncCursorPage[AvatarListResponse]</a></code>
+- <code title="delete /v1/avatars/{id}">client.avatars.<a href="./src/runwayml/resources/avatars.py">delete</a>(id) -> None</code>
+
+# Documents
+
+Types:
+
+```python
+from runwayml.types import DocumentCreateResponse, DocumentRetrieveResponse, DocumentListResponse
+```
+
+Methods:
+
+- <code title="post /v1/documents">client.documents.<a href="./src/runwayml/resources/documents.py">create</a>(\*\*<a href="src/runwayml/types/document_create_params.py">params</a>) -> <a href="./src/runwayml/types/document_create_response.py">DocumentCreateResponse</a></code>
+- <code title="get /v1/documents/{id}">client.documents.<a href="./src/runwayml/resources/documents.py">retrieve</a>(id) -> <a href="./src/runwayml/types/document_retrieve_response.py">DocumentRetrieveResponse</a></code>
+- <code title="get /v1/documents">client.documents.<a href="./src/runwayml/resources/documents.py">list</a>(\*\*<a href="src/runwayml/types/document_list_params.py">params</a>) -> <a href="./src/runwayml/types/document_list_response.py">SyncCursorPage[DocumentListResponse]</a></code>
+- <code title="delete /v1/documents/{id}">client.documents.<a href="./src/runwayml/resources/documents.py">delete</a>(id) -> None</code>
+
+# RealtimeSessions
+
+Types:
+
+```python
+from runwayml.types import RealtimeSessionCreateResponse, RealtimeSessionRetrieveResponse
+```
+
+Methods:
+
+- <code title="post /v1/realtime_sessions">client.realtime_sessions.<a href="./src/runwayml/resources/realtime_sessions.py">create</a>(\*\*<a href="src/runwayml/types/realtime_session_create_params.py">params</a>) -> <a href="./src/runwayml/types/realtime_session_create_response.py">RealtimeSessionCreateResponse</a></code>
+- <code title="get /v1/realtime_sessions/{id}">client.realtime_sessions.<a href="./src/runwayml/resources/realtime_sessions.py">retrieve</a>(id) -> <a href="./src/runwayml/types/realtime_session_retrieve_response.py">RealtimeSessionRetrieveResponse</a></code>
+- <code title="delete /v1/realtime_sessions/{id}">client.realtime_sessions.<a href="./src/runwayml/resources/realtime_sessions.py">delete</a>(id) -> None</code>
+
+# Voices
+
+Types:
+
+```python
+from runwayml.types import (
+    VoiceCreateResponse,
+    VoiceRetrieveResponse,
+    VoiceListResponse,
+    VoicePreviewResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v1/voices">client.voices.<a href="./src/runwayml/resources/voices.py">create</a>(\*\*<a href="src/runwayml/types/voice_create_params.py">params</a>) -> <a href="./src/runwayml/types/voice_create_response.py">VoiceCreateResponse</a></code>
+- <code title="get /v1/voices/{id}">client.voices.<a href="./src/runwayml/resources/voices.py">retrieve</a>(id) -> <a href="./src/runwayml/types/voice_retrieve_response.py">VoiceRetrieveResponse</a></code>
+- <code title="get /v1/voices">client.voices.<a href="./src/runwayml/resources/voices.py">list</a>(\*\*<a href="src/runwayml/types/voice_list_params.py">params</a>) -> <a href="./src/runwayml/types/voice_list_response.py">SyncCursorPage[VoiceListResponse]</a></code>
+- <code title="delete /v1/voices/{id}">client.voices.<a href="./src/runwayml/resources/voices.py">delete</a>(id) -> None</code>
+- <code title="post /v1/voices/preview">client.voices.<a href="./src/runwayml/resources/voices.py">preview</a>(\*\*<a href="src/runwayml/types/voice_preview_params.py">params</a>) -> <a href="./src/runwayml/types/voice_preview_response.py">VoicePreviewResponse</a></code>
