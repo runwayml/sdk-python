@@ -96,6 +96,14 @@ from .speech_to_speech import (
     SpeechToSpeechResourceWithStreamingResponse,
     AsyncSpeechToSpeechResourceWithStreamingResponse,
 )
+from .realtime_sessions import (
+    RealtimeSessionsResource,
+    AsyncRealtimeSessionsResource,
+    RealtimeSessionsResourceWithRawResponse,
+    AsyncRealtimeSessionsResourceWithRawResponse,
+    RealtimeSessionsResourceWithStreamingResponse,
+    AsyncRealtimeSessionsResourceWithStreamingResponse,
+)
 from .character_performance import (
     CharacterPerformanceResource,
     AsyncCharacterPerformanceResource,
@@ -178,10 +186,5 @@ __all__ = [
     "AsyncOrganizationResourceWithRawResponse",
     "OrganizationResourceWithStreamingResponse",
     "AsyncOrganizationResourceWithStreamingResponse",
-    "UploadsResource",
-    "AsyncUploadsResource",
-    "UploadsResourceWithRawResponse",
-    "AsyncUploadsResourceWithRawResponse",
-    "UploadsResourceWithStreamingResponse",
-    "AsyncUploadsResourceWithStreamingResponse",
+
 ]

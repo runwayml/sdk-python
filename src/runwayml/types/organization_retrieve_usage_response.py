@@ -32,6 +32,8 @@ class ResultUsedCredit(BaseModel):
         "eleven_voice_isolation",
         "eleven_voice_dubbing",
         "eleven_multilingual_sts_v2",
+        "gwm1_avatars",
+        "voice_processing",
     ]
     """The model that credits were spent on."""
 
@@ -66,6 +68,8 @@ class OrganizationRetrieveUsageResponse(BaseModel):
             "eleven_voice_isolation",
             "eleven_voice_dubbing",
             "eleven_multilingual_sts_v2",
+            "gwm1_avatars",
+            "voice_processing",
         ]
     ]
     """The list of models with usage during the queried time range."""
