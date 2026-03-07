@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.7.1 (2026-03-07)
+
+Full Changelog: [v4.7.0...v4.7.1](https://github.com/runwayml/sdk-python/compare/v4.7.0...v4.7.1)
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([f153e58](https://github.com/runwayml/sdk-python/commit/f153e58a55cfb34f0e8a9cd47ca1a5ffbae7bb28))
+
 ## 4.7.0 (2026-03-06)
 
 Full Changelog: [v4.6.3...v4.7.0](https://github.com/runwayml/sdk-python/compare/v4.6.3...v4.7.0)
