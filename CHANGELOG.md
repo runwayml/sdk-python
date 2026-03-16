@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.7.1 (2026-03-16)
+
+Full Changelog: [v4.7.0...v4.7.1](https://github.com/runwayml/sdk-python/compare/v4.7.0...v4.7.1)
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([69d3f16](https://github.com/runwayml/sdk-python/commit/69d3f16c653bcd158a3530d1b7f2c67c38adc45b))
+* **pydantic:** do not pass `by_alias` unless set ([cae07b4](https://github.com/runwayml/sdk-python/commit/cae07b42d85cf6fe5be7427456ac33ce989b1df2))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([f153e58](https://github.com/runwayml/sdk-python/commit/f153e58a55cfb34f0e8a9cd47ca1a5ffbae7bb28))
+* **internal:** tweak CI branches ([f4d6103](https://github.com/runwayml/sdk-python/commit/f4d610314bff56cee7b0126a8f7519423ef0016b))
+
 ## 4.7.0 (2026-03-06)
 
 Full Changelog: [v4.6.3...v4.7.0](https://github.com/runwayml/sdk-python/compare/v4.6.3...v4.7.0)
