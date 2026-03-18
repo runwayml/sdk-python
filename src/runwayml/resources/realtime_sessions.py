@@ -51,6 +51,8 @@ class RealtimeSessionsResource(SyncAPIResource):
         avatar: realtime_session_create_params.Avatar,
         model: Literal["gwm1_avatars"],
         max_duration: int | Omit = omit,
+        personality: str | Omit = omit,
+        start_script: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -68,6 +70,12 @@ class RealtimeSessionsResource(SyncAPIResource):
 
           max_duration: Maximum session duration in seconds.
 
+          personality: Override the avatar personality for this session. If not provided, uses the
+              avatar default.
+
+          start_script: Override the avatar start script for this session. If not provided, uses the
+              avatar default.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -83,6 +91,8 @@ class RealtimeSessionsResource(SyncAPIResource):
                     "avatar": avatar,
                     "model": model,
                     "max_duration": max_duration,
+                    "personality": personality,
+                    "start_script": start_script,
                 },
                 realtime_session_create_params.RealtimeSessionCreateParams,
             ),
@@ -191,6 +201,8 @@ class AsyncRealtimeSessionsResource(AsyncAPIResource):
         avatar: realtime_session_create_params.Avatar,
         model: Literal["gwm1_avatars"],
         max_duration: int | Omit = omit,
+        personality: str | Omit = omit,
+        start_script: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -208,6 +220,12 @@ class AsyncRealtimeSessionsResource(AsyncAPIResource):
 
           max_duration: Maximum session duration in seconds.
 
+          personality: Override the avatar personality for this session. If not provided, uses the
+              avatar default.
+
+          start_script: Override the avatar start script for this session. If not provided, uses the
+              avatar default.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -223,6 +241,8 @@ class AsyncRealtimeSessionsResource(AsyncAPIResource):
                     "avatar": avatar,
                     "model": model,
                     "max_duration": max_duration,
+                    "personality": personality,
+                    "start_script": start_script,
                 },
                 realtime_session_create_params.RealtimeSessionCreateParams,
             ),
