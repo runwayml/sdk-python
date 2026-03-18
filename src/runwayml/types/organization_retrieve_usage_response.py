@@ -33,6 +33,7 @@ class ResultUsedCredit(BaseModel):
         "eleven_voice_dubbing",
         "eleven_multilingual_sts_v2",
         "gwm1_avatars",
+        "gwm1_avatar_async_audio_to_video",
         "voice_processing",
     ]
     """The model that credits were spent on."""
@@ -69,6 +70,7 @@ class OrganizationRetrieveUsageResponse(BaseModel):
             "eleven_voice_dubbing",
             "eleven_multilingual_sts_v2",
             "gwm1_avatars",
+            "gwm1_avatar_async_audio_to_video",
             "voice_processing",
         ]
     ]

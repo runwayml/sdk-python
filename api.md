@@ -177,6 +177,7 @@ Methods:
 
 - <code title="post /v1/documents">client.documents.<a href="./src/runwayml/resources/documents.py">create</a>(\*\*<a href="src/runwayml/types/document_create_params.py">params</a>) -> <a href="./src/runwayml/types/document_create_response.py">DocumentCreateResponse</a></code>
 - <code title="get /v1/documents/{id}">client.documents.<a href="./src/runwayml/resources/documents.py">retrieve</a>(id) -> <a href="./src/runwayml/types/document_retrieve_response.py">DocumentRetrieveResponse</a></code>
+- <code title="patch /v1/documents/{id}">client.documents.<a href="./src/runwayml/resources/documents.py">update</a>(id, \*\*<a href="src/runwayml/types/document_update_params.py">params</a>) -> None</code>
 - <code title="get /v1/documents">client.documents.<a href="./src/runwayml/resources/documents.py">list</a>(\*\*<a href="src/runwayml/types/document_list_params.py">params</a>) -> <a href="./src/runwayml/types/document_list_response.py">SyncCursorPage[DocumentListResponse]</a></code>
 - <code title="delete /v1/documents/{id}">client.documents.<a href="./src/runwayml/resources/documents.py">delete</a>(id) -> None</code>
 

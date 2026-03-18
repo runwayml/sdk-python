@@ -40,6 +40,8 @@ class TestRealtimeSessions:
             },
             model="gwm1_avatars",
             max_duration=10,
+            personality="x",
+            start_script="x",
         )
         assert_matches_type(RealtimeSessionCreateResponse, realtime_session, path=["response"])
 
@@ -177,6 +179,8 @@ class TestAsyncRealtimeSessions:
             },
             model="gwm1_avatars",
             max_duration=10,
+            personality="x",
+            start_script="x",
         )
         assert_matches_type(RealtimeSessionCreateResponse, realtime_session, path=["response"])
 
