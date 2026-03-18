@@ -20,6 +20,18 @@ class RealtimeSessionCreateParams(TypedDict, total=False):
     max_duration: Annotated[int, PropertyInfo(alias="maxDuration")]
     """Maximum session duration in seconds."""
 
+    personality: str
+    """Override the avatar personality for this session.
+
+    If not provided, uses the avatar default.
+    """
+
+    start_script: Annotated[str, PropertyInfo(alias="startScript")]
+    """Override the avatar start script for this session.
+
+    If not provided, uses the avatar default.
+    """
+
 
 class AvatarRunwayPreset(TypedDict, total=False):
     """A preset avatar from Runway."""

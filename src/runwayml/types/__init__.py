@@ -16,6 +16,7 @@ from .avatar_create_response import AvatarCreateResponse as AvatarCreateResponse
 from .avatar_update_response import AvatarUpdateResponse as AvatarUpdateResponse
 from .document_create_params import DocumentCreateParams as DocumentCreateParams
 from .document_list_response import DocumentListResponse as DocumentListResponse
+from .document_update_params import DocumentUpdateParams as DocumentUpdateParams
 from .task_retrieve_response import TaskRetrieveResponse as TaskRetrieveResponse
 from .voice_preview_response import VoicePreviewResponse as VoicePreviewResponse
 from .voice_retrieve_response import VoiceRetrieveResponse as VoiceRetrieveResponse
