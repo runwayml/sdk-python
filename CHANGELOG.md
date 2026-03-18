@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.8.0 (2026-03-18)
+
+Full Changelog: [v4.7.1...v4.8.0](https://github.com/runwayml/sdk-python/compare/v4.7.1...v4.8.0)
+
+### Features
+
+* **api:** Add document update endpoint ([f9f8a7d](https://github.com/runwayml/sdk-python/commit/f9f8a7dc03a7dc2d93d36325a08fb98bc63b0f60))
+
 ## 4.7.1 (2026-03-16)
 
 Full Changelog: [v4.7.0...v4.7.1](https://github.com/runwayml/sdk-python/compare/v4.7.0...v4.7.1)
