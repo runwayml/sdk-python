@@ -16,8 +16,13 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..lib.polling import (
+    AwaitableWorkflowInvocationRetrieveResponse,
+    AsyncAwaitableWorkflowInvocationRetrieveResponse,
+    inject_sync_workflow_invocation_wait_method,
+    inject_async_workflow_invocation_wait_method,
+)
 from .._base_client import make_request_options
-from ..types.workflow_invocation_retrieve_response import WorkflowInvocationRetrieveResponse
 
 __all__ = ["WorkflowInvocationsResource", "AsyncWorkflowInvocationsResource"]
 
@@ -52,7 +57,7 @@ class WorkflowInvocationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WorkflowInvocationRetrieveResponse:
+    ) -> AwaitableWorkflowInvocationRetrieveResponse:
         """Return details about a workflow invocation.
 
         Consumers of this API should not
@@ -70,17 +75,18 @@ class WorkflowInvocationsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return cast(
-            WorkflowInvocationRetrieveResponse,
-            self._get(
-                path_template("/v1/workflow_invocations/{id}", id=id),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, WorkflowInvocationRetrieveResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        response = self._get(
+            path_template("/v1/workflow_invocations/{id}", id=id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=cast(
+                Any, AwaitableWorkflowInvocationRetrieveResponse
+            ),  # Union types cannot be passed in as arguments in the type system
+        )
+        return cast(
+            AwaitableWorkflowInvocationRetrieveResponse,
+            inject_sync_workflow_invocation_wait_method(self._client, response),
         )
 
 
@@ -114,7 +120,7 @@ class AsyncWorkflowInvocationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WorkflowInvocationRetrieveResponse:
+    ) -> AsyncAwaitableWorkflowInvocationRetrieveResponse:
         """Return details about a workflow invocation.
 
         Consumers of this API should not
@@ -132,17 +138,18 @@ class AsyncWorkflowInvocationsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return cast(
-            WorkflowInvocationRetrieveResponse,
-            await self._get(
-                path_template("/v1/workflow_invocations/{id}", id=id),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, WorkflowInvocationRetrieveResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        response = await self._get(
+            path_template("/v1/workflow_invocations/{id}", id=id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=cast(
+                Any, AsyncAwaitableWorkflowInvocationRetrieveResponse
+            ),  # Union types cannot be passed in as arguments in the type system
+        )
+        return cast(
+            AsyncAwaitableWorkflowInvocationRetrieveResponse,
+            inject_async_workflow_invocation_wait_method(self._client, response),
         )
 
 

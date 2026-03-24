@@ -14,16 +14,10 @@ class Graph(BaseModel):
     """The workflow graph definition."""
 
     edges: List[object]
-    """The list of edges connecting nodes in the workflow graph.
-
-    Each edge defines data flow between nodes.
-    """
+    """The list of edges connecting nodes in the workflow graph."""
 
     nodes: List[object]
-    """The list of nodes in the workflow graph.
-
-    Each node represents a processing step.
-    """
+    """The list of nodes in the workflow graph."""
 
     version: int
     """The schema version of the workflow graph format."""
