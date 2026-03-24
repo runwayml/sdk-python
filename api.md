@@ -215,3 +215,29 @@ Methods:
 - <code title="get /v1/voices">client.voices.<a href="./src/runwayml/resources/voices.py">list</a>(\*\*<a href="src/runwayml/types/voice_list_params.py">params</a>) -> <a href="./src/runwayml/types/voice_list_response.py">SyncCursorPage[VoiceListResponse]</a></code>
 - <code title="delete /v1/voices/{id}">client.voices.<a href="./src/runwayml/resources/voices.py">delete</a>(id) -> None</code>
 - <code title="post /v1/voices/preview">client.voices.<a href="./src/runwayml/resources/voices.py">preview</a>(\*\*<a href="src/runwayml/types/voice_preview_params.py">params</a>) -> <a href="./src/runwayml/types/voice_preview_response.py">VoicePreviewResponse</a></code>
+
+# Workflows
+
+Types:
+
+```python
+from runwayml.types import WorkflowRetrieveResponse, WorkflowListResponse, WorkflowRunResponse
+```
+
+Methods:
+
+- <code title="get /v1/workflows/{id}">client.workflows.<a href="./src/runwayml/resources/workflows.py">retrieve</a>(id) -> <a href="./src/runwayml/types/workflow_retrieve_response.py">WorkflowRetrieveResponse</a></code>
+- <code title="get /v1/workflows">client.workflows.<a href="./src/runwayml/resources/workflows.py">list</a>() -> <a href="./src/runwayml/types/workflow_list_response.py">WorkflowListResponse</a></code>
+- <code title="post /v1/workflows/{id}">client.workflows.<a href="./src/runwayml/resources/workflows.py">run</a>(id, \*\*<a href="src/runwayml/types/workflow_run_params.py">params</a>) -> <a href="./src/runwayml/types/workflow_run_response.py">WorkflowRunResponse</a></code>
+
+# WorkflowInvocations
+
+Types:
+
+```python
+from runwayml.types import WorkflowInvocationRetrieveResponse
+```
+
+Methods:
+
+- <code title="get /v1/workflow_invocations/{id}">client.workflow_invocations.<a href="./src/runwayml/resources/workflow_invocations.py">retrieve</a>(id) -> <a href="./src/runwayml/types/workflow_invocation_retrieve_response.py">WorkflowInvocationRetrieveResponse</a></code>

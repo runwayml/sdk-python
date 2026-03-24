@@ -6,12 +6,14 @@ from .voice_list_params import VoiceListParams as VoiceListParams
 from .avatar_list_params import AvatarListParams as AvatarListParams
 from .voice_create_params import VoiceCreateParams as VoiceCreateParams
 from .voice_list_response import VoiceListResponse as VoiceListResponse
+from .workflow_run_params import WorkflowRunParams as WorkflowRunParams
 from .avatar_create_params import AvatarCreateParams as AvatarCreateParams
 from .avatar_list_response import AvatarListResponse as AvatarListResponse
 from .avatar_update_params import AvatarUpdateParams as AvatarUpdateParams
 from .document_list_params import DocumentListParams as DocumentListParams
 from .voice_preview_params import VoicePreviewParams as VoicePreviewParams
 from .voice_create_response import VoiceCreateResponse as VoiceCreateResponse
+from .workflow_run_response import WorkflowRunResponse as WorkflowRunResponse
 from .avatar_create_response import AvatarCreateResponse as AvatarCreateResponse
 from .avatar_update_response import AvatarUpdateResponse as AvatarUpdateResponse
 from .document_create_params import DocumentCreateParams as DocumentCreateParams
@@ -19,11 +21,13 @@ from .document_list_response import DocumentListResponse as DocumentListResponse
 from .document_update_params import DocumentUpdateParams as DocumentUpdateParams
 from .task_retrieve_response import TaskRetrieveResponse as TaskRetrieveResponse
 from .voice_preview_response import VoicePreviewResponse as VoicePreviewResponse
+from .workflow_list_response import WorkflowListResponse as WorkflowListResponse
 from .voice_retrieve_response import VoiceRetrieveResponse as VoiceRetrieveResponse
 from .avatar_retrieve_response import AvatarRetrieveResponse as AvatarRetrieveResponse
 from .document_create_response import DocumentCreateResponse as DocumentCreateResponse
 from .document_retrieve_response import DocumentRetrieveResponse as DocumentRetrieveResponse
 from .sound_effect_create_params import SoundEffectCreateParams as SoundEffectCreateParams
+from .workflow_retrieve_response import WorkflowRetrieveResponse as WorkflowRetrieveResponse
 from .text_to_image_create_params import TextToImageCreateParams as TextToImageCreateParams
 from .text_to_video_create_params import TextToVideoCreateParams as TextToVideoCreateParams
 from .voice_dubbing_create_params import VoiceDubbingCreateParams as VoiceDubbingCreateParams
@@ -50,4 +54,7 @@ from .character_performance_create_params import CharacterPerformanceCreateParam
 from .organization_retrieve_usage_response import OrganizationRetrieveUsageResponse as OrganizationRetrieveUsageResponse
 from .character_performance_create_response import (
     CharacterPerformanceCreateResponse as CharacterPerformanceCreateResponse,
+)
+from .workflow_invocation_retrieve_response import (
+    WorkflowInvocationRetrieveResponse as WorkflowInvocationRetrieveResponse,
 )

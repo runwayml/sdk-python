@@ -32,6 +32,14 @@ from .documents import (
     DocumentsResourceWithStreamingResponse,
     AsyncDocumentsResourceWithStreamingResponse,
 )
+from .workflows import (
+    WorkflowsResource,
+    AsyncWorkflowsResource,
+    WorkflowsResourceWithRawResponse,
+    AsyncWorkflowsResourceWithRawResponse,
+    WorkflowsResourceWithStreamingResponse,
+    AsyncWorkflowsResourceWithStreamingResponse,
+)
 from .organization import (
     OrganizationResource,
     AsyncOrganizationResource,
@@ -119,6 +127,14 @@ from .realtime_sessions import (
     AsyncRealtimeSessionsResourceWithRawResponse,
     RealtimeSessionsResourceWithStreamingResponse,
     AsyncRealtimeSessionsResourceWithStreamingResponse,
+)
+from .workflow_invocations import (
+    WorkflowInvocationsResource,
+    AsyncWorkflowInvocationsResource,
+    WorkflowInvocationsResourceWithRawResponse,
+    AsyncWorkflowInvocationsResourceWithRawResponse,
+    WorkflowInvocationsResourceWithStreamingResponse,
+    AsyncWorkflowInvocationsResourceWithStreamingResponse,
 )
 from .character_performance import (
     CharacterPerformanceResource,
@@ -226,4 +242,16 @@ __all__ = [
     "AsyncVoicesResourceWithRawResponse",
     "VoicesResourceWithStreamingResponse",
     "AsyncVoicesResourceWithStreamingResponse",
+    "WorkflowsResource",
+    "AsyncWorkflowsResource",
+    "WorkflowsResourceWithRawResponse",
+    "AsyncWorkflowsResourceWithRawResponse",
+    "WorkflowsResourceWithStreamingResponse",
+    "AsyncWorkflowsResourceWithStreamingResponse",
+    "WorkflowInvocationsResource",
+    "AsyncWorkflowInvocationsResource",
+    "WorkflowInvocationsResourceWithRawResponse",
+    "AsyncWorkflowInvocationsResourceWithRawResponse",
+    "WorkflowInvocationsResourceWithStreamingResponse",
+    "AsyncWorkflowInvocationsResourceWithStreamingResponse",
 ]
