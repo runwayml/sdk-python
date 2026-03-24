@@ -8,6 +8,14 @@ from .tasks import (
     TasksResourceWithStreamingResponse,
     AsyncTasksResourceWithStreamingResponse,
 )
+from .voices import (
+    VoicesResource,
+    AsyncVoicesResource,
+    VoicesResourceWithRawResponse,
+    AsyncVoicesResourceWithRawResponse,
+    VoicesResourceWithStreamingResponse,
+    AsyncVoicesResourceWithStreamingResponse,
+)
 from .uploads import (
     UploadsResource,
     AsyncUploadsResource,
@@ -15,6 +23,14 @@ from .uploads import (
     AsyncUploadsResourceWithRawResponse,
     UploadsResourceWithStreamingResponse,
     AsyncUploadsResourceWithStreamingResponse,
+)
+from .workflows import (
+    WorkflowsResource,
+    AsyncWorkflowsResource,
+    WorkflowsResourceWithRawResponse,
+    AsyncWorkflowsResourceWithRawResponse,
+    WorkflowsResourceWithStreamingResponse,
+    AsyncWorkflowsResourceWithStreamingResponse,
 )
 from .organization import (
     OrganizationResource,
@@ -103,6 +119,14 @@ from .realtime_sessions import (
     AsyncRealtimeSessionsResourceWithRawResponse,
     RealtimeSessionsResourceWithStreamingResponse,
     AsyncRealtimeSessionsResourceWithStreamingResponse,
+)
+from .workflow_invocations import (
+    WorkflowInvocationsResource,
+    AsyncWorkflowInvocationsResource,
+    WorkflowInvocationsResourceWithRawResponse,
+    AsyncWorkflowInvocationsResourceWithRawResponse,
+    WorkflowInvocationsResourceWithStreamingResponse,
+    AsyncWorkflowInvocationsResourceWithStreamingResponse,
 )
 from .character_performance import (
     CharacterPerformanceResource,
@@ -198,4 +222,22 @@ __all__ = [
     "AsyncRealtimeSessionsResourceWithRawResponse",
     "RealtimeSessionsResourceWithStreamingResponse",
     "AsyncRealtimeSessionsResourceWithStreamingResponse",
+    "VoicesResource",
+    "AsyncVoicesResource",
+    "VoicesResourceWithRawResponse",
+    "AsyncVoicesResourceWithRawResponse",
+    "VoicesResourceWithStreamingResponse",
+    "AsyncVoicesResourceWithStreamingResponse",
+    "WorkflowsResource",
+    "AsyncWorkflowsResource",
+    "WorkflowsResourceWithRawResponse",
+    "AsyncWorkflowsResourceWithRawResponse",
+    "WorkflowsResourceWithStreamingResponse",
+    "AsyncWorkflowsResourceWithStreamingResponse",
+    "WorkflowInvocationsResource",
+    "AsyncWorkflowInvocationsResource",
+    "WorkflowInvocationsResourceWithRawResponse",
+    "AsyncWorkflowInvocationsResourceWithRawResponse",
+    "WorkflowInvocationsResourceWithStreamingResponse",
+    "AsyncWorkflowInvocationsResourceWithStreamingResponse",
 ]

@@ -37,6 +37,7 @@ if TYPE_CHECKING:
         avatars,
         uploads,
         documents,
+        workflows,
         organization,
         sound_effect,
         text_to_image,
@@ -48,6 +49,7 @@ if TYPE_CHECKING:
         voice_isolation,
         speech_to_speech,
         realtime_sessions,
+        workflow_invocations,
         character_performance,
     )
     from .resources.tasks import TasksResource, AsyncTasksResource
@@ -55,6 +57,7 @@ if TYPE_CHECKING:
     from .resources.avatars import AvatarsResource, AsyncAvatarsResource
     from .resources.uploads import UploadsResource, AsyncUploadsResource
     from .resources.documents import DocumentsResource, AsyncDocumentsResource
+    from .resources.workflows import WorkflowsResource, AsyncWorkflowsResource
     from .resources.organization import OrganizationResource, AsyncOrganizationResource
     from .resources.sound_effect import SoundEffectResource, AsyncSoundEffectResource
     from .resources.text_to_image import TextToImageResource, AsyncTextToImageResource
@@ -66,6 +69,7 @@ if TYPE_CHECKING:
     from .resources.voice_isolation import VoiceIsolationResource, AsyncVoiceIsolationResource
     from .resources.speech_to_speech import SpeechToSpeechResource, AsyncSpeechToSpeechResource
     from .resources.realtime_sessions import RealtimeSessionsResource, AsyncRealtimeSessionsResource
+    from .resources.workflow_invocations import WorkflowInvocationsResource, AsyncWorkflowInvocationsResource
     from .resources.character_performance import CharacterPerformanceResource, AsyncCharacterPerformanceResource
 
 __all__ = [
@@ -253,6 +257,18 @@ class RunwayML(SyncAPIClient):
         from .resources.voices import VoicesResource
 
         return VoicesResource(self)
+
+    @cached_property
+    def workflows(self) -> WorkflowsResource:
+        from .resources.workflows import WorkflowsResource
+
+        return WorkflowsResource(self)
+
+    @cached_property
+    def workflow_invocations(self) -> WorkflowInvocationsResource:
+        from .resources.workflow_invocations import WorkflowInvocationsResource
+
+        return WorkflowInvocationsResource(self)
 
     @cached_property
     def with_raw_response(self) -> RunwayMLWithRawResponse:
@@ -545,6 +561,18 @@ class AsyncRunwayML(AsyncAPIClient):
         return AsyncVoicesResource(self)
 
     @cached_property
+    def workflows(self) -> AsyncWorkflowsResource:
+        from .resources.workflows import AsyncWorkflowsResource
+
+        return AsyncWorkflowsResource(self)
+
+    @cached_property
+    def workflow_invocations(self) -> AsyncWorkflowInvocationsResource:
+        from .resources.workflow_invocations import AsyncWorkflowInvocationsResource
+
+        return AsyncWorkflowInvocationsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncRunwayMLWithRawResponse:
         return AsyncRunwayMLWithRawResponse(self)
 
@@ -779,6 +807,18 @@ class RunwayMLWithRawResponse:
 
         return VoicesResourceWithRawResponse(self._client.voices)
 
+    @cached_property
+    def workflows(self) -> workflows.WorkflowsResourceWithRawResponse:
+        from .resources.workflows import WorkflowsResourceWithRawResponse
+
+        return WorkflowsResourceWithRawResponse(self._client.workflows)
+
+    @cached_property
+    def workflow_invocations(self) -> workflow_invocations.WorkflowInvocationsResourceWithRawResponse:
+        from .resources.workflow_invocations import WorkflowInvocationsResourceWithRawResponse
+
+        return WorkflowInvocationsResourceWithRawResponse(self._client.workflow_invocations)
+
 
 class AsyncRunwayMLWithRawResponse:
     _client: AsyncRunwayML
@@ -898,6 +938,18 @@ class AsyncRunwayMLWithRawResponse:
         from .resources.voices import AsyncVoicesResourceWithRawResponse
 
         return AsyncVoicesResourceWithRawResponse(self._client.voices)
+
+    @cached_property
+    def workflows(self) -> workflows.AsyncWorkflowsResourceWithRawResponse:
+        from .resources.workflows import AsyncWorkflowsResourceWithRawResponse
+
+        return AsyncWorkflowsResourceWithRawResponse(self._client.workflows)
+
+    @cached_property
+    def workflow_invocations(self) -> workflow_invocations.AsyncWorkflowInvocationsResourceWithRawResponse:
+        from .resources.workflow_invocations import AsyncWorkflowInvocationsResourceWithRawResponse
+
+        return AsyncWorkflowInvocationsResourceWithRawResponse(self._client.workflow_invocations)
 
 
 class RunwayMLWithStreamedResponse:
@@ -1019,6 +1071,18 @@ class RunwayMLWithStreamedResponse:
 
         return VoicesResourceWithStreamingResponse(self._client.voices)
 
+    @cached_property
+    def workflows(self) -> workflows.WorkflowsResourceWithStreamingResponse:
+        from .resources.workflows import WorkflowsResourceWithStreamingResponse
+
+        return WorkflowsResourceWithStreamingResponse(self._client.workflows)
+
+    @cached_property
+    def workflow_invocations(self) -> workflow_invocations.WorkflowInvocationsResourceWithStreamingResponse:
+        from .resources.workflow_invocations import WorkflowInvocationsResourceWithStreamingResponse
+
+        return WorkflowInvocationsResourceWithStreamingResponse(self._client.workflow_invocations)
+
 
 class AsyncRunwayMLWithStreamedResponse:
     _client: AsyncRunwayML
@@ -1138,6 +1202,18 @@ class AsyncRunwayMLWithStreamedResponse:
         from .resources.voices import AsyncVoicesResourceWithStreamingResponse
 
         return AsyncVoicesResourceWithStreamingResponse(self._client.voices)
+
+    @cached_property
+    def workflows(self) -> workflows.AsyncWorkflowsResourceWithStreamingResponse:
+        from .resources.workflows import AsyncWorkflowsResourceWithStreamingResponse
+
+        return AsyncWorkflowsResourceWithStreamingResponse(self._client.workflows)
+
+    @cached_property
+    def workflow_invocations(self) -> workflow_invocations.AsyncWorkflowInvocationsResourceWithStreamingResponse:
+        from .resources.workflow_invocations import AsyncWorkflowInvocationsResourceWithStreamingResponse
+
+        return AsyncWorkflowInvocationsResourceWithStreamingResponse(self._client.workflow_invocations)
 
 
 Client = RunwayML
