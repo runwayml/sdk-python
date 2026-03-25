@@ -1,5 +1,35 @@
 # Changelog
 
+## 4.9.0 (2026-03-25)
+
+Full Changelog: [v4.8.0...v4.9.0](https://github.com/runwayml/sdk-python/compare/v4.8.0...v4.9.0)
+
+### Features
+
+* **api:** add workflow invocation polling support ([6eb6fc5](https://github.com/runwayml/sdk-python/commit/6eb6fc507c6aae61ef3bcb5cceaee1b5049c63f3))
+* **api:** add workflows and workflow invocations resources ([35d8573](https://github.com/runwayml/sdk-python/commit/35d857393bdac4aa3862dd5f0b91f23ad217fce5))
+
+
+### Bug Fixes
+
+* sanitize endpoint path params ([84efc12](https://github.com/runwayml/sdk-python/commit/84efc1283d565f857572bb99a0458bd3c4e78e2b))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([1899411](https://github.com/runwayml/sdk-python/commit/1899411b75920727e70ab42e77b3c5cb11a86fab))
+* **internal:** update gitignore ([8bdac54](https://github.com/runwayml/sdk-python/commit/8bdac549eec0ce17ca630553f1ca956614d076d0))
+* **tests:** bump steady to v0.19.4 ([8841072](https://github.com/runwayml/sdk-python/commit/884107238b269129227807a141ef05dc5b0ca994))
+* **tests:** bump steady to v0.19.5 ([5adc696](https://github.com/runwayml/sdk-python/commit/5adc696396fe8031562bc7ff4a57dae92edf5d9c))
+* **tests:** bump steady to v0.19.6 ([135a06b](https://github.com/runwayml/sdk-python/commit/135a06b19e761316826b966f9c977268b7058b28))
+* **tests:** bump steady to v0.19.7 ([b7eeb81](https://github.com/runwayml/sdk-python/commit/b7eeb8168582d3b3682d6b61fa5aa5adc377c656))
+
+
+### Refactors
+
+* introduce dedicated error types for workflow invocation polling ([420f91c](https://github.com/runwayml/sdk-python/commit/420f91cda06553beba5d075aa951b2f505f68b9c))
+* **tests:** switch from prism to steady ([0a1bb5a](https://github.com/runwayml/sdk-python/commit/0a1bb5ae959de737e80775a09e45c24081729bf2))
+
 ## 4.8.0 (2026-03-18)
 
 Full Changelog: [v4.7.1...v4.8.0](https://github.com/runwayml/sdk-python/compare/v4.7.1...v4.8.0)
