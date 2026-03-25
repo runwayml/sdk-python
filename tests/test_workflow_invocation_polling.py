@@ -6,7 +6,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from runwayml import RunwayML, AsyncRunwayML, TaskFailedError, TaskTimeoutError
+from runwayml import RunwayML, AsyncRunwayML, WorkflowInvocationFailedError, WorkflowInvocationTimeoutError
 from runwayml.types.workflow_invocation_retrieve_response import (
     Failed,
     Pending,
@@ -84,10 +84,10 @@ class TestSyncWorkflowInvocationPolling:
         response = _make_pending()
         patched: Any = inject_sync_workflow_invocation_wait_method(client, response)
 
-        with pytest.raises(TaskFailedError) as exc_info:
+        with pytest.raises(WorkflowInvocationFailedError) as exc_info:
             patched.wait_for_task_output()
 
-        assert exc_info.value.task_details.status == "FAILED"
+        assert exc_info.value.invocation_details.status == "FAILED"
 
     @patch("runwayml.lib.polling.time.sleep", return_value=None)
     def test_raises_on_cancelled(self, _mock_sleep: MagicMock) -> None:
@@ -100,10 +100,10 @@ class TestSyncWorkflowInvocationPolling:
         response = _make_pending()
         patched: Any = inject_sync_workflow_invocation_wait_method(client, response)
 
-        with pytest.raises(TaskFailedError) as exc_info:
+        with pytest.raises(WorkflowInvocationFailedError) as exc_info:
             patched.wait_for_task_output()
 
-        assert exc_info.value.task_details.status == "CANCELLED"
+        assert exc_info.value.invocation_details.status == "CANCELLED"
 
     @patch("runwayml.lib.polling.time.time")
     @patch("runwayml.lib.polling.time.sleep", return_value=None)
@@ -119,7 +119,7 @@ class TestSyncWorkflowInvocationPolling:
         response = _make_pending()
         patched: Any = inject_sync_workflow_invocation_wait_method(client, response)
 
-        with pytest.raises(TaskTimeoutError):
+        with pytest.raises(WorkflowInvocationTimeoutError):
             patched.wait_for_task_output(timeout=600)
 
 
@@ -169,10 +169,10 @@ class TestAsyncWorkflowInvocationPolling:
         response = _make_pending()
         patched: Any = inject_async_workflow_invocation_wait_method(client, response)
 
-        with pytest.raises(TaskFailedError) as exc_info:
+        with pytest.raises(WorkflowInvocationFailedError) as exc_info:
             await patched.wait_for_task_output()
 
-        assert exc_info.value.task_details.status == "FAILED"
+        assert exc_info.value.invocation_details.status == "FAILED"
 
     @patch("runwayml.lib.polling.anyio.sleep", new_callable=AsyncMock)
     @patch("runwayml.lib.polling.anyio.current_time", return_value=0.0)
@@ -186,10 +186,10 @@ class TestAsyncWorkflowInvocationPolling:
         response = _make_pending()
         patched: Any = inject_async_workflow_invocation_wait_method(client, response)
 
-        with pytest.raises(TaskFailedError) as exc_info:
+        with pytest.raises(WorkflowInvocationFailedError) as exc_info:
             await patched.wait_for_task_output()
 
-        assert exc_info.value.task_details.status == "CANCELLED"
+        assert exc_info.value.invocation_details.status == "CANCELLED"
 
     @patch("runwayml.lib.polling.anyio.sleep", new_callable=AsyncMock)
     @patch("runwayml.lib.polling.anyio.current_time")
@@ -205,5 +205,5 @@ class TestAsyncWorkflowInvocationPolling:
         response = _make_pending()
         patched: Any = inject_async_workflow_invocation_wait_method(client, response)
 
-        with pytest.raises(TaskTimeoutError):
+        with pytest.raises(WorkflowInvocationTimeoutError):
             await patched.wait_for_task_output(timeout=600)
