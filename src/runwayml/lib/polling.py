@@ -127,13 +127,13 @@ def create_async_waitable_resource(base_class: Type[T], client: "AsyncRunwayML")
 
 
 class TaskFailedError(Exception):
-    def __init__(self, task_details: Union[TaskRetrieveResponse, WorkflowInvocationRetrieveResponse]):
+    def __init__(self, task_details: TaskRetrieveResponse):
         self.task_details = task_details
         super().__init__(f"Task failed")
 
 
 class TaskTimeoutError(Exception):
-    def __init__(self, task_details: Union[TaskRetrieveResponse, WorkflowInvocationRetrieveResponse]):
+    def __init__(self, task_details: TaskRetrieveResponse):
         self.task_details = task_details
         super().__init__(f"Task timed out")
 
@@ -265,12 +265,14 @@ class AwaitableWorkflowInvocationResponseMixin:
         """
         When called, this will block until the workflow invocation is complete.
 
-        If the invocation fails or is cancelled, a `TaskFailedError` will be raised.
+        If the invocation fails or is cancelled, a `WorkflowInvocationFailedError`
+        will be raised.
 
         Args:
           timeout: The maximum amount of time to wait in seconds. If not specified,
-              the default timeout is 10 minutes. Will raise a `TaskTimeoutError` if
-              the invocation does not complete within the timeout.
+              the default timeout is 10 minutes. Will raise a
+              `WorkflowInvocationTimeoutError` if the invocation does not complete
+              within the timeout.
 
         Returns:
           The workflow invocation details, equivalent to calling
@@ -284,13 +286,15 @@ class AsyncAwaitableWorkflowInvocationResponseMixin:
         """
         When called, this will wait until the workflow invocation is complete.
 
-        If the invocation fails or is cancelled, a `TaskFailedError` will be raised.
+        If the invocation fails or is cancelled, a `WorkflowInvocationFailedError`
+        will be raised.
 
         Args:
           timeout: The maximum amount of time to wait in seconds. If not specified,
-              the default timeout is 10 minutes. Will raise a `TaskTimeoutError` if
-              the invocation does not complete within the timeout. Setting this to
-              `None` will wait indefinitely (disabling the timeout).
+              the default timeout is 10 minutes. Will raise a
+              `WorkflowInvocationTimeoutError` if the invocation does not complete
+              within the timeout. Setting this to `None` will wait indefinitely
+              (disabling the timeout).
 
         Returns:
           The workflow invocation details, equivalent to awaiting
@@ -361,6 +365,18 @@ AsyncAwaitableWorkflowInvocationRetrieveResponse: TypeAlias = Annotated[
 ]
 
 
+class WorkflowInvocationFailedError(Exception):
+    def __init__(self, invocation_details: WorkflowInvocationRetrieveResponse):
+        self.invocation_details = invocation_details
+        super().__init__("Workflow invocation failed")
+
+
+class WorkflowInvocationTimeoutError(Exception):
+    def __init__(self, invocation_details: WorkflowInvocationRetrieveResponse):
+        self.invocation_details = invocation_details
+        super().__init__("Workflow invocation timed out")
+
+
 def _make_sync_wait_for_workflow_invocation_output(
     client: "RunwayML",
 ) -> Callable[["AwaitableWorkflowInvocationResponseMixin", Union[float, None]], WorkflowInvocationRetrieveResponse]:
@@ -374,9 +390,9 @@ def _make_sync_wait_for_workflow_invocation_output(
             if details.status == "SUCCEEDED":
                 return details
             if details.status == "FAILED" or details.status == "CANCELLED":
-                raise TaskFailedError(details)
+                raise WorkflowInvocationFailedError(details)
             if timeout is not None and time.time() - start_time > timeout:
-                raise TaskTimeoutError(details)
+                raise WorkflowInvocationTimeoutError(details)
 
     return wait_for_task_output
 
@@ -406,9 +422,9 @@ def _make_async_wait_for_workflow_invocation_output(
             if details.status == "SUCCEEDED":
                 return details
             if details.status == "FAILED" or details.status == "CANCELLED":
-                raise TaskFailedError(details)
+                raise WorkflowInvocationFailedError(details)
             if timeout is not None and anyio.current_time() - start_time > timeout:
-                raise TaskTimeoutError(details)
+                raise WorkflowInvocationTimeoutError(details)
 
     return wait_for_task_output
 
