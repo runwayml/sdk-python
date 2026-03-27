@@ -930,6 +930,38 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
         """
         return None
 
+    def _send_external_multipart_request(
+        self,
+        *,
+        url: str,
+        data: Mapping[str, object],
+        files: HttpxRequestFiles,
+        timeout: float | Timeout | None,
+    ) -> httpx.Response:
+        request = httpx.Request("POST", self._prepare_url(url), data=data, files=files)
+        request.extensions = {**request.extensions, "timeout": Timeout(timeout).as_dict()}
+
+        log.debug("Sending external HTTP Request: %s %s", request.method, request.url)
+
+        try:
+            response = self._client.send(request, auth=None)
+        except httpx.TimeoutException as err:
+            log.debug("Encountered httpx.TimeoutException", exc_info=True)
+            raise APITimeoutError(request=request) from err
+        except Exception as err:
+            log.debug("Encountered Exception", exc_info=True)
+            raise APIConnectionError(request=request) from err
+
+        log.debug(
+            'HTTP Response: %s %s "%i %s" %s',
+            request.method,
+            request.url,
+            response.status_code,
+            response.reason_phrase,
+            response.headers,
+        )
+        return response
+
     @overload
     def request(
         self,
@@ -1508,6 +1540,38 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         the request properties, e.g. `url`, `method` etc.
         """
         return None
+
+    async def _send_external_multipart_request(
+        self,
+        *,
+        url: str,
+        data: Mapping[str, object],
+        files: HttpxRequestFiles,
+        timeout: float | Timeout | None,
+    ) -> httpx.Response:
+        request = httpx.Request("POST", self._prepare_url(url), data=data, files=files)
+        request.extensions = {**request.extensions, "timeout": Timeout(timeout).as_dict()}
+
+        log.debug("Sending external HTTP Request: %s %s", request.method, request.url)
+
+        try:
+            response = await self._client.send(request, auth=None)
+        except httpx.TimeoutException as err:
+            log.debug("Encountered httpx.TimeoutException", exc_info=True)
+            raise APITimeoutError(request=request) from err
+        except Exception as err:
+            log.debug("Encountered Exception", exc_info=True)
+            raise APIConnectionError(request=request) from err
+
+        log.debug(
+            'HTTP Response: %s %s "%i %s" %s',
+            request.method,
+            request.url,
+            response.status_code,
+            response.reason_phrase,
+            response.headers,
+        )
+        return response
 
     @overload
     async def request(
