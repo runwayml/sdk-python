@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -53,6 +53,7 @@ class RealtimeSessionsResource(SyncAPIResource):
         max_duration: int | Omit = omit,
         personality: str | Omit = omit,
         start_script: str | Omit = omit,
+        tools: Iterable[realtime_session_create_params.Tool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -76,6 +77,8 @@ class RealtimeSessionsResource(SyncAPIResource):
           start_script: Override the avatar start script for this session. If not provided, uses the
               avatar default.
 
+          tools: Tools available to the avatar during the session.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -93,6 +96,7 @@ class RealtimeSessionsResource(SyncAPIResource):
                     "max_duration": max_duration,
                     "personality": personality,
                     "start_script": start_script,
+                    "tools": tools,
                 },
                 realtime_session_create_params.RealtimeSessionCreateParams,
             ),
@@ -203,6 +207,7 @@ class AsyncRealtimeSessionsResource(AsyncAPIResource):
         max_duration: int | Omit = omit,
         personality: str | Omit = omit,
         start_script: str | Omit = omit,
+        tools: Iterable[realtime_session_create_params.Tool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -226,6 +231,8 @@ class AsyncRealtimeSessionsResource(AsyncAPIResource):
           start_script: Override the avatar start script for this session. If not provided, uses the
               avatar default.
 
+          tools: Tools available to the avatar during the session.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -243,6 +250,7 @@ class AsyncRealtimeSessionsResource(AsyncAPIResource):
                     "max_duration": max_duration,
                     "personality": personality,
                     "start_script": start_script,
+                    "tools": tools,
                 },
                 realtime_session_create_params.RealtimeSessionCreateParams,
             ),

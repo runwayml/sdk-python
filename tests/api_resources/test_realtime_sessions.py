@@ -42,6 +42,22 @@ class TestRealtimeSessions:
             max_duration=10,
             personality="x",
             start_script="x",
+            tools=[
+                {
+                    "description": "x",
+                    "name": "name",
+                    "type": "client_event",
+                    "parameters": [
+                        {
+                            "description": "x",
+                            "name": "name",
+                            "type": "string",
+                            "enum": ["string"],
+                            "required": True,
+                        }
+                    ],
+                }
+            ],
         )
         assert_matches_type(RealtimeSessionCreateResponse, realtime_session, path=["response"])
 
@@ -181,6 +197,22 @@ class TestAsyncRealtimeSessions:
             max_duration=10,
             personality="x",
             start_script="x",
+            tools=[
+                {
+                    "description": "x",
+                    "name": "name",
+                    "type": "client_event",
+                    "parameters": [
+                        {
+                            "description": "x",
+                            "name": "name",
+                            "type": "string",
+                            "enum": ["string"],
+                            "required": True,
+                        }
+                    ],
+                }
+            ],
         )
         assert_matches_type(RealtimeSessionCreateResponse, realtime_session, path=["response"])
 
