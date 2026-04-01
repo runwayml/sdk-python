@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.10.0 (2026-04-01)
+
+Full Changelog: [v4.9.0...v4.10.0](https://github.com/runwayml/sdk-python/compare/v4.9.0...v4.10.0)
+
+### Features
+
+* **api:** add tools parameter to realtime sessions ([c06a7f0](https://github.com/runwayml/sdk-python/commit/c06a7f0ac1df58a820b7bfd288c60efce163f743))
+* **internal:** implement indices array format for query and form serialization ([d8fecc7](https://github.com/runwayml/sdk-python/commit/d8fecc71d2e6b940f06553a0ffa45b0372d7f8cf))
+
+
+### Chores
+
+* **tests:** bump steady to v0.20.1 ([ad84815](https://github.com/runwayml/sdk-python/commit/ad8481558aa386843875d631910ecce54e4009ba))
+* **tests:** bump steady to v0.20.2 ([7c63591](https://github.com/runwayml/sdk-python/commit/7c63591ad506c7f83ba85039c05fcaf94707d0f9))
+
 ## 4.9.0 (2026-03-25)
 
 Full Changelog: [v4.8.0...v4.9.0](https://github.com/runwayml/sdk-python/compare/v4.8.0...v4.9.0)
