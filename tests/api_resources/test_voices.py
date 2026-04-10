@@ -27,7 +27,7 @@ class TestVoices:
     def test_method_create(self, client: RunwayML) -> None:
         voice = client.voices.create(
             from_={
-                "model": "eleven_multilingual_ttv_v2",
+                "model": "eleven_ttv_v3",
                 "prompt": "xxxxxxxxxxxxxxxxxxxx",
                 "type": "text",
             },
@@ -39,7 +39,7 @@ class TestVoices:
     def test_method_create_with_all_params(self, client: RunwayML) -> None:
         voice = client.voices.create(
             from_={
-                "model": "eleven_multilingual_ttv_v2",
+                "model": "eleven_ttv_v3",
                 "prompt": "xxxxxxxxxxxxxxxxxxxx",
                 "type": "text",
             },
@@ -52,7 +52,7 @@ class TestVoices:
     def test_raw_response_create(self, client: RunwayML) -> None:
         response = client.voices.with_raw_response.create(
             from_={
-                "model": "eleven_multilingual_ttv_v2",
+                "model": "eleven_ttv_v3",
                 "prompt": "xxxxxxxxxxxxxxxxxxxx",
                 "type": "text",
             },
@@ -68,7 +68,7 @@ class TestVoices:
     def test_streaming_response_create(self, client: RunwayML) -> None:
         with client.voices.with_streaming_response.create(
             from_={
-                "model": "eleven_multilingual_ttv_v2",
+                "model": "eleven_ttv_v3",
                 "prompt": "xxxxxxxxxxxxxxxxxxxx",
                 "type": "text",
             },
@@ -200,7 +200,7 @@ class TestVoices:
     @parametrize
     def test_method_preview(self, client: RunwayML) -> None:
         voice = client.voices.preview(
-            model="eleven_multilingual_ttv_v2",
+            model="eleven_ttv_v3",
             prompt="xxxxxxxxxxxxxxxxxxxx",
         )
         assert_matches_type(VoicePreviewResponse, voice, path=["response"])
@@ -208,7 +208,7 @@ class TestVoices:
     @parametrize
     def test_raw_response_preview(self, client: RunwayML) -> None:
         response = client.voices.with_raw_response.preview(
-            model="eleven_multilingual_ttv_v2",
+            model="eleven_ttv_v3",
             prompt="xxxxxxxxxxxxxxxxxxxx",
         )
 
@@ -220,7 +220,7 @@ class TestVoices:
     @parametrize
     def test_streaming_response_preview(self, client: RunwayML) -> None:
         with client.voices.with_streaming_response.preview(
-            model="eleven_multilingual_ttv_v2",
+            model="eleven_ttv_v3",
             prompt="xxxxxxxxxxxxxxxxxxxx",
         ) as response:
             assert not response.is_closed
@@ -241,7 +241,7 @@ class TestAsyncVoices:
     async def test_method_create(self, async_client: AsyncRunwayML) -> None:
         voice = await async_client.voices.create(
             from_={
-                "model": "eleven_multilingual_ttv_v2",
+                "model": "eleven_ttv_v3",
                 "prompt": "xxxxxxxxxxxxxxxxxxxx",
                 "type": "text",
             },
@@ -253,7 +253,7 @@ class TestAsyncVoices:
     async def test_method_create_with_all_params(self, async_client: AsyncRunwayML) -> None:
         voice = await async_client.voices.create(
             from_={
-                "model": "eleven_multilingual_ttv_v2",
+                "model": "eleven_ttv_v3",
                 "prompt": "xxxxxxxxxxxxxxxxxxxx",
                 "type": "text",
             },
@@ -266,7 +266,7 @@ class TestAsyncVoices:
     async def test_raw_response_create(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.voices.with_raw_response.create(
             from_={
-                "model": "eleven_multilingual_ttv_v2",
+                "model": "eleven_ttv_v3",
                 "prompt": "xxxxxxxxxxxxxxxxxxxx",
                 "type": "text",
             },
@@ -282,7 +282,7 @@ class TestAsyncVoices:
     async def test_streaming_response_create(self, async_client: AsyncRunwayML) -> None:
         async with async_client.voices.with_streaming_response.create(
             from_={
-                "model": "eleven_multilingual_ttv_v2",
+                "model": "eleven_ttv_v3",
                 "prompt": "xxxxxxxxxxxxxxxxxxxx",
                 "type": "text",
             },
@@ -414,7 +414,7 @@ class TestAsyncVoices:
     @parametrize
     async def test_method_preview(self, async_client: AsyncRunwayML) -> None:
         voice = await async_client.voices.preview(
-            model="eleven_multilingual_ttv_v2",
+            model="eleven_ttv_v3",
             prompt="xxxxxxxxxxxxxxxxxxxx",
         )
         assert_matches_type(VoicePreviewResponse, voice, path=["response"])
@@ -422,7 +422,7 @@ class TestAsyncVoices:
     @parametrize
     async def test_raw_response_preview(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.voices.with_raw_response.preview(
-            model="eleven_multilingual_ttv_v2",
+            model="eleven_ttv_v3",
             prompt="xxxxxxxxxxxxxxxxxxxx",
         )
 
@@ -434,7 +434,7 @@ class TestAsyncVoices:
     @parametrize
     async def test_streaming_response_preview(self, async_client: AsyncRunwayML) -> None:
         async with async_client.voices.with_streaming_response.preview(
-            model="eleven_multilingual_ttv_v2",
+            model="eleven_ttv_v3",
             prompt="xxxxxxxxxxxxxxxxxxxx",
         ) as response:
             assert not response.is_closed
