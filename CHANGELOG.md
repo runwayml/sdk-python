@@ -1,5 +1,24 @@
 # Changelog
 
+## 4.11.0 (2026-04-10)
+
+Full Changelog: [v4.10.0...v4.11.0](https://github.com/runwayml/sdk-python/compare/v4.10.0...v4.11.0)
+
+### Features
+
+* **api:** add avatar_videos resource ([75b6ded](https://github.com/runwayml/sdk-python/commit/75b6deda8c5733115af29c9374ae10f3d4f4716a))
+* **polling:** add wait_for_task_output to avatar_videos.create ([e8fe41b](https://github.com/runwayml/sdk-python/commit/e8fe41ba8c95f2263a08faefe2d791374b1db5d0))
+
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([839c38b](https://github.com/runwayml/sdk-python/commit/839c38bc95d9147b140481907621942c5c503ead))
+
+
+### Chores
+
+* pin GitHub Actions to full commit SHAs ([8f7689b](https://github.com/runwayml/sdk-python/commit/8f7689bac99f57930dd88a9ab3d4c9a279a13888))
+
 ## 4.10.0 (2026-04-01)
 
 Full Changelog: [v4.9.0...v4.10.0](https://github.com/runwayml/sdk-python/compare/v4.9.0...v4.10.0)
