@@ -39,6 +39,7 @@ if TYPE_CHECKING:
         workflows,
         organization,
         sound_effect,
+        avatar_videos,
         text_to_image,
         text_to_video,
         voice_dubbing,
@@ -58,6 +59,7 @@ if TYPE_CHECKING:
     from .resources.workflows import WorkflowsResource, AsyncWorkflowsResource
     from .resources.organization import OrganizationResource, AsyncOrganizationResource
     from .resources.sound_effect import SoundEffectResource, AsyncSoundEffectResource
+    from .resources.avatar_videos import AvatarVideosResource, AsyncAvatarVideosResource
     from .resources.text_to_image import TextToImageResource, AsyncTextToImageResource
     from .resources.text_to_video import TextToVideoResource, AsyncTextToVideoResource
     from .resources.voice_dubbing import VoiceDubbingResource, AsyncVoiceDubbingResource
@@ -231,6 +233,12 @@ class RunwayML(SyncAPIClient):
         from .resources.avatars import AvatarsResource
 
         return AvatarsResource(self)
+
+    @cached_property
+    def avatar_videos(self) -> AvatarVideosResource:
+        from .resources.avatar_videos import AvatarVideosResource
+
+        return AvatarVideosResource(self)
 
     @cached_property
     def documents(self) -> DocumentsResource:
@@ -529,6 +537,12 @@ class AsyncRunwayML(AsyncAPIClient):
         return AsyncAvatarsResource(self)
 
     @cached_property
+    def avatar_videos(self) -> AsyncAvatarVideosResource:
+        from .resources.avatar_videos import AsyncAvatarVideosResource
+
+        return AsyncAvatarVideosResource(self)
+
+    @cached_property
     def documents(self) -> AsyncDocumentsResource:
         from .resources.documents import AsyncDocumentsResource
 
@@ -770,6 +784,12 @@ class RunwayMLWithRawResponse:
         return AvatarsResourceWithRawResponse(self._client.avatars)
 
     @cached_property
+    def avatar_videos(self) -> avatar_videos.AvatarVideosResourceWithRawResponse:
+        from .resources.avatar_videos import AvatarVideosResourceWithRawResponse
+
+        return AvatarVideosResourceWithRawResponse(self._client.avatar_videos)
+
+    @cached_property
     def documents(self) -> documents.DocumentsResourceWithRawResponse:
         from .resources.documents import DocumentsResourceWithRawResponse
 
@@ -894,6 +914,12 @@ class AsyncRunwayMLWithRawResponse:
         from .resources.avatars import AsyncAvatarsResourceWithRawResponse
 
         return AsyncAvatarsResourceWithRawResponse(self._client.avatars)
+
+    @cached_property
+    def avatar_videos(self) -> avatar_videos.AsyncAvatarVideosResourceWithRawResponse:
+        from .resources.avatar_videos import AsyncAvatarVideosResourceWithRawResponse
+
+        return AsyncAvatarVideosResourceWithRawResponse(self._client.avatar_videos)
 
     @cached_property
     def documents(self) -> documents.AsyncDocumentsResourceWithRawResponse:
@@ -1022,6 +1048,12 @@ class RunwayMLWithStreamedResponse:
         return AvatarsResourceWithStreamingResponse(self._client.avatars)
 
     @cached_property
+    def avatar_videos(self) -> avatar_videos.AvatarVideosResourceWithStreamingResponse:
+        from .resources.avatar_videos import AvatarVideosResourceWithStreamingResponse
+
+        return AvatarVideosResourceWithStreamingResponse(self._client.avatar_videos)
+
+    @cached_property
     def documents(self) -> documents.DocumentsResourceWithStreamingResponse:
         from .resources.documents import DocumentsResourceWithStreamingResponse
 
@@ -1146,6 +1178,12 @@ class AsyncRunwayMLWithStreamedResponse:
         from .resources.avatars import AsyncAvatarsResourceWithStreamingResponse
 
         return AsyncAvatarsResourceWithStreamingResponse(self._client.avatars)
+
+    @cached_property
+    def avatar_videos(self) -> avatar_videos.AsyncAvatarVideosResourceWithStreamingResponse:
+        from .resources.avatar_videos import AsyncAvatarVideosResourceWithStreamingResponse
+
+        return AsyncAvatarVideosResourceWithStreamingResponse(self._client.avatar_videos)
 
     @cached_property
     def documents(self) -> documents.AsyncDocumentsResourceWithStreamingResponse:

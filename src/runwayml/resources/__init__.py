@@ -56,6 +56,14 @@ from .sound_effect import (
     SoundEffectResourceWithStreamingResponse,
     AsyncSoundEffectResourceWithStreamingResponse,
 )
+from .avatar_videos import (
+    AvatarVideosResource,
+    AsyncAvatarVideosResource,
+    AvatarVideosResourceWithRawResponse,
+    AsyncAvatarVideosResourceWithRawResponse,
+    AvatarVideosResourceWithStreamingResponse,
+    AsyncAvatarVideosResourceWithStreamingResponse,
+)
 from .text_to_image import (
     TextToImageResource,
     AsyncTextToImageResource,
@@ -224,6 +232,12 @@ __all__ = [
     "AsyncAvatarsResourceWithRawResponse",
     "AvatarsResourceWithStreamingResponse",
     "AsyncAvatarsResourceWithStreamingResponse",
+    "AvatarVideosResource",
+    "AsyncAvatarVideosResource",
+    "AvatarVideosResourceWithRawResponse",
+    "AsyncAvatarVideosResourceWithRawResponse",
+    "AvatarVideosResourceWithStreamingResponse",
+    "AsyncAvatarVideosResourceWithStreamingResponse",
     "DocumentsResource",
     "AsyncDocumentsResource",
     "DocumentsResourceWithRawResponse",

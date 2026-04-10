@@ -8,8 +8,12 @@ __all__ = ["VoicePreviewParams"]
 
 
 class VoicePreviewParams(TypedDict, total=False):
-    model: Required[Literal["eleven_multilingual_ttv_v2", "eleven_ttv_v3"]]
-    """The voice design model to use."""
+    model: Required[Literal["eleven_ttv_v3", "eleven_multilingual_ttv_v2"]]
+    """The voice design model to use.
+
+    Prefer eleven_ttv_v3 (latest); eleven_multilingual_ttv_v2 is the previous
+    generation.
+    """
 
     prompt: Required[str]
     """A text description of the desired voice characteristics.
