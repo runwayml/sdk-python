@@ -165,6 +165,18 @@ Methods:
 - <code title="get /v1/avatars">client.avatars.<a href="./src/runwayml/resources/avatars.py">list</a>(\*\*<a href="src/runwayml/types/avatar_list_params.py">params</a>) -> <a href="./src/runwayml/types/avatar_list_response.py">SyncCursorPage[AvatarListResponse]</a></code>
 - <code title="delete /v1/avatars/{id}">client.avatars.<a href="./src/runwayml/resources/avatars.py">delete</a>(id) -> None</code>
 
+# AvatarVideos
+
+Types:
+
+```python
+from runwayml.types import AvatarVideoCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/avatar_videos">client.avatar_videos.<a href="./src/runwayml/resources/avatar_videos.py">create</a>(\*\*<a href="src/runwayml/types/avatar_video_create_params.py">params</a>) -> <a href="./src/runwayml/types/avatar_video_create_response.py">AvatarVideoCreateResponse</a></code>
+
 # Documents
 
 Types:

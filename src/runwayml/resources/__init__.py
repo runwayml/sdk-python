@@ -16,6 +16,14 @@ from .voices import (
     VoicesResourceWithStreamingResponse,
     AsyncVoicesResourceWithStreamingResponse,
 )
+from .avatars import (
+    AvatarsResource,
+    AsyncAvatarsResource,
+    AvatarsResourceWithRawResponse,
+    AsyncAvatarsResourceWithRawResponse,
+    AvatarsResourceWithStreamingResponse,
+    AsyncAvatarsResourceWithStreamingResponse,
+)
 from .uploads import (
     UploadsResource,
     AsyncUploadsResource,
@@ -23,6 +31,14 @@ from .uploads import (
     AsyncUploadsResourceWithRawResponse,
     UploadsResourceWithStreamingResponse,
     AsyncUploadsResourceWithStreamingResponse,
+)
+from .documents import (
+    DocumentsResource,
+    AsyncDocumentsResource,
+    DocumentsResourceWithRawResponse,
+    AsyncDocumentsResourceWithRawResponse,
+    DocumentsResourceWithStreamingResponse,
+    AsyncDocumentsResourceWithStreamingResponse,
 )
 from .workflows import (
     WorkflowsResource,
@@ -47,6 +63,14 @@ from .sound_effect import (
     AsyncSoundEffectResourceWithRawResponse,
     SoundEffectResourceWithStreamingResponse,
     AsyncSoundEffectResourceWithStreamingResponse,
+)
+from .avatar_videos import (
+    AvatarVideosResource,
+    AsyncAvatarVideosResource,
+    AvatarVideosResourceWithRawResponse,
+    AsyncAvatarVideosResourceWithRawResponse,
+    AvatarVideosResourceWithStreamingResponse,
+    AsyncAvatarVideosResourceWithStreamingResponse,
 )
 from .text_to_image import (
     TextToImageResource,
@@ -216,6 +240,24 @@ __all__ = [
     "AsyncUploadsResourceWithRawResponse",
     "UploadsResourceWithStreamingResponse",
     "AsyncUploadsResourceWithStreamingResponse",
+    "AvatarsResource",
+    "AsyncAvatarsResource",
+    "AvatarsResourceWithRawResponse",
+    "AsyncAvatarsResourceWithRawResponse",
+    "AvatarsResourceWithStreamingResponse",
+    "AsyncAvatarsResourceWithStreamingResponse",
+    "AvatarVideosResource",
+    "AsyncAvatarVideosResource",
+    "AvatarVideosResourceWithRawResponse",
+    "AsyncAvatarVideosResourceWithRawResponse",
+    "AvatarVideosResourceWithStreamingResponse",
+    "AsyncAvatarVideosResourceWithStreamingResponse",
+    "DocumentsResource",
+    "AsyncDocumentsResource",
+    "DocumentsResourceWithRawResponse",
+    "AsyncDocumentsResourceWithRawResponse",
+    "DocumentsResourceWithStreamingResponse",
+    "AsyncDocumentsResourceWithStreamingResponse",
     "RealtimeSessionsResource",
     "AsyncRealtimeSessionsResource",
     "RealtimeSessionsResourceWithRawResponse",

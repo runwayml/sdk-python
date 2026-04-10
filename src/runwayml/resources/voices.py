@@ -62,7 +62,8 @@ class VoicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoiceCreateResponse:
         """
-        Create a custom voice from a text description.
+        Create a custom voice from a text description, or clone a voice from an audio
+        sample.
 
         Args:
           from_: The source configuration for creating the voice.
@@ -218,7 +219,7 @@ class VoicesResource(SyncAPIResource):
     def preview(
         self,
         *,
-        model: Literal["eleven_multilingual_ttv_v2", "eleven_ttv_v3"],
+        model: Literal["eleven_ttv_v3", "eleven_multilingual_ttv_v2"],
         prompt: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -233,7 +234,8 @@ class VoicesResource(SyncAPIResource):
         audition a voice before creating it.
 
         Args:
-          model: The voice design model to use.
+          model: The voice design model to use. Prefer eleven_ttv_v3 (latest);
+              eleven_multilingual_ttv_v2 is the previous generation.
 
           prompt: A text description of the desired voice characteristics. Must be at least 20
               characters.
@@ -296,7 +298,8 @@ class AsyncVoicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VoiceCreateResponse:
         """
-        Create a custom voice from a text description.
+        Create a custom voice from a text description, or clone a voice from an audio
+        sample.
 
         Args:
           from_: The source configuration for creating the voice.
@@ -452,7 +455,7 @@ class AsyncVoicesResource(AsyncAPIResource):
     async def preview(
         self,
         *,
-        model: Literal["eleven_multilingual_ttv_v2", "eleven_ttv_v3"],
+        model: Literal["eleven_ttv_v3", "eleven_multilingual_ttv_v2"],
         prompt: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -467,7 +470,8 @@ class AsyncVoicesResource(AsyncAPIResource):
         audition a voice before creating it.
 
         Args:
-          model: The voice design model to use.
+          model: The voice design model to use. Prefer eleven_ttv_v3 (latest);
+              eleven_multilingual_ttv_v2 is the previous generation.
 
           prompt: A text description of the desired voice characteristics. Must be at least 20
               characters.
