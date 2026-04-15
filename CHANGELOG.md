@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.12.0 (2026-04-15)
+
+Full Changelog: [v4.11.0...v4.12.0](https://github.com/runwayml/sdk-python/compare/v4.11.0...v4.12.0)
+
+### Features
+
+* **api:** seedance2 ([5004f1d](https://github.com/runwayml/sdk-python/commit/5004f1d931a4bf5e53c8b67cefa098bc85fa4ef5))
+* **client:** awaitable task support for seedance2 ([c3f73ee](https://github.com/runwayml/sdk-python/commit/c3f73ee879ed425e1ecb4917d11df32d3313f782))
+
+
+### Bug Fixes
+
+* **api:** remove spurious api param ([92173b3](https://github.com/runwayml/sdk-python/commit/92173b323f113a36d28386ec5ea096b4ee940be3))
+* ensure file data are only sent as 1 parameter ([fc5a5ef](https://github.com/runwayml/sdk-python/commit/fc5a5efba2d71af553c8cd0c7b0024bd15db0a16))
+
 ## 4.11.0 (2026-04-10)
 
 Full Changelog: [v4.10.0...v4.11.0](https://github.com/runwayml/sdk-python/compare/v4.10.0...v4.11.0)
