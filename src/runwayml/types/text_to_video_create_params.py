@@ -7,7 +7,7 @@ from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["TextToVideoCreateParams", "Gen4_5", "Gen4_5ContentModeration", "Veo3_1", "Veo3_1Fast", "Veo3"]
+__all__ = ["TextToVideoCreateParams", "Gen4_5", "Gen4_5ContentModeration", "Veo3_1", "Veo3_1Fast", "Seedance2", "Veo3"]
 
 
 class Gen4_5(TypedDict, total=False):
@@ -88,6 +88,41 @@ class Veo3_1Fast(TypedDict, total=False):
     """The number of seconds of duration for the output video."""
 
 
+class Seedance2(TypedDict, total=False):
+    model: Required[Literal["seedance2"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty string up to 3500 characters (measured in UTF-16 code units).
+
+    This should describe in detail what should appear in the output.
+    """
+
+    audio: bool
+    """Whether to generate audio for the video. Audio inclusion affects pricing."""
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    output_count: Annotated[int, PropertyInfo(alias="outputCount")]
+    """The number of video generations to produce."""
+
+    ratio: Literal[
+        "992:432",
+        "864:496",
+        "752:560",
+        "640:640",
+        "560:752",
+        "496:864",
+        "1470:630",
+        "1280:720",
+        "1112:834",
+        "960:960",
+        "834:1112",
+        "720:1280",
+    ]
+    """The resolution of the output video."""
+
+
 class Veo3(TypedDict, total=False):
     duration: Required[Literal[8]]
     """The number of seconds of duration for the output video."""
@@ -104,4 +139,4 @@ class Veo3(TypedDict, total=False):
     """The resolution of the output video."""
 
 
-TextToVideoCreateParams: TypeAlias = Union[Gen4_5, Veo3_1, Veo3_1Fast, Veo3]
+TextToVideoCreateParams: TypeAlias = Union[Gen4_5, Veo3_1, Veo3_1Fast, Seedance2, Veo3]

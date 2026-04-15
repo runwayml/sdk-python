@@ -66,8 +66,6 @@ class VoicesResource(SyncAPIResource):
         sample.
 
         Args:
-          from_: The source configuration for creating the voice.
-
           name: A name for the voice.
 
           description: An optional description of the voice.
@@ -302,8 +300,6 @@ class AsyncVoicesResource(AsyncAPIResource):
         sample.
 
         Args:
-          from_: The source configuration for creating the voice.
-
           name: A name for the voice.
 
           description: An optional description of the voice.
