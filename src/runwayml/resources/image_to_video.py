@@ -313,7 +313,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImageToVideoCreateResponse:
+    ) -> NewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -404,6 +404,7 @@ class ImageToVideoResource(SyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.Gen3aTurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Seedance2PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3PromptImagePromptImage]],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
@@ -745,7 +746,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImageToVideoCreateResponse:
+    ) -> AsyncNewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -836,6 +837,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.Gen3aTurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Seedance2PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3PromptImagePromptImage]],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
