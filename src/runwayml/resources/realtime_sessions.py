@@ -61,8 +61,11 @@ class RealtimeSessionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RealtimeSessionCreateResponse:
-        """
-        Create a new realtime session with the specified model configuration.
+        """Create a new realtime session with the specified model configuration.
+
+        The
+        returned ID is also the conversation ID used later to fetch transcripts and
+        recordings from the avatar conversation endpoints.
 
         Args:
           avatar: The avatar configuration for the session.
@@ -117,8 +120,10 @@ class RealtimeSessionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RealtimeSessionRetrieveResponse:
-        """
-        Get the status of a realtime session.
+        """Get the status of a realtime session.
+
+        This endpoint uses the same ID that the
+        avatar conversation endpoints later expose as the conversation ID.
 
         Args:
           extra_headers: Send extra headers
@@ -215,8 +220,11 @@ class AsyncRealtimeSessionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RealtimeSessionCreateResponse:
-        """
-        Create a new realtime session with the specified model configuration.
+        """Create a new realtime session with the specified model configuration.
+
+        The
+        returned ID is also the conversation ID used later to fetch transcripts and
+        recordings from the avatar conversation endpoints.
 
         Args:
           avatar: The avatar configuration for the session.
@@ -271,8 +279,10 @@ class AsyncRealtimeSessionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RealtimeSessionRetrieveResponse:
-        """
-        Get the status of a realtime session.
+        """Get the status of a realtime session.
+
+        This endpoint uses the same ID that the
+        avatar conversation endpoints later expose as the conversation ID.
 
         Args:
           extra_headers: Send extra headers

@@ -16,7 +16,11 @@ class NotReady(BaseModel):
     """A session that is being provisioned."""
 
     id: str
-    """The realtime session ID."""
+    """The realtime session ID.
+
+    This same value is later used as the conversation ID in the avatar conversation
+    endpoints.
+    """
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """When the session was created."""
@@ -34,7 +38,11 @@ class Ready(BaseModel):
     """A session that is ready to connect."""
 
     id: str
-    """The realtime session ID."""
+    """The realtime session ID.
+
+    This same value is later used as the conversation ID in the avatar conversation
+    endpoints.
+    """
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """When the session was created."""
@@ -52,7 +60,11 @@ class Running(BaseModel):
     """A session with an active WebRTC connection."""
 
     id: str
-    """The realtime session ID."""
+    """The realtime session ID.
+
+    This same value is later used as the conversation ID in the avatar conversation
+    endpoints.
+    """
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """When the session was created."""
@@ -64,7 +76,11 @@ class Completed(BaseModel):
     """A session that ended normally."""
 
     id: str
-    """The realtime session ID."""
+    """The realtime session ID.
+
+    This same value is later used as the conversation ID in the avatar conversation
+    endpoints.
+    """
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """When the session was created."""
@@ -79,7 +95,11 @@ class Failed(BaseModel):
     """A session that encountered an error."""
 
     id: str
-    """The realtime session ID."""
+    """The realtime session ID.
+
+    This same value is later used as the conversation ID in the avatar conversation
+    endpoints.
+    """
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """When the session was created."""
@@ -103,7 +123,11 @@ class Cancelled(BaseModel):
     """A session that was explicitly cancelled."""
 
     id: str
-    """The realtime session ID."""
+    """The realtime session ID.
+
+    This same value is later used as the conversation ID in the avatar conversation
+    endpoints.
+    """
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """When the session was created."""

@@ -27,9 +27,8 @@ class TestVoices:
     def test_method_create(self, client: RunwayML) -> None:
         voice = client.voices.create(
             from_={
-                "model": "eleven_ttv_v3",
-                "prompt": "xxxxxxxxxxxxxxxxxxxx",
-                "type": "text",
+                "audio": "https://example.com/file",
+                "type": "audio",
             },
             name="x",
         )
@@ -39,9 +38,8 @@ class TestVoices:
     def test_method_create_with_all_params(self, client: RunwayML) -> None:
         voice = client.voices.create(
             from_={
-                "model": "eleven_ttv_v3",
-                "prompt": "xxxxxxxxxxxxxxxxxxxx",
-                "type": "text",
+                "audio": "https://example.com/file",
+                "type": "audio",
             },
             name="x",
             description="x",
@@ -52,9 +50,8 @@ class TestVoices:
     def test_raw_response_create(self, client: RunwayML) -> None:
         response = client.voices.with_raw_response.create(
             from_={
-                "model": "eleven_ttv_v3",
-                "prompt": "xxxxxxxxxxxxxxxxxxxx",
-                "type": "text",
+                "audio": "https://example.com/file",
+                "type": "audio",
             },
             name="x",
         )
@@ -68,9 +65,8 @@ class TestVoices:
     def test_streaming_response_create(self, client: RunwayML) -> None:
         with client.voices.with_streaming_response.create(
             from_={
-                "model": "eleven_ttv_v3",
-                "prompt": "xxxxxxxxxxxxxxxxxxxx",
-                "type": "text",
+                "audio": "https://example.com/file",
+                "type": "audio",
             },
             name="x",
         ) as response:
@@ -241,9 +237,8 @@ class TestAsyncVoices:
     async def test_method_create(self, async_client: AsyncRunwayML) -> None:
         voice = await async_client.voices.create(
             from_={
-                "model": "eleven_ttv_v3",
-                "prompt": "xxxxxxxxxxxxxxxxxxxx",
-                "type": "text",
+                "audio": "https://example.com/file",
+                "type": "audio",
             },
             name="x",
         )
@@ -253,9 +248,8 @@ class TestAsyncVoices:
     async def test_method_create_with_all_params(self, async_client: AsyncRunwayML) -> None:
         voice = await async_client.voices.create(
             from_={
-                "model": "eleven_ttv_v3",
-                "prompt": "xxxxxxxxxxxxxxxxxxxx",
-                "type": "text",
+                "audio": "https://example.com/file",
+                "type": "audio",
             },
             name="x",
             description="x",
@@ -266,9 +260,8 @@ class TestAsyncVoices:
     async def test_raw_response_create(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.voices.with_raw_response.create(
             from_={
-                "model": "eleven_ttv_v3",
-                "prompt": "xxxxxxxxxxxxxxxxxxxx",
-                "type": "text",
+                "audio": "https://example.com/file",
+                "type": "audio",
             },
             name="x",
         )
@@ -282,9 +275,8 @@ class TestAsyncVoices:
     async def test_streaming_response_create(self, async_client: AsyncRunwayML) -> None:
         async with async_client.voices.with_streaming_response.create(
             from_={
-                "model": "eleven_ttv_v3",
-                "prompt": "xxxxxxxxxxxxxxxxxxxx",
-                "type": "text",
+                "audio": "https://example.com/file",
+                "type": "audio",
             },
             name="x",
         ) as response:
