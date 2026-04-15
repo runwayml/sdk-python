@@ -7,12 +7,11 @@ from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["VoiceCreateParams", "From", "FromText", "FromAudio"]
+__all__ = ["VoiceCreateParams", "From", "FromAudio", "FromText"]
 
 
 class VoiceCreateParams(TypedDict, total=False):
     from_: Required[Annotated[From, PropertyInfo(alias="from")]]
-    """The source configuration for creating the voice."""
 
     name: Required[str]
     """A name for the voice."""
@@ -21,9 +20,14 @@ class VoiceCreateParams(TypedDict, total=False):
     """An optional description of the voice."""
 
 
-class FromText(TypedDict, total=False):
-    """The source configuration for creating the voice."""
+class FromAudio(TypedDict, total=False):
+    audio: Required[str]
+    """A HTTPS URL."""
 
+    type: Required[Literal["audio"]]
+
+
+class FromText(TypedDict, total=False):
     model: Required[Literal["eleven_ttv_v3", "eleven_multilingual_ttv_v2"]]
     """The voice design model to use.
 
@@ -40,11 +44,4 @@ class FromText(TypedDict, total=False):
     type: Required[Literal["text"]]
 
 
-class FromAudio(TypedDict, total=False):
-    audio: Required[str]
-    """A HTTPS URL."""
-
-    type: Required[Literal["audio"]]
-
-
-From: TypeAlias = Union[FromText, FromAudio]
+From: TypeAlias = Union[FromAudio, FromText]

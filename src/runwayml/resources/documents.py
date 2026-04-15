@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from ..types import document_list_params, document_create_params, document_update_params
@@ -175,6 +177,8 @@ class DocumentsResource(SyncAPIResource):
         self,
         *,
         limit: int,
+        order: Literal["asc", "desc"],
+        sort: Literal["createdAt", "updatedAt"],
         cursor: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -189,6 +193,10 @@ class DocumentsResource(SyncAPIResource):
 
         Args:
           limit: The maximum number of items to return per page.
+
+          order: Sort direction.
+
+          sort: Field to sort results by.
 
           cursor: Cursor from a previous response for fetching the next page of results.
 
@@ -211,6 +219,8 @@ class DocumentsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "order": order,
+                        "sort": sort,
                         "cursor": cursor,
                     },
                     document_list_params.DocumentListParams,
@@ -407,6 +417,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
         self,
         *,
         limit: int,
+        order: Literal["asc", "desc"],
+        sort: Literal["createdAt", "updatedAt"],
         cursor: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -421,6 +433,10 @@ class AsyncDocumentsResource(AsyncAPIResource):
 
         Args:
           limit: The maximum number of items to return per page.
+
+          order: Sort direction.
+
+          sort: Field to sort results by.
 
           cursor: Cursor from a previous response for fetching the next page of results.
 
@@ -443,6 +459,8 @@ class AsyncDocumentsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "limit": limit,
+                        "order": order,
+                        "sort": sort,
                         "cursor": cursor,
                     },
                     document_list_params.DocumentListParams,

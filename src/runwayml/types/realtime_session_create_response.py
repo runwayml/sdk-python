@@ -7,4 +7,8 @@ __all__ = ["RealtimeSessionCreateResponse"]
 
 class RealtimeSessionCreateResponse(BaseModel):
     id: str
-    """The ID of the created realtime session."""
+    """The ID of the created realtime session.
+
+    This same value is later used as the conversation ID in the avatar conversation
+    endpoints.
+    """
