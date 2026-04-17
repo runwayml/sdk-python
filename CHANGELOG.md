@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.12.1 (2026-04-17)
+
+Full Changelog: [v4.12.0...v4.12.1](https://github.com/runwayml/sdk-python/compare/v4.12.0...v4.12.1)
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([c5be409](https://github.com/runwayml/sdk-python/commit/c5be40920bb59fd86da4a1eae8399a68bea1c44e))
+
+
+### Chores
+
+* **tests:** bump steady to v0.22.1 ([10b9237](https://github.com/runwayml/sdk-python/commit/10b9237c54d82fcdf700994d36a6be1b76923b0b))
+
 ## 4.12.0 (2026-04-15)
 
 Full Changelog: [v4.11.0...v4.12.0](https://github.com/runwayml/sdk-python/compare/v4.11.0...v4.12.0)
