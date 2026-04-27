@@ -1,5 +1,29 @@
 # Changelog
 
+## 4.13.0 (2026-04-27)
+
+Full Changelog: [v4.12.0...v4.13.0](https://github.com/runwayml/sdk-python/compare/v4.12.0...v4.13.0)
+
+### Features
+
+* support setting headers via env ([fdfdafb](https://github.com/runwayml/sdk-python/commit/fdfdafb9127b91b59c2a4f6c6c8828ad8a52a966))
+
+
+### Bug Fixes
+
+* use correct field name format for multipart file arrays ([e7a8c90](https://github.com/runwayml/sdk-python/commit/e7a8c9072e92a996c6a4f66bb2287c60b26c99b6))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([c5be409](https://github.com/runwayml/sdk-python/commit/c5be40920bb59fd86da4a1eae8399a68bea1c44e))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([15e5514](https://github.com/runwayml/sdk-python/commit/15e55144be53914122cd76ade48b18dd195d2016))
+* **tests:** bump steady to v0.22.1 ([10b9237](https://github.com/runwayml/sdk-python/commit/10b9237c54d82fcdf700994d36a6be1b76923b0b))
+
 ## 4.12.0 (2026-04-15)
 
 Full Changelog: [v4.11.0...v4.12.0](https://github.com/runwayml/sdk-python/compare/v4.11.0...v4.12.0)
