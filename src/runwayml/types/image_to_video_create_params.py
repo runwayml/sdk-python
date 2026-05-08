@@ -15,15 +15,13 @@ __all__ = [
     "Gen4Turbo",
     "Gen4TurboPromptImagePromptImage",
     "Gen4TurboContentModeration",
+    "Veo3_1",
+    "Veo3_1PromptImagePromptImage",
     "Gen3aTurbo",
     "Gen3aTurboPromptImagePromptImage",
     "Gen3aTurboContentModeration",
-    "Veo3_1",
-    "Veo3_1PromptImagePromptImage",
     "Veo3_1Fast",
     "Veo3_1FastPromptImagePromptImage",
-    "Seedance2",
-    "Seedance2PromptImagePromptImage",
     "Veo3",
     "Veo3PromptImagePromptImage",
 ]
@@ -138,6 +136,46 @@ class Gen4TurboContentModeration(TypedDict, total=False):
     """
 
 
+class Veo3_1(TypedDict, total=False):
+    model: Required[Literal["veo3.1"]]
+
+    prompt_image: Required[
+        Annotated[Union[str, Iterable[Veo3_1PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
+    ]
+    """
+    You may specify an image to use as the first frame of the output video, or an
+    array with a first frame and optionally a last frame. This model does not
+    support generating with only a last frame.
+    """
+
+    ratio: Required[Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]]
+    """The resolution of the output video."""
+
+    audio: bool
+    """Whether to generate audio for the video. Audio inclusion affects pricing."""
+
+    duration: Literal[4, 6, 8]
+    """The number of seconds of duration for the output video."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """A non-empty string up to 1000 characters (measured in UTF-16 code units).
+
+    This should describe in detail what should appear in the output.
+    """
+
+
+class Veo3_1PromptImagePromptImage(TypedDict, total=False):
+    position: Required[Literal["first", "last"]]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame of the video, "last" will use the
+    image as the last frame of the video.
+    """
+
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
 class Gen3aTurbo(TypedDict, total=False):
     model: Required[Literal["gen3a_turbo"]]
 
@@ -192,46 +230,6 @@ class Gen3aTurboContentModeration(TypedDict, total=False):
     """
 
 
-class Veo3_1(TypedDict, total=False):
-    model: Required[Literal["veo3.1"]]
-
-    prompt_image: Required[
-        Annotated[Union[str, Iterable[Veo3_1PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
-    ]
-    """
-    You may specify an image to use as the first frame of the output video, or an
-    array with a first frame and optionally a last frame. This model does not
-    support generating with only a last frame.
-    """
-
-    ratio: Required[Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]]
-    """The resolution of the output video."""
-
-    audio: bool
-    """Whether to generate audio for the video. Audio inclusion affects pricing."""
-
-    duration: Literal[4, 6, 8]
-    """The number of seconds of duration for the output video."""
-
-    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
-    """A non-empty string up to 1000 characters (measured in UTF-16 code units).
-
-    This should describe in detail what should appear in the output.
-    """
-
-
-class Veo3_1PromptImagePromptImage(TypedDict, total=False):
-    position: Required[Literal["first", "last"]]
-    """The position of the image in the output video.
-
-    "first" will use the image as the first frame of the video, "last" will use the
-    image as the last frame of the video.
-    """
-
-    uri: Required[str]
-    """A HTTPS URL."""
-
-
 class Veo3_1Fast(TypedDict, total=False):
     model: Required[Literal["veo3.1_fast"]]
 
@@ -272,62 +270,6 @@ class Veo3_1FastPromptImagePromptImage(TypedDict, total=False):
     """A HTTPS URL."""
 
 
-class Seedance2(TypedDict, total=False):
-    model: Required[Literal["seedance2"]]
-
-    prompt_image: Required[
-        Annotated[Union[str, Iterable[Seedance2PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
-    ]
-    """An image or array of images.
-
-    Use position `first`/`last` for keyframe mode, or omit position for reference
-    images. The two modes cannot be mixed.
-    """
-
-    audio: bool
-    """Whether to generate audio for the video. Audio inclusion affects pricing."""
-
-    duration: int
-    """The number of seconds of duration for the output video."""
-
-    output_count: Annotated[int, PropertyInfo(alias="outputCount")]
-    """The number of video generations to produce."""
-
-    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
-    """An optional text prompt up to 3500 characters (measured in UTF-16 code units).
-
-    This should describe in detail what should appear in the output.
-    """
-
-    ratio: Literal[
-        "992:432",
-        "864:496",
-        "752:560",
-        "640:640",
-        "560:752",
-        "496:864",
-        "1470:630",
-        "1280:720",
-        "1112:834",
-        "960:960",
-        "834:1112",
-        "720:1280",
-    ]
-    """The resolution of the output video."""
-
-
-class Seedance2PromptImagePromptImage(TypedDict, total=False):
-    uri: Required[str]
-    """A HTTPS URL."""
-
-    position: Literal["first", "last"]
-    """The position of the image in the output video.
-
-    "first" will use the image as the first frame, "last" as the last frame. Omit
-    for a reference image.
-    """
-
-
 class Veo3(TypedDict, total=False):
     duration: Required[Literal[8]]
     """The number of seconds of duration for the output video."""
@@ -360,4 +302,4 @@ class Veo3PromptImagePromptImage(TypedDict, total=False):
     """A HTTPS URL."""
 
 
-ImageToVideoCreateParams: TypeAlias = Union[Gen4_5, Gen4Turbo, Gen3aTurbo, Veo3_1, Veo3_1Fast, Seedance2, Veo3]
+ImageToVideoCreateParams: TypeAlias = Union[Gen4_5, Gen4Turbo, Veo3_1, Gen3aTurbo, Veo3_1Fast, Veo3]

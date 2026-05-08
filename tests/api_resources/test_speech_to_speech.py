@@ -45,6 +45,7 @@ class TestSpeechToSpeech:
                 "type": "runway-preset",
             },
             remove_background_noise=True,
+            runway_voice_id="runwayVoiceId",
         )
         assert_matches_type(SpeechToSpeechCreateResponse, speech_to_speech, path=["response"])
 
@@ -122,6 +123,7 @@ class TestAsyncSpeechToSpeech:
                 "type": "runway-preset",
             },
             remove_background_noise=True,
+            runway_voice_id="runwayVoiceId",
         )
         assert_matches_type(SpeechToSpeechCreateResponse, speech_to_speech, path=["response"])
 
