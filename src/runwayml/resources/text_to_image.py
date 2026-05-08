@@ -174,6 +174,86 @@ class TextToImageResource(SyncAPIResource):
     def create(
         self,
         *,
+        model: Literal["gpt_image_2"],
+        prompt_text: str,
+        ratio: Literal[
+            "2048:880",
+            "1920:1088",
+            "1920:1280",
+            "1920:1440",
+            "1920:1536",
+            "1920:1920",
+            "1536:1920",
+            "1440:1920",
+            "1280:1920",
+            "1088:1920",
+            "2912:1248",
+            "2560:1440",
+            "2560:1712",
+            "2560:1920",
+            "2560:2048",
+            "2560:2560",
+            "2048:2560",
+            "1920:2560",
+            "1712:2560",
+            "1440:2560",
+            "3840:1648",
+            "3840:2160",
+            "3504:2336",
+            "3264:2448",
+            "3200:2560",
+            "2880:2880",
+            "2560:3200",
+            "2448:3264",
+            "2336:3504",
+            "2160:3840",
+            "auto",
+        ],
+        background: Literal["opaque", "auto"] | Omit = omit,
+        output_count: int | Omit = omit,
+        quality: Literal["low", "medium", "high", "auto"] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.GptImage2ReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty string up to 32,000 characters describing the desired image.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+              to let the model choose.
+
+          background: Background treatment. Defaults to `auto`, which lets the model pick.
+              `transparent` is not supported by this model.
+
+          output_count: The number of images to generate (1-10). Increasing this number will affect the
+              number of credits consumed by the generation.
+
+          quality: Rendering quality. Higher qualities consume more credits. Defaults to `high`.
+
+          reference_images: An array of up to 16 images to be used as references for the generated image
+              output.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["gemini_image3_pro"],
         prompt_text: str,
         ratio: Literal[
@@ -300,6 +380,7 @@ class TextToImageResource(SyncAPIResource):
         *,
         model: Literal["gen4_image_turbo"]
         | Literal["gen4_image"]
+        | Literal["gpt_image_2"]
         | Literal["gemini_image3_pro"]
         | Literal["gemini_2.5_flash"],
         prompt_text: str,
@@ -320,6 +401,39 @@ class TextToImageResource(SyncAPIResource):
             "960:720",
             "720:960",
             "1680:720",
+        ]
+        | Literal[
+            "2048:880",
+            "1920:1088",
+            "1920:1280",
+            "1920:1440",
+            "1920:1536",
+            "1920:1920",
+            "1536:1920",
+            "1440:1920",
+            "1280:1920",
+            "1088:1920",
+            "2912:1248",
+            "2560:1440",
+            "2560:1712",
+            "2560:1920",
+            "2560:2048",
+            "2560:2560",
+            "2048:2560",
+            "1920:2560",
+            "1712:2560",
+            "1440:2560",
+            "3840:1648",
+            "3840:2160",
+            "3504:2336",
+            "3264:2448",
+            "3200:2560",
+            "2880:2880",
+            "2560:3200",
+            "2448:3264",
+            "2336:3504",
+            "2160:3840",
+            "auto",
         ]
         | Literal[
             "1344:768",
@@ -367,6 +481,7 @@ class TextToImageResource(SyncAPIResource):
         ],
         reference_images: Iterable[text_to_image_create_params.Gen4ImageTurboReferenceImage]
         | Iterable[text_to_image_create_params.Gen4ImageReferenceImage]
+        | Iterable[text_to_image_create_params.GptImage2ReferenceImage]
         | Iterable[text_to_image_create_params.GeminiImage3ProReferenceImage]
         | Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage]
         | Omit = omit,
@@ -374,7 +489,9 @@ class TextToImageResource(SyncAPIResource):
         | text_to_image_create_params.Gen4ImageContentModeration
         | Omit = omit,
         seed: int | Omit = omit,
-        output_count: Literal[1, 4] | Omit = omit,
+        background: Literal["opaque", "auto"] | Omit = omit,
+        output_count: int | Literal[1, 4] | Omit = omit,
+        quality: Literal["low", "medium", "high", "auto"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -392,7 +509,9 @@ class TextToImageResource(SyncAPIResource):
                     "reference_images": reference_images,
                     "content_moderation": content_moderation,
                     "seed": seed,
+                    "background": background,
                     "output_count": output_count,
+                    "quality": quality,
                 },
                 text_to_image_create_params.TextToImageCreateParams,
             ),
@@ -553,6 +672,86 @@ class AsyncTextToImageResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        model: Literal["gpt_image_2"],
+        prompt_text: str,
+        ratio: Literal[
+            "2048:880",
+            "1920:1088",
+            "1920:1280",
+            "1920:1440",
+            "1920:1536",
+            "1920:1920",
+            "1536:1920",
+            "1440:1920",
+            "1280:1920",
+            "1088:1920",
+            "2912:1248",
+            "2560:1440",
+            "2560:1712",
+            "2560:1920",
+            "2560:2048",
+            "2560:2560",
+            "2048:2560",
+            "1920:2560",
+            "1712:2560",
+            "1440:2560",
+            "3840:1648",
+            "3840:2160",
+            "3504:2336",
+            "3264:2448",
+            "3200:2560",
+            "2880:2880",
+            "2560:3200",
+            "2448:3264",
+            "2336:3504",
+            "2160:3840",
+            "auto",
+        ],
+        background: Literal["opaque", "auto"] | Omit = omit,
+        output_count: int | Omit = omit,
+        quality: Literal["low", "medium", "high", "auto"] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.GptImage2ReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty string up to 32,000 characters describing the desired image.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+              to let the model choose.
+
+          background: Background treatment. Defaults to `auto`, which lets the model pick.
+              `transparent` is not supported by this model.
+
+          output_count: The number of images to generate (1-10). Increasing this number will affect the
+              number of credits consumed by the generation.
+
+          quality: Rendering quality. Higher qualities consume more credits. Defaults to `high`.
+
+          reference_images: An array of up to 16 images to be used as references for the generated image
+              output.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["gemini_image3_pro"],
         prompt_text: str,
         ratio: Literal[
@@ -679,6 +878,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         *,
         model: Literal["gen4_image_turbo"]
         | Literal["gen4_image"]
+        | Literal["gpt_image_2"]
         | Literal["gemini_image3_pro"]
         | Literal["gemini_2.5_flash"],
         prompt_text: str,
@@ -699,6 +899,39 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "960:720",
             "720:960",
             "1680:720",
+        ]
+        | Literal[
+            "2048:880",
+            "1920:1088",
+            "1920:1280",
+            "1920:1440",
+            "1920:1536",
+            "1920:1920",
+            "1536:1920",
+            "1440:1920",
+            "1280:1920",
+            "1088:1920",
+            "2912:1248",
+            "2560:1440",
+            "2560:1712",
+            "2560:1920",
+            "2560:2048",
+            "2560:2560",
+            "2048:2560",
+            "1920:2560",
+            "1712:2560",
+            "1440:2560",
+            "3840:1648",
+            "3840:2160",
+            "3504:2336",
+            "3264:2448",
+            "3200:2560",
+            "2880:2880",
+            "2560:3200",
+            "2448:3264",
+            "2336:3504",
+            "2160:3840",
+            "auto",
         ]
         | Literal[
             "1344:768",
@@ -746,6 +979,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         ],
         reference_images: Iterable[text_to_image_create_params.Gen4ImageTurboReferenceImage]
         | Iterable[text_to_image_create_params.Gen4ImageReferenceImage]
+        | Iterable[text_to_image_create_params.GptImage2ReferenceImage]
         | Iterable[text_to_image_create_params.GeminiImage3ProReferenceImage]
         | Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage]
         | Omit = omit,
@@ -753,7 +987,9 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | text_to_image_create_params.Gen4ImageContentModeration
         | Omit = omit,
         seed: int | Omit = omit,
-        output_count: Literal[1, 4] | Omit = omit,
+        background: Literal["opaque", "auto"] | Omit = omit,
+        output_count: int | Literal[1, 4] | Omit = omit,
+        quality: Literal["low", "medium", "high", "auto"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -771,7 +1007,9 @@ class AsyncTextToImageResource(AsyncAPIResource):
                     "reference_images": reference_images,
                     "content_moderation": content_moderation,
                     "seed": seed,
+                    "background": background,
                     "output_count": output_count,
+                    "quality": quality,
                 },
                 text_to_image_create_params.TextToImageCreateParams,
             ),
