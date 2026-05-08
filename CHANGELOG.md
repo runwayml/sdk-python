@@ -1,5 +1,26 @@
 # Changelog
 
+## 4.14.0 (2026-05-08)
+
+Full Changelog: [v4.13.0...v4.14.0](https://github.com/runwayml/sdk-python/compare/v4.13.0...v4.14.0)
+
+### Features
+
+* **api:** gemini 3 pro ([b907241](https://github.com/runwayml/sdk-python/commit/b907241a2564b5c3afe3942a37daa2eaf719ea2d))
+* **api:** gpt_image_2 ([76997d3](https://github.com/runwayml/sdk-python/commit/76997d35dab56a5c8d2a43a8f12eb1b749eb6906))
+
+
+### Bug Fixes
+
+* **api:** Fix bad extra param ([f892e71](https://github.com/runwayml/sdk-python/commit/f892e7199f09ba11f6e940a781c119bc75b3761b))
+* **client:** add missing f-string prefix in file type error message ([52abe91](https://github.com/runwayml/sdk-python/commit/52abe91027424917df51ae2e7cf7762921f81324))
+* **client:** Fix types for gpt_image_2 ([28fba38](https://github.com/runwayml/sdk-python/commit/28fba389975adb029b64fa4dcb5d28a62c29b095))
+
+
+### Chores
+
+* **internal:** reformat pyproject.toml ([3f300f0](https://github.com/runwayml/sdk-python/commit/3f300f0dafcc3b3d15b4bee35f024aa2f1e575a6))
+
 ## 4.13.0 (2026-04-27)
 
 Full Changelog: [v4.12.0...v4.13.0](https://github.com/runwayml/sdk-python/compare/v4.12.0...v4.13.0)
