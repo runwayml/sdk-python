@@ -22,8 +22,6 @@ class SpeechToSpeechCreateParams(TypedDict, total=False):
     remove_background_noise: Annotated[bool, PropertyInfo(alias="removeBackgroundNoise")]
     """Whether to remove background noise from the generated speech."""
 
-    runway_voice_id: Annotated[str, PropertyInfo(alias="runwayVoiceId")]
-
 
 class MediaAudio(TypedDict, total=False):
     """An audio file containing dialogue to be processed."""
