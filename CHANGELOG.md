@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.15.0 (2026-05-11)
+
+Full Changelog: [v4.14.0...v4.15.0](https://github.com/runwayml/sdk-python/compare/v4.14.0...v4.15.0)
+
+### Features
+
+* **internal/types:** support eagerly validating pydantic iterators ([67267fb](https://github.com/runwayml/sdk-python/commit/67267fb31a51749985c08fbefbcdbb1c8ab47412))
+
 ## 4.14.0 (2026-05-08)
 
 Full Changelog: [v4.13.0...v4.14.0](https://github.com/runwayml/sdk-python/compare/v4.13.0...v4.14.0)
