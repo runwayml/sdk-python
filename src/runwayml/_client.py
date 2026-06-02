@@ -45,6 +45,7 @@ if TYPE_CHECKING:
         organization,
         sound_effect,
         avatar_videos,
+        image_upscale,
         text_to_image,
         text_to_video,
         voice_dubbing,
@@ -66,6 +67,7 @@ if TYPE_CHECKING:
     from .resources.organization import OrganizationResource, AsyncOrganizationResource
     from .resources.sound_effect import SoundEffectResource, AsyncSoundEffectResource
     from .resources.avatar_videos import AvatarVideosResource, AsyncAvatarVideosResource
+    from .resources.image_upscale import ImageUpscaleResource, AsyncImageUpscaleResource
     from .resources.text_to_image import TextToImageResource, AsyncTextToImageResource
     from .resources.text_to_video import TextToVideoResource, AsyncTextToVideoResource
     from .resources.voice_dubbing import VoiceDubbingResource, AsyncVoiceDubbingResource
@@ -242,6 +244,13 @@ class RunwayML(SyncAPIClient):
         from .resources.speech_to_speech import SpeechToSpeechResource
 
         return SpeechToSpeechResource(self)
+
+    @cached_property
+    def image_upscale(self) -> ImageUpscaleResource:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.image_upscale import ImageUpscaleResource
+
+        return ImageUpscaleResource(self)
 
     @cached_property
     def organization(self) -> OrganizationResource:
@@ -561,6 +570,13 @@ class AsyncRunwayML(AsyncAPIClient):
         return AsyncSpeechToSpeechResource(self)
 
     @cached_property
+    def image_upscale(self) -> AsyncImageUpscaleResource:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.image_upscale import AsyncImageUpscaleResource
+
+        return AsyncImageUpscaleResource(self)
+
+    @cached_property
     def organization(self) -> AsyncOrganizationResource:
         from .resources.organization import AsyncOrganizationResource
 
@@ -814,6 +830,13 @@ class RunwayMLWithRawResponse:
         return SpeechToSpeechResourceWithRawResponse(self._client.speech_to_speech)
 
     @cached_property
+    def image_upscale(self) -> image_upscale.ImageUpscaleResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.image_upscale import ImageUpscaleResourceWithRawResponse
+
+        return ImageUpscaleResourceWithRawResponse(self._client.image_upscale)
+
+    @cached_property
     def organization(self) -> organization.OrganizationResourceWithRawResponse:
         from .resources.organization import OrganizationResourceWithRawResponse
 
@@ -950,6 +973,13 @@ class AsyncRunwayMLWithRawResponse:
         from .resources.speech_to_speech import AsyncSpeechToSpeechResourceWithRawResponse
 
         return AsyncSpeechToSpeechResourceWithRawResponse(self._client.speech_to_speech)
+
+    @cached_property
+    def image_upscale(self) -> image_upscale.AsyncImageUpscaleResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.image_upscale import AsyncImageUpscaleResourceWithRawResponse
+
+        return AsyncImageUpscaleResourceWithRawResponse(self._client.image_upscale)
 
     @cached_property
     def organization(self) -> organization.AsyncOrganizationResourceWithRawResponse:
@@ -1090,6 +1120,13 @@ class RunwayMLWithStreamedResponse:
         return SpeechToSpeechResourceWithStreamingResponse(self._client.speech_to_speech)
 
     @cached_property
+    def image_upscale(self) -> image_upscale.ImageUpscaleResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.image_upscale import ImageUpscaleResourceWithStreamingResponse
+
+        return ImageUpscaleResourceWithStreamingResponse(self._client.image_upscale)
+
+    @cached_property
     def organization(self) -> organization.OrganizationResourceWithStreamingResponse:
         from .resources.organization import OrganizationResourceWithStreamingResponse
 
@@ -1226,6 +1263,13 @@ class AsyncRunwayMLWithStreamedResponse:
         from .resources.speech_to_speech import AsyncSpeechToSpeechResourceWithStreamingResponse
 
         return AsyncSpeechToSpeechResourceWithStreamingResponse(self._client.speech_to_speech)
+
+    @cached_property
+    def image_upscale(self) -> image_upscale.AsyncImageUpscaleResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.image_upscale import AsyncImageUpscaleResourceWithStreamingResponse
+
+        return AsyncImageUpscaleResourceWithStreamingResponse(self._client.image_upscale)
 
     @cached_property
     def organization(self) -> organization.AsyncOrganizationResourceWithStreamingResponse:

@@ -72,6 +72,14 @@ from .avatar_videos import (
     AvatarVideosResourceWithStreamingResponse,
     AsyncAvatarVideosResourceWithStreamingResponse,
 )
+from .image_upscale import (
+    ImageUpscaleResource,
+    AsyncImageUpscaleResource,
+    ImageUpscaleResourceWithRawResponse,
+    AsyncImageUpscaleResourceWithRawResponse,
+    ImageUpscaleResourceWithStreamingResponse,
+    AsyncImageUpscaleResourceWithStreamingResponse,
+)
 from .text_to_image import (
     TextToImageResource,
     AsyncTextToImageResource,
@@ -228,6 +236,12 @@ __all__ = [
     "AsyncSpeechToSpeechResourceWithRawResponse",
     "SpeechToSpeechResourceWithStreamingResponse",
     "AsyncSpeechToSpeechResourceWithStreamingResponse",
+    "ImageUpscaleResource",
+    "AsyncImageUpscaleResource",
+    "ImageUpscaleResourceWithRawResponse",
+    "AsyncImageUpscaleResourceWithRawResponse",
+    "ImageUpscaleResourceWithStreamingResponse",
+    "AsyncImageUpscaleResourceWithStreamingResponse",
     "OrganizationResource",
     "AsyncOrganizationResource",
     "OrganizationResourceWithRawResponse",
