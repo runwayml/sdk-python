@@ -404,7 +404,7 @@ class TextToImageResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TextToImageCreateResponse:
+    ) -> NewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate images from text and/or image(s)
 
@@ -1064,7 +1064,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TextToImageCreateResponse:
+    ) -> AsyncNewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate images from text and/or image(s)
 
