@@ -2,15 +2,29 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing import Union, Iterable
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["VideoToVideoCreateParams", "ContentModeration", "Reference"]
+__all__ = [
+    "VideoToVideoCreateParams",
+    "Gen4Aleph",
+    "Gen4AlephContentModeration",
+    "Gen4AlephReference",
+    "Aleph2",
+    "Aleph2ContentModeration",
+    "Aleph2Keyframe",
+    "Aleph2KeyframeUnionMember0",
+    "Aleph2KeyframeUnionMember1",
+    "Aleph2PromptImage",
+    "Aleph2PromptImagePosition",
+    "Aleph2PromptImagePositionTimestampPosition",
+    "Aleph2PromptImagePositionRelativePosition",
+]
 
 
-class VideoToVideoCreateParams(TypedDict, total=False):
+class Gen4Aleph(TypedDict, total=False):
     model: Required[Literal["gen4_aleph"]]
 
     prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
@@ -22,7 +36,7 @@ class VideoToVideoCreateParams(TypedDict, total=False):
     video_uri: Required[Annotated[str, PropertyInfo(alias="videoUri")]]
     """A HTTPS URL."""
 
-    content_moderation: Annotated[ContentModeration, PropertyInfo(alias="contentModeration")]
+    content_moderation: Annotated[Gen4AlephContentModeration, PropertyInfo(alias="contentModeration")]
     """Settings that affect the behavior of the content moderation system."""
 
     ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"]
@@ -32,7 +46,7 @@ class VideoToVideoCreateParams(TypedDict, total=False):
     input video.
     """
 
-    references: Iterable[Reference]
+    references: Iterable[Gen4AlephReference]
     """An array of references.
 
     Currently up to one reference is supported. See
@@ -48,7 +62,7 @@ class VideoToVideoCreateParams(TypedDict, total=False):
     """
 
 
-class ContentModeration(TypedDict, total=False):
+class Gen4AlephContentModeration(TypedDict, total=False):
     """Settings that affect the behavior of the content moderation system."""
 
     public_figure_threshold: Annotated[Literal["auto", "low"], PropertyInfo(alias="publicFigureThreshold")]
@@ -58,7 +72,7 @@ class ContentModeration(TypedDict, total=False):
     """
 
 
-class Reference(TypedDict, total=False):
+class Gen4AlephReference(TypedDict, total=False):
     """
     Passing an image reference allows the model to emulate the style or content of the reference in the output.
     """
@@ -67,3 +81,108 @@ class Reference(TypedDict, total=False):
 
     uri: Required[str]
     """A HTTPS URL."""
+
+
+class Aleph2(TypedDict, total=False):
+    model: Required[Literal["aleph2"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """
+    A non-empty string up to 1000 characters describing what should appear in the
+    output.
+    """
+
+    video_uri: Required[Annotated[str, PropertyInfo(alias="videoUri")]]
+    """A HTTPS URL."""
+
+    content_moderation: Annotated[Aleph2ContentModeration, PropertyInfo(alias="contentModeration")]
+    """Settings that affect the behavior of the content moderation system."""
+
+    keyframes: Iterable[Aleph2Keyframe]
+    """Timed guidance images placed at specific points in the input video.
+
+    Up to 5 keyframes.
+    """
+
+    prompt_image: Annotated[Iterable[Aleph2PromptImage], PropertyInfo(alias="promptImage")]
+    """
+    A list of up to 5 image keyframes for guiding the edit at specific points in the
+    video.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
+    """
+
+
+class Aleph2ContentModeration(TypedDict, total=False):
+    """Settings that affect the behavior of the content moderation system."""
+
+    public_figure_threshold: Annotated[Literal["auto", "low"], PropertyInfo(alias="publicFigureThreshold")]
+    """
+    When set to `low`, the content moderation system will be less strict about
+    preventing generations that include recognizable public figures.
+    """
+
+
+class Aleph2KeyframeUnionMember0(TypedDict, total=False):
+    seconds: Required[float]
+    """
+    Absolute timestamp in seconds from the start of the input video when this
+    guidance image should apply.
+    """
+
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
+class Aleph2KeyframeUnionMember1(TypedDict, total=False):
+    at: Required[float]
+    """
+    Position as a fraction [0.0, 1.0] of the input video duration when this guidance
+    image should apply.
+    """
+
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
+Aleph2Keyframe: TypeAlias = Union[Aleph2KeyframeUnionMember0, Aleph2KeyframeUnionMember1]
+
+
+class Aleph2PromptImagePositionTimestampPosition(TypedDict, total=False):
+    timestamp_seconds: Required[Annotated[float, PropertyInfo(alias="timestampSeconds")]]
+    """Absolute timestamp in seconds from the start of the output video."""
+
+    type: Required[Literal["timestamp"]]
+
+
+class Aleph2PromptImagePositionRelativePosition(TypedDict, total=False):
+    position_percentage: Required[Annotated[float, PropertyInfo(alias="positionPercentage")]]
+    """Position as a fraction [0.0, 1.0] of the total video duration."""
+
+    type: Required[Literal["position"]]
+
+
+Aleph2PromptImagePosition: TypeAlias = Union[
+    Literal["first", "last"], Aleph2PromptImagePositionTimestampPosition, Aleph2PromptImagePositionRelativePosition
+]
+
+
+class Aleph2PromptImage(TypedDict, total=False):
+    position: Required[Aleph2PromptImagePosition]
+    """
+    - `first` - Places the image at the start of the output video (timestamp 0).
+    - `last` - Places the image at the end of the output video (timestamp =
+      duration).
+    """
+
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
+VideoToVideoCreateParams: TypeAlias = Union[Gen4Aleph, Aleph2]
