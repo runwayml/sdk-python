@@ -6,7 +6,12 @@ from typing_extensions import Literal
 
 import httpx
 
-from runwayml.lib.polling import AsyncNewTaskCreatedResponse, NewTaskCreatedResponse, create_async_waitable_resource, create_waitable_resource
+from runwayml.lib.polling import (
+    NewTaskCreatedResponse,
+    AsyncNewTaskCreatedResponse,
+    create_waitable_resource,
+    create_async_waitable_resource,
+)
 
 from ..types import image_upscale_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
