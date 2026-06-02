@@ -131,6 +131,18 @@ Methods:
 
 - <code title="post /v1/speech_to_speech">client.speech_to_speech.<a href="./src/runwayml/resources/speech_to_speech.py">create</a>(\*\*<a href="src/runwayml/types/speech_to_speech_create_params.py">params</a>) -> <a href="./src/runwayml/types/speech_to_speech_create_response.py">SpeechToSpeechCreateResponse</a></code>
 
+# ImageUpscale
+
+Types:
+
+```python
+from runwayml.types import ImageUpscaleCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/image_upscale">client.image_upscale.<a href="./src/runwayml/resources/image_upscale.py">create</a>(\*\*<a href="src/runwayml/types/image_upscale_create_params.py">params</a>) -> <a href="./src/runwayml/types/image_upscale_create_response.py">ImageUpscaleCreateResponse</a></code>
+
 # Organization
 
 Types:
