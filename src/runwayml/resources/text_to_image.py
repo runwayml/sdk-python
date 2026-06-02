@@ -336,6 +336,108 @@ class TextToImageResource(SyncAPIResource):
     def create(
         self,
         *,
+        model: Literal["gemini_image3.1_flash"],
+        prompt_text: str,
+        ratio: Literal[
+            "512:512",
+            "416:624",
+            "624:416",
+            "432:592",
+            "592:432",
+            "448:576",
+            "576:448",
+            "384:672",
+            "672:384",
+            "768:336",
+            "256:1024",
+            "1024:256",
+            "176:1408",
+            "1408:176",
+            "1024:1024",
+            "832:1248",
+            "1248:832",
+            "864:1184",
+            "1184:864",
+            "896:1152",
+            "1152:896",
+            "768:1344",
+            "1344:768",
+            "1536:672",
+            "512:2048",
+            "2048:512",
+            "352:2816",
+            "2816:352",
+            "2048:2048",
+            "1696:2528",
+            "2528:1696",
+            "1792:2400",
+            "2400:1792",
+            "1856:2304",
+            "2304:1856",
+            "1536:2752",
+            "2752:1536",
+            "3168:1344",
+            "1024:4096",
+            "4096:1024",
+            "704:5632",
+            "5632:704",
+            "4096:4096",
+            "3392:5056",
+            "5056:3392",
+            "3584:4800",
+            "4800:3584",
+            "3712:4608",
+            "4608:3712",
+            "3072:5504",
+            "5504:3072",
+            "6336:2688",
+            "2048:8192",
+            "8192:2048",
+            "1408:11264",
+            "11264:1408",
+        ],
+        output_count: Literal[1, 4] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.GeminiImage3_1FlashReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          ratio: The resolution of the output image.
+
+          output_count: The number of images to generate. Increasing this number will affect the number
+              of credits consumed by the generation. Up to four images can be generated at
+              once.
+
+          reference_images: An array of up to 14 images to be used as references for the generated image
+              output. Up to five of those images can pass `subject: "human"` to maintain
+              character consistency, and up to nine of those images can pass
+              `subject: "object"` with high-fidelity images of objects to include in the
+              output.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -388,6 +490,7 @@ class TextToImageResource(SyncAPIResource):
         | Literal["gen4_image"]
         | Literal["gpt_image_2"]
         | Literal["gemini_image3_pro"]
+        | Literal["gemini_image3.1_flash"]
         | Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -474,6 +577,64 @@ class TextToImageResource(SyncAPIResource):
             "6336:2688",
         ]
         | Literal[
+            "512:512",
+            "416:624",
+            "624:416",
+            "432:592",
+            "592:432",
+            "448:576",
+            "576:448",
+            "384:672",
+            "672:384",
+            "768:336",
+            "256:1024",
+            "1024:256",
+            "176:1408",
+            "1408:176",
+            "1024:1024",
+            "832:1248",
+            "1248:832",
+            "864:1184",
+            "1184:864",
+            "896:1152",
+            "1152:896",
+            "768:1344",
+            "1344:768",
+            "1536:672",
+            "512:2048",
+            "2048:512",
+            "352:2816",
+            "2816:352",
+            "2048:2048",
+            "1696:2528",
+            "2528:1696",
+            "1792:2400",
+            "2400:1792",
+            "1856:2304",
+            "2304:1856",
+            "1536:2752",
+            "2752:1536",
+            "3168:1344",
+            "1024:4096",
+            "4096:1024",
+            "704:5632",
+            "5632:704",
+            "4096:4096",
+            "3392:5056",
+            "5056:3392",
+            "3584:4800",
+            "4800:3584",
+            "3712:4608",
+            "4608:3712",
+            "3072:5504",
+            "5504:3072",
+            "6336:2688",
+            "2048:8192",
+            "8192:2048",
+            "1408:11264",
+            "11264:1408",
+        ]
+        | Literal[
             "1344:768",
             "768:1344",
             "1024:1024",
@@ -489,6 +650,7 @@ class TextToImageResource(SyncAPIResource):
         | Iterable[text_to_image_create_params.Gen4ImageReferenceImage]
         | Iterable[text_to_image_create_params.GptImage2ReferenceImage]
         | Iterable[text_to_image_create_params.GeminiImage3ProReferenceImage]
+        | Iterable[text_to_image_create_params.GeminiImage3_1FlashReferenceImage]
         | Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage]
         | Omit = omit,
         content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration
@@ -834,6 +996,108 @@ class AsyncTextToImageResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        model: Literal["gemini_image3.1_flash"],
+        prompt_text: str,
+        ratio: Literal[
+            "512:512",
+            "416:624",
+            "624:416",
+            "432:592",
+            "592:432",
+            "448:576",
+            "576:448",
+            "384:672",
+            "672:384",
+            "768:336",
+            "256:1024",
+            "1024:256",
+            "176:1408",
+            "1408:176",
+            "1024:1024",
+            "832:1248",
+            "1248:832",
+            "864:1184",
+            "1184:864",
+            "896:1152",
+            "1152:896",
+            "768:1344",
+            "1344:768",
+            "1536:672",
+            "512:2048",
+            "2048:512",
+            "352:2816",
+            "2816:352",
+            "2048:2048",
+            "1696:2528",
+            "2528:1696",
+            "1792:2400",
+            "2400:1792",
+            "1856:2304",
+            "2304:1856",
+            "1536:2752",
+            "2752:1536",
+            "3168:1344",
+            "1024:4096",
+            "4096:1024",
+            "704:5632",
+            "5632:704",
+            "4096:4096",
+            "3392:5056",
+            "5056:3392",
+            "3584:4800",
+            "4800:3584",
+            "3712:4608",
+            "4608:3712",
+            "3072:5504",
+            "5504:3072",
+            "6336:2688",
+            "2048:8192",
+            "8192:2048",
+            "1408:11264",
+            "11264:1408",
+        ],
+        output_count: Literal[1, 4] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.GeminiImage3_1FlashReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
+              should describe in detail what should appear in the output.
+
+          ratio: The resolution of the output image.
+
+          output_count: The number of images to generate. Increasing this number will affect the number
+              of credits consumed by the generation. Up to four images can be generated at
+              once.
+
+          reference_images: An array of up to 14 images to be used as references for the generated image
+              output. Up to five of those images can pass `subject: "human"` to maintain
+              character consistency, and up to nine of those images can pass
+              `subject: "object"` with high-fidelity images of objects to include in the
+              output.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -886,6 +1150,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Literal["gen4_image"]
         | Literal["gpt_image_2"]
         | Literal["gemini_image3_pro"]
+        | Literal["gemini_image3.1_flash"]
         | Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -972,6 +1237,64 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "6336:2688",
         ]
         | Literal[
+            "512:512",
+            "416:624",
+            "624:416",
+            "432:592",
+            "592:432",
+            "448:576",
+            "576:448",
+            "384:672",
+            "672:384",
+            "768:336",
+            "256:1024",
+            "1024:256",
+            "176:1408",
+            "1408:176",
+            "1024:1024",
+            "832:1248",
+            "1248:832",
+            "864:1184",
+            "1184:864",
+            "896:1152",
+            "1152:896",
+            "768:1344",
+            "1344:768",
+            "1536:672",
+            "512:2048",
+            "2048:512",
+            "352:2816",
+            "2816:352",
+            "2048:2048",
+            "1696:2528",
+            "2528:1696",
+            "1792:2400",
+            "2400:1792",
+            "1856:2304",
+            "2304:1856",
+            "1536:2752",
+            "2752:1536",
+            "3168:1344",
+            "1024:4096",
+            "4096:1024",
+            "704:5632",
+            "5632:704",
+            "4096:4096",
+            "3392:5056",
+            "5056:3392",
+            "3584:4800",
+            "4800:3584",
+            "3712:4608",
+            "4608:3712",
+            "3072:5504",
+            "5504:3072",
+            "6336:2688",
+            "2048:8192",
+            "8192:2048",
+            "1408:11264",
+            "11264:1408",
+        ]
+        | Literal[
             "1344:768",
             "768:1344",
             "1024:1024",
@@ -987,6 +1310,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Iterable[text_to_image_create_params.Gen4ImageReferenceImage]
         | Iterable[text_to_image_create_params.GptImage2ReferenceImage]
         | Iterable[text_to_image_create_params.GeminiImage3ProReferenceImage]
+        | Iterable[text_to_image_create_params.GeminiImage3_1FlashReferenceImage]
         | Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage]
         | Omit = omit,
         content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration

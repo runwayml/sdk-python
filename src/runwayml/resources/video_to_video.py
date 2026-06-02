@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal
+from typing_extensions import Literal, overload
 
 import httpx
 
 from ..types import video_to_video_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -52,16 +52,17 @@ class VideoToVideoResource(SyncAPIResource):
         """
         return VideoToVideoResourceWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         *,
         model: Literal["gen4_aleph"],
         prompt_text: str,
         video_uri: str,
-        content_moderation: video_to_video_create_params.ContentModeration | Omit = omit,
+        content_moderation: video_to_video_create_params.Gen4AlephContentModeration | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"]
         | Omit = omit,
-        references: Iterable[video_to_video_create_params.Reference] | Omit = omit,
+        references: Iterable[video_to_video_create_params.Gen4AlephReference] | Omit = omit,
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -99,6 +100,80 @@ class VideoToVideoResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["aleph2"],
+        prompt_text: str,
+        video_uri: str,
+        content_moderation: video_to_video_create_params.Aleph2ContentModeration | Omit = omit,
+        keyframes: Iterable[video_to_video_create_params.Aleph2Keyframe] | Omit = omit,
+        prompt_image: Iterable[video_to_video_create_params.Aleph2PromptImage] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VideoToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a video.
+
+        Args:
+          prompt_text: A non-empty string up to 1000 characters describing what should appear in the
+              output.
+
+          video_uri: A HTTPS URL.
+
+          content_moderation: Settings that affect the behavior of the content moderation system.
+
+          keyframes: Timed guidance images placed at specific points in the input video. Up to 5
+              keyframes.
+
+          prompt_image: A list of up to 5 image keyframes for guiding the edit at specific points in the
+              video.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["model", "prompt_text", "video_uri"])
+    def create(
+        self,
+        *,
+        model: Literal["gen4_aleph"] | Literal["aleph2"],
+        prompt_text: str,
+        video_uri: str,
+        content_moderation: video_to_video_create_params.Gen4AlephContentModeration
+        | video_to_video_create_params.Aleph2ContentModeration
+        | Omit = omit,
+        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"]
+        | Omit = omit,
+        references: Iterable[video_to_video_create_params.Gen4AlephReference] | Omit = omit,
+        seed: int | Omit = omit,
+        keyframes: Iterable[video_to_video_create_params.Aleph2Keyframe] | Omit = omit,
+        prompt_image: Iterable[video_to_video_create_params.Aleph2PromptImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VideoToVideoCreateResponse:
         return self._post(
             "/v1/video_to_video",
             body=maybe_transform(
@@ -110,6 +185,8 @@ class VideoToVideoResource(SyncAPIResource):
                     "ratio": ratio,
                     "references": references,
                     "seed": seed,
+                    "keyframes": keyframes,
+                    "prompt_image": prompt_image,
                 },
                 video_to_video_create_params.VideoToVideoCreateParams,
             ),
@@ -142,16 +219,17 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         """
         return AsyncVideoToVideoResourceWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         *,
         model: Literal["gen4_aleph"],
         prompt_text: str,
         video_uri: str,
-        content_moderation: video_to_video_create_params.ContentModeration | Omit = omit,
+        content_moderation: video_to_video_create_params.Gen4AlephContentModeration | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"]
         | Omit = omit,
-        references: Iterable[video_to_video_create_params.Reference] | Omit = omit,
+        references: Iterable[video_to_video_create_params.Gen4AlephReference] | Omit = omit,
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -189,6 +267,80 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["aleph2"],
+        prompt_text: str,
+        video_uri: str,
+        content_moderation: video_to_video_create_params.Aleph2ContentModeration | Omit = omit,
+        keyframes: Iterable[video_to_video_create_params.Aleph2Keyframe] | Omit = omit,
+        prompt_image: Iterable[video_to_video_create_params.Aleph2PromptImage] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VideoToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a video.
+
+        Args:
+          prompt_text: A non-empty string up to 1000 characters describing what should appear in the
+              output.
+
+          video_uri: A HTTPS URL.
+
+          content_moderation: Settings that affect the behavior of the content moderation system.
+
+          keyframes: Timed guidance images placed at specific points in the input video. Up to 5
+              keyframes.
+
+          prompt_image: A list of up to 5 image keyframes for guiding the edit at specific points in the
+              video.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["model", "prompt_text", "video_uri"])
+    async def create(
+        self,
+        *,
+        model: Literal["gen4_aleph"] | Literal["aleph2"],
+        prompt_text: str,
+        video_uri: str,
+        content_moderation: video_to_video_create_params.Gen4AlephContentModeration
+        | video_to_video_create_params.Aleph2ContentModeration
+        | Omit = omit,
+        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"]
+        | Omit = omit,
+        references: Iterable[video_to_video_create_params.Gen4AlephReference] | Omit = omit,
+        seed: int | Omit = omit,
+        keyframes: Iterable[video_to_video_create_params.Aleph2Keyframe] | Omit = omit,
+        prompt_image: Iterable[video_to_video_create_params.Aleph2PromptImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VideoToVideoCreateResponse:
         return await self._post(
             "/v1/video_to_video",
             body=await async_maybe_transform(
@@ -200,6 +352,8 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
                     "ratio": ratio,
                     "references": references,
                     "seed": seed,
+                    "keyframes": keyframes,
+                    "prompt_image": prompt_image,
                 },
                 video_to_video_create_params.VideoToVideoCreateParams,
             ),
