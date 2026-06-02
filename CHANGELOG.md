@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.16.0 (2026-06-02)
+
+Full Changelog: [v4.15.0...v4.16.0](https://github.com/runwayml/sdk-python/compare/v4.15.0...v4.16.0)
+
+### Features
+
+* **api:** Aleph2 ([b36110b](https://github.com/runwayml/sdk-python/commit/b36110bebc1812e5d8a4e682b6af818cefcceed4))
+* **api:** Image upscale endpoint ([00f2d0b](https://github.com/runwayml/sdk-python/commit/00f2d0b573c0d282e2096eb1f22e053d9d5a506b))
+
+
+### Bug Fixes
+
+* **client:** Awaitable image upscale also ([346f07f](https://github.com/runwayml/sdk-python/commit/346f07ffc39d18ace05839d59550b5c72bcef941))
+* **client:** Updating typing for awaitable task output ([485c29c](https://github.com/runwayml/sdk-python/commit/485c29c031c84340742c27af823c9a28cc596d09))
+
 ## 4.15.0 (2026-05-11)
 
 Full Changelog: [v4.14.0...v4.15.0](https://github.com/runwayml/sdk-python/compare/v4.14.0...v4.15.0)
