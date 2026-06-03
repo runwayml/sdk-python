@@ -297,7 +297,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImageToVideoCreateResponse:
+    ) -> NewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -358,7 +358,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImageToVideoCreateResponse:
+    ) -> NewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -449,6 +449,7 @@ class ImageToVideoResource(SyncAPIResource):
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen3aTurboPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Seedance2PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3PromptImagePromptImage]],
@@ -784,7 +785,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImageToVideoCreateResponse:
+    ) -> AsyncNewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -845,7 +846,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImageToVideoCreateResponse:
+    ) -> AsyncNewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -936,6 +937,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen3aTurboPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Seedance2PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3PromptImagePromptImage]],
