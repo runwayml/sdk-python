@@ -22,6 +22,11 @@ __all__ = [
     "Gen3aTurboContentModeration",
     "Veo3_1Fast",
     "Veo3_1FastPromptImagePromptImage",
+    "Happyhorse1_0",
+    "Happyhorse1_0PromptImagePromptImage",
+    "Seedance2",
+    "Seedance2PromptImagePromptImage",
+    "Seedance2ReferenceAudio",
     "Veo3",
     "Veo3PromptImagePromptImage",
 ]
@@ -270,6 +275,115 @@ class Veo3_1FastPromptImagePromptImage(TypedDict, total=False):
     """A HTTPS URL."""
 
 
+class Happyhorse1_0(TypedDict, total=False):
+    model: Required[Literal["happyhorse_1_0"]]
+
+    prompt_image: Required[
+        Annotated[Union[str, Iterable[Happyhorse1_0PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
+    ]
+    """A HTTPS URL."""
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """
+    A string up to 2500 characters (measured in UTF-16 code units) describing motion
+    or changes in the output video.
+    """
+
+    resolution: Literal["720P", "1080P"]
+    """Output quality tier. Output aspect ratio follows the input image."""
+
+
+class Happyhorse1_0PromptImagePromptImage(TypedDict, total=False):
+    position: Required[Literal["first"]]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame of the video.
+    """
+
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
+class Seedance2(TypedDict, total=False):
+    model: Required[Literal["seedance2"]]
+
+    prompt_image: Required[
+        Annotated[Union[str, Iterable[Seedance2PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
+    ]
+    """An image or array of images.
+
+    Use position `first`/`last` for keyframe mode, or omit position for reference
+    images. The two modes cannot be mixed.
+    """
+
+    audio: bool
+    """Whether to generate audio for the video. Audio inclusion affects pricing."""
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """An optional text prompt up to 3500 characters (measured in UTF-16 code units).
+
+    This should describe in detail what should appear in the output.
+    """
+
+    ratio: Literal[
+        "992:432",
+        "864:496",
+        "752:560",
+        "640:640",
+        "560:752",
+        "496:864",
+        "1470:630",
+        "1280:720",
+        "1112:834",
+        "960:960",
+        "834:1112",
+        "720:1280",
+        "2206:946",
+        "1920:1080",
+        "1664:1248",
+        "1440:1440",
+        "1248:1664",
+        "1080:1920",
+    ]
+    """The resolution of the output video."""
+
+    reference_audio: Annotated[Iterable[Seedance2ReferenceAudio], PropertyInfo(alias="referenceAudio")]
+    """An optional array of audio references.
+
+    Audio references require a text prompt, and the total combined duration must not
+    exceed 15 seconds.
+    """
+
+
+class Seedance2PromptImagePromptImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL."""
+
+    position: Literal["first", "last"]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame, "last" as the last frame. Omit
+    for a reference image.
+    """
+
+
+class Seedance2ReferenceAudio(TypedDict, total=False):
+    """
+    An audio reference allows the model to use the audio as additional context for the output.
+    """
+
+    type: Required[Literal["audio"]]
+
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
 class Veo3(TypedDict, total=False):
     duration: Required[Literal[8]]
     """The number of seconds of duration for the output video."""
@@ -302,4 +416,6 @@ class Veo3PromptImagePromptImage(TypedDict, total=False):
     """A HTTPS URL."""
 
 
-ImageToVideoCreateParams: TypeAlias = Union[Gen4_5, Gen4Turbo, Veo3_1, Gen3aTurbo, Veo3_1Fast, Veo3]
+ImageToVideoCreateParams: TypeAlias = Union[
+    Gen4_5, Gen4Turbo, Veo3_1, Gen3aTurbo, Veo3_1Fast, Happyhorse1_0, Seedance2, Veo3
+]
