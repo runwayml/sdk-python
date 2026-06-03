@@ -21,6 +21,10 @@ __all__ = [
     "Aleph2PromptImagePosition",
     "Aleph2PromptImagePositionTimestampPosition",
     "Aleph2PromptImagePositionRelativePosition",
+    "Seedance2",
+    "Seedance2ReferenceAudio",
+    "Seedance2Reference",
+    "Seedance2ReferenceVideo",
 ]
 
 
@@ -185,4 +189,99 @@ class Aleph2PromptImage(TypedDict, total=False):
     """A HTTPS URL."""
 
 
-VideoToVideoCreateParams: TypeAlias = Union[Gen4Aleph, Aleph2]
+class Seedance2(TypedDict, total=False):
+    model: Required[Literal["seedance2"]]
+
+    prompt_video: Required[Annotated[str, PropertyInfo(alias="promptVideo")]]
+    """A HTTPS URL."""
+
+    audio: bool
+    """Whether to generate audio for the video. Audio inclusion affects pricing."""
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """
+    An optional text prompt up to 3500 characters describing what should appear in
+    the output video.
+    """
+
+    ratio: Literal[
+        "992:432",
+        "864:496",
+        "752:560",
+        "640:640",
+        "560:752",
+        "496:864",
+        "1470:630",
+        "1280:720",
+        "1112:834",
+        "960:960",
+        "834:1112",
+        "720:1280",
+        "2206:946",
+        "1920:1080",
+        "1664:1248",
+        "1440:1440",
+        "1248:1664",
+        "1080:1920",
+    ]
+    """The resolution of the output video."""
+
+    reference_audio: Annotated[Iterable[Seedance2ReferenceAudio], PropertyInfo(alias="referenceAudio")]
+    """An optional array of audio references.
+
+    Audio references require a text prompt, and the total combined duration must not
+    exceed 15 seconds.
+    """
+
+    references: Iterable[Seedance2Reference]
+    """An optional array of image references (up to 9).
+
+    See [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    reference_videos: Annotated[Iterable[Seedance2ReferenceVideo], PropertyInfo(alias="referenceVideos")]
+    """An optional array of video references.
+
+    The combined duration across all video references must not exceed 15 seconds.
+    See [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+
+class Seedance2ReferenceAudio(TypedDict, total=False):
+    """
+    An audio reference allows the model to use the audio as additional context for the output.
+    """
+
+    type: Required[Literal["audio"]]
+
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
+class Seedance2Reference(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL."""
+
+    position: Literal["first", "last"]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame, "last" as the last frame. Omit
+    for a reference image.
+    """
+
+
+class Seedance2ReferenceVideo(TypedDict, total=False):
+    """
+    A video reference allows the model to use the video as additional context for the output.
+    """
+
+    type: Required[Literal["video"]]
+
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
+VideoToVideoCreateParams: TypeAlias = Union[Gen4Aleph, Aleph2, Seedance2]
