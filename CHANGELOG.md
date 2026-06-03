@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.17.0 (2026-06-03)
+
+Full Changelog: [v4.16.0...v4.17.0](https://github.com/runwayml/sdk-python/compare/v4.16.0...v4.17.0)
+
+### Features
+
+* **api:** SD2, HH1 ([e457b11](https://github.com/runwayml/sdk-python/commit/e457b1111f63d43026298b5f9ef04f4e7f758831))
+
+
+### Bug Fixes
+
+* **client:** Make SD2 and HH1 awaitable for task output ([894c22f](https://github.com/runwayml/sdk-python/commit/894c22fb3243f2657341a63186926cd6b75311b2))
+
 ## 4.16.0 (2026-06-02)
 
 Full Changelog: [v4.15.0...v4.16.0](https://github.com/runwayml/sdk-python/compare/v4.15.0...v4.16.0)
