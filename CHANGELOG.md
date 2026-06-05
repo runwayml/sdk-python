@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.18.0 (2026-06-05)
+
+Full Changelog: [v4.17.0...v4.18.0](https://github.com/runwayml/sdk-python/compare/v4.17.0...v4.18.0)
+
+### Features
+
+* **api:** seedance2_fast ([90bc24e](https://github.com/runwayml/sdk-python/commit/90bc24eda321b4a7f0b7ef3c923362c60ccc18f2))
+
+
+### Bug Fixes
+
+* **client:** Make sd2_fast responses awaitable ([3d2d3ac](https://github.com/runwayml/sdk-python/commit/3d2d3acba9d155508577a13dd0f8446ecaf40c33))
+
 ## 4.17.0 (2026-06-03)
 
 Full Changelog: [v4.16.0...v4.17.0](https://github.com/runwayml/sdk-python/compare/v4.16.0...v4.17.0)
