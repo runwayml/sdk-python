@@ -18,6 +18,10 @@ __all__ = [
     "Seedance2ReferenceAudio",
     "Seedance2Reference",
     "Seedance2ReferenceVideo",
+    "Seedance2Fast",
+    "Seedance2FastReferenceAudio",
+    "Seedance2FastReference",
+    "Seedance2FastReferenceVideo",
     "Veo3",
 ]
 
@@ -131,9 +135,9 @@ class Seedance2(TypedDict, total=False):
     model: Required[Literal["seedance2"]]
 
     prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
-    """A non-empty string up to 3500 characters (measured in UTF-16 code units).
-
-    This should describe in detail what should appear in the output.
+    """
+    A non-empty text prompt up to 3500 characters describing what should appear in
+    the output.
     """
 
     audio: bool
@@ -219,6 +223,95 @@ class Seedance2ReferenceVideo(TypedDict, total=False):
     """A HTTPS URL."""
 
 
+class Seedance2Fast(TypedDict, total=False):
+    model: Required[Literal["seedance2_fast"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """
+    A non-empty text prompt up to 3500 characters describing what should appear in
+    the output.
+    """
+
+    audio: bool
+    """Whether to generate audio for the video. Audio inclusion affects pricing."""
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    ratio: Literal[
+        "992:432",
+        "864:496",
+        "752:560",
+        "640:640",
+        "560:752",
+        "496:864",
+        "1470:630",
+        "1280:720",
+        "1112:834",
+        "960:960",
+        "834:1112",
+        "720:1280",
+    ]
+    """The resolution of the output video.
+
+    Seedance 2.0 Fast supports 480p and 720p only.
+    """
+
+    reference_audio: Annotated[Iterable[Seedance2FastReferenceAudio], PropertyInfo(alias="referenceAudio")]
+    """An optional array of audio references.
+
+    Audio references require a text prompt, and the total combined duration must not
+    exceed 15 seconds.
+    """
+
+    references: Iterable[Seedance2FastReference]
+    """An optional array of image references (up to 9).
+
+    See [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    reference_videos: Annotated[Iterable[Seedance2FastReferenceVideo], PropertyInfo(alias="referenceVideos")]
+    """An optional array of video references.
+
+    The combined duration across all video references must not exceed 15 seconds.
+    See [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+
+class Seedance2FastReferenceAudio(TypedDict, total=False):
+    """
+    An audio reference allows the model to use the audio as additional context for the output.
+    """
+
+    type: Required[Literal["audio"]]
+
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
+class Seedance2FastReference(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL."""
+
+    position: Literal["first", "last"]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame, "last" as the last frame. Omit
+    for a reference image.
+    """
+
+
+class Seedance2FastReferenceVideo(TypedDict, total=False):
+    """
+    A video reference allows the model to use the video as additional context for the output.
+    """
+
+    type: Required[Literal["video"]]
+
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
 class Veo3(TypedDict, total=False):
     duration: Required[Literal[8]]
     """The number of seconds of duration for the output video."""
@@ -235,4 +328,4 @@ class Veo3(TypedDict, total=False):
     """The resolution of the output video."""
 
 
-TextToVideoCreateParams: TypeAlias = Union[Gen4_5, Veo3_1, Veo3_1Fast, Happyhorse1_0, Seedance2, Veo3]
+TextToVideoCreateParams: TypeAlias = Union[Gen4_5, Veo3_1, Veo3_1Fast, Happyhorse1_0, Seedance2, Seedance2Fast, Veo3]
