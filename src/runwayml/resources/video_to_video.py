@@ -202,9 +202,79 @@ class VideoToVideoResource(SyncAPIResource):
           duration: The number of seconds of duration for the output video.
 
           prompt_text: An optional text prompt up to 3500 characters describing what should appear in
-              the output video.
+              the output.
 
           ratio: The resolution of the output video.
+
+          reference_audio: An optional array of audio references. Audio references require a text prompt,
+              and the total combined duration must not exceed 15 seconds.
+
+          references: An optional array of image references (up to 9). See
+              [our docs](/assets/inputs#images) on image inputs for more information.
+
+          reference_videos: An optional array of video references. The combined duration across all video
+              references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
+              video inputs for more information.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["seedance2_fast"],
+        prompt_video: str,
+        audio: bool | Omit = omit,
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        ratio: Literal[
+            "992:432",
+            "864:496",
+            "752:560",
+            "640:640",
+            "560:752",
+            "496:864",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+        ]
+        | Omit = omit,
+        reference_audio: Iterable[video_to_video_create_params.Seedance2FastReferenceAudio] | Omit = omit,
+        references: Iterable[video_to_video_create_params.Seedance2FastReference] | Omit = omit,
+        reference_videos: Iterable[video_to_video_create_params.Seedance2FastReferenceVideo] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VideoToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a video.
+
+        Args:
+          prompt_video: A HTTPS URL.
+
+          audio: Whether to generate audio for the video. Audio inclusion affects pricing.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: An optional text prompt up to 3500 characters describing what should appear in
+              the output.
+
+          ratio: The resolution of the output video. Seedance 2.0 Fast supports 480p and 720p
+              only.
 
           reference_audio: An optional array of audio references. Audio references require a text prompt,
               and the total combined duration must not exceed 15 seconds.
@@ -230,7 +300,7 @@ class VideoToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
-        model: Literal["gen4_aleph"] | Literal["aleph2"] | Literal["seedance2"],
+        model: Literal["gen4_aleph"] | Literal["aleph2"] | Literal["seedance2"] | Literal["seedance2_fast"],
         prompt_text: str | Omit = omit,
         video_uri: str | Omit = omit,
         content_moderation: video_to_video_create_params.Gen4AlephContentModeration
@@ -257,9 +327,24 @@ class VideoToVideoResource(SyncAPIResource):
             "1248:1664",
             "1080:1920",
         ]
+        | Literal[
+            "992:432",
+            "864:496",
+            "752:560",
+            "640:640",
+            "560:752",
+            "496:864",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+        ]
         | Omit = omit,
         references: Iterable[video_to_video_create_params.Gen4AlephReference]
         | Iterable[video_to_video_create_params.Seedance2Reference]
+        | Iterable[video_to_video_create_params.Seedance2FastReference]
         | Omit = omit,
         seed: int | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Aleph2Keyframe] | Omit = omit,
@@ -267,8 +352,12 @@ class VideoToVideoResource(SyncAPIResource):
         prompt_video: str | Omit = omit,
         audio: bool | Omit = omit,
         duration: int | Omit = omit,
-        reference_audio: Iterable[video_to_video_create_params.Seedance2ReferenceAudio] | Omit = omit,
-        reference_videos: Iterable[video_to_video_create_params.Seedance2ReferenceVideo] | Omit = omit,
+        reference_audio: Iterable[video_to_video_create_params.Seedance2ReferenceAudio]
+        | Iterable[video_to_video_create_params.Seedance2FastReferenceAudio]
+        | Omit = omit,
+        reference_videos: Iterable[video_to_video_create_params.Seedance2ReferenceVideo]
+        | Iterable[video_to_video_create_params.Seedance2FastReferenceVideo]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -476,9 +565,79 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
           duration: The number of seconds of duration for the output video.
 
           prompt_text: An optional text prompt up to 3500 characters describing what should appear in
-              the output video.
+              the output.
 
           ratio: The resolution of the output video.
+
+          reference_audio: An optional array of audio references. Audio references require a text prompt,
+              and the total combined duration must not exceed 15 seconds.
+
+          references: An optional array of image references (up to 9). See
+              [our docs](/assets/inputs#images) on image inputs for more information.
+
+          reference_videos: An optional array of video references. The combined duration across all video
+              references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
+              video inputs for more information.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["seedance2_fast"],
+        prompt_video: str,
+        audio: bool | Omit = omit,
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        ratio: Literal[
+            "992:432",
+            "864:496",
+            "752:560",
+            "640:640",
+            "560:752",
+            "496:864",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+        ]
+        | Omit = omit,
+        reference_audio: Iterable[video_to_video_create_params.Seedance2FastReferenceAudio] | Omit = omit,
+        references: Iterable[video_to_video_create_params.Seedance2FastReference] | Omit = omit,
+        reference_videos: Iterable[video_to_video_create_params.Seedance2FastReferenceVideo] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VideoToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a video.
+
+        Args:
+          prompt_video: A HTTPS URL.
+
+          audio: Whether to generate audio for the video. Audio inclusion affects pricing.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: An optional text prompt up to 3500 characters describing what should appear in
+              the output.
+
+          ratio: The resolution of the output video. Seedance 2.0 Fast supports 480p and 720p
+              only.
 
           reference_audio: An optional array of audio references. Audio references require a text prompt,
               and the total combined duration must not exceed 15 seconds.
@@ -504,7 +663,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        model: Literal["gen4_aleph"] | Literal["aleph2"] | Literal["seedance2"],
+        model: Literal["gen4_aleph"] | Literal["aleph2"] | Literal["seedance2"] | Literal["seedance2_fast"],
         prompt_text: str | Omit = omit,
         video_uri: str | Omit = omit,
         content_moderation: video_to_video_create_params.Gen4AlephContentModeration
@@ -531,9 +690,24 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
             "1248:1664",
             "1080:1920",
         ]
+        | Literal[
+            "992:432",
+            "864:496",
+            "752:560",
+            "640:640",
+            "560:752",
+            "496:864",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+        ]
         | Omit = omit,
         references: Iterable[video_to_video_create_params.Gen4AlephReference]
         | Iterable[video_to_video_create_params.Seedance2Reference]
+        | Iterable[video_to_video_create_params.Seedance2FastReference]
         | Omit = omit,
         seed: int | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Aleph2Keyframe] | Omit = omit,
@@ -541,8 +715,12 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         prompt_video: str | Omit = omit,
         audio: bool | Omit = omit,
         duration: int | Omit = omit,
-        reference_audio: Iterable[video_to_video_create_params.Seedance2ReferenceAudio] | Omit = omit,
-        reference_videos: Iterable[video_to_video_create_params.Seedance2ReferenceVideo] | Omit = omit,
+        reference_audio: Iterable[video_to_video_create_params.Seedance2ReferenceAudio]
+        | Iterable[video_to_video_create_params.Seedance2FastReferenceAudio]
+        | Omit = omit,
+        reference_videos: Iterable[video_to_video_create_params.Seedance2ReferenceVideo]
+        | Iterable[video_to_video_create_params.Seedance2FastReferenceVideo]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
