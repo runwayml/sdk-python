@@ -50,62 +50,11 @@ class VideoToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
-        model: Literal["gen4_aleph"],
-        prompt_text: str,
-        video_uri: str,
-        content_moderation: video_to_video_create_params.Gen4AlephContentModeration | Omit = omit,
-        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"]
-        | Omit = omit,
-        references: Iterable[video_to_video_create_params.Gen4AlephReference] | Omit = omit,
-        seed: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VideoToVideoCreateResponse:
-        """
-        This endpoint will start a new task to generate a video from a video.
-
-        Args:
-          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
-              should describe in detail what should appear in the output.
-
-          video_uri: A HTTPS URL.
-
-          content_moderation: Settings that affect the behavior of the content moderation system.
-
-          ratio: Deprecated. This field is ignored. The resolution of the output video is
-              determined by the input video.
-
-          references: An array of references. Currently up to one reference is supported. See
-              [our docs](/assets/inputs#images) on image inputs for more information.
-
-          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
-              get different results for the same other request parameters. Using the same seed
-              integer for an identical request will produce similar results.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
         model: Literal["aleph2"],
         prompt_text: str,
         video_uri: str,
-        content_moderation: video_to_video_create_params.Aleph2ContentModeration | Omit = omit,
-        keyframes: Iterable[video_to_video_create_params.Aleph2Keyframe] | Omit = omit,
-        prompt_image: Iterable[video_to_video_create_params.Aleph2PromptImage] | Omit = omit,
+        content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
+        keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -127,9 +76,6 @@ class VideoToVideoResource(SyncAPIResource):
 
           keyframes: Timed guidance images placed at specific points in the input video. Up to 5
               keyframes.
-
-          prompt_image: A list of up to 5 image keyframes for guiding the edit at specific points in the
-              video.
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -294,14 +240,16 @@ class VideoToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
-        model: Literal["gen4_aleph"] | Literal["aleph2"] | Literal["seedance2"] | Literal["seedance2_fast"],
+        model: Literal["aleph2"] | Literal["seedance2"] | Literal["seedance2_fast"],
         prompt_text: str | Omit = omit,
         video_uri: str | Omit = omit,
-        content_moderation: video_to_video_create_params.Gen4AlephContentModeration
-        | video_to_video_create_params.Aleph2ContentModeration
-        | Omit = omit,
-        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"]
-        | Literal[
+        content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
+        keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
+        seed: int | Omit = omit,
+        prompt_video: str | Omit = omit,
+        audio: bool | Omit = omit,
+        duration: int | Omit = omit,
+        ratio: Literal[
             "992:432",
             "864:496",
             "752:560",
@@ -336,18 +284,11 @@ class VideoToVideoResource(SyncAPIResource):
             "720:1280",
         ]
         | Omit = omit,
-        references: Iterable[video_to_video_create_params.Gen4AlephReference]
-        | Iterable[video_to_video_create_params.Seedance2Reference]
-        | Iterable[video_to_video_create_params.Seedance2FastReference]
-        | Omit = omit,
-        seed: int | Omit = omit,
-        keyframes: Iterable[video_to_video_create_params.Aleph2Keyframe] | Omit = omit,
-        prompt_image: Iterable[video_to_video_create_params.Aleph2PromptImage] | Omit = omit,
-        prompt_video: str | Omit = omit,
-        audio: bool | Omit = omit,
-        duration: int | Omit = omit,
         reference_audio: Iterable[video_to_video_create_params.Seedance2ReferenceAudio]
         | Iterable[video_to_video_create_params.Seedance2FastReferenceAudio]
+        | Omit = omit,
+        references: Iterable[video_to_video_create_params.Seedance2Reference]
+        | Iterable[video_to_video_create_params.Seedance2FastReference]
         | Omit = omit,
         reference_videos: Iterable[video_to_video_create_params.Seedance2ReferenceVideo]
         | Iterable[video_to_video_create_params.Seedance2FastReferenceVideo]
@@ -367,15 +308,14 @@ class VideoToVideoResource(SyncAPIResource):
                     "prompt_text": prompt_text,
                     "video_uri": video_uri,
                     "content_moderation": content_moderation,
-                    "ratio": ratio,
-                    "references": references,
-                    "seed": seed,
                     "keyframes": keyframes,
-                    "prompt_image": prompt_image,
+                    "seed": seed,
                     "prompt_video": prompt_video,
                     "audio": audio,
                     "duration": duration,
+                    "ratio": ratio,
                     "reference_audio": reference_audio,
+                    "references": references,
                     "reference_videos": reference_videos,
                 },
                 video_to_video_create_params.VideoToVideoCreateParams,
@@ -413,62 +353,11 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        model: Literal["gen4_aleph"],
-        prompt_text: str,
-        video_uri: str,
-        content_moderation: video_to_video_create_params.Gen4AlephContentModeration | Omit = omit,
-        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"]
-        | Omit = omit,
-        references: Iterable[video_to_video_create_params.Gen4AlephReference] | Omit = omit,
-        seed: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VideoToVideoCreateResponse:
-        """
-        This endpoint will start a new task to generate a video from a video.
-
-        Args:
-          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
-              should describe in detail what should appear in the output.
-
-          video_uri: A HTTPS URL.
-
-          content_moderation: Settings that affect the behavior of the content moderation system.
-
-          ratio: Deprecated. This field is ignored. The resolution of the output video is
-              determined by the input video.
-
-          references: An array of references. Currently up to one reference is supported. See
-              [our docs](/assets/inputs#images) on image inputs for more information.
-
-          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
-              get different results for the same other request parameters. Using the same seed
-              integer for an identical request will produce similar results.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
         model: Literal["aleph2"],
         prompt_text: str,
         video_uri: str,
-        content_moderation: video_to_video_create_params.Aleph2ContentModeration | Omit = omit,
-        keyframes: Iterable[video_to_video_create_params.Aleph2Keyframe] | Omit = omit,
-        prompt_image: Iterable[video_to_video_create_params.Aleph2PromptImage] | Omit = omit,
+        content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
+        keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -490,9 +379,6 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
 
           keyframes: Timed guidance images placed at specific points in the input video. Up to 5
               keyframes.
-
-          prompt_image: A list of up to 5 image keyframes for guiding the edit at specific points in the
-              video.
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -657,14 +543,16 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        model: Literal["gen4_aleph"] | Literal["aleph2"] | Literal["seedance2"] | Literal["seedance2_fast"],
+        model: Literal["aleph2"] | Literal["seedance2"] | Literal["seedance2_fast"],
         prompt_text: str | Omit = omit,
         video_uri: str | Omit = omit,
-        content_moderation: video_to_video_create_params.Gen4AlephContentModeration
-        | video_to_video_create_params.Aleph2ContentModeration
-        | Omit = omit,
-        ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672", "848:480", "640:480"]
-        | Literal[
+        content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
+        keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
+        seed: int | Omit = omit,
+        prompt_video: str | Omit = omit,
+        audio: bool | Omit = omit,
+        duration: int | Omit = omit,
+        ratio: Literal[
             "992:432",
             "864:496",
             "752:560",
@@ -699,18 +587,11 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
             "720:1280",
         ]
         | Omit = omit,
-        references: Iterable[video_to_video_create_params.Gen4AlephReference]
-        | Iterable[video_to_video_create_params.Seedance2Reference]
-        | Iterable[video_to_video_create_params.Seedance2FastReference]
-        | Omit = omit,
-        seed: int | Omit = omit,
-        keyframes: Iterable[video_to_video_create_params.Aleph2Keyframe] | Omit = omit,
-        prompt_image: Iterable[video_to_video_create_params.Aleph2PromptImage] | Omit = omit,
-        prompt_video: str | Omit = omit,
-        audio: bool | Omit = omit,
-        duration: int | Omit = omit,
         reference_audio: Iterable[video_to_video_create_params.Seedance2ReferenceAudio]
         | Iterable[video_to_video_create_params.Seedance2FastReferenceAudio]
+        | Omit = omit,
+        references: Iterable[video_to_video_create_params.Seedance2Reference]
+        | Iterable[video_to_video_create_params.Seedance2FastReference]
         | Omit = omit,
         reference_videos: Iterable[video_to_video_create_params.Seedance2ReferenceVideo]
         | Iterable[video_to_video_create_params.Seedance2FastReferenceVideo]
@@ -730,15 +611,14 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
                     "prompt_text": prompt_text,
                     "video_uri": video_uri,
                     "content_moderation": content_moderation,
-                    "ratio": ratio,
-                    "references": references,
-                    "seed": seed,
                     "keyframes": keyframes,
-                    "prompt_image": prompt_image,
+                    "seed": seed,
                     "prompt_video": prompt_video,
                     "audio": audio,
                     "duration": duration,
+                    "ratio": ratio,
                     "reference_audio": reference_audio,
+                    "references": references,
                     "reference_videos": reference_videos,
                 },
                 video_to_video_create_params.VideoToVideoCreateParams,
