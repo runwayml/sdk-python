@@ -56,6 +56,7 @@ class ResultUsedCredit(BaseModel):
         "klingO3_4k",
         "happyhorse_1_0",
         "aleph2",
+        "product_swap",
     ]
     """The model that credits were spent on."""
 
@@ -111,6 +112,7 @@ class OrganizationRetrieveUsageResponse(BaseModel):
             "klingO3_4k",
             "happyhorse_1_0",
             "aleph2",
+            "product_swap",
         ]
     ]
     """The list of models with usage during the queried time range."""

@@ -17,9 +17,6 @@ __all__ = [
     "Gen4TurboContentModeration",
     "Veo3_1",
     "Veo3_1PromptImagePromptImage",
-    "Gen3aTurbo",
-    "Gen3aTurboPromptImagePromptImage",
-    "Gen3aTurboContentModeration",
     "Veo3_1Fast",
     "Veo3_1FastPromptImagePromptImage",
     "Happyhorse1_0",
@@ -182,60 +179,6 @@ class Veo3_1PromptImagePromptImage(TypedDict, total=False):
 
     uri: Required[str]
     """A HTTPS URL."""
-
-
-class Gen3aTurbo(TypedDict, total=False):
-    model: Required[Literal["gen3a_turbo"]]
-
-    prompt_image: Required[
-        Annotated[Union[str, Iterable[Gen3aTurboPromptImagePromptImage]], PropertyInfo(alias="promptImage")]
-    ]
-    """A HTTPS URL."""
-
-    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
-    """A non-empty string up to 1000 characters (measured in UTF-16 code units).
-
-    This should describe in detail what should appear in the output.
-    """
-
-    content_moderation: Annotated[Gen3aTurboContentModeration, PropertyInfo(alias="contentModeration")]
-    """Settings that affect the behavior of the content moderation system."""
-
-    duration: Literal[5, 10]
-    """The duration of the output video in seconds."""
-
-    ratio: Literal["768:1280", "1280:768"]
-    """The resolution of the output video."""
-
-    seed: int
-    """If unspecified, a random number is chosen.
-
-    Varying the seed integer is a way to get different results for the same other
-    request parameters. Using the same seed integer for an identical request will
-    produce similar results.
-    """
-
-
-class Gen3aTurboPromptImagePromptImage(TypedDict, total=False):
-    position: Required[Literal["first", "last"]]
-    """The position of the image in the output video.
-
-    "first" will use the image as the first frame of the video, "last" will use the
-    image as the last frame of the video.
-    """
-
-    uri: Required[str]
-    """A HTTPS URL."""
-
-
-class Gen3aTurboContentModeration(TypedDict, total=False):
-    """Settings that affect the behavior of the content moderation system."""
-
-    public_figure_threshold: Annotated[Literal["auto", "low"], PropertyInfo(alias="publicFigureThreshold")]
-    """
-    When set to `low`, the content moderation system will be less strict about
-    preventing generations that include recognizable public figures.
-    """
 
 
 class Veo3_1Fast(TypedDict, total=False):
@@ -494,5 +437,5 @@ class Veo3PromptImagePromptImage(TypedDict, total=False):
 
 
 ImageToVideoCreateParams: TypeAlias = Union[
-    Gen4_5, Gen4Turbo, Veo3_1, Gen3aTurbo, Veo3_1Fast, Happyhorse1_0, Seedance2, Seedance2Fast, Veo3
+    Gen4_5, Gen4Turbo, Veo3_1, Veo3_1Fast, Happyhorse1_0, Seedance2, Seedance2Fast, Veo3
 ]
