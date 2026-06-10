@@ -1,5 +1,18 @@
 # Changelog
 
+## 5.0.0 (2026-06-10)
+
+Full Changelog: [v4.18.0...v5.0.0](https://github.com/runwayml/sdk-python/compare/v4.18.0...v5.0.0)
+
+### Features
+
+* **api:** Add new avatar and voice routes ([36d836d](https://github.com/runwayml/sdk-python/commit/36d836dfd28cadc7dbe0b956ce03a8243cd28e2f))
+
+
+### Bug Fixes
+
+* **api:** update the right config file this time ([0ddcaf5](https://github.com/runwayml/sdk-python/commit/0ddcaf5c418dda2139dbb5431703e49ba5f11c37))
+
 ## 4.18.0 (2026-06-05)
 
 Full Changelog: [v4.17.0...v4.18.0](https://github.com/runwayml/sdk-python/compare/v4.17.0...v4.18.0)
