@@ -166,6 +166,7 @@ from runwayml.types import (
     AvatarRetrieveResponse,
     AvatarUpdateResponse,
     AvatarListResponse,
+    AvatarGetUsageResponse,
 )
 ```
 
@@ -176,6 +177,21 @@ Methods:
 - <code title="patch /v1/avatars/{id}">client.avatars.<a href="./src/runwayml/resources/avatars.py">update</a>(id, \*\*<a href="src/runwayml/types/avatar_update_params.py">params</a>) -> <a href="./src/runwayml/types/avatar_update_response.py">AvatarUpdateResponse</a></code>
 - <code title="get /v1/avatars">client.avatars.<a href="./src/runwayml/resources/avatars.py">list</a>(\*\*<a href="src/runwayml/types/avatar_list_params.py">params</a>) -> <a href="./src/runwayml/types/avatar_list_response.py">SyncCursorPage[AvatarListResponse]</a></code>
 - <code title="delete /v1/avatars/{id}">client.avatars.<a href="./src/runwayml/resources/avatars.py">delete</a>(id) -> None</code>
+- <code title="get /v1/avatar_usage">client.avatars.<a href="./src/runwayml/resources/avatars.py">get_usage</a>(\*\*<a href="src/runwayml/types/avatar_get_usage_params.py">params</a>) -> <a href="./src/runwayml/types/avatar_get_usage_response.py">AvatarGetUsageResponse</a></code>
+
+# AvatarConversations
+
+Types:
+
+```python
+from runwayml.types import AvatarConversationRetrieveResponse, AvatarConversationListResponse
+```
+
+Methods:
+
+- <code title="get /v1/avatar_conversations/{id}">client.avatar_conversations.<a href="./src/runwayml/resources/avatar_conversations.py">retrieve</a>(id) -> <a href="./src/runwayml/types/avatar_conversation_retrieve_response.py">AvatarConversationRetrieveResponse</a></code>
+- <code title="get /v1/avatar_conversations">client.avatar_conversations.<a href="./src/runwayml/resources/avatar_conversations.py">list</a>(\*\*<a href="src/runwayml/types/avatar_conversation_list_params.py">params</a>) -> <a href="./src/runwayml/types/avatar_conversation_list_response.py">SyncCursorPage[AvatarConversationListResponse]</a></code>
+- <code title="delete /v1/avatar_conversations/{id}">client.avatar_conversations.<a href="./src/runwayml/resources/avatar_conversations.py">delete</a>(id) -> None</code>
 
 # AvatarVideos
 
@@ -227,6 +243,7 @@ Types:
 from runwayml.types import (
     VoiceCreateResponse,
     VoiceRetrieveResponse,
+    VoiceUpdateResponse,
     VoiceListResponse,
     VoicePreviewResponse,
 )
@@ -236,6 +253,7 @@ Methods:
 
 - <code title="post /v1/voices">client.voices.<a href="./src/runwayml/resources/voices.py">create</a>(\*\*<a href="src/runwayml/types/voice_create_params.py">params</a>) -> <a href="./src/runwayml/types/voice_create_response.py">VoiceCreateResponse</a></code>
 - <code title="get /v1/voices/{id}">client.voices.<a href="./src/runwayml/resources/voices.py">retrieve</a>(id) -> <a href="./src/runwayml/types/voice_retrieve_response.py">VoiceRetrieveResponse</a></code>
+- <code title="patch /v1/voices/{id}">client.voices.<a href="./src/runwayml/resources/voices.py">update</a>(id, \*\*<a href="src/runwayml/types/voice_update_params.py">params</a>) -> <a href="./src/runwayml/types/voice_update_response.py">VoiceUpdateResponse</a></code>
 - <code title="get /v1/voices">client.voices.<a href="./src/runwayml/resources/voices.py">list</a>(\*\*<a href="src/runwayml/types/voice_list_params.py">params</a>) -> <a href="./src/runwayml/types/voice_list_response.py">SyncCursorPage[VoiceListResponse]</a></code>
 - <code title="delete /v1/voices/{id}">client.voices.<a href="./src/runwayml/resources/voices.py">delete</a>(id) -> None</code>
 - <code title="post /v1/voices/preview">client.voices.<a href="./src/runwayml/resources/voices.py">preview</a>(\*\*<a href="src/runwayml/types/voice_preview_params.py">params</a>) -> <a href="./src/runwayml/types/voice_preview_response.py">VoicePreviewResponse</a></code>
