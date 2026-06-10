@@ -55,6 +55,7 @@ if TYPE_CHECKING:
         voice_isolation,
         speech_to_speech,
         realtime_sessions,
+        avatar_conversations,
         workflow_invocations,
         character_performance,
     )
@@ -77,6 +78,7 @@ if TYPE_CHECKING:
     from .resources.voice_isolation import VoiceIsolationResource, AsyncVoiceIsolationResource
     from .resources.speech_to_speech import SpeechToSpeechResource, AsyncSpeechToSpeechResource
     from .resources.realtime_sessions import RealtimeSessionsResource, AsyncRealtimeSessionsResource
+    from .resources.avatar_conversations import AvatarConversationsResource, AsyncAvatarConversationsResource
     from .resources.workflow_invocations import WorkflowInvocationsResource, AsyncWorkflowInvocationsResource
     from .resources.character_performance import CharacterPerformanceResource, AsyncCharacterPerformanceResource
 
@@ -263,6 +265,12 @@ class RunwayML(SyncAPIClient):
         from .resources.avatars import AvatarsResource
 
         return AvatarsResource(self)
+
+    @cached_property
+    def avatar_conversations(self) -> AvatarConversationsResource:
+        from .resources.avatar_conversations import AvatarConversationsResource
+
+        return AvatarConversationsResource(self)
 
     @cached_property
     def avatar_videos(self) -> AvatarVideosResource:
@@ -589,6 +597,12 @@ class AsyncRunwayML(AsyncAPIClient):
         return AsyncAvatarsResource(self)
 
     @cached_property
+    def avatar_conversations(self) -> AsyncAvatarConversationsResource:
+        from .resources.avatar_conversations import AsyncAvatarConversationsResource
+
+        return AsyncAvatarConversationsResource(self)
+
+    @cached_property
     def avatar_videos(self) -> AsyncAvatarVideosResource:
         from .resources.avatar_videos import AsyncAvatarVideosResource
 
@@ -849,6 +863,12 @@ class RunwayMLWithRawResponse:
         return AvatarsResourceWithRawResponse(self._client.avatars)
 
     @cached_property
+    def avatar_conversations(self) -> avatar_conversations.AvatarConversationsResourceWithRawResponse:
+        from .resources.avatar_conversations import AvatarConversationsResourceWithRawResponse
+
+        return AvatarConversationsResourceWithRawResponse(self._client.avatar_conversations)
+
+    @cached_property
     def avatar_videos(self) -> avatar_videos.AvatarVideosResourceWithRawResponse:
         from .resources.avatar_videos import AvatarVideosResourceWithRawResponse
 
@@ -992,6 +1012,12 @@ class AsyncRunwayMLWithRawResponse:
         from .resources.avatars import AsyncAvatarsResourceWithRawResponse
 
         return AsyncAvatarsResourceWithRawResponse(self._client.avatars)
+
+    @cached_property
+    def avatar_conversations(self) -> avatar_conversations.AsyncAvatarConversationsResourceWithRawResponse:
+        from .resources.avatar_conversations import AsyncAvatarConversationsResourceWithRawResponse
+
+        return AsyncAvatarConversationsResourceWithRawResponse(self._client.avatar_conversations)
 
     @cached_property
     def avatar_videos(self) -> avatar_videos.AsyncAvatarVideosResourceWithRawResponse:
@@ -1139,6 +1165,12 @@ class RunwayMLWithStreamedResponse:
         return AvatarsResourceWithStreamingResponse(self._client.avatars)
 
     @cached_property
+    def avatar_conversations(self) -> avatar_conversations.AvatarConversationsResourceWithStreamingResponse:
+        from .resources.avatar_conversations import AvatarConversationsResourceWithStreamingResponse
+
+        return AvatarConversationsResourceWithStreamingResponse(self._client.avatar_conversations)
+
+    @cached_property
     def avatar_videos(self) -> avatar_videos.AvatarVideosResourceWithStreamingResponse:
         from .resources.avatar_videos import AvatarVideosResourceWithStreamingResponse
 
@@ -1282,6 +1314,12 @@ class AsyncRunwayMLWithStreamedResponse:
         from .resources.avatars import AsyncAvatarsResourceWithStreamingResponse
 
         return AsyncAvatarsResourceWithStreamingResponse(self._client.avatars)
+
+    @cached_property
+    def avatar_conversations(self) -> avatar_conversations.AsyncAvatarConversationsResourceWithStreamingResponse:
+        from .resources.avatar_conversations import AsyncAvatarConversationsResourceWithStreamingResponse
+
+        return AsyncAvatarConversationsResourceWithStreamingResponse(self._client.avatar_conversations)
 
     @cached_property
     def avatar_videos(self) -> avatar_videos.AsyncAvatarVideosResourceWithStreamingResponse:

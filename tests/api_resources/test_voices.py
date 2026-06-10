@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from runwayml.types import (
     VoiceListResponse,
     VoiceCreateResponse,
+    VoiceUpdateResponse,
     VoicePreviewResponse,
     VoiceRetrieveResponse,
 )
@@ -114,6 +115,53 @@ class TestVoices:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.voices.with_raw_response.retrieve(
                 "",
+            )
+
+    @parametrize
+    def test_method_update(self, client: RunwayML) -> None:
+        voice = client.voices.update(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(VoiceUpdateResponse, voice, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: RunwayML) -> None:
+        voice = client.voices.update(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            description="x",
+            name="x",
+        )
+        assert_matches_type(VoiceUpdateResponse, voice, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: RunwayML) -> None:
+        response = client.voices.with_raw_response.update(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        voice = response.parse()
+        assert_matches_type(VoiceUpdateResponse, voice, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: RunwayML) -> None:
+        with client.voices.with_streaming_response.update(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            voice = response.parse()
+            assert_matches_type(VoiceUpdateResponse, voice, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: RunwayML) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.voices.with_raw_response.update(
+                id="",
             )
 
     @parametrize
@@ -324,6 +372,53 @@ class TestAsyncVoices:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.voices.with_raw_response.retrieve(
                 "",
+            )
+
+    @parametrize
+    async def test_method_update(self, async_client: AsyncRunwayML) -> None:
+        voice = await async_client.voices.update(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(VoiceUpdateResponse, voice, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncRunwayML) -> None:
+        voice = await async_client.voices.update(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            description="x",
+            name="x",
+        )
+        assert_matches_type(VoiceUpdateResponse, voice, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.voices.with_raw_response.update(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        voice = await response.parse()
+        assert_matches_type(VoiceUpdateResponse, voice, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.voices.with_streaming_response.update(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            voice = await response.parse()
+            assert_matches_type(VoiceUpdateResponse, voice, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncRunwayML) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.voices.with_raw_response.update(
+                id="",
             )
 
     @parametrize

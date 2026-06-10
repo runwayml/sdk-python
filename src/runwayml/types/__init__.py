@@ -6,6 +6,7 @@ from .voice_list_params import VoiceListParams as VoiceListParams
 from .avatar_list_params import AvatarListParams as AvatarListParams
 from .voice_create_params import VoiceCreateParams as VoiceCreateParams
 from .voice_list_response import VoiceListResponse as VoiceListResponse
+from .voice_update_params import VoiceUpdateParams as VoiceUpdateParams
 from .workflow_run_params import WorkflowRunParams as WorkflowRunParams
 from .avatar_create_params import AvatarCreateParams as AvatarCreateParams
 from .avatar_list_response import AvatarListResponse as AvatarListResponse
@@ -13,6 +14,7 @@ from .avatar_update_params import AvatarUpdateParams as AvatarUpdateParams
 from .document_list_params import DocumentListParams as DocumentListParams
 from .voice_preview_params import VoicePreviewParams as VoicePreviewParams
 from .voice_create_response import VoiceCreateResponse as VoiceCreateResponse
+from .voice_update_response import VoiceUpdateResponse as VoiceUpdateResponse
 from .workflow_run_response import WorkflowRunResponse as WorkflowRunResponse
 from .avatar_create_response import AvatarCreateResponse as AvatarCreateResponse
 from .avatar_update_response import AvatarUpdateResponse as AvatarUpdateResponse
@@ -22,9 +24,11 @@ from .document_update_params import DocumentUpdateParams as DocumentUpdateParams
 from .task_retrieve_response import TaskRetrieveResponse as TaskRetrieveResponse
 from .voice_preview_response import VoicePreviewResponse as VoicePreviewResponse
 from .workflow_list_response import WorkflowListResponse as WorkflowListResponse
+from .avatar_get_usage_params import AvatarGetUsageParams as AvatarGetUsageParams
 from .voice_retrieve_response import VoiceRetrieveResponse as VoiceRetrieveResponse
 from .avatar_retrieve_response import AvatarRetrieveResponse as AvatarRetrieveResponse
 from .document_create_response import DocumentCreateResponse as DocumentCreateResponse
+from .avatar_get_usage_response import AvatarGetUsageResponse as AvatarGetUsageResponse
 from .avatar_video_create_params import AvatarVideoCreateParams as AvatarVideoCreateParams
 from .document_retrieve_response import DocumentRetrieveResponse as DocumentRetrieveResponse
 from .sound_effect_create_params import SoundEffectCreateParams as SoundEffectCreateParams
@@ -49,13 +53,18 @@ from .realtime_session_create_params import RealtimeSessionCreateParams as Realt
 from .speech_to_speech_create_params import SpeechToSpeechCreateParams as SpeechToSpeechCreateParams
 from .text_to_speech_create_response import TextToSpeechCreateResponse as TextToSpeechCreateResponse
 from .video_to_video_create_response import VideoToVideoCreateResponse as VideoToVideoCreateResponse
+from .avatar_conversation_list_params import AvatarConversationListParams as AvatarConversationListParams
 from .voice_isolation_create_response import VoiceIsolationCreateResponse as VoiceIsolationCreateResponse
 from .realtime_session_create_response import RealtimeSessionCreateResponse as RealtimeSessionCreateResponse
 from .speech_to_speech_create_response import SpeechToSpeechCreateResponse as SpeechToSpeechCreateResponse
+from .avatar_conversation_list_response import AvatarConversationListResponse as AvatarConversationListResponse
 from .organization_retrieve_usage_params import OrganizationRetrieveUsageParams as OrganizationRetrieveUsageParams
 from .realtime_session_retrieve_response import RealtimeSessionRetrieveResponse as RealtimeSessionRetrieveResponse
 from .character_performance_create_params import CharacterPerformanceCreateParams as CharacterPerformanceCreateParams
 from .organization_retrieve_usage_response import OrganizationRetrieveUsageResponse as OrganizationRetrieveUsageResponse
+from .avatar_conversation_retrieve_response import (
+    AvatarConversationRetrieveResponse as AvatarConversationRetrieveResponse,
+)
 from .character_performance_create_response import (
     CharacterPerformanceCreateResponse as CharacterPerformanceCreateResponse,
 )

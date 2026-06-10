@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Any, Union, Optional, cast
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ..types import avatar_list_params, avatar_create_params, avatar_update_params
+from ..types import avatar_list_params, avatar_create_params, avatar_update_params, avatar_get_usage_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -24,6 +25,7 @@ from ..types.avatar_list_response import AvatarListResponse
 from ..types.avatar_create_response import AvatarCreateResponse
 from ..types.avatar_update_response import AvatarUpdateResponse
 from ..types.avatar_retrieve_response import AvatarRetrieveResponse
+from ..types.avatar_get_usage_response import AvatarGetUsageResponse
 
 __all__ = ["AvatarsResource", "AsyncAvatarsResource"]
 
@@ -312,6 +314,54 @@ class AvatarsResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    def get_usage(
+        self,
+        *,
+        end_date: Union[str, datetime],
+        start_date: Union[str, datetime],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AvatarGetUsageResponse:
+        """
+        Get aggregate usage statistics for avatar conversations, including total
+        duration, session counts, average duration, and a per-day breakdown. Per-day
+        buckets are keyed by UTC calendar date. The date range must not exceed 90 days.
+
+        Args:
+          end_date: End of the date range in UTC (exclusive). Required.
+
+          start_date: Start of the date range in UTC (inclusive). Required.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/v1/avatar_usage",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "end_date": end_date,
+                        "start_date": start_date,
+                    },
+                    avatar_get_usage_params.AvatarGetUsageParams,
+                ),
+            ),
+            cast_to=AvatarGetUsageResponse,
+        )
+
 
 class AsyncAvatarsResource(AsyncAPIResource):
     @cached_property
@@ -597,6 +647,54 @@ class AsyncAvatarsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def get_usage(
+        self,
+        *,
+        end_date: Union[str, datetime],
+        start_date: Union[str, datetime],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AvatarGetUsageResponse:
+        """
+        Get aggregate usage statistics for avatar conversations, including total
+        duration, session counts, average duration, and a per-day breakdown. Per-day
+        buckets are keyed by UTC calendar date. The date range must not exceed 90 days.
+
+        Args:
+          end_date: End of the date range in UTC (exclusive). Required.
+
+          start_date: Start of the date range in UTC (inclusive). Required.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/v1/avatar_usage",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "end_date": end_date,
+                        "start_date": start_date,
+                    },
+                    avatar_get_usage_params.AvatarGetUsageParams,
+                ),
+            ),
+            cast_to=AvatarGetUsageResponse,
+        )
+
 
 class AvatarsResourceWithRawResponse:
     def __init__(self, avatars: AvatarsResource) -> None:
@@ -616,6 +714,9 @@ class AvatarsResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             avatars.delete,
+        )
+        self.get_usage = to_raw_response_wrapper(
+            avatars.get_usage,
         )
 
 
@@ -638,6 +739,9 @@ class AsyncAvatarsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             avatars.delete,
         )
+        self.get_usage = async_to_raw_response_wrapper(
+            avatars.get_usage,
+        )
 
 
 class AvatarsResourceWithStreamingResponse:
@@ -659,6 +763,9 @@ class AvatarsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             avatars.delete,
         )
+        self.get_usage = to_streamed_response_wrapper(
+            avatars.get_usage,
+        )
 
 
 class AsyncAvatarsResourceWithStreamingResponse:
@@ -679,4 +786,7 @@ class AsyncAvatarsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             avatars.delete,
+        )
+        self.get_usage = async_to_streamed_response_wrapper(
+            avatars.get_usage,
         )
