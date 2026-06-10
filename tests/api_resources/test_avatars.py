@@ -13,8 +13,10 @@ from runwayml.types import (
     AvatarListResponse,
     AvatarCreateResponse,
     AvatarUpdateResponse,
+    AvatarGetUsageResponse,
     AvatarRetrieveResponse,
 )
+from runwayml._utils import parse_datetime
 from runwayml.pagination import SyncCursorPage, AsyncCursorPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -258,6 +260,40 @@ class TestAvatars:
                 "",
             )
 
+    @parametrize
+    def test_method_get_usage(self, client: RunwayML) -> None:
+        avatar = client.avatars.get_usage(
+            end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+        )
+        assert_matches_type(AvatarGetUsageResponse, avatar, path=["response"])
+
+    @parametrize
+    def test_raw_response_get_usage(self, client: RunwayML) -> None:
+        response = client.avatars.with_raw_response.get_usage(
+            end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        avatar = response.parse()
+        assert_matches_type(AvatarGetUsageResponse, avatar, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get_usage(self, client: RunwayML) -> None:
+        with client.avatars.with_streaming_response.get_usage(
+            end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            avatar = response.parse()
+            assert_matches_type(AvatarGetUsageResponse, avatar, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
 
 class TestAsyncAvatars:
     parametrize = pytest.mark.parametrize(
@@ -498,3 +534,37 @@ class TestAsyncAvatars:
             await async_client.avatars.with_raw_response.delete(
                 "",
             )
+
+    @parametrize
+    async def test_method_get_usage(self, async_client: AsyncRunwayML) -> None:
+        avatar = await async_client.avatars.get_usage(
+            end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+        )
+        assert_matches_type(AvatarGetUsageResponse, avatar, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get_usage(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.avatars.with_raw_response.get_usage(
+            end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        avatar = await response.parse()
+        assert_matches_type(AvatarGetUsageResponse, avatar, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get_usage(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.avatars.with_streaming_response.get_usage(
+            end_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            avatar = await response.parse()
+            assert_matches_type(AvatarGetUsageResponse, avatar, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

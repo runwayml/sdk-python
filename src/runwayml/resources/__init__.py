@@ -152,6 +152,14 @@ from .realtime_sessions import (
     RealtimeSessionsResourceWithStreamingResponse,
     AsyncRealtimeSessionsResourceWithStreamingResponse,
 )
+from .avatar_conversations import (
+    AvatarConversationsResource,
+    AsyncAvatarConversationsResource,
+    AvatarConversationsResourceWithRawResponse,
+    AsyncAvatarConversationsResourceWithRawResponse,
+    AvatarConversationsResourceWithStreamingResponse,
+    AsyncAvatarConversationsResourceWithStreamingResponse,
+)
 from .workflow_invocations import (
     WorkflowInvocationsResource,
     AsyncWorkflowInvocationsResource,
@@ -260,6 +268,12 @@ __all__ = [
     "AsyncAvatarsResourceWithRawResponse",
     "AvatarsResourceWithStreamingResponse",
     "AsyncAvatarsResourceWithStreamingResponse",
+    "AvatarConversationsResource",
+    "AsyncAvatarConversationsResource",
+    "AvatarConversationsResourceWithRawResponse",
+    "AsyncAvatarConversationsResourceWithRawResponse",
+    "AvatarConversationsResourceWithStreamingResponse",
+    "AsyncAvatarConversationsResourceWithStreamingResponse",
     "AvatarVideosResource",
     "AsyncAvatarVideosResource",
     "AvatarVideosResourceWithRawResponse",

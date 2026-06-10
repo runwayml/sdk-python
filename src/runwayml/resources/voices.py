@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import voice_list_params, voice_create_params, voice_preview_params
+from ..types import voice_list_params, voice_create_params, voice_update_params, voice_preview_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -22,6 +22,7 @@ from ..pagination import SyncCursorPage, AsyncCursorPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.voice_list_response import VoiceListResponse
 from ..types.voice_create_response import VoiceCreateResponse
+from ..types.voice_update_response import VoiceUpdateResponse
 from ..types.voice_preview_response import VoicePreviewResponse
 from ..types.voice_retrieve_response import VoiceRetrieveResponse
 
@@ -128,6 +129,57 @@ class VoicesResource(SyncAPIResource):
                 ),
                 cast_to=cast(
                     Any, VoiceRetrieveResponse
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+    def update(
+        self,
+        id: str,
+        *,
+        description: Optional[str] | Omit = omit,
+        name: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VoiceUpdateResponse:
+        """
+        Update the name and/or description of a custom voice.
+
+        Args:
+          description: An optional description of the voice.
+
+          name: A name for the voice.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return cast(
+            VoiceUpdateResponse,
+            self._patch(
+                path_template("/v1/voices/{id}", id=id),
+                body=maybe_transform(
+                    {
+                        "description": description,
+                        "name": name,
+                    },
+                    voice_update_params.VoiceUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, VoiceUpdateResponse
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -366,6 +418,57 @@ class AsyncVoicesResource(AsyncAPIResource):
             ),
         )
 
+    async def update(
+        self,
+        id: str,
+        *,
+        description: Optional[str] | Omit = omit,
+        name: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VoiceUpdateResponse:
+        """
+        Update the name and/or description of a custom voice.
+
+        Args:
+          description: An optional description of the voice.
+
+          name: A name for the voice.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return cast(
+            VoiceUpdateResponse,
+            await self._patch(
+                path_template("/v1/voices/{id}", id=id),
+                body=await async_maybe_transform(
+                    {
+                        "description": description,
+                        "name": name,
+                    },
+                    voice_update_params.VoiceUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, VoiceUpdateResponse
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
     def list(
         self,
         *,
@@ -506,6 +609,9 @@ class VoicesResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             voices.retrieve,
         )
+        self.update = to_raw_response_wrapper(
+            voices.update,
+        )
         self.list = to_raw_response_wrapper(
             voices.list,
         )
@@ -526,6 +632,9 @@ class AsyncVoicesResourceWithRawResponse:
         )
         self.retrieve = async_to_raw_response_wrapper(
             voices.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            voices.update,
         )
         self.list = async_to_raw_response_wrapper(
             voices.list,
@@ -548,6 +657,9 @@ class VoicesResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             voices.retrieve,
         )
+        self.update = to_streamed_response_wrapper(
+            voices.update,
+        )
         self.list = to_streamed_response_wrapper(
             voices.list,
         )
@@ -568,6 +680,9 @@ class AsyncVoicesResourceWithStreamingResponse:
         )
         self.retrieve = async_to_streamed_response_wrapper(
             voices.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            voices.update,
         )
         self.list = async_to_streamed_response_wrapper(
             voices.list,
