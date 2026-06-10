@@ -195,53 +195,6 @@ class ImageToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
-        model: Literal["gen3a_turbo"],
-        prompt_image: Union[str, Iterable[image_to_video_create_params.Gen3aTurboPromptImagePromptImage]],
-        prompt_text: str,
-        content_moderation: image_to_video_create_params.Gen3aTurboContentModeration | Omit = omit,
-        duration: Literal[5, 10] | Omit = omit,
-        ratio: Literal["768:1280", "1280:768"] | Omit = omit,
-        seed: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate a video from an image.
-
-        Args:
-          prompt_image: A HTTPS URL.
-
-          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
-              should describe in detail what should appear in the output.
-
-          content_moderation: Settings that affect the behavior of the content moderation system.
-
-          duration: The duration of the output video in seconds.
-
-          ratio: The resolution of the output video.
-
-          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
-              get different results for the same other request parameters. Using the same seed
-              integer for an identical request will produce similar results.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
         model: Literal["veo3.1_fast"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]],
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
@@ -492,18 +445,16 @@ class ImageToVideoResource(SyncAPIResource):
     @required_args(
         ["duration", "model", "prompt_image", "prompt_text", "ratio"],
         ["model", "prompt_image", "ratio"],
-        ["model", "prompt_image", "prompt_text"],
         ["model", "prompt_image"],
         ["duration", "model", "prompt_image", "ratio"],
     )
     def create(
         self,
         *,
-        duration: int | Literal[4, 6, 8] | Literal[5, 10] | Literal[8] | Omit = omit,
+        duration: int | Literal[4, 6, 8] | Literal[8] | Omit = omit,
         model: Literal["gen4.5"]
         | Literal["gen4_turbo"]
         | Literal["veo3.1"]
-        | Literal["gen3a_turbo"]
         | Literal["veo3.1_fast"]
         | Literal["happyhorse_1_0"]
         | Literal["seedance2"]
@@ -511,7 +462,6 @@ class ImageToVideoResource(SyncAPIResource):
         | Literal["veo3"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
-        | Union[str, Iterable[image_to_video_create_params.Gen3aTurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Seedance2PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]]
@@ -520,7 +470,6 @@ class ImageToVideoResource(SyncAPIResource):
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
         | Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
-        | Literal["768:1280", "1280:768"]
         | Literal[
             "992:432",
             "864:496",
@@ -558,7 +507,6 @@ class ImageToVideoResource(SyncAPIResource):
         | Omit = omit,
         content_moderation: image_to_video_create_params.Gen4_5ContentModeration
         | image_to_video_create_params.Gen4TurboContentModeration
-        | image_to_video_create_params.Gen3aTurboContentModeration
         | Omit = omit,
         seed: int | Omit = omit,
         audio: bool | Omit = omit,
@@ -762,53 +710,6 @@ class AsyncImageToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        model: Literal["gen3a_turbo"],
-        prompt_image: Union[str, Iterable[image_to_video_create_params.Gen3aTurboPromptImagePromptImage]],
-        prompt_text: str,
-        content_moderation: image_to_video_create_params.Gen3aTurboContentModeration | Omit = omit,
-        duration: Literal[5, 10] | Omit = omit,
-        ratio: Literal["768:1280", "1280:768"] | Omit = omit,
-        seed: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate a video from an image.
-
-        Args:
-          prompt_image: A HTTPS URL.
-
-          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
-              should describe in detail what should appear in the output.
-
-          content_moderation: Settings that affect the behavior of the content moderation system.
-
-          duration: The duration of the output video in seconds.
-
-          ratio: The resolution of the output video.
-
-          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
-              get different results for the same other request parameters. Using the same seed
-              integer for an identical request will produce similar results.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
         model: Literal["veo3.1_fast"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]],
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
@@ -1059,18 +960,16 @@ class AsyncImageToVideoResource(AsyncAPIResource):
     @required_args(
         ["duration", "model", "prompt_image", "prompt_text", "ratio"],
         ["model", "prompt_image", "ratio"],
-        ["model", "prompt_image", "prompt_text"],
         ["model", "prompt_image"],
         ["duration", "model", "prompt_image", "ratio"],
     )
     async def create(
         self,
         *,
-        duration: int | Literal[4, 6, 8] | Literal[5, 10] | Literal[8] | Omit = omit,
+        duration: int | Literal[4, 6, 8] | Literal[8] | Omit = omit,
         model: Literal["gen4.5"]
         | Literal["gen4_turbo"]
         | Literal["veo3.1"]
-        | Literal["gen3a_turbo"]
         | Literal["veo3.1_fast"]
         | Literal["happyhorse_1_0"]
         | Literal["seedance2"]
@@ -1078,7 +977,6 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Literal["veo3"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
-        | Union[str, Iterable[image_to_video_create_params.Gen3aTurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Seedance2PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]]
@@ -1087,7 +985,6 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
         | Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
-        | Literal["768:1280", "1280:768"]
         | Literal[
             "992:432",
             "864:496",
@@ -1125,7 +1022,6 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Omit = omit,
         content_moderation: image_to_video_create_params.Gen4_5ContentModeration
         | image_to_video_create_params.Gen4TurboContentModeration
-        | image_to_video_create_params.Gen3aTurboContentModeration
         | Omit = omit,
         seed: int | Omit = omit,
         audio: bool | Omit = omit,
