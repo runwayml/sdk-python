@@ -40,6 +40,7 @@ class TestVideoToVideo:
                 }
             ],
             seed=0,
+            target_aspect_ratio="16:9",
         )
         assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
 
@@ -228,6 +229,7 @@ class TestAsyncVideoToVideo:
                 }
             ],
             seed=0,
+            target_aspect_ratio="16:9",
         )
         assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
 

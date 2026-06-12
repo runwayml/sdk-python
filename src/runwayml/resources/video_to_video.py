@@ -56,6 +56,7 @@ class VideoToVideoResource(SyncAPIResource):
         content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
         seed: int | Omit = omit,
+        target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -80,6 +81,9 @@ class VideoToVideoResource(SyncAPIResource):
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
               integer for an identical request will produce similar results.
+
+          target_aspect_ratio: Target aspect ratio for expand/outpaint. Letterboxes the input video and
+              keyframes before generation.
 
           extra_headers: Send extra headers
 
@@ -246,6 +250,7 @@ class VideoToVideoResource(SyncAPIResource):
         content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
         seed: int | Omit = omit,
+        target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
         prompt_video: str | Omit = omit,
         audio: bool | Omit = omit,
         duration: int | Omit = omit,
@@ -310,6 +315,7 @@ class VideoToVideoResource(SyncAPIResource):
                     "content_moderation": content_moderation,
                     "keyframes": keyframes,
                     "seed": seed,
+                    "target_aspect_ratio": target_aspect_ratio,
                     "prompt_video": prompt_video,
                     "audio": audio,
                     "duration": duration,
@@ -359,6 +365,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
         seed: int | Omit = omit,
+        target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -383,6 +390,9 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
               integer for an identical request will produce similar results.
+
+          target_aspect_ratio: Target aspect ratio for expand/outpaint. Letterboxes the input video and
+              keyframes before generation.
 
           extra_headers: Send extra headers
 
@@ -549,6 +559,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
         seed: int | Omit = omit,
+        target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
         prompt_video: str | Omit = omit,
         audio: bool | Omit = omit,
         duration: int | Omit = omit,
@@ -613,6 +624,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
                     "content_moderation": content_moderation,
                     "keyframes": keyframes,
                     "seed": seed,
+                    "target_aspect_ratio": target_aspect_ratio,
                     "prompt_video": prompt_video,
                     "audio": audio,
                     "duration": duration,
