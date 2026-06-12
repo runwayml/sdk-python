@@ -54,6 +54,14 @@ class Variant0(TypedDict, total=False):
     produce similar results.
     """
 
+    target_aspect_ratio: Annotated[
+        Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"], PropertyInfo(alias="targetAspectRatio")
+    ]
+    """Target aspect ratio for expand/outpaint.
+
+    Letterboxes the input video and keyframes before generation.
+    """
+
 
 class Variant0ContentModeration(TypedDict, total=False):
     """Settings that affect the behavior of the content moderation system."""
