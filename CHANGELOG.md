@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.1.0 (2026-06-12)
+
+Full Changelog: [v5.0.0...v5.1.0](https://github.com/runwayml/sdk-python/compare/v5.0.0...v5.1.0)
+
+### Features
+
+* **api:** add outpaint support for Aleph 2.0 ([673817e](https://github.com/runwayml/sdk-python/commit/673817e3bbc4dc04c2f52153daf00518fae58ed7))
+
 ## 5.0.0 (2026-06-10)
 
 Full Changelog: [v4.18.0...v5.0.0](https://github.com/runwayml/sdk-python/compare/v4.18.0...v5.0.0)
