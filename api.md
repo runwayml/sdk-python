@@ -235,6 +235,30 @@ Methods:
 - <code title="get /v1/realtime_sessions/{id}">client.realtime_sessions.<a href="./src/runwayml/resources/realtime_sessions.py">retrieve</a>(id) -> <a href="./src/runwayml/types/realtime_session_retrieve_response.py">RealtimeSessionRetrieveResponse</a></code>
 - <code title="delete /v1/realtime_sessions/{id}">client.realtime_sessions.<a href="./src/runwayml/resources/realtime_sessions.py">delete</a>(id) -> None</code>
 
+# Recipes
+
+Types:
+
+```python
+from runwayml.types import (
+    RecipeMarketingStockImageResponse,
+    RecipeMultiShotVideoResponse,
+    RecipeProductAdResponse,
+    RecipeProductCampaignImageResponse,
+    RecipeProductSwapResponse,
+    RecipeProductUgcResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v1/recipes/marketing_stock_image">client.recipes.<a href="./src/runwayml/resources/recipes.py">marketing_stock_image</a>(\*\*<a href="src/runwayml/types/recipe_marketing_stock_image_params.py">params</a>) -> <a href="./src/runwayml/types/recipe_marketing_stock_image_response.py">RecipeMarketingStockImageResponse</a></code>
+- <code title="post /v1/recipes/multi_shot_video">client.recipes.<a href="./src/runwayml/resources/recipes.py">multi_shot_video</a>(\*\*<a href="src/runwayml/types/recipe_multi_shot_video_params.py">params</a>) -> <a href="./src/runwayml/types/recipe_multi_shot_video_response.py">RecipeMultiShotVideoResponse</a></code>
+- <code title="post /v1/recipes/product_ad">client.recipes.<a href="./src/runwayml/resources/recipes.py">product_ad</a>(\*\*<a href="src/runwayml/types/recipe_product_ad_params.py">params</a>) -> <a href="./src/runwayml/types/recipe_product_ad_response.py">RecipeProductAdResponse</a></code>
+- <code title="post /v1/recipes/product_campaign_image">client.recipes.<a href="./src/runwayml/resources/recipes.py">product_campaign_image</a>(\*\*<a href="src/runwayml/types/recipe_product_campaign_image_params.py">params</a>) -> <a href="./src/runwayml/types/recipe_product_campaign_image_response.py">RecipeProductCampaignImageResponse</a></code>
+- <code title="post /v1/recipes/product_swap">client.recipes.<a href="./src/runwayml/resources/recipes.py">product_swap</a>(\*\*<a href="src/runwayml/types/recipe_product_swap_params.py">params</a>) -> <a href="./src/runwayml/types/recipe_product_swap_response.py">RecipeProductSwapResponse</a></code>
+- <code title="post /v1/recipes/product_ugc">client.recipes.<a href="./src/runwayml/resources/recipes.py">product_ugc</a>(\*\*<a href="src/runwayml/types/recipe_product_ugc_params.py">params</a>) -> <a href="./src/runwayml/types/recipe_product_ugc_response.py">RecipeProductUgcResponse</a></code>
+
 # Voices
 
 Types:

@@ -886,7 +886,7 @@ wheels = [
 
 [[package]]
 name = "runwayml"
-version = "4.18.0"
+version = "5.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "anyio", version = "4.12.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
