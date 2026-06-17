@@ -57,6 +57,11 @@ class ResultUsedCredit(BaseModel):
         "happyhorse_1_0",
         "aleph2",
         "product_swap",
+        "product_ad",
+        "multi_shot_video",
+        "product_ugc",
+        "marketing_stock_image",
+        "product_campaign_image",
     ]
     """The model that credits were spent on."""
 
@@ -113,6 +118,11 @@ class OrganizationRetrieveUsageResponse(BaseModel):
             "happyhorse_1_0",
             "aleph2",
             "product_swap",
+            "product_ad",
+            "multi_shot_video",
+            "product_ugc",
+            "marketing_stock_image",
+            "product_campaign_image",
         ]
     ]
     """The list of models with usage during the queried time range."""
