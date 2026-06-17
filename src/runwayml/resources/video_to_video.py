@@ -51,10 +51,11 @@ class VideoToVideoResource(SyncAPIResource):
         self,
         *,
         model: Literal["aleph2"],
-        prompt_text: str,
         video_uri: str,
         content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        ratio: str | Omit = omit,
         seed: int | Omit = omit,
         target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -68,15 +69,15 @@ class VideoToVideoResource(SyncAPIResource):
         This endpoint will start a new task to generate a video from a video.
 
         Args:
-          prompt_text: A non-empty string up to 1000 characters describing what should appear in the
-              output.
-
           video_uri: A HTTPS URL.
 
           content_moderation: Settings that affect the behavior of the content moderation system.
 
           keyframes: Timed guidance images placed at specific points in the input video. Up to 5
               keyframes.
+
+          prompt_text: An optional string up to 1000 characters describing what should appear in the
+              output.
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -240,21 +241,17 @@ class VideoToVideoResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["model", "prompt_text", "video_uri"], ["model", "prompt_video"])
+    @required_args(["model", "video_uri"], ["model", "prompt_video"])
     def create(
         self,
         *,
         model: Literal["aleph2"] | Literal["seedance2"] | Literal["seedance2_fast"],
-        prompt_text: str | Omit = omit,
         video_uri: str | Omit = omit,
         content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
-        seed: int | Omit = omit,
-        target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
-        prompt_video: str | Omit = omit,
-        audio: bool | Omit = omit,
-        duration: int | Omit = omit,
-        ratio: Literal[
+        prompt_text: str | Omit = omit,
+        ratio: str
+        | Literal[
             "992:432",
             "864:496",
             "752:560",
@@ -289,6 +286,11 @@ class VideoToVideoResource(SyncAPIResource):
             "720:1280",
         ]
         | Omit = omit,
+        seed: int | Omit = omit,
+        target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
+        prompt_video: str | Omit = omit,
+        audio: bool | Omit = omit,
+        duration: int | Omit = omit,
         reference_audio: Iterable[video_to_video_create_params.Seedance2ReferenceAudio]
         | Iterable[video_to_video_create_params.Seedance2FastReferenceAudio]
         | Omit = omit,
@@ -310,16 +312,16 @@ class VideoToVideoResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "model": model,
-                    "prompt_text": prompt_text,
                     "video_uri": video_uri,
                     "content_moderation": content_moderation,
                     "keyframes": keyframes,
+                    "prompt_text": prompt_text,
+                    "ratio": ratio,
                     "seed": seed,
                     "target_aspect_ratio": target_aspect_ratio,
                     "prompt_video": prompt_video,
                     "audio": audio,
                     "duration": duration,
-                    "ratio": ratio,
                     "reference_audio": reference_audio,
                     "references": references,
                     "reference_videos": reference_videos,
@@ -360,10 +362,11 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         self,
         *,
         model: Literal["aleph2"],
-        prompt_text: str,
         video_uri: str,
         content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        ratio: str | Omit = omit,
         seed: int | Omit = omit,
         target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -377,15 +380,15 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         This endpoint will start a new task to generate a video from a video.
 
         Args:
-          prompt_text: A non-empty string up to 1000 characters describing what should appear in the
-              output.
-
           video_uri: A HTTPS URL.
 
           content_moderation: Settings that affect the behavior of the content moderation system.
 
           keyframes: Timed guidance images placed at specific points in the input video. Up to 5
               keyframes.
+
+          prompt_text: An optional string up to 1000 characters describing what should appear in the
+              output.
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -549,21 +552,17 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["model", "prompt_text", "video_uri"], ["model", "prompt_video"])
+    @required_args(["model", "video_uri"], ["model", "prompt_video"])
     async def create(
         self,
         *,
         model: Literal["aleph2"] | Literal["seedance2"] | Literal["seedance2_fast"],
-        prompt_text: str | Omit = omit,
         video_uri: str | Omit = omit,
         content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
-        seed: int | Omit = omit,
-        target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
-        prompt_video: str | Omit = omit,
-        audio: bool | Omit = omit,
-        duration: int | Omit = omit,
-        ratio: Literal[
+        prompt_text: str | Omit = omit,
+        ratio: str
+        | Literal[
             "992:432",
             "864:496",
             "752:560",
@@ -598,6 +597,11 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
             "720:1280",
         ]
         | Omit = omit,
+        seed: int | Omit = omit,
+        target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
+        prompt_video: str | Omit = omit,
+        audio: bool | Omit = omit,
+        duration: int | Omit = omit,
         reference_audio: Iterable[video_to_video_create_params.Seedance2ReferenceAudio]
         | Iterable[video_to_video_create_params.Seedance2FastReferenceAudio]
         | Omit = omit,
@@ -619,16 +623,16 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "model": model,
-                    "prompt_text": prompt_text,
                     "video_uri": video_uri,
                     "content_moderation": content_moderation,
                     "keyframes": keyframes,
+                    "prompt_text": prompt_text,
+                    "ratio": ratio,
                     "seed": seed,
                     "target_aspect_ratio": target_aspect_ratio,
                     "prompt_video": prompt_video,
                     "audio": audio,
                     "duration": duration,
-                    "ratio": ratio,
                     "reference_audio": reference_audio,
                     "references": references,
                     "reference_videos": reference_videos,
