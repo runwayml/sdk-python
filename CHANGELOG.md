@@ -1,5 +1,20 @@
 # Changelog
 
+## 5.2.0 (2026-06-17)
+
+Full Changelog: [v5.1.0...v5.2.0](https://github.com/runwayml/sdk-python/compare/v5.1.0...v5.2.0)
+
+### Features
+
+* **api:** Recipes, aleph2 range ([529fc1d](https://github.com/runwayml/sdk-python/commit/529fc1da7b279af30f5aef1314ab16a87a3916f1))
+* **client:** add recipe endpoints to config ([26725b1](https://github.com/runwayml/sdk-python/commit/26725b15a27fbf9437a323bb28238e7d4657ed53))
+* **client:** Make recipes waitable ([11dbef5](https://github.com/runwayml/sdk-python/commit/11dbef5fbf6bd4147d4f6b91f43e260c9b4b2318))
+
+
+### Bug Fixes
+
+* **api:** remove range param ([f67c02d](https://github.com/runwayml/sdk-python/commit/f67c02db8769d481109a7d033b8fa030abdeb56e))
+
 ## 5.1.0 (2026-06-12)
 
 Full Changelog: [v5.0.0...v5.1.0](https://github.com/runwayml/sdk-python/compare/v5.0.0...v5.1.0)
