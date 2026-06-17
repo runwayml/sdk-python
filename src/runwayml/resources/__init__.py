@@ -24,6 +24,14 @@ from .avatars import (
     AvatarsResourceWithStreamingResponse,
     AsyncAvatarsResourceWithStreamingResponse,
 )
+from .recipes import (
+    RecipesResource,
+    AsyncRecipesResource,
+    RecipesResourceWithRawResponse,
+    AsyncRecipesResourceWithRawResponse,
+    RecipesResourceWithStreamingResponse,
+    AsyncRecipesResourceWithStreamingResponse,
+)
 from .documents import (
     DocumentsResource,
     AsyncDocumentsResource,
@@ -278,6 +286,12 @@ __all__ = [
     "AsyncRealtimeSessionsResourceWithRawResponse",
     "RealtimeSessionsResourceWithStreamingResponse",
     "AsyncRealtimeSessionsResourceWithStreamingResponse",
+    "RecipesResource",
+    "AsyncRecipesResource",
+    "RecipesResourceWithRawResponse",
+    "AsyncRecipesResourceWithRawResponse",
+    "RecipesResourceWithStreamingResponse",
+    "AsyncRecipesResourceWithStreamingResponse",
     "VoicesResource",
     "AsyncVoicesResource",
     "VoicesResourceWithRawResponse",

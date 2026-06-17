@@ -39,6 +39,7 @@ if TYPE_CHECKING:
         tasks,
         voices,
         avatars,
+        recipes,
         documents,
         workflows,
         organization,
@@ -61,6 +62,7 @@ if TYPE_CHECKING:
     from .resources.tasks import TasksResource, AsyncTasksResource
     from .resources.voices import VoicesResource, AsyncVoicesResource
     from .resources.avatars import AvatarsResource, AsyncAvatarsResource
+    from .resources.recipes import RecipesResource, AsyncRecipesResource
     from .resources.documents import DocumentsResource, AsyncDocumentsResource
     from .resources.workflows import WorkflowsResource, AsyncWorkflowsResource
     from .resources.organization import OrganizationResource, AsyncOrganizationResource
@@ -281,6 +283,12 @@ class RunwayML(SyncAPIClient):
         from .resources.realtime_sessions import RealtimeSessionsResource
 
         return RealtimeSessionsResource(self)
+
+    @cached_property
+    def recipes(self) -> RecipesResource:
+        from .resources.recipes import RecipesResource
+
+        return RecipesResource(self)
 
     @cached_property
     def voices(self) -> VoicesResource:
@@ -607,6 +615,12 @@ class AsyncRunwayML(AsyncAPIClient):
         return AsyncRealtimeSessionsResource(self)
 
     @cached_property
+    def recipes(self) -> AsyncRecipesResource:
+        from .resources.recipes import AsyncRecipesResource
+
+        return AsyncRecipesResource(self)
+
+    @cached_property
     def voices(self) -> AsyncVoicesResource:
         from .resources.voices import AsyncVoicesResource
 
@@ -867,6 +881,12 @@ class RunwayMLWithRawResponse:
         return RealtimeSessionsResourceWithRawResponse(self._client.realtime_sessions)
 
     @cached_property
+    def recipes(self) -> recipes.RecipesResourceWithRawResponse:
+        from .resources.recipes import RecipesResourceWithRawResponse
+
+        return RecipesResourceWithRawResponse(self._client.recipes)
+
+    @cached_property
     def voices(self) -> voices.VoicesResourceWithRawResponse:
         from .resources.voices import VoicesResourceWithRawResponse
 
@@ -1010,6 +1030,12 @@ class AsyncRunwayMLWithRawResponse:
         from .resources.realtime_sessions import AsyncRealtimeSessionsResourceWithRawResponse
 
         return AsyncRealtimeSessionsResourceWithRawResponse(self._client.realtime_sessions)
+
+    @cached_property
+    def recipes(self) -> recipes.AsyncRecipesResourceWithRawResponse:
+        from .resources.recipes import AsyncRecipesResourceWithRawResponse
+
+        return AsyncRecipesResourceWithRawResponse(self._client.recipes)
 
     @cached_property
     def voices(self) -> voices.AsyncVoicesResourceWithRawResponse:
@@ -1157,6 +1183,12 @@ class RunwayMLWithStreamedResponse:
         return RealtimeSessionsResourceWithStreamingResponse(self._client.realtime_sessions)
 
     @cached_property
+    def recipes(self) -> recipes.RecipesResourceWithStreamingResponse:
+        from .resources.recipes import RecipesResourceWithStreamingResponse
+
+        return RecipesResourceWithStreamingResponse(self._client.recipes)
+
+    @cached_property
     def voices(self) -> voices.VoicesResourceWithStreamingResponse:
         from .resources.voices import VoicesResourceWithStreamingResponse
 
@@ -1300,6 +1332,12 @@ class AsyncRunwayMLWithStreamedResponse:
         from .resources.realtime_sessions import AsyncRealtimeSessionsResourceWithStreamingResponse
 
         return AsyncRealtimeSessionsResourceWithStreamingResponse(self._client.realtime_sessions)
+
+    @cached_property
+    def recipes(self) -> recipes.AsyncRecipesResourceWithStreamingResponse:
+        from .resources.recipes import AsyncRecipesResourceWithStreamingResponse
+
+        return AsyncRecipesResourceWithStreamingResponse(self._client.recipes)
 
     @cached_property
     def voices(self) -> voices.AsyncVoicesResourceWithStreamingResponse:
