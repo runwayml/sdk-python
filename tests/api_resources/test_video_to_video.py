@@ -35,10 +35,6 @@ class TestVideoToVideo:
                 {
                     "seconds": 0,
                     "uri": "https://example.com/file",
-                    "range": {
-                        "end_seconds": 1,
-                        "start_seconds": 0,
-                    },
                 }
             ],
             prompt_text="x",
@@ -226,10 +222,6 @@ class TestAsyncVideoToVideo:
                 {
                     "seconds": 0,
                     "uri": "https://example.com/file",
-                    "range": {
-                        "end_seconds": 1,
-                        "start_seconds": 0,
-                    },
                 }
             ],
             prompt_text="x",
