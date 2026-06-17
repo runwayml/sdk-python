@@ -13,9 +13,7 @@ __all__ = [
     "Variant0ContentModeration",
     "Variant0Keyframe",
     "Variant0KeyframeUnionMember0",
-    "Variant0KeyframeUnionMember0Range",
     "Variant0KeyframeUnionMember1",
-    "Variant0KeyframeUnionMember1Range",
     "Seedance2",
     "Seedance2ReferenceAudio",
     "Seedance2Reference",
@@ -77,22 +75,6 @@ class Variant0ContentModeration(TypedDict, total=False):
     """
 
 
-class Variant0KeyframeUnionMember0Range(TypedDict, total=False):
-    """Optional edit window.
-
-    When set, the edit applies only to this time range and the keyframe timestamp must fall within it. All keyframes must either set a range or none may.
-    """
-
-    end_seconds: Required[int]
-    """
-    End of the edit window (exclusive) in whole seconds from the start of the input
-    video.
-    """
-
-    start_seconds: Required[int]
-    """Start of the edit window in whole seconds from the start of the input video."""
-
-
 class Variant0KeyframeUnionMember0(TypedDict, total=False):
     seconds: Required[float]
     """
@@ -102,29 +84,6 @@ class Variant0KeyframeUnionMember0(TypedDict, total=False):
 
     uri: Required[str]
     """A HTTPS URL."""
-
-    range: Variant0KeyframeUnionMember0Range
-    """Optional edit window.
-
-    When set, the edit applies only to this time range and the keyframe timestamp
-    must fall within it. All keyframes must either set a range or none may.
-    """
-
-
-class Variant0KeyframeUnionMember1Range(TypedDict, total=False):
-    """Optional edit window.
-
-    When set, the edit applies only to this time range and the keyframe timestamp must fall within it. All keyframes must either set a range or none may.
-    """
-
-    end_seconds: Required[int]
-    """
-    End of the edit window (exclusive) in whole seconds from the start of the input
-    video.
-    """
-
-    start_seconds: Required[int]
-    """Start of the edit window in whole seconds from the start of the input video."""
 
 
 class Variant0KeyframeUnionMember1(TypedDict, total=False):
@@ -136,13 +95,6 @@ class Variant0KeyframeUnionMember1(TypedDict, total=False):
 
     uri: Required[str]
     """A HTTPS URL."""
-
-    range: Variant0KeyframeUnionMember1Range
-    """Optional edit window.
-
-    When set, the edit applies only to this time range and the keyframe timestamp
-    must fall within it. All keyframes must either set a range or none may.
-    """
 
 
 Variant0Keyframe: TypeAlias = Union[Variant0KeyframeUnionMember0, Variant0KeyframeUnionMember1]
