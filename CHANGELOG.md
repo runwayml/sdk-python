@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.3.0 (2026-06-25)
+
+Full Changelog: [v5.2.0...v5.3.0](https://github.com/runwayml/sdk-python/compare/v5.2.0...v5.3.0)
+
+### Features
+
+* **api:** document product_ad 2026-07 ([e1e5eeb](https://github.com/runwayml/sdk-python/commit/e1e5eeb6245f58b3709e2e40e105ecec2c6913ae))
+
 ## 5.2.0 (2026-06-17)
 
 Full Changelog: [v5.1.0...v5.2.0](https://github.com/runwayml/sdk-python/compare/v5.1.0...v5.2.0)
