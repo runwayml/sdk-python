@@ -20,10 +20,10 @@ class RecipeProductAdParams(TypedDict, total=False):
     inputs.
     """
 
-    version: Required[Literal["2026-06", "unsafe-latest"]]
+    version: Required[Literal["2026-06", "2026-07", "unsafe-latest"]]
     """Workflow version.
 
-    Use a dated version (e.g. "2026-06") to pin behavior, or "unsafe-latest" to
+    Use a dated version (e.g. "2026-07") to pin behavior, or "unsafe-latest" to
     track the newest stable version (may break without notice).
     """
 
