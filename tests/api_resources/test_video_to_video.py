@@ -93,12 +93,7 @@ class TestVideoToVideo:
                     "uri": "https://example.com/file",
                 }
             ],
-            references=[
-                {
-                    "uri": "https://example.com/file",
-                    "position": "first",
-                }
-            ],
+            references=[{"uri": "https://example.com/file"}],
             reference_videos=[
                 {
                     "type": "video",
@@ -157,12 +152,7 @@ class TestVideoToVideo:
                     "uri": "https://example.com/file",
                 }
             ],
-            references=[
-                {
-                    "uri": "https://example.com/file",
-                    "position": "first",
-                }
-            ],
+            references=[{"uri": "https://example.com/file"}],
             reference_videos=[
                 {
                     "type": "video",
@@ -280,12 +270,7 @@ class TestAsyncVideoToVideo:
                     "uri": "https://example.com/file",
                 }
             ],
-            references=[
-                {
-                    "uri": "https://example.com/file",
-                    "position": "first",
-                }
-            ],
+            references=[{"uri": "https://example.com/file"}],
             reference_videos=[
                 {
                     "type": "video",
@@ -344,12 +329,7 @@ class TestAsyncVideoToVideo:
                     "uri": "https://example.com/file",
                 }
             ],
-            references=[
-                {
-                    "uri": "https://example.com/file",
-                    "position": "first",
-                }
-            ],
+            references=[{"uri": "https://example.com/file"}],
             reference_videos=[
                 {
                     "type": "video",

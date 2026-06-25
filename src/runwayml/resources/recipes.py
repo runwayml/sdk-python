@@ -256,7 +256,7 @@ class RecipesResource(SyncAPIResource):
         self,
         *,
         product_images: Iterable[recipe_product_ad_params.ProductImage],
-        version: Literal["2026-06", "unsafe-latest"],
+        version: Literal["2026-06", "2026-07", "unsafe-latest"],
         audio: bool | Omit = omit,
         duration: int | Omit = omit,
         product_info: str | Omit = omit,
@@ -283,7 +283,7 @@ class RecipesResource(SyncAPIResource):
               primary product reference in the storyboard grid. See
               [our docs](/assets/inputs#images) on image inputs.
 
-          version: Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
+          version: Workflow version. Use a dated version (e.g. "2026-07") to pin behavior, or
               "unsafe-latest" to track the newest stable version (may break without notice).
 
           audio: Whether to generate audio for the video.
@@ -747,7 +747,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         self,
         *,
         product_images: Iterable[recipe_product_ad_params.ProductImage],
-        version: Literal["2026-06", "unsafe-latest"],
+        version: Literal["2026-06", "2026-07", "unsafe-latest"],
         audio: bool | Omit = omit,
         duration: int | Omit = omit,
         product_info: str | Omit = omit,
@@ -774,7 +774,7 @@ class AsyncRecipesResource(AsyncAPIResource):
               primary product reference in the storyboard grid. See
               [our docs](/assets/inputs#images) on image inputs.
 
-          version: Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
+          version: Workflow version. Use a dated version (e.g. "2026-07") to pin behavior, or
               "unsafe-latest" to track the newest stable version (may break without notice).
 
           audio: Whether to generate audio for the video.

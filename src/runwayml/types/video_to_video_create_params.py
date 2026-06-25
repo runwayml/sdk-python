@@ -137,6 +137,12 @@ class Seedance2(TypedDict, total=False):
         "1440:1440",
         "1248:1664",
         "1080:1920",
+        "3840:1646",
+        "3840:2160",
+        "3840:2880",
+        "3840:3840",
+        "2880:3840",
+        "2160:3840",
     ]
     """The resolution of the output video."""
 
@@ -175,13 +181,6 @@ class Seedance2ReferenceAudio(TypedDict, total=False):
 class Seedance2Reference(TypedDict, total=False):
     uri: Required[str]
     """A HTTPS URL."""
-
-    position: Literal["first", "last"]
-    """The position of the image in the output video.
-
-    "first" will use the image as the first frame, "last" as the last frame. Omit
-    for a reference image.
-    """
 
 
 class Seedance2ReferenceVideo(TypedDict, total=False):
@@ -267,13 +266,6 @@ class Seedance2FastReferenceAudio(TypedDict, total=False):
 class Seedance2FastReference(TypedDict, total=False):
     uri: Required[str]
     """A HTTPS URL."""
-
-    position: Literal["first", "last"]
-    """The position of the image in the output video.
-
-    "first" will use the image as the first frame, "last" as the last frame. Omit
-    for a reference image.
-    """
 
 
 class Seedance2FastReferenceVideo(TypedDict, total=False):

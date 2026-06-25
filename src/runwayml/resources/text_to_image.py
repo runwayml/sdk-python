@@ -301,8 +301,7 @@ class TextToImageResource(SyncAPIResource):
         This endpoint will start a new task to generate images from text and/or image(s)
 
         Args:
-          prompt_text: A non-empty string up to 5,500 characters (measured in UTF-16 code units). This
-              should describe in detail what should appear in the output.
+          prompt_text: This should describe in detail what should appear in the output.
 
           ratio: The resolution of the output image.
 
@@ -403,8 +402,7 @@ class TextToImageResource(SyncAPIResource):
         This endpoint will start a new task to generate images from text and/or image(s)
 
         Args:
-          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
-              should describe in detail what should appear in the output.
+          prompt_text: This should describe in detail what should appear in the output.
 
           ratio: The resolution of the output image.
 
@@ -458,8 +456,7 @@ class TextToImageResource(SyncAPIResource):
         This endpoint will start a new task to generate images from text and/or image(s)
 
         Args:
-          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
-              should describe in detail what should appear in the output.
+          prompt_text: This should describe in detail what should appear in the output.
 
           ratio: The resolution of the output image.
 
@@ -961,8 +958,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         This endpoint will start a new task to generate images from text and/or image(s)
 
         Args:
-          prompt_text: A non-empty string up to 5,500 characters (measured in UTF-16 code units). This
-              should describe in detail what should appear in the output.
+          prompt_text: This should describe in detail what should appear in the output.
 
           ratio: The resolution of the output image.
 
@@ -1063,8 +1059,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         This endpoint will start a new task to generate images from text and/or image(s)
 
         Args:
-          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
-              should describe in detail what should appear in the output.
+          prompt_text: This should describe in detail what should appear in the output.
 
           ratio: The resolution of the output image.
 
@@ -1118,8 +1113,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         This endpoint will start a new task to generate images from text and/or image(s)
 
         Args:
-          prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
-              should describe in detail what should appear in the output.
+          prompt_text: This should describe in detail what should appear in the output.
 
           ratio: The resolution of the output image.
 

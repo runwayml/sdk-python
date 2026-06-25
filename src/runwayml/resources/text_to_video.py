@@ -244,6 +244,12 @@ class TextToVideoResource(SyncAPIResource):
             "1440:1440",
             "1248:1664",
             "1080:1920",
+            "3840:1646",
+            "3840:2160",
+            "3840:2880",
+            "3840:3840",
+            "2880:3840",
+            "2160:3840",
         ]
         | Omit = omit,
         reference_audio: Iterable[text_to_video_create_params.Seedance2ReferenceAudio] | Omit = omit,
@@ -440,6 +446,12 @@ class TextToVideoResource(SyncAPIResource):
             "1440:1440",
             "1248:1664",
             "1080:1920",
+            "3840:1646",
+            "3840:2160",
+            "3840:2880",
+            "3840:3840",
+            "2880:3840",
+            "2160:3840",
         ]
         | Literal[
             "992:432",
@@ -719,6 +731,12 @@ class AsyncTextToVideoResource(AsyncAPIResource):
             "1440:1440",
             "1248:1664",
             "1080:1920",
+            "3840:1646",
+            "3840:2160",
+            "3840:2880",
+            "3840:3840",
+            "2880:3840",
+            "2160:3840",
         ]
         | Omit = omit,
         reference_audio: Iterable[text_to_video_create_params.Seedance2ReferenceAudio] | Omit = omit,
@@ -915,6 +933,12 @@ class AsyncTextToVideoResource(AsyncAPIResource):
             "1440:1440",
             "1248:1664",
             "1080:1920",
+            "3840:1646",
+            "3840:2160",
+            "3840:2880",
+            "3840:3840",
+            "2880:3840",
+            "2160:3840",
         ]
         | Literal[
             "992:432",

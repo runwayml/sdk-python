@@ -251,10 +251,7 @@ class GeminiImage3Pro(TypedDict, total=False):
     model: Required[Literal["gemini_image3_pro"]]
 
     prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
-    """A non-empty string up to 5,500 characters (measured in UTF-16 code units).
-
-    This should describe in detail what should appear in the output.
-    """
+    """This should describe in detail what should appear in the output."""
 
     ratio: Required[
         Literal[
@@ -330,10 +327,7 @@ class GeminiImage3_1Flash(TypedDict, total=False):
     model: Required[Literal["gemini_image3.1_flash"]]
 
     prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
-    """A non-empty string up to 1000 characters (measured in UTF-16 code units).
-
-    This should describe in detail what should appear in the output.
-    """
+    """This should describe in detail what should appear in the output."""
 
     ratio: Required[
         Literal[
@@ -435,10 +429,7 @@ class Gemini2_5Flash(TypedDict, total=False):
     model: Required[Literal["gemini_2.5_flash"]]
 
     prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
-    """A non-empty string up to 1000 characters (measured in UTF-16 code units).
-
-    This should describe in detail what should appear in the output.
-    """
+    """This should describe in detail what should appear in the output."""
 
     ratio: Required[
         Literal[
