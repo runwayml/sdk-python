@@ -47,6 +47,7 @@ class ResultUsedCredit(BaseModel):
         "seedance2",
         "seedance2_fast",
         "magnific_precision_upscaler_v2",
+        "magnific_video_upscaler_creative",
         "kling2.5_turbo_pro",
         "kling3.0_pro",
         "kling3.0_4k",
@@ -62,6 +63,7 @@ class ResultUsedCredit(BaseModel):
         "product_ugc",
         "marketing_stock_image",
         "product_campaign_image",
+        "ad_localization",
     ]
     """The model that credits were spent on."""
 
@@ -108,6 +110,7 @@ class OrganizationRetrieveUsageResponse(BaseModel):
             "seedance2",
             "seedance2_fast",
             "magnific_precision_upscaler_v2",
+            "magnific_video_upscaler_creative",
             "kling2.5_turbo_pro",
             "kling3.0_pro",
             "kling3.0_4k",
@@ -123,6 +126,7 @@ class OrganizationRetrieveUsageResponse(BaseModel):
             "product_ugc",
             "marketing_stock_image",
             "product_campaign_image",
+            "ad_localization",
         ]
     ]
     """The list of models with usage during the queried time range."""
