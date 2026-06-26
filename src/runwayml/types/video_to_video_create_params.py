@@ -41,10 +41,7 @@ class Variant0(TypedDict, total=False):
     """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
-    """
-    An optional string up to 1000 characters describing what should appear in the
-    output.
-    """
+    """A non-empty and optional string describing what should appear in the output."""
 
     ratio: str
 

@@ -96,6 +96,14 @@ from .text_to_video import (
     TextToVideoResourceWithStreamingResponse,
     AsyncTextToVideoResourceWithStreamingResponse,
 )
+from .video_upscale import (
+    VideoUpscaleResource,
+    AsyncVideoUpscaleResource,
+    VideoUpscaleResourceWithRawResponse,
+    AsyncVideoUpscaleResourceWithRawResponse,
+    VideoUpscaleResourceWithStreamingResponse,
+    AsyncVideoUpscaleResourceWithStreamingResponse,
+)
 from .voice_dubbing import (
     VoiceDubbingResource,
     AsyncVoiceDubbingResource,
@@ -250,6 +258,12 @@ __all__ = [
     "AsyncImageUpscaleResourceWithRawResponse",
     "ImageUpscaleResourceWithStreamingResponse",
     "AsyncImageUpscaleResourceWithStreamingResponse",
+    "VideoUpscaleResource",
+    "AsyncVideoUpscaleResource",
+    "VideoUpscaleResourceWithRawResponse",
+    "AsyncVideoUpscaleResourceWithRawResponse",
+    "VideoUpscaleResourceWithStreamingResponse",
+    "AsyncVideoUpscaleResourceWithStreamingResponse",
     "OrganizationResource",
     "AsyncOrganizationResource",
     "OrganizationResourceWithRawResponse",

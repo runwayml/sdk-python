@@ -76,8 +76,7 @@ class VideoToVideoResource(SyncAPIResource):
           keyframes: Timed guidance images placed at specific points in the input video. Up to 5
               keyframes.
 
-          prompt_text: An optional string up to 1000 characters describing what should appear in the
-              output.
+          prompt_text: A non-empty and optional string describing what should appear in the output.
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -399,8 +398,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
           keyframes: Timed guidance images placed at specific points in the input video. Up to 5
               keyframes.
 
-          prompt_text: An optional string up to 1000 characters describing what should appear in the
-              output.
+          prompt_text: A non-empty and optional string describing what should appear in the output.
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
