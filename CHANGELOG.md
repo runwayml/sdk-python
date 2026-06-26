@@ -1,5 +1,14 @@
 # Changelog
 
+## 5.4.0 (2026-06-26)
+
+Full Changelog: [v5.3.0...v5.4.0](https://github.com/runwayml/sdk-python/compare/v5.3.0...v5.4.0)
+
+### Features
+
+* **api:** add magnific video upscale model ([8cbd5e8](https://github.com/runwayml/sdk-python/commit/8cbd5e8feef194595fb9d2decaec0b0cb935e764))
+* **client:** make video upscale waitable ([9c0c6ac](https://github.com/runwayml/sdk-python/commit/9c0c6ac9bba3cd3890c67d51e662b6fc952d5820))
+
 ## 5.3.0 (2026-06-25)
 
 Full Changelog: [v5.2.0...v5.3.0](https://github.com/runwayml/sdk-python/compare/v5.2.0...v5.3.0)
