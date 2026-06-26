@@ -143,6 +143,18 @@ Methods:
 
 - <code title="post /v1/image_upscale">client.image_upscale.<a href="./src/runwayml/resources/image_upscale.py">create</a>(\*\*<a href="src/runwayml/types/image_upscale_create_params.py">params</a>) -> <a href="./src/runwayml/types/image_upscale_create_response.py">ImageUpscaleCreateResponse</a></code>
 
+# VideoUpscale
+
+Types:
+
+```python
+from runwayml.types import VideoUpscaleCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/video_upscale">client.video_upscale.<a href="./src/runwayml/resources/video_upscale.py">create</a>(\*\*<a href="src/runwayml/types/video_upscale_create_params.py">params</a>) -> <a href="./src/runwayml/types/video_upscale_create_response.py">VideoUpscaleCreateResponse</a></code>
+
 # Organization
 
 Types:
