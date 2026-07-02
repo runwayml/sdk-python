@@ -61,6 +61,8 @@ class RecipesResource(SyncAPIResource):
         *,
         prompt: str,
         version: Literal["2026-06", "unsafe-latest"],
+        output_count: int | Omit = omit,
+        quality: Literal["low", "medium", "high"] | Omit = omit,
         reference_image: recipe_marketing_stock_image_params.ReferenceImage | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -80,6 +82,12 @@ class RecipesResource(SyncAPIResource):
           version: Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
               "unsafe-latest" to track the newest stable version (may break without notice).
 
+          output_count: The number of images to generate (1–4). Defaults to 4. Increasing this number
+              affects credits consumed.
+
+          quality: GPT Image 2 rendering quality (`low`, `medium`, or `high`). Lower settings are
+              faster and use fewer credits; `high` (default) is slowest and highest fidelity.
+
           reference_image: Optional brand logo image to guide the generated marketing stock image. See
               [our docs](/assets/inputs#images) on image inputs.
 
@@ -97,6 +105,8 @@ class RecipesResource(SyncAPIResource):
                 {
                     "prompt": prompt,
                     "version": version,
+                    "output_count": output_count,
+                    "quality": quality,
                     "reference_image": reference_image,
                 },
                 recipe_marketing_stock_image_params.RecipeMarketingStockImageParams,
@@ -552,6 +562,8 @@ class AsyncRecipesResource(AsyncAPIResource):
         *,
         prompt: str,
         version: Literal["2026-06", "unsafe-latest"],
+        output_count: int | Omit = omit,
+        quality: Literal["low", "medium", "high"] | Omit = omit,
         reference_image: recipe_marketing_stock_image_params.ReferenceImage | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -571,6 +583,12 @@ class AsyncRecipesResource(AsyncAPIResource):
           version: Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
               "unsafe-latest" to track the newest stable version (may break without notice).
 
+          output_count: The number of images to generate (1–4). Defaults to 4. Increasing this number
+              affects credits consumed.
+
+          quality: GPT Image 2 rendering quality (`low`, `medium`, or `high`). Lower settings are
+              faster and use fewer credits; `high` (default) is slowest and highest fidelity.
+
           reference_image: Optional brand logo image to guide the generated marketing stock image. See
               [our docs](/assets/inputs#images) on image inputs.
 
@@ -588,6 +606,8 @@ class AsyncRecipesResource(AsyncAPIResource):
                 {
                     "prompt": prompt,
                     "version": version,
+                    "output_count": output_count,
+                    "quality": quality,
                     "reference_image": reference_image,
                 },
                 recipe_marketing_stock_image_params.RecipeMarketingStockImageParams,

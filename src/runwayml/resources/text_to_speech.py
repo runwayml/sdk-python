@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
+from typing_extensions import Literal, overload
 
 import httpx
 
 from ..types import text_to_speech_create_params
-from .._types import Body, Query, Headers, NotGiven, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -45,12 +45,62 @@ class TextToSpeechResource(SyncAPIResource):
         """
         return TextToSpeechResourceWithStreamingResponse(self)
 
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["seed_audio"],
+        prompt_text: str,
+        loudness_rate: int | Omit = omit,
+        output_format: Literal["wav", "mp3", "ogg_opus"] | Omit = omit,
+        pitch_rate: int | Omit = omit,
+        sample_rate: Literal[8000, 16000, 24000, 32000, 44100, 48000] | Omit = omit,
+        speech_rate: int | Omit = omit,
+        voice: text_to_speech_create_params.SeedAudioVoice | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToSpeechCreateResponse:
+        """
+        This endpoint will start a new task to generate speech from text.
+
+        Args:
+          prompt_text: A non-empty text prompt. For text-to-speech, the words to speak. For
+              text-to-audio, a scene description that can include voice direction, dialogue,
+              music, and sound effects.
+
+          loudness_rate: Relative output loudness. Negative is quieter, positive is louder; 0 is normal.
+
+          output_format: Output audio container/format.
+
+          pitch_rate: Pitch shift in semitones. Negative lowers, positive raises; 0 is unchanged.
+
+          sample_rate: Output sample rate in Hz.
+
+          speech_rate: Relative speech speed. Negative is slower, positive is faster; 0 is normal.
+
+          voice: Clone from a single reference audio clip, then speak promptText in that voice.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
     def create(
         self,
         *,
         model: Literal["eleven_multilingual_v2"],
         prompt_text: str,
-        voice: text_to_speech_create_params.Voice,
+        voice: text_to_speech_create_params.ElevenMultilingualV2Voice,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -75,12 +125,40 @@ class TextToSpeechResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @required_args(["model", "prompt_text"], ["model", "prompt_text", "voice"])
+    def create(
+        self,
+        *,
+        model: Literal["seed_audio"] | Literal["eleven_multilingual_v2"],
+        prompt_text: str,
+        loudness_rate: int | Omit = omit,
+        output_format: Literal["wav", "mp3", "ogg_opus"] | Omit = omit,
+        pitch_rate: int | Omit = omit,
+        sample_rate: Literal[8000, 16000, 24000, 32000, 44100, 48000] | Omit = omit,
+        speech_rate: int | Omit = omit,
+        voice: text_to_speech_create_params.SeedAudioVoice
+        | text_to_speech_create_params.ElevenMultilingualV2Voice
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToSpeechCreateResponse:
         return self._post(
             "/v1/text_to_speech",
             body=maybe_transform(
                 {
                     "model": model,
                     "prompt_text": prompt_text,
+                    "loudness_rate": loudness_rate,
+                    "output_format": output_format,
+                    "pitch_rate": pitch_rate,
+                    "sample_rate": sample_rate,
+                    "speech_rate": speech_rate,
                     "voice": voice,
                 },
                 text_to_speech_create_params.TextToSpeechCreateParams,
@@ -114,12 +192,62 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         """
         return AsyncTextToSpeechResourceWithStreamingResponse(self)
 
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["seed_audio"],
+        prompt_text: str,
+        loudness_rate: int | Omit = omit,
+        output_format: Literal["wav", "mp3", "ogg_opus"] | Omit = omit,
+        pitch_rate: int | Omit = omit,
+        sample_rate: Literal[8000, 16000, 24000, 32000, 44100, 48000] | Omit = omit,
+        speech_rate: int | Omit = omit,
+        voice: text_to_speech_create_params.SeedAudioVoice | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToSpeechCreateResponse:
+        """
+        This endpoint will start a new task to generate speech from text.
+
+        Args:
+          prompt_text: A non-empty text prompt. For text-to-speech, the words to speak. For
+              text-to-audio, a scene description that can include voice direction, dialogue,
+              music, and sound effects.
+
+          loudness_rate: Relative output loudness. Negative is quieter, positive is louder; 0 is normal.
+
+          output_format: Output audio container/format.
+
+          pitch_rate: Pitch shift in semitones. Negative lowers, positive raises; 0 is unchanged.
+
+          sample_rate: Output sample rate in Hz.
+
+          speech_rate: Relative speech speed. Negative is slower, positive is faster; 0 is normal.
+
+          voice: Clone from a single reference audio clip, then speak promptText in that voice.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
     async def create(
         self,
         *,
         model: Literal["eleven_multilingual_v2"],
         prompt_text: str,
-        voice: text_to_speech_create_params.Voice,
+        voice: text_to_speech_create_params.ElevenMultilingualV2Voice,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -144,12 +272,40 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @required_args(["model", "prompt_text"], ["model", "prompt_text", "voice"])
+    async def create(
+        self,
+        *,
+        model: Literal["seed_audio"] | Literal["eleven_multilingual_v2"],
+        prompt_text: str,
+        loudness_rate: int | Omit = omit,
+        output_format: Literal["wav", "mp3", "ogg_opus"] | Omit = omit,
+        pitch_rate: int | Omit = omit,
+        sample_rate: Literal[8000, 16000, 24000, 32000, 44100, 48000] | Omit = omit,
+        speech_rate: int | Omit = omit,
+        voice: text_to_speech_create_params.SeedAudioVoice
+        | text_to_speech_create_params.ElevenMultilingualV2Voice
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToSpeechCreateResponse:
         return await self._post(
             "/v1/text_to_speech",
             body=await async_maybe_transform(
                 {
                     "model": model,
                     "prompt_text": prompt_text,
+                    "loudness_rate": loudness_rate,
+                    "output_format": output_format,
+                    "pitch_rate": pitch_rate,
+                    "sample_rate": sample_rate,
+                    "speech_rate": speech_rate,
                     "voice": voice,
                 },
                 text_to_speech_create_params.TextToSpeechCreateParams,

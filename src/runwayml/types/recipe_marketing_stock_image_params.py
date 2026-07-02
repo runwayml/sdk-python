@@ -24,6 +24,19 @@ class RecipeMarketingStockImageParams(TypedDict, total=False):
     track the newest stable version (may break without notice).
     """
 
+    output_count: Annotated[int, PropertyInfo(alias="outputCount")]
+    """The number of images to generate (1–4).
+
+    Defaults to 4. Increasing this number affects credits consumed.
+    """
+
+    quality: Literal["low", "medium", "high"]
+    """GPT Image 2 rendering quality (`low`, `medium`, or `high`).
+
+    Lower settings are faster and use fewer credits; `high` (default) is slowest and
+    highest fidelity.
+    """
+
     reference_image: Annotated[ReferenceImage, PropertyInfo(alias="referenceImage")]
     """Optional brand logo image to guide the generated marketing stock image.
 
