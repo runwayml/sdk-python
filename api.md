@@ -253,7 +253,6 @@ Types:
 
 ```python
 from runwayml.types import (
-    RecipeAdLocalizationResponse,
     RecipeMarketingStockImageResponse,
     RecipeMultiShotVideoResponse,
     RecipeProductAdResponse,
@@ -265,7 +264,6 @@ from runwayml.types import (
 
 Methods:
 
-- <code title="post /v1/recipes/ad_localization">client.recipes.<a href="./src/runwayml/resources/recipes.py">ad_localization</a>(\*\*<a href="src/runwayml/types/recipe_ad_localization_params.py">params</a>) -> <a href="./src/runwayml/types/recipe_ad_localization_response.py">RecipeAdLocalizationResponse</a></code>
 - <code title="post /v1/recipes/marketing_stock_image">client.recipes.<a href="./src/runwayml/resources/recipes.py">marketing_stock_image</a>(\*\*<a href="src/runwayml/types/recipe_marketing_stock_image_params.py">params</a>) -> <a href="./src/runwayml/types/recipe_marketing_stock_image_response.py">RecipeMarketingStockImageResponse</a></code>
 - <code title="post /v1/recipes/multi_shot_video">client.recipes.<a href="./src/runwayml/resources/recipes.py">multi_shot_video</a>(\*\*<a href="src/runwayml/types/recipe_multi_shot_video_params.py">params</a>) -> <a href="./src/runwayml/types/recipe_multi_shot_video_response.py">RecipeMultiShotVideoResponse</a></code>
 - <code title="post /v1/recipes/product_ad">client.recipes.<a href="./src/runwayml/resources/recipes.py">product_ad</a>(\*\*<a href="src/runwayml/types/recipe_product_ad_params.py">params</a>) -> <a href="./src/runwayml/types/recipe_product_ad_response.py">RecipeProductAdResponse</a></code>

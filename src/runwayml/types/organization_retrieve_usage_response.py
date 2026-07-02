@@ -71,7 +71,6 @@ class ResultUsedCredit(BaseModel):
         "product_ugc",
         "marketing_stock_image",
         "product_campaign_image",
-        "ad_localization",
     ]
     """The model that credits were spent on."""
 
@@ -148,7 +147,6 @@ class OrganizationRetrieveUsageResponse(BaseModel):
             "product_ugc",
             "marketing_stock_image",
             "product_campaign_image",
-            "ad_localization",
         ]
     ]
     """The list of models with usage during the queried time range."""

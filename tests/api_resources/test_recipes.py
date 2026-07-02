@@ -13,7 +13,6 @@ from runwayml.types import (
     RecipeProductAdResponse,
     RecipeProductUgcResponse,
     RecipeProductSwapResponse,
-    RecipeAdLocalizationResponse,
     RecipeMultiShotVideoResponse,
     RecipeMarketingStockImageResponse,
     RecipeProductCampaignImageResponse,
@@ -24,43 +23,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 class TestRecipes:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
-
-    @parametrize
-    def test_method_ad_localization(self, client: RunwayML) -> None:
-        recipe = client.recipes.ad_localization(
-            reference_image={"uri": "https://example.com/file"},
-            target_language="ar",
-            version="2026-06",
-        )
-        assert_matches_type(RecipeAdLocalizationResponse, recipe, path=["response"])
-
-    @parametrize
-    def test_raw_response_ad_localization(self, client: RunwayML) -> None:
-        response = client.recipes.with_raw_response.ad_localization(
-            reference_image={"uri": "https://example.com/file"},
-            target_language="ar",
-            version="2026-06",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        recipe = response.parse()
-        assert_matches_type(RecipeAdLocalizationResponse, recipe, path=["response"])
-
-    @parametrize
-    def test_streaming_response_ad_localization(self, client: RunwayML) -> None:
-        with client.recipes.with_streaming_response.ad_localization(
-            reference_image={"uri": "https://example.com/file"},
-            target_language="ar",
-            version="2026-06",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            recipe = response.parse()
-            assert_matches_type(RecipeAdLocalizationResponse, recipe, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_marketing_stock_image(self, client: RunwayML) -> None:
@@ -458,43 +420,6 @@ class TestAsyncRecipes:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
-
-    @parametrize
-    async def test_method_ad_localization(self, async_client: AsyncRunwayML) -> None:
-        recipe = await async_client.recipes.ad_localization(
-            reference_image={"uri": "https://example.com/file"},
-            target_language="ar",
-            version="2026-06",
-        )
-        assert_matches_type(RecipeAdLocalizationResponse, recipe, path=["response"])
-
-    @parametrize
-    async def test_raw_response_ad_localization(self, async_client: AsyncRunwayML) -> None:
-        response = await async_client.recipes.with_raw_response.ad_localization(
-            reference_image={"uri": "https://example.com/file"},
-            target_language="ar",
-            version="2026-06",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        recipe = await response.parse()
-        assert_matches_type(RecipeAdLocalizationResponse, recipe, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_ad_localization(self, async_client: AsyncRunwayML) -> None:
-        async with async_client.recipes.with_streaming_response.ad_localization(
-            reference_image={"uri": "https://example.com/file"},
-            target_language="ar",
-            version="2026-06",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            recipe = await response.parse()
-            assert_matches_type(RecipeAdLocalizationResponse, recipe, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_marketing_stock_image(self, async_client: AsyncRunwayML) -> None:
