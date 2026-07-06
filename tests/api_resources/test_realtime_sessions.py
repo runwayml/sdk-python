@@ -39,6 +39,16 @@ class TestRealtimeSessions:
                 "type": "runway-preset",
             },
             model="gwm1_avatars",
+            integration={
+                "signed_url": "https://example.com",
+                "type": "elevenlabs",
+            },
+            livekit={
+                "token": "x",
+                "room_name": "x",
+                "url": "https://example.com",
+                "agent_identity": "x",
+            },
             max_duration=10,
             personality="x",
             start_script="x",
@@ -194,6 +204,16 @@ class TestAsyncRealtimeSessions:
                 "type": "runway-preset",
             },
             model="gwm1_avatars",
+            integration={
+                "signed_url": "https://example.com",
+                "type": "elevenlabs",
+            },
+            livekit={
+                "token": "x",
+                "room_name": "x",
+                "url": "https://example.com",
+                "agent_identity": "x",
+            },
             max_duration=10,
             personality="x",
             start_script="x",
