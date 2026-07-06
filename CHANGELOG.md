@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.8.0 (2026-07-06)
+
+Full Changelog: [v5.7.0...v5.8.0](https://github.com/runwayml/sdk-python/compare/v5.7.0...v5.8.0)
+
+### Features
+
+* **api:** add realtime session external integrations ([a4aeded](https://github.com/runwayml/sdk-python/commit/a4aedede3c8ad44811640c192a0044ddd2c2e31c))
+
 ## 5.7.0 (2026-07-06)
 
 Full Changelog: [v5.6.0...v5.7.0](https://github.com/runwayml/sdk-python/compare/v5.6.0...v5.7.0)
