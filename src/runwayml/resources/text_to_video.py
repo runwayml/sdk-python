@@ -269,7 +269,7 @@ class TextToVideoResource(SyncAPIResource):
           prompt_text: A non-empty text prompt up to 3500 characters describing what should appear in
               the output.
 
-          audio: Whether to generate audio for the video.
+          audio: Whether to generate audio for the video. Audio inclusion affects pricing.
 
           duration: The number of seconds of duration for the output video.
 
@@ -335,7 +335,7 @@ class TextToVideoResource(SyncAPIResource):
           prompt_text: A non-empty text prompt up to 3500 characters describing what should appear in
               the output.
 
-          audio: Whether to generate audio for the video.
+          audio: Whether to generate audio for the video. Audio inclusion affects pricing.
 
           duration: The number of seconds of duration for the output video.
 
@@ -351,109 +351,6 @@ class TextToVideoResource(SyncAPIResource):
           reference_videos: An optional array of video references. The combined duration across all video
               references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        model: Literal["seedance2_mini"],
-        prompt_text: str,
-        audio: bool | Omit = omit,
-        duration: int | Omit = omit,
-        ratio: Literal[
-            "992:432",
-            "864:496",
-            "752:560",
-            "640:640",
-            "560:752",
-            "496:864",
-            "1470:630",
-            "1280:720",
-            "1112:834",
-            "960:960",
-            "834:1112",
-            "720:1280",
-        ]
-        | Omit = omit,
-        reference_audio: Iterable[text_to_video_create_params.Seedance2MiniReferenceAudio] | Omit = omit,
-        references: Iterable[text_to_video_create_params.Seedance2MiniReference] | Omit = omit,
-        reference_videos: Iterable[text_to_video_create_params.Seedance2MiniReferenceVideo] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TextToVideoCreateResponse:
-        """
-        This endpoint will start a new task to generate a video from a text prompt.
-
-        Args:
-          prompt_text: A non-empty text prompt up to 3500 characters describing what should appear in
-              the output.
-
-          audio: Whether to generate audio for the video.
-
-          duration: The number of seconds of duration for the output video.
-
-          ratio: The resolution of the output video. Seedance 2.0 Mini supports 480p and 720p
-              only.
-
-          reference_audio: An optional array of audio references. Audio references require a text prompt,
-              and the total combined duration must not exceed 15 seconds.
-
-          references: An optional array of image references (up to 9). See
-              [our docs](/assets/inputs#images) on image inputs for more information.
-
-          reference_videos: An optional array of video references. The combined duration across all video
-              references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
-              video inputs for more information.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        model: Literal["gemini_omni_flash"],
-        prompt_text: str,
-        duration: int | Omit = omit,
-        ratio: Literal["1280:720", "720:1280"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TextToVideoCreateResponse:
-        """
-        This endpoint will start a new task to generate a video from a text prompt.
-
-        Args:
-          prompt_text: A non-empty text prompt describing the video to generate.
-
-          duration: The duration of the output video in seconds, as a whole number from 3 to 10.
-
-          ratio: The aspect ratio of the output video: `1280:720` (landscape) or `720:1280`
-              (portrait).
 
           extra_headers: Send extra headers
 
@@ -514,8 +411,6 @@ class TextToVideoResource(SyncAPIResource):
         | Literal["happyhorse_1_0"]
         | Literal["seedance2"]
         | Literal["seedance2_fast"]
-        | Literal["seedance2_mini"]
-        | Literal["gemini_omni_flash"]
         | Literal["veo3"],
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280"]
@@ -578,15 +473,12 @@ class TextToVideoResource(SyncAPIResource):
         audio: bool | Omit = omit,
         reference_audio: Iterable[text_to_video_create_params.Seedance2ReferenceAudio]
         | Iterable[text_to_video_create_params.Seedance2FastReferenceAudio]
-        | Iterable[text_to_video_create_params.Seedance2MiniReferenceAudio]
         | Omit = omit,
         references: Iterable[text_to_video_create_params.Seedance2Reference]
         | Iterable[text_to_video_create_params.Seedance2FastReference]
-        | Iterable[text_to_video_create_params.Seedance2MiniReference]
         | Omit = omit,
         reference_videos: Iterable[text_to_video_create_params.Seedance2ReferenceVideo]
         | Iterable[text_to_video_create_params.Seedance2FastReferenceVideo]
-        | Iterable[text_to_video_create_params.Seedance2MiniReferenceVideo]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -864,7 +756,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
           prompt_text: A non-empty text prompt up to 3500 characters describing what should appear in
               the output.
 
-          audio: Whether to generate audio for the video.
+          audio: Whether to generate audio for the video. Audio inclusion affects pricing.
 
           duration: The number of seconds of duration for the output video.
 
@@ -930,7 +822,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
           prompt_text: A non-empty text prompt up to 3500 characters describing what should appear in
               the output.
 
-          audio: Whether to generate audio for the video.
+          audio: Whether to generate audio for the video. Audio inclusion affects pricing.
 
           duration: The number of seconds of duration for the output video.
 
@@ -946,109 +838,6 @@ class AsyncTextToVideoResource(AsyncAPIResource):
           reference_videos: An optional array of video references. The combined duration across all video
               references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        model: Literal["seedance2_mini"],
-        prompt_text: str,
-        audio: bool | Omit = omit,
-        duration: int | Omit = omit,
-        ratio: Literal[
-            "992:432",
-            "864:496",
-            "752:560",
-            "640:640",
-            "560:752",
-            "496:864",
-            "1470:630",
-            "1280:720",
-            "1112:834",
-            "960:960",
-            "834:1112",
-            "720:1280",
-        ]
-        | Omit = omit,
-        reference_audio: Iterable[text_to_video_create_params.Seedance2MiniReferenceAudio] | Omit = omit,
-        references: Iterable[text_to_video_create_params.Seedance2MiniReference] | Omit = omit,
-        reference_videos: Iterable[text_to_video_create_params.Seedance2MiniReferenceVideo] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TextToVideoCreateResponse:
-        """
-        This endpoint will start a new task to generate a video from a text prompt.
-
-        Args:
-          prompt_text: A non-empty text prompt up to 3500 characters describing what should appear in
-              the output.
-
-          audio: Whether to generate audio for the video.
-
-          duration: The number of seconds of duration for the output video.
-
-          ratio: The resolution of the output video. Seedance 2.0 Mini supports 480p and 720p
-              only.
-
-          reference_audio: An optional array of audio references. Audio references require a text prompt,
-              and the total combined duration must not exceed 15 seconds.
-
-          references: An optional array of image references (up to 9). See
-              [our docs](/assets/inputs#images) on image inputs for more information.
-
-          reference_videos: An optional array of video references. The combined duration across all video
-              references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
-              video inputs for more information.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        model: Literal["gemini_omni_flash"],
-        prompt_text: str,
-        duration: int | Omit = omit,
-        ratio: Literal["1280:720", "720:1280"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TextToVideoCreateResponse:
-        """
-        This endpoint will start a new task to generate a video from a text prompt.
-
-        Args:
-          prompt_text: A non-empty text prompt describing the video to generate.
-
-          duration: The duration of the output video in seconds, as a whole number from 3 to 10.
-
-          ratio: The aspect ratio of the output video: `1280:720` (landscape) or `720:1280`
-              (portrait).
 
           extra_headers: Send extra headers
 
@@ -1109,8 +898,6 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Literal["happyhorse_1_0"]
         | Literal["seedance2"]
         | Literal["seedance2_fast"]
-        | Literal["seedance2_mini"]
-        | Literal["gemini_omni_flash"]
         | Literal["veo3"],
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280"]
@@ -1173,15 +960,12 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         audio: bool | Omit = omit,
         reference_audio: Iterable[text_to_video_create_params.Seedance2ReferenceAudio]
         | Iterable[text_to_video_create_params.Seedance2FastReferenceAudio]
-        | Iterable[text_to_video_create_params.Seedance2MiniReferenceAudio]
         | Omit = omit,
         references: Iterable[text_to_video_create_params.Seedance2Reference]
         | Iterable[text_to_video_create_params.Seedance2FastReference]
-        | Iterable[text_to_video_create_params.Seedance2MiniReference]
         | Omit = omit,
         reference_videos: Iterable[text_to_video_create_params.Seedance2ReferenceVideo]
         | Iterable[text_to_video_create_params.Seedance2FastReferenceVideo]
-        | Iterable[text_to_video_create_params.Seedance2MiniReferenceVideo]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

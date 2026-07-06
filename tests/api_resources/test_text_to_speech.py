@@ -18,58 +18,7 @@ class TestTextToSpeech:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create_overload_1(self, client: RunwayML) -> None:
-        text_to_speech = client.text_to_speech.create(
-            model="seed_audio",
-            prompt_text="x",
-        )
-        assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params_overload_1(self, client: RunwayML) -> None:
-        text_to_speech = client.text_to_speech.create(
-            model="seed_audio",
-            prompt_text="x",
-            loudness_rate=-50,
-            output_format="wav",
-            pitch_rate=-12,
-            sample_rate=8000,
-            speech_rate=-50,
-            voice={
-                "audio_uri": "https://example.com/file",
-                "type": "reference-audio",
-            },
-        )
-        assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
-
-    @parametrize
-    def test_raw_response_create_overload_1(self, client: RunwayML) -> None:
-        response = client.text_to_speech.with_raw_response.create(
-            model="seed_audio",
-            prompt_text="x",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        text_to_speech = response.parse()
-        assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
-
-    @parametrize
-    def test_streaming_response_create_overload_1(self, client: RunwayML) -> None:
-        with client.text_to_speech.with_streaming_response.create(
-            model="seed_audio",
-            prompt_text="x",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            text_to_speech = response.parse()
-            assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_method_create_overload_2(self, client: RunwayML) -> None:
+    def test_method_create(self, client: RunwayML) -> None:
         text_to_speech = client.text_to_speech.create(
             model="eleven_multilingual_v2",
             prompt_text="x",
@@ -81,7 +30,7 @@ class TestTextToSpeech:
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
 
     @parametrize
-    def test_raw_response_create_overload_2(self, client: RunwayML) -> None:
+    def test_raw_response_create(self, client: RunwayML) -> None:
         response = client.text_to_speech.with_raw_response.create(
             model="eleven_multilingual_v2",
             prompt_text="x",
@@ -97,7 +46,7 @@ class TestTextToSpeech:
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_overload_2(self, client: RunwayML) -> None:
+    def test_streaming_response_create(self, client: RunwayML) -> None:
         with client.text_to_speech.with_streaming_response.create(
             model="eleven_multilingual_v2",
             prompt_text="x",
@@ -121,58 +70,7 @@ class TestAsyncTextToSpeech:
     )
 
     @parametrize
-    async def test_method_create_overload_1(self, async_client: AsyncRunwayML) -> None:
-        text_to_speech = await async_client.text_to_speech.create(
-            model="seed_audio",
-            prompt_text="x",
-        )
-        assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncRunwayML) -> None:
-        text_to_speech = await async_client.text_to_speech.create(
-            model="seed_audio",
-            prompt_text="x",
-            loudness_rate=-50,
-            output_format="wav",
-            pitch_rate=-12,
-            sample_rate=8000,
-            speech_rate=-50,
-            voice={
-                "audio_uri": "https://example.com/file",
-                "type": "reference-audio",
-            },
-        )
-        assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
-
-    @parametrize
-    async def test_raw_response_create_overload_1(self, async_client: AsyncRunwayML) -> None:
-        response = await async_client.text_to_speech.with_raw_response.create(
-            model="seed_audio",
-            prompt_text="x",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        text_to_speech = await response.parse()
-        assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_create_overload_1(self, async_client: AsyncRunwayML) -> None:
-        async with async_client.text_to_speech.with_streaming_response.create(
-            model="seed_audio",
-            prompt_text="x",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            text_to_speech = await response.parse()
-            assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_create_overload_2(self, async_client: AsyncRunwayML) -> None:
+    async def test_method_create(self, async_client: AsyncRunwayML) -> None:
         text_to_speech = await async_client.text_to_speech.create(
             model="eleven_multilingual_v2",
             prompt_text="x",
@@ -184,7 +82,7 @@ class TestAsyncTextToSpeech:
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_overload_2(self, async_client: AsyncRunwayML) -> None:
+    async def test_raw_response_create(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.text_to_speech.with_raw_response.create(
             model="eleven_multilingual_v2",
             prompt_text="x",
@@ -200,7 +98,7 @@ class TestAsyncTextToSpeech:
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_overload_2(self, async_client: AsyncRunwayML) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncRunwayML) -> None:
         async with async_client.text_to_speech.with_streaming_response.create(
             model="eleven_multilingual_v2",
             prompt_text="x",

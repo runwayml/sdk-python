@@ -13,9 +13,7 @@ __all__ = [
     "Variant0ContentModeration",
     "Variant0Keyframe",
     "Variant0KeyframeUnionMember0",
-    "Variant0KeyframeUnionMember0Range",
     "Variant0KeyframeUnionMember1",
-    "Variant0KeyframeUnionMember1Range",
     "Seedance2",
     "Seedance2ReferenceAudio",
     "Seedance2Reference",
@@ -24,12 +22,6 @@ __all__ = [
     "Seedance2FastReferenceAudio",
     "Seedance2FastReference",
     "Seedance2FastReferenceVideo",
-    "Seedance2Mini",
-    "Seedance2MiniReferenceAudio",
-    "Seedance2MiniReference",
-    "Seedance2MiniReferenceVideo",
-    "GeminiOmniFlash",
-    "GeminiOmniFlashReference",
 ]
 
 
@@ -80,22 +72,6 @@ class Variant0ContentModeration(TypedDict, total=False):
     """
 
 
-class Variant0KeyframeUnionMember0Range(TypedDict, total=False):
-    """Optional edit window.
-
-    When set, the edit applies only to this time range and the keyframe timestamp must fall within it. All keyframes must either set a range or none may.
-    """
-
-    end_seconds: Required[int]
-    """
-    End of the edit window (exclusive) in whole seconds from the start of the input
-    video.
-    """
-
-    start_seconds: Required[int]
-    """Start of the edit window in whole seconds from the start of the input video."""
-
-
 class Variant0KeyframeUnionMember0(TypedDict, total=False):
     seconds: Required[float]
     """
@@ -105,29 +81,6 @@ class Variant0KeyframeUnionMember0(TypedDict, total=False):
 
     uri: Required[str]
     """A HTTPS URL."""
-
-    range: Variant0KeyframeUnionMember0Range
-    """Optional edit window.
-
-    When set, the edit applies only to this time range and the keyframe timestamp
-    must fall within it. All keyframes must either set a range or none may.
-    """
-
-
-class Variant0KeyframeUnionMember1Range(TypedDict, total=False):
-    """Optional edit window.
-
-    When set, the edit applies only to this time range and the keyframe timestamp must fall within it. All keyframes must either set a range or none may.
-    """
-
-    end_seconds: Required[int]
-    """
-    End of the edit window (exclusive) in whole seconds from the start of the input
-    video.
-    """
-
-    start_seconds: Required[int]
-    """Start of the edit window in whole seconds from the start of the input video."""
 
 
 class Variant0KeyframeUnionMember1(TypedDict, total=False):
@@ -140,13 +93,6 @@ class Variant0KeyframeUnionMember1(TypedDict, total=False):
     uri: Required[str]
     """A HTTPS URL."""
 
-    range: Variant0KeyframeUnionMember1Range
-    """Optional edit window.
-
-    When set, the edit applies only to this time range and the keyframe timestamp
-    must fall within it. All keyframes must either set a range or none may.
-    """
-
 
 Variant0Keyframe: TypeAlias = Union[Variant0KeyframeUnionMember0, Variant0KeyframeUnionMember1]
 
@@ -158,7 +104,7 @@ class Seedance2(TypedDict, total=False):
     """A HTTPS URL."""
 
     audio: bool
-    """Whether to generate audio for the video."""
+    """Whether to generate audio for the video. Audio inclusion affects pricing."""
 
     duration: int
     """The number of seconds of duration for the output video."""
@@ -252,7 +198,7 @@ class Seedance2Fast(TypedDict, total=False):
     """A HTTPS URL."""
 
     audio: bool
-    """Whether to generate audio for the video."""
+    """Whether to generate audio for the video. Audio inclusion affects pricing."""
 
     duration: int
     """The number of seconds of duration for the output video."""
@@ -330,107 +276,4 @@ class Seedance2FastReferenceVideo(TypedDict, total=False):
     """A HTTPS URL."""
 
 
-class Seedance2Mini(TypedDict, total=False):
-    model: Required[Literal["seedance2_mini"]]
-
-    prompt_video: Required[Annotated[str, PropertyInfo(alias="promptVideo")]]
-    """A HTTPS URL."""
-
-    audio: bool
-    """Whether to generate audio for the video."""
-
-    duration: int
-    """The number of seconds of duration for the output video."""
-
-    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
-    """
-    An optional text prompt up to 3500 characters describing what should appear in
-    the output.
-    """
-
-    ratio: Literal[
-        "992:432",
-        "864:496",
-        "752:560",
-        "640:640",
-        "560:752",
-        "496:864",
-        "1470:630",
-        "1280:720",
-        "1112:834",
-        "960:960",
-        "834:1112",
-        "720:1280",
-    ]
-    """The resolution of the output video.
-
-    Seedance 2.0 Mini supports 480p and 720p only.
-    """
-
-    reference_audio: Annotated[Iterable[Seedance2MiniReferenceAudio], PropertyInfo(alias="referenceAudio")]
-    """An optional array of audio references.
-
-    Audio references require a text prompt, and the total combined duration must not
-    exceed 15 seconds.
-    """
-
-    references: Iterable[Seedance2MiniReference]
-    """An optional array of image references (up to 9).
-
-    See [our docs](/assets/inputs#images) on image inputs for more information.
-    """
-
-    reference_videos: Annotated[Iterable[Seedance2MiniReferenceVideo], PropertyInfo(alias="referenceVideos")]
-    """An optional array of video references.
-
-    The combined duration across all video references must not exceed 15 seconds.
-    See [our docs](/assets/inputs#videos) on video inputs for more information.
-    """
-
-
-class Seedance2MiniReferenceAudio(TypedDict, total=False):
-    """
-    An audio reference allows the model to use the audio as additional context for the output.
-    """
-
-    type: Required[Literal["audio"]]
-
-    uri: Required[str]
-    """A HTTPS URL."""
-
-
-class Seedance2MiniReference(TypedDict, total=False):
-    uri: Required[str]
-    """A HTTPS URL."""
-
-
-class Seedance2MiniReferenceVideo(TypedDict, total=False):
-    """
-    A video reference allows the model to use the video as additional context for the output.
-    """
-
-    type: Required[Literal["video"]]
-
-    uri: Required[str]
-    """A HTTPS URL."""
-
-
-class GeminiOmniFlash(TypedDict, total=False):
-    model: Required[Literal["gemini_omni_flash"]]
-
-    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
-    """A non-empty instruction describing the edit to apply."""
-
-    video_uri: Required[Annotated[str, PropertyInfo(alias="videoUri")]]
-    """A HTTPS URL."""
-
-    references: Iterable[GeminiOmniFlashReference]
-    """An optional array of image references to guide the edit."""
-
-
-class GeminiOmniFlashReference(TypedDict, total=False):
-    uri: Required[str]
-    """A HTTPS URL."""
-
-
-VideoToVideoCreateParams: TypeAlias = Union[Variant0, Seedance2, Seedance2Fast, Seedance2Mini, GeminiOmniFlash]
+VideoToVideoCreateParams: TypeAlias = Union[Variant0, Seedance2, Seedance2Fast]
