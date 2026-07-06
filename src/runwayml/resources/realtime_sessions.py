@@ -50,6 +50,8 @@ class RealtimeSessionsResource(SyncAPIResource):
         *,
         avatar: realtime_session_create_params.Avatar,
         model: Literal["gwm1_avatars"],
+        integration: realtime_session_create_params.Integration | Omit = omit,
+        livekit: realtime_session_create_params.Livekit | Omit = omit,
         max_duration: int | Omit = omit,
         personality: str | Omit = omit,
         start_script: str | Omit = omit,
@@ -71,6 +73,11 @@ class RealtimeSessionsResource(SyncAPIResource):
           avatar: The avatar configuration for the session.
 
           model: The realtime session model type.
+
+          integration: External integration. Runway renders the avatar; the integration owns
+              conversation or audio.
+
+          livekit: Use integration with type "livekit" instead.
 
           max_duration: Maximum session duration in seconds.
 
@@ -96,6 +103,8 @@ class RealtimeSessionsResource(SyncAPIResource):
                 {
                     "avatar": avatar,
                     "model": model,
+                    "integration": integration,
+                    "livekit": livekit,
                     "max_duration": max_duration,
                     "personality": personality,
                     "start_script": start_script,
@@ -209,6 +218,8 @@ class AsyncRealtimeSessionsResource(AsyncAPIResource):
         *,
         avatar: realtime_session_create_params.Avatar,
         model: Literal["gwm1_avatars"],
+        integration: realtime_session_create_params.Integration | Omit = omit,
+        livekit: realtime_session_create_params.Livekit | Omit = omit,
         max_duration: int | Omit = omit,
         personality: str | Omit = omit,
         start_script: str | Omit = omit,
@@ -230,6 +241,11 @@ class AsyncRealtimeSessionsResource(AsyncAPIResource):
           avatar: The avatar configuration for the session.
 
           model: The realtime session model type.
+
+          integration: External integration. Runway renders the avatar; the integration owns
+              conversation or audio.
+
+          livekit: Use integration with type "livekit" instead.
 
           max_duration: Maximum session duration in seconds.
 
@@ -255,6 +271,8 @@ class AsyncRealtimeSessionsResource(AsyncAPIResource):
                 {
                     "avatar": avatar,
                     "model": model,
+                    "integration": integration,
+                    "livekit": livekit,
                     "max_duration": max_duration,
                     "personality": personality,
                     "start_script": start_script,

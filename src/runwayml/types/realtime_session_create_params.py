@@ -13,6 +13,10 @@ __all__ = [
     "Avatar",
     "AvatarRunwayPreset",
     "AvatarCustom",
+    "Integration",
+    "IntegrationElevenlabs",
+    "IntegrationLivekit",
+    "Livekit",
     "Tool",
     "ToolClientEvent",
     "ToolClientEventParameter",
@@ -41,6 +45,15 @@ class RealtimeSessionCreateParams(TypedDict, total=False):
 
     model: Required[Literal["gwm1_avatars"]]
     """The realtime session model type."""
+
+    integration: Integration
+    """External integration.
+
+    Runway renders the avatar; the integration owns conversation or audio.
+    """
+
+    livekit: Livekit
+    """Use integration with type "livekit" instead."""
 
     max_duration: Annotated[int, PropertyInfo(alias="maxDuration")]
     """Maximum session duration in seconds."""
@@ -95,6 +108,66 @@ class AvatarCustom(TypedDict, total=False):
 
 
 Avatar: TypeAlias = Union[AvatarRunwayPreset, AvatarCustom]
+
+
+class IntegrationElevenlabs(TypedDict, total=False):
+    """ElevenLabs handles conversation; Runway renders the avatar video."""
+
+    signed_url: Required[Annotated[str, PropertyInfo(alias="signedUrl")]]
+    """ConvAI signed WebSocket URL (~15 min lifetime)."""
+
+    type: Required[Literal["elevenlabs"]]
+
+
+class IntegrationLivekit(TypedDict, total=False):
+    """
+    Join an external LiveKit room; Runway publishes video, your agent supplies audio.
+    """
+
+    token: Required[str]
+    """
+    LiveKit access token granting the avatar worker publish rights in the external
+    room.
+    """
+
+    room_name: Required[Annotated[str, PropertyInfo(alias="roomName")]]
+    """Name of the external LiveKit room."""
+
+    type: Required[Literal["livekit"]]
+
+    url: Required[str]
+    """WebSocket URL of the external LiveKit server the avatar worker should join."""
+
+    agent_identity: Annotated[str, PropertyInfo(alias="agentIdentity")]
+    """The participant identity of the customer agent already in the room.
+
+    When provided, the avatar worker trusts audio published by this identity.
+    """
+
+
+Integration: TypeAlias = Union[IntegrationElevenlabs, IntegrationLivekit]
+
+
+class Livekit(TypedDict, total=False):
+    """Use integration with type "livekit" instead."""
+
+    token: Required[str]
+    """
+    LiveKit access token granting the avatar worker publish rights in the external
+    room.
+    """
+
+    room_name: Required[Annotated[str, PropertyInfo(alias="roomName")]]
+    """Name of the external LiveKit room."""
+
+    url: Required[str]
+    """WebSocket URL of the external LiveKit server the avatar worker should join."""
+
+    agent_identity: Annotated[str, PropertyInfo(alias="agentIdentity")]
+    """The participant identity of the customer agent already in the room.
+
+    When provided, the avatar worker trusts audio published by this identity.
+    """
 
 
 class ToolClientEventParameterString(TypedDict, total=False):
