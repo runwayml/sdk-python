@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.6.0 (2026-07-06)
+
+Full Changelog: [v5.5.0...v5.6.0](https://github.com/runwayml/sdk-python/compare/v5.5.0...v5.6.0)
+
+### Features
+
+* **api:** add seedance2_mini and gemini_omni_flash models ([24c83da](https://github.com/runwayml/sdk-python/commit/24c83da8a91d2b22610dcb16a82b0814f6b9cfc8))
+
 ## 5.5.0 (2026-07-06)
 
 Full Changelog: [v5.4.0...v5.5.0](https://github.com/runwayml/sdk-python/compare/v5.4.0...v5.5.0)
