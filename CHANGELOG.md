@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.7.0 (2026-07-06)
+
+Full Changelog: [v5.6.0...v5.7.0](https://github.com/runwayml/sdk-python/compare/v5.6.0...v5.7.0)
+
+### Features
+
+* **api:** add seed_audio model ([f1def20](https://github.com/runwayml/sdk-python/commit/f1def200362842d3bd5ea611527be894e65babf6))
+
 ## 5.6.0 (2026-07-06)
 
 Full Changelog: [v5.5.0...v5.6.0](https://github.com/runwayml/sdk-python/compare/v5.5.0...v5.6.0)
