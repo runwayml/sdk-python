@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.5.0 (2026-07-06)
+
+Full Changelog: [v5.4.0...v5.5.0](https://github.com/runwayml/sdk-python/compare/v5.4.0...v5.5.0)
+
+### Features
+
+* **api:** add outputCount and quality to marketing stock image ([4fe47ce](https://github.com/runwayml/sdk-python/commit/4fe47ce1776641cfe5ea7946a8c210b3f30f5a27))
+
 ## 5.4.0 (2026-06-26)
 
 Full Changelog: [v5.3.0...v5.4.0](https://github.com/runwayml/sdk-python/compare/v5.3.0...v5.4.0)
