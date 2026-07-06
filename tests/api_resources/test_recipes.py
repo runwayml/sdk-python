@@ -37,6 +37,8 @@ class TestRecipes:
         recipe = client.recipes.marketing_stock_image(
             prompt="x",
             version="2026-06",
+            output_count=1,
+            quality="low",
             reference_image={"uri": "https://example.com/file"},
         )
         assert_matches_type(RecipeMarketingStockImageResponse, recipe, path=["response"])
@@ -432,6 +434,8 @@ class TestAsyncRecipes:
         recipe = await async_client.recipes.marketing_stock_image(
             prompt="x",
             version="2026-06",
+            output_count=1,
+            quality="low",
             reference_image={"uri": "https://example.com/file"},
         )
         assert_matches_type(RecipeMarketingStockImageResponse, recipe, path=["response"])
