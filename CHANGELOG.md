@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.9.0 (2026-07-06)
+
+Full Changelog: [v5.8.0...v5.9.0](https://github.com/runwayml/sdk-python/compare/v5.8.0...v5.9.0)
+
+### Features
+
+* **api:** add ad_localization recipe ([0e13593](https://github.com/runwayml/sdk-python/commit/0e13593e38bbf7d0120182d390727593ecefb189))
+
 ## 5.8.0 (2026-07-06)
 
 Full Changelog: [v5.7.0...v5.8.0](https://github.com/runwayml/sdk-python/compare/v5.7.0...v5.8.0)
