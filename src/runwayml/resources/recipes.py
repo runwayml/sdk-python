@@ -18,6 +18,7 @@ from ..types import (
     recipe_product_ad_params,
     recipe_product_ugc_params,
     recipe_product_swap_params,
+    recipe_ad_localization_params,
     recipe_multi_shot_video_params,
     recipe_marketing_stock_image_params,
     recipe_product_campaign_image_params,
@@ -36,6 +37,7 @@ from .._base_client import make_request_options
 from ..types.recipe_product_ad_response import RecipeProductAdResponse
 from ..types.recipe_product_ugc_response import RecipeProductUgcResponse
 from ..types.recipe_product_swap_response import RecipeProductSwapResponse
+from ..types.recipe_ad_localization_response import RecipeAdLocalizationResponse
 from ..types.recipe_multi_shot_video_response import RecipeMultiShotVideoResponse
 from ..types.recipe_marketing_stock_image_response import RecipeMarketingStockImageResponse
 from ..types.recipe_product_campaign_image_response import RecipeProductCampaignImageResponse
@@ -62,6 +64,80 @@ class RecipesResource(SyncAPIResource):
         For more information, see https://www.github.com/runwayml/sdk-python#with_streaming_response
         """
         return RecipesResourceWithStreamingResponse(self)
+
+    def ad_localization(
+        self,
+        *,
+        reference_image: recipe_ad_localization_params.ReferenceImage,
+        target_language: Literal[
+            "ar",
+            "zh",
+            "zh-Hant",
+            "nl",
+            "en",
+            "fr",
+            "de",
+            "hi",
+            "id",
+            "it",
+            "ja",
+            "ko",
+            "pl",
+            "pt",
+            "ru",
+            "es",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "vi",
+            "el",
+        ],
+        version: Literal["2026-06", "unsafe-latest"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        Localize an existing ad image for a target language, preserving visual creative
+        while adapting on-screen messaging.
+
+        Args:
+          reference_image: Reference ad image to localize. See [our docs](/assets/inputs#images) on image
+              inputs.
+
+          target_language: Target language for the localized ad. Use ISO-style codes (e.g. "ja" for
+              Japanese, "es" for Spanish).
+
+          version: Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
+              "unsafe-latest" to track the newest stable version (may break without notice).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/v1/recipes/ad_localization",
+            body=maybe_transform(
+                {
+                    "reference_image": reference_image,
+                    "target_language": target_language,
+                    "version": version,
+                },
+                recipe_ad_localization_params.RecipeAdLocalizationParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=create_waitable_resource(RecipeAdLocalizationResponse, self._client),
+        )
 
     def marketing_stock_image(
         self,
@@ -564,6 +640,80 @@ class AsyncRecipesResource(AsyncAPIResource):
         """
         return AsyncRecipesResourceWithStreamingResponse(self)
 
+    async def ad_localization(
+        self,
+        *,
+        reference_image: recipe_ad_localization_params.ReferenceImage,
+        target_language: Literal[
+            "ar",
+            "zh",
+            "zh-Hant",
+            "nl",
+            "en",
+            "fr",
+            "de",
+            "hi",
+            "id",
+            "it",
+            "ja",
+            "ko",
+            "pl",
+            "pt",
+            "ru",
+            "es",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "vi",
+            "el",
+        ],
+        version: Literal["2026-06", "unsafe-latest"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        Localize an existing ad image for a target language, preserving visual creative
+        while adapting on-screen messaging.
+
+        Args:
+          reference_image: Reference ad image to localize. See [our docs](/assets/inputs#images) on image
+              inputs.
+
+          target_language: Target language for the localized ad. Use ISO-style codes (e.g. "ja" for
+              Japanese, "es" for Spanish).
+
+          version: Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
+              "unsafe-latest" to track the newest stable version (may break without notice).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/v1/recipes/ad_localization",
+            body=await async_maybe_transform(
+                {
+                    "reference_image": reference_image,
+                    "target_language": target_language,
+                    "version": version,
+                },
+                recipe_ad_localization_params.RecipeAdLocalizationParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=create_async_waitable_resource(RecipeAdLocalizationResponse, self._client),
+        )
+
     async def marketing_stock_image(
         self,
         *,
@@ -1049,6 +1199,9 @@ class RecipesResourceWithRawResponse:
     def __init__(self, recipes: RecipesResource) -> None:
         self._recipes = recipes
 
+        self.ad_localization = to_raw_response_wrapper(
+            recipes.ad_localization,
+        )
         self.marketing_stock_image = to_raw_response_wrapper(
             recipes.marketing_stock_image,
         )
@@ -1073,6 +1226,9 @@ class AsyncRecipesResourceWithRawResponse:
     def __init__(self, recipes: AsyncRecipesResource) -> None:
         self._recipes = recipes
 
+        self.ad_localization = async_to_raw_response_wrapper(
+            recipes.ad_localization,
+        )
         self.marketing_stock_image = async_to_raw_response_wrapper(
             recipes.marketing_stock_image,
         )
@@ -1097,6 +1253,9 @@ class RecipesResourceWithStreamingResponse:
     def __init__(self, recipes: RecipesResource) -> None:
         self._recipes = recipes
 
+        self.ad_localization = to_streamed_response_wrapper(
+            recipes.ad_localization,
+        )
         self.marketing_stock_image = to_streamed_response_wrapper(
             recipes.marketing_stock_image,
         )
@@ -1121,6 +1280,9 @@ class AsyncRecipesResourceWithStreamingResponse:
     def __init__(self, recipes: AsyncRecipesResource) -> None:
         self._recipes = recipes
 
+        self.ad_localization = async_to_streamed_response_wrapper(
+            recipes.ad_localization,
+        )
         self.marketing_stock_image = async_to_streamed_response_wrapper(
             recipes.marketing_stock_image,
         )
