@@ -106,6 +106,7 @@ class TextToVideoResource(SyncAPIResource):
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
         audio: bool | Omit = omit,
         duration: Literal[4, 6, 8] | Omit = omit,
+        negative_prompt: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -125,6 +126,8 @@ class TextToVideoResource(SyncAPIResource):
           audio: Whether to generate audio for the video. Audio inclusion affects pricing.
 
           duration: The number of seconds of duration for the output video.
+
+          negative_prompt: Text describing what should not appear in the output video.
 
           extra_headers: Send extra headers
 
@@ -145,6 +148,7 @@ class TextToVideoResource(SyncAPIResource):
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
         audio: bool | Omit = omit,
         duration: Literal[4, 6, 8] | Omit = omit,
+        negative_prompt: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -164,6 +168,8 @@ class TextToVideoResource(SyncAPIResource):
           audio: Whether to generate audio for the video. Audio inclusion affects pricing.
 
           duration: The number of seconds of duration for the output video.
+
+          negative_prompt: Text describing what should not appear in the output video.
 
           extra_headers: Send extra headers
 
@@ -479,6 +485,7 @@ class TextToVideoResource(SyncAPIResource):
         model: Literal["veo3"],
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        negative_prompt: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -496,6 +503,8 @@ class TextToVideoResource(SyncAPIResource):
               should describe in detail what should appear in the output.
 
           ratio: The resolution of the output video.
+
+          negative_prompt: Text describing what should not appear in the output video.
 
           extra_headers: Send extra headers
 
@@ -582,6 +591,7 @@ class TextToVideoResource(SyncAPIResource):
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
         seed: int | Omit = omit,
         audio: bool | Omit = omit,
+        negative_prompt: str | Omit = omit,
         reference_audio: Iterable[text_to_video_create_params.Seedance2ReferenceAudio]
         | Iterable[text_to_video_create_params.Seedance2FastReferenceAudio]
         | Iterable[text_to_video_create_params.Seedance2MiniReferenceAudio]
@@ -612,6 +622,7 @@ class TextToVideoResource(SyncAPIResource):
                     "content_moderation": content_moderation,
                     "seed": seed,
                     "audio": audio,
+                    "negative_prompt": negative_prompt,
                     "reference_audio": reference_audio,
                     "references": references,
                     "reference_videos": reference_videos,
@@ -701,6 +712,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
         audio: bool | Omit = omit,
         duration: Literal[4, 6, 8] | Omit = omit,
+        negative_prompt: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -720,6 +732,8 @@ class AsyncTextToVideoResource(AsyncAPIResource):
           audio: Whether to generate audio for the video. Audio inclusion affects pricing.
 
           duration: The number of seconds of duration for the output video.
+
+          negative_prompt: Text describing what should not appear in the output video.
 
           extra_headers: Send extra headers
 
@@ -740,6 +754,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
         audio: bool | Omit = omit,
         duration: Literal[4, 6, 8] | Omit = omit,
+        negative_prompt: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -759,6 +774,8 @@ class AsyncTextToVideoResource(AsyncAPIResource):
           audio: Whether to generate audio for the video. Audio inclusion affects pricing.
 
           duration: The number of seconds of duration for the output video.
+
+          negative_prompt: Text describing what should not appear in the output video.
 
           extra_headers: Send extra headers
 
@@ -1074,6 +1091,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         model: Literal["veo3"],
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        negative_prompt: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1091,6 +1109,8 @@ class AsyncTextToVideoResource(AsyncAPIResource):
               should describe in detail what should appear in the output.
 
           ratio: The resolution of the output video.
+
+          negative_prompt: Text describing what should not appear in the output video.
 
           extra_headers: Send extra headers
 
@@ -1177,6 +1197,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
         seed: int | Omit = omit,
         audio: bool | Omit = omit,
+        negative_prompt: str | Omit = omit,
         reference_audio: Iterable[text_to_video_create_params.Seedance2ReferenceAudio]
         | Iterable[text_to_video_create_params.Seedance2FastReferenceAudio]
         | Iterable[text_to_video_create_params.Seedance2MiniReferenceAudio]
@@ -1207,6 +1228,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
                     "content_moderation": content_moderation,
                     "seed": seed,
                     "audio": audio,
+                    "negative_prompt": negative_prompt,
                     "reference_audio": reference_audio,
                     "references": references,
                     "reference_videos": reference_videos,

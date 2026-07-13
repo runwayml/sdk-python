@@ -21,6 +21,10 @@ __all__ = [
     "GeminiImage3ProReferenceImage",
     "GeminiImage3_1Flash",
     "GeminiImage3_1FlashReferenceImage",
+    "Seedream5Pro",
+    "Seedream5ProReferenceImage",
+    "Seedream5Lite",
+    "Seedream5LiteReferenceImage",
     "Gemini2_5Flash",
     "Gemini2_5FlashReferenceImage",
 ]
@@ -425,6 +429,110 @@ class GeminiImage3_1FlashReferenceImage(TypedDict, total=False):
     """
 
 
+class Seedream5Pro(TypedDict, total=False):
+    model: Required[Literal["seedream5_pro"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty string up to 4,000 characters describing the desired image."""
+
+    ratio: Required[
+        Literal[
+            "1024:1024",
+            "1184:896",
+            "896:1184",
+            "1376:768",
+            "768:1376",
+            "1296:864",
+            "864:1296",
+            "2048:2048",
+            "2304:1728",
+            "1728:2304",
+            "2720:1530",
+            "1530:2720",
+            "2496:1664",
+            "1664:2496",
+            "auto_1k",
+            "auto_2k",
+        ]
+    ]
+    """The resolution of the output image, expressed as `<width>:<height>`.
+
+    Use `auto_1k` or `auto_2k` to let the model pick aspect ratio at a fixed
+    resolution tier.
+    """
+
+    output_count: Annotated[int, PropertyInfo(alias="outputCount")]
+    """The number of images to generate.
+
+    Increasing this number will affect the number of credits consumed by the
+    generation.
+    """
+
+    output_format: Annotated[Literal["png", "jpeg"], PropertyInfo(alias="outputFormat")]
+    """The file format of the output image. Defaults to png."""
+
+    reference_images: Annotated[Iterable[Seedream5ProReferenceImage], PropertyInfo(alias="referenceImages")]
+    """An array of reference images for multi-image fusion and interactive editing.
+
+    Reference by upload order in prompt text (Figure 1, Figure 2, etc.).
+    """
+
+
+class Seedream5ProReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
+class Seedream5Lite(TypedDict, total=False):
+    model: Required[Literal["seedream5_lite"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty string up to 4,000 characters describing the desired image."""
+
+    ratio: Required[
+        Literal[
+            "2048:2048",
+            "2304:1728",
+            "1728:2304",
+            "2848:1600",
+            "1600:2848",
+            "2496:1664",
+            "1664:2496",
+            "3136:1344",
+            "3072:3072",
+            "3456:2592",
+            "2592:3456",
+            "4096:2304",
+            "2304:4096",
+            "3744:2496",
+            "2496:3744",
+            "4704:2016",
+        ]
+    ]
+    """The resolution of the output image, expressed as `<width>:<height>`."""
+
+    output_count: Annotated[int, PropertyInfo(alias="outputCount")]
+    """The number of images to generate.
+
+    Increasing this number will affect the number of credits consumed by the
+    generation.
+    """
+
+    output_format: Annotated[Literal["png", "jpeg"], PropertyInfo(alias="outputFormat")]
+    """The file format of the output image. Defaults to png."""
+
+    reference_images: Annotated[Iterable[Seedream5LiteReferenceImage], PropertyInfo(alias="referenceImages")]
+    """An array of reference images for multi-image fusion and interactive editing.
+
+    Reference by upload order in prompt text (Figure 1, Figure 2, etc.).
+    """
+
+
+class Seedream5LiteReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL."""
+
+
 class Gemini2_5Flash(TypedDict, total=False):
     model: Required[Literal["gemini_2.5_flash"]]
 
@@ -466,5 +574,12 @@ class Gemini2_5FlashReferenceImage(TypedDict, total=False):
 
 
 TextToImageCreateParams: TypeAlias = Union[
-    Gen4ImageTurbo, Gen4Image, GptImage2, GeminiImage3Pro, GeminiImage3_1Flash, Gemini2_5Flash
+    Gen4ImageTurbo,
+    Gen4Image,
+    GptImage2,
+    GeminiImage3Pro,
+    GeminiImage3_1Flash,
+    Seedream5Pro,
+    Seedream5Lite,
+    Gemini2_5Flash,
 ]

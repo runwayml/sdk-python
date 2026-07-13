@@ -167,6 +167,9 @@ class Veo3_1(TypedDict, total=False):
     duration: Literal[4, 6, 8]
     """The number of seconds of duration for the output video."""
 
+    negative_prompt: Annotated[str, PropertyInfo(alias="negativePrompt")]
+    """Text describing what should not appear in the output video."""
+
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """A non-empty string up to 1000 characters (measured in UTF-16 code units).
 
@@ -206,6 +209,9 @@ class Veo3_1Fast(TypedDict, total=False):
 
     duration: Literal[4, 6, 8]
     """The number of seconds of duration for the output video."""
+
+    negative_prompt: Annotated[str, PropertyInfo(alias="negativePrompt")]
+    """Text describing what should not appear in the output video."""
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """A non-empty string up to 1000 characters (measured in UTF-16 code units).
@@ -540,6 +546,9 @@ class Veo3(TypedDict, total=False):
 
     ratio: Required[Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]]
     """The resolution of the output video."""
+
+    negative_prompt: Annotated[str, PropertyInfo(alias="negativePrompt")]
+    """Text describing what should not appear in the output video."""
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """A non-empty string up to 1000 characters (measured in UTF-16 code units).
