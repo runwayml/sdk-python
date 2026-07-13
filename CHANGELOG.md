@@ -1,5 +1,18 @@
 # Changelog
 
+## 5.10.0 (2026-07-13)
+
+Full Changelog: [v5.9.0...v5.10.0](https://github.com/runwayml/sdk-python/compare/v5.9.0...v5.10.0)
+
+### Features
+
+* **api:** Seedream 5 Pro/Lite + negativePrompt for Veo models ([f98699c](https://github.com/runwayml/sdk-python/commit/f98699c3142c2ed83fbdac7c70ea2042b698b352))
+
+
+### Bug Fixes
+
+* **client:** make seedream5_pro and seedream5_lite responses awaitable ([980b632](https://github.com/runwayml/sdk-python/commit/980b632959e3d352524d46375cd18c0666f5bac6))
+
 ## 5.9.0 (2026-07-06)
 
 Full Changelog: [v5.8.0...v5.9.0](https://github.com/runwayml/sdk-python/compare/v5.8.0...v5.9.0)
