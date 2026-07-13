@@ -140,6 +140,7 @@ class TestImageToVideo:
             ratio="1280:720",
             audio=True,
             duration=4,
+            negative_prompt="x",
             prompt_text="x",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -189,6 +190,7 @@ class TestImageToVideo:
             ratio="1280:720",
             audio=True,
             duration=4,
+            negative_prompt="x",
             prompt_text="x",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -484,6 +486,7 @@ class TestImageToVideo:
             model="veo3",
             prompt_image="https://example.com/file",
             ratio="1280:720",
+            negative_prompt="x",
             prompt_text="x",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -647,6 +650,7 @@ class TestAsyncImageToVideo:
             ratio="1280:720",
             audio=True,
             duration=4,
+            negative_prompt="x",
             prompt_text="x",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -696,6 +700,7 @@ class TestAsyncImageToVideo:
             ratio="1280:720",
             audio=True,
             duration=4,
+            negative_prompt="x",
             prompt_text="x",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -991,6 +996,7 @@ class TestAsyncImageToVideo:
             model="veo3",
             prompt_image="https://example.com/file",
             ratio="1280:720",
+            negative_prompt="x",
             prompt_text="x",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])

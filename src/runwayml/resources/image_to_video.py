@@ -156,6 +156,7 @@ class ImageToVideoResource(SyncAPIResource):
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
         audio: bool | Omit = omit,
         duration: Literal[4, 6, 8] | Omit = omit,
+        negative_prompt: str | Omit = omit,
         prompt_text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -177,6 +178,8 @@ class ImageToVideoResource(SyncAPIResource):
           audio: Whether to generate audio for the video. Audio inclusion affects pricing.
 
           duration: The number of seconds of duration for the output video.
+
+          negative_prompt: Text describing what should not appear in the output video.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
@@ -200,6 +203,7 @@ class ImageToVideoResource(SyncAPIResource):
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
         audio: bool | Omit = omit,
         duration: Literal[4, 6, 8] | Omit = omit,
+        negative_prompt: str | Omit = omit,
         prompt_text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -221,6 +225,8 @@ class ImageToVideoResource(SyncAPIResource):
           audio: Whether to generate audio for the video. Audio inclusion affects pricing.
 
           duration: The number of seconds of duration for the output video.
+
+          negative_prompt: Text describing what should not appear in the output video.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
@@ -520,6 +526,7 @@ class ImageToVideoResource(SyncAPIResource):
         model: Literal["veo3"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Veo3PromptImagePromptImage]],
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        negative_prompt: str | Omit = omit,
         prompt_text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -537,6 +544,8 @@ class ImageToVideoResource(SyncAPIResource):
           prompt_image: A HTTPS URL.
 
           ratio: The resolution of the output video.
+
+          negative_prompt: Text describing what should not appear in the output video.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
@@ -628,6 +637,7 @@ class ImageToVideoResource(SyncAPIResource):
         | Omit = omit,
         seed: int | Omit = omit,
         audio: bool | Omit = omit,
+        negative_prompt: str | Omit = omit,
         resolution: Literal["720P", "1080P"] | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2ReferenceAudio]
         | Iterable[image_to_video_create_params.Seedance2FastReferenceAudio]
@@ -652,6 +662,7 @@ class ImageToVideoResource(SyncAPIResource):
                     "content_moderation": content_moderation,
                     "seed": seed,
                     "audio": audio,
+                    "negative_prompt": negative_prompt,
                     "resolution": resolution,
                     "reference_audio": reference_audio,
                 },
@@ -790,6 +801,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
         audio: bool | Omit = omit,
         duration: Literal[4, 6, 8] | Omit = omit,
+        negative_prompt: str | Omit = omit,
         prompt_text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -811,6 +823,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
           audio: Whether to generate audio for the video. Audio inclusion affects pricing.
 
           duration: The number of seconds of duration for the output video.
+
+          negative_prompt: Text describing what should not appear in the output video.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
@@ -834,6 +848,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
         audio: bool | Omit = omit,
         duration: Literal[4, 6, 8] | Omit = omit,
+        negative_prompt: str | Omit = omit,
         prompt_text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -855,6 +870,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
           audio: Whether to generate audio for the video. Audio inclusion affects pricing.
 
           duration: The number of seconds of duration for the output video.
+
+          negative_prompt: Text describing what should not appear in the output video.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
@@ -1154,6 +1171,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         model: Literal["veo3"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Veo3PromptImagePromptImage]],
         ratio: Literal["1280:720", "720:1280", "1080:1920", "1920:1080"],
+        negative_prompt: str | Omit = omit,
         prompt_text: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1171,6 +1189,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
           prompt_image: A HTTPS URL.
 
           ratio: The resolution of the output video.
+
+          negative_prompt: Text describing what should not appear in the output video.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
@@ -1262,6 +1282,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Omit = omit,
         seed: int | Omit = omit,
         audio: bool | Omit = omit,
+        negative_prompt: str | Omit = omit,
         resolution: Literal["720P", "1080P"] | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2ReferenceAudio]
         | Iterable[image_to_video_create_params.Seedance2FastReferenceAudio]
@@ -1286,6 +1307,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
                     "content_moderation": content_moderation,
                     "seed": seed,
                     "audio": audio,
+                    "negative_prompt": negative_prompt,
                     "resolution": resolution,
                     "reference_audio": reference_audio,
                 },
