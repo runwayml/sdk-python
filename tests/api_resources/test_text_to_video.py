@@ -86,6 +86,7 @@ class TestTextToVideo:
             ratio="1280:720",
             audio=True,
             duration=4,
+            negative_prompt="x",
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
@@ -134,6 +135,7 @@ class TestTextToVideo:
             ratio="1280:720",
             audio=True,
             duration=4,
+            negative_prompt="x",
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
@@ -438,6 +440,17 @@ class TestTextToVideo:
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
     @parametrize
+    def test_method_create_with_all_params_overload_9(self, client: RunwayML) -> None:
+        text_to_video = client.text_to_video.create(
+            duration=8,
+            model="veo3",
+            prompt_text="x",
+            ratio="1280:720",
+            negative_prompt="x",
+        )
+        assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
+
+    @parametrize
     def test_raw_response_create_overload_9(self, client: RunwayML) -> None:
         response = client.text_to_video.with_raw_response.create(
             duration=8,
@@ -542,6 +555,7 @@ class TestAsyncTextToVideo:
             ratio="1280:720",
             audio=True,
             duration=4,
+            negative_prompt="x",
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
@@ -590,6 +604,7 @@ class TestAsyncTextToVideo:
             ratio="1280:720",
             audio=True,
             duration=4,
+            negative_prompt="x",
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
@@ -890,6 +905,17 @@ class TestAsyncTextToVideo:
             model="veo3",
             prompt_text="x",
             ratio="1280:720",
+        )
+        assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_9(self, async_client: AsyncRunwayML) -> None:
+        text_to_video = await async_client.text_to_video.create(
+            duration=8,
+            model="veo3",
+            prompt_text="x",
+            ratio="1280:720",
+            negative_prompt="x",
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
