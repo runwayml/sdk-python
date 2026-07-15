@@ -1,0 +1,1282 @@
+# Changelog
+
+## 5.10.0 (2026-07-13)
+
+Full Changelog: [v5.9.0...v5.10.0](https://github.com/runwayml/sdk-python/compare/v5.9.0...v5.10.0)
+
+### Features
+
+* **api:** Seedream 5 Pro/Lite + negativePrompt for Veo models ([f98699c](https://github.com/runwayml/sdk-python/commit/f98699c3142c2ed83fbdac7c70ea2042b698b352))
+
+
+### Bug Fixes
+
+* **client:** make seedream5_pro and seedream5_lite responses awaitable ([980b632](https://github.com/runwayml/sdk-python/commit/980b632959e3d352524d46375cd18c0666f5bac6))
+
+## 5.9.0 (2026-07-06)
+
+Full Changelog: [v5.8.0...v5.9.0](https://github.com/runwayml/sdk-python/compare/v5.8.0...v5.9.0)
+
+### Features
+
+* **api:** add ad_localization recipe ([0e13593](https://github.com/runwayml/sdk-python/commit/0e13593e38bbf7d0120182d390727593ecefb189))
+
+## 5.8.0 (2026-07-06)
+
+Full Changelog: [v5.7.0...v5.8.0](https://github.com/runwayml/sdk-python/compare/v5.7.0...v5.8.0)
+
+### Features
+
+* **api:** add realtime session external integrations ([a4aeded](https://github.com/runwayml/sdk-python/commit/a4aedede3c8ad44811640c192a0044ddd2c2e31c))
+
+## 5.7.0 (2026-07-06)
+
+Full Changelog: [v5.6.0...v5.7.0](https://github.com/runwayml/sdk-python/compare/v5.6.0...v5.7.0)
+
+### Features
+
+* **api:** add seed_audio model ([f1def20](https://github.com/runwayml/sdk-python/commit/f1def200362842d3bd5ea611527be894e65babf6))
+
+## 5.6.0 (2026-07-06)
+
+Full Changelog: [v5.5.0...v5.6.0](https://github.com/runwayml/sdk-python/compare/v5.5.0...v5.6.0)
+
+### Features
+
+* **api:** add seedance2_mini and gemini_omni_flash models ([24c83da](https://github.com/runwayml/sdk-python/commit/24c83da8a91d2b22610dcb16a82b0814f6b9cfc8))
+
+## 5.5.0 (2026-07-06)
+
+Full Changelog: [v5.4.0...v5.5.0](https://github.com/runwayml/sdk-python/compare/v5.4.0...v5.5.0)
+
+### Features
+
+* **api:** add outputCount and quality to marketing stock image ([4fe47ce](https://github.com/runwayml/sdk-python/commit/4fe47ce1776641cfe5ea7946a8c210b3f30f5a27))
+
+## 5.4.0 (2026-06-26)
+
+Full Changelog: [v5.3.0...v5.4.0](https://github.com/runwayml/sdk-python/compare/v5.3.0...v5.4.0)
+
+### Features
+
+* **api:** add magnific video upscale model ([8cbd5e8](https://github.com/runwayml/sdk-python/commit/8cbd5e8feef194595fb9d2decaec0b0cb935e764))
+* **client:** make video upscale waitable ([9c0c6ac](https://github.com/runwayml/sdk-python/commit/9c0c6ac9bba3cd3890c67d51e662b6fc952d5820))
+
+## 5.3.0 (2026-06-25)
+
+Full Changelog: [v5.2.0...v5.3.0](https://github.com/runwayml/sdk-python/compare/v5.2.0...v5.3.0)
+
+### Features
+
+* **api:** document product_ad 2026-07 ([e1e5eeb](https://github.com/runwayml/sdk-python/commit/e1e5eeb6245f58b3709e2e40e105ecec2c6913ae))
+
+## 5.2.0 (2026-06-17)
+
+Full Changelog: [v5.1.0...v5.2.0](https://github.com/runwayml/sdk-python/compare/v5.1.0...v5.2.0)
+
+### Features
+
+* **api:** Recipes, aleph2 range ([529fc1d](https://github.com/runwayml/sdk-python/commit/529fc1da7b279af30f5aef1314ab16a87a3916f1))
+* **client:** add recipe endpoints to config ([26725b1](https://github.com/runwayml/sdk-python/commit/26725b15a27fbf9437a323bb28238e7d4657ed53))
+* **client:** Make recipes waitable ([11dbef5](https://github.com/runwayml/sdk-python/commit/11dbef5fbf6bd4147d4f6b91f43e260c9b4b2318))
+
+
+### Bug Fixes
+
+* **api:** remove range param ([f67c02d](https://github.com/runwayml/sdk-python/commit/f67c02db8769d481109a7d033b8fa030abdeb56e))
+
+## 5.1.0 (2026-06-12)
+
+Full Changelog: [v5.0.0...v5.1.0](https://github.com/runwayml/sdk-python/compare/v5.0.0...v5.1.0)
+
+### Features
+
+* **api:** add outpaint support for Aleph 2.0 ([673817e](https://github.com/runwayml/sdk-python/commit/673817e3bbc4dc04c2f52153daf00518fae58ed7))
+
+## 5.0.0 (2026-06-10)
+
+Full Changelog: [v4.18.0...v5.0.0](https://github.com/runwayml/sdk-python/compare/v4.18.0...v5.0.0)
+
+### Features
+
+* **api:** Add new avatar and voice routes ([36d836d](https://github.com/runwayml/sdk-python/commit/36d836dfd28cadc7dbe0b956ce03a8243cd28e2f))
+
+
+### Bug Fixes
+
+* **api:** update the right config file this time ([0ddcaf5](https://github.com/runwayml/sdk-python/commit/0ddcaf5c418dda2139dbb5431703e49ba5f11c37))
+
+## 4.18.0 (2026-06-05)
+
+Full Changelog: [v4.17.0...v4.18.0](https://github.com/runwayml/sdk-python/compare/v4.17.0...v4.18.0)
+
+### Features
+
+* **api:** seedance2_fast ([90bc24e](https://github.com/runwayml/sdk-python/commit/90bc24eda321b4a7f0b7ef3c923362c60ccc18f2))
+
+
+### Bug Fixes
+
+* **client:** Make sd2_fast responses awaitable ([3d2d3ac](https://github.com/runwayml/sdk-python/commit/3d2d3acba9d155508577a13dd0f8446ecaf40c33))
+
+## 4.17.0 (2026-06-03)
+
+Full Changelog: [v4.16.0...v4.17.0](https://github.com/runwayml/sdk-python/compare/v4.16.0...v4.17.0)
+
+### Features
+
+* **api:** SD2, HH1 ([e457b11](https://github.com/runwayml/sdk-python/commit/e457b1111f63d43026298b5f9ef04f4e7f758831))
+
+
+### Bug Fixes
+
+* **client:** Make SD2 and HH1 awaitable for task output ([894c22f](https://github.com/runwayml/sdk-python/commit/894c22fb3243f2657341a63186926cd6b75311b2))
+
+## 4.16.0 (2026-06-02)
+
+Full Changelog: [v4.15.0...v4.16.0](https://github.com/runwayml/sdk-python/compare/v4.15.0...v4.16.0)
+
+### Features
+
+* **api:** Aleph2 ([b36110b](https://github.com/runwayml/sdk-python/commit/b36110bebc1812e5d8a4e682b6af818cefcceed4))
+* **api:** Image upscale endpoint ([00f2d0b](https://github.com/runwayml/sdk-python/commit/00f2d0b573c0d282e2096eb1f22e053d9d5a506b))
+
+
+### Bug Fixes
+
+* **client:** Awaitable image upscale also ([346f07f](https://github.com/runwayml/sdk-python/commit/346f07ffc39d18ace05839d59550b5c72bcef941))
+* **client:** Updating typing for awaitable task output ([485c29c](https://github.com/runwayml/sdk-python/commit/485c29c031c84340742c27af823c9a28cc596d09))
+
+## 4.15.0 (2026-05-11)
+
+Full Changelog: [v4.14.0...v4.15.0](https://github.com/runwayml/sdk-python/compare/v4.14.0...v4.15.0)
+
+### Features
+
+* **internal/types:** support eagerly validating pydantic iterators ([67267fb](https://github.com/runwayml/sdk-python/commit/67267fb31a51749985c08fbefbcdbb1c8ab47412))
+
+## 4.14.0 (2026-05-08)
+
+Full Changelog: [v4.13.0...v4.14.0](https://github.com/runwayml/sdk-python/compare/v4.13.0...v4.14.0)
+
+### Features
+
+* **api:** gemini 3 pro ([b907241](https://github.com/runwayml/sdk-python/commit/b907241a2564b5c3afe3942a37daa2eaf719ea2d))
+* **api:** gpt_image_2 ([76997d3](https://github.com/runwayml/sdk-python/commit/76997d35dab56a5c8d2a43a8f12eb1b749eb6906))
+
+
+### Bug Fixes
+
+* **api:** Fix bad extra param ([f892e71](https://github.com/runwayml/sdk-python/commit/f892e7199f09ba11f6e940a781c119bc75b3761b))
+* **client:** add missing f-string prefix in file type error message ([52abe91](https://github.com/runwayml/sdk-python/commit/52abe91027424917df51ae2e7cf7762921f81324))
+* **client:** Fix types for gpt_image_2 ([28fba38](https://github.com/runwayml/sdk-python/commit/28fba389975adb029b64fa4dcb5d28a62c29b095))
+
+
+### Chores
+
+* **internal:** reformat pyproject.toml ([3f300f0](https://github.com/runwayml/sdk-python/commit/3f300f0dafcc3b3d15b4bee35f024aa2f1e575a6))
+
+## 4.13.0 (2026-04-27)
+
+Full Changelog: [v4.12.0...v4.13.0](https://github.com/runwayml/sdk-python/compare/v4.12.0...v4.13.0)
+
+### Features
+
+* support setting headers via env ([fdfdafb](https://github.com/runwayml/sdk-python/commit/fdfdafb9127b91b59c2a4f6c6c8828ad8a52a966))
+
+
+### Bug Fixes
+
+* use correct field name format for multipart file arrays ([e7a8c90](https://github.com/runwayml/sdk-python/commit/e7a8c9072e92a996c6a4f66bb2287c60b26c99b6))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([c5be409](https://github.com/runwayml/sdk-python/commit/c5be40920bb59fd86da4a1eae8399a68bea1c44e))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([15e5514](https://github.com/runwayml/sdk-python/commit/15e55144be53914122cd76ade48b18dd195d2016))
+* **tests:** bump steady to v0.22.1 ([10b9237](https://github.com/runwayml/sdk-python/commit/10b9237c54d82fcdf700994d36a6be1b76923b0b))
+
+## 4.12.0 (2026-04-15)
+
+Full Changelog: [v4.11.0...v4.12.0](https://github.com/runwayml/sdk-python/compare/v4.11.0...v4.12.0)
+
+### Features
+
+* **api:** seedance2 ([5004f1d](https://github.com/runwayml/sdk-python/commit/5004f1d931a4bf5e53c8b67cefa098bc85fa4ef5))
+* **client:** awaitable task support for seedance2 ([c3f73ee](https://github.com/runwayml/sdk-python/commit/c3f73ee879ed425e1ecb4917d11df32d3313f782))
+
+
+### Bug Fixes
+
+* **api:** remove spurious api param ([92173b3](https://github.com/runwayml/sdk-python/commit/92173b323f113a36d28386ec5ea096b4ee940be3))
+* ensure file data are only sent as 1 parameter ([fc5a5ef](https://github.com/runwayml/sdk-python/commit/fc5a5efba2d71af553c8cd0c7b0024bd15db0a16))
+
+## 4.11.0 (2026-04-10)
+
+Full Changelog: [v4.10.0...v4.11.0](https://github.com/runwayml/sdk-python/compare/v4.10.0...v4.11.0)
+
+### Features
+
+* **api:** add avatar_videos resource ([75b6ded](https://github.com/runwayml/sdk-python/commit/75b6deda8c5733115af29c9374ae10f3d4f4716a))
+* **polling:** add wait_for_task_output to avatar_videos.create ([e8fe41b](https://github.com/runwayml/sdk-python/commit/e8fe41ba8c95f2263a08faefe2d791374b1db5d0))
+
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([839c38b](https://github.com/runwayml/sdk-python/commit/839c38bc95d9147b140481907621942c5c503ead))
+
+
+### Chores
+
+* pin GitHub Actions to full commit SHAs ([8f7689b](https://github.com/runwayml/sdk-python/commit/8f7689bac99f57930dd88a9ab3d4c9a279a13888))
+
+## 4.10.0 (2026-04-01)
+
+Full Changelog: [v4.9.0...v4.10.0](https://github.com/runwayml/sdk-python/compare/v4.9.0...v4.10.0)
+
+### Features
+
+* **api:** add tools parameter to realtime sessions ([c06a7f0](https://github.com/runwayml/sdk-python/commit/c06a7f0ac1df58a820b7bfd288c60efce163f743))
+* **internal:** implement indices array format for query and form serialization ([d8fecc7](https://github.com/runwayml/sdk-python/commit/d8fecc71d2e6b940f06553a0ffa45b0372d7f8cf))
+
+
+### Chores
+
+* **tests:** bump steady to v0.20.1 ([ad84815](https://github.com/runwayml/sdk-python/commit/ad8481558aa386843875d631910ecce54e4009ba))
+* **tests:** bump steady to v0.20.2 ([7c63591](https://github.com/runwayml/sdk-python/commit/7c63591ad506c7f83ba85039c05fcaf94707d0f9))
+
+## 4.9.0 (2026-03-25)
+
+Full Changelog: [v4.8.0...v4.9.0](https://github.com/runwayml/sdk-python/compare/v4.8.0...v4.9.0)
+
+### Features
+
+* **api:** add workflow invocation polling support ([6eb6fc5](https://github.com/runwayml/sdk-python/commit/6eb6fc507c6aae61ef3bcb5cceaee1b5049c63f3))
+* **api:** add workflows and workflow invocations resources ([35d8573](https://github.com/runwayml/sdk-python/commit/35d857393bdac4aa3862dd5f0b91f23ad217fce5))
+
+
+### Bug Fixes
+
+* sanitize endpoint path params ([84efc12](https://github.com/runwayml/sdk-python/commit/84efc1283d565f857572bb99a0458bd3c4e78e2b))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([1899411](https://github.com/runwayml/sdk-python/commit/1899411b75920727e70ab42e77b3c5cb11a86fab))
+* **internal:** update gitignore ([8bdac54](https://github.com/runwayml/sdk-python/commit/8bdac549eec0ce17ca630553f1ca956614d076d0))
+* **tests:** bump steady to v0.19.4 ([8841072](https://github.com/runwayml/sdk-python/commit/884107238b269129227807a141ef05dc5b0ca994))
+* **tests:** bump steady to v0.19.5 ([5adc696](https://github.com/runwayml/sdk-python/commit/5adc696396fe8031562bc7ff4a57dae92edf5d9c))
+* **tests:** bump steady to v0.19.6 ([135a06b](https://github.com/runwayml/sdk-python/commit/135a06b19e761316826b966f9c977268b7058b28))
+* **tests:** bump steady to v0.19.7 ([b7eeb81](https://github.com/runwayml/sdk-python/commit/b7eeb8168582d3b3682d6b61fa5aa5adc377c656))
+
+
+### Refactors
+
+* introduce dedicated error types for workflow invocation polling ([420f91c](https://github.com/runwayml/sdk-python/commit/420f91cda06553beba5d075aa951b2f505f68b9c))
+* **tests:** switch from prism to steady ([0a1bb5a](https://github.com/runwayml/sdk-python/commit/0a1bb5ae959de737e80775a09e45c24081729bf2))
+
+## 4.8.0 (2026-03-18)
+
+Full Changelog: [v4.7.1...v4.8.0](https://github.com/runwayml/sdk-python/compare/v4.7.1...v4.8.0)
+
+### Features
+
+* **api:** Add document update endpoint ([f9f8a7d](https://github.com/runwayml/sdk-python/commit/f9f8a7dc03a7dc2d93d36325a08fb98bc63b0f60))
+
+## 4.7.1 (2026-03-16)
+
+Full Changelog: [v4.7.0...v4.7.1](https://github.com/runwayml/sdk-python/compare/v4.7.0...v4.7.1)
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([69d3f16](https://github.com/runwayml/sdk-python/commit/69d3f16c653bcd158a3530d1b7f2c67c38adc45b))
+* **pydantic:** do not pass `by_alias` unless set ([cae07b4](https://github.com/runwayml/sdk-python/commit/cae07b42d85cf6fe5be7427456ac33ce989b1df2))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([f153e58](https://github.com/runwayml/sdk-python/commit/f153e58a55cfb34f0e8a9cd47ca1a5ffbae7bb28))
+* **internal:** tweak CI branches ([f4d6103](https://github.com/runwayml/sdk-python/commit/f4d610314bff56cee7b0126a8f7519423ef0016b))
+
+## 4.7.0 (2026-03-06)
+
+Full Changelog: [v4.6.3...v4.7.0](https://github.com/runwayml/sdk-python/compare/v4.6.3...v4.7.0)
+
+### Features
+
+* **api:** add avatar, voice, document, and realtime session endpoints ([18b1573](https://github.com/runwayml/sdk-python/commit/18b15733d52e1ddb60d1f9a847e4fd7a712b4701))
+
+
+### Chores
+
+* **test:** do not count install time for mock server timeout ([84988e1](https://github.com/runwayml/sdk-python/commit/84988e1eeaa6d25b265bfb77863ed6a4ce271201))
+
+## 4.6.3 (2026-02-27)
+
+Full Changelog: [v4.6.2...v4.6.3](https://github.com/runwayml/sdk-python/compare/v4.6.2...v4.6.3)
+
+### Chores
+
+* **docs:** add missing descriptions ([f64ea7b](https://github.com/runwayml/sdk-python/commit/f64ea7b144eedc7f46282fb38292169dbbe3e2a7))
+* **internal:** make `test_proxy_environment_variables` more resilient ([b0a3688](https://github.com/runwayml/sdk-python/commit/b0a36886187e3b4c2ead1e5b869fcb9852458e68))
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([dd8ca18](https://github.com/runwayml/sdk-python/commit/dd8ca187566df553496628846a5b388dee8a067c))
+
+## 4.6.2 (2026-02-23)
+
+Full Changelog: [v4.6.1...v4.6.2](https://github.com/runwayml/sdk-python/compare/v4.6.1...v4.6.2)
+
+### Chores
+
+* **internal:** add request options to SSE classes ([3728b09](https://github.com/runwayml/sdk-python/commit/3728b09c52fdea6b145b00bebe9ba173cbdc3f7a))
+* update mock server docs ([2cd81c5](https://github.com/runwayml/sdk-python/commit/2cd81c5af998bbc6cc98926ef4439bade192f9c4))
+
+## 4.6.1 (2026-02-13)
+
+Full Changelog: [v4.6.0...v4.6.1](https://github.com/runwayml/sdk-python/compare/v4.6.0...v4.6.1)
+
+### Bug Fixes
+
+* **api:** Remove invalid 4.5 i2v ratio ([f2fa3d1](https://github.com/runwayml/sdk-python/commit/f2fa3d1703fedf53aff177b2650fd96cf84116ce))
+
+
+### Chores
+
+* format all `api.md` files ([83ca516](https://github.com/runwayml/sdk-python/commit/83ca516ce15c5d307eebadf0633e203b4a84b395))
+* **internal:** fix lint error on Python 3.14 ([73b877b](https://github.com/runwayml/sdk-python/commit/73b877b4d6a4b46161cb10f3beb863ac53f2eba8))
+
+## 4.6.0 (2026-02-11)
+
+Full Changelog: [v4.5.0...v4.6.0](https://github.com/runwayml/sdk-python/compare/v4.5.0...v4.6.0)
+
+### Features
+
+* **api:** Gen-4.5 t2v+i2v ([cd2b196](https://github.com/runwayml/sdk-python/commit/cd2b196bb387e38cb27c06f9c7b15a1ac35c7a3d))
+
+
+### Bug Fixes
+
+* **client:** Update generated types for 4.5 t2v ([f024d8e](https://github.com/runwayml/sdk-python/commit/f024d8e35ca7687ac7e5815e2e7bfbf784316e21))
+
+
+### Chores
+
+* **internal:** bump dependencies ([c8073c8](https://github.com/runwayml/sdk-python/commit/c8073c8aa4a7f6f985fd2d405909aafcfccc63d0))
+
+## 4.5.0 (2026-02-03)
+
+Full Changelog: [v4.4.0...v4.5.0](https://github.com/runwayml/sdk-python/compare/v4.4.0...v4.5.0)
+
+### Features
+
+* **api:** Deprecate v2v ratio ([16eb2de](https://github.com/runwayml/sdk-python/commit/16eb2de0cec373e65e50f641f8c8cd4f82954687))
+
+## 4.4.0 (2026-01-30)
+
+Full Changelog: [v4.3.0...v4.4.0](https://github.com/runwayml/sdk-python/compare/v4.3.0...v4.4.0)
+
+### Features
+
+* **client:** add custom JSON encoder for extended type support ([b04154d](https://github.com/runwayml/sdk-python/commit/b04154de06565dfd711e7bc1f60a8c0782e863c0))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([c05f08a](https://github.com/runwayml/sdk-python/commit/c05f08ab9736c3293f86fc8c2d6c246d44bba299))
+* **internal:** update `actions/checkout` version ([ab246dd](https://github.com/runwayml/sdk-python/commit/ab246dd99a9ece8fbfcd40fc80dc886ce6e9f8be))
+
+## 4.3.0 (2026-01-17)
+
+Full Changelog: [v4.2.0...v4.3.0](https://github.com/runwayml/sdk-python/compare/v4.2.0...v4.3.0)
+
+### Features
+
+* **api:** Sunset upscale endpoint ([a0b9bbe](https://github.com/runwayml/sdk-python/commit/a0b9bbe40fcde1c6286a19b77c8ac1c8425b2327))
+* **client:** add support for binary request streaming ([384cd8b](https://github.com/runwayml/sdk-python/commit/384cd8bc9a23b0d9b7b37c737e8cb19d581f5198))
+
+
+### Bug Fixes
+
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([9d4f77c](https://github.com/runwayml/sdk-python/commit/9d4f77c847837f20ef333a10e5a0d1d9e6a25cf5))
+* use async_to_httpx_files in patch method ([c6b8802](https://github.com/runwayml/sdk-python/commit/c6b880232812c60dce1b0b23678a70c7e158ae84))
+
+
+### Chores
+
+* add missing docstrings ([4c14222](https://github.com/runwayml/sdk-python/commit/4c142226410821c794e9e3bf43c7bf9a7d5bf6c1))
+* **internal:** add `--fix` argument to lint script ([4e5931e](https://github.com/runwayml/sdk-python/commit/4e5931e064f4596d31f9c5c71abb24ad5f8a1727))
+* **internal:** add missing files argument to base client ([1c5f3af](https://github.com/runwayml/sdk-python/commit/1c5f3af332fdd873865234b11c0b1b24aa9df688))
+* **internal:** codegen related update ([feac569](https://github.com/runwayml/sdk-python/commit/feac56919d1a635a1b3b577591d5a528c587c14e))
+* speedup initial import ([cfcc2e9](https://github.com/runwayml/sdk-python/commit/cfcc2e96de68498e8b1cbca4b02567283d8af207))
+
+## 4.2.0 (2025-12-04)
+
+Full Changelog: [v4.1.1...v4.2.0](https://github.com/runwayml/sdk-python/compare/v4.1.1...v4.2.0)
+
+### Features
+
+* **api:** Autogen spec updates ([e9d2114](https://github.com/runwayml/sdk-python/commit/e9d2114b819a6a641e716c0823ba1f182c3b5400))
+* **api:** gemini_3_pro t2i ([1f1fcfa](https://github.com/runwayml/sdk-python/commit/1f1fcfa6bac257df24a383613389010d0c481f5d))
+* **api:** gemini_3_pro t2i ([ea8a4ec](https://github.com/runwayml/sdk-python/commit/ea8a4ec3e05e27e5b4db85481846678c0fc0c009))
+* **api:** Remove unreleased model ([ee474d5](https://github.com/runwayml/sdk-python/commit/ee474d50717cd5517f2bbcb072fd044205587260))
+* **api:** Revert G3P changes ([3959ddf](https://github.com/runwayml/sdk-python/commit/3959ddfb5bfee6a7beff2cd6d294b59204dd6fae))
+
+
+### Chores
+
+* **docs:** use environment variables for authentication in code snippets ([cd6776e](https://github.com/runwayml/sdk-python/commit/cd6776ecdccbb9bebb88db16a4b3ef46b246d23d))
+* update lockfile ([7199587](https://github.com/runwayml/sdk-python/commit/719958796a3c89ff20b2e4e2b0db1e375f836125))
+
+## 4.1.1 (2025-11-28)
+
+Full Changelog: [v4.1.0...v4.1.1](https://github.com/runwayml/sdk-python/compare/v4.1.0...v4.1.1)
+
+### Bug Fixes
+
+* ensure streams are always closed ([22486c4](https://github.com/runwayml/sdk-python/commit/22486c4eaed6a5d0d6ad419764f15c04967410da))
+
+
+### Chores
+
+* add Python 3.14 classifier and testing ([6dd0b91](https://github.com/runwayml/sdk-python/commit/6dd0b91a29bbd56aeaca20fa5678b496ae4da2ef))
+* **deps:** mypy 1.18.1 has a regression, pin to 1.17 ([1813032](https://github.com/runwayml/sdk-python/commit/1813032170ecfd473b19cfaf953dfdb71c027a68))
+
+## 4.1.0 (2025-11-17)
+
+Full Changelog: [v4.0.1...v4.1.0](https://github.com/runwayml/sdk-python/compare/v4.0.1...v4.1.0)
+
+### Features
+
+* **api:** veo3.1 audio parameter ([0c12058](https://github.com/runwayml/sdk-python/commit/0c1205803cfb83c1e37dc314a6883cc47b7c78bd))
+
+## 4.0.1 (2025-11-12)
+
+Full Changelog: [v4.0.0...v4.0.1](https://github.com/runwayml/sdk-python/compare/v4.0.0...v4.0.1)
+
+### Bug Fixes
+
+* **compat:** update signatures of `model_dump` and `model_dump_json` for Pydantic v1 ([4404c28](https://github.com/runwayml/sdk-python/commit/4404c281102615ec712ff22248ed53cb376d4bad))
+
+## 4.0.0 (2025-11-11)
+
+Full Changelog: [v3.22.0...v4.0.0](https://github.com/runwayml/sdk-python/compare/v3.22.0...v4.0.0)
+
+### Bug Fixes
+
+* compat with Python 3.14 ([66b332c](https://github.com/runwayml/sdk-python/commit/66b332c6bf56dc3366a469b31c38917a01e4177b))
+
+
+### Chores
+
+* **package:** drop Python 3.8 support ([0bb6132](https://github.com/runwayml/sdk-python/commit/0bb6132256c3d8ce99ca8c206799321e63d7d0ff))
+
+## 3.22.0 (2025-11-06)
+
+Full Changelog: [v3.21.0...v3.22.0](https://github.com/runwayml/sdk-python/compare/v3.21.0...v3.22.0)
+
+### Features
+
+* **api:** Support ephemeral uploads ([d310ee0](https://github.com/runwayml/sdk-python/commit/d310ee05c5a315209504228e6e06c2c24ef09202))
+
+## 3.21.0 (2025-11-04)
+
+Full Changelog: [v3.20.1...v3.21.0](https://github.com/runwayml/sdk-python/compare/v3.20.1...v3.21.0)
+
+### Features
+
+* **api:** Resolve missing prompt_image unions ([c5dca58](https://github.com/runwayml/sdk-python/commit/c5dca58de0841888e096217dbf6f376562514caf))
+* **api:** Update discriminated union schema ([65b09c3](https://github.com/runwayml/sdk-python/commit/65b09c3799565c3f730c1ad5df75257a6c11f6fa))
+* **client:** Resolve i2v overload return type conflict ([17a5eb8](https://github.com/runwayml/sdk-python/commit/17a5eb8c8452e124587ae690f8291fa8565b61bf))
+* **client:** Resolve t2v overload return type conflict ([dfdf65b](https://github.com/runwayml/sdk-python/commit/dfdf65be76d9d45acfc4112abd8a77508bbbea3e))
+
+
+### Chores
+
+* **internal/tests:** avoid race condition with implicit client cleanup ([0c8aaf7](https://github.com/runwayml/sdk-python/commit/0c8aaf7ac787b1be0144999ab0678ee6623adc3e))
+* **internal:** grammar fix (it's -&gt; its) ([ca4ee8d](https://github.com/runwayml/sdk-python/commit/ca4ee8d67eb050b12aad828c36a0dae1d7121287))
+
+## 3.20.1 (2025-10-30)
+
+Full Changelog: [v3.20.0...v3.20.1](https://github.com/runwayml/sdk-python/compare/v3.20.0...v3.20.1)
+
+### Bug Fixes
+
+* **client:** close streams without requiring full consumption ([2c8d121](https://github.com/runwayml/sdk-python/commit/2c8d121873da7f2bee590c9ce6dc7d93ebe8009e))
+
+## 3.20.0 (2025-10-22)
+
+Full Changelog: [v3.19.0...v3.20.0](https://github.com/runwayml/sdk-python/compare/v3.19.0...v3.20.0)
+
+### Features
+
+* **api:** Add speech to speech ([8757b22](https://github.com/runwayml/sdk-python/commit/8757b22c5df8c804b02b1ef88d1110ae0ffe80ad))
+* **api:** Added speech to speech ([a2cb1d2](https://github.com/runwayml/sdk-python/commit/a2cb1d2b5e6f9ff0d68b86fb473e8ca02c6fdff8))
+
+
+### Chores
+
+* bump `httpx-aiohttp` version to 0.1.9 ([7a11662](https://github.com/runwayml/sdk-python/commit/7a116620fda0ab42325f4a1428725b7c490c014f))
+
+## 3.19.0 (2025-10-15)
+
+Full Changelog: [v3.18.0...v3.19.0](https://github.com/runwayml/sdk-python/compare/v3.18.0...v3.19.0)
+
+### Features
+
+* **api:** Veo 3.1 and Veo 3.1 Fast ([9486ec1](https://github.com/runwayml/sdk-python/commit/9486ec19a5321ef555a498877cbc6811645ad205))
+
+
+### Bug Fixes
+
+* **api:** Add missing 1080p sizes ([2c66c5a](https://github.com/runwayml/sdk-python/commit/2c66c5a4d9cdb7c213c7454d2716ba0d81b7d6e8))
+
+## 3.18.0 (2025-10-14)
+
+Full Changelog: [v3.17.0...v3.18.0](https://github.com/runwayml/sdk-python/compare/v3.17.0...v3.18.0)
+
+### Features
+
+* **api:** Voice dubbing and isolation ([0bdaaed](https://github.com/runwayml/sdk-python/commit/0bdaaedf44a1cd2231d229db9f9a4647caf58ad9))
+
+
+### Chores
+
+* **internal:** detect missing future annotations with ruff ([b85be28](https://github.com/runwayml/sdk-python/commit/b85be28503c3ae03eea12945814a78af83030740))
+
+## 3.17.0 (2025-10-09)
+
+Full Changelog: [v3.16.0...v3.17.0](https://github.com/runwayml/sdk-python/compare/v3.16.0...v3.17.0)
+
+### Features
+
+* **api:** Sound effects endpoint ([dbb791b](https://github.com/runwayml/sdk-python/commit/dbb791bb464d897661621f16cb3c7ece395cec65))
+
+## 3.16.0 (2025-10-08)
+
+Full Changelog: [v3.15.0...v3.16.0](https://github.com/runwayml/sdk-python/compare/v3.15.0...v3.16.0)
+
+### Features
+
+* **api:** Additional i2v durations ([6990b2f](https://github.com/runwayml/sdk-python/commit/6990b2f5c12e040ad2ef1656390dc7e5cf308a08))
+
+## 3.15.0 (2025-09-23)
+
+Full Changelog: [v3.14.2...v3.15.0](https://github.com/runwayml/sdk-python/compare/v3.14.2...v3.15.0)
+
+### Features
+
+* **api:** Text to Speech update ([c43cd76](https://github.com/runwayml/sdk-python/commit/c43cd7622a283efd385137cfab8231b290224242))
+* **client:** Make t2s awaitable ([068275c](https://github.com/runwayml/sdk-python/commit/068275c79d77696d3851c5a77082ca27396cd2db))
+* **docs:** Update docs URL ([7ab9607](https://github.com/runwayml/sdk-python/commit/7ab9607a2f9ab133bf7f54ff3a44c4474a1cb2ae))
+
+## 3.14.2 (2025-09-20)
+
+Full Changelog: [v3.14.1...v3.14.2](https://github.com/runwayml/sdk-python/compare/v3.14.1...v3.14.2)
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([579613c](https://github.com/runwayml/sdk-python/commit/579613ca26e930215d9e0f3c0be4c36c66618740))
+* **types:** change optional parameter type from NotGiven to Omit ([1d63c89](https://github.com/runwayml/sdk-python/commit/1d63c89f7761a01e8a5863dd7ecf19e9e62307ab))
+
+## 3.14.1 (2025-09-17)
+
+Full Changelog: [v3.14.0...v3.14.1](https://github.com/runwayml/sdk-python/compare/v3.14.0...v3.14.1)
+
+### Chores
+
+* **internal:** update pydantic dependency ([6d91907](https://github.com/runwayml/sdk-python/commit/6d919079a08b41120b006578077da07b70d6e47a))
+
+## 3.14.0 (2025-09-11)
+
+Full Changelog: [v3.13.0...v3.14.0](https://github.com/runwayml/sdk-python/compare/v3.13.0...v3.14.0)
+
+### Features
+
+* **api:** Add Gemini 2.5 Flash Image to t2i ([3cb044a](https://github.com/runwayml/sdk-python/commit/3cb044af287c1da1b0a648fdf91074f9a34abd6a))
+
+## 3.13.0 (2025-09-10)
+
+Full Changelog: [v3.12.1...v3.13.0](https://github.com/runwayml/sdk-python/compare/v3.12.1...v3.13.0)
+
+### Features
+
+* **api:** Update t2v parameters ([7163db8](https://github.com/runwayml/sdk-python/commit/7163db8841a5dca89b546e8d445105aeffe07d10))
+* **api:** Veo3 integration ([37e7224](https://github.com/runwayml/sdk-python/commit/37e7224b1e0de5450b69bb42a1dc6a9039e435af))
+* **client:** Make t2v waitable ([d21c4e4](https://github.com/runwayml/sdk-python/commit/d21c4e4da2c8760aceaf07579051ab1e486c08b2))
+
+## 3.12.1 (2025-09-06)
+
+Full Changelog: [v3.12.0...v3.12.1](https://github.com/runwayml/sdk-python/compare/v3.12.0...v3.12.1)
+
+### Chores
+
+* **internal:** move mypy configurations to `pyproject.toml` file ([0ff4ea5](https://github.com/runwayml/sdk-python/commit/0ff4ea5666ec784f6a5d72fa8df1daff3af86fbf))
+* **tests:** simplify `get_platform` test ([5b651b2](https://github.com/runwayml/sdk-python/commit/5b651b2b45dc7550e29fc970705bbb4806701433))
+
+## 3.12.0 (2025-09-04)
+
+Full Changelog: [v3.11.0...v3.12.0](https://github.com/runwayml/sdk-python/compare/v3.11.0...v3.12.0)
+
+### Features
+
+* improve future compat with pydantic v3 ([9207df5](https://github.com/runwayml/sdk-python/commit/9207df5599921825e8138ddbe006f004c579c875))
+
+## 3.11.0 (2025-09-03)
+
+Full Changelog: [v3.10.3...v3.11.0](https://github.com/runwayml/sdk-python/compare/v3.10.3...v3.11.0)
+
+### Features
+
+* **types:** replace List[str] with SequenceNotStr in params ([a55b44c](https://github.com/runwayml/sdk-python/commit/a55b44c27da0e2cbcfaefa753e6b2a1a351df126))
+
+## 3.10.3 (2025-08-30)
+
+Full Changelog: [v3.10.2...v3.10.3](https://github.com/runwayml/sdk-python/compare/v3.10.2...v3.10.3)
+
+### Chores
+
+* **internal:** add Sequence related utils ([520aeec](https://github.com/runwayml/sdk-python/commit/520aeecbeaf7f2891066ae4d7c880f7aa27d0522))
+
+## 3.10.2 (2025-08-27)
+
+Full Changelog: [v3.10.1...v3.10.2](https://github.com/runwayml/sdk-python/compare/v3.10.1...v3.10.2)
+
+### Bug Fixes
+
+* avoid newer type syntax ([54dd3a0](https://github.com/runwayml/sdk-python/commit/54dd3a0e975beb87e853491386bdfd2d8b9f6712))
+
+
+### Chores
+
+* **internal:** change ci workflow machines ([986c007](https://github.com/runwayml/sdk-python/commit/986c0078bab1590f6004e79705db86b52413edb7))
+* **internal:** update comment in script ([48cad7b](https://github.com/runwayml/sdk-python/commit/48cad7be7285418786048d40d806be8670054df1))
+* **internal:** update pyright exclude list ([03a8696](https://github.com/runwayml/sdk-python/commit/03a8696ec24f5cb806640b4e09869416a88b609f))
+* update github action ([2fd7626](https://github.com/runwayml/sdk-python/commit/2fd7626b638775e84a69adad080c1099b7eef2c7))
+
+## 3.10.1 (2025-08-09)
+
+Full Changelog: [v3.10.0...v3.10.1](https://github.com/runwayml/sdk-python/compare/v3.10.0...v3.10.1)
+
+### Chores
+
+* **internal:** fix ruff target version ([cce2c55](https://github.com/runwayml/sdk-python/commit/cce2c5525e2d82ca277ee7922eadceb56d0a67cf))
+* update @stainless-api/prism-cli to v5.15.0 ([b1ea815](https://github.com/runwayml/sdk-python/commit/b1ea815380deccf434574dd5a4724f0a04468a24))
+
+## 3.10.0 (2025-08-05)
+
+Full Changelog: [v3.9.0...v3.10.0](https://github.com/runwayml/sdk-python/compare/v3.9.0...v3.10.0)
+
+### Features
+
+* **api:** Add gen4_image_turbo model ([5d5aab2](https://github.com/runwayml/sdk-python/commit/5d5aab25530e4a59e4873143ee53191f1714ebdb))
+* **readme:** Fix for readme example ([083bb47](https://github.com/runwayml/sdk-python/commit/083bb47e8634b156b4deabbe3030e100f8186b0d))
+* **readme:** gen4_turbo ratio ([7a5a486](https://github.com/runwayml/sdk-python/commit/7a5a486a2bd05f105616ad68d490defc134d333c))
+
+## 3.9.0 (2025-08-01)
+
+Full Changelog: [v3.8.0...v3.9.0](https://github.com/runwayml/sdk-python/compare/v3.8.0...v3.9.0)
+
+### Features
+
+* **api:** Gen-4 Aleph ([b1cf4db](https://github.com/runwayml/sdk-python/commit/b1cf4db0265fa866abf31ac0ffaf6b1ee0b9140c))
+
+## 3.8.0 (2025-07-31)
+
+Full Changelog: [v3.7.2...v3.8.0](https://github.com/runwayml/sdk-python/compare/v3.7.2...v3.8.0)
+
+### Features
+
+* **client:** support file upload requests ([9a12ee4](https://github.com/runwayml/sdk-python/commit/9a12ee479c6d796eaec598e33abf8e0664941cbb))
+
+
+### Chores
+
+* **project:** add settings file for vscode ([d2a3908](https://github.com/runwayml/sdk-python/commit/d2a3908101120d546238608608109960d9d9d0e1))
+
+## 3.7.2 (2025-07-23)
+
+Full Changelog: [v3.7.1...v3.7.2](https://github.com/runwayml/sdk-python/compare/v3.7.1...v3.7.2)
+
+### Bug Fixes
+
+* **parsing:** parse extra field types ([dc5dd24](https://github.com/runwayml/sdk-python/commit/dc5dd24d7ab7904c7c246ba7255c54c85e7dee40))
+
+## 3.7.1 (2025-07-22)
+
+Full Changelog: [v3.7.0...v3.7.1](https://github.com/runwayml/sdk-python/compare/v3.7.0...v3.7.1)
+
+### Bug Fixes
+
+* **parsing:** ignore empty metadata ([33c5e49](https://github.com/runwayml/sdk-python/commit/33c5e498bb3903d63f7c9ef308a2e49db4dc5efd))
+
+## 3.7.0 (2025-07-19)
+
+Full Changelog: [v3.6.5...v3.7.0](https://github.com/runwayml/sdk-python/compare/v3.6.5...v3.7.0)
+
+### Features
+
+* **api:** Act Two, credit usage endpoints ([f1114e0](https://github.com/runwayml/sdk-python/commit/f1114e0be865f9e27e697dfcaeb5dc6c0be659ed))
+* **api:** Awaitability on new resources ([7612c78](https://github.com/runwayml/sdk-python/commit/7612c78ee6f64969138685312c4a3d539191beb9))
+* clean up environment call outs ([caa8eff](https://github.com/runwayml/sdk-python/commit/caa8eff7855430950fe4184c3db885e84a607d5f))
+
+
+### Chores
+
+* **client:** lint ([d745891](https://github.com/runwayml/sdk-python/commit/d74589104c8a15d5ab4e87b1f4de4ec915210a3e))
+
+## 3.6.5 (2025-07-12)
+
+Full Changelog: [v3.6.4...v3.6.5](https://github.com/runwayml/sdk-python/compare/v3.6.4...v3.6.5)
+
+### Bug Fixes
+
+* **client:** don't send Content-Type header on GET requests ([6567867](https://github.com/runwayml/sdk-python/commit/656786737e8ee74a40c731b6d2659b1c1b34ce20))
+
+
+### Chores
+
+* **readme:** fix version rendering on pypi ([f38de2a](https://github.com/runwayml/sdk-python/commit/f38de2a823870a12ce893324e4889a5aec5a3392))
+
+## 3.6.4 (2025-07-10)
+
+Full Changelog: [v3.6.3...v3.6.4](https://github.com/runwayml/sdk-python/compare/v3.6.3...v3.6.4)
+
+### Bug Fixes
+
+* **parsing:** correctly handle nested discriminated unions ([813daf2](https://github.com/runwayml/sdk-python/commit/813daf265fdd93af5500a1b7cf2c7def33f31e08))
+
+## 3.6.3 (2025-07-09)
+
+Full Changelog: [v3.6.2...v3.6.3](https://github.com/runwayml/sdk-python/compare/v3.6.2...v3.6.3)
+
+### Chores
+
+* **internal:** bump pinned h11 dep ([25ee0aa](https://github.com/runwayml/sdk-python/commit/25ee0aadb87786a3825169c3e84cc80398188ba5))
+* **package:** mark python 3.13 as supported ([b50298a](https://github.com/runwayml/sdk-python/commit/b50298a999f71b7ce49e640eac691ca71ee39135))
+
+## 3.6.2 (2025-07-08)
+
+Full Changelog: [v3.6.1...v3.6.2](https://github.com/runwayml/sdk-python/compare/v3.6.1...v3.6.2)
+
+### Bug Fixes
+
+* **ci:** correct conditional ([04df1e3](https://github.com/runwayml/sdk-python/commit/04df1e3c225dcfa89036bdbdc8dbe3fd3f0f6233))
+* **ci:** release-doctor — report correct token name ([5c77b20](https://github.com/runwayml/sdk-python/commit/5c77b20928d41e78f6b67136ebf6236078d3669b))
+
+
+### Chores
+
+* **ci:** change upload type ([1ca0a49](https://github.com/runwayml/sdk-python/commit/1ca0a49d43c99e8aa90b5781eb5a530f6a7038bb))
+* **ci:** only run for pushes and fork pull requests ([0821c24](https://github.com/runwayml/sdk-python/commit/0821c241c8364476413df18c1af16b95556c187f))
+* **internal:** codegen related update ([cfd7b38](https://github.com/runwayml/sdk-python/commit/cfd7b3830de1d53d5b55aecec5dc947851a26d04))
+
+## 3.6.1 (2025-06-24)
+
+Full Changelog: [v3.6.0...v3.6.1](https://github.com/runwayml/sdk-python/compare/v3.6.0...v3.6.1)
+
+### Chores
+
+* **tests:** skip some failing tests on the latest python versions ([732236d](https://github.com/runwayml/sdk-python/commit/732236d2ced9511c21179e9850bafcaf0b0a4edf))
+
+## 3.6.0 (2025-06-23)
+
+Full Changelog: [v3.5.0...v3.6.0](https://github.com/runwayml/sdk-python/compare/v3.5.0...v3.6.0)
+
+### Features
+
+* **client:** add support for aiohttp ([7d5490c](https://github.com/runwayml/sdk-python/commit/7d5490ca015dd0ff55789889036cc1bd32a58c43))
+
+
+### Bug Fixes
+
+* **tests:** fix: tests which call HTTP endpoints directly with the example parameters ([33301dd](https://github.com/runwayml/sdk-python/commit/33301ddf84cc64581d715d6b8ce1eda48ff66ed5))
+
+
+### Chores
+
+* **readme:** update badges ([147dc95](https://github.com/runwayml/sdk-python/commit/147dc95f9ab390065ab96403a88ca5a87e59f597))
+
+
+### Documentation
+
+* **client:** fix httpx.Timeout documentation reference ([af9fecb](https://github.com/runwayml/sdk-python/commit/af9fecb38a4075fcc8f7687f2ef130ad8c813389))
+
+## 3.5.0 (2025-06-17)
+
+Full Changelog: [v3.4.0...v3.5.0](https://github.com/runwayml/sdk-python/compare/v3.4.0...v3.5.0)
+
+### Features
+
+* **api:** SDK updates, contentModeration for i2v ([1286e32](https://github.com/runwayml/sdk-python/commit/1286e3239f388143404c4b0a61816f5f6282fe1c))
+* **api:** SDK updates, contentModeration for i2v ([8ff202e](https://github.com/runwayml/sdk-python/commit/8ff202ee39dc5856118bf1f3f5537e459a120967))
+
+
+### Bug Fixes
+
+* **client:** correctly parse binary response | stream ([fc9bedb](https://github.com/runwayml/sdk-python/commit/fc9bedb3cbb47849e83a5982ed92a694796e80c7))
+
+
+### Chores
+
+* **ci:** enable for pull requests ([4b439c9](https://github.com/runwayml/sdk-python/commit/4b439c99012918849be4fa64b1ab8d1802cee6e6))
+* **internal:** update conftest.py ([0ff71fd](https://github.com/runwayml/sdk-python/commit/0ff71fd67a421dbff729e98418b6cd72ed0e57b3))
+* **tests:** add tests for httpx client instantiation & proxies ([89e5fbe](https://github.com/runwayml/sdk-python/commit/89e5fbef9e8a64d050252f489b2d76e4c510c663))
+* **tests:** run tests in parallel ([7edbcd1](https://github.com/runwayml/sdk-python/commit/7edbcd1db04ed139e026701fe24501199b4eaffd))
+
+## 3.4.0 (2025-06-04)
+
+Full Changelog: [v3.3.0...v3.4.0](https://github.com/runwayml/sdk-python/compare/v3.3.0...v3.4.0)
+
+### Features
+
+* **api:** Add video upscale endpoint ([aac6a70](https://github.com/runwayml/sdk-python/commit/aac6a707ca2925034fa141ceac8a9515958a77c1))
+
+## 3.3.0 (2025-06-04)
+
+Full Changelog: [v3.2.0...v3.3.0](https://github.com/runwayml/sdk-python/compare/v3.2.0...v3.3.0)
+
+### Features
+
+* **client:** add follow_redirects request option ([742ca3b](https://github.com/runwayml/sdk-python/commit/742ca3bbd1f38ce28ef26ddee06d4c86cd2a6ff0))
+
+
+### Bug Fixes
+
+* **docs:** fix confusing example in README ([54904f7](https://github.com/runwayml/sdk-python/commit/54904f7ed5557b5b3972fc25d52ffc873d91be7e))
+
+
+### Chores
+
+* **docs:** remove reference to rye shell ([e207562](https://github.com/runwayml/sdk-python/commit/e207562118ec1583e90639bbfc6cea00f4bed138))
+* **docs:** remove unnecessary param examples ([d1ca063](https://github.com/runwayml/sdk-python/commit/d1ca06303f764543beda582da567ad182f25cf86))
+
+## 3.2.0 (2025-05-29)
+
+Full Changelog: [v3.1.0...v3.2.0](https://github.com/runwayml/sdk-python/compare/v3.1.0...v3.2.0)
+
+### Features
+
+* **api:** Add 720p t2i ratios ([b722686](https://github.com/runwayml/sdk-python/commit/b722686c0e4fa03768ce61380c77fe04c93cfc90))
+
+
+### Chores
+
+* **docs:** grammar improvements ([fbf2481](https://github.com/runwayml/sdk-python/commit/fbf2481cd6da85fb5ce2e6fea66cf8f1233a8e2e))
+
+## 3.1.0 (2025-05-16)
+
+Full Changelog: [v3.0.6...v3.1.0](https://github.com/runwayml/sdk-python/compare/v3.0.6...v3.1.0)
+
+### Features
+
+* **api:** Gen-4 Image (text-to-image) support ([8adcf96](https://github.com/runwayml/sdk-python/commit/8adcf96fa228c8694272175317587bf3c7b9e2fe))
+
+
+### Chores
+
+* **ci:** fix installation instructions ([a04350d](https://github.com/runwayml/sdk-python/commit/a04350dd31c9551695c1856a7f6d700d69960807))
+
+## 3.0.6 (2025-05-15)
+
+Full Changelog: [v3.0.5...v3.0.6](https://github.com/runwayml/sdk-python/compare/v3.0.5...v3.0.6)
+
+### Chores
+
+* **ci:** upload sdks to package manager ([23f0756](https://github.com/runwayml/sdk-python/commit/23f0756b5a8828ffa8477c51275df65f390193a7))
+
+## 3.0.5 (2025-05-10)
+
+Full Changelog: [v3.0.4...v3.0.5](https://github.com/runwayml/sdk-python/compare/v3.0.4...v3.0.5)
+
+### Bug Fixes
+
+* **package:** support direct resource imports ([f317064](https://github.com/runwayml/sdk-python/commit/f3170641fd7e8a58bfc8135314407e887a3a0068))
+
+
+### Chores
+
+* **internal:** avoid errors for isinstance checks on proxies ([a549b98](https://github.com/runwayml/sdk-python/commit/a549b98239afa6984f306db53cd2ac4895a7f4ac))
+
+## 3.0.4 (2025-04-30)
+
+Full Changelog: [v3.0.3...v3.0.4](https://github.com/runwayml/sdk-python/compare/v3.0.3...v3.0.4)
+
+### Bug Fixes
+
+* **api:** Fix for parameters with missing descriptions ([1ab27c6](https://github.com/runwayml/sdk-python/commit/1ab27c6285263701b69ed1ea05751a78a333e25f))
+* **api:** Make `ratio` a required parameter for i2v ([e1b73a5](https://github.com/runwayml/sdk-python/commit/e1b73a55073ae5d0d224b751726515d946a93607))
+
+## 3.0.3 (2025-04-24)
+
+Full Changelog: [v3.0.2...v3.0.3](https://github.com/runwayml/sdk-python/compare/v3.0.2...v3.0.3)
+
+### Bug Fixes
+
+* **pydantic v1:** more robust ModelField.annotation check ([1f45aa4](https://github.com/runwayml/sdk-python/commit/1f45aa4ab023db52bc79a33492c4441f00d30d17))
+
+
+### Chores
+
+* broadly detect json family of content-type headers ([7adcad9](https://github.com/runwayml/sdk-python/commit/7adcad916636065b709d0bdff9c00047f48cf167))
+* **ci:** add timeout thresholds for CI jobs ([a59f6e6](https://github.com/runwayml/sdk-python/commit/a59f6e62adc33fe07b81088f9ed066fd06118f63))
+* **ci:** only use depot for staging repos ([bdd8635](https://github.com/runwayml/sdk-python/commit/bdd8635b236ca1686047d382f271e8a4954bc302))
+* **internal:** codegen related update ([6ec7118](https://github.com/runwayml/sdk-python/commit/6ec7118bb5e1d1737d42cb017e2c8b133aa471d0))
+* **internal:** fix list file params ([c745a86](https://github.com/runwayml/sdk-python/commit/c745a864dd1edcdc3ac38645963075e672723874))
+* **internal:** import reformatting ([a991a2d](https://github.com/runwayml/sdk-python/commit/a991a2d2ac36ee544470999eeef0fe536b040b62))
+* **internal:** minor formatting changes ([0f34a44](https://github.com/runwayml/sdk-python/commit/0f34a44ec0ee863d00e7656e7675ab43aa9ef973))
+* **internal:** refactor retries to not use recursion ([b5637fb](https://github.com/runwayml/sdk-python/commit/b5637fbfc50816122689694ed2e0acef3020da03))
+* **internal:** update models test ([79488d6](https://github.com/runwayml/sdk-python/commit/79488d6e50b1075d8f7cad6e3fb3ed022332e42e))
+
+## 3.0.2 (2025-04-17)
+
+Full Changelog: [v3.0.1...v3.0.2](https://github.com/runwayml/sdk-python/compare/v3.0.1...v3.0.2)
+
+### Chores
+
+* **internal:** base client updates ([6d4d8bb](https://github.com/runwayml/sdk-python/commit/6d4d8bb73df9c0985d12d349d783188de0cd7d7d))
+* **internal:** bump pyright version ([5693e26](https://github.com/runwayml/sdk-python/commit/5693e261dcbc21f6a900c514ba8e6659e0a2cd4f))
+
+## 3.0.1 (2025-04-15)
+
+Full Changelog: [v3.0.0...v3.0.1](https://github.com/runwayml/sdk-python/compare/v3.0.0...v3.0.1)
+
+### Bug Fixes
+
+* **perf:** optimize some hot paths ([0c187d1](https://github.com/runwayml/sdk-python/commit/0c187d1c445dd39661ec91f809ba1e51a9b5f0f2))
+* **perf:** skip traversing types for NotGiven values ([a65d4b0](https://github.com/runwayml/sdk-python/commit/a65d4b0375c412d1b707550a8e1b1d9ba9319130))
+
+
+### Chores
+
+* **client:** minor internal fixes ([09dd17f](https://github.com/runwayml/sdk-python/commit/09dd17fc639bc5c9aadfc033c131b133764d4e5b))
+* **internal:** expand CI branch coverage ([8bde5ff](https://github.com/runwayml/sdk-python/commit/8bde5ff981d4acd0696ad3b7ac778ca21a49a8ac))
+* **internal:** reduce CI branch coverage ([5892e7a](https://github.com/runwayml/sdk-python/commit/5892e7aa93fa9e091f111fd0590b239487ba61eb))
+* **internal:** update pyright settings ([8b3a8ae](https://github.com/runwayml/sdk-python/commit/8b3a8ae32a589680549054328996ae7314be3033))
+
+## 3.0.0 (2025-04-09)
+
+Full Changelog: [v2.3.8...v3.0.0](https://github.com/runwayml/sdk-python/compare/v2.3.8...v3.0.0)
+
+### Features
+
+* **api:** Update with gen4_turbo, org endpoint ([#135](https://github.com/runwayml/sdk-python/issues/135)) ([7f5d1ae](https://github.com/runwayml/sdk-python/commit/7f5d1ae46c6d54576771b66abd3259641072c066))
+
+
+### Chores
+
+* **internal:** remove trailing character ([#132](https://github.com/runwayml/sdk-python/issues/132)) ([cd78e34](https://github.com/runwayml/sdk-python/commit/cd78e34930a48a8696947178ee92ae22b1210898))
+* **internal:** slight transform perf improvement ([#134](https://github.com/runwayml/sdk-python/issues/134)) ([33e5a68](https://github.com/runwayml/sdk-python/commit/33e5a68198c39c04edcf055c08f43e7800f8fbc0))
+
+## 2.3.8 (2025-03-27)
+
+Full Changelog: [v2.3.7...v2.3.8](https://github.com/runwayml/sdk-python/compare/v2.3.7...v2.3.8)
+
+### Chores
+
+* fix typos ([#129](https://github.com/runwayml/sdk-python/issues/129)) ([c8047c8](https://github.com/runwayml/sdk-python/commit/c8047c87193c42b66edb7b0555c2dbc2f87b3441))
+
+## 2.3.7 (2025-03-17)
+
+Full Changelog: [v2.3.6...v2.3.7](https://github.com/runwayml/sdk-python/compare/v2.3.6...v2.3.7)
+
+### Bug Fixes
+
+* **ci:** ensure pip is always available ([#123](https://github.com/runwayml/sdk-python/issues/123)) ([e456349](https://github.com/runwayml/sdk-python/commit/e45634973c0cb9263d83ce0c1e437e65ab6c48b3))
+* **ci:** remove publishing patch ([#125](https://github.com/runwayml/sdk-python/issues/125)) ([3592469](https://github.com/runwayml/sdk-python/commit/35924697f090e6198a03855d722627fc9194cdbc))
+
+## 2.3.6 (2025-03-15)
+
+Full Changelog: [v2.3.5...v2.3.6](https://github.com/runwayml/sdk-python/compare/v2.3.5...v2.3.6)
+
+### Bug Fixes
+
+* **types:** handle more discriminated union shapes ([#121](https://github.com/runwayml/sdk-python/issues/121)) ([51f8b42](https://github.com/runwayml/sdk-python/commit/51f8b42cf1efcb6294292d4a0b68522622ab95cd))
+
+
+### Chores
+
+* **internal:** bump rye to 0.44.0 ([#120](https://github.com/runwayml/sdk-python/issues/120)) ([ea18df4](https://github.com/runwayml/sdk-python/commit/ea18df47d97d7d085562eb8fa1b2406cd75c264c))
+* **internal:** codegen related update ([#119](https://github.com/runwayml/sdk-python/issues/119)) ([e72357e](https://github.com/runwayml/sdk-python/commit/e72357e9013730819d973a3efa128cd232574ebd))
+* **internal:** remove extra empty newlines ([#117](https://github.com/runwayml/sdk-python/issues/117)) ([4f0e93e](https://github.com/runwayml/sdk-python/commit/4f0e93e5741d2dc0a96c4e211dc74d1d272a2126))
+
+## 2.3.5 (2025-03-11)
+
+Full Changelog: [v2.3.4...v2.3.5](https://github.com/runwayml/sdk-python/compare/v2.3.4...v2.3.5)
+
+## 2.3.4 (2025-03-04)
+
+Full Changelog: [v2.3.3...v2.3.4](https://github.com/runwayml/sdk-python/compare/v2.3.3...v2.3.4)
+
+### Chores
+
+* **internal:** remove unused http client options forwarding ([#111](https://github.com/runwayml/sdk-python/issues/111)) ([c0fa5a9](https://github.com/runwayml/sdk-python/commit/c0fa5a92d45c82402c68556772d93d9b3f1c6de4))
+
+## 2.3.3 (2025-02-28)
+
+Full Changelog: [v2.3.2...v2.3.3](https://github.com/runwayml/sdk-python/compare/v2.3.2...v2.3.3)
+
+### Chores
+
+* **docs:** update client docstring ([#108](https://github.com/runwayml/sdk-python/issues/108)) ([3a6daf5](https://github.com/runwayml/sdk-python/commit/3a6daf52930e1875271ccacea66406081c9ac7b3))
+
+
+### Documentation
+
+* update URLs from stainlessapi.com to stainless.com ([#107](https://github.com/runwayml/sdk-python/issues/107)) ([efae113](https://github.com/runwayml/sdk-python/commit/efae1131f35849a3ff3d726a7fa80f96abb6f5d5))
+
+## 2.3.2 (2025-02-26)
+
+Full Changelog: [v2.3.1...v2.3.2](https://github.com/runwayml/sdk-python/compare/v2.3.1...v2.3.2)
+
+### Chores
+
+* **internal:** properly set __pydantic_private__ ([#104](https://github.com/runwayml/sdk-python/issues/104)) ([2d7a59f](https://github.com/runwayml/sdk-python/commit/2d7a59f3fe37823974688fea161d7b663e227475))
+
+## 2.3.1 (2025-02-22)
+
+Full Changelog: [v2.3.0...v2.3.1](https://github.com/runwayml/sdk-python/compare/v2.3.0...v2.3.1)
+
+### Chores
+
+* **internal:** fix devcontainers setup ([#101](https://github.com/runwayml/sdk-python/issues/101)) ([7a01b9a](https://github.com/runwayml/sdk-python/commit/7a01b9a9bc5576849475d3e4381312781dae4437))
+
+## 2.3.0 (2025-02-21)
+
+Full Changelog: [v2.2.2...v2.3.0](https://github.com/runwayml/sdk-python/compare/v2.2.2...v2.3.0)
+
+### Features
+
+* **client:** allow passing `NotGiven` for body ([#98](https://github.com/runwayml/sdk-python/issues/98)) ([fda401a](https://github.com/runwayml/sdk-python/commit/fda401a98a454b01de764269afb32492a38494d6))
+
+
+### Bug Fixes
+
+* **client:** mark some request bodies as optional ([fda401a](https://github.com/runwayml/sdk-python/commit/fda401a98a454b01de764269afb32492a38494d6))
+
+## 2.2.2 (2025-02-14)
+
+Full Changelog: [v2.2.1...v2.2.2](https://github.com/runwayml/sdk-python/compare/v2.2.1...v2.2.2)
+
+### Bug Fixes
+
+* asyncify on non-asyncio runtimes ([#96](https://github.com/runwayml/sdk-python/issues/96)) ([c478bc7](https://github.com/runwayml/sdk-python/commit/c478bc7b5115c637a31cb7a0a60a35265500120a))
+
+
+### Chores
+
+* **internal:** update client tests ([#94](https://github.com/runwayml/sdk-python/issues/94)) ([d8892cd](https://github.com/runwayml/sdk-python/commit/d8892cd6e439347c04fb7ba1e97abb421803f379))
+
+## 2.2.1 (2025-02-07)
+
+Full Changelog: [v2.2.0...v2.2.1](https://github.com/runwayml/sdk-python/compare/v2.2.0...v2.2.1)
+
+### Chores
+
+* **internal:** fix type traversing dictionary params ([#90](https://github.com/runwayml/sdk-python/issues/90)) ([49d44b9](https://github.com/runwayml/sdk-python/commit/49d44b9b3f234f9aa5c69e3694f1774a8a0a4581))
+* **internal:** minor type handling changes ([#92](https://github.com/runwayml/sdk-python/issues/92)) ([f4f122f](https://github.com/runwayml/sdk-python/commit/f4f122f97e7bd10d51250bdcca67f55cb8a76e4a))
+
+## 2.2.0 (2025-02-06)
+
+Full Changelog: [v2.1.11...v2.2.0](https://github.com/runwayml/sdk-python/compare/v2.1.11...v2.2.0)
+
+### Features
+
+* **client:** send `X-Stainless-Read-Timeout` header ([#87](https://github.com/runwayml/sdk-python/issues/87)) ([43e6f00](https://github.com/runwayml/sdk-python/commit/43e6f005f611ddc87a11d4f7244c883a25a5c8ed))
+
+## 2.1.11 (2025-02-04)
+
+Full Changelog: [v2.1.10...v2.1.11](https://github.com/runwayml/sdk-python/compare/v2.1.10...v2.1.11)
+
+### Chores
+
+* **internal:** bummp ruff dependency ([#83](https://github.com/runwayml/sdk-python/issues/83)) ([3d1be9d](https://github.com/runwayml/sdk-python/commit/3d1be9d17d6f1bc737cf416c08cc9710aa61c94b))
+* **internal:** change default timeout to an int ([#82](https://github.com/runwayml/sdk-python/issues/82)) ([38e5767](https://github.com/runwayml/sdk-python/commit/38e5767b267c108c8ef03b0fdb2508b20f74e018))
+
+## 2.1.10 (2025-01-24)
+
+Full Changelog: [v2.1.9...v2.1.10](https://github.com/runwayml/sdk-python/compare/v2.1.9...v2.1.10)
+
+### Chores
+
+* **internal:** minor formatting changes ([#80](https://github.com/runwayml/sdk-python/issues/80)) ([067f47a](https://github.com/runwayml/sdk-python/commit/067f47a1a59f15c71018bb28f3606832f223b42f))
+* **internal:** minor style changes ([#78](https://github.com/runwayml/sdk-python/issues/78)) ([bd0eb4a](https://github.com/runwayml/sdk-python/commit/bd0eb4a84756ca8e8cf40935513358eac470d750))
+
+## 2.1.9 (2025-01-21)
+
+Full Changelog: [v2.1.8...v2.1.9](https://github.com/runwayml/sdk-python/compare/v2.1.8...v2.1.9)
+
+### Bug Fixes
+
+* add back missing docstrings ([#73](https://github.com/runwayml/sdk-python/issues/73)) ([8eac71e](https://github.com/runwayml/sdk-python/commit/8eac71e781ff81d00129ea224863a20bb70f00f6))
+* **client:** only call .close() when needed ([#69](https://github.com/runwayml/sdk-python/issues/69)) ([4a48c73](https://github.com/runwayml/sdk-python/commit/4a48c73760d38c1f22aa73cc79f3eb1bc497e1c5))
+* correctly handle deserialising `cls` fields ([#71](https://github.com/runwayml/sdk-python/issues/71)) ([6db1a75](https://github.com/runwayml/sdk-python/commit/6db1a751d3be4f8905bfed74c99b2423acfcd003))
+* **tests:** make test_get_platform less flaky ([#75](https://github.com/runwayml/sdk-python/issues/75)) ([7199a24](https://github.com/runwayml/sdk-python/commit/7199a24ae13750d56648d5f4a7a2a6a2ad3ea9c4))
+
+
+### Chores
+
+* **internal:** avoid pytest-asyncio deprecation warning ([#76](https://github.com/runwayml/sdk-python/issues/76)) ([bff6464](https://github.com/runwayml/sdk-python/commit/bff646451b0b116acd763ff7d2432a9cd921fa2f))
+* **internal:** codegen related update ([#67](https://github.com/runwayml/sdk-python/issues/67)) ([027aa11](https://github.com/runwayml/sdk-python/commit/027aa11dabfccf461fb33aab458a50d96d715ff9))
+* **internal:** codegen related update ([#70](https://github.com/runwayml/sdk-python/issues/70)) ([38c71dc](https://github.com/runwayml/sdk-python/commit/38c71dc74ab8028b109a51266edac077549aea0b))
+* **internal:** codegen related update ([#72](https://github.com/runwayml/sdk-python/issues/72)) ([d4b14b4](https://github.com/runwayml/sdk-python/commit/d4b14b4a6dfecb7f5edc18442f8326213c63db40))
+
+
+### Documentation
+
+* **raw responses:** fix duplicate `the` ([#74](https://github.com/runwayml/sdk-python/issues/74)) ([0d563ee](https://github.com/runwayml/sdk-python/commit/0d563ee146cef940d78a026302229f3949c034fc))
+
+## 2.1.8 (2025-01-08)
+
+Full Changelog: [v2.1.7...v2.1.8](https://github.com/runwayml/sdk-python/compare/v2.1.7...v2.1.8)
+
+### Chores
+
+* add missing isclass check ([#64](https://github.com/runwayml/sdk-python/issues/64)) ([a90a201](https://github.com/runwayml/sdk-python/commit/a90a201eaecb4a70714a02d270281c1f4815876d))
+
+## 2.1.7 (2025-01-02)
+
+Full Changelog: [v2.1.6...v2.1.7](https://github.com/runwayml/sdk-python/compare/v2.1.6...v2.1.7)
+
+### Chores
+
+* **internal:** codegen related update ([#61](https://github.com/runwayml/sdk-python/issues/61)) ([6248aa2](https://github.com/runwayml/sdk-python/commit/6248aa2e561cecddc440e8cdfe0773ce0353e25b))
+
+## 2.1.6 (2024-12-18)
+
+Full Changelog: [v2.1.5...v2.1.6](https://github.com/runwayml/sdk-python/compare/v2.1.5...v2.1.6)
+
+### Chores
+
+* **internal:** codegen related update ([#48](https://github.com/runwayml/sdk-python/issues/48)) ([f999274](https://github.com/runwayml/sdk-python/commit/f999274cbc241f063e3f6abdd7bef93749066c05))
+* **internal:** codegen related update ([#50](https://github.com/runwayml/sdk-python/issues/50)) ([187e174](https://github.com/runwayml/sdk-python/commit/187e1747d62dc99718de5d2dfb5bc8fa8291ab34))
+* **internal:** codegen related update ([#51](https://github.com/runwayml/sdk-python/issues/51)) ([1c70164](https://github.com/runwayml/sdk-python/commit/1c701642c7797d49ce59bc938b0f18511f3c6d9e))
+* **internal:** codegen related update ([#52](https://github.com/runwayml/sdk-python/issues/52)) ([07e7dda](https://github.com/runwayml/sdk-python/commit/07e7ddaae96eb26063a88e6bc23adef2f9b0e7d5))
+* **internal:** codegen related update ([#54](https://github.com/runwayml/sdk-python/issues/54)) ([5540248](https://github.com/runwayml/sdk-python/commit/55402489160f4cb43244f90e5f85c90bd96a7729))
+* **internal:** codegen related update ([#55](https://github.com/runwayml/sdk-python/issues/55)) ([75daba1](https://github.com/runwayml/sdk-python/commit/75daba1936f201824daec2b8b08abf68a52b55d7))
+* **internal:** codegen related update ([#56](https://github.com/runwayml/sdk-python/issues/56)) ([c98ed80](https://github.com/runwayml/sdk-python/commit/c98ed80958344be95507a3c5ef7ede3006cf6bf5))
+* **internal:** fix some typos ([#58](https://github.com/runwayml/sdk-python/issues/58)) ([404c771](https://github.com/runwayml/sdk-python/commit/404c771242c581f9c618966a03b5de5f5db8a5da))
+
+
+### Documentation
+
+* **readme:** example snippet for client context manager ([#57](https://github.com/runwayml/sdk-python/issues/57)) ([e62b5e9](https://github.com/runwayml/sdk-python/commit/e62b5e9d1176d72c7285ede6200436bc994260ae))
+
+## 2.1.5 (2024-12-13)
+
+Full Changelog: [v2.1.4...v2.1.5](https://github.com/runwayml/sdk-python/compare/v2.1.4...v2.1.5)
+
+### Chores
+
+* **internal:** add support for TypeAliasType ([#46](https://github.com/runwayml/sdk-python/issues/46)) ([278afad](https://github.com/runwayml/sdk-python/commit/278afade7c0541db8a14f4dbb763ec6cd2797558))
+* **internal:** bump pyright ([#44](https://github.com/runwayml/sdk-python/issues/44)) ([eb51ffa](https://github.com/runwayml/sdk-python/commit/eb51ffa9ef89567501d19cf9183ac64792062559))
+
+## 2.1.4 (2024-12-10)
+
+Full Changelog: [v2.1.3...v2.1.4](https://github.com/runwayml/sdk-python/compare/v2.1.3...v2.1.4)
+
+### Chores
+
+* **internal:** bump pydantic dependency ([#40](https://github.com/runwayml/sdk-python/issues/40)) ([ae3a845](https://github.com/runwayml/sdk-python/commit/ae3a8457855179ccc6e784e2e2cf39613fedddcd))
+
+
+### Documentation
+
+* **readme:** fix http client proxies example ([#42](https://github.com/runwayml/sdk-python/issues/42)) ([d1389f7](https://github.com/runwayml/sdk-python/commit/d1389f73504fc60d07be4742ea12c7f9d5841034))
+
+## 2.1.3 (2024-12-04)
+
+Full Changelog: [v2.1.2...v2.1.3](https://github.com/runwayml/sdk-python/compare/v2.1.2...v2.1.3)
+
+### Chores
+
+* make the `Omit` type public ([#35](https://github.com/runwayml/sdk-python/issues/35)) ([a333528](https://github.com/runwayml/sdk-python/commit/a3335281c52a8f6e6a85f98623c48e228245fa04))
+
+## 2.1.2 (2024-12-03)
+
+Full Changelog: [v2.1.1...v2.1.2](https://github.com/runwayml/sdk-python/compare/v2.1.1...v2.1.2)
+
+### Chores
+
+* **internal:** bump pyright ([#32](https://github.com/runwayml/sdk-python/issues/32)) ([7d36972](https://github.com/runwayml/sdk-python/commit/7d36972a3afa9335141b848cb9783c649a4933ae))
+
+## 2.1.1 (2024-11-28)
+
+Full Changelog: [v2.1.0...v2.1.1](https://github.com/runwayml/sdk-python/compare/v2.1.0...v2.1.1)
+
+### Bug Fixes
+
+* **client:** compat with new httpx 0.28.0 release ([#28](https://github.com/runwayml/sdk-python/issues/28)) ([f5e637e](https://github.com/runwayml/sdk-python/commit/f5e637eb373bc6fa85ca6d123bbdaaa1161bc814))
+
+
+### Chores
+
+* **internal:** exclude mypy from running on tests ([#27](https://github.com/runwayml/sdk-python/issues/27)) ([d724387](https://github.com/runwayml/sdk-python/commit/d724387c6546ba476e2773f2249475285dca32c9))
+* **internal:** fix compat model_dump method when warnings are passed ([#24](https://github.com/runwayml/sdk-python/issues/24)) ([61c8490](https://github.com/runwayml/sdk-python/commit/61c849057b971f8b19846ed08b5145c4321adf04))
+* rebuild project due to codegen change ([#19](https://github.com/runwayml/sdk-python/issues/19)) ([2a4cf56](https://github.com/runwayml/sdk-python/commit/2a4cf56335868d88e07aac767260c0c7509b1c94))
+* rebuild project due to codegen change ([#21](https://github.com/runwayml/sdk-python/issues/21)) ([e680d5b](https://github.com/runwayml/sdk-python/commit/e680d5b5bf3ee7fcdede74c7d5c5a971ea18675e))
+* rebuild project due to codegen change ([#22](https://github.com/runwayml/sdk-python/issues/22)) ([ecddf51](https://github.com/runwayml/sdk-python/commit/ecddf51a41704e42f2612541d3841990f22f7220))
+* remove now unused `cached-property` dep ([#26](https://github.com/runwayml/sdk-python/issues/26)) ([21e64d0](https://github.com/runwayml/sdk-python/commit/21e64d0603003c58918dde0b5b6e94b7df28707c))
+
+
+### Documentation
+
+* add info log level to readme ([#25](https://github.com/runwayml/sdk-python/issues/25)) ([d6e4ed4](https://github.com/runwayml/sdk-python/commit/d6e4ed45841a88e13c30dd318706a18bf86a8550))
+
+## 2.1.0 (2024-11-06)
+
+Full Changelog: [v2.0.0...v2.1.0](https://github.com/runwayml/sdk-python/compare/v2.0.0...v2.1.0)
+
+### Features
+
+* **api:** API version 2024-11-06 ([#15](https://github.com/runwayml/sdk-python/issues/15)) ([39c096f](https://github.com/runwayml/sdk-python/commit/39c096fdc4784cc726e8688dcc3263e6cb322607))
+* **api:** Set latest default API version ([#17](https://github.com/runwayml/sdk-python/issues/17)) ([2ad66fd](https://github.com/runwayml/sdk-python/commit/2ad66fd753321eaae28fa09755bfdb6bbfc07949))
+
+## 2.0.0 (2024-10-04)
+
+Full Changelog: [v1.0.0...v2.0.0](https://github.com/runwayml/sdk-python/compare/v1.0.0...v2.0.0)
+
+### Features
+
+* **api:** update via SDK Studio ([#7](https://github.com/runwayml/sdk-python/issues/7)) ([e31ea2c](https://github.com/runwayml/sdk-python/commit/e31ea2ca5602245bd936d564b66752f592cc2fab))
+
+
+### Chores
+
+* **internal:** codegen related update ([#10](https://github.com/runwayml/sdk-python/issues/10)) ([b1b5a5f](https://github.com/runwayml/sdk-python/commit/b1b5a5f1eb6dadc9674e771a598d7269a6ed23b2))
+* **internal:** codegen related update ([#11](https://github.com/runwayml/sdk-python/issues/11)) ([6a8ccd0](https://github.com/runwayml/sdk-python/commit/6a8ccd00924f775851a9a8e9429ae4b2f1790dee))
+* **internal:** codegen related update ([#8](https://github.com/runwayml/sdk-python/issues/8)) ([c66ad91](https://github.com/runwayml/sdk-python/commit/c66ad91471c094e4c42bbbefdce4ea0d81fe487f))
+
+## 1.0.0 (2024-09-18)
+
+Full Changelog: [v0.1.0-alpha.1...v1.0.0](https://github.com/runwayml/sdk-python/compare/v0.1.0-alpha.1...v1.0.0)
+
+### Chores
+
+* update SDK settings ([#4](https://github.com/runwayml/sdk-python/issues/4)) ([50c8fb7](https://github.com/runwayml/sdk-python/commit/50c8fb734438fc6a969d8d3acbe9134fa08ff839))
+
+## 0.1.0-alpha.1 (2024-09-16)
+
+Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/runwayml/sdk-python/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
+
+### Features
+
+* **api:** update via SDK Studio ([d2b36be](https://github.com/runwayml/sdk-python/commit/d2b36bedb109763c0ff0bccdde9d3fcc52702276))
+* **api:** update via SDK Studio ([458cea2](https://github.com/runwayml/sdk-python/commit/458cea250a60c3e3985bdb5e0844e0df8609bbd1))
+* **api:** update via SDK Studio ([8218b59](https://github.com/runwayml/sdk-python/commit/8218b596c6fabcceec835538351c117f0969d707))
+
+
+### Chores
+
+* go live ([#1](https://github.com/runwayml/sdk-python/issues/1)) ([9de5b2d](https://github.com/runwayml/sdk-python/commit/9de5b2d9e40235caf22a1449f5da746f51130a3b))
+* **internal:** bump pyright / mypy version ([329a9ff](https://github.com/runwayml/sdk-python/commit/329a9ffbd815ee81c1f7159ac26c8afef5b65402))
+* **internal:** bump ruff ([8152032](https://github.com/runwayml/sdk-python/commit/815203243e2012e19786ea8d7dc333747b68215e))
+* **internal:** codegen related update ([05e04a7](https://github.com/runwayml/sdk-python/commit/05e04a7f3f996bdf4152de3c57feabd2c36e7f45))
+* **internal:** codegen related update ([a6d2ae7](https://github.com/runwayml/sdk-python/commit/a6d2ae7a04d17f1f75fbb4eae6a516c78fe2e6fc))
+
+
+### Documentation
+
+* update CONTRIBUTING.md ([3fd55c0](https://github.com/runwayml/sdk-python/commit/3fd55c0187956375a9da938cb6c757c30f0a3789))
