@@ -39,7 +39,6 @@ from ._exceptions import (
 from .lib.polling import (
     TaskFailedError,
     TaskTimeoutError,
-    DryRunHasNoTaskError,
     WorkflowInvocationFailedError,
     WorkflowInvocationTimeoutError,
 )
@@ -90,7 +89,6 @@ __all__ = [
     "DefaultAioHttpClient",
     "TaskFailedError",
     "TaskTimeoutError",
-    "DryRunHasNoTaskError",
     "WorkflowInvocationFailedError",
     "WorkflowInvocationTimeoutError",
 ]
