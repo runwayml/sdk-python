@@ -132,14 +132,14 @@ from runwayml import RunwayML
 
 client = RunwayML()
 
-all_avatars = []
+all_routers = []
 # Automatically fetches more pages as needed.
-for avatar in client.avatars.list(
+for router in client.routers.list(
     limit=1,
 ):
-    # Do something with avatar here
-    all_avatars.append(avatar)
-print(all_avatars)
+    # Do something with router here
+    all_routers.append(router)
+print(all_routers)
 ```
 
 Or, asynchronously:
@@ -152,13 +152,13 @@ client = AsyncRunwayML()
 
 
 async def main() -> None:
-    all_avatars = []
+    all_routers = []
     # Iterate through items across all pages, issuing requests as needed.
-    async for avatar in client.avatars.list(
+    async for router in client.routers.list(
         limit=1,
     ):
-        all_avatars.append(avatar)
-    print(all_avatars)
+        all_routers.append(router)
+    print(all_routers)
 
 
 asyncio.run(main())
@@ -167,7 +167,7 @@ asyncio.run(main())
 Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
 
 ```python
-first_page = await client.avatars.list(
+first_page = await client.routers.list(
     limit=1,
 )
 if first_page.has_next_page():
@@ -181,13 +181,13 @@ if first_page.has_next_page():
 Or just work directly with the returned data:
 
 ```python
-first_page = await client.avatars.list(
+first_page = await client.routers.list(
     limit=1,
 )
 
 print(f"next page cursor: {first_page.next_cursor}")  # => "next page cursor: ..."
-for avatar in first_page.data:
-    print(avatar)
+for router in first_page.data:
+    print(router.id)
 
 # Remove `await` for non-async usage.
 ```

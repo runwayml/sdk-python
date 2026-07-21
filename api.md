@@ -155,6 +155,41 @@ Methods:
 
 - <code title="post /v1/video_upscale">client.video_upscale.<a href="./src/runwayml/resources/video_upscale.py">create</a>(\*\*<a href="src/runwayml/types/video_upscale_create_params.py">params</a>) -> <a href="./src/runwayml/types/video_upscale_create_response.py">VideoUpscaleCreateResponse</a></code>
 
+# Generate
+
+## Video
+
+Types:
+
+```python
+from runwayml.types.generate import VideoCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/generate/video">client.generate.video.<a href="./src/runwayml/resources/generate/video.py">create</a>(\*\*<a href="src/runwayml/types/generate/video_create_params.py">params</a>) -> <a href="./src/runwayml/types/generate/video_create_response.py">VideoCreateResponse</a></code>
+
+# Routers
+
+Types:
+
+```python
+from runwayml.types import (
+    RouterCreateResponse,
+    RouterRetrieveResponse,
+    RouterUpdateResponse,
+    RouterListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v1/routers">client.routers.<a href="./src/runwayml/resources/routers.py">create</a>(\*\*<a href="src/runwayml/types/router_create_params.py">params</a>) -> <a href="./src/runwayml/types/router_create_response.py">RouterCreateResponse</a></code>
+- <code title="get /v1/routers/{id}">client.routers.<a href="./src/runwayml/resources/routers.py">retrieve</a>(id) -> <a href="./src/runwayml/types/router_retrieve_response.py">RouterRetrieveResponse</a></code>
+- <code title="patch /v1/routers/{id}">client.routers.<a href="./src/runwayml/resources/routers.py">update</a>(id, \*\*<a href="src/runwayml/types/router_update_params.py">params</a>) -> <a href="./src/runwayml/types/router_update_response.py">RouterUpdateResponse</a></code>
+- <code title="get /v1/routers">client.routers.<a href="./src/runwayml/resources/routers.py">list</a>(\*\*<a href="src/runwayml/types/router_list_params.py">params</a>) -> <a href="./src/runwayml/types/router_list_response.py">SyncCursorPage[RouterListResponse]</a></code>
+- <code title="delete /v1/routers/{id}">client.routers.<a href="./src/runwayml/resources/routers.py">delete</a>(id) -> None</code>
+
 # Organization
 
 Types:

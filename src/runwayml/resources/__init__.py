@@ -32,6 +32,14 @@ from .recipes import (
     RecipesResourceWithStreamingResponse,
     AsyncRecipesResourceWithStreamingResponse,
 )
+from .routers import (
+    RoutersResource,
+    AsyncRoutersResource,
+    RoutersResourceWithRawResponse,
+    AsyncRoutersResourceWithRawResponse,
+    RoutersResourceWithStreamingResponse,
+    AsyncRoutersResourceWithStreamingResponse,
+)
 from .uploads import (
     UploadsResource,
     AsyncUploadsResource,
@@ -39,6 +47,14 @@ from .uploads import (
     AsyncUploadsResourceWithRawResponse,
     UploadsResourceWithStreamingResponse,
     AsyncUploadsResourceWithStreamingResponse,
+)
+from .generate import (
+    GenerateResource,
+    AsyncGenerateResource,
+    GenerateResourceWithRawResponse,
+    AsyncGenerateResourceWithRawResponse,
+    GenerateResourceWithStreamingResponse,
+    AsyncGenerateResourceWithStreamingResponse,
 )
 from .documents import (
     DocumentsResource,
@@ -272,6 +288,18 @@ __all__ = [
     "AsyncVideoUpscaleResourceWithRawResponse",
     "VideoUpscaleResourceWithStreamingResponse",
     "AsyncVideoUpscaleResourceWithStreamingResponse",
+    "GenerateResource",
+    "AsyncGenerateResource",
+    "GenerateResourceWithRawResponse",
+    "AsyncGenerateResourceWithRawResponse",
+    "GenerateResourceWithStreamingResponse",
+    "AsyncGenerateResourceWithStreamingResponse",
+    "RoutersResource",
+    "AsyncRoutersResource",
+    "RoutersResourceWithRawResponse",
+    "AsyncRoutersResourceWithRawResponse",
+    "RoutersResourceWithStreamingResponse",
+    "AsyncRoutersResourceWithStreamingResponse",
     "OrganizationResource",
     "AsyncOrganizationResource",
     "OrganizationResourceWithRawResponse",

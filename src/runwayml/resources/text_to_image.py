@@ -456,6 +456,7 @@ class TextToImageResource(SyncAPIResource):
             "auto_1k",
             "auto_2k",
         ],
+        grounding: bool | Omit = omit,
         output_count: int | Omit = omit,
         output_format: Literal["png", "jpeg"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.Seedream5ProReferenceImage] | Omit = omit,
@@ -475,6 +476,9 @@ class TextToImageResource(SyncAPIResource):
           ratio: The resolution of the output image, expressed as `<width>:<height>`. Use
               `auto_1k` or `auto_2k` to let the model pick aspect ratio at a fixed resolution
               tier.
+
+          grounding: When true, enable live web search so the model can use current brand, trend, or
+              event context. Default false for deterministic output.
 
           output_count: The number of images to generate. Increasing this number will affect the number
               of credits consumed by the generation.
@@ -819,6 +823,7 @@ class TextToImageResource(SyncAPIResource):
         background: Literal["opaque", "auto"] | Omit = omit,
         output_count: int | Literal[1, 4] | Omit = omit,
         quality: Literal["low", "medium", "high", "auto"] | Omit = omit,
+        grounding: bool | Omit = omit,
         output_format: Literal["png", "jpeg"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -840,6 +845,7 @@ class TextToImageResource(SyncAPIResource):
                     "background": background,
                     "output_count": output_count,
                     "quality": quality,
+                    "grounding": grounding,
                     "output_format": output_format,
                 },
                 text_to_image_create_params.TextToImageCreateParams,
@@ -1277,6 +1283,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "auto_1k",
             "auto_2k",
         ],
+        grounding: bool | Omit = omit,
         output_count: int | Omit = omit,
         output_format: Literal["png", "jpeg"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.Seedream5ProReferenceImage] | Omit = omit,
@@ -1296,6 +1303,9 @@ class AsyncTextToImageResource(AsyncAPIResource):
           ratio: The resolution of the output image, expressed as `<width>:<height>`. Use
               `auto_1k` or `auto_2k` to let the model pick aspect ratio at a fixed resolution
               tier.
+
+          grounding: When true, enable live web search so the model can use current brand, trend, or
+              event context. Default false for deterministic output.
 
           output_count: The number of images to generate. Increasing this number will affect the number
               of credits consumed by the generation.
@@ -1640,6 +1650,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         background: Literal["opaque", "auto"] | Omit = omit,
         output_count: int | Literal[1, 4] | Omit = omit,
         quality: Literal["low", "medium", "high", "auto"] | Omit = omit,
+        grounding: bool | Omit = omit,
         output_format: Literal["png", "jpeg"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1661,6 +1672,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
                     "background": background,
                     "output_count": output_count,
                     "quality": quality,
+                    "grounding": grounding,
                     "output_format": output_format,
                 },
                 text_to_image_create_params.TextToImageCreateParams,

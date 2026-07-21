@@ -461,6 +461,12 @@ class Seedream5Pro(TypedDict, total=False):
     resolution tier.
     """
 
+    grounding: bool
+    """
+    When true, enable live web search so the model can use current brand, trend, or
+    event context. Default false for deterministic output.
+    """
+
     output_count: Annotated[int, PropertyInfo(alias="outputCount")]
     """The number of images to generate.
 
