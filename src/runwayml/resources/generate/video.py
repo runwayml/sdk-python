@@ -2,9 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
-
 import httpx
+
+from runwayml.lib.polling import (
+    NewTaskCreatedResponse,
+    AsyncNewTaskCreatedResponse,
+    create_waitable_resource,
+    create_async_waitable_resource,
+)
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
@@ -18,7 +23,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.generate import video_create_params
-from ...types.generate.video_create_response import VideoCreateResponse
+from ...types.generate.video_create_response import RoutedVideoTaskCreated
 
 __all__ = ["VideoResource", "AsyncVideoResource"]
 
@@ -55,7 +60,7 @@ class VideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VideoCreateResponse:
+    ) -> NewTaskCreatedResponse:
         """
         Start a video generation task using a saved Model Router config instead of
         naming a model.
@@ -78,25 +83,20 @@ class VideoResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            VideoCreateResponse,
-            self._post(
-                "/v1/generate/video",
-                body=maybe_transform(
-                    {
-                        "config_id": config_id,
-                        "input": input,
-                        "dry_run": dry_run,
-                    },
-                    video_create_params.VideoCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, VideoCreateResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            "/v1/generate/video",
+            body=maybe_transform(
+                {
+                    "config_id": config_id,
+                    "input": input,
+                    "dry_run": dry_run,
+                },
+                video_create_params.VideoCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=create_waitable_resource(RoutedVideoTaskCreated, self._client),
         )
 
 
@@ -132,7 +132,7 @@ class AsyncVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VideoCreateResponse:
+    ) -> AsyncNewTaskCreatedResponse:
         """
         Start a video generation task using a saved Model Router config instead of
         naming a model.
@@ -155,25 +155,20 @@ class AsyncVideoResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            VideoCreateResponse,
-            await self._post(
-                "/v1/generate/video",
-                body=await async_maybe_transform(
-                    {
-                        "config_id": config_id,
-                        "input": input,
-                        "dry_run": dry_run,
-                    },
-                    video_create_params.VideoCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, VideoCreateResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            "/v1/generate/video",
+            body=await async_maybe_transform(
+                {
+                    "config_id": config_id,
+                    "input": input,
+                    "dry_run": dry_run,
+                },
+                video_create_params.VideoCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=create_async_waitable_resource(RoutedVideoTaskCreated, self._client),
         )
 
 
