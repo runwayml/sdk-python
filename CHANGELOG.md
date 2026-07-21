@@ -7,16 +7,12 @@ Full Changelog: [v5.10.0...v5.11.0](https://github.com/runwayml/sdk-python/compa
 ### Features
 
 * **api:** add Model Router CRUD and routed video generation ([05df606](https://github.com/runwayml/sdk-python/commit/05df606fe356a89e7cfa2765f77a1cddbdf06d71))
-* **client:** add generate.video.preview for dry-run routing ([3de6be4](https://github.com/runwayml/sdk-python/commit/3de6be47f1e49e3d462f077e76e21fc3ef4415a2))
 * **stlc:** configurable CI runner and private-production-repo support in workflow templates ([d83d189](https://github.com/runwayml/sdk-python/commit/d83d1895c3ef26cb6c803db36dacab1b43350fd7))
 
 
 ### Bug Fixes
 
-* **client:** drop dry_run from generate.video tests ([25e2a98](https://github.com/runwayml/sdk-python/commit/25e2a98d7a0cb7a2a9d85456d6e0d339dbcd45da))
-* **client:** drop generate.video dry-run/preview from SDK surface ([266a47f](https://github.com/runwayml/sdk-python/commit/266a47f8f5ad5b29aa2147e2152d86b4d5669f95))
 * **client:** make generate.video responses awaitable ([9c4e62a](https://github.com/runwayml/sdk-python/commit/9c4e62a8c13e96ec733f6efe7cfa3fd7f7589357))
-* **client:** type dry_run separately from waitable generate.video ([9bc89e1](https://github.com/runwayml/sdk-python/commit/9bc89e19db9aced896ebc5f4e5452bc3f187ab07))
 
 ## 5.10.0 (2026-07-13)
 
