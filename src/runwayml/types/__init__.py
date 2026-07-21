@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .voice_list_params import VoiceListParams as VoiceListParams
 from .avatar_list_params import AvatarListParams as AvatarListParams
+from .router_list_params import RouterListParams as RouterListParams
 from .voice_create_params import VoiceCreateParams as VoiceCreateParams
 from .voice_list_response import VoiceListResponse as VoiceListResponse
 from .voice_update_params import VoiceUpdateParams as VoiceUpdateParams
@@ -12,6 +13,9 @@ from .avatar_create_params import AvatarCreateParams as AvatarCreateParams
 from .avatar_list_response import AvatarListResponse as AvatarListResponse
 from .avatar_update_params import AvatarUpdateParams as AvatarUpdateParams
 from .document_list_params import DocumentListParams as DocumentListParams
+from .router_create_params import RouterCreateParams as RouterCreateParams
+from .router_list_response import RouterListResponse as RouterListResponse
+from .router_update_params import RouterUpdateParams as RouterUpdateParams
 from .voice_preview_params import VoicePreviewParams as VoicePreviewParams
 from .voice_create_response import VoiceCreateResponse as VoiceCreateResponse
 from .voice_update_response import VoiceUpdateResponse as VoiceUpdateResponse
@@ -21,6 +25,8 @@ from .avatar_update_response import AvatarUpdateResponse as AvatarUpdateResponse
 from .document_create_params import DocumentCreateParams as DocumentCreateParams
 from .document_list_response import DocumentListResponse as DocumentListResponse
 from .document_update_params import DocumentUpdateParams as DocumentUpdateParams
+from .router_create_response import RouterCreateResponse as RouterCreateResponse
+from .router_update_response import RouterUpdateResponse as RouterUpdateResponse
 from .task_retrieve_response import TaskRetrieveResponse as TaskRetrieveResponse
 from .voice_preview_response import VoicePreviewResponse as VoicePreviewResponse
 from .workflow_list_response import WorkflowListResponse as WorkflowListResponse
@@ -29,6 +35,7 @@ from .voice_retrieve_response import VoiceRetrieveResponse as VoiceRetrieveRespo
 from .avatar_retrieve_response import AvatarRetrieveResponse as AvatarRetrieveResponse
 from .document_create_response import DocumentCreateResponse as DocumentCreateResponse
 from .recipe_product_ad_params import RecipeProductAdParams as RecipeProductAdParams
+from .router_retrieve_response import RouterRetrieveResponse as RouterRetrieveResponse
 from .avatar_get_usage_response import AvatarGetUsageResponse as AvatarGetUsageResponse
 from .recipe_product_ugc_params import RecipeProductUgcParams as RecipeProductUgcParams
 from .avatar_video_create_params import AvatarVideoCreateParams as AvatarVideoCreateParams
