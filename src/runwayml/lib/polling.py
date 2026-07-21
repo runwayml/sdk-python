@@ -87,7 +87,6 @@ def create_waitable_resource(base_class: Type[T], client: "RunwayML") -> Type[Ne
         id: str
 
         def wait_for_task_output(self, timeout: Union[float, None] = 60 * 10) -> TaskRetrieveResponse:
-            _ensure_waitable_task_id(self)
             start_time = time.time()
             while True:
                 time.sleep(POLL_TIME + random.random() * POLL_JITTER - POLL_JITTER / 2)
@@ -110,7 +109,6 @@ def create_async_waitable_resource(base_class: Type[T], client: "AsyncRunwayML")
         id: str
 
         async def wait_for_task_output(self, timeout: Union[float, None] = 60 * 10) -> TaskRetrieveResponse:
-            _ensure_waitable_task_id(self)
             start_time = anyio.current_time()
             while True:
                 await anyio.sleep(POLL_TIME + random.random() * POLL_JITTER - POLL_JITTER / 2)
@@ -138,24 +136,6 @@ class TaskTimeoutError(Exception):
     def __init__(self, task_details: TaskRetrieveResponse):
         self.task_details = task_details
         super().__init__(f"Task timed out")
-
-
-class DryRunHasNoTaskError(Exception):
-    """Raised when wait_for_task_output is called on a dry-run (or otherwise id-less) response."""
-
-    def __init__(self, response: object) -> None:
-        self.response = response
-        super().__init__(
-            "Cannot wait for task output: response has no task id "
-            "(for example dry_run=True creates no task)."
-        )
-
-
-def _ensure_waitable_task_id(response: object) -> None:
-    task_id = getattr(response, "id", None)
-    dry_run = getattr(response, "dry_run", False)
-    if dry_run is True or not isinstance(task_id, str) or not task_id:
-        raise DryRunHasNoTaskError(response)
 
 
 class AwaitablePending(AwaitableTaskResponseMixin, Pending): ...

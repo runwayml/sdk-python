@@ -23,7 +23,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.generate import video_create_params
-from ...types.generate.video_create_response import RoutedVideoDryRun, RoutedVideoTaskCreated
+from ...types.generate.video_create_response import RoutedVideoTaskCreated
 
 __all__ = ["VideoResource", "AsyncVideoResource"]
 
@@ -64,7 +64,8 @@ class VideoResource(SyncAPIResource):
         Start a video generation task using a saved Model Router config instead of
         naming a model.
 
-        For a routing decision without creating a task, use `preview` instead.
+        The SDK does not expose dry-run for this endpoint yet — use the HTTP API with
+        ``dry_run=True`` if you need a routing preview without creating a task.
 
         Args:
           config_id: The slug of a saved Model Router config to route this request with.
@@ -93,55 +94,6 @@ class VideoResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=create_waitable_resource(RoutedVideoTaskCreated, self._client),
-        )
-
-    def preview(
-        self,
-        *,
-        config_id: str,
-        input: video_create_params.Input,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RoutedVideoDryRun:
-        """
-        Run Model Router selection for a video request without creating a task or
-        billing a generation.
-
-        Returns the same routing metadata as `create`, including the selected model and
-        estimated cost. Prefer this over passing `dry_run` to `create`.
-
-        Args:
-          config_id: The slug of a saved Model Router config to route this request with.
-
-          input: Model-agnostic video generation input. Fields are optional; the router selects a
-              model and maps these options to it.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/v1/generate/video",
-            body=maybe_transform(
-                {
-                    "config_id": config_id,
-                    "input": input,
-                    "dry_run": True,
-                },
-                video_create_params.VideoCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=RoutedVideoDryRun,
         )
 
 
@@ -181,7 +133,8 @@ class AsyncVideoResource(AsyncAPIResource):
         Start a video generation task using a saved Model Router config instead of
         naming a model.
 
-        For a routing decision without creating a task, use `preview` instead.
+        The SDK does not expose dry-run for this endpoint yet — use the HTTP API with
+        ``dry_run=True`` if you need a routing preview without creating a task.
 
         Args:
           config_id: The slug of a saved Model Router config to route this request with.
@@ -212,55 +165,6 @@ class AsyncVideoResource(AsyncAPIResource):
             cast_to=create_async_waitable_resource(RoutedVideoTaskCreated, self._client),
         )
 
-    async def preview(
-        self,
-        *,
-        config_id: str,
-        input: video_create_params.Input,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RoutedVideoDryRun:
-        """
-        Run Model Router selection for a video request without creating a task or
-        billing a generation.
-
-        Returns the same routing metadata as `create`, including the selected model and
-        estimated cost. Prefer this over passing `dry_run` to `create`.
-
-        Args:
-          config_id: The slug of a saved Model Router config to route this request with.
-
-          input: Model-agnostic video generation input. Fields are optional; the router selects a
-              model and maps these options to it.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/v1/generate/video",
-            body=await async_maybe_transform(
-                {
-                    "config_id": config_id,
-                    "input": input,
-                    "dry_run": True,
-                },
-                video_create_params.VideoCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=RoutedVideoDryRun,
-        )
-
 
 class VideoResourceWithRawResponse:
     def __init__(self, video: VideoResource) -> None:
@@ -268,9 +172,6 @@ class VideoResourceWithRawResponse:
 
         self.create = to_raw_response_wrapper(
             video.create,
-        )
-        self.preview = to_raw_response_wrapper(
-            video.preview,
         )
 
 
@@ -281,9 +182,6 @@ class AsyncVideoResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             video.create,
         )
-        self.preview = async_to_raw_response_wrapper(
-            video.preview,
-        )
 
 
 class VideoResourceWithStreamingResponse:
@@ -293,9 +191,6 @@ class VideoResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             video.create,
         )
-        self.preview = to_streamed_response_wrapper(
-            video.preview,
-        )
 
 
 class AsyncVideoResourceWithStreamingResponse:
@@ -304,7 +199,4 @@ class AsyncVideoResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             video.create,
-        )
-        self.preview = async_to_streamed_response_wrapper(
-            video.preview,
         )
