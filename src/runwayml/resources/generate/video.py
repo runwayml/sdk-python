@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+from typing import overload
+from typing_extensions import Literal
+
 import httpx
 
 from runwayml.lib.polling import (
@@ -23,7 +26,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.generate import video_create_params
-from ...types.generate.video_create_response import RoutedVideoTaskCreated
+from ...types.generate.video_create_response import RoutedVideoDryRun, RoutedVideoTaskCreated
 
 __all__ = ["VideoResource", "AsyncVideoResource"]
 
@@ -48,6 +51,45 @@ class VideoResource(SyncAPIResource):
         """
         return VideoResourceWithStreamingResponse(self)
 
+    @overload
+    def create(
+        self,
+        *,
+        config_id: str,
+        input: video_create_params.Input,
+        dry_run: Literal[True],
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> RoutedVideoDryRun: ...
+
+    @overload
+    def create(
+        self,
+        *,
+        config_id: str,
+        input: video_create_params.Input,
+        dry_run: Literal[False] | Omit = omit,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse: ...
+
+    @overload
+    def create(
+        self,
+        *,
+        config_id: str,
+        input: video_create_params.Input,
+        dry_run: bool,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> RoutedVideoDryRun | NewTaskCreatedResponse: ...
+
     def create(
         self,
         *,
@@ -60,7 +102,7 @@ class VideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> RoutedVideoDryRun | NewTaskCreatedResponse:
         """
         Start a video generation task using a saved Model Router config instead of
         naming a model.
@@ -73,7 +115,8 @@ class VideoResource(SyncAPIResource):
 
           dry_run: When true, run the full routing pipeline and return the decision and estimated
               cost without generating. No task is created, nothing is billed, and no asset is
-              produced.
+              produced. Dry-run responses have no task id — do not call
+              `wait_for_task_output`.
 
           extra_headers: Send extra headers
 
@@ -83,19 +126,28 @@ class VideoResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        body = maybe_transform(
+            {
+                "config_id": config_id,
+                "input": input,
+                "dry_run": dry_run,
+            },
+            video_create_params.VideoCreateParams,
+        )
+        options = make_request_options(
+            extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        )
+        if dry_run is True:
+            return self._post(
+                "/v1/generate/video",
+                body=body,
+                options=options,
+                cast_to=RoutedVideoDryRun,
+            )
         return self._post(
             "/v1/generate/video",
-            body=maybe_transform(
-                {
-                    "config_id": config_id,
-                    "input": input,
-                    "dry_run": dry_run,
-                },
-                video_create_params.VideoCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            body=body,
+            options=options,
             cast_to=create_waitable_resource(RoutedVideoTaskCreated, self._client),
         )
 
@@ -120,6 +172,45 @@ class AsyncVideoResource(AsyncAPIResource):
         """
         return AsyncVideoResourceWithStreamingResponse(self)
 
+    @overload
+    async def create(
+        self,
+        *,
+        config_id: str,
+        input: video_create_params.Input,
+        dry_run: Literal[True],
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> RoutedVideoDryRun: ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        config_id: str,
+        input: video_create_params.Input,
+        dry_run: Literal[False] | Omit = omit,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse: ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        config_id: str,
+        input: video_create_params.Input,
+        dry_run: bool,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> RoutedVideoDryRun | AsyncNewTaskCreatedResponse: ...
+
     async def create(
         self,
         *,
@@ -132,7 +223,7 @@ class AsyncVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> RoutedVideoDryRun | AsyncNewTaskCreatedResponse:
         """
         Start a video generation task using a saved Model Router config instead of
         naming a model.
@@ -145,7 +236,8 @@ class AsyncVideoResource(AsyncAPIResource):
 
           dry_run: When true, run the full routing pipeline and return the decision and estimated
               cost without generating. No task is created, nothing is billed, and no asset is
-              produced.
+              produced. Dry-run responses have no task id — do not call
+              `wait_for_task_output`.
 
           extra_headers: Send extra headers
 
@@ -155,19 +247,28 @@ class AsyncVideoResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        body = await async_maybe_transform(
+            {
+                "config_id": config_id,
+                "input": input,
+                "dry_run": dry_run,
+            },
+            video_create_params.VideoCreateParams,
+        )
+        options = make_request_options(
+            extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        )
+        if dry_run is True:
+            return await self._post(
+                "/v1/generate/video",
+                body=body,
+                options=options,
+                cast_to=RoutedVideoDryRun,
+            )
         return await self._post(
             "/v1/generate/video",
-            body=await async_maybe_transform(
-                {
-                    "config_id": config_id,
-                    "input": input,
-                    "dry_run": dry_run,
-                },
-                video_create_params.VideoCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            body=body,
+            options=options,
             cast_to=create_async_waitable_resource(RoutedVideoTaskCreated, self._client),
         )
 
