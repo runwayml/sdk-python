@@ -23,7 +23,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.generate import video_create_params
-from ...types.generate.video_create_response import RoutedVideoTaskCreated
+from ...types.generate.video_create_response import VideoCreateResponse
 
 __all__ = ["VideoResource", "AsyncVideoResource"]
 
@@ -64,6 +64,9 @@ class VideoResource(SyncAPIResource):
         Start a video generation task using a saved Model Router config instead of
         naming a model.
 
+        The SDK does not expose dry-run for this endpoint yet — use the HTTP API with
+        ``dry_run=True`` if you need a routing preview without creating a task.
+
         Args:
           config_id: The slug of a saved Model Router config to route this request with.
 
@@ -90,7 +93,7 @@ class VideoResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_waitable_resource(RoutedVideoTaskCreated, self._client),
+            cast_to=create_waitable_resource(VideoCreateResponse, self._client),
         )
 
 
@@ -130,6 +133,9 @@ class AsyncVideoResource(AsyncAPIResource):
         Start a video generation task using a saved Model Router config instead of
         naming a model.
 
+        The SDK does not expose dry-run for this endpoint yet — use the HTTP API with
+        ``dry_run=True`` if you need a routing preview without creating a task.
+
         Args:
           config_id: The slug of a saved Model Router config to route this request with.
 
@@ -156,7 +162,7 @@ class AsyncVideoResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_async_waitable_resource(RoutedVideoTaskCreated, self._client),
+            cast_to=create_async_waitable_resource(VideoCreateResponse, self._client),
         )
 
 
