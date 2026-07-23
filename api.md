@@ -169,6 +169,30 @@ Methods:
 
 - <code title="post /v1/generate/video">client.generate.video.<a href="./src/runwayml/resources/generate/video.py">create</a>(\*\*<a href="src/runwayml/types/generate/video_create_params.py">params</a>) -> <a href="./src/runwayml/types/generate/video_create_response.py">VideoCreateResponse</a></code>
 
+## Image
+
+Types:
+
+```python
+from runwayml.types.generate import ImageCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/generate/image">client.generate.image.<a href="./src/runwayml/resources/generate/image.py">create</a>(\*\*<a href="src/runwayml/types/generate/image_create_params.py">params</a>) -> <a href="./src/runwayml/types/generate/image_create_response.py">ImageCreateResponse</a></code>
+
+## Audio
+
+Types:
+
+```python
+from runwayml.types.generate import AudioCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/generate/audio">client.generate.audio.<a href="./src/runwayml/resources/generate/audio.py">create</a>(\*\*<a href="src/runwayml/types/generate/audio_create_params.py">params</a>) -> <a href="./src/runwayml/types/generate/audio_create_response.py">AudioCreateResponse</a></code>
+
 # Routers
 
 Types:
