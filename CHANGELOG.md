@@ -1,5 +1,24 @@
 # Changelog
 
+## 5.12.0 (2026-07-23)
+
+Full Changelog: [v5.11.0...v5.12.0](https://github.com/runwayml/sdk-python/compare/v5.11.0...v5.12.0)
+
+### Features
+
+* **api:** add Model Router image and audio generation ([e9f38d4](https://github.com/runwayml/sdk-python/commit/e9f38d40cf90be9e1e0775e50db76bef1aac1969))
+* **api:** expose generate image and audio endpoints ([d19bc95](https://github.com/runwayml/sdk-python/commit/d19bc9510ae78e7be4c257703e0e06e068eef0a7))
+
+
+### Bug Fixes
+
+* **client:** make generate.image and generate.audio responses awaitable ([d4900ac](https://github.com/runwayml/sdk-python/commit/d4900aca61dbb0ee983331aba287ac0930e975ac))
+
+
+### Chores
+
+* **openapi:** keep generate.video SDK schema task-only ([4b6e6c4](https://github.com/runwayml/sdk-python/commit/4b6e6c4abf38ae0cad30ba73acbf7f03401e00ac))
+
 ## 5.11.0 (2026-07-21)
 
 Full Changelog: [v5.10.0...v5.11.0](https://github.com/runwayml/sdk-python/compare/v5.10.0...v5.11.0)
