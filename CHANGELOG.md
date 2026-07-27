@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.13.0 (2026-07-27)
+
+Full Changelog: [v5.12.0...v5.13.0](https://github.com/runwayml/sdk-python/compare/v5.12.0...v5.13.0)
+
+### Features
+
+* **api:** Update OpenAPI copy for asset URL and media field descriptions ([92684d7](https://github.com/runwayml/sdk-python/commit/92684d71d0232911a52774acf46de80ed016c5c8))
+
 ## 5.12.0 (2026-07-23)
 
 Full Changelog: [v5.11.0...v5.12.0](https://github.com/runwayml/sdk-python/compare/v5.11.0...v5.12.0)
