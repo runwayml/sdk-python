@@ -33,7 +33,7 @@ class TestSoundEffect:
             loudness_rate=-50,
             output_format="wav",
             pitch_rate=-12,
-            reference_audios=["https://example.com/file"],
+            reference_audios=["https://example.com/audio.mp3"],
             sample_rate=8000,
             speech_rate=-50,
         )
@@ -131,7 +131,7 @@ class TestAsyncSoundEffect:
             loudness_rate=-50,
             output_format="wav",
             pitch_rate=-12,
-            reference_audios=["https://example.com/file"],
+            reference_audios=["https://example.com/audio.mp3"],
             sample_rate=8000,
             speech_rate=-50,
         )

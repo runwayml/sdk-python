@@ -22,7 +22,7 @@ class TestCharacterPerformance:
         character_performance = client.character_performance.create(
             character={
                 "type": "image",
-                "uri": "https://example.com/file",
+                "uri": "https://example.com/image.jpg",
             },
             model="act_two",
             reference={
@@ -37,7 +37,7 @@ class TestCharacterPerformance:
         character_performance = client.character_performance.create(
             character={
                 "type": "image",
-                "uri": "https://example.com/file",
+                "uri": "https://example.com/image.jpg",
             },
             model="act_two",
             reference={
@@ -57,7 +57,7 @@ class TestCharacterPerformance:
         response = client.character_performance.with_raw_response.create(
             character={
                 "type": "image",
-                "uri": "https://example.com/file",
+                "uri": "https://example.com/image.jpg",
             },
             model="act_two",
             reference={
@@ -76,7 +76,7 @@ class TestCharacterPerformance:
         with client.character_performance.with_streaming_response.create(
             character={
                 "type": "image",
-                "uri": "https://example.com/file",
+                "uri": "https://example.com/image.jpg",
             },
             model="act_two",
             reference={
@@ -103,7 +103,7 @@ class TestAsyncCharacterPerformance:
         character_performance = await async_client.character_performance.create(
             character={
                 "type": "image",
-                "uri": "https://example.com/file",
+                "uri": "https://example.com/image.jpg",
             },
             model="act_two",
             reference={
@@ -118,7 +118,7 @@ class TestAsyncCharacterPerformance:
         character_performance = await async_client.character_performance.create(
             character={
                 "type": "image",
-                "uri": "https://example.com/file",
+                "uri": "https://example.com/image.jpg",
             },
             model="act_two",
             reference={
@@ -138,7 +138,7 @@ class TestAsyncCharacterPerformance:
         response = await async_client.character_performance.with_raw_response.create(
             character={
                 "type": "image",
-                "uri": "https://example.com/file",
+                "uri": "https://example.com/image.jpg",
             },
             model="act_two",
             reference={
@@ -157,7 +157,7 @@ class TestAsyncCharacterPerformance:
         async with async_client.character_performance.with_streaming_response.create(
             character={
                 "type": "image",
-                "uri": "https://example.com/file",
+                "uri": "https://example.com/image.jpg",
             },
             model="act_two",
             reference={

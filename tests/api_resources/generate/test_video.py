@@ -37,7 +37,7 @@ class TestVideo:
                 "keyframes": [
                     {
                         "seconds": 0,
-                        "uri": "https://example.com/file",
+                        "uri": "https://example.com/image.jpg",
                         "range": {
                             "end_seconds": 1,
                             "start_seconds": 0,
@@ -46,17 +46,17 @@ class TestVideo:
                 ],
                 "negative_prompt": "negativePrompt",
                 "prompt_text": "x",
-                "reference_audio": [{"uri": "https://example.com/file"}],
+                "reference_audio": [{"uri": "https://example.com/audio.mp3"}],
                 "reference_images": [
                     {
                         "role": "first",
-                        "uri": "https://example.com/file",
+                        "uri": "https://example.com/image.jpg",
                     }
                 ],
                 "reference_videos": [
                     {
                         "role": "source",
-                        "uri": "https://example.com/file",
+                        "uri": "https://example.com/video.mp4",
                     }
                 ],
                 "resolution": "480p",
@@ -117,7 +117,7 @@ class TestAsyncVideo:
                 "keyframes": [
                     {
                         "seconds": 0,
-                        "uri": "https://example.com/file",
+                        "uri": "https://example.com/image.jpg",
                         "range": {
                             "end_seconds": 1,
                             "start_seconds": 0,
@@ -126,17 +126,17 @@ class TestAsyncVideo:
                 ],
                 "negative_prompt": "negativePrompt",
                 "prompt_text": "x",
-                "reference_audio": [{"uri": "https://example.com/file"}],
+                "reference_audio": [{"uri": "https://example.com/audio.mp3"}],
                 "reference_images": [
                     {
                         "role": "first",
-                        "uri": "https://example.com/file",
+                        "uri": "https://example.com/image.jpg",
                     }
                 ],
                 "reference_videos": [
                     {
                         "role": "source",
-                        "uri": "https://example.com/file",
+                        "uri": "https://example.com/video.mp4",
                     }
                 ],
                 "resolution": "480p",

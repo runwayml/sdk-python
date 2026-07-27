@@ -71,7 +71,9 @@ class ImageToVideoResource(SyncAPIResource):
           duration: The number of seconds of duration for the output video. Must be an integer from
               2 to 10.
 
-          prompt_image: A HTTPS URL.
+          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
@@ -116,7 +118,9 @@ class ImageToVideoResource(SyncAPIResource):
         This endpoint will start a new task to generate a video from an image.
 
         Args:
-          prompt_image: A HTTPS URL.
+          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
 
           ratio: The resolution of the output video.
 
@@ -255,7 +259,9 @@ class ImageToVideoResource(SyncAPIResource):
         This endpoint will start a new task to generate a video from an image.
 
         Args:
-          prompt_image: A HTTPS URL.
+          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
 
           duration: The number of seconds of duration for the output video.
 
@@ -535,7 +541,9 @@ class ImageToVideoResource(SyncAPIResource):
         Args:
           duration: The number of seconds of duration for the output video.
 
-          prompt_image: A HTTPS URL.
+          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
 
           ratio: The resolution of the output video.
 
@@ -711,7 +719,9 @@ class AsyncImageToVideoResource(AsyncAPIResource):
           duration: The number of seconds of duration for the output video. Must be an integer from
               2 to 10.
 
-          prompt_image: A HTTPS URL.
+          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
@@ -756,7 +766,9 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         This endpoint will start a new task to generate a video from an image.
 
         Args:
-          prompt_image: A HTTPS URL.
+          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
 
           ratio: The resolution of the output video.
 
@@ -895,7 +907,9 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         This endpoint will start a new task to generate a video from an image.
 
         Args:
-          prompt_image: A HTTPS URL.
+          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
 
           duration: The number of seconds of duration for the output video.
 
@@ -1175,7 +1189,9 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         Args:
           duration: The number of seconds of duration for the output video.
 
-          prompt_image: A HTTPS URL.
+          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
 
           ratio: The resolution of the output video.
 

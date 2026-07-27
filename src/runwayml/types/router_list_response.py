@@ -12,9 +12,9 @@ __all__ = ["RouterListResponse", "Settings", "SettingsMaxCreditsPerGeneration", 
 
 
 class SettingsMaxCreditsPerGeneration(BaseModel):
-    """Optional per-modality hard caps on credits for one generation.
+    """Optional per-modality credit caps, applied per generated output.
 
-    Models whose estimated cost for that modality exceeds the cap are excluded.
+    Models whose estimated per-output cost exceeds the cap are excluded.
     """
 
     audio: Optional[int] = None
@@ -41,9 +41,9 @@ class Settings(BaseModel):
     max_credits_per_generation: Optional[SettingsMaxCreditsPerGeneration] = FieldInfo(
         alias="maxCreditsPerGeneration", default=None
     )
-    """Optional per-modality hard caps on credits for one generation.
+    """Optional per-modality credit caps, applied per generated output.
 
-    Models whose estimated cost for that modality exceeds the cap are excluded.
+    Models whose estimated per-output cost exceeds the cap are excluded.
     """
 
     models: Optional[SettingsModels] = None

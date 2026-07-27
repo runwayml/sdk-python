@@ -23,7 +23,7 @@ class TestTextToImage:
             model="gen4_image_turbo",
             prompt_text="x",
             ratio="1024:1024",
-            reference_images=[{"uri": "https://example.com/file"}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -35,7 +35,7 @@ class TestTextToImage:
             ratio="1024:1024",
             reference_images=[
                 {
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/image.jpg",
                     "tag": "tag",
                 }
             ],
@@ -50,7 +50,7 @@ class TestTextToImage:
             model="gen4_image_turbo",
             prompt_text="x",
             ratio="1024:1024",
-            reference_images=[{"uri": "https://example.com/file"}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
 
         assert response.is_closed is True
@@ -64,7 +64,7 @@ class TestTextToImage:
             model="gen4_image_turbo",
             prompt_text="x",
             ratio="1024:1024",
-            reference_images=[{"uri": "https://example.com/file"}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -92,7 +92,7 @@ class TestTextToImage:
             content_moderation={"public_figure_threshold": "auto"},
             reference_images=[
                 {
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/image.jpg",
                     "tag": "tag",
                 }
             ],
@@ -148,7 +148,7 @@ class TestTextToImage:
             quality="low",
             reference_images=[
                 {
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/image.jpg",
                     "tag": "tag",
                 }
             ],
@@ -201,7 +201,7 @@ class TestTextToImage:
             output_count=1,
             reference_images=[
                 {
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/image.jpg",
                     "subject": "object",
                     "tag": "tag",
                 }
@@ -255,7 +255,7 @@ class TestTextToImage:
             output_count=1,
             reference_images=[
                 {
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/image.jpg",
                     "subject": "object",
                     "tag": "tag",
                 }
@@ -309,7 +309,7 @@ class TestTextToImage:
             grounding=True,
             output_count=1,
             output_format="png",
-            reference_images=[{"uri": "https://example.com/file"}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -358,7 +358,7 @@ class TestTextToImage:
             ratio="2048:2048",
             output_count=1,
             output_format="png",
-            reference_images=[{"uri": "https://example.com/file"}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -407,7 +407,7 @@ class TestTextToImage:
             ratio="1344:768",
             reference_images=[
                 {
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/image.jpg",
                     "tag": "tag",
                 }
             ],
@@ -454,7 +454,7 @@ class TestAsyncTextToImage:
             model="gen4_image_turbo",
             prompt_text="x",
             ratio="1024:1024",
-            reference_images=[{"uri": "https://example.com/file"}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -466,7 +466,7 @@ class TestAsyncTextToImage:
             ratio="1024:1024",
             reference_images=[
                 {
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/image.jpg",
                     "tag": "tag",
                 }
             ],
@@ -481,7 +481,7 @@ class TestAsyncTextToImage:
             model="gen4_image_turbo",
             prompt_text="x",
             ratio="1024:1024",
-            reference_images=[{"uri": "https://example.com/file"}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
 
         assert response.is_closed is True
@@ -495,7 +495,7 @@ class TestAsyncTextToImage:
             model="gen4_image_turbo",
             prompt_text="x",
             ratio="1024:1024",
-            reference_images=[{"uri": "https://example.com/file"}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -523,7 +523,7 @@ class TestAsyncTextToImage:
             content_moderation={"public_figure_threshold": "auto"},
             reference_images=[
                 {
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/image.jpg",
                     "tag": "tag",
                 }
             ],
@@ -579,7 +579,7 @@ class TestAsyncTextToImage:
             quality="low",
             reference_images=[
                 {
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/image.jpg",
                     "tag": "tag",
                 }
             ],
@@ -632,7 +632,7 @@ class TestAsyncTextToImage:
             output_count=1,
             reference_images=[
                 {
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/image.jpg",
                     "subject": "object",
                     "tag": "tag",
                 }
@@ -686,7 +686,7 @@ class TestAsyncTextToImage:
             output_count=1,
             reference_images=[
                 {
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/image.jpg",
                     "subject": "object",
                     "tag": "tag",
                 }
@@ -740,7 +740,7 @@ class TestAsyncTextToImage:
             grounding=True,
             output_count=1,
             output_format="png",
-            reference_images=[{"uri": "https://example.com/file"}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -789,7 +789,7 @@ class TestAsyncTextToImage:
             ratio="2048:2048",
             output_count=1,
             output_format="png",
-            reference_images=[{"uri": "https://example.com/file"}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -838,7 +838,7 @@ class TestAsyncTextToImage:
             ratio="1344:768",
             reference_images=[
                 {
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/image.jpg",
                     "tag": "tag",
                 }
             ],

@@ -35,11 +35,11 @@ class RecipeProductUgcParams(TypedDict, total=False):
     """Whether to generate audio for the video."""
 
     duration: int
-    """Duration of the output video in seconds (4–15). Defaults to 15 seconds."""
+    """Duration of the output video in seconds (4-15). Defaults to 15 seconds."""
 
     product_info: Annotated[str, PropertyInfo(alias="productInfo")]
     """
-    Product details and creative brief — what the product is, key benefits, and any
+    Product details and creative brief - what the product is, key benefits, and any
     specifics the script should reference.
     """
 
@@ -48,7 +48,7 @@ class RecipeProductUgcParams(TypedDict, total=False):
 
     user_concept: Annotated[str, PropertyInfo(alias="userConcept")]
     """
-    Optional creative direction for the UGC video — tone, voice register, specific
+    Optional creative direction for the UGC video - tone, voice register, specific
     message, or an entire dialog script.
     """
 
@@ -60,7 +60,11 @@ class CharacterImage(TypedDict, total=False):
     """
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
 
 class ProductImage(TypedDict, total=False):
@@ -70,4 +74,8 @@ class ProductImage(TypedDict, total=False):
     """
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """

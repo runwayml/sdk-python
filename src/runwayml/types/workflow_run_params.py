@@ -40,7 +40,11 @@ class NodeOutputsNodeOutputsItemImage(TypedDict, total=False):
     type: Required[Literal["image"]]
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
 
 class NodeOutputsNodeOutputsItemVideo(TypedDict, total=False):
@@ -49,7 +53,11 @@ class NodeOutputsNodeOutputsItemVideo(TypedDict, total=False):
     type: Required[Literal["video"]]
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+    [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
 
 
 class NodeOutputsNodeOutputsItemAudio(TypedDict, total=False):
@@ -58,7 +66,11 @@ class NodeOutputsNodeOutputsItemAudio(TypedDict, total=False):
     type: Required[Literal["audio"]]
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+    [our docs](/assets/inputs#audio) on audio inputs for more information.
+    """
 
 
 NodeOutputsNodeOutputsItem: TypeAlias = Union[

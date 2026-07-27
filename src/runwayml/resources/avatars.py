@@ -75,7 +75,9 @@ class AvatarsResource(SyncAPIResource):
 
           personality: System prompt defining how the avatar should behave in conversations.
 
-          reference_image: A HTTPS URL.
+          reference_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
 
           voice: The voice configuration for the avatar.
 
@@ -191,7 +193,9 @@ class AvatarsResource(SyncAPIResource):
 
           personality: System prompt defining how the avatar should behave in conversations.
 
-          reference_image: A HTTPS URL.
+          reference_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
 
           start_script: Optional opening message that the avatar will say when a session starts. Set to
               null to clear.
@@ -408,7 +412,9 @@ class AsyncAvatarsResource(AsyncAPIResource):
 
           personality: System prompt defining how the avatar should behave in conversations.
 
-          reference_image: A HTTPS URL.
+          reference_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
 
           voice: The voice configuration for the avatar.
 
@@ -524,7 +530,9 @@ class AsyncAvatarsResource(AsyncAPIResource):
 
           personality: System prompt defining how the avatar should behave in conversations.
 
-          reference_image: A HTTPS URL.
+          reference_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
 
           start_script: Optional opening message that the avatar will say when a session starts. Set to
               null to clear.

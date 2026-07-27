@@ -69,7 +69,9 @@ class VideoToVideoResource(SyncAPIResource):
         This endpoint will start a new task to generate a video from a video.
 
         Args:
-          video_uri: A HTTPS URL.
+          video_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
 
           content_moderation: Settings that affect the behavior of the content moderation system.
 
@@ -145,7 +147,9 @@ class VideoToVideoResource(SyncAPIResource):
         This endpoint will start a new task to generate a video from a video.
 
         Args:
-          prompt_video: A HTTPS URL.
+          prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
 
           audio: Whether to generate audio for the video.
 
@@ -214,7 +218,9 @@ class VideoToVideoResource(SyncAPIResource):
         This endpoint will start a new task to generate a video from a video.
 
         Args:
-          prompt_video: A HTTPS URL.
+          prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
 
           audio: Whether to generate audio for the video.
 
@@ -284,7 +290,9 @@ class VideoToVideoResource(SyncAPIResource):
         This endpoint will start a new task to generate a video from a video.
 
         Args:
-          prompt_video: A HTTPS URL.
+          prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
 
           audio: Whether to generate audio for the video.
 
@@ -337,7 +345,9 @@ class VideoToVideoResource(SyncAPIResource):
         Args:
           prompt_text: A non-empty instruction describing the edit to apply.
 
-          video_uri: A HTTPS URL.
+          video_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
 
           references: An optional array of image references to guide the edit.
 
@@ -504,7 +514,9 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         This endpoint will start a new task to generate a video from a video.
 
         Args:
-          video_uri: A HTTPS URL.
+          video_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
 
           content_moderation: Settings that affect the behavior of the content moderation system.
 
@@ -580,7 +592,9 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         This endpoint will start a new task to generate a video from a video.
 
         Args:
-          prompt_video: A HTTPS URL.
+          prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
 
           audio: Whether to generate audio for the video.
 
@@ -649,7 +663,9 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         This endpoint will start a new task to generate a video from a video.
 
         Args:
-          prompt_video: A HTTPS URL.
+          prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
 
           audio: Whether to generate audio for the video.
 
@@ -719,7 +735,9 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         This endpoint will start a new task to generate a video from a video.
 
         Args:
-          prompt_video: A HTTPS URL.
+          prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
 
           audio: Whether to generate audio for the video.
 
@@ -772,7 +790,9 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         Args:
           prompt_text: A non-empty instruction describing the edit to apply.
 
-          video_uri: A HTTPS URL.
+          video_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
 
           references: An optional array of image references to guide the edit.
 

@@ -37,7 +37,7 @@ class TestAudio:
                 "type": "speech",
                 "duration": 0.5,
                 "loop": True,
-                "reference_audios": [{"uri": "https://example.com/file"}],
+                "reference_audios": [{"uri": "https://example.com/audio.mp3"}],
                 "voice": {
                     "preset_id": "Maya",
                     "type": "preset",
@@ -104,7 +104,7 @@ class TestAsyncAudio:
                 "type": "speech",
                 "duration": 0.5,
                 "loop": True,
-                "reference_audios": [{"uri": "https://example.com/file"}],
+                "reference_audios": [{"uri": "https://example.com/audio.mp3"}],
                 "voice": {
                     "preset_id": "Maya",
                     "type": "preset",

@@ -33,6 +33,7 @@ from .workflow_list_response import WorkflowListResponse as WorkflowListResponse
 from .avatar_get_usage_params import AvatarGetUsageParams as AvatarGetUsageParams
 from .voice_retrieve_response import VoiceRetrieveResponse as VoiceRetrieveResponse
 from .avatar_retrieve_response import AvatarRetrieveResponse as AvatarRetrieveResponse
+from .deprecated_livekit_param import DeprecatedLivekitParam as DeprecatedLivekitParam
 from .document_create_response import DocumentCreateResponse as DocumentCreateResponse
 from .recipe_product_ad_params import RecipeProductAdParams as RecipeProductAdParams
 from .router_retrieve_response import RouterRetrieveResponse as RouterRetrieveResponse

@@ -36,7 +36,7 @@ class TestTextToSpeech:
             sample_rate=8000,
             speech_rate=-50,
             voice={
-                "audio_uri": "https://example.com/file",
+                "audio_uri": "https://example.com/audio.mp3",
                 "type": "reference-audio",
             },
         )
@@ -139,7 +139,7 @@ class TestAsyncTextToSpeech:
             sample_rate=8000,
             speech_rate=-50,
             voice={
-                "audio_uri": "https://example.com/file",
+                "audio_uri": "https://example.com/audio.mp3",
                 "type": "reference-audio",
             },
         )

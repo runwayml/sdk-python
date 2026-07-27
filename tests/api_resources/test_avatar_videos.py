@@ -26,7 +26,7 @@ class TestAvatarVideos:
             },
             model="gwm1_avatars",
             speech={
-                "audio": "https://example.com/file",
+                "audio": "https://example.com/audio.mp3",
                 "type": "audio",
             },
         )
@@ -41,7 +41,7 @@ class TestAvatarVideos:
             },
             model="gwm1_avatars",
             speech={
-                "audio": "https://example.com/file",
+                "audio": "https://example.com/audio.mp3",
                 "type": "audio",
             },
         )
@@ -56,7 +56,7 @@ class TestAvatarVideos:
             },
             model="gwm1_avatars",
             speech={
-                "audio": "https://example.com/file",
+                "audio": "https://example.com/audio.mp3",
                 "type": "audio",
             },
         )
@@ -75,7 +75,7 @@ class TestAvatarVideos:
             },
             model="gwm1_avatars",
             speech={
-                "audio": "https://example.com/file",
+                "audio": "https://example.com/audio.mp3",
                 "type": "audio",
             },
         ) as response:
@@ -102,7 +102,7 @@ class TestAsyncAvatarVideos:
             },
             model="gwm1_avatars",
             speech={
-                "audio": "https://example.com/file",
+                "audio": "https://example.com/audio.mp3",
                 "type": "audio",
             },
         )
@@ -117,7 +117,7 @@ class TestAsyncAvatarVideos:
             },
             model="gwm1_avatars",
             speech={
-                "audio": "https://example.com/file",
+                "audio": "https://example.com/audio.mp3",
                 "type": "audio",
             },
         )
@@ -132,7 +132,7 @@ class TestAsyncAvatarVideos:
             },
             model="gwm1_avatars",
             speech={
-                "audio": "https://example.com/file",
+                "audio": "https://example.com/audio.mp3",
                 "type": "audio",
             },
         )
@@ -151,7 +151,7 @@ class TestAsyncAvatarVideos:
             },
             model="gwm1_avatars",
             speech={
-                "audio": "https://example.com/file",
+                "audio": "https://example.com/audio.mp3",
                 "type": "audio",
             },
         ) as response:

@@ -33,7 +33,11 @@ class InputContentModeration(TypedDict, total=False):
 
 class InputReferenceImage(TypedDict, total=False):
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
 
 class Input(TypedDict, total=False):
@@ -58,7 +62,7 @@ class Input(TypedDict, total=False):
     """Settings that affect the behavior of the content moderation system."""
 
     output_count: Annotated[int, PropertyInfo(alias="outputCount")]
-    """Number of images to generate (1–10).
+    """Number of images to generate (1-10).
 
     Models that cannot produce the exact count are excluded and cost scales with
     this value.

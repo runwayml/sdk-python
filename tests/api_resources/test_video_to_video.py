@@ -34,7 +34,7 @@ class TestVideoToVideo:
             keyframes=[
                 {
                     "seconds": 0,
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/image.jpg",
                     "range": {
                         "end_seconds": 1,
                         "start_seconds": 0,
@@ -94,14 +94,14 @@ class TestVideoToVideo:
             reference_audio=[
                 {
                     "type": "audio",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/audio.mp3",
                 }
             ],
-            references=[{"uri": "https://example.com/file"}],
+            references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[
                 {
                     "type": "video",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/video.mp4",
                 }
             ],
         )
@@ -153,14 +153,14 @@ class TestVideoToVideo:
             reference_audio=[
                 {
                     "type": "audio",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/audio.mp3",
                 }
             ],
-            references=[{"uri": "https://example.com/file"}],
+            references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[
                 {
                     "type": "video",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/video.mp4",
                 }
             ],
         )
@@ -212,14 +212,14 @@ class TestVideoToVideo:
             reference_audio=[
                 {
                     "type": "audio",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/audio.mp3",
                 }
             ],
-            references=[{"uri": "https://example.com/file"}],
+            references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[
                 {
                     "type": "video",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/video.mp4",
                 }
             ],
         )
@@ -266,7 +266,7 @@ class TestVideoToVideo:
             model="gemini_omni_flash",
             prompt_text="x",
             video_uri="https://example.com/video.mp4",
-            references=[{"uri": "https://example.com/file"}],
+            references=[{"uri": "https://example.com/image.jpg"}],
         )
         assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
 
@@ -321,7 +321,7 @@ class TestAsyncVideoToVideo:
             keyframes=[
                 {
                     "seconds": 0,
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/image.jpg",
                     "range": {
                         "end_seconds": 1,
                         "start_seconds": 0,
@@ -381,14 +381,14 @@ class TestAsyncVideoToVideo:
             reference_audio=[
                 {
                     "type": "audio",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/audio.mp3",
                 }
             ],
-            references=[{"uri": "https://example.com/file"}],
+            references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[
                 {
                     "type": "video",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/video.mp4",
                 }
             ],
         )
@@ -440,14 +440,14 @@ class TestAsyncVideoToVideo:
             reference_audio=[
                 {
                     "type": "audio",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/audio.mp3",
                 }
             ],
-            references=[{"uri": "https://example.com/file"}],
+            references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[
                 {
                     "type": "video",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/video.mp4",
                 }
             ],
         )
@@ -499,14 +499,14 @@ class TestAsyncVideoToVideo:
             reference_audio=[
                 {
                     "type": "audio",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/audio.mp3",
                 }
             ],
-            references=[{"uri": "https://example.com/file"}],
+            references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[
                 {
                     "type": "video",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/video.mp4",
                 }
             ],
         )
@@ -553,7 +553,7 @@ class TestAsyncVideoToVideo:
             model="gemini_omni_flash",
             prompt_text="x",
             video_uri="https://example.com/video.mp4",
-            references=[{"uri": "https://example.com/file"}],
+            references=[{"uri": "https://example.com/image.jpg"}],
         )
         assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
 
