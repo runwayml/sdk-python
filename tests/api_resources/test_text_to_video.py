@@ -230,14 +230,14 @@ class TestTextToVideo:
             reference_audio=[
                 {
                     "type": "audio",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/audio.mp3",
                 }
             ],
-            references=[{"uri": "https://example.com/file"}],
+            references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[
                 {
                     "type": "video",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/video.mp4",
                 }
             ],
         )
@@ -288,14 +288,14 @@ class TestTextToVideo:
             reference_audio=[
                 {
                     "type": "audio",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/audio.mp3",
                 }
             ],
-            references=[{"uri": "https://example.com/file"}],
+            references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[
                 {
                     "type": "video",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/video.mp4",
                 }
             ],
         )
@@ -346,14 +346,14 @@ class TestTextToVideo:
             reference_audio=[
                 {
                     "type": "audio",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/audio.mp3",
                 }
             ],
-            references=[{"uri": "https://example.com/file"}],
+            references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[
                 {
                     "type": "video",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/video.mp4",
                 }
             ],
         )
@@ -699,14 +699,14 @@ class TestAsyncTextToVideo:
             reference_audio=[
                 {
                     "type": "audio",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/audio.mp3",
                 }
             ],
-            references=[{"uri": "https://example.com/file"}],
+            references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[
                 {
                     "type": "video",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/video.mp4",
                 }
             ],
         )
@@ -757,14 +757,14 @@ class TestAsyncTextToVideo:
             reference_audio=[
                 {
                     "type": "audio",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/audio.mp3",
                 }
             ],
-            references=[{"uri": "https://example.com/file"}],
+            references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[
                 {
                     "type": "video",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/video.mp4",
                 }
             ],
         )
@@ -815,14 +815,14 @@ class TestAsyncTextToVideo:
             reference_audio=[
                 {
                     "type": "audio",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/audio.mp3",
                 }
             ],
-            references=[{"uri": "https://example.com/file"}],
+            references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[
                 {
                     "type": "video",
-                    "uri": "https://example.com/file",
+                    "uri": "https://example.com/video.mp4",
                 }
             ],
         )

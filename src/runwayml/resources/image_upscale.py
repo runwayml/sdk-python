@@ -77,7 +77,9 @@ class ImageUpscaleResource(SyncAPIResource):
         25,300,000 pixels (~25.3 million).
 
         Args:
-          image_uri: A HTTPS URL.
+          image_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
 
           flavor: Optimization preset: `sublime` (illustration), `photo` (photographic), or
               `photo_denoiser` (noisy photos).
@@ -167,7 +169,9 @@ class AsyncImageUpscaleResource(AsyncAPIResource):
         25,300,000 pixels (~25.3 million).
 
         Args:
-          image_uri: A HTTPS URL.
+          image_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
 
           flavor: Optimization preset: `sublime` (illustration), `photo` (photographic), or
               `photo_denoiser` (noisy photos).

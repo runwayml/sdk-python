@@ -49,7 +49,11 @@ class Gen4_5(TypedDict, total=False):
     prompt_image: Required[
         Annotated[Union[str, Iterable[Gen4_5PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
     ]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
     prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
     """A non-empty string up to 1000 characters (measured in UTF-16 code units).
@@ -80,7 +84,11 @@ class Gen4_5PromptImagePromptImage(TypedDict, total=False):
     """
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
 
 class Gen4_5ContentModeration(TypedDict, total=False):
@@ -99,7 +107,11 @@ class Gen4Turbo(TypedDict, total=False):
     prompt_image: Required[
         Annotated[Union[str, Iterable[Gen4TurboPromptImagePromptImage]], PropertyInfo(alias="promptImage")]
     ]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
     ratio: Required[Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]]
     """The resolution of the output video."""
@@ -133,7 +145,11 @@ class Gen4TurboPromptImagePromptImage(TypedDict, total=False):
     """
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
 
 class Gen4TurboContentModeration(TypedDict, total=False):
@@ -186,7 +202,11 @@ class Veo3_1PromptImagePromptImage(TypedDict, total=False):
     """
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
 
 class Veo3_1Fast(TypedDict, total=False):
@@ -229,7 +249,11 @@ class Veo3_1FastPromptImagePromptImage(TypedDict, total=False):
     """
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
 
 class Happyhorse1_0(TypedDict, total=False):
@@ -238,7 +262,11 @@ class Happyhorse1_0(TypedDict, total=False):
     prompt_image: Required[
         Annotated[Union[str, Iterable[Happyhorse1_0PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
     ]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
     duration: int
     """The number of seconds of duration for the output video."""
@@ -261,7 +289,11 @@ class Happyhorse1_0PromptImagePromptImage(TypedDict, total=False):
     """
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
 
 class Seedance2(TypedDict, total=False):
@@ -326,7 +358,11 @@ class Seedance2(TypedDict, total=False):
 
 class Seedance2PromptImagePromptImage(TypedDict, total=False):
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
     position: Literal["first", "last"]
     """The position of the image in the output video.
@@ -344,7 +380,11 @@ class Seedance2ReferenceAudio(TypedDict, total=False):
     type: Required[Literal["audio"]]
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+    [our docs](/assets/inputs#audio) on audio inputs for more information.
+    """
 
 
 class Seedance2Fast(TypedDict, total=False):
@@ -400,7 +440,11 @@ class Seedance2Fast(TypedDict, total=False):
 
 class Seedance2FastPromptImagePromptImage(TypedDict, total=False):
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
     position: Literal["first", "last"]
     """The position of the image in the output video.
@@ -418,7 +462,11 @@ class Seedance2FastReferenceAudio(TypedDict, total=False):
     type: Required[Literal["audio"]]
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+    [our docs](/assets/inputs#audio) on audio inputs for more information.
+    """
 
 
 class Seedance2Mini(TypedDict, total=False):
@@ -474,7 +522,11 @@ class Seedance2Mini(TypedDict, total=False):
 
 class Seedance2MiniPromptImagePromptImage(TypedDict, total=False):
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
     position: Literal["first", "last"]
     """The position of the image in the output video.
@@ -492,7 +544,11 @@ class Seedance2MiniReferenceAudio(TypedDict, total=False):
     type: Required[Literal["audio"]]
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+    [our docs](/assets/inputs#audio) on audio inputs for more information.
+    """
 
 
 class GeminiOmniFlash(TypedDict, total=False):
@@ -530,7 +586,11 @@ class GeminiOmniFlashPromptImagePromptImage(TypedDict, total=False):
     """
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
 
 class Veo3(TypedDict, total=False):
@@ -542,7 +602,11 @@ class Veo3(TypedDict, total=False):
     prompt_image: Required[
         Annotated[Union[str, Iterable[Veo3PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
     ]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
     ratio: Required[Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]]
     """The resolution of the output video."""
@@ -565,7 +629,11 @@ class Veo3PromptImagePromptImage(TypedDict, total=False):
     """
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
 
 ImageToVideoCreateParams: TypeAlias = Union[

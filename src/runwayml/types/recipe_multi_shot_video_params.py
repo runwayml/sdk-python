@@ -59,15 +59,19 @@ class Variant0FirstFrame(TypedDict, total=False):
     """
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
 
 class Variant1(TypedDict, total=False):
     mode: Required[Literal["custom"]]
-    """Workflow mode. `custom` polishes a user-provided shot list of 3–5 shots."""
+    """Workflow mode. `custom` polishes a user-provided shot list of 3-5 shots."""
 
     shots: Required[Iterable[Variant1Shot]]
-    """Shot list for custom mode (3–5 shots).
+    """Shot list for custom mode (3-5 shots).
 
     Per-shot durations must sum to `duration`.
     """
@@ -115,7 +119,11 @@ class Variant1FirstFrame(TypedDict, total=False):
     """
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
 
 RecipeMultiShotVideoParams: TypeAlias = Union[Variant0, Variant1]

@@ -13,7 +13,11 @@ class VideoUpscaleCreateParams(TypedDict, total=False):
     model: Required[Literal["magnific_video_upscaler_creative"]]
 
     video_uri: Required[Annotated[str, PropertyInfo(alias="videoUri")]]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+    [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
 
     creativity: int
     """How much AI-generated detail to add during upscaling, from 0 (faithful) to 100."""

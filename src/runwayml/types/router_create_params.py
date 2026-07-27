@@ -36,9 +36,9 @@ class RouterCreateParams(TypedDict, total=False):
 
 
 class SettingsMaxCreditsPerGeneration(TypedDict, total=False):
-    """Optional per-modality hard caps on credits for one generation.
+    """Optional per-modality credit caps, applied per generated output.
 
-    Models whose estimated cost for that modality exceeds the cap are excluded.
+    Models whose estimated per-output cost exceeds the cap are excluded.
     """
 
     audio: int
@@ -67,9 +67,9 @@ class Settings(TypedDict, total=False):
     max_credits_per_generation: Annotated[
         SettingsMaxCreditsPerGeneration, PropertyInfo(alias="maxCreditsPerGeneration")
     ]
-    """Optional per-modality hard caps on credits for one generation.
+    """Optional per-modality credit caps, applied per generated output.
 
-    Models whose estimated cost for that modality exceeds the cap are excluded.
+    Models whose estimated per-output cost exceeds the cap are excluded.
     """
 
     models: SettingsModels

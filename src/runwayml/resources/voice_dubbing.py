@@ -101,7 +101,9 @@ class VoiceDubbingResource(SyncAPIResource):
         This endpoint will start a new task to dub audio content to a target language.
 
         Args:
-          audio_uri: A HTTPS URL.
+          audio_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+              [our docs](/assets/inputs#audio) on audio inputs for more information.
 
           target_lang: The target language code to dub the audio to (e.g., "es" for Spanish, "fr" for
               French).
@@ -213,7 +215,9 @@ class AsyncVoiceDubbingResource(AsyncAPIResource):
         This endpoint will start a new task to dub audio content to a target language.
 
         Args:
-          audio_uri: A HTTPS URL.
+          audio_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+              [our docs](/assets/inputs#audio) on audio inputs for more information.
 
           target_lang: The target language code to dub the audio to (e.g., "es" for Spanish, "fr" for
               French).

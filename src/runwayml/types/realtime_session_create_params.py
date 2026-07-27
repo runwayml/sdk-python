@@ -7,6 +7,7 @@ from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
+from .deprecated_livekit_param import DeprecatedLivekitParam
 
 __all__ = [
     "RealtimeSessionCreateParams",
@@ -16,7 +17,6 @@ __all__ = [
     "Integration",
     "IntegrationElevenlabs",
     "IntegrationLivekit",
-    "Livekit",
     "Tool",
     "ToolClientEvent",
     "ToolClientEventParameter",
@@ -52,7 +52,7 @@ class RealtimeSessionCreateParams(TypedDict, total=False):
     Runway renders the avatar; the integration owns conversation or audio.
     """
 
-    livekit: Livekit
+    livekit: DeprecatedLivekitParam
     """Use integration with type "livekit" instead."""
 
     max_duration: Annotated[int, PropertyInfo(alias="maxDuration")]
@@ -146,28 +146,6 @@ class IntegrationLivekit(TypedDict, total=False):
 
 
 Integration: TypeAlias = Union[IntegrationElevenlabs, IntegrationLivekit]
-
-
-class Livekit(TypedDict, total=False):
-    """Use integration with type "livekit" instead."""
-
-    token: Required[str]
-    """
-    LiveKit access token granting the avatar worker publish rights in the external
-    room.
-    """
-
-    room_name: Required[Annotated[str, PropertyInfo(alias="roomName")]]
-    """Name of the external LiveKit room."""
-
-    url: Required[str]
-    """WebSocket URL of the external LiveKit server the avatar worker should join."""
-
-    agent_identity: Annotated[str, PropertyInfo(alias="agentIdentity")]
-    """The participant identity of the customer agent already in the room.
-
-    When provided, the avatar worker trusts audio published by this identity.
-    """
 
 
 class ToolClientEventParameterString(TypedDict, total=False):

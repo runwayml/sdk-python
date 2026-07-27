@@ -12,10 +12,10 @@ __all__ = ["RecipeProductSwapParams", "NewProductImage", "OriginalProductImage",
 
 class RecipeProductSwapParams(TypedDict, total=False):
     new_product_images: Required[Annotated[Iterable[NewProductImage], PropertyInfo(alias="newProductImages")]]
-    """Reference images of the new product (1–10).
+    """Reference images of the new product (1-10).
 
     Supply multiple angles when the reference video shows the product from different
-    views — optionally label each with `view` ("front", "side", or "back"). A single
+    views - optionally label each with `view` ("front", "side", or "back"). A single
     pre-composed reference sheet is also supported (omit `view`). See
     [our docs](/assets/inputs#images) on image inputs.
     """
@@ -44,7 +44,7 @@ class RecipeProductSwapParams(TypedDict, total=False):
     """Whether to generate audio for the video."""
 
     duration: int
-    """Duration of the output video in seconds (4–15). Defaults to 10 seconds."""
+    """Duration of the output video in seconds (4-15). Defaults to 10 seconds."""
 
     resolution: Literal["720p", "1080p"]
     """Output video resolution. Defaults to 720p."""
@@ -52,7 +52,11 @@ class RecipeProductSwapParams(TypedDict, total=False):
 
 class NewProductImage(TypedDict, total=False):
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
     view: Literal["front", "side", "back"]
     """Optional view label for this reference (front, side, or back).
@@ -68,7 +72,11 @@ class OriginalProductImage(TypedDict, total=False):
     """
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
 
 class ReferenceVideo(TypedDict, total=False):
@@ -78,4 +86,8 @@ class ReferenceVideo(TypedDict, total=False):
     """
 
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+    [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
