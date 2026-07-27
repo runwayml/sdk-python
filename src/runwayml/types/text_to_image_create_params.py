@@ -81,12 +81,18 @@ class Gen4ImageTurbo(TypedDict, total=False):
 
 class Gen4ImageTurboReferenceImage(TypedDict, total=False):
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
     tag: str
     """A tag to identify the reference image.
 
-    This is used to reference the image in prompt text.
+    This is used to reference the image in prompt text. Must be 3-16 characters,
+    start with a letter, and use only letters, digits, and underscores (no hyphens
+    or other punctuation).
     """
 
 
@@ -161,12 +167,18 @@ class Gen4ImageContentModeration(TypedDict, total=False):
 
 class Gen4ImageReferenceImage(TypedDict, total=False):
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
     tag: str
     """A tag to identify the reference image.
 
-    This is used to reference the image in prompt text.
+    This is used to reference the image in prompt text. Must be 3-16 characters,
+    start with a letter, and use only letters, digits, and underscores (no hyphens
+    or other punctuation).
     """
 
 
@@ -242,12 +254,18 @@ class GptImage2(TypedDict, total=False):
 
 class GptImage2ReferenceImage(TypedDict, total=False):
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
     tag: str
     """A tag to identify the reference image.
 
-    This may be used to reference the image in prompt text.
+    This may be used to reference the image in prompt text. Must be 3-16 characters,
+    start with a letter, and use only letters, digits, and underscores (no hyphens
+    or other punctuation).
     """
 
 
@@ -312,7 +330,11 @@ class GeminiImage3Pro(TypedDict, total=False):
 
 class GeminiImage3ProReferenceImage(TypedDict, total=False):
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
     subject: Literal["object", "human"]
     """
@@ -323,7 +345,9 @@ class GeminiImage3ProReferenceImage(TypedDict, total=False):
     tag: str
     """A tag to identify the reference image.
 
-    This is used to reference the image in prompt text.
+    This is used to reference the image in prompt text. Must be 3-16 characters,
+    start with a letter, and use only letters, digits, and underscores (no hyphens
+    or other punctuation).
     """
 
 
@@ -414,7 +438,11 @@ class GeminiImage3_1Flash(TypedDict, total=False):
 
 class GeminiImage3_1FlashReferenceImage(TypedDict, total=False):
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
     subject: Literal["object", "human"]
     """
@@ -425,7 +453,9 @@ class GeminiImage3_1FlashReferenceImage(TypedDict, total=False):
     tag: str
     """A tag to identify the reference image.
 
-    This is used to reference the image in prompt text.
+    This is used to reference the image in prompt text. Must be 3-16 characters,
+    start with a letter, and use only letters, digits, and underscores (no hyphens
+    or other punctuation).
     """
 
 
@@ -486,7 +516,11 @@ class Seedream5Pro(TypedDict, total=False):
 
 class Seedream5ProReferenceImage(TypedDict, total=False):
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
 
 class Seedream5Lite(TypedDict, total=False):
@@ -536,7 +570,11 @@ class Seedream5Lite(TypedDict, total=False):
 
 class Seedream5LiteReferenceImage(TypedDict, total=False):
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
 
 class Gemini2_5Flash(TypedDict, total=False):
@@ -570,12 +608,18 @@ class Gemini2_5Flash(TypedDict, total=False):
 
 class Gemini2_5FlashReferenceImage(TypedDict, total=False):
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
     tag: str
     """A tag to identify the reference image.
 
-    This is used to reference the image in prompt text.
+    This is used to reference the image in prompt text. Must be 3-16 characters,
+    start with a letter, and use only letters, digits, and underscores (no hyphens
+    or other punctuation).
     """
 
 

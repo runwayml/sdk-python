@@ -33,7 +33,11 @@ class AvatarUpdateParams(TypedDict, total=False):
     """System prompt defining how the avatar should behave in conversations."""
 
     reference_image: Annotated[str, PropertyInfo(alias="referenceImage")]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
     start_script: Annotated[Optional[str], PropertyInfo(alias="startScript")]
     """Optional opening message that the avatar will say when a session starts.

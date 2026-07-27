@@ -153,7 +153,7 @@ class RoutersResource(SyncAPIResource):
         """Update a Model Router configuration.
 
         Settings changes append a new version; name
-        and description updates do not. Settings are merged with the current snapshot —
+        and description updates do not. Settings are merged with the current snapshot -
         omitted fields keep their existing values.
 
         Args:
@@ -400,7 +400,7 @@ class AsyncRoutersResource(AsyncAPIResource):
         """Update a Model Router configuration.
 
         Settings changes append a new version; name
-        and description updates do not. Settings are merged with the current snapshot —
+        and description updates do not. Settings are merged with the current snapshot -
         omitted fields keep their existing values.
 
         Args:

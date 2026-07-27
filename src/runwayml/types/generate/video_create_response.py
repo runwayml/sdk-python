@@ -47,7 +47,7 @@ class RoutingResolvedSettings(BaseModel):
 
     price_ceiling: Optional[float] = FieldInfo(alias="priceCeiling", default=None)
     """
-    The applied maximum credits per generation for this request’s modality, or null
+    The applied maximum credits per generation for this request's modality, or null
     if the config sets no ceiling.
     """
 

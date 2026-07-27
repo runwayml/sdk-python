@@ -69,7 +69,9 @@ class VoiceIsolationResource(SyncAPIResource):
         seconds.
 
         Args:
-          audio_uri: A HTTPS URL.
+          audio_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+              [our docs](/assets/inputs#audio) on audio inputs for more information.
 
           extra_headers: Send extra headers
 
@@ -135,7 +137,9 @@ class AsyncVoiceIsolationResource(AsyncAPIResource):
         seconds.
 
         Args:
-          audio_uri: A HTTPS URL.
+          audio_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+              [our docs](/assets/inputs#audio) on audio inputs for more information.
 
           extra_headers: Send extra headers
 

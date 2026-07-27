@@ -12,7 +12,7 @@ __all__ = ["RecipeProductAdParams", "ProductImage", "StyleImage"]
 
 class RecipeProductAdParams(TypedDict, total=False):
     product_images: Required[Annotated[Iterable[ProductImage], PropertyInfo(alias="productImages")]]
-    """Product images (1–10).
+    """Product images (1-10).
 
     Multiple angles of the same product. All images inform product analysis and
     reference generation; only the first image is used as the primary product
@@ -31,7 +31,7 @@ class RecipeProductAdParams(TypedDict, total=False):
     """Whether to generate audio for the video."""
 
     duration: int
-    """Duration of the output video in seconds (4–15). Defaults to 10 seconds."""
+    """Duration of the output video in seconds (4-15). Defaults to 10 seconds."""
 
     product_info: Annotated[str, PropertyInfo(alias="productInfo")]
     """
@@ -43,7 +43,7 @@ class RecipeProductAdParams(TypedDict, total=False):
     """The resolution of the output video."""
 
     style_images: Annotated[Iterable[StyleImage], PropertyInfo(alias="styleImages")]
-    """Optional style reference images (0–4).
+    """Optional style reference images (0-4).
 
     Defines the visual treatment (lighting, palette, mood). Treated as a moodboard
     when multiple are provided.
@@ -58,9 +58,17 @@ class RecipeProductAdParams(TypedDict, total=False):
 
 class ProductImage(TypedDict, total=False):
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
 
 class StyleImage(TypedDict, total=False):
     uri: Required[str]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """

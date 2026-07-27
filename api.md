@@ -297,7 +297,11 @@ Methods:
 Types:
 
 ```python
-from runwayml.types import RealtimeSessionCreateResponse, RealtimeSessionRetrieveResponse
+from runwayml.types import (
+    DeprecatedLivekit,
+    RealtimeSessionCreateResponse,
+    RealtimeSessionRetrieveResponse,
+)
 ```
 
 Methods:

@@ -165,7 +165,7 @@ class RecipesResource(SyncAPIResource):
           version: Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
               "unsafe-latest" to track the newest stable version (may break without notice).
 
-          output_count: The number of images to generate (1–4). Defaults to 4. Increasing this number
+          output_count: The number of images to generate (1-4). Defaults to 4. Increasing this number
               affects credits consumed.
 
           quality: GPT Image 2 rendering quality (`low`, `medium`, or `high`). Lower settings are
@@ -274,9 +274,9 @@ class RecipesResource(SyncAPIResource):
         (custom mode).
 
         Args:
-          mode: Workflow mode. `custom` polishes a user-provided shot list of 3–5 shots.
+          mode: Workflow mode. `custom` polishes a user-provided shot list of 3-5 shots.
 
-          shots: Shot list for custom mode (3–5 shots). Per-shot durations must sum to
+          shots: Shot list for custom mode (3-5 shots). Per-shot durations must sum to
               `duration`.
 
           version: Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
@@ -371,7 +371,7 @@ class RecipesResource(SyncAPIResource):
         product info, and creative direction.
 
         Args:
-          product_images: Product images (1–10). Multiple angles of the same product. All images inform
+          product_images: Product images (1-10). Multiple angles of the same product. All images inform
               product analysis and reference generation; only the first image is used as the
               primary product reference in the storyboard grid. See
               [our docs](/assets/inputs#images) on image inputs.
@@ -381,14 +381,14 @@ class RecipesResource(SyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: Duration of the output video in seconds (4–15). Defaults to 10 seconds.
+          duration: Duration of the output video in seconds (4-15). Defaults to 10 seconds.
 
           product_info: Optional product description and specifications to inform creative direction and
               which product elements to highlight.
 
           ratio: The resolution of the output video.
 
-          style_images: Optional style reference images (0–4). Defines the visual treatment (lighting,
+          style_images: Optional style reference images (0-4). Defines the visual treatment (lighting,
               palette, mood). Treated as a moodboard when multiple are provided.
 
           user_concept: Optional creative direction describing brand voice, product framing, scene
@@ -495,8 +495,8 @@ class RecipesResource(SyncAPIResource):
         motion, lighting, and scene composition.
 
         Args:
-          new_product_images: Reference images of the new product (1–10). Supply multiple angles when the
-              reference video shows the product from different views — optionally label each
+          new_product_images: Reference images of the new product (1-10). Supply multiple angles when the
+              reference video shows the product from different views - optionally label each
               with `view` ("front", "side", or "back"). A single pre-composed reference sheet
               is also supported (omit `view`). See [our docs](/assets/inputs#images) on image
               inputs.
@@ -512,7 +512,7 @@ class RecipesResource(SyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: Duration of the output video in seconds (4–15). Defaults to 10 seconds.
+          duration: Duration of the output video in seconds (4-15). Defaults to 10 seconds.
 
           resolution: Output video resolution. Defaults to 720p.
 
@@ -580,14 +580,14 @@ class RecipesResource(SyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: Duration of the output video in seconds (4–15). Defaults to 15 seconds.
+          duration: Duration of the output video in seconds (4-15). Defaults to 15 seconds.
 
-          product_info: Product details and creative brief — what the product is, key benefits, and any
+          product_info: Product details and creative brief - what the product is, key benefits, and any
               specifics the script should reference.
 
           ratio: The resolution of the output video.
 
-          user_concept: Optional creative direction for the UGC video — tone, voice register, specific
+          user_concept: Optional creative direction for the UGC video - tone, voice register, specific
               message, or an entire dialog script.
 
           extra_headers: Send extra headers
@@ -740,7 +740,7 @@ class AsyncRecipesResource(AsyncAPIResource):
           version: Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
               "unsafe-latest" to track the newest stable version (may break without notice).
 
-          output_count: The number of images to generate (1–4). Defaults to 4. Increasing this number
+          output_count: The number of images to generate (1-4). Defaults to 4. Increasing this number
               affects credits consumed.
 
           quality: GPT Image 2 rendering quality (`low`, `medium`, or `high`). Lower settings are
@@ -849,9 +849,9 @@ class AsyncRecipesResource(AsyncAPIResource):
         (custom mode).
 
         Args:
-          mode: Workflow mode. `custom` polishes a user-provided shot list of 3–5 shots.
+          mode: Workflow mode. `custom` polishes a user-provided shot list of 3-5 shots.
 
-          shots: Shot list for custom mode (3–5 shots). Per-shot durations must sum to
+          shots: Shot list for custom mode (3-5 shots). Per-shot durations must sum to
               `duration`.
 
           version: Workflow version. Use a dated version (e.g. "2026-06") to pin behavior, or
@@ -946,7 +946,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         product info, and creative direction.
 
         Args:
-          product_images: Product images (1–10). Multiple angles of the same product. All images inform
+          product_images: Product images (1-10). Multiple angles of the same product. All images inform
               product analysis and reference generation; only the first image is used as the
               primary product reference in the storyboard grid. See
               [our docs](/assets/inputs#images) on image inputs.
@@ -956,14 +956,14 @@ class AsyncRecipesResource(AsyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: Duration of the output video in seconds (4–15). Defaults to 10 seconds.
+          duration: Duration of the output video in seconds (4-15). Defaults to 10 seconds.
 
           product_info: Optional product description and specifications to inform creative direction and
               which product elements to highlight.
 
           ratio: The resolution of the output video.
 
-          style_images: Optional style reference images (0–4). Defines the visual treatment (lighting,
+          style_images: Optional style reference images (0-4). Defines the visual treatment (lighting,
               palette, mood). Treated as a moodboard when multiple are provided.
 
           user_concept: Optional creative direction describing brand voice, product framing, scene
@@ -1070,8 +1070,8 @@ class AsyncRecipesResource(AsyncAPIResource):
         motion, lighting, and scene composition.
 
         Args:
-          new_product_images: Reference images of the new product (1–10). Supply multiple angles when the
-              reference video shows the product from different views — optionally label each
+          new_product_images: Reference images of the new product (1-10). Supply multiple angles when the
+              reference video shows the product from different views - optionally label each
               with `view` ("front", "side", or "back"). A single pre-composed reference sheet
               is also supported (omit `view`). See [our docs](/assets/inputs#images) on image
               inputs.
@@ -1087,7 +1087,7 @@ class AsyncRecipesResource(AsyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: Duration of the output video in seconds (4–15). Defaults to 10 seconds.
+          duration: Duration of the output video in seconds (4-15). Defaults to 10 seconds.
 
           resolution: Output video resolution. Defaults to 720p.
 
@@ -1155,14 +1155,14 @@ class AsyncRecipesResource(AsyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: Duration of the output video in seconds (4–15). Defaults to 15 seconds.
+          duration: Duration of the output video in seconds (4-15). Defaults to 15 seconds.
 
-          product_info: Product details and creative brief — what the product is, key benefits, and any
+          product_info: Product details and creative brief - what the product is, key benefits, and any
               specifics the script should reference.
 
           ratio: The resolution of the output video.
 
-          user_concept: Optional creative direction for the UGC video — tone, voice register, specific
+          user_concept: Optional creative direction for the UGC video - tone, voice register, specific
               message, or an entire dialog script.
 
           extra_headers: Send extra headers

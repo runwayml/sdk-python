@@ -19,6 +19,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
+from ..types.deprecated_livekit_param import DeprecatedLivekitParam
 from ..types.realtime_session_create_response import RealtimeSessionCreateResponse
 from ..types.realtime_session_retrieve_response import RealtimeSessionRetrieveResponse
 
@@ -51,7 +52,7 @@ class RealtimeSessionsResource(SyncAPIResource):
         avatar: realtime_session_create_params.Avatar,
         model: Literal["gwm1_avatars"],
         integration: realtime_session_create_params.Integration | Omit = omit,
-        livekit: realtime_session_create_params.Livekit | Omit = omit,
+        livekit: DeprecatedLivekitParam | Omit = omit,
         max_duration: int | Omit = omit,
         personality: str | Omit = omit,
         start_script: str | Omit = omit,
@@ -219,7 +220,7 @@ class AsyncRealtimeSessionsResource(AsyncAPIResource):
         avatar: realtime_session_create_params.Avatar,
         model: Literal["gwm1_avatars"],
         integration: realtime_session_create_params.Integration | Omit = omit,
-        livekit: realtime_session_create_params.Livekit | Omit = omit,
+        livekit: DeprecatedLivekitParam | Omit = omit,
         max_duration: int | Omit = omit,
         personality: str | Omit = omit,
         start_script: str | Omit = omit,

@@ -19,7 +19,11 @@ class AvatarCreateParams(TypedDict, total=False):
     """System prompt defining how the avatar should behave in conversations."""
 
     reference_image: Required[Annotated[str, PropertyInfo(alias="referenceImage")]]
-    """A HTTPS URL."""
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
 
     voice: Required[Voice]
     """The voice configuration for the avatar."""
