@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
-
 import httpx
 
 from runwayml.lib.polling import (
@@ -55,7 +53,6 @@ class VideoResource(SyncAPIResource):
         *,
         config_id: str,
         input: video_create_params.Input,
-        dry_run: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -67,18 +64,11 @@ class VideoResource(SyncAPIResource):
         Start a video generation task using a saved Model Router config instead of
         naming a model.
 
-        The SDK does not expose dry-run for this endpoint yet — use the HTTP API with
-        ``dry_run=True`` if you need a routing preview without creating a task.
-
         Args:
           config_id: The slug of a saved Model Router config to route this request with.
 
           input: Model-agnostic video generation input. Fields are optional; the router selects a
               model and maps these options to it.
-
-          dry_run: When true, run the full routing pipeline and return the decision and estimated
-              cost without generating. No task is created, nothing is billed, and no asset is
-              produced.
 
           extra_headers: Send extra headers
 
@@ -88,24 +78,14 @@ class VideoResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            VideoCreateResponse,
-            self._post(
-                "/v1/generate/video",
-                body=maybe_transform(
-                    {
-                        "config_id": config_id,
-                        "input": input,
-                        "dry_run": dry_run,
-                    },
-                    video_create_params.VideoCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, VideoCreateResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            "/v1/generate/video",
+            body=maybe_transform(
+                {
+                    "config_id": config_id,
+                    "input": input,
+                },
+                video_create_params.VideoCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -139,7 +119,6 @@ class AsyncVideoResource(AsyncAPIResource):
         *,
         config_id: str,
         input: video_create_params.Input,
-        dry_run: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -151,18 +130,11 @@ class AsyncVideoResource(AsyncAPIResource):
         Start a video generation task using a saved Model Router config instead of
         naming a model.
 
-        The SDK does not expose dry-run for this endpoint yet — use the HTTP API with
-        ``dry_run=True`` if you need a routing preview without creating a task.
-
         Args:
           config_id: The slug of a saved Model Router config to route this request with.
 
           input: Model-agnostic video generation input. Fields are optional; the router selects a
               model and maps these options to it.
-
-          dry_run: When true, run the full routing pipeline and return the decision and estimated
-              cost without generating. No task is created, nothing is billed, and no asset is
-              produced.
 
           extra_headers: Send extra headers
 
@@ -172,24 +144,14 @@ class AsyncVideoResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            VideoCreateResponse,
-            await self._post(
-                "/v1/generate/video",
-                body=await async_maybe_transform(
-                    {
-                        "config_id": config_id,
-                        "input": input,
-                        "dry_run": dry_run,
-                    },
-                    video_create_params.VideoCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, VideoCreateResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            "/v1/generate/video",
+            body=await async_maybe_transform(
+                {
+                    "config_id": config_id,
+                    "input": input,
+                },
+                video_create_params.VideoCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

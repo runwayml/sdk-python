@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
-
 import httpx
 
 from runwayml.lib.polling import (
@@ -55,7 +53,6 @@ class ImageResource(SyncAPIResource):
         *,
         config_id: str,
         input: image_create_params.Input,
-        dry_run: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -73,10 +70,6 @@ class ImageResource(SyncAPIResource):
           input: Model-agnostic image generation input. The router selects a model and maps these
               options to it.
 
-          dry_run: When true, run the full routing pipeline and return the decision and estimated
-              cost without generating. No task is created, nothing is billed, and no asset is
-              produced.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -85,24 +78,14 @@ class ImageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            ImageCreateResponse,
-            self._post(
-                "/v1/generate/image",
-                body=maybe_transform(
-                    {
-                        "config_id": config_id,
-                        "input": input,
-                        "dry_run": dry_run,
-                    },
-                    image_create_params.ImageCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, ImageCreateResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            "/v1/generate/image",
+            body=maybe_transform(
+                {
+                    "config_id": config_id,
+                    "input": input,
+                },
+                image_create_params.ImageCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -136,7 +119,6 @@ class AsyncImageResource(AsyncAPIResource):
         *,
         config_id: str,
         input: image_create_params.Input,
-        dry_run: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -154,10 +136,6 @@ class AsyncImageResource(AsyncAPIResource):
           input: Model-agnostic image generation input. The router selects a model and maps these
               options to it.
 
-          dry_run: When true, run the full routing pipeline and return the decision and estimated
-              cost without generating. No task is created, nothing is billed, and no asset is
-              produced.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -166,24 +144,14 @@ class AsyncImageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            ImageCreateResponse,
-            await self._post(
-                "/v1/generate/image",
-                body=await async_maybe_transform(
-                    {
-                        "config_id": config_id,
-                        "input": input,
-                        "dry_run": dry_run,
-                    },
-                    image_create_params.ImageCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, ImageCreateResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            "/v1/generate/image",
+            body=await async_maybe_transform(
+                {
+                    "config_id": config_id,
+                    "input": input,
+                },
+                image_create_params.ImageCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
