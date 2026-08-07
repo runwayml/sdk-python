@@ -551,6 +551,12 @@ class Seedream5Lite(TypedDict, total=False):
     ]
     """The resolution of the output image, expressed as `<width>:<height>`."""
 
+    grounding: bool
+    """
+    When true, enable live web search so the model can use current brand, trend, or
+    event context. Default false for deterministic output.
+    """
+
     output_count: Annotated[int, PropertyInfo(alias="outputCount")]
     """The number of images to generate.
 

@@ -186,7 +186,7 @@ Methods:
 Types:
 
 ```python
-from runwayml.types.generate import AudioCreateResponse
+from runwayml.types.generate import ReferenceVoice, ReferenceAudio, AudioCreateResponse
 ```
 
 Methods:
@@ -203,6 +203,7 @@ from runwayml.types import (
     RouterRetrieveResponse,
     RouterUpdateResponse,
     RouterListResponse,
+    RouterListRequestsResponse,
 )
 ```
 
@@ -213,6 +214,7 @@ Methods:
 - <code title="patch /v1/routers/{id}">client.routers.<a href="./src/runwayml/resources/routers.py">update</a>(id, \*\*<a href="src/runwayml/types/router_update_params.py">params</a>) -> <a href="./src/runwayml/types/router_update_response.py">RouterUpdateResponse</a></code>
 - <code title="get /v1/routers">client.routers.<a href="./src/runwayml/resources/routers.py">list</a>(\*\*<a href="src/runwayml/types/router_list_params.py">params</a>) -> <a href="./src/runwayml/types/router_list_response.py">SyncCursorPage[RouterListResponse]</a></code>
 - <code title="delete /v1/routers/{id}">client.routers.<a href="./src/runwayml/resources/routers.py">delete</a>(id) -> None</code>
+- <code title="get /v1/routers/{id}/requests">client.routers.<a href="./src/runwayml/resources/routers.py">list_requests</a>(id, \*\*<a href="src/runwayml/types/router_list_requests_params.py">params</a>) -> <a href="./src/runwayml/types/router_list_requests_response.py">SyncCursorPage[RouterListRequestsResponse]</a></code>
 
 # Organization
 
@@ -224,8 +226,33 @@ from runwayml.types import OrganizationRetrieveResponse, OrganizationRetrieveUsa
 
 Methods:
 
-- <code title="get /v1/organization">client.organization.<a href="./src/runwayml/resources/organization.py">retrieve</a>() -> <a href="./src/runwayml/types/organization_retrieve_response.py">OrganizationRetrieveResponse</a></code>
-- <code title="post /v1/organization/usage">client.organization.<a href="./src/runwayml/resources/organization.py">retrieve_usage</a>(\*\*<a href="src/runwayml/types/organization_retrieve_usage_params.py">params</a>) -> <a href="./src/runwayml/types/organization_retrieve_usage_response.py">OrganizationRetrieveUsageResponse</a></code>
+- <code title="get /v1/organization">client.organization.<a href="./src/runwayml/resources/organization/organization.py">retrieve</a>() -> <a href="./src/runwayml/types/organization_retrieve_response.py">OrganizationRetrieveResponse</a></code>
+- <code title="post /v1/organization/usage">client.organization.<a href="./src/runwayml/resources/organization/organization.py">retrieve_usage</a>(\*\*<a href="src/runwayml/types/organization_retrieve_usage_params.py">params</a>) -> <a href="./src/runwayml/types/organization_retrieve_usage_response.py">OrganizationRetrieveUsageResponse</a></code>
+
+## Webapp
+
+Types:
+
+```python
+from runwayml.types.organization import WebappListUsageResponse
+```
+
+Methods:
+
+- <code title="get /v1/organization/webapp/usage">client.organization.webapp.<a href="./src/runwayml/resources/organization/webapp/webapp.py">list_usage</a>(\*\*<a href="src/runwayml/types/organization/webapp_list_usage_params.py">params</a>) -> <a href="./src/runwayml/types/organization/webapp_list_usage_response.py">SyncCursorPage[WebappListUsageResponse]</a></code>
+
+### AuditLogs
+
+Types:
+
+```python
+from runwayml.types.organization.webapp import AuditLogRetrieveResponse, AuditLogListResponse
+```
+
+Methods:
+
+- <code title="get /v1/organization/webapp/audit_logs/{eventId}">client.organization.webapp.audit_logs.<a href="./src/runwayml/resources/organization/webapp/audit_logs.py">retrieve</a>(event_id, \*\*<a href="src/runwayml/types/organization/webapp/audit_log_retrieve_params.py">params</a>) -> <a href="./src/runwayml/types/organization/webapp/audit_log_retrieve_response.py">AuditLogRetrieveResponse</a></code>
+- <code title="get /v1/organization/webapp/audit_logs">client.organization.webapp.audit_logs.<a href="./src/runwayml/resources/organization/webapp/audit_logs.py">list</a>(\*\*<a href="src/runwayml/types/organization/webapp/audit_log_list_params.py">params</a>) -> <a href="./src/runwayml/types/organization/webapp/audit_log_list_response.py">SyncCursorPage[AuditLogListResponse]</a></code>
 
 # Avatars
 

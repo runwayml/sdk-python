@@ -64,9 +64,6 @@ class VideoResource(SyncAPIResource):
         Start a video generation task using a saved Model Router config instead of
         naming a model.
 
-        The SDK does not expose dry-run for this endpoint yet — use the HTTP API with
-        ``dry_run=True`` if you need a routing preview without creating a task.
-
         Args:
           config_id: The slug of a saved Model Router config to route this request with.
 
@@ -132,9 +129,6 @@ class AsyncVideoResource(AsyncAPIResource):
         """
         Start a video generation task using a saved Model Router config instead of
         naming a model.
-
-        The SDK does not expose dry-run for this endpoint yet — use the HTTP API with
-        ``dry_run=True`` if you need a routing preview without creating a task.
 
         Args:
           config_id: The slug of a saved Model Router config to route this request with.

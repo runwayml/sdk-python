@@ -7,25 +7,37 @@ from datetime import date
 
 import httpx
 
-from ..types import organization_retrieve_usage_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ...types import organization_retrieve_usage_params
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.organization_retrieve_response import OrganizationRetrieveResponse
-from ..types.organization_retrieve_usage_response import OrganizationRetrieveUsageResponse
+from .webapp.webapp import (
+    WebappResource,
+    AsyncWebappResource,
+    WebappResourceWithRawResponse,
+    AsyncWebappResourceWithRawResponse,
+    WebappResourceWithStreamingResponse,
+    AsyncWebappResourceWithStreamingResponse,
+)
+from ..._base_client import make_request_options
+from ...types.organization_retrieve_response import OrganizationRetrieveResponse
+from ...types.organization_retrieve_usage_response import OrganizationRetrieveUsageResponse
 
 __all__ = ["OrganizationResource", "AsyncOrganizationResource"]
 
 
 class OrganizationResource(SyncAPIResource):
+    @cached_property
+    def webapp(self) -> WebappResource:
+        return WebappResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> OrganizationResourceWithRawResponse:
         """
@@ -118,6 +130,10 @@ class OrganizationResource(SyncAPIResource):
 
 
 class AsyncOrganizationResource(AsyncAPIResource):
+    @cached_property
+    def webapp(self) -> AsyncWebappResource:
+        return AsyncWebappResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncOrganizationResourceWithRawResponse:
         """
@@ -220,6 +236,10 @@ class OrganizationResourceWithRawResponse:
             organization.retrieve_usage,
         )
 
+    @cached_property
+    def webapp(self) -> WebappResourceWithRawResponse:
+        return WebappResourceWithRawResponse(self._organization.webapp)
+
 
 class AsyncOrganizationResourceWithRawResponse:
     def __init__(self, organization: AsyncOrganizationResource) -> None:
@@ -231,6 +251,10 @@ class AsyncOrganizationResourceWithRawResponse:
         self.retrieve_usage = async_to_raw_response_wrapper(
             organization.retrieve_usage,
         )
+
+    @cached_property
+    def webapp(self) -> AsyncWebappResourceWithRawResponse:
+        return AsyncWebappResourceWithRawResponse(self._organization.webapp)
 
 
 class OrganizationResourceWithStreamingResponse:
@@ -244,6 +268,10 @@ class OrganizationResourceWithStreamingResponse:
             organization.retrieve_usage,
         )
 
+    @cached_property
+    def webapp(self) -> WebappResourceWithStreamingResponse:
+        return WebappResourceWithStreamingResponse(self._organization.webapp)
+
 
 class AsyncOrganizationResourceWithStreamingResponse:
     def __init__(self, organization: AsyncOrganizationResource) -> None:
@@ -255,3 +283,7 @@ class AsyncOrganizationResourceWithStreamingResponse:
         self.retrieve_usage = async_to_streamed_response_wrapper(
             organization.retrieve_usage,
         )
+
+    @cached_property
+    def webapp(self) -> AsyncWebappResourceWithStreamingResponse:
+        return AsyncWebappResourceWithStreamingResponse(self._organization.webapp)

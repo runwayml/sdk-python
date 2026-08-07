@@ -114,6 +114,72 @@ class TestTextToSpeech:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_method_create_overload_3(self, client: RunwayML) -> None:
+        text_to_speech = client.text_to_speech.create(
+            model="eleven_v3",
+            prompt_text="x",
+            voice={
+                "preset_id": "Maya",
+                "type": "runway-preset",
+            },
+        )
+        assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_3(self, client: RunwayML) -> None:
+        text_to_speech = client.text_to_speech.create(
+            model="eleven_v3",
+            prompt_text="x",
+            voice={
+                "preset_id": "Maya",
+                "type": "runway-preset",
+            },
+            apply_text_normalization="auto",
+            language_code="xx",
+            seed=0,
+            similarity_boost=0,
+            speed=0.7,
+            stability=0,
+            style=0,
+            use_speaker_boost=True,
+        )
+        assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_3(self, client: RunwayML) -> None:
+        response = client.text_to_speech.with_raw_response.create(
+            model="eleven_v3",
+            prompt_text="x",
+            voice={
+                "preset_id": "Maya",
+                "type": "runway-preset",
+            },
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        text_to_speech = response.parse()
+        assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_3(self, client: RunwayML) -> None:
+        with client.text_to_speech.with_streaming_response.create(
+            model="eleven_v3",
+            prompt_text="x",
+            voice={
+                "preset_id": "Maya",
+                "type": "runway-preset",
+            },
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            text_to_speech = response.parse()
+            assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
 
 class TestAsyncTextToSpeech:
     parametrize = pytest.mark.parametrize(
@@ -203,6 +269,72 @@ class TestAsyncTextToSpeech:
     async def test_streaming_response_create_overload_2(self, async_client: AsyncRunwayML) -> None:
         async with async_client.text_to_speech.with_streaming_response.create(
             model="eleven_multilingual_v2",
+            prompt_text="x",
+            voice={
+                "preset_id": "Maya",
+                "type": "runway-preset",
+            },
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            text_to_speech = await response.parse()
+            assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_3(self, async_client: AsyncRunwayML) -> None:
+        text_to_speech = await async_client.text_to_speech.create(
+            model="eleven_v3",
+            prompt_text="x",
+            voice={
+                "preset_id": "Maya",
+                "type": "runway-preset",
+            },
+        )
+        assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_3(self, async_client: AsyncRunwayML) -> None:
+        text_to_speech = await async_client.text_to_speech.create(
+            model="eleven_v3",
+            prompt_text="x",
+            voice={
+                "preset_id": "Maya",
+                "type": "runway-preset",
+            },
+            apply_text_normalization="auto",
+            language_code="xx",
+            seed=0,
+            similarity_boost=0,
+            speed=0.7,
+            stability=0,
+            style=0,
+            use_speaker_boost=True,
+        )
+        assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_3(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.text_to_speech.with_raw_response.create(
+            model="eleven_v3",
+            prompt_text="x",
+            voice={
+                "preset_id": "Maya",
+                "type": "runway-preset",
+            },
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        text_to_speech = await response.parse()
+        assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_3(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.text_to_speech.with_streaming_response.create(
+            model="eleven_v3",
             prompt_text="x",
             voice={
                 "preset_id": "Maya",
