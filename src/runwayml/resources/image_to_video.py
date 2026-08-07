@@ -577,7 +577,7 @@ class ImageToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
-        duration: int | Literal[4, 6, 8] | Literal[8] | Omit = omit,
+        duration: int | Literal[4, 6, 8] | Omit = omit,
         model: Literal["gen4.5"]
         | Literal["gen4_turbo"]
         | Literal["veo3.1"]
@@ -590,9 +590,13 @@ class ImageToVideoResource(SyncAPIResource):
         | Literal["veo3"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
-        | Union[str, Iterable[image_to_video_create_params.Seedance2PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Happyhorse1_0PromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Seedance2PromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Seedance2FastPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Seedance2MiniPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlashPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3PromptImagePromptImage]],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
@@ -1230,7 +1234,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        duration: int | Literal[4, 6, 8] | Literal[8] | Omit = omit,
+        duration: int | Literal[4, 6, 8] | Omit = omit,
         model: Literal["gen4.5"]
         | Literal["gen4_turbo"]
         | Literal["veo3.1"]
@@ -1243,9 +1247,13 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Literal["veo3"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
-        | Union[str, Iterable[image_to_video_create_params.Seedance2PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Happyhorse1_0PromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Seedance2PromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Seedance2FastPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Seedance2MiniPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlashPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3PromptImagePromptImage]],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
