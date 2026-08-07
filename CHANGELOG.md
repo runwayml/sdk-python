@@ -1,5 +1,21 @@
 # Changelog
 
+## 5.14.0 (2026-08-07)
+
+Full Changelog: [v5.13.0...v5.14.0](https://github.com/runwayml/sdk-python/compare/v5.13.0...v5.14.0)
+
+### Features
+
+* **api:** api update ([c0eb812](https://github.com/runwayml/sdk-python/commit/c0eb812784d233be0a14e1f677324b36a5ed8116))
+* **api:** api update ([37f2ab3](https://github.com/runwayml/sdk-python/commit/37f2ab329045214d9c66eda415527fd5be9f5d15))
+* **api:** manual updates ([827e092](https://github.com/runwayml/sdk-python/commit/827e0920827aee77ba367b9ea363590f72cf47fc))
+
+
+### Bug Fixes
+
+* **client:** include every overload's type in union method implementation signatures ([cf9feee](https://github.com/runwayml/sdk-python/commit/cf9feeef24a12b3b4dd58d9ed5f094a9e3a045af))
+* **client:** make hailuo3, seedance2_5, eleven_v3 responses awaitable ([eaf97ec](https://github.com/runwayml/sdk-python/commit/eaf97ecbeabac8de08e34ecfa7f90d28e800cfd0))
+
 ## 5.13.0 (2026-07-27)
 
 Full Changelog: [v5.12.0...v5.13.0](https://github.com/runwayml/sdk-python/compare/v5.12.0...v5.13.0)
