@@ -43,7 +43,6 @@ class TestAudio:
                     "type": "preset",
                 },
             },
-            dry_run=True,
         )
         assert_matches_type(AudioCreateResponse, audio, path=["response"])
 
@@ -111,7 +110,6 @@ class TestAsyncAudio:
                     "type": "preset",
                 },
             },
-            dry_run=True,
         )
         assert_matches_type(AudioCreateResponse, audio, path=["response"])
 
