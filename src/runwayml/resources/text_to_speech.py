@@ -88,8 +88,7 @@ class TextToSpeechResource(SyncAPIResource):
 
           speech_rate: Relative speech speed. Negative is slower, positive is faster; 0 is normal.
 
-          voice: The voice to use for text-to-speech generation. If omitted, a default voice is
-              used.
+          voice: Clone from a single reference audio clip, then speak promptText in that voice.
 
           extra_headers: Send extra headers
 
@@ -313,8 +312,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
 
           speech_rate: Relative speech speed. Negative is slower, positive is faster; 0 is normal.
 
-          voice: The voice to use for text-to-speech generation. If omitted, a default voice is
-              used.
+          voice: Clone from a single reference audio clip, then speak promptText in that voice.
 
           extra_headers: Send extra headers
 
