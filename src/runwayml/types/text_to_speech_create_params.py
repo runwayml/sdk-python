@@ -11,8 +11,6 @@ __all__ = [
     "TextToSpeechCreateParams",
     "SeedAudio",
     "SeedAudioVoice",
-    "SeedAudioVoiceSeedPreset",
-    "SeedAudioVoiceReferenceAudio",
     "ElevenMultilingualV2",
     "ElevenMultilingualV2Voice",
     "ElevenV3",
@@ -46,48 +44,10 @@ class SeedAudio(TypedDict, total=False):
     """Relative speech speed. Negative is slower, positive is faster; 0 is normal."""
 
     voice: SeedAudioVoice
-    """The voice to use for text-to-speech generation.
-
-    If omitted, a default voice is used.
-    """
+    """Clone from a single reference audio clip, then speak promptText in that voice."""
 
 
-class SeedAudioVoiceSeedPreset(TypedDict, total=False):
-    """A preset voice for Seed Audio text-to-speech."""
-
-    preset_id: Required[
-        Annotated[
-            Literal[
-                "vivi_mixed_en_zh_ja_es_id",
-                "mindy_en_es_id_pt_zh",
-                "kian_en_zh",
-                "cedric_en_zh",
-                "sophie_en_zh",
-                "jean_en_zh",
-                "magnus_en_zh",
-                "mabel_en_zh",
-                "nadia_en_zh",
-                "opal_en_zh",
-                "pearl_en_zh",
-                "quentin_en_zh",
-                "corinne_mixed_en_zh",
-                "esther_mixed_en_zh",
-                "lyla_mixed_en_zh",
-                "tracy_es_zh",
-                "sandy_es_mixed_en_zh",
-                "felix_zh",
-                "celeste_zh",
-                "monkey_king_zh",
-            ],
-            PropertyInfo(alias="presetId"),
-        ]
-    ]
-    """A Seed Audio preset voice id."""
-
-    type: Required[Literal["seed-preset"]]
-
-
-class SeedAudioVoiceReferenceAudio(TypedDict, total=False):
+class SeedAudioVoice(TypedDict, total=False):
     """Clone from a single reference audio clip, then speak promptText in that voice."""
 
     audio_uri: Required[Annotated[str, PropertyInfo(alias="audioUri")]]
@@ -98,9 +58,6 @@ class SeedAudioVoiceReferenceAudio(TypedDict, total=False):
     """
 
     type: Required[Literal["reference-audio"]]
-
-
-SeedAudioVoice: TypeAlias = Union[SeedAudioVoiceSeedPreset, SeedAudioVoiceReferenceAudio]
 
 
 class ElevenMultilingualV2(TypedDict, total=False):

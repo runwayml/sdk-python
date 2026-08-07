@@ -38,7 +38,6 @@ class TestImage:
                 "resolution": "1k",
                 "seed": 0,
             },
-            dry_run=True,
         )
         assert_matches_type(ImageCreateResponse, image, path=["response"])
 
@@ -95,7 +94,6 @@ class TestAsyncImage:
                 "resolution": "1k",
                 "seed": 0,
             },
-            dry_run=True,
         )
         assert_matches_type(ImageCreateResponse, image, path=["response"])
 
