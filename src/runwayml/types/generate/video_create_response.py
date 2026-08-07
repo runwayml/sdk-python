@@ -1,13 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["VideoCreateResponse", "Routing", "RoutingEstimatedCost", "RoutingResolvedInput", "RoutingResolvedSettings"]
+__all__ = [
+    "VideoCreateResponse",
+    "Routing",
+    "RoutingEstimatedCost",
+    "RoutingResolvedInput",
+    "RoutingResolvedSettings",
+    "RoutingCapacityFallback",
+]
 
 
 class RoutingEstimatedCost(BaseModel):
@@ -52,6 +59,24 @@ class RoutingResolvedSettings(BaseModel):
     """
 
 
+class RoutingCapacityFallback(BaseModel):
+    """
+    Present only when the config enables fallback.onCapacity and capacity affected this request.
+    """
+
+    all_exhausted: bool = FieldInfo(alias="allExhausted")
+    """
+    True when every eligible model was at its concurrency limit, so the best-ranked
+    model was used and the task will queue.
+    """
+
+    skipped: List[str]
+    """
+    Eligible models that were considered for this request but not selected because
+    this account is at its concurrency limit for them.
+    """
+
+
 class Routing(BaseModel):
     """Metadata describing which model the router selected and why."""
 
@@ -75,6 +100,12 @@ class Routing(BaseModel):
 
     resolved_settings: RoutingResolvedSettings = FieldInfo(alias="resolvedSettings")
     """The resolved config settings the router used for this request."""
+
+    capacity_fallback: Optional[RoutingCapacityFallback] = FieldInfo(alias="capacityFallback", default=None)
+    """
+    Present only when the config enables fallback.onCapacity and capacity affected
+    this request.
+    """
 
 
 class VideoCreateResponse(BaseModel):

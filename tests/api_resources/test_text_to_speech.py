@@ -36,8 +36,8 @@ class TestTextToSpeech:
             sample_rate=8000,
             speech_rate=-50,
             voice={
-                "preset_id": "vivi_mixed_en_zh_ja_es_id",
-                "type": "seed-preset",
+                "audio_uri": "https://example.com/audio.mp3",
+                "type": "reference-audio",
             },
         )
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
@@ -205,8 +205,8 @@ class TestAsyncTextToSpeech:
             sample_rate=8000,
             speech_rate=-50,
             voice={
-                "preset_id": "vivi_mixed_en_zh_ja_es_id",
-                "type": "seed-preset",
+                "audio_uri": "https://example.com/audio.mp3",
+                "type": "reference-audio",
             },
         )
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
