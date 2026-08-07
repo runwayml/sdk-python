@@ -69,7 +69,6 @@ if TYPE_CHECKING:
     from .resources.routers import RoutersResource, AsyncRoutersResource
     from .resources.documents import DocumentsResource, AsyncDocumentsResource
     from .resources.workflows import WorkflowsResource, AsyncWorkflowsResource
-    from .resources.organization import OrganizationResource, AsyncOrganizationResource
     from .resources.sound_effect import SoundEffectResource, AsyncSoundEffectResource
     from .resources.avatar_videos import AvatarVideosResource, AsyncAvatarVideosResource
     from .resources.image_upscale import ImageUpscaleResource, AsyncImageUpscaleResource
@@ -87,6 +86,7 @@ if TYPE_CHECKING:
     from .resources.avatar_conversations import AvatarConversationsResource, AsyncAvatarConversationsResource
     from .resources.workflow_invocations import WorkflowInvocationsResource, AsyncWorkflowInvocationsResource
     from .resources.character_performance import CharacterPerformanceResource, AsyncCharacterPerformanceResource
+    from .resources.organization.organization import OrganizationResource, AsyncOrganizationResource
 
 __all__ = [
     "Timeout",

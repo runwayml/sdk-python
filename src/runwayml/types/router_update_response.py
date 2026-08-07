@@ -8,7 +8,21 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["RouterUpdateResponse", "Settings", "SettingsMaxCreditsPerGeneration", "SettingsModels"]
+__all__ = ["RouterUpdateResponse", "Settings", "SettingsFallback", "SettingsMaxCreditsPerGeneration", "SettingsModels"]
+
+
+class SettingsFallback(BaseModel):
+    """
+    Opt-in behavior for what routing should do when the preferred model cannot start immediately.
+    """
+
+    on_capacity: Optional[bool] = FieldInfo(alias="onCapacity", default=None)
+    """
+    When true, if the account is at its concurrency limit on the preferred model,
+    routing skips it and picks the next-best eligible model instead of queueing. If
+    every eligible model is at its limit, the original best-ranked model is used and
+    the task queues as usual.
+    """
 
 
 class SettingsMaxCreditsPerGeneration(BaseModel):
@@ -37,6 +51,12 @@ class SettingsModels(BaseModel):
 class Settings(BaseModel):
     schema_version: Literal[1] = FieldInfo(alias="schemaVersion")
     """Settings JSON schema version used when this snapshot was written."""
+
+    fallback: Optional[SettingsFallback] = None
+    """
+    Opt-in behavior for what routing should do when the preferred model cannot start
+    immediately.
+    """
 
     max_credits_per_generation: Optional[SettingsMaxCreditsPerGeneration] = FieldInfo(
         alias="maxCreditsPerGeneration", default=None
