@@ -62,6 +62,7 @@ class TestVideo:
                 "resolution": "480p",
                 "seed": 0,
             },
+            dry_run=True,
         )
         assert_matches_type(VideoCreateResponse, video, path=["response"])
 
@@ -142,6 +143,7 @@ class TestAsyncVideo:
                 "resolution": "480p",
                 "seed": 0,
             },
+            dry_run=True,
         )
         assert_matches_type(VideoCreateResponse, video, path=["response"])
 

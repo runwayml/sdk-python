@@ -522,6 +522,7 @@ class TextToImageResource(SyncAPIResource):
             "2496:3744",
             "4704:2016",
         ],
+        grounding: bool | Omit = omit,
         output_count: int | Omit = omit,
         output_format: Literal["png", "jpeg"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.Seedream5LiteReferenceImage] | Omit = omit,
@@ -539,6 +540,9 @@ class TextToImageResource(SyncAPIResource):
           prompt_text: A non-empty string up to 4,000 characters describing the desired image.
 
           ratio: The resolution of the output image, expressed as `<width>:<height>`.
+
+          grounding: When true, enable live web search so the model can use current brand, trend, or
+              event context. Default false for deterministic output.
 
           output_count: The number of images to generate. Increasing this number will affect the number
               of credits consumed by the generation.
@@ -1349,6 +1353,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "2496:3744",
             "4704:2016",
         ],
+        grounding: bool | Omit = omit,
         output_count: int | Omit = omit,
         output_format: Literal["png", "jpeg"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.Seedream5LiteReferenceImage] | Omit = omit,
@@ -1366,6 +1371,9 @@ class AsyncTextToImageResource(AsyncAPIResource):
           prompt_text: A non-empty string up to 4,000 characters describing the desired image.
 
           ratio: The resolution of the output image, expressed as `<width>:<height>`.
+
+          grounding: When true, enable live web search so the model can use current brand, trend, or
+              event context. Default false for deterministic output.
 
           output_count: The number of images to generate. Increasing this number will affect the number
               of credits consumed by the generation.

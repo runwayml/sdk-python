@@ -8,7 +8,7 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
-__all__ = ["RouterUpdateParams", "Settings", "SettingsMaxCreditsPerGeneration", "SettingsModels"]
+__all__ = ["RouterUpdateParams", "Settings", "SettingsFallback", "SettingsMaxCreditsPerGeneration", "SettingsModels"]
 
 
 class RouterUpdateParams(TypedDict, total=False):
@@ -22,6 +22,20 @@ class RouterUpdateParams(TypedDict, total=False):
 
     When models is present, omitted models.mode or models.ids are preserved (sending
     only optimizeFor does not clear the model allowlist or credit ceiling).
+    """
+
+
+class SettingsFallback(TypedDict, total=False):
+    """
+    Opt-in behavior for what routing should do when the preferred model cannot start immediately.
+    """
+
+    on_capacity: Annotated[bool, PropertyInfo(alias="onCapacity")]
+    """
+    When true, if the account is at its concurrency limit on the preferred model,
+    routing skips it and picks the next-best eligible model instead of queueing. If
+    every eligible model is at its limit, the original best-ranked model is used and
+    the task queues as usual.
     """
 
 
@@ -52,6 +66,12 @@ class Settings(TypedDict, total=False):
     """Nested merge: omitted settings fields keep their current values.
 
     When models is present, omitted models.mode or models.ids are preserved (sending only optimizeFor does not clear the model allowlist or credit ceiling).
+    """
+
+    fallback: SettingsFallback
+    """
+    Opt-in behavior for what routing should do when the preferred model cannot start
+    immediately.
     """
 
     max_credits_per_generation: Annotated[
