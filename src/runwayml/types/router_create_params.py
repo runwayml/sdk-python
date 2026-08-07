@@ -7,7 +7,7 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
-__all__ = ["RouterCreateParams", "Settings", "SettingsMaxCreditsPerGeneration", "SettingsModels"]
+__all__ = ["RouterCreateParams", "Settings", "SettingsFallback", "SettingsMaxCreditsPerGeneration", "SettingsModels"]
 
 
 class RouterCreateParams(TypedDict, total=False):
@@ -32,6 +32,20 @@ class RouterCreateParams(TypedDict, total=False):
 
     Defaults to cost-optimized allow-all when omitted. Modality is implied by the
     generate endpoint used with this Model Router.
+    """
+
+
+class SettingsFallback(TypedDict, total=False):
+    """
+    Opt-in behavior for what routing should do when the preferred model cannot start immediately.
+    """
+
+    on_capacity: Annotated[bool, PropertyInfo(alias="onCapacity")]
+    """
+    When true, if the account is at its concurrency limit on the preferred model,
+    routing skips it and picks the next-best eligible model instead of queueing. If
+    every eligible model is at its limit, the original best-ranked model is used and
+    the task queues as usual.
     """
 
 
@@ -62,6 +76,12 @@ class Settings(TypedDict, total=False):
     """Model Router routing preferences.
 
     Defaults to cost-optimized allow-all when omitted. Modality is implied by the generate endpoint used with this Model Router.
+    """
+
+    fallback: SettingsFallback
+    """
+    Opt-in behavior for what routing should do when the preferred model cannot start
+    immediately.
     """
 
     max_credits_per_generation: Annotated[

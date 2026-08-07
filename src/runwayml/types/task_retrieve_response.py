@@ -9,7 +9,28 @@ from pydantic import Field as FieldInfo
 from .._utils import PropertyInfo
 from .._models import BaseModel
 
-__all__ = ["TaskRetrieveResponse", "Pending", "Throttled", "Cancelled", "Running", "Failed", "Succeeded"]
+__all__ = [
+    "TaskRetrieveResponse",
+    "Pending",
+    "PendingEstimatedCost",
+    "Throttled",
+    "ThrottledEstimatedCost",
+    "Cancelled",
+    "CancelledCost",
+    "Running",
+    "RunningEstimatedCost",
+    "Failed",
+    "FailedCost",
+    "Succeeded",
+    "SucceededCost",
+]
+
+
+class PendingEstimatedCost(BaseModel):
+    """Estimated cost, computed against current pricing."""
+
+    credits: float
+    """Estimated cost of the generation in credits."""
 
 
 class Pending(BaseModel):
@@ -21,7 +42,17 @@ class Pending(BaseModel):
     created_at: datetime = FieldInfo(alias="createdAt")
     """The timestamp that the task was submitted at."""
 
+    estimated_cost: PendingEstimatedCost = FieldInfo(alias="estimatedCost")
+    """Estimated cost, computed against current pricing."""
+
     status: Literal["PENDING"]
+
+
+class ThrottledEstimatedCost(BaseModel):
+    """Estimated cost, computed against current pricing."""
+
+    credits: float
+    """Estimated cost of the generation in credits."""
 
 
 class Throttled(BaseModel):
@@ -33,7 +64,17 @@ class Throttled(BaseModel):
     created_at: datetime = FieldInfo(alias="createdAt")
     """The timestamp that the task was submitted at."""
 
+    estimated_cost: ThrottledEstimatedCost = FieldInfo(alias="estimatedCost")
+    """Estimated cost, computed against current pricing."""
+
     status: Literal["THROTTLED"]
+
+
+class CancelledCost(BaseModel):
+    """Final cost in credits for a terminal task. A refunded task reports 0."""
+
+    credits: int
+    """Credits charged for this task."""
 
 
 class Cancelled(BaseModel):
@@ -42,10 +83,20 @@ class Cancelled(BaseModel):
     id: str
     """The ID of the task being returned."""
 
+    cost: CancelledCost
+    """Final cost in credits for a terminal task. A refunded task reports 0."""
+
     created_at: datetime = FieldInfo(alias="createdAt")
     """The timestamp that the task was submitted at."""
 
     status: Literal["CANCELLED"]
+
+
+class RunningEstimatedCost(BaseModel):
+    """Estimated cost, computed against current pricing."""
+
+    credits: float
+    """Estimated cost of the generation in credits."""
 
 
 class Running(BaseModel):
@@ -57,9 +108,19 @@ class Running(BaseModel):
     created_at: datetime = FieldInfo(alias="createdAt")
     """The timestamp that the task was submitted at."""
 
+    estimated_cost: RunningEstimatedCost = FieldInfo(alias="estimatedCost")
+    """Estimated cost, computed against current pricing."""
+
     progress: float
 
     status: Literal["RUNNING"]
+
+
+class FailedCost(BaseModel):
+    """Final cost in credits for a terminal task. A refunded task reports 0."""
+
+    credits: int
+    """Credits charged for this task."""
 
 
 class Failed(BaseModel):
@@ -67,6 +128,9 @@ class Failed(BaseModel):
 
     id: str
     """The ID of the task being returned."""
+
+    cost: FailedCost
+    """Final cost in credits for a terminal task. A refunded task reports 0."""
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """The timestamp that the task was submitted at."""
@@ -86,11 +150,21 @@ class Failed(BaseModel):
     """
 
 
+class SucceededCost(BaseModel):
+    """Final cost in credits for a terminal task. A refunded task reports 0."""
+
+    credits: int
+    """Credits charged for this task."""
+
+
 class Succeeded(BaseModel):
     """A succeeded task"""
 
     id: str
     """The ID of the task being returned."""
+
+    cost: SucceededCost
+    """Final cost in credits for a terminal task. A refunded task reports 0."""
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """The timestamp that the task was submitted at."""

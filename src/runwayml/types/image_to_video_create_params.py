@@ -19,6 +19,8 @@ __all__ = [
     "Veo3_1PromptImagePromptImage",
     "Veo3_1Fast",
     "Veo3_1FastPromptImagePromptImage",
+    "Hailuo3",
+    "Hailuo3ReferenceAudio",
     "Happyhorse1_0",
     "Happyhorse1_0PromptImagePromptImage",
     "Seedance2",
@@ -32,8 +34,9 @@ __all__ = [
     "Seedance2MiniReferenceAudio",
     "GeminiOmniFlash",
     "GeminiOmniFlashPromptImagePromptImage",
-    "Veo3",
-    "Veo3PromptImagePromptImage",
+    "Seedance2_5",
+    "Seedance2_5PromptImagePromptImage",
+    "Seedance2_5ReferenceAudio",
 ]
 
 
@@ -66,6 +69,23 @@ class Gen4_5(TypedDict, total=False):
 
     content_moderation: Annotated[Gen4_5ContentModeration, PropertyInfo(alias="contentModeration")]
     """Settings that affect the behavior of the content moderation system."""
+
+    output_format: Annotated[Literal["mp4", "prores", "png_sequence"], PropertyInfo(alias="outputFormat")]
+    """The container/encoding of the output.
+
+    `mp4` (default) returns an H.264 .mp4. `prores` returns a ProRes .mov.
+    `png_sequence` returns a .zip of PNG frames (plus a separate .wav artifact when
+    the output has audio). Non-mp4 formats incur an additional surcharge of 5
+    credits per second of output.
+    """
+
+    prores_profile: Annotated[
+        Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"], PropertyInfo(alias="proresProfile")
+    ]
+    """The ProRes profile to use.
+
+    Only valid when `outputFormat` is `prores`. Defaults to `4444`.
+    """
 
     seed: int
     """If unspecified, a random number is chosen.
@@ -256,6 +276,55 @@ class Veo3_1FastPromptImagePromptImage(TypedDict, total=False):
     """
 
 
+class Hailuo3(TypedDict, total=False):
+    model: Required[Literal["hailuo3"]]
+
+    prompt_image: Required[Annotated[Union[str, Iterable[object]], PropertyInfo(alias="promptImage")]]
+    """An image or array of images.
+
+    Use position `first`/`last` for keyframe mode, or omit position for reference
+    images. The two modes cannot be mixed.
+    """
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty text prompt describing what should appear in the output."""
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"]
+    """The aspect ratio of the output video.
+
+    Use adaptive only when image or video references are provided; text-only
+    requests require a concrete ratio.
+    """
+
+    reference_audio: Annotated[Iterable[Hailuo3ReferenceAudio], PropertyInfo(alias="referenceAudio")]
+    """An optional array of audio references.
+
+    Audio references require a text prompt, and the total combined duration must not
+    exceed 15 seconds.
+    """
+
+    resolution: Literal["2K", "768P"]
+    """The output resolution. Hailuo 3.0 supports 768P and 2K."""
+
+
+class Hailuo3ReferenceAudio(TypedDict, total=False):
+    """
+    An audio reference allows the model to use the audio as additional context for the output.
+    """
+
+    type: Required[Literal["audio"]]
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+    [our docs](/assets/inputs#audio) on audio inputs for more information.
+    """
+
+
 class Happyhorse1_0(TypedDict, total=False):
     model: Required[Literal["happyhorse_1_0"]]
 
@@ -351,8 +420,7 @@ class Seedance2(TypedDict, total=False):
     reference_audio: Annotated[Iterable[Seedance2ReferenceAudio], PropertyInfo(alias="referenceAudio")]
     """An optional array of audio references.
 
-    Audio references require a text prompt, and the total combined duration must not
-    exceed 15 seconds.
+    The total combined duration must not exceed 15 seconds.
     """
 
 
@@ -433,8 +501,7 @@ class Seedance2Fast(TypedDict, total=False):
     reference_audio: Annotated[Iterable[Seedance2FastReferenceAudio], PropertyInfo(alias="referenceAudio")]
     """An optional array of audio references.
 
-    Audio references require a text prompt, and the total combined duration must not
-    exceed 15 seconds.
+    The total combined duration must not exceed 15 seconds.
     """
 
 
@@ -515,8 +582,7 @@ class Seedance2Mini(TypedDict, total=False):
     reference_audio: Annotated[Iterable[Seedance2MiniReferenceAudio], PropertyInfo(alias="referenceAudio")]
     """An optional array of audio references.
 
-    Audio references require a text prompt, and the total combined duration must not
-    exceed 15 seconds.
+    The total combined duration must not exceed 15 seconds.
     """
 
 
@@ -593,41 +659,54 @@ class GeminiOmniFlashPromptImagePromptImage(TypedDict, total=False):
     """
 
 
-class Veo3(TypedDict, total=False):
-    duration: Required[Literal[8]]
-    """The number of seconds of duration for the output video."""
-
-    model: Required[Literal["veo3"]]
+class Seedance2_5(TypedDict, total=False):
+    model: Required[Literal["seedance2_5"]]
 
     prompt_image: Required[
-        Annotated[Union[str, Iterable[Veo3PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
+        Annotated[Union[str, Iterable[Seedance2_5PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
     ]
-    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+    """An image or array of images.
 
-    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-    [our docs](/assets/inputs#images) on image inputs for more information.
+    Use position `first`/`last` for keyframe mode, or omit position for reference
+    images. The two modes cannot be mixed.
     """
 
-    ratio: Required[Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]]
-    """The resolution of the output video."""
+    audio: bool
+    """Whether to generate audio for the video."""
 
-    negative_prompt: Annotated[str, PropertyInfo(alias="negativePrompt")]
-    """Text describing what should not appear in the output video."""
+    duration: int
+    """The number of seconds of duration for the output video."""
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
-    """A non-empty string up to 1000 characters (measured in UTF-16 code units).
+    """
+    An optional text prompt up to 15000 characters describing what should appear in
+    the output.
+    """
 
-    This should describe in detail what should appear in the output.
+    ratio: Literal[
+        "992:432",
+        "854:480",
+        "752:560",
+        "640:640",
+        "560:752",
+        "480:854",
+        "1470:630",
+        "1280:720",
+        "1112:834",
+        "960:960",
+        "834:1112",
+        "720:1280",
+    ]
+    """The resolution of the output video. Seedance 2.5 supports 480p and 720p only."""
+
+    reference_audio: Annotated[Iterable[Seedance2_5ReferenceAudio], PropertyInfo(alias="referenceAudio")]
+    """An optional array of audio references.
+
+    The total combined duration must not exceed 30 seconds.
     """
 
 
-class Veo3PromptImagePromptImage(TypedDict, total=False):
-    position: Required[Literal["first"]]
-    """The position of the image in the output video.
-
-    "first" will use the image as the first frame of the video.
-    """
-
+class Seedance2_5PromptImagePromptImage(TypedDict, total=False):
     uri: Required[str]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
@@ -635,7 +714,39 @@ class Veo3PromptImagePromptImage(TypedDict, total=False):
     [our docs](/assets/inputs#images) on image inputs for more information.
     """
 
+    position: Literal["first", "last"]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame, "last" as the last frame. Omit
+    for a reference image.
+    """
+
+
+class Seedance2_5ReferenceAudio(TypedDict, total=False):
+    """
+    An audio reference allows the model to use the audio as additional context for the output.
+    """
+
+    type: Required[Literal["audio"]]
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+    [our docs](/assets/inputs#audio) on audio inputs for more information.
+    """
+
 
 ImageToVideoCreateParams: TypeAlias = Union[
-    Gen4_5, Gen4Turbo, Veo3_1, Veo3_1Fast, Happyhorse1_0, Seedance2, Seedance2Fast, Seedance2Mini, GeminiOmniFlash, Veo3
+    Gen4_5,
+    Gen4Turbo,
+    Veo3_1,
+    Veo3_1Fast,
+    Hailuo3,
+    Happyhorse1_0,
+    Seedance2,
+    Seedance2Fast,
+    Seedance2Mini,
+    GeminiOmniFlash,
+    Seedance2_5,
 ]

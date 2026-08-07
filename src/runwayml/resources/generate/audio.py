@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 import httpx
 
 from runwayml.lib.polling import (
@@ -11,7 +13,7 @@ from runwayml.lib.polling import (
     create_async_waitable_resource,
 )
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -53,6 +55,7 @@ class AudioResource(SyncAPIResource):
         *,
         config_id: str,
         input: audio_create_params.Input,
+        dry_run: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -71,6 +74,10 @@ class AudioResource(SyncAPIResource):
           input: Model-agnostic audio generation input. The router selects a model and maps these
               options to it.
 
+          dry_run: When true, run the full routing pipeline and return the decision and estimated
+              cost without generating. No task is created, nothing is billed, and no asset is
+              produced.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -79,14 +86,24 @@ class AudioResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._post(
-            "/v1/generate/audio",
-            body=maybe_transform(
-                {
-                    "config_id": config_id,
-                    "input": input,
-                },
-                audio_create_params.AudioCreateParams,
+        return cast(
+            AudioCreateResponse,
+            self._post(
+                "/v1/generate/audio",
+                body=maybe_transform(
+                    {
+                        "config_id": config_id,
+                        "input": input,
+                        "dry_run": dry_run,
+                    },
+                    audio_create_params.AudioCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, AudioCreateResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -120,6 +137,7 @@ class AsyncAudioResource(AsyncAPIResource):
         *,
         config_id: str,
         input: audio_create_params.Input,
+        dry_run: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -138,6 +156,10 @@ class AsyncAudioResource(AsyncAPIResource):
           input: Model-agnostic audio generation input. The router selects a model and maps these
               options to it.
 
+          dry_run: When true, run the full routing pipeline and return the decision and estimated
+              cost without generating. No task is created, nothing is billed, and no asset is
+              produced.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -146,14 +168,24 @@ class AsyncAudioResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._post(
-            "/v1/generate/audio",
-            body=await async_maybe_transform(
-                {
-                    "config_id": config_id,
-                    "input": input,
-                },
-                audio_create_params.AudioCreateParams,
+        return cast(
+            AudioCreateResponse,
+            await self._post(
+                "/v1/generate/audio",
+                body=await async_maybe_transform(
+                    {
+                        "config_id": config_id,
+                        "input": input,
+                        "dry_run": dry_run,
+                    },
+                    audio_create_params.AudioCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, AudioCreateResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

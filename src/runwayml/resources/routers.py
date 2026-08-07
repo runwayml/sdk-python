@@ -6,7 +6,7 @@ from typing import Optional
 
 import httpx
 
-from ..types import router_list_params, router_create_params, router_update_params
+from ..types import router_list_params, router_create_params, router_update_params, router_list_requests_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -23,6 +23,7 @@ from ..types.router_list_response import RouterListResponse
 from ..types.router_create_response import RouterCreateResponse
 from ..types.router_update_response import RouterUpdateResponse
 from ..types.router_retrieve_response import RouterRetrieveResponse
+from ..types.router_list_requests_response import RouterListRequestsResponse
 
 __all__ = ["RoutersResource", "AsyncRoutersResource"]
 
@@ -273,6 +274,57 @@ class RoutersResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    def list_requests(
+        self,
+        id: str,
+        *,
+        limit: int,
+        cursor: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncCursorPage[RouterListRequestsResponse]:
+        """
+        Paginated routing history for live Model Router requests (successful routes and
+        failures). Playground dry runs are not recorded.
+
+        Args:
+          limit: The maximum number of items to return per page.
+
+          cursor: Cursor from a previous response for fetching the next page of results.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get_api_list(
+            path_template("/v1/routers/{id}/requests", id=id),
+            page=SyncCursorPage[RouterListRequestsResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "cursor": cursor,
+                    },
+                    router_list_requests_params.RouterListRequestsParams,
+                ),
+            ),
+            model=RouterListRequestsResponse,
+        )
+
 
 class AsyncRoutersResource(AsyncAPIResource):
     @cached_property
@@ -520,6 +572,57 @@ class AsyncRoutersResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    def list_requests(
+        self,
+        id: str,
+        *,
+        limit: int,
+        cursor: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[RouterListRequestsResponse, AsyncCursorPage[RouterListRequestsResponse]]:
+        """
+        Paginated routing history for live Model Router requests (successful routes and
+        failures). Playground dry runs are not recorded.
+
+        Args:
+          limit: The maximum number of items to return per page.
+
+          cursor: Cursor from a previous response for fetching the next page of results.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get_api_list(
+            path_template("/v1/routers/{id}/requests", id=id),
+            page=AsyncCursorPage[RouterListRequestsResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "cursor": cursor,
+                    },
+                    router_list_requests_params.RouterListRequestsParams,
+                ),
+            ),
+            model=RouterListRequestsResponse,
+        )
+
 
 class RoutersResourceWithRawResponse:
     def __init__(self, routers: RoutersResource) -> None:
@@ -539,6 +642,9 @@ class RoutersResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             routers.delete,
+        )
+        self.list_requests = to_raw_response_wrapper(
+            routers.list_requests,
         )
 
 
@@ -561,6 +667,9 @@ class AsyncRoutersResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             routers.delete,
         )
+        self.list_requests = async_to_raw_response_wrapper(
+            routers.list_requests,
+        )
 
 
 class RoutersResourceWithStreamingResponse:
@@ -582,6 +691,9 @@ class RoutersResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             routers.delete,
         )
+        self.list_requests = to_streamed_response_wrapper(
+            routers.list_requests,
+        )
 
 
 class AsyncRoutersResourceWithStreamingResponse:
@@ -602,4 +714,7 @@ class AsyncRoutersResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             routers.delete,
+        )
+        self.list_requests = async_to_streamed_response_wrapper(
+            routers.list_requests,
         )

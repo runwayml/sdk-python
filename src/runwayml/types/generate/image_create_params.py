@@ -20,6 +20,13 @@ class ImageCreateParams(TypedDict, total=False):
     The router selects a model and maps these options to it.
     """
 
+    dry_run: Annotated[bool, PropertyInfo(alias="dryRun")]
+    """
+    When true, run the full routing pipeline and return the decision and estimated
+    cost without generating. No task is created, nothing is billed, and no asset is
+    produced.
+    """
+
 
 class InputContentModeration(TypedDict, total=False):
     """Settings that affect the behavior of the content moderation system."""

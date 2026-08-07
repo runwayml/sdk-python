@@ -11,8 +11,12 @@ __all__ = [
     "TextToSpeechCreateParams",
     "SeedAudio",
     "SeedAudioVoice",
+    "SeedAudioVoiceSeedPreset",
+    "SeedAudioVoiceReferenceAudio",
     "ElevenMultilingualV2",
     "ElevenMultilingualV2Voice",
+    "ElevenV3",
+    "ElevenV3Voice",
 ]
 
 
@@ -42,10 +46,48 @@ class SeedAudio(TypedDict, total=False):
     """Relative speech speed. Negative is slower, positive is faster; 0 is normal."""
 
     voice: SeedAudioVoice
-    """Clone from a single reference audio clip, then speak promptText in that voice."""
+    """The voice to use for text-to-speech generation.
+
+    If omitted, a default voice is used.
+    """
 
 
-class SeedAudioVoice(TypedDict, total=False):
+class SeedAudioVoiceSeedPreset(TypedDict, total=False):
+    """A preset voice for Seed Audio text-to-speech."""
+
+    preset_id: Required[
+        Annotated[
+            Literal[
+                "vivi_mixed_en_zh_ja_es_id",
+                "mindy_en_es_id_pt_zh",
+                "kian_en_zh",
+                "cedric_en_zh",
+                "sophie_en_zh",
+                "jean_en_zh",
+                "magnus_en_zh",
+                "mabel_en_zh",
+                "nadia_en_zh",
+                "opal_en_zh",
+                "pearl_en_zh",
+                "quentin_en_zh",
+                "corinne_mixed_en_zh",
+                "esther_mixed_en_zh",
+                "lyla_mixed_en_zh",
+                "tracy_es_zh",
+                "sandy_es_mixed_en_zh",
+                "felix_zh",
+                "celeste_zh",
+                "monkey_king_zh",
+            ],
+            PropertyInfo(alias="presetId"),
+        ]
+    ]
+    """A Seed Audio preset voice id."""
+
+    type: Required[Literal["seed-preset"]]
+
+
+class SeedAudioVoiceReferenceAudio(TypedDict, total=False):
     """Clone from a single reference audio clip, then speak promptText in that voice."""
 
     audio_uri: Required[Annotated[str, PropertyInfo(alias="audioUri")]]
@@ -56,6 +98,9 @@ class SeedAudioVoice(TypedDict, total=False):
     """
 
     type: Required[Literal["reference-audio"]]
+
+
+SeedAudioVoice: TypeAlias = Union[SeedAudioVoiceSeedPreset, SeedAudioVoiceReferenceAudio]
 
 
 class ElevenMultilingualV2(TypedDict, total=False):
@@ -135,4 +180,114 @@ class ElevenMultilingualV2Voice(TypedDict, total=False):
     type: Required[Literal["runway-preset"]]
 
 
-TextToSpeechCreateParams: TypeAlias = Union[SeedAudio, ElevenMultilingualV2]
+class ElevenV3(TypedDict, total=False):
+    model: Required[Literal["eleven_v3"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """The text to convert to speech.
+
+    You can include expressive audio tags like [laughs] or [whispers] in the script.
+    """
+
+    voice: Required[ElevenV3Voice]
+    """A voice preset from the RunwayML API."""
+
+    apply_text_normalization: Annotated[Literal["auto", "on", "off"], PropertyInfo(alias="applyTextNormalization")]
+    """Text normalization mode: 'auto', 'on', or 'off' (e.g. spelling out numbers)."""
+
+    language_code: Annotated[str, PropertyInfo(alias="languageCode")]
+    """ISO 639-1 language code to enforce pronunciation and normalization."""
+
+    seed: int
+    """Optional seed for more deterministic output (0–4294967295). Not guaranteed."""
+
+    similarity_boost: Annotated[float, PropertyInfo(alias="similarityBoost")]
+    """How closely the output tracks the original speaker (0–1).
+
+    Maps to ElevenLabs similarity_boost.
+    """
+
+    speed: float
+    """Speech speed multiplier (0.7–1.2).
+
+    1.0 is default; values below slow down and above speed up.
+    """
+
+    stability: float
+    """Voice stability (0–1).
+
+    Lower values allow broader emotional range; higher values are steadier.
+    """
+
+    style: float
+    """Style exaggeration (0–1). Higher values amplify the speaker style."""
+
+    use_speaker_boost: Annotated[bool, PropertyInfo(alias="useSpeakerBoost")]
+    """Boost similarity to the original speaker at a small latency cost."""
+
+
+class ElevenV3Voice(TypedDict, total=False):
+    """A voice preset from the RunwayML API."""
+
+    preset_id: Required[
+        Annotated[
+            Literal[
+                "Maya",
+                "Arjun",
+                "Serene",
+                "Bernard",
+                "Billy",
+                "Mark",
+                "Clint",
+                "Mabel",
+                "Chad",
+                "Leslie",
+                "Eleanor",
+                "Elias",
+                "Elliot",
+                "Grungle",
+                "Brodie",
+                "Sandra",
+                "Kirk",
+                "Kylie",
+                "Lara",
+                "Lisa",
+                "Malachi",
+                "Marlene",
+                "Martin",
+                "Miriam",
+                "Monster",
+                "Paula",
+                "Pip",
+                "Rusty",
+                "Ragnar",
+                "Xylar",
+                "Maggie",
+                "Jack",
+                "Katie",
+                "Noah",
+                "James",
+                "Rina",
+                "Ella",
+                "Mariah",
+                "Frank",
+                "Claudia",
+                "Niki",
+                "Vincent",
+                "Kendrick",
+                "Myrna",
+                "Tom",
+                "Wanda",
+                "Benjamin",
+                "Kiana",
+                "Rachel",
+            ],
+            PropertyInfo(alias="presetId"),
+        ]
+    ]
+    """The preset voice ID to use for the generated speech."""
+
+    type: Required[Literal["runway-preset"]]
+
+
+TextToSpeechCreateParams: TypeAlias = Union[SeedAudio, ElevenMultilingualV2, ElevenV3]
