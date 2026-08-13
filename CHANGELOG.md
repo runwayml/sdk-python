@@ -6,9 +6,12 @@ Full Changelog: [v5.13.0...v5.14.0](https://github.com/runwayml/sdk-python/compa
 
 ### Features
 
-* **api:** api update ([c0eb812](https://github.com/runwayml/sdk-python/commit/c0eb812784d233be0a14e1f677324b36a5ed8116))
-* **api:** api update ([37f2ab3](https://github.com/runwayml/sdk-python/commit/37f2ab329045214d9c66eda415527fd5be9f5d15))
-* **api:** manual updates ([b43bcb5](https://github.com/runwayml/sdk-python/commit/b43bcb502ce66265a4ea74b514f29ef7a01c490f))
+* **api:** add hailuo3 and seedance2_5 (text/image/video-to-video) ([37f2ab3](https://github.com/runwayml/sdk-python/commit/37f2ab329045214d9c66eda415527fd5be9f5d15))
+* **api:** add eleven_v3 text-to-speech ([37f2ab3](https://github.com/runwayml/sdk-python/commit/37f2ab329045214d9c66eda415527fd5be9f5d15))
+* **api:** add Model Router request history and capacity fallback ([37f2ab3](https://github.com/runwayml/sdk-python/commit/37f2ab329045214d9c66eda415527fd5be9f5d15))
+* **api:** add organization webapp usage and audit logs ([37f2ab3](https://github.com/runwayml/sdk-python/commit/37f2ab329045214d9c66eda415527fd5be9f5d15))
+* **api:** expose task cost / estimatedCost on retrieve ([37f2ab3](https://github.com/runwayml/sdk-python/commit/37f2ab329045214d9c66eda415527fd5be9f5d15))
+* **api:** add text-to-image grounding ([37f2ab3](https://github.com/runwayml/sdk-python/commit/37f2ab329045214d9c66eda415527fd5be9f5d15))
 
 
 ### Bug Fixes
