@@ -35,6 +35,9 @@ __all__ = [
     "Seedance2_5ReferenceAudio",
     "Seedance2_5Reference",
     "Seedance2_5ReferenceVideo",
+    "GrokImagine1_5",
+    "GrokImagine1_5ReferenceAudio",
+    "GrokImagine1_5Reference",
 ]
 
 
@@ -577,8 +580,17 @@ class Seedance2_5(TypedDict, total=False):
         "960:960",
         "834:1112",
         "720:1280",
+        "2206:946",
+        "1920:1080",
+        "1664:1248",
+        "1440:1440",
+        "1248:1664",
+        "1080:1920",
     ]
-    """The resolution of the output video. Seedance 2.5 supports 480p and 720p only."""
+    """The resolution of the output video.
+
+    Seedance 2.5 supports 480p, 720p, and 1080p.
+    """
 
     reference_audio: Annotated[Iterable[Seedance2_5ReferenceAudio], PropertyInfo(alias="referenceAudio")]
     """An optional array of audio references.
@@ -639,6 +651,60 @@ class Seedance2_5ReferenceVideo(TypedDict, total=False):
     """
 
 
+class GrokImagine1_5(TypedDict, total=False):
+    model: Required[Literal["grok_imagine_1_5"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty text prompt describing what should appear in the output."""
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    ratio: Literal["1:1", "16:9", "9:16", "4:3", "3:4", "3:2", "2:3"]
+    """The aspect ratio of the output video."""
+
+    reference_audio: Annotated[Iterable[GrokImagine1_5ReferenceAudio], PropertyInfo(alias="referenceAudio")]
+    """An optional array of audio references.
+
+    Audio references require at least one image reference, and each clip must be
+    between 3 and 15 seconds.
+    """
+
+    references: Iterable[GrokImagine1_5Reference]
+    """An optional array of image references.
+
+    Referenced images can be addressed in the prompt as [Image 1], [Image 2], and so
+    on. See [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    resolution: Literal["480p", "720p", "1080p"]
+    """The output resolution. Requests with image references are capped at 720p."""
+
+
+class GrokImagine1_5ReferenceAudio(TypedDict, total=False):
+    """
+    An audio reference allows the model to drive the output with the supplied audio.
+    """
+
+    type: Required[Literal["audio"]]
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+    [our docs](/assets/inputs#audio) on audio inputs for more information.
+    """
+
+
+class GrokImagine1_5Reference(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
 TextToVideoCreateParams: TypeAlias = Union[
     Gen4_5,
     Veo3_1,
@@ -650,4 +716,5 @@ TextToVideoCreateParams: TypeAlias = Union[
     Seedance2Mini,
     GeminiOmniFlash,
     Seedance2_5,
+    GrokImagine1_5,
 ]

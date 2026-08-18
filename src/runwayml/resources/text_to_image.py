@@ -560,6 +560,87 @@ class TextToImageResource(SyncAPIResource):
     def create(
         self,
         *,
+        model: Literal["grok_imagine_image_2"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "1280:720",
+            "720:1280",
+            "1152:864",
+            "864:1152",
+            "1248:832",
+            "832:1248",
+            "1248:576",
+            "576:1248",
+            "1280:576",
+            "576:1280",
+            "1408:704",
+            "704:1408",
+            "2048:2048",
+            "2816:1584",
+            "1584:2816",
+            "2368:1776",
+            "1776:2368",
+            "2496:1664",
+            "1664:2496",
+            "2912:1344",
+            "1344:2912",
+            "3200:1440",
+            "1440:3200",
+            "2912:1456",
+            "1456:2912",
+            "auto_1k",
+            "auto_2k",
+        ],
+        edit: bool | Omit = omit,
+        output_count: int | Omit = omit,
+        quality: Literal["low", "medium"] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.GrokImagineImage2ReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty text prompt describing what should appear in the output image.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. 2K ratios
+              cost 2 additional credits per image. Use `auto_1k` or `auto_2k` to pick a
+              resolution tier and let the model choose the framing from the prompt.
+
+          edit: When true with exactly one reference image, edit that image directly instead of
+              using it as a loose visual reference. With several reference images the prompt
+              describes how they should be edited or combined. Requires at least one reference
+              image.
+
+          output_count: The number of images to generate. Increasing this number will affect the number
+              of credits consumed by the generation.
+
+          quality: How much rendering effort the model spends on the output. Defaults to `medium`;
+              `low` is faster and costs 2 fewer credits per image.
+
+          reference_images: Up to 3 images to guide the generation. Reference them from `promptText` to
+              describe how each should be used. Each adds 1 credit to the generation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -614,6 +695,7 @@ class TextToImageResource(SyncAPIResource):
         | Literal["gemini_image3.1_flash"]
         | Literal["seedream5_pro"]
         | Literal["seedream5_lite"]
+        | Literal["grok_imagine_image_2"]
         | Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -794,6 +876,36 @@ class TextToImageResource(SyncAPIResource):
             "4704:2016",
         ]
         | Literal[
+            "1024:1024",
+            "1280:720",
+            "720:1280",
+            "1152:864",
+            "864:1152",
+            "1248:832",
+            "832:1248",
+            "1248:576",
+            "576:1248",
+            "1280:576",
+            "576:1280",
+            "1408:704",
+            "704:1408",
+            "2048:2048",
+            "2816:1584",
+            "1584:2816",
+            "2368:1776",
+            "1776:2368",
+            "2496:1664",
+            "1664:2496",
+            "2912:1344",
+            "1344:2912",
+            "3200:1440",
+            "1440:3200",
+            "2912:1456",
+            "1456:2912",
+            "auto_1k",
+            "auto_2k",
+        ]
+        | Literal[
             "1344:768",
             "768:1344",
             "1024:1024",
@@ -812,6 +924,7 @@ class TextToImageResource(SyncAPIResource):
         | Iterable[text_to_image_create_params.GeminiImage3_1FlashReferenceImage]
         | Iterable[text_to_image_create_params.Seedream5ProReferenceImage]
         | Iterable[text_to_image_create_params.Seedream5LiteReferenceImage]
+        | Iterable[text_to_image_create_params.GrokImagineImage2ReferenceImage]
         | Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage]
         | Omit = omit,
         content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration
@@ -820,9 +933,10 @@ class TextToImageResource(SyncAPIResource):
         seed: int | Omit = omit,
         background: Literal["opaque", "auto"] | Omit = omit,
         output_count: int | Literal[1, 4] | Omit = omit,
-        quality: Literal["low", "medium", "high", "auto"] | Omit = omit,
+        quality: Literal["low", "medium", "high", "auto"] | Literal["low", "medium"] | Omit = omit,
         grounding: bool | Omit = omit,
         output_format: Literal["png", "jpeg"] | Omit = omit,
+        edit: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -845,6 +959,7 @@ class TextToImageResource(SyncAPIResource):
                     "quality": quality,
                     "grounding": grounding,
                     "output_format": output_format,
+                    "edit": edit,
                 },
                 text_to_image_create_params.TextToImageCreateParams,
             ),
@@ -1391,6 +1506,87 @@ class AsyncTextToImageResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        model: Literal["grok_imagine_image_2"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "1280:720",
+            "720:1280",
+            "1152:864",
+            "864:1152",
+            "1248:832",
+            "832:1248",
+            "1248:576",
+            "576:1248",
+            "1280:576",
+            "576:1280",
+            "1408:704",
+            "704:1408",
+            "2048:2048",
+            "2816:1584",
+            "1584:2816",
+            "2368:1776",
+            "1776:2368",
+            "2496:1664",
+            "1664:2496",
+            "2912:1344",
+            "1344:2912",
+            "3200:1440",
+            "1440:3200",
+            "2912:1456",
+            "1456:2912",
+            "auto_1k",
+            "auto_2k",
+        ],
+        edit: bool | Omit = omit,
+        output_count: int | Omit = omit,
+        quality: Literal["low", "medium"] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.GrokImagineImage2ReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty text prompt describing what should appear in the output image.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. 2K ratios
+              cost 2 additional credits per image. Use `auto_1k` or `auto_2k` to pick a
+              resolution tier and let the model choose the framing from the prompt.
+
+          edit: When true with exactly one reference image, edit that image directly instead of
+              using it as a loose visual reference. With several reference images the prompt
+              describes how they should be edited or combined. Requires at least one reference
+              image.
+
+          output_count: The number of images to generate. Increasing this number will affect the number
+              of credits consumed by the generation.
+
+          quality: How much rendering effort the model spends on the output. Defaults to `medium`;
+              `low` is faster and costs 2 fewer credits per image.
+
+          reference_images: Up to 3 images to guide the generation. Reference them from `promptText` to
+              describe how each should be used. Each adds 1 credit to the generation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -1445,6 +1641,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Literal["gemini_image3.1_flash"]
         | Literal["seedream5_pro"]
         | Literal["seedream5_lite"]
+        | Literal["grok_imagine_image_2"]
         | Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -1625,6 +1822,36 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "4704:2016",
         ]
         | Literal[
+            "1024:1024",
+            "1280:720",
+            "720:1280",
+            "1152:864",
+            "864:1152",
+            "1248:832",
+            "832:1248",
+            "1248:576",
+            "576:1248",
+            "1280:576",
+            "576:1280",
+            "1408:704",
+            "704:1408",
+            "2048:2048",
+            "2816:1584",
+            "1584:2816",
+            "2368:1776",
+            "1776:2368",
+            "2496:1664",
+            "1664:2496",
+            "2912:1344",
+            "1344:2912",
+            "3200:1440",
+            "1440:3200",
+            "2912:1456",
+            "1456:2912",
+            "auto_1k",
+            "auto_2k",
+        ]
+        | Literal[
             "1344:768",
             "768:1344",
             "1024:1024",
@@ -1643,6 +1870,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Iterable[text_to_image_create_params.GeminiImage3_1FlashReferenceImage]
         | Iterable[text_to_image_create_params.Seedream5ProReferenceImage]
         | Iterable[text_to_image_create_params.Seedream5LiteReferenceImage]
+        | Iterable[text_to_image_create_params.GrokImagineImage2ReferenceImage]
         | Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage]
         | Omit = omit,
         content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration
@@ -1651,9 +1879,10 @@ class AsyncTextToImageResource(AsyncAPIResource):
         seed: int | Omit = omit,
         background: Literal["opaque", "auto"] | Omit = omit,
         output_count: int | Literal[1, 4] | Omit = omit,
-        quality: Literal["low", "medium", "high", "auto"] | Omit = omit,
+        quality: Literal["low", "medium", "high", "auto"] | Literal["low", "medium"] | Omit = omit,
         grounding: bool | Omit = omit,
         output_format: Literal["png", "jpeg"] | Omit = omit,
+        edit: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1676,6 +1905,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
                     "quality": quality,
                     "grounding": grounding,
                     "output_format": output_format,
+                    "edit": edit,
                 },
                 text_to_image_create_params.TextToImageCreateParams,
             ),

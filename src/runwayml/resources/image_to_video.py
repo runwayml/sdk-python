@@ -597,6 +597,12 @@ class ImageToVideoResource(SyncAPIResource):
             "960:960",
             "834:1112",
             "720:1280",
+            "2206:946",
+            "1920:1080",
+            "1664:1248",
+            "1440:1440",
+            "1248:1664",
+            "1080:1920",
         ]
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
@@ -621,10 +627,50 @@ class ImageToVideoResource(SyncAPIResource):
           prompt_text: An optional text prompt up to 15000 characters describing what should appear in
               the output.
 
-          ratio: The resolution of the output video. Seedance 2.5 supports 480p and 720p only.
+          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
 
           reference_audio: An optional array of audio references. The total combined duration must not
               exceed 30 seconds.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["grok_imagine_1_5"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.GrokImagine1_5PromptImagePromptImage]],
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        resolution: Literal["480p", "720p", "1080p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: An optional text prompt describing motion or changes in the output video.
+
+          resolution: The output resolution. Output aspect ratio follows the input image.
 
           extra_headers: Send extra headers
 
@@ -656,7 +702,8 @@ class ImageToVideoResource(SyncAPIResource):
         | Literal["seedance2_fast"]
         | Literal["seedance2_mini"]
         | Literal["gemini_omni_flash"]
-        | Literal["seedance2_5"],
+        | Literal["seedance2_5"]
+        | Literal["grok_imagine_1_5"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
@@ -667,7 +714,8 @@ class ImageToVideoResource(SyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.Seedance2FastPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Seedance2MiniPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlashPromptImagePromptImage]]
-        | Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]],
+        | Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.GrokImagine1_5PromptImagePromptImage]],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
         | Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
@@ -727,6 +775,12 @@ class ImageToVideoResource(SyncAPIResource):
             "960:960",
             "834:1112",
             "720:1280",
+            "2206:946",
+            "1920:1080",
+            "1664:1248",
+            "1440:1440",
+            "1248:1664",
+            "1080:1920",
         ]
         | Omit = omit,
         content_moderation: image_to_video_create_params.Gen4_5ContentModeration
@@ -743,7 +797,7 @@ class ImageToVideoResource(SyncAPIResource):
         | Iterable[image_to_video_create_params.Seedance2MiniReferenceAudio]
         | Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio]
         | Omit = omit,
-        resolution: Literal["2K", "768P"] | Literal["720P", "1080P"] | Omit = omit,
+        resolution: Literal["2K", "768P"] | Literal["720P", "1080P"] | Literal["480p", "720p", "1080p"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1351,6 +1405,12 @@ class AsyncImageToVideoResource(AsyncAPIResource):
             "960:960",
             "834:1112",
             "720:1280",
+            "2206:946",
+            "1920:1080",
+            "1664:1248",
+            "1440:1440",
+            "1248:1664",
+            "1080:1920",
         ]
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
@@ -1375,10 +1435,50 @@ class AsyncImageToVideoResource(AsyncAPIResource):
           prompt_text: An optional text prompt up to 15000 characters describing what should appear in
               the output.
 
-          ratio: The resolution of the output video. Seedance 2.5 supports 480p and 720p only.
+          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
 
           reference_audio: An optional array of audio references. The total combined duration must not
               exceed 30 seconds.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["grok_imagine_1_5"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.GrokImagine1_5PromptImagePromptImage]],
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        resolution: Literal["480p", "720p", "1080p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: An optional text prompt describing motion or changes in the output video.
+
+          resolution: The output resolution. Output aspect ratio follows the input image.
 
           extra_headers: Send extra headers
 
@@ -1410,7 +1510,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Literal["seedance2_fast"]
         | Literal["seedance2_mini"]
         | Literal["gemini_omni_flash"]
-        | Literal["seedance2_5"],
+        | Literal["seedance2_5"]
+        | Literal["grok_imagine_1_5"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
@@ -1421,7 +1522,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.Seedance2FastPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Seedance2MiniPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlashPromptImagePromptImage]]
-        | Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]],
+        | Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.GrokImagine1_5PromptImagePromptImage]],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
         | Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
@@ -1481,6 +1583,12 @@ class AsyncImageToVideoResource(AsyncAPIResource):
             "960:960",
             "834:1112",
             "720:1280",
+            "2206:946",
+            "1920:1080",
+            "1664:1248",
+            "1440:1440",
+            "1248:1664",
+            "1080:1920",
         ]
         | Omit = omit,
         content_moderation: image_to_video_create_params.Gen4_5ContentModeration
@@ -1497,7 +1605,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Iterable[image_to_video_create_params.Seedance2MiniReferenceAudio]
         | Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio]
         | Omit = omit,
-        resolution: Literal["2K", "768P"] | Literal["720P", "1080P"] | Omit = omit,
+        resolution: Literal["2K", "768P"] | Literal["720P", "1080P"] | Literal["480p", "720p", "1080p"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
