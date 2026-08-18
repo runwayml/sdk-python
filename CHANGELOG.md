@@ -6,7 +6,9 @@ Full Changelog: [v5.14.0...v5.15.0](https://github.com/runwayml/sdk-python/compa
 
 ### Features
 
-* **api:** Seedance 2.5 1080p, Grok Imagine Video 1.5, Grok Imagine Image 2 ([46f53db](https://github.com/runwayml/sdk-python/commit/46f53dbc5ea2a643bacaf4a702974c5baebd45a0))
+* **api:** add 1080p on seedance2_5 (text/image/video-to-video) ([46f53db](https://github.com/runwayml/sdk-python/commit/46f53dbc5ea2a643bacaf4a702974c5baebd45a0))
+* **api:** add grok_imagine_1_5 (text/image-to-video) ([46f53db](https://github.com/runwayml/sdk-python/commit/46f53dbc5ea2a643bacaf4a702974c5baebd45a0))
+* **api:** add grok_imagine_image_2 (text-to-image) ([46f53db](https://github.com/runwayml/sdk-python/commit/46f53dbc5ea2a643bacaf4a702974c5baebd45a0))
 
 
 ### Bug Fixes
