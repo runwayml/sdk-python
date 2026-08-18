@@ -457,6 +457,12 @@ class VideoToVideoResource(SyncAPIResource):
             "960:960",
             "834:1112",
             "720:1280",
+            "2206:946",
+            "1920:1080",
+            "1664:1248",
+            "1440:1440",
+            "1248:1664",
+            "1080:1920",
         ]
         | Omit = omit,
         reference_audio: Iterable[video_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
@@ -489,7 +495,7 @@ class VideoToVideoResource(SyncAPIResource):
           prompt_text: An optional text prompt up to 15000 characters describing what should appear in
               the output.
 
-          ratio: The resolution of the output video. Seedance 2.5 supports 480p and 720p only.
+          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
 
           reference_audio: An optional array of audio references. The total combined duration must be less
               than 30 seconds.
@@ -588,6 +594,12 @@ class VideoToVideoResource(SyncAPIResource):
             "960:960",
             "834:1112",
             "720:1280",
+            "2206:946",
+            "1920:1080",
+            "1664:1248",
+            "1440:1440",
+            "1248:1664",
+            "1080:1920",
         ]
         | Omit = omit,
         seed: int | Omit = omit,
@@ -1082,6 +1094,12 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
             "960:960",
             "834:1112",
             "720:1280",
+            "2206:946",
+            "1920:1080",
+            "1664:1248",
+            "1440:1440",
+            "1248:1664",
+            "1080:1920",
         ]
         | Omit = omit,
         reference_audio: Iterable[video_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
@@ -1114,7 +1132,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
           prompt_text: An optional text prompt up to 15000 characters describing what should appear in
               the output.
 
-          ratio: The resolution of the output video. Seedance 2.5 supports 480p and 720p only.
+          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
 
           reference_audio: An optional array of audio references. The total combined duration must be less
               than 30 seconds.
@@ -1213,6 +1231,12 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
             "960:960",
             "834:1112",
             "720:1280",
+            "2206:946",
+            "1920:1080",
+            "1664:1248",
+            "1440:1440",
+            "1248:1664",
+            "1080:1920",
         ]
         | Omit = omit,
         seed: int | Omit = omit,

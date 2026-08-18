@@ -25,6 +25,8 @@ __all__ = [
     "Seedream5ProReferenceImage",
     "Seedream5Lite",
     "Seedream5LiteReferenceImage",
+    "GrokImagineImage2",
+    "GrokImagineImage2ReferenceImage",
     "Gemini2_5Flash",
     "Gemini2_5FlashReferenceImage",
 ]
@@ -583,6 +585,88 @@ class Seedream5LiteReferenceImage(TypedDict, total=False):
     """
 
 
+class GrokImagineImage2(TypedDict, total=False):
+    model: Required[Literal["grok_imagine_image_2"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty text prompt describing what should appear in the output image."""
+
+    ratio: Required[
+        Literal[
+            "1024:1024",
+            "1280:720",
+            "720:1280",
+            "1152:864",
+            "864:1152",
+            "1248:832",
+            "832:1248",
+            "1248:576",
+            "576:1248",
+            "1280:576",
+            "576:1280",
+            "1408:704",
+            "704:1408",
+            "2048:2048",
+            "2816:1584",
+            "1584:2816",
+            "2368:1776",
+            "1776:2368",
+            "2496:1664",
+            "1664:2496",
+            "2912:1344",
+            "1344:2912",
+            "3200:1440",
+            "1440:3200",
+            "2912:1456",
+            "1456:2912",
+            "auto_1k",
+            "auto_2k",
+        ]
+    ]
+    """The resolution of the output image, expressed as `<width>:<height>`.
+
+    2K ratios cost 2 additional credits per image. Use `auto_1k` or `auto_2k` to
+    pick a resolution tier and let the model choose the framing from the prompt.
+    """
+
+    edit: bool
+    """
+    When true with exactly one reference image, edit that image directly instead of
+    using it as a loose visual reference. With several reference images the prompt
+    describes how they should be edited or combined. Requires at least one reference
+    image.
+    """
+
+    output_count: Annotated[int, PropertyInfo(alias="outputCount")]
+    """The number of images to generate.
+
+    Increasing this number will affect the number of credits consumed by the
+    generation.
+    """
+
+    quality: Literal["low", "medium"]
+    """How much rendering effort the model spends on the output.
+
+    Defaults to `medium`; `low` is faster and costs 2 fewer credits per image.
+    """
+
+    reference_images: Annotated[Iterable[GrokImagineImage2ReferenceImage], PropertyInfo(alias="referenceImages")]
+    """Up to 3 images to guide the generation.
+
+    Reference them from `promptText` to describe how each should be used. Each adds
+    1 credit to the generation.
+    """
+
+
+class GrokImagineImage2ReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
 class Gemini2_5Flash(TypedDict, total=False):
     model: Required[Literal["gemini_2.5_flash"]]
 
@@ -637,5 +721,6 @@ TextToImageCreateParams: TypeAlias = Union[
     GeminiImage3_1Flash,
     Seedream5Pro,
     Seedream5Lite,
+    GrokImagineImage2,
     Gemini2_5Flash,
 ]
