@@ -1,5 +1,18 @@
 # Changelog
 
+## 5.15.0 (2026-08-18)
+
+Full Changelog: [v5.14.0...v5.15.0](https://github.com/runwayml/sdk-python/compare/v5.14.0...v5.15.0)
+
+### Features
+
+* **api:** Seedance 2.5 1080p, Grok Imagine Video 1.5, Grok Imagine Image 2 ([46f53db](https://github.com/runwayml/sdk-python/commit/46f53dbc5ea2a643bacaf4a702974c5baebd45a0))
+
+
+### Bug Fixes
+
+* **client:** make grok_imagine_1_5 and grok_imagine_image_2 responses awaitable ([87046d8](https://github.com/runwayml/sdk-python/commit/87046d8135245b0b694ff03b8344c2c53a0ce012))
+
 ## 5.14.0 (2026-08-13)
 
 Full Changelog: [v5.13.0...v5.14.0](https://github.com/runwayml/sdk-python/compare/v5.13.0...v5.14.0)
