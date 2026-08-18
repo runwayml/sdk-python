@@ -37,6 +37,8 @@ __all__ = [
     "Seedance2_5",
     "Seedance2_5PromptImagePromptImage",
     "Seedance2_5ReferenceAudio",
+    "GrokImagine1_5",
+    "GrokImagine1_5PromptImagePromptImage",
 ]
 
 
@@ -696,8 +698,17 @@ class Seedance2_5(TypedDict, total=False):
         "960:960",
         "834:1112",
         "720:1280",
+        "2206:946",
+        "1920:1080",
+        "1664:1248",
+        "1440:1440",
+        "1248:1664",
+        "1080:1920",
     ]
-    """The resolution of the output video. Seedance 2.5 supports 480p and 720p only."""
+    """The resolution of the output video.
+
+    Seedance 2.5 supports 480p, 720p, and 1080p.
+    """
 
     reference_audio: Annotated[Iterable[Seedance2_5ReferenceAudio], PropertyInfo(alias="referenceAudio")]
     """An optional array of audio references.
@@ -737,6 +748,43 @@ class Seedance2_5ReferenceAudio(TypedDict, total=False):
     """
 
 
+class GrokImagine1_5(TypedDict, total=False):
+    model: Required[Literal["grok_imagine_1_5"]]
+
+    prompt_image: Required[
+        Annotated[Union[str, Iterable[GrokImagine1_5PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
+    ]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """An optional text prompt describing motion or changes in the output video."""
+
+    resolution: Literal["480p", "720p", "1080p"]
+    """The output resolution. Output aspect ratio follows the input image."""
+
+
+class GrokImagine1_5PromptImagePromptImage(TypedDict, total=False):
+    position: Required[Literal["first"]]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame of the video.
+    """
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
 ImageToVideoCreateParams: TypeAlias = Union[
     Gen4_5,
     Gen4Turbo,
@@ -749,4 +797,5 @@ ImageToVideoCreateParams: TypeAlias = Union[
     Seedance2Mini,
     GeminiOmniFlash,
     Seedance2_5,
+    GrokImagine1_5,
 ]
