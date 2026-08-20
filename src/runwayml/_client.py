@@ -1514,3 +1514,8 @@ class AsyncRunwayMLWithStreamedResponse:
         from .resources.workflow_invocations import AsyncWorkflowInvocationsResourceWithStreamingResponse
 
         return AsyncWorkflowInvocationsResourceWithStreamingResponse(self._client.workflow_invocations)
+
+
+Client = RunwayML
+
+AsyncClient = AsyncRunwayML
