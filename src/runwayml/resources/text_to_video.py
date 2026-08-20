@@ -61,7 +61,19 @@ class TextToVideoResource(SyncAPIResource):
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280"],
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
-        output_format: Literal["mp4", "prores", "png_sequence"] | Omit = omit,
+        output_format: Literal[
+            "mp4",
+            "prores",
+            "png_sequence",
+            "hdr10",
+            "hlg",
+            "sdr_rec709_10bit",
+            "hdr_pq_12bit_master",
+            "hdr_prores",
+            "hdr_png_sequence",
+            "hdr_exr_sequence",
+        ]
+        | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -87,11 +99,29 @@ class TextToVideoResource(SyncAPIResource):
 
           output_format: The container/encoding of the output. `mp4` (default) returns an H.264 .mp4.
               `prores` returns a ProRes .mov. `png_sequence` returns a .zip of PNG frames
-              (plus a separate .wav artifact when the output has audio). Non-mp4 formats incur
-              an additional surcharge of 5 credits per second of output.
+              (plus a separate .wav artifact when the output has audio). `hdr10` (HEVC Main
+              10, BT.2020 + PQ) and `hlg` (HEVC Main 10, BT.2020 + HLG) return true-HDR 10-bit
+              .mp4s; `sdr_rec709_10bit` returns a 10-bit Rec.709 HEVC .mp4 for SDR grading
+              pipelines; `hdr_pq_12bit_master` returns a 12-bit 4:4:4 BT.2020 + PQ HEVC .mov
+              with measured HDR10 content-light metadata for mastering; `hdr_prores` returns a
+              BT.2020 + PQ ProRes .mov editorial mezzanine, whose tier is selectable with
+              `proresProfile` (`422`, `422 HQ`, or `4444`; defaults to `422 HQ`);
+              `hdr_png_sequence` returns a .zip of 16-bit PNG frames carrying the PQ signal
+              losslessly (plus a colorimetry.json sidecar and a separate .wav when the output
+              has audio); `hdr_exr_sequence` returns a .zip of half-float OpenEXR frames
+              carrying the HDR signal as linear BT.2020 display light, 1.0 = 100 nits (plus a
+              colorimetry.json sidecar and a separate .wav when the output has audio). Non-mp4
+              formats incur an additional per-second credit surcharge: 5 credits per second
+              for `prores` and `png_sequence`, and 20 credits per second for every 10-bit and
+              deeper profile (including the 12-bit, 16-bit, and EXR ones), rising to 40
+              credits per second when the output is larger than 4 megapixels (roughly 4K).
 
-          prores_profile: The ProRes profile to use. Only valid when `outputFormat` is `prores`. Defaults
-              to `4444`.
+          prores_profile: The ProRes profile to use. Only valid when `outputFormat` is `prores` or
+              `hdr_prores`. For `prores`, any profile is accepted and the default is `4444`.
+              For `hdr_prores`, only `422`, `422 HQ` and `4444` are available and the default
+              is `422 HQ` — `422 Proxy` and `422 LT` quantize too heavily to hold the HDR
+              gradients, and 12-bit output is served by `hdr_pq_12bit_master` instead of
+              `4444 XQ`.
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -231,7 +261,7 @@ class TextToVideoResource(SyncAPIResource):
               references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
 
-          resolution: The output resolution. Hailuo 3.0 supports 768P and 2K.
+          resolution: The output resolution. MiniMax H3 supports 768P and 2K.
 
           extra_headers: Send extra headers
 
@@ -758,7 +788,19 @@ class TextToVideoResource(SyncAPIResource):
         | Literal["1:1", "16:9", "9:16", "4:3", "3:4", "3:2", "2:3"]
         | Omit = omit,
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
-        output_format: Literal["mp4", "prores", "png_sequence"] | Omit = omit,
+        output_format: Literal[
+            "mp4",
+            "prores",
+            "png_sequence",
+            "hdr10",
+            "hlg",
+            "sdr_rec709_10bit",
+            "hdr_pq_12bit_master",
+            "hdr_prores",
+            "hdr_png_sequence",
+            "hdr_exr_sequence",
+        ]
+        | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
         seed: int | Omit = omit,
         audio: bool | Omit = omit,
@@ -850,7 +892,19 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         prompt_text: str,
         ratio: Literal["1280:720", "720:1280"],
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
-        output_format: Literal["mp4", "prores", "png_sequence"] | Omit = omit,
+        output_format: Literal[
+            "mp4",
+            "prores",
+            "png_sequence",
+            "hdr10",
+            "hlg",
+            "sdr_rec709_10bit",
+            "hdr_pq_12bit_master",
+            "hdr_prores",
+            "hdr_png_sequence",
+            "hdr_exr_sequence",
+        ]
+        | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
         seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -876,11 +930,29 @@ class AsyncTextToVideoResource(AsyncAPIResource):
 
           output_format: The container/encoding of the output. `mp4` (default) returns an H.264 .mp4.
               `prores` returns a ProRes .mov. `png_sequence` returns a .zip of PNG frames
-              (plus a separate .wav artifact when the output has audio). Non-mp4 formats incur
-              an additional surcharge of 5 credits per second of output.
+              (plus a separate .wav artifact when the output has audio). `hdr10` (HEVC Main
+              10, BT.2020 + PQ) and `hlg` (HEVC Main 10, BT.2020 + HLG) return true-HDR 10-bit
+              .mp4s; `sdr_rec709_10bit` returns a 10-bit Rec.709 HEVC .mp4 for SDR grading
+              pipelines; `hdr_pq_12bit_master` returns a 12-bit 4:4:4 BT.2020 + PQ HEVC .mov
+              with measured HDR10 content-light metadata for mastering; `hdr_prores` returns a
+              BT.2020 + PQ ProRes .mov editorial mezzanine, whose tier is selectable with
+              `proresProfile` (`422`, `422 HQ`, or `4444`; defaults to `422 HQ`);
+              `hdr_png_sequence` returns a .zip of 16-bit PNG frames carrying the PQ signal
+              losslessly (plus a colorimetry.json sidecar and a separate .wav when the output
+              has audio); `hdr_exr_sequence` returns a .zip of half-float OpenEXR frames
+              carrying the HDR signal as linear BT.2020 display light, 1.0 = 100 nits (plus a
+              colorimetry.json sidecar and a separate .wav when the output has audio). Non-mp4
+              formats incur an additional per-second credit surcharge: 5 credits per second
+              for `prores` and `png_sequence`, and 20 credits per second for every 10-bit and
+              deeper profile (including the 12-bit, 16-bit, and EXR ones), rising to 40
+              credits per second when the output is larger than 4 megapixels (roughly 4K).
 
-          prores_profile: The ProRes profile to use. Only valid when `outputFormat` is `prores`. Defaults
-              to `4444`.
+          prores_profile: The ProRes profile to use. Only valid when `outputFormat` is `prores` or
+              `hdr_prores`. For `prores`, any profile is accepted and the default is `4444`.
+              For `hdr_prores`, only `422`, `422 HQ` and `4444` are available and the default
+              is `422 HQ` — `422 Proxy` and `422 LT` quantize too heavily to hold the HDR
+              gradients, and 12-bit output is served by `hdr_pq_12bit_master` instead of
+              `4444 XQ`.
 
           seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
               get different results for the same other request parameters. Using the same seed
@@ -1020,7 +1092,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
               references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
 
-          resolution: The output resolution. Hailuo 3.0 supports 768P and 2K.
+          resolution: The output resolution. MiniMax H3 supports 768P and 2K.
 
           extra_headers: Send extra headers
 
@@ -1547,7 +1619,19 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Literal["1:1", "16:9", "9:16", "4:3", "3:4", "3:2", "2:3"]
         | Omit = omit,
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
-        output_format: Literal["mp4", "prores", "png_sequence"] | Omit = omit,
+        output_format: Literal[
+            "mp4",
+            "prores",
+            "png_sequence",
+            "hdr10",
+            "hlg",
+            "sdr_rec709_10bit",
+            "hdr_pq_12bit_master",
+            "hdr_prores",
+            "hdr_png_sequence",
+            "hdr_exr_sequence",
+        ]
+        | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
         seed: int | Omit = omit,
         audio: bool | Omit = omit,

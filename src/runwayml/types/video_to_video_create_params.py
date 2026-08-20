@@ -60,13 +60,17 @@ class Variant0(TypedDict, total=False):
     Up to 5 keyframes.
     """
 
-    output_format: Annotated[Literal["mp4", "prores", "png_sequence"], PropertyInfo(alias="outputFormat")]
+    output_format: Annotated[
+        Literal["mp4", "prores", "png_sequence", "sdr_rec709_10bit"], PropertyInfo(alias="outputFormat")
+    ]
     """The container/encoding of the output.
 
     `mp4` (default) returns an H.264 .mp4. `prores` returns a ProRes .mov.
-    `png_sequence` returns a .zip of PNG frames (plus a separate .wav artifact when
-    the output has audio). Non-mp4 formats incur an additional surcharge of 5
-    credits per second of output.
+    `png_sequence` returns a .zip of PNG frames. `sdr_rec709_10bit` returns a 10-bit
+    Rec.709 HEVC .mp4 for SDR grading pipelines. Non-mp4 formats incur an additional
+    surcharge: 5 credits per second for `prores` and `png_sequence`, and 20 credits
+    per second for `sdr_rec709_10bit` — 40 credits per second when the output is
+    larger than 4 megapixels (roughly 4K).
     """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
@@ -232,7 +236,7 @@ class Hailuo3(TypedDict, total=False):
     """
 
     resolution: Literal["2K", "768P"]
-    """The output resolution. Hailuo 3.0 supports 768P and 2K."""
+    """The output resolution. MiniMax H3 supports 768P and 2K."""
 
 
 class Hailuo3ReferenceAudio(TypedDict, total=False):

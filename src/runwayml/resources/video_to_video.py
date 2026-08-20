@@ -60,7 +60,7 @@ class VideoToVideoResource(SyncAPIResource):
         video_uri: str,
         content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
-        output_format: Literal["mp4", "prores", "png_sequence"] | Omit = omit,
+        output_format: Literal["mp4", "prores", "png_sequence", "sdr_rec709_10bit"] | Omit = omit,
         prompt_text: str | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
         ratio: str | Omit = omit,
@@ -87,9 +87,11 @@ class VideoToVideoResource(SyncAPIResource):
               keyframes.
 
           output_format: The container/encoding of the output. `mp4` (default) returns an H.264 .mp4.
-              `prores` returns a ProRes .mov. `png_sequence` returns a .zip of PNG frames
-              (plus a separate .wav artifact when the output has audio). Non-mp4 formats incur
-              an additional surcharge of 5 credits per second of output.
+              `prores` returns a ProRes .mov. `png_sequence` returns a .zip of PNG frames.
+              `sdr_rec709_10bit` returns a 10-bit Rec.709 HEVC .mp4 for SDR grading pipelines.
+              Non-mp4 formats incur an additional surcharge: 5 credits per second for `prores`
+              and `png_sequence`, and 20 credits per second for `sdr_rec709_10bit` — 40
+              credits per second when the output is larger than 4 megapixels (roughly 4K).
 
           prompt_text: A non-empty and optional string describing what should appear in the output.
 
@@ -158,7 +160,7 @@ class VideoToVideoResource(SyncAPIResource):
               references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
 
-          resolution: The output resolution. Hailuo 3.0 supports 768P and 2K.
+          resolution: The output resolution. MiniMax H3 supports 768P and 2K.
 
           extra_headers: Send extra headers
 
@@ -536,7 +538,7 @@ class VideoToVideoResource(SyncAPIResource):
         video_uri: str | Omit = omit,
         content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
-        output_format: Literal["mp4", "prores", "png_sequence"] | Omit = omit,
+        output_format: Literal["mp4", "prores", "png_sequence", "sdr_rec709_10bit"] | Omit = omit,
         prompt_text: str | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
         ratio: str
@@ -697,7 +699,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         video_uri: str,
         content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
-        output_format: Literal["mp4", "prores", "png_sequence"] | Omit = omit,
+        output_format: Literal["mp4", "prores", "png_sequence", "sdr_rec709_10bit"] | Omit = omit,
         prompt_text: str | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
         ratio: str | Omit = omit,
@@ -724,9 +726,11 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
               keyframes.
 
           output_format: The container/encoding of the output. `mp4` (default) returns an H.264 .mp4.
-              `prores` returns a ProRes .mov. `png_sequence` returns a .zip of PNG frames
-              (plus a separate .wav artifact when the output has audio). Non-mp4 formats incur
-              an additional surcharge of 5 credits per second of output.
+              `prores` returns a ProRes .mov. `png_sequence` returns a .zip of PNG frames.
+              `sdr_rec709_10bit` returns a 10-bit Rec.709 HEVC .mp4 for SDR grading pipelines.
+              Non-mp4 formats incur an additional surcharge: 5 credits per second for `prores`
+              and `png_sequence`, and 20 credits per second for `sdr_rec709_10bit` — 40
+              credits per second when the output is larger than 4 megapixels (roughly 4K).
 
           prompt_text: A non-empty and optional string describing what should appear in the output.
 
@@ -795,7 +799,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
               references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
 
-          resolution: The output resolution. Hailuo 3.0 supports 768P and 2K.
+          resolution: The output resolution. MiniMax H3 supports 768P and 2K.
 
           extra_headers: Send extra headers
 
@@ -1173,7 +1177,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         video_uri: str | Omit = omit,
         content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
-        output_format: Literal["mp4", "prores", "png_sequence"] | Omit = omit,
+        output_format: Literal["mp4", "prores", "png_sequence", "sdr_rec709_10bit"] | Omit = omit,
         prompt_text: str | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
         ratio: str

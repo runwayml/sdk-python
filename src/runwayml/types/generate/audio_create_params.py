@@ -6,15 +6,10 @@ from typing import Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._utils import PropertyInfo
+from .reference_audio_param import ReferenceAudioParam
+from .reference_voice_param import ReferenceVoiceParam
 
-__all__ = [
-    "AudioCreateParams",
-    "Input",
-    "InputReferenceAudio",
-    "InputVoice",
-    "InputVoicePreset",
-    "InputVoiceReferenceAudio",
-]
+__all__ = ["AudioCreateParams", "Input", "InputVoice", "InputVoicePreset"]
 
 
 class AudioCreateParams(TypedDict, total=False):
@@ -25,15 +20,6 @@ class AudioCreateParams(TypedDict, total=False):
     """Model-agnostic audio generation input.
 
     The router selects a model and maps these options to it.
-    """
-
-
-class InputReferenceAudio(TypedDict, total=False):
-    uri: Required[str]
-    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-
-    `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
-    [our docs](/assets/inputs#audio) on audio inputs for more information.
     """
 
 
@@ -104,23 +90,7 @@ class InputVoicePreset(TypedDict, total=False):
     type: Required[Literal["preset"]]
 
 
-class InputVoiceReferenceAudio(TypedDict, total=False):
-    """Clone a voice from a reference audio clip, then speak promptText in that voice.
-
-    Routes only to models that support voice cloning.
-    """
-
-    audio_uri: Required[Annotated[str, PropertyInfo(alias="audioUri")]]
-    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-
-    `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
-    [our docs](/assets/inputs#audio) on audio inputs for more information.
-    """
-
-    type: Required[Literal["reference-audio"]]
-
-
-InputVoice: TypeAlias = Union[InputVoicePreset, InputVoiceReferenceAudio]
+InputVoice: TypeAlias = Union[InputVoicePreset, ReferenceVoiceParam]
 
 
 class Input(TypedDict, total=False):
@@ -154,7 +124,7 @@ class Input(TypedDict, total=False):
     Models without loop support are excluded.
     """
 
-    reference_audios: Annotated[Iterable[InputReferenceAudio], PropertyInfo(alias="referenceAudios")]
+    reference_audios: Annotated[Iterable[ReferenceAudioParam], PropertyInfo(alias="referenceAudios")]
     """
     Optional reference audio clips guiding `audio` generation, for models that
     support them. Reference each clip in promptText as @Audio1, @Audio2, and @Audio3
