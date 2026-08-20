@@ -342,18 +342,6 @@ class RunwayML(SyncAPIClient):
         return WorkflowInvocationsResource(self)
 
     @cached_property
-    def generate(self) -> GenerateResource:
-        from .resources.generate import GenerateResource
-
-        return GenerateResource(self)
-
-    @cached_property
-    def routers(self) -> RoutersResource:
-        from .resources.routers import RoutersResource
-
-        return RoutersResource(self)
-
-    @cached_property
     def with_raw_response(self) -> RunwayMLWithRawResponse:
         return RunwayMLWithRawResponse(self)
 
@@ -709,18 +697,6 @@ class AsyncRunwayML(AsyncAPIClient):
         return AsyncWorkflowInvocationsResource(self)
 
     @cached_property
-    def generate(self) -> AsyncGenerateResource:
-        from .resources.generate import AsyncGenerateResource
-
-        return AsyncGenerateResource(self)
-
-    @cached_property
-    def routers(self) -> AsyncRoutersResource:
-        from .resources.routers import AsyncRoutersResource
-
-        return AsyncRoutersResource(self)
-
-    @cached_property
     def with_raw_response(self) -> AsyncRunwayMLWithRawResponse:
         return AsyncRunwayMLWithRawResponse(self)
 
@@ -1011,18 +987,6 @@ class RunwayMLWithRawResponse:
 
         return WorkflowInvocationsResourceWithRawResponse(self._client.workflow_invocations)
 
-    @cached_property
-    def generate(self) -> generate.GenerateResourceWithRawResponse:
-        from .resources.generate import GenerateResourceWithRawResponse
-
-        return GenerateResourceWithRawResponse(self._client.generate)
-
-    @cached_property
-    def routers(self) -> routers.RoutersResourceWithRawResponse:
-        from .resources.routers import RoutersResourceWithRawResponse
-
-        return RoutersResourceWithRawResponse(self._client.routers)
-
 
 class AsyncRunwayMLWithRawResponse:
     _client: AsyncRunwayML
@@ -1198,18 +1162,6 @@ class AsyncRunwayMLWithRawResponse:
         from .resources.workflow_invocations import AsyncWorkflowInvocationsResourceWithRawResponse
 
         return AsyncWorkflowInvocationsResourceWithRawResponse(self._client.workflow_invocations)
-
-    @cached_property
-    def generate(self) -> generate.AsyncGenerateResourceWithRawResponse:
-        from .resources.generate import AsyncGenerateResourceWithRawResponse
-
-        return AsyncGenerateResourceWithRawResponse(self._client.generate)
-
-    @cached_property
-    def routers(self) -> routers.AsyncRoutersResourceWithRawResponse:
-        from .resources.routers import AsyncRoutersResourceWithRawResponse
-
-        return AsyncRoutersResourceWithRawResponse(self._client.routers)
 
 
 class RunwayMLWithStreamedResponse:
@@ -1387,18 +1339,6 @@ class RunwayMLWithStreamedResponse:
 
         return WorkflowInvocationsResourceWithStreamingResponse(self._client.workflow_invocations)
 
-    @cached_property
-    def generate(self) -> generate.GenerateResourceWithStreamingResponse:
-        from .resources.generate import GenerateResourceWithStreamingResponse
-
-        return GenerateResourceWithStreamingResponse(self._client.generate)
-
-    @cached_property
-    def routers(self) -> routers.RoutersResourceWithStreamingResponse:
-        from .resources.routers import RoutersResourceWithStreamingResponse
-
-        return RoutersResourceWithStreamingResponse(self._client.routers)
-
 
 class AsyncRunwayMLWithStreamedResponse:
     _client: AsyncRunwayML
@@ -1574,20 +1514,3 @@ class AsyncRunwayMLWithStreamedResponse:
         from .resources.workflow_invocations import AsyncWorkflowInvocationsResourceWithStreamingResponse
 
         return AsyncWorkflowInvocationsResourceWithStreamingResponse(self._client.workflow_invocations)
-
-    @cached_property
-    def generate(self) -> generate.AsyncGenerateResourceWithStreamingResponse:
-        from .resources.generate import AsyncGenerateResourceWithStreamingResponse
-
-        return AsyncGenerateResourceWithStreamingResponse(self._client.generate)
-
-    @cached_property
-    def routers(self) -> routers.AsyncRoutersResourceWithStreamingResponse:
-        from .resources.routers import AsyncRoutersResourceWithStreamingResponse
-
-        return AsyncRoutersResourceWithStreamingResponse(self._client.routers)
-
-
-Client = RunwayML
-
-AsyncClient = AsyncRunwayML
