@@ -40,14 +40,6 @@ from .routers import (
     RoutersResourceWithStreamingResponse,
     AsyncRoutersResourceWithStreamingResponse,
 )
-from .generate import (
-    GenerateResource,
-    AsyncGenerateResource,
-    GenerateResourceWithRawResponse,
-    AsyncGenerateResourceWithRawResponse,
-    GenerateResourceWithStreamingResponse,
-    AsyncGenerateResourceWithStreamingResponse,
-)
 from .documents import (
     DocumentsResource,
     AsyncDocumentsResource,
@@ -79,6 +71,14 @@ from .sound_effect import (
     AsyncSoundEffectResourceWithRawResponse,
     SoundEffectResourceWithStreamingResponse,
     AsyncSoundEffectResourceWithStreamingResponse,
+)
+from .video_to_hdr import (
+    VideoToHdrResource,
+    AsyncVideoToHdrResource,
+    VideoToHdrResourceWithRawResponse,
+    AsyncVideoToHdrResourceWithRawResponse,
+    VideoToHdrResourceWithStreamingResponse,
+    AsyncVideoToHdrResourceWithStreamingResponse,
 )
 from .avatar_videos import (
     AvatarVideosResource,
@@ -220,6 +220,12 @@ __all__ = [
     "AsyncVideoToVideoResourceWithRawResponse",
     "VideoToVideoResourceWithStreamingResponse",
     "AsyncVideoToVideoResourceWithStreamingResponse",
+    "VideoToHdrResource",
+    "AsyncVideoToHdrResource",
+    "VideoToHdrResourceWithRawResponse",
+    "AsyncVideoToHdrResourceWithRawResponse",
+    "VideoToHdrResourceWithStreamingResponse",
+    "AsyncVideoToHdrResourceWithStreamingResponse",
     "TextToVideoResource",
     "AsyncTextToVideoResource",
     "TextToVideoResourceWithRawResponse",
@@ -280,12 +286,6 @@ __all__ = [
     "AsyncVideoUpscaleResourceWithRawResponse",
     "VideoUpscaleResourceWithStreamingResponse",
     "AsyncVideoUpscaleResourceWithStreamingResponse",
-    "GenerateResource",
-    "AsyncGenerateResource",
-    "GenerateResourceWithRawResponse",
-    "AsyncGenerateResourceWithRawResponse",
-    "GenerateResourceWithStreamingResponse",
-    "AsyncGenerateResourceWithStreamingResponse",
     "RoutersResource",
     "AsyncRoutersResource",
     "RoutersResourceWithRawResponse",

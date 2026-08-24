@@ -9,7 +9,7 @@ import pytest
 
 from runwayml import RunwayML, AsyncRunwayML
 from tests.utils import assert_matches_type
-from runwayml.types.generate import AudioCreateResponse
+from runwayml.types.video_upscale import AudioCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,7 +19,7 @@ class TestAudio:
 
     @parametrize
     def test_method_create(self, client: RunwayML) -> None:
-        audio = client.generate.audio.create(
+        audio = client.video_upscale.audio.create(
             config_id="n6_",
             input={
                 "prompt_text": "x",
@@ -30,7 +30,7 @@ class TestAudio:
 
     @parametrize
     def test_method_create_with_all_params(self, client: RunwayML) -> None:
-        audio = client.generate.audio.create(
+        audio = client.video_upscale.audio.create(
             config_id="n6_",
             input={
                 "prompt_text": "x",
@@ -48,7 +48,7 @@ class TestAudio:
 
     @parametrize
     def test_raw_response_create(self, client: RunwayML) -> None:
-        response = client.generate.audio.with_raw_response.create(
+        response = client.video_upscale.audio.with_raw_response.create(
             config_id="n6_",
             input={
                 "prompt_text": "x",
@@ -63,7 +63,7 @@ class TestAudio:
 
     @parametrize
     def test_streaming_response_create(self, client: RunwayML) -> None:
-        with client.generate.audio.with_streaming_response.create(
+        with client.video_upscale.audio.with_streaming_response.create(
             config_id="n6_",
             input={
                 "prompt_text": "x",
@@ -86,7 +86,7 @@ class TestAsyncAudio:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncRunwayML) -> None:
-        audio = await async_client.generate.audio.create(
+        audio = await async_client.video_upscale.audio.create(
             config_id="n6_",
             input={
                 "prompt_text": "x",
@@ -97,7 +97,7 @@ class TestAsyncAudio:
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncRunwayML) -> None:
-        audio = await async_client.generate.audio.create(
+        audio = await async_client.video_upscale.audio.create(
             config_id="n6_",
             input={
                 "prompt_text": "x",
@@ -115,7 +115,7 @@ class TestAsyncAudio:
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncRunwayML) -> None:
-        response = await async_client.generate.audio.with_raw_response.create(
+        response = await async_client.video_upscale.audio.with_raw_response.create(
             config_id="n6_",
             input={
                 "prompt_text": "x",
@@ -130,7 +130,7 @@ class TestAsyncAudio:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncRunwayML) -> None:
-        async with async_client.generate.audio.with_streaming_response.create(
+        async with async_client.video_upscale.audio.with_streaming_response.create(
             config_id="n6_",
             input={
                 "prompt_text": "x",

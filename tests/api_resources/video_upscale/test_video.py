@@ -9,7 +9,7 @@ import pytest
 
 from runwayml import RunwayML, AsyncRunwayML
 from tests.utils import assert_matches_type
-from runwayml.types.generate import VideoCreateResponse
+from runwayml.types.video_upscale import VideoCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,7 +19,7 @@ class TestVideo:
 
     @parametrize
     def test_method_create(self, client: RunwayML) -> None:
-        video = client.generate.video.create(
+        video = client.video_upscale.video.create(
             config_id="n6_",
             input={},
         )
@@ -27,7 +27,7 @@ class TestVideo:
 
     @parametrize
     def test_method_create_with_all_params(self, client: RunwayML) -> None:
-        video = client.generate.video.create(
+        video = client.video_upscale.video.create(
             config_id="n6_",
             input={
                 "aspect_ratio": "16:9",
@@ -67,7 +67,7 @@ class TestVideo:
 
     @parametrize
     def test_raw_response_create(self, client: RunwayML) -> None:
-        response = client.generate.video.with_raw_response.create(
+        response = client.video_upscale.video.with_raw_response.create(
             config_id="n6_",
             input={},
         )
@@ -79,7 +79,7 @@ class TestVideo:
 
     @parametrize
     def test_streaming_response_create(self, client: RunwayML) -> None:
-        with client.generate.video.with_streaming_response.create(
+        with client.video_upscale.video.with_streaming_response.create(
             config_id="n6_",
             input={},
         ) as response:
@@ -99,7 +99,7 @@ class TestAsyncVideo:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncRunwayML) -> None:
-        video = await async_client.generate.video.create(
+        video = await async_client.video_upscale.video.create(
             config_id="n6_",
             input={},
         )
@@ -107,7 +107,7 @@ class TestAsyncVideo:
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncRunwayML) -> None:
-        video = await async_client.generate.video.create(
+        video = await async_client.video_upscale.video.create(
             config_id="n6_",
             input={
                 "aspect_ratio": "16:9",
@@ -147,7 +147,7 @@ class TestAsyncVideo:
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncRunwayML) -> None:
-        response = await async_client.generate.video.with_raw_response.create(
+        response = await async_client.video_upscale.video.with_raw_response.create(
             config_id="n6_",
             input={},
         )
@@ -159,7 +159,7 @@ class TestAsyncVideo:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncRunwayML) -> None:
-        async with async_client.generate.video.with_streaming_response.create(
+        async with async_client.video_upscale.video.with_streaming_response.create(
             config_id="n6_",
             input={},
         ) as response:

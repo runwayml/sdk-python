@@ -24,13 +24,13 @@ from .video import (
     VideoResourceWithStreamingResponse,
     AsyncVideoResourceWithStreamingResponse,
 )
-from .generate import (
-    GenerateResource,
-    AsyncGenerateResource,
-    GenerateResourceWithRawResponse,
-    AsyncGenerateResourceWithRawResponse,
-    GenerateResourceWithStreamingResponse,
-    AsyncGenerateResourceWithStreamingResponse,
+from .video_upscale import (
+    VideoUpscaleResource,
+    AsyncVideoUpscaleResource,
+    VideoUpscaleResourceWithRawResponse,
+    AsyncVideoUpscaleResourceWithRawResponse,
+    VideoUpscaleResourceWithStreamingResponse,
+    AsyncVideoUpscaleResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -52,10 +52,10 @@ __all__ = [
     "AsyncAudioResourceWithRawResponse",
     "AudioResourceWithStreamingResponse",
     "AsyncAudioResourceWithStreamingResponse",
-    "GenerateResource",
-    "AsyncGenerateResource",
-    "GenerateResourceWithRawResponse",
-    "AsyncGenerateResourceWithRawResponse",
-    "GenerateResourceWithStreamingResponse",
-    "AsyncGenerateResourceWithStreamingResponse",
+    "VideoUpscaleResource",
+    "AsyncVideoUpscaleResource",
+    "VideoUpscaleResourceWithRawResponse",
+    "AsyncVideoUpscaleResourceWithRawResponse",
+    "VideoUpscaleResourceWithStreamingResponse",
+    "AsyncVideoUpscaleResourceWithStreamingResponse",
 ]

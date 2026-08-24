@@ -15,8 +15,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.generate import audio_create_params
-from ...types.generate.audio_create_response import AudioCreateResponse
+from ...types.video_upscale import audio_create_params
+from ...types.video_upscale.audio_create_response import AudioCreateResponse
 
 __all__ = ["AudioResource", "AsyncAudioResource"]
 
