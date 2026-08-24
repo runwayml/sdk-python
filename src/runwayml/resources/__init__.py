@@ -88,6 +88,14 @@ from .sound_effect import (
     SoundEffectResourceWithStreamingResponse,
     AsyncSoundEffectResourceWithStreamingResponse,
 )
+from .video_to_hdr import (
+    VideoToHdrResource,
+    AsyncVideoToHdrResource,
+    VideoToHdrResourceWithRawResponse,
+    AsyncVideoToHdrResourceWithRawResponse,
+    VideoToHdrResourceWithStreamingResponse,
+    AsyncVideoToHdrResourceWithStreamingResponse,
+)
 from .avatar_videos import (
     AvatarVideosResource,
     AsyncAvatarVideosResource,
@@ -228,6 +236,12 @@ __all__ = [
     "AsyncVideoToVideoResourceWithRawResponse",
     "VideoToVideoResourceWithStreamingResponse",
     "AsyncVideoToVideoResourceWithStreamingResponse",
+    "VideoToHdrResource",
+    "AsyncVideoToHdrResource",
+    "VideoToHdrResourceWithRawResponse",
+    "AsyncVideoToHdrResourceWithRawResponse",
+    "VideoToHdrResourceWithStreamingResponse",
+    "AsyncVideoToHdrResourceWithStreamingResponse",
     "TextToVideoResource",
     "AsyncTextToVideoResource",
     "TextToVideoResourceWithRawResponse",

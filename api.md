@@ -35,6 +35,18 @@ Methods:
 
 - <code title="post /v1/video_to_video">client.video_to_video.<a href="./src/runwayml/resources/video_to_video.py">create</a>(\*\*<a href="src/runwayml/types/video_to_video_create_params.py">params</a>) -> <a href="./src/runwayml/types/video_to_video_create_response.py">VideoToVideoCreateResponse</a></code>
 
+# VideoToHdr
+
+Types:
+
+```python
+from runwayml.types import VideoToHdrCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/video_to_hdr">client.video_to_hdr.<a href="./src/runwayml/resources/video_to_hdr.py">create</a>(\*\*<a href="src/runwayml/types/video_to_hdr_create_params.py">params</a>) -> <a href="./src/runwayml/types/video_to_hdr_create_response.py">VideoToHdrCreateResponse</a></code>
+
 # TextToVideo
 
 Types:
@@ -411,64 +423,3 @@ from runwayml.types import WorkflowInvocationRetrieveResponse
 Methods:
 
 - <code title="get /v1/workflow_invocations/{id}">client.workflow_invocations.<a href="./src/runwayml/resources/workflow_invocations.py">retrieve</a>(id) -> <a href="./src/runwayml/types/workflow_invocation_retrieve_response.py">WorkflowInvocationRetrieveResponse</a></code>
-
-# Generate
-
-## Video
-
-Types:
-
-```python
-from runwayml.types.generate import VideoCreateResponse
-```
-
-Methods:
-
-- <code title="post /v1/generate/video">client.generate.video.<a href="./src/runwayml/resources/generate/video.py">create</a>(\*\*<a href="src/runwayml/types/generate/video_create_params.py">params</a>) -> <a href="./src/runwayml/types/generate/video_create_response.py">VideoCreateResponse</a></code>
-
-## Image
-
-Types:
-
-```python
-from runwayml.types.generate import ImageCreateResponse
-```
-
-Methods:
-
-- <code title="post /v1/generate/image">client.generate.image.<a href="./src/runwayml/resources/generate/image.py">create</a>(\*\*<a href="src/runwayml/types/generate/image_create_params.py">params</a>) -> <a href="./src/runwayml/types/generate/image_create_response.py">ImageCreateResponse</a></code>
-
-## Audio
-
-Types:
-
-```python
-from runwayml.types.generate import ReferenceVoice, ReferenceAudio, AudioCreateResponse
-```
-
-Methods:
-
-- <code title="post /v1/generate/audio">client.generate.audio.<a href="./src/runwayml/resources/generate/audio.py">create</a>(\*\*<a href="src/runwayml/types/generate/audio_create_params.py">params</a>) -> <a href="./src/runwayml/types/generate/audio_create_response.py">AudioCreateResponse</a></code>
-
-# Routers
-
-Types:
-
-```python
-from runwayml.types import (
-    RouterCreateResponse,
-    RouterRetrieveResponse,
-    RouterUpdateResponse,
-    RouterListResponse,
-    RouterListRequestsResponse,
-)
-```
-
-Methods:
-
-- <code title="post /v1/routers">client.routers.<a href="./src/runwayml/resources/routers.py">create</a>(\*\*<a href="src/runwayml/types/router_create_params.py">params</a>) -> <a href="./src/runwayml/types/router_create_response.py">RouterCreateResponse</a></code>
-- <code title="get /v1/routers/{id}">client.routers.<a href="./src/runwayml/resources/routers.py">retrieve</a>(id) -> <a href="./src/runwayml/types/router_retrieve_response.py">RouterRetrieveResponse</a></code>
-- <code title="patch /v1/routers/{id}">client.routers.<a href="./src/runwayml/resources/routers.py">update</a>(id, \*\*<a href="src/runwayml/types/router_update_params.py">params</a>) -> <a href="./src/runwayml/types/router_update_response.py">RouterUpdateResponse</a></code>
-- <code title="get /v1/routers">client.routers.<a href="./src/runwayml/resources/routers.py">list</a>(\*\*<a href="src/runwayml/types/router_list_params.py">params</a>) -> <a href="./src/runwayml/types/router_list_response.py">SyncCursorPage[RouterListResponse]</a></code>
-- <code title="delete /v1/routers/{id}">client.routers.<a href="./src/runwayml/resources/routers.py">delete</a>(id) -> None</code>
-- <code title="get /v1/routers/{id}/requests">client.routers.<a href="./src/runwayml/resources/routers.py">list_requests</a>(id, \*\*<a href="src/runwayml/types/router_list_requests_params.py">params</a>) -> <a href="./src/runwayml/types/router_list_requests_response.py">SyncCursorPage[RouterListRequestsResponse]</a></code>
