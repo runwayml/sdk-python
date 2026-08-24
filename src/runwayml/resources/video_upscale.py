@@ -6,61 +6,25 @@ from typing_extensions import Literal
 
 import httpx
 
-from .audio import (
-    AudioResource,
-    AsyncAudioResource,
-    AudioResourceWithRawResponse,
-    AsyncAudioResourceWithRawResponse,
-    AudioResourceWithStreamingResponse,
-    AsyncAudioResourceWithStreamingResponse,
-)
-from .image import (
-    ImageResource,
-    AsyncImageResource,
-    ImageResourceWithRawResponse,
-    AsyncImageResourceWithRawResponse,
-    ImageResourceWithStreamingResponse,
-    AsyncImageResourceWithStreamingResponse,
-)
-from .video import (
-    VideoResource,
-    AsyncVideoResource,
-    VideoResourceWithRawResponse,
-    AsyncVideoResourceWithRawResponse,
-    VideoResourceWithStreamingResponse,
-    AsyncVideoResourceWithStreamingResponse,
-)
-from ...types import video_upscale_create_params
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ..types import video_upscale_create_params
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._utils import maybe_transform, async_maybe_transform
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.video_upscale_create_response import VideoUpscaleCreateResponse
+from .._base_client import make_request_options
+from ..types.video_upscale_create_response import VideoUpscaleCreateResponse
 
 __all__ = ["VideoUpscaleResource", "AsyncVideoUpscaleResource"]
 
 
 class VideoUpscaleResource(SyncAPIResource):
     """These endpoints all kick off tasks to create generations."""
-
-    @cached_property
-    def video(self) -> VideoResource:
-        return VideoResource(self._client)
-
-    @cached_property
-    def image(self) -> ImageResource:
-        return ImageResource(self._client)
-
-    @cached_property
-    def audio(self) -> AudioResource:
-        return AudioResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> VideoUpscaleResourceWithRawResponse:
@@ -154,18 +118,6 @@ class VideoUpscaleResource(SyncAPIResource):
 
 class AsyncVideoUpscaleResource(AsyncAPIResource):
     """These endpoints all kick off tasks to create generations."""
-
-    @cached_property
-    def video(self) -> AsyncVideoResource:
-        return AsyncVideoResource(self._client)
-
-    @cached_property
-    def image(self) -> AsyncImageResource:
-        return AsyncImageResource(self._client)
-
-    @cached_property
-    def audio(self) -> AsyncAudioResource:
-        return AsyncAudioResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncVideoUpscaleResourceWithRawResponse:
@@ -265,18 +217,6 @@ class VideoUpscaleResourceWithRawResponse:
             video_upscale.create,
         )
 
-    @cached_property
-    def video(self) -> VideoResourceWithRawResponse:
-        return VideoResourceWithRawResponse(self._video_upscale.video)
-
-    @cached_property
-    def image(self) -> ImageResourceWithRawResponse:
-        return ImageResourceWithRawResponse(self._video_upscale.image)
-
-    @cached_property
-    def audio(self) -> AudioResourceWithRawResponse:
-        return AudioResourceWithRawResponse(self._video_upscale.audio)
-
 
 class AsyncVideoUpscaleResourceWithRawResponse:
     def __init__(self, video_upscale: AsyncVideoUpscaleResource) -> None:
@@ -285,18 +225,6 @@ class AsyncVideoUpscaleResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             video_upscale.create,
         )
-
-    @cached_property
-    def video(self) -> AsyncVideoResourceWithRawResponse:
-        return AsyncVideoResourceWithRawResponse(self._video_upscale.video)
-
-    @cached_property
-    def image(self) -> AsyncImageResourceWithRawResponse:
-        return AsyncImageResourceWithRawResponse(self._video_upscale.image)
-
-    @cached_property
-    def audio(self) -> AsyncAudioResourceWithRawResponse:
-        return AsyncAudioResourceWithRawResponse(self._video_upscale.audio)
 
 
 class VideoUpscaleResourceWithStreamingResponse:
@@ -307,18 +235,6 @@ class VideoUpscaleResourceWithStreamingResponse:
             video_upscale.create,
         )
 
-    @cached_property
-    def video(self) -> VideoResourceWithStreamingResponse:
-        return VideoResourceWithStreamingResponse(self._video_upscale.video)
-
-    @cached_property
-    def image(self) -> ImageResourceWithStreamingResponse:
-        return ImageResourceWithStreamingResponse(self._video_upscale.image)
-
-    @cached_property
-    def audio(self) -> AudioResourceWithStreamingResponse:
-        return AudioResourceWithStreamingResponse(self._video_upscale.audio)
-
 
 class AsyncVideoUpscaleResourceWithStreamingResponse:
     def __init__(self, video_upscale: AsyncVideoUpscaleResource) -> None:
@@ -327,15 +243,3 @@ class AsyncVideoUpscaleResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             video_upscale.create,
         )
-
-    @cached_property
-    def video(self) -> AsyncVideoResourceWithStreamingResponse:
-        return AsyncVideoResourceWithStreamingResponse(self._video_upscale.video)
-
-    @cached_property
-    def image(self) -> AsyncImageResourceWithStreamingResponse:
-        return AsyncImageResourceWithStreamingResponse(self._video_upscale.image)
-
-    @cached_property
-    def audio(self) -> AsyncAudioResourceWithStreamingResponse:
-        return AsyncAudioResourceWithStreamingResponse(self._video_upscale.audio)

@@ -41,6 +41,7 @@ if TYPE_CHECKING:
         avatars,
         recipes,
         routers,
+        generate,
         documents,
         workflows,
         organization,
@@ -75,18 +76,19 @@ if TYPE_CHECKING:
     from .resources.image_upscale import ImageUpscaleResource, AsyncImageUpscaleResource
     from .resources.text_to_image import TextToImageResource, AsyncTextToImageResource
     from .resources.text_to_video import TextToVideoResource, AsyncTextToVideoResource
+    from .resources.video_upscale import VideoUpscaleResource, AsyncVideoUpscaleResource
     from .resources.voice_dubbing import VoiceDubbingResource, AsyncVoiceDubbingResource
     from .resources.image_to_video import ImageToVideoResource, AsyncImageToVideoResource
     from .resources.text_to_speech import TextToSpeechResource, AsyncTextToSpeechResource
     from .resources.video_to_video import VideoToVideoResource, AsyncVideoToVideoResource
     from .resources.voice_isolation import VoiceIsolationResource, AsyncVoiceIsolationResource
     from .resources.speech_to_speech import SpeechToSpeechResource, AsyncSpeechToSpeechResource
+    from .resources.generate.generate import GenerateResource, AsyncGenerateResource
     from .resources.realtime_sessions import RealtimeSessionsResource, AsyncRealtimeSessionsResource
     from .resources.avatar_conversations import AvatarConversationsResource, AsyncAvatarConversationsResource
     from .resources.workflow_invocations import WorkflowInvocationsResource, AsyncWorkflowInvocationsResource
     from .resources.character_performance import CharacterPerformanceResource, AsyncCharacterPerformanceResource
     from .resources.organization.organization import OrganizationResource, AsyncOrganizationResource
-    from .resources.video_upscale.video_upscale import VideoUpscaleResource, AsyncVideoUpscaleResource
 
 __all__ = [
     "Timeout",
@@ -267,6 +269,12 @@ class RunwayML(SyncAPIClient):
         from .resources.video_upscale import VideoUpscaleResource
 
         return VideoUpscaleResource(self)
+
+    @cached_property
+    def generate(self) -> GenerateResource:
+        from .resources.generate import GenerateResource
+
+        return GenerateResource(self)
 
     @cached_property
     def routers(self) -> RoutersResource:
@@ -619,6 +627,12 @@ class AsyncRunwayML(AsyncAPIClient):
         return AsyncVideoUpscaleResource(self)
 
     @cached_property
+    def generate(self) -> AsyncGenerateResource:
+        from .resources.generate import AsyncGenerateResource
+
+        return AsyncGenerateResource(self)
+
+    @cached_property
     def routers(self) -> AsyncRoutersResource:
         from .resources.routers import AsyncRoutersResource
 
@@ -905,6 +919,12 @@ class RunwayMLWithRawResponse:
         return VideoUpscaleResourceWithRawResponse(self._client.video_upscale)
 
     @cached_property
+    def generate(self) -> generate.GenerateResourceWithRawResponse:
+        from .resources.generate import GenerateResourceWithRawResponse
+
+        return GenerateResourceWithRawResponse(self._client.generate)
+
+    @cached_property
     def routers(self) -> routers.RoutersResourceWithRawResponse:
         from .resources.routers import RoutersResourceWithRawResponse
 
@@ -1074,6 +1094,12 @@ class AsyncRunwayMLWithRawResponse:
         from .resources.video_upscale import AsyncVideoUpscaleResourceWithRawResponse
 
         return AsyncVideoUpscaleResourceWithRawResponse(self._client.video_upscale)
+
+    @cached_property
+    def generate(self) -> generate.AsyncGenerateResourceWithRawResponse:
+        from .resources.generate import AsyncGenerateResourceWithRawResponse
+
+        return AsyncGenerateResourceWithRawResponse(self._client.generate)
 
     @cached_property
     def routers(self) -> routers.AsyncRoutersResourceWithRawResponse:
@@ -1247,6 +1273,12 @@ class RunwayMLWithStreamedResponse:
         return VideoUpscaleResourceWithStreamingResponse(self._client.video_upscale)
 
     @cached_property
+    def generate(self) -> generate.GenerateResourceWithStreamingResponse:
+        from .resources.generate import GenerateResourceWithStreamingResponse
+
+        return GenerateResourceWithStreamingResponse(self._client.generate)
+
+    @cached_property
     def routers(self) -> routers.RoutersResourceWithStreamingResponse:
         from .resources.routers import RoutersResourceWithStreamingResponse
 
@@ -1416,6 +1448,12 @@ class AsyncRunwayMLWithStreamedResponse:
         from .resources.video_upscale import AsyncVideoUpscaleResourceWithStreamingResponse
 
         return AsyncVideoUpscaleResourceWithStreamingResponse(self._client.video_upscale)
+
+    @cached_property
+    def generate(self) -> generate.AsyncGenerateResourceWithStreamingResponse:
+        from .resources.generate import AsyncGenerateResourceWithStreamingResponse
+
+        return AsyncGenerateResourceWithStreamingResponse(self._client.generate)
 
     @cached_property
     def routers(self) -> routers.AsyncRoutersResourceWithStreamingResponse:

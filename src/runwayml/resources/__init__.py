@@ -40,6 +40,14 @@ from .routers import (
     RoutersResourceWithStreamingResponse,
     AsyncRoutersResourceWithStreamingResponse,
 )
+from .generate import (
+    GenerateResource,
+    AsyncGenerateResource,
+    GenerateResourceWithRawResponse,
+    AsyncGenerateResourceWithRawResponse,
+    GenerateResourceWithStreamingResponse,
+    AsyncGenerateResourceWithStreamingResponse,
+)
 from .documents import (
     DocumentsResource,
     AsyncDocumentsResource,
@@ -286,6 +294,12 @@ __all__ = [
     "AsyncVideoUpscaleResourceWithRawResponse",
     "VideoUpscaleResourceWithStreamingResponse",
     "AsyncVideoUpscaleResourceWithStreamingResponse",
+    "GenerateResource",
+    "AsyncGenerateResource",
+    "GenerateResourceWithRawResponse",
+    "AsyncGenerateResourceWithRawResponse",
+    "GenerateResourceWithStreamingResponse",
+    "AsyncGenerateResourceWithStreamingResponse",
     "RoutersResource",
     "AsyncRoutersResource",
     "RoutersResourceWithRawResponse",

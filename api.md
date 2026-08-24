@@ -165,43 +165,45 @@ from runwayml.types import VideoUpscaleCreateResponse
 
 Methods:
 
-- <code title="post /v1/video_upscale">client.video_upscale.<a href="./src/runwayml/resources/video_upscale/video_upscale.py">create</a>(\*\*<a href="src/runwayml/types/video_upscale_create_params.py">params</a>) -> <a href="./src/runwayml/types/video_upscale_create_response.py">VideoUpscaleCreateResponse</a></code>
+- <code title="post /v1/video_upscale">client.video_upscale.<a href="./src/runwayml/resources/video_upscale.py">create</a>(\*\*<a href="src/runwayml/types/video_upscale_create_params.py">params</a>) -> <a href="./src/runwayml/types/video_upscale_create_response.py">VideoUpscaleCreateResponse</a></code>
+
+# Generate
 
 ## Video
 
 Types:
 
 ```python
-from runwayml.types.video_upscale import VideoCreateResponse
+from runwayml.types.generate import VideoCreateResponse
 ```
 
 Methods:
 
-- <code title="post /v1/generate/video">client.video_upscale.video.<a href="./src/runwayml/resources/video_upscale/video.py">create</a>(\*\*<a href="src/runwayml/types/video_upscale/video_create_params.py">params</a>) -> <a href="./src/runwayml/types/video_upscale/video_create_response.py">VideoCreateResponse</a></code>
+- <code title="post /v1/generate/video">client.generate.video.<a href="./src/runwayml/resources/generate/video.py">create</a>(\*\*<a href="src/runwayml/types/generate/video_create_params.py">params</a>) -> <a href="./src/runwayml/types/generate/video_create_response.py">VideoCreateResponse</a></code>
 
 ## Image
 
 Types:
 
 ```python
-from runwayml.types.video_upscale import ImageCreateResponse
+from runwayml.types.generate import ImageCreateResponse
 ```
 
 Methods:
 
-- <code title="post /v1/generate/image">client.video_upscale.image.<a href="./src/runwayml/resources/video_upscale/image.py">create</a>(\*\*<a href="src/runwayml/types/video_upscale/image_create_params.py">params</a>) -> <a href="./src/runwayml/types/video_upscale/image_create_response.py">ImageCreateResponse</a></code>
+- <code title="post /v1/generate/image">client.generate.image.<a href="./src/runwayml/resources/generate/image.py">create</a>(\*\*<a href="src/runwayml/types/generate/image_create_params.py">params</a>) -> <a href="./src/runwayml/types/generate/image_create_response.py">ImageCreateResponse</a></code>
 
 ## Audio
 
 Types:
 
 ```python
-from runwayml.types.video_upscale import AudioCreateResponse
+from runwayml.types.generate import ReferenceVoice, ReferenceAudio, AudioCreateResponse
 ```
 
 Methods:
 
-- <code title="post /v1/generate/audio">client.video_upscale.audio.<a href="./src/runwayml/resources/video_upscale/audio.py">create</a>(\*\*<a href="src/runwayml/types/video_upscale/audio_create_params.py">params</a>) -> <a href="./src/runwayml/types/video_upscale/audio_create_response.py">AudioCreateResponse</a></code>
+- <code title="post /v1/generate/audio">client.generate.audio.<a href="./src/runwayml/resources/generate/audio.py">create</a>(\*\*<a href="src/runwayml/types/generate/audio_create_params.py">params</a>) -> <a href="./src/runwayml/types/generate/audio_create_response.py">AudioCreateResponse</a></code>
 
 # Routers
 
@@ -421,13 +423,3 @@ from runwayml.types import WorkflowInvocationRetrieveResponse
 Methods:
 
 - <code title="get /v1/workflow_invocations/{id}">client.workflow_invocations.<a href="./src/runwayml/resources/workflow_invocations.py">retrieve</a>(id) -> <a href="./src/runwayml/types/workflow_invocation_retrieve_response.py">WorkflowInvocationRetrieveResponse</a></code>
-
-# Generate
-
-## Audio
-
-Types:
-
-```python
-from runwayml.types.generate import ReferenceVoice, ReferenceAudio
-```

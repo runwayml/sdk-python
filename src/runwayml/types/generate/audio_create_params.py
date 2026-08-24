@@ -6,8 +6,8 @@ from typing import Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._utils import PropertyInfo
-from ..generate.reference_audio_param import ReferenceAudioParam
-from ..generate.reference_voice_param import ReferenceVoiceParam
+from .reference_audio_param import ReferenceAudioParam
+from .reference_voice_param import ReferenceVoiceParam
 
 __all__ = ["AudioCreateParams", "Input", "InputVoice", "InputVoicePreset"]
 

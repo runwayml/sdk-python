@@ -9,7 +9,7 @@ import pytest
 
 from runwayml import RunwayML, AsyncRunwayML
 from tests.utils import assert_matches_type
-from runwayml.types.video_upscale import ImageCreateResponse
+from runwayml.types.generate import ImageCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,7 +19,7 @@ class TestImage:
 
     @parametrize
     def test_method_create(self, client: RunwayML) -> None:
-        image = client.video_upscale.image.create(
+        image = client.generate.image.create(
             config_id="n6_",
             input={"prompt_text": "x"},
         )
@@ -27,7 +27,7 @@ class TestImage:
 
     @parametrize
     def test_method_create_with_all_params(self, client: RunwayML) -> None:
-        image = client.video_upscale.image.create(
+        image = client.generate.image.create(
             config_id="n6_",
             input={
                 "prompt_text": "x",
@@ -43,7 +43,7 @@ class TestImage:
 
     @parametrize
     def test_raw_response_create(self, client: RunwayML) -> None:
-        response = client.video_upscale.image.with_raw_response.create(
+        response = client.generate.image.with_raw_response.create(
             config_id="n6_",
             input={"prompt_text": "x"},
         )
@@ -55,7 +55,7 @@ class TestImage:
 
     @parametrize
     def test_streaming_response_create(self, client: RunwayML) -> None:
-        with client.video_upscale.image.with_streaming_response.create(
+        with client.generate.image.with_streaming_response.create(
             config_id="n6_",
             input={"prompt_text": "x"},
         ) as response:
@@ -75,7 +75,7 @@ class TestAsyncImage:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncRunwayML) -> None:
-        image = await async_client.video_upscale.image.create(
+        image = await async_client.generate.image.create(
             config_id="n6_",
             input={"prompt_text": "x"},
         )
@@ -83,7 +83,7 @@ class TestAsyncImage:
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncRunwayML) -> None:
-        image = await async_client.video_upscale.image.create(
+        image = await async_client.generate.image.create(
             config_id="n6_",
             input={
                 "prompt_text": "x",
@@ -99,7 +99,7 @@ class TestAsyncImage:
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncRunwayML) -> None:
-        response = await async_client.video_upscale.image.with_raw_response.create(
+        response = await async_client.generate.image.with_raw_response.create(
             config_id="n6_",
             input={"prompt_text": "x"},
         )
@@ -111,7 +111,7 @@ class TestAsyncImage:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncRunwayML) -> None:
-        async with async_client.video_upscale.image.with_streaming_response.create(
+        async with async_client.generate.image.with_streaming_response.create(
             config_id="n6_",
             input={"prompt_text": "x"},
         ) as response:
