@@ -41,6 +41,7 @@ if TYPE_CHECKING:
         avatars,
         recipes,
         routers,
+        uploads,
         generate,
         documents,
         workflows,
@@ -68,6 +69,7 @@ if TYPE_CHECKING:
     from .resources.avatars import AvatarsResource, AsyncAvatarsResource
     from .resources.recipes import RecipesResource, AsyncRecipesResource
     from .resources.routers import RoutersResource, AsyncRoutersResource
+    from .resources.uploads import UploadsResource, AsyncUploadsResource
     from .resources.documents import DocumentsResource, AsyncDocumentsResource
     from .resources.workflows import WorkflowsResource, AsyncWorkflowsResource
     from .resources.sound_effect import SoundEffectResource, AsyncSoundEffectResource
@@ -178,6 +180,12 @@ class RunwayML(SyncAPIClient):
         from .resources.tasks import TasksResource
 
         return TasksResource(self)
+
+    @cached_property
+    def uploads(self) -> UploadsResource:
+        from .resources.uploads import UploadsResource
+
+        return UploadsResource(self)
 
     @cached_property
     def image_to_video(self) -> ImageToVideoResource:
@@ -536,6 +544,12 @@ class AsyncRunwayML(AsyncAPIClient):
         return AsyncTasksResource(self)
 
     @cached_property
+    def uploads(self) -> AsyncUploadsResource:
+        from .resources.uploads import AsyncUploadsResource
+
+        return AsyncUploadsResource(self)
+
+    @cached_property
     def image_to_video(self) -> AsyncImageToVideoResource:
         """These endpoints all kick off tasks to create generations."""
         from .resources.image_to_video import AsyncImageToVideoResource
@@ -828,6 +842,12 @@ class RunwayMLWithRawResponse:
         return TasksResourceWithRawResponse(self._client.tasks)
 
     @cached_property
+    def uploads(self) -> uploads.UploadsResourceWithRawResponse:
+        from .resources.uploads import UploadsResourceWithRawResponse
+
+        return UploadsResourceWithRawResponse(self._client.uploads)
+
+    @cached_property
     def image_to_video(self) -> image_to_video.ImageToVideoResourceWithRawResponse:
         """These endpoints all kick off tasks to create generations."""
         from .resources.image_to_video import ImageToVideoResourceWithRawResponse
@@ -1003,6 +1023,12 @@ class AsyncRunwayMLWithRawResponse:
         from .resources.tasks import AsyncTasksResourceWithRawResponse
 
         return AsyncTasksResourceWithRawResponse(self._client.tasks)
+
+    @cached_property
+    def uploads(self) -> uploads.AsyncUploadsResourceWithRawResponse:
+        from .resources.uploads import AsyncUploadsResourceWithRawResponse
+
+        return AsyncUploadsResourceWithRawResponse(self._client.uploads)
 
     @cached_property
     def image_to_video(self) -> image_to_video.AsyncImageToVideoResourceWithRawResponse:
@@ -1182,6 +1208,12 @@ class RunwayMLWithStreamedResponse:
         return TasksResourceWithStreamingResponse(self._client.tasks)
 
     @cached_property
+    def uploads(self) -> uploads.UploadsResourceWithStreamingResponse:
+        from .resources.uploads import UploadsResourceWithStreamingResponse
+
+        return UploadsResourceWithStreamingResponse(self._client.uploads)
+
+    @cached_property
     def image_to_video(self) -> image_to_video.ImageToVideoResourceWithStreamingResponse:
         """These endpoints all kick off tasks to create generations."""
         from .resources.image_to_video import ImageToVideoResourceWithStreamingResponse
@@ -1357,6 +1389,12 @@ class AsyncRunwayMLWithStreamedResponse:
         from .resources.tasks import AsyncTasksResourceWithStreamingResponse
 
         return AsyncTasksResourceWithStreamingResponse(self._client.tasks)
+
+    @cached_property
+    def uploads(self) -> uploads.AsyncUploadsResourceWithStreamingResponse:
+        from .resources.uploads import AsyncUploadsResourceWithStreamingResponse
+
+        return AsyncUploadsResourceWithStreamingResponse(self._client.uploads)
 
     @cached_property
     def image_to_video(self) -> image_to_video.AsyncImageToVideoResourceWithStreamingResponse:

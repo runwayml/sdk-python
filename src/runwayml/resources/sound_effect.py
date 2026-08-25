@@ -17,6 +17,12 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..lib.polling import (
+    NewTaskCreatedResponse,
+    AsyncNewTaskCreatedResponse,
+    create_waitable_resource,
+    create_async_waitable_resource,
+)
 from .._base_client import make_request_options
 from ..types.sound_effect_create_response import SoundEffectCreateResponse
 
@@ -63,7 +69,7 @@ class SoundEffectResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SoundEffectCreateResponse:
+    ) -> NewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate sound effects from a text
         description.
@@ -110,7 +116,7 @@ class SoundEffectResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SoundEffectCreateResponse:
+    ) -> NewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate sound effects from a text
         description.
@@ -154,7 +160,7 @@ class SoundEffectResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SoundEffectCreateResponse:
+    ) -> NewTaskCreatedResponse:
         return self._post(
             "/v1/sound_effect",
             body=maybe_transform(
@@ -175,7 +181,7 @@ class SoundEffectResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SoundEffectCreateResponse,
+            cast_to=create_waitable_resource(SoundEffectCreateResponse, self._client),
         )
 
 
@@ -219,7 +225,7 @@ class AsyncSoundEffectResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SoundEffectCreateResponse:
+    ) -> AsyncNewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate sound effects from a text
         description.
@@ -266,7 +272,7 @@ class AsyncSoundEffectResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SoundEffectCreateResponse:
+    ) -> AsyncNewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate sound effects from a text
         description.
@@ -310,7 +316,7 @@ class AsyncSoundEffectResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SoundEffectCreateResponse:
+    ) -> AsyncNewTaskCreatedResponse:
         return await self._post(
             "/v1/sound_effect",
             body=await async_maybe_transform(
@@ -331,7 +337,7 @@ class AsyncSoundEffectResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SoundEffectCreateResponse,
+            cast_to=create_async_waitable_resource(SoundEffectCreateResponse, self._client),
         )
 
 

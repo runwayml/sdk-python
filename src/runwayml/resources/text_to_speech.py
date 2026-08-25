@@ -17,6 +17,12 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..lib.polling import (
+    NewTaskCreatedResponse,
+    AsyncNewTaskCreatedResponse,
+    create_waitable_resource,
+    create_async_waitable_resource,
+)
 from .._base_client import make_request_options
 from ..types.text_to_speech_create_response import TextToSpeechCreateResponse
 
@@ -63,7 +69,7 @@ class TextToSpeechResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TextToSpeechCreateResponse:
+    ) -> NewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate speech from text.
 
@@ -107,7 +113,7 @@ class TextToSpeechResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TextToSpeechCreateResponse:
+    ) -> NewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate speech from text.
 
@@ -148,7 +154,7 @@ class TextToSpeechResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TextToSpeechCreateResponse:
+    ) -> NewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate speech from text.
 
@@ -216,7 +222,7 @@ class TextToSpeechResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TextToSpeechCreateResponse:
+    ) -> NewTaskCreatedResponse:
         return self._post(
             "/v1/text_to_speech",
             body=maybe_transform(
@@ -243,7 +249,7 @@ class TextToSpeechResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TextToSpeechCreateResponse,
+            cast_to=create_waitable_resource(TextToSpeechCreateResponse, self._client),
         )
 
 
@@ -287,7 +293,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TextToSpeechCreateResponse:
+    ) -> AsyncNewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate speech from text.
 
@@ -331,7 +337,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TextToSpeechCreateResponse:
+    ) -> AsyncNewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate speech from text.
 
@@ -372,7 +378,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TextToSpeechCreateResponse:
+    ) -> AsyncNewTaskCreatedResponse:
         """
         This endpoint will start a new task to generate speech from text.
 
@@ -440,7 +446,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TextToSpeechCreateResponse:
+    ) -> AsyncNewTaskCreatedResponse:
         return await self._post(
             "/v1/text_to_speech",
             body=await async_maybe_transform(
@@ -467,7 +473,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TextToSpeechCreateResponse,
+            cast_to=create_async_waitable_resource(TextToSpeechCreateResponse, self._client),
         )
 
 
