@@ -36,6 +36,12 @@ from ._exceptions import (
     UnprocessableEntityError,
     APIResponseValidationError,
 )
+from .lib.polling import (
+    TaskFailedError,
+    TaskTimeoutError,
+    WorkflowInvocationFailedError,
+    WorkflowInvocationTimeoutError,
+)
 from ._base_client import DefaultHttpxClient, DefaultAioHttpClient, DefaultAsyncHttpxClient
 from ._utils._logs import setup_logging as _setup_logging
 
@@ -81,6 +87,10 @@ __all__ = [
     "DefaultHttpxClient",
     "DefaultAsyncHttpxClient",
     "DefaultAioHttpClient",
+    "TaskFailedError",
+    "TaskTimeoutError",
+    "WorkflowInvocationFailedError",
+    "WorkflowInvocationTimeoutError",
 ]
 
 if not _t.TYPE_CHECKING:
