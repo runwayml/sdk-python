@@ -1,5 +1,33 @@
 # Changelog
 
+## 5.16.0 (2026-08-25)
+
+Full Changelog: [v5.15.0...v5.16.0](https://github.com/runwayml/sdk-python/compare/v5.15.0...v5.16.0)
+
+### Features
+
+* **api:** add Video to HDR ([7d46450](https://github.com/runwayml/sdk-python/commit/7d464503dc7745ffa6c8e274ba4076f907da75e7))
+* **api:** manual updates ([e330ff5](https://github.com/runwayml/sdk-python/commit/e330ff55c000a1651fff98c83dcf8436be2fe641))
+* **api:** stlc build onto staging next ([7449a94](https://github.com/runwayml/sdk-python/commit/7449a949278146acc7e9a3780a4aaa1ee2f6f205))
+* **client:** make video to hdr waitable ([0a14fa2](https://github.com/runwayml/sdk-python/commit/0a14fa282d1c9a0ce9259ea00efbe16a2ad9b9c7))
+
+
+### Bug Fixes
+
+* **client:** drop duplicate generate/routers properties ([499c3c8](https://github.com/runwayml/sdk-python/commit/499c3c8f1c8ad3ef1033d55c8b7128c96c1e4cef))
+* **client:** restore Client/AsyncClient aliases ([a45e3af](https://github.com/runwayml/sdk-python/commit/a45e3aff6bf892cf442b0ba78a5e8f846bdf6d2e))
+
+
+### Chores
+
+* **internal:** allow the mock server port to be set with STAINLESS_MOCK_PORT ([4046920](https://github.com/runwayml/sdk-python/commit/40469209ce682ca9a70b9f9eda52a8c0843c5764))
+* local reseal after client.uploads + generate/routers fix ([3929658](https://github.com/runwayml/sdk-python/commit/3929658bd55493e866cde357c26f399aa2b24e48))
+
+
+### Documentation
+
+* expand 5.15.0 changelog with customer-facing API surface ([dca7f1b](https://github.com/runwayml/sdk-python/commit/dca7f1beb9b76c96be39ff3aec10eae586baf451))
+
 ## 5.15.0 (2026-08-18)
 
 Full Changelog: [v5.14.0...v5.15.0](https://github.com/runwayml/sdk-python/compare/v5.14.0...v5.15.0)
