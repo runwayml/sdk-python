@@ -18,12 +18,6 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..lib.polling import (
-    NewTaskCreatedResponse,
-    AsyncNewTaskCreatedResponse,
-    create_waitable_resource,
-    create_async_waitable_resource,
-)
 from .._base_client import make_request_options
 from ..types.video_to_video_create_response import VideoToVideoCreateResponse
 
@@ -72,7 +66,7 @@ class VideoToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
 
@@ -134,7 +128,7 @@ class VideoToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
 
@@ -217,7 +211,7 @@ class VideoToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
 
@@ -288,7 +282,7 @@ class VideoToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
 
@@ -360,7 +354,7 @@ class VideoToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
 
@@ -413,7 +407,7 @@ class VideoToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
 
@@ -476,7 +470,7 @@ class VideoToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
 
@@ -636,7 +630,7 @@ class VideoToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         return self._post(
             "/v1/video_to_video",
             body=maybe_transform(
@@ -665,7 +659,7 @@ class VideoToVideoResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_waitable_resource(VideoToVideoCreateResponse, self._client),
+            cast_to=VideoToVideoCreateResponse,
         )
 
 
@@ -711,7 +705,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
 
@@ -773,7 +767,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
 
@@ -856,7 +850,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
 
@@ -927,7 +921,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
 
@@ -999,7 +993,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
 
@@ -1052,7 +1046,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
 
@@ -1115,7 +1109,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
 
@@ -1275,7 +1269,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         return await self._post(
             "/v1/video_to_video",
             body=await async_maybe_transform(
@@ -1304,7 +1298,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_async_waitable_resource(VideoToVideoCreateResponse, self._client),
+            cast_to=VideoToVideoCreateResponse,
         )
 
 

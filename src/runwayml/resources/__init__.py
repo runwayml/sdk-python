@@ -40,14 +40,6 @@ from .routers import (
     RoutersResourceWithStreamingResponse,
     AsyncRoutersResourceWithStreamingResponse,
 )
-from .uploads import (
-    UploadsResource,
-    AsyncUploadsResource,
-    UploadsResourceWithRawResponse,
-    AsyncUploadsResourceWithRawResponse,
-    UploadsResourceWithStreamingResponse,
-    AsyncUploadsResourceWithStreamingResponse,
-)
 from .generate import (
     GenerateResource,
     AsyncGenerateResource,
@@ -320,12 +312,6 @@ __all__ = [
     "AsyncOrganizationResourceWithRawResponse",
     "OrganizationResourceWithStreamingResponse",
     "AsyncOrganizationResourceWithStreamingResponse",
-    "UploadsResource",
-    "AsyncUploadsResource",
-    "UploadsResourceWithRawResponse",
-    "AsyncUploadsResourceWithRawResponse",
-    "UploadsResourceWithStreamingResponse",
-    "AsyncUploadsResourceWithStreamingResponse",
     "AvatarsResource",
     "AsyncAvatarsResource",
     "AvatarsResourceWithRawResponse",

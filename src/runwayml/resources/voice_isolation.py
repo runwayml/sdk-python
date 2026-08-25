@@ -17,12 +17,6 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..lib.polling import (
-    NewTaskCreatedResponse,
-    AsyncNewTaskCreatedResponse,
-    create_waitable_resource,
-    create_async_waitable_resource,
-)
 from .._base_client import make_request_options
 from ..types.voice_isolation_create_response import VoiceIsolationCreateResponse
 
@@ -62,7 +56,7 @@ class VoiceIsolationResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> VoiceIsolationCreateResponse:
         """
         This endpoint will start a new task to isolate the voice from the background
         audio. Audio duration must be greater than 4.6 seconds and less than 3600
@@ -93,7 +87,7 @@ class VoiceIsolationResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_waitable_resource(VoiceIsolationCreateResponse, self._client),
+            cast_to=VoiceIsolationCreateResponse,
         )
 
 
@@ -130,7 +124,7 @@ class AsyncVoiceIsolationResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> VoiceIsolationCreateResponse:
         """
         This endpoint will start a new task to isolate the voice from the background
         audio. Audio duration must be greater than 4.6 seconds and less than 3600
@@ -161,7 +155,7 @@ class AsyncVoiceIsolationResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_async_waitable_resource(VoiceIsolationCreateResponse, self._client),
+            cast_to=VoiceIsolationCreateResponse,
         )
 
 

@@ -17,12 +17,6 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..lib.polling import (
-    NewTaskCreatedResponse,
-    AsyncNewTaskCreatedResponse,
-    create_waitable_resource,
-    create_async_waitable_resource,
-)
 from .._base_client import make_request_options
 from ..types.speech_to_speech_create_response import SpeechToSpeechCreateResponse
 
@@ -64,7 +58,7 @@ class SpeechToSpeechResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> SpeechToSpeechCreateResponse:
         """
         This endpoint will start a new task to convert speech from one voice to another
         in audio or video.
@@ -96,12 +90,9 @@ class SpeechToSpeechResource(SyncAPIResource):
                 speech_to_speech_create_params.SpeechToSpeechCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_waitable_resource(SpeechToSpeechCreateResponse, self._client),
+            cast_to=SpeechToSpeechCreateResponse,
         )
 
 
@@ -119,9 +110,7 @@ class AsyncSpeechToSpeechResource(AsyncAPIResource):
         return AsyncSpeechToSpeechResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(
-        self,
-    ) -> AsyncSpeechToSpeechResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncSpeechToSpeechResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
@@ -142,7 +131,7 @@ class AsyncSpeechToSpeechResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> SpeechToSpeechCreateResponse:
         """
         This endpoint will start a new task to convert speech from one voice to another
         in audio or video.
@@ -174,12 +163,9 @@ class AsyncSpeechToSpeechResource(AsyncAPIResource):
                 speech_to_speech_create_params.SpeechToSpeechCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_async_waitable_resource(SpeechToSpeechCreateResponse, self._client),
+            cast_to=SpeechToSpeechCreateResponse,
         )
 
 

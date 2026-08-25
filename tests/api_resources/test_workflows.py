@@ -92,7 +92,7 @@ class TestWorkflows:
         workflow = client.workflows.run(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             node_outputs={
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e": {
+                "foo": {
                     "foo": {
                         "type": "primitive",
                         "value": "string",
@@ -214,7 +214,7 @@ class TestAsyncWorkflows:
         workflow = await async_client.workflows.run(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             node_outputs={
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e": {
+                "foo": {
                     "foo": {
                         "type": "primitive",
                         "value": "string",

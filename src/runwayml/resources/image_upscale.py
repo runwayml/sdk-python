@@ -6,13 +6,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from runwayml.lib.polling import (
-    NewTaskCreatedResponse,
-    AsyncNewTaskCreatedResponse,
-    create_waitable_resource,
-    create_async_waitable_resource,
-)
-
 from ..types import image_upscale_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
@@ -68,7 +61,7 @@ class ImageUpscaleResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageUpscaleCreateResponse:
         """Upscale an image with Magnific precision upscaling.
 
         Each input dimension must be
@@ -118,7 +111,7 @@ class ImageUpscaleResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_waitable_resource(ImageUpscaleCreateResponse, self._client),
+            cast_to=ImageUpscaleCreateResponse,
         )
 
 
@@ -160,7 +153,7 @@ class AsyncImageUpscaleResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageUpscaleCreateResponse:
         """Upscale an image with Magnific precision upscaling.
 
         Each input dimension must be
@@ -210,7 +203,7 @@ class AsyncImageUpscaleResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_async_waitable_resource(ImageUpscaleCreateResponse, self._client),
+            cast_to=ImageUpscaleCreateResponse,
         )
 
 

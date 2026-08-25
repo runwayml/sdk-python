@@ -7,13 +7,6 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from runwayml.lib.polling import (
-    NewTaskCreatedResponse,
-    AsyncNewTaskCreatedResponse,
-    create_waitable_resource,
-    create_async_waitable_resource,
-)
-
 from ..types import (
     recipe_product_ad_params,
     recipe_product_ugc_params,
@@ -100,7 +93,7 @@ class RecipesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> RecipeAdLocalizationResponse:
         """
         Localize an existing ad image for a target language, preserving visual creative
         while adapting on-screen messaging.
@@ -136,7 +129,7 @@ class RecipesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_waitable_resource(RecipeAdLocalizationResponse, self._client),
+            cast_to=RecipeAdLocalizationResponse,
         )
 
     def marketing_stock_image(
@@ -153,7 +146,7 @@ class RecipesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> RecipeMarketingStockImageResponse:
         """
         Generate a polished marketing stock image from a text brief and optional brand
         logo image.
@@ -197,7 +190,7 @@ class RecipesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_waitable_resource(RecipeMarketingStockImageResponse, self._client),
+            cast_to=RecipeMarketingStockImageResponse,
         )
 
     @overload
@@ -217,7 +210,7 @@ class RecipesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> RecipeMultiShotVideoResponse:
         """
         Generate a multi-cut video from a story prompt (auto mode) or a custom shot list
         (custom mode).
@@ -268,7 +261,7 @@ class RecipesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> RecipeMultiShotVideoResponse:
         """
         Generate a multi-cut video from a story prompt (auto mode) or a custom shot list
         (custom mode).
@@ -323,7 +316,7 @@ class RecipesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> RecipeMultiShotVideoResponse:
         return self._post(
             "/v1/recipes/multi_shot_video",
             body=maybe_transform(
@@ -342,7 +335,7 @@ class RecipesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_waitable_resource(RecipeMultiShotVideoResponse, self._client),
+            cast_to=RecipeMultiShotVideoResponse,
         )
 
     def product_ad(
@@ -365,7 +358,7 @@ class RecipesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> RecipeProductAdResponse:
         """
         Generate a cinematic product ad from product images, optional style references,
         product info, and creative direction.
@@ -420,7 +413,7 @@ class RecipesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_waitable_resource(RecipeProductAdResponse, self._client),
+            cast_to=RecipeProductAdResponse,
         )
 
     def product_campaign_image(
@@ -435,7 +428,7 @@ class RecipesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> RecipeProductCampaignImageResponse:
         """
         Generate four fashion campaign images from a product image and style brief.
 
@@ -470,7 +463,7 @@ class RecipesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_waitable_resource(RecipeProductCampaignImageResponse, self._client),
+            cast_to=RecipeProductCampaignImageResponse,
         )
 
     def product_swap(
@@ -489,7 +482,7 @@ class RecipesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> RecipeProductSwapResponse:
         """
         Replace the product in a reference video with a new product, preserving camera
         motion, lighting, and scene composition.
@@ -541,7 +534,7 @@ class RecipesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_waitable_resource(RecipeProductSwapResponse, self._client),
+            cast_to=RecipeProductSwapResponse,
         )
 
     def product_ugc(
@@ -561,7 +554,7 @@ class RecipesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> RecipeProductUgcResponse:
         """
         Generate a vertical user-generated content ad from a character image, product
         image, product details, and optional creative direction.
@@ -616,7 +609,7 @@ class RecipesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_waitable_resource(RecipeProductUgcResponse, self._client),
+            cast_to=RecipeProductUgcResponse,
         )
 
 
@@ -675,7 +668,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> RecipeAdLocalizationResponse:
         """
         Localize an existing ad image for a target language, preserving visual creative
         while adapting on-screen messaging.
@@ -711,7 +704,7 @@ class AsyncRecipesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_async_waitable_resource(RecipeAdLocalizationResponse, self._client),
+            cast_to=RecipeAdLocalizationResponse,
         )
 
     async def marketing_stock_image(
@@ -728,7 +721,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> RecipeMarketingStockImageResponse:
         """
         Generate a polished marketing stock image from a text brief and optional brand
         logo image.
@@ -772,7 +765,7 @@ class AsyncRecipesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_async_waitable_resource(RecipeMarketingStockImageResponse, self._client),
+            cast_to=RecipeMarketingStockImageResponse,
         )
 
     @overload
@@ -792,7 +785,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> RecipeMultiShotVideoResponse:
         """
         Generate a multi-cut video from a story prompt (auto mode) or a custom shot list
         (custom mode).
@@ -843,7 +836,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> RecipeMultiShotVideoResponse:
         """
         Generate a multi-cut video from a story prompt (auto mode) or a custom shot list
         (custom mode).
@@ -898,7 +891,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> RecipeMultiShotVideoResponse:
         return await self._post(
             "/v1/recipes/multi_shot_video",
             body=await async_maybe_transform(
@@ -917,7 +910,7 @@ class AsyncRecipesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_async_waitable_resource(RecipeMultiShotVideoResponse, self._client),
+            cast_to=RecipeMultiShotVideoResponse,
         )
 
     async def product_ad(
@@ -940,7 +933,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> RecipeProductAdResponse:
         """
         Generate a cinematic product ad from product images, optional style references,
         product info, and creative direction.
@@ -995,7 +988,7 @@ class AsyncRecipesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_async_waitable_resource(RecipeProductAdResponse, self._client),
+            cast_to=RecipeProductAdResponse,
         )
 
     async def product_campaign_image(
@@ -1010,7 +1003,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> RecipeProductCampaignImageResponse:
         """
         Generate four fashion campaign images from a product image and style brief.
 
@@ -1045,7 +1038,7 @@ class AsyncRecipesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_async_waitable_resource(RecipeProductCampaignImageResponse, self._client),
+            cast_to=RecipeProductCampaignImageResponse,
         )
 
     async def product_swap(
@@ -1064,7 +1057,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> RecipeProductSwapResponse:
         """
         Replace the product in a reference video with a new product, preserving camera
         motion, lighting, and scene composition.
@@ -1116,7 +1109,7 @@ class AsyncRecipesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_async_waitable_resource(RecipeProductSwapResponse, self._client),
+            cast_to=RecipeProductSwapResponse,
         )
 
     async def product_ugc(
@@ -1136,7 +1129,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> RecipeProductUgcResponse:
         """
         Generate a vertical user-generated content ad from a character image, product
         image, product details, and optional creative direction.
@@ -1191,7 +1184,7 @@ class AsyncRecipesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_async_waitable_resource(RecipeProductUgcResponse, self._client),
+            cast_to=RecipeProductUgcResponse,
         )
 
 

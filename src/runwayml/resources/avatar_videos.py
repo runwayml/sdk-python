@@ -17,12 +17,6 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..lib.polling import (
-    NewTaskCreatedResponse,
-    AsyncNewTaskCreatedResponse,
-    create_waitable_resource,
-    create_async_waitable_resource,
-)
 from .._base_client import make_request_options
 from ..types.avatar_video_create_response import AvatarVideoCreateResponse
 
@@ -61,7 +55,7 @@ class AvatarVideosResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> AvatarVideoCreateResponse:
         """Start an asynchronous task to generate a video of an avatar speaking.
 
         Provide
@@ -98,7 +92,7 @@ class AvatarVideosResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_waitable_resource(AvatarVideoCreateResponse, self._client),
+            cast_to=AvatarVideoCreateResponse,
         )
 
 
@@ -134,7 +128,7 @@ class AsyncAvatarVideosResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> AvatarVideoCreateResponse:
         """Start an asynchronous task to generate a video of an avatar speaking.
 
         Provide
@@ -171,7 +165,7 @@ class AsyncAvatarVideosResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_async_waitable_resource(AvatarVideoCreateResponse, self._client),
+            cast_to=AvatarVideoCreateResponse,
         )
 
 
