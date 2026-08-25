@@ -16,13 +16,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..lib.polling import (
-    AwaitableTaskRetrieveResponse,
-    AsyncAwaitableTaskRetrieveResponse,
-    inject_sync_wait_method,
-    inject_async_wait_method,
-)
 from .._base_client import make_request_options
+from ..types.task_retrieve_response import TaskRetrieveResponse
 
 __all__ = ["TasksResource", "AsyncTasksResource"]
 
@@ -59,7 +54,7 @@ class TasksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AwaitableTaskRetrieveResponse:
+    ) -> TaskRetrieveResponse:
         """Return details about a task.
 
         Consumers of this API should not expect updates
@@ -76,16 +71,18 @@ class TasksResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        response = self._get(
-            f"/v1/tasks/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        return cast(
+            TaskRetrieveResponse,
+            self._get(
+                path_template("/v1/tasks/{id}", id=id),
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, TaskRetrieveResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(
-                Any, AwaitableTaskRetrieveResponse
-            ),  # Union types cannot be passed in as arguments in the type system
         )
-        return cast(AwaitableTaskRetrieveResponse, inject_sync_wait_method(self._client, response))
 
     def delete(
         self,
@@ -159,7 +156,7 @@ class AsyncTasksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncAwaitableTaskRetrieveResponse:
+    ) -> TaskRetrieveResponse:
         """Return details about a task.
 
         Consumers of this API should not expect updates
@@ -176,16 +173,18 @@ class AsyncTasksResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        response = await self._get(
-            f"/v1/tasks/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        return cast(
+            TaskRetrieveResponse,
+            await self._get(
+                path_template("/v1/tasks/{id}", id=id),
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, TaskRetrieveResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(
-                Any, AsyncAwaitableTaskRetrieveResponse
-            ),  # Union types cannot be passed in as arguments in the type system
         )
-        return cast(AsyncAwaitableTaskRetrieveResponse, inject_async_wait_method(self._client, response))
 
     async def delete(
         self,

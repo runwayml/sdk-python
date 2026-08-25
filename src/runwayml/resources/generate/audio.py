@@ -4,13 +4,6 @@ from __future__ import annotations
 
 import httpx
 
-from runwayml.lib.polling import (
-    NewTaskCreatedResponse,
-    AsyncNewTaskCreatedResponse,
-    create_waitable_resource,
-    create_async_waitable_resource,
-)
-
 from ..._types import Body, Query, Headers, NotGiven, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
@@ -59,7 +52,7 @@ class AudioResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> AudioCreateResponse:
         """
         Start an audio generation task using a saved Model Router config instead of
         naming a model. Set input.type to speech to speak promptText verbatim, or audio
@@ -91,7 +84,7 @@ class AudioResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_waitable_resource(AudioCreateResponse, self._client),
+            cast_to=AudioCreateResponse,
         )
 
 
@@ -126,7 +119,7 @@ class AsyncAudioResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> AudioCreateResponse:
         """
         Start an audio generation task using a saved Model Router config instead of
         naming a model. Set input.type to speech to speak promptText verbatim, or audio
@@ -158,7 +151,7 @@ class AsyncAudioResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_async_waitable_resource(AudioCreateResponse, self._client),
+            cast_to=AudioCreateResponse,
         )
 
 

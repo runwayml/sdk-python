@@ -121,8 +121,6 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
 
-from datetime import datetime
-
 ## Pagination
 
 List methods in the RunwayML API are paginated.
@@ -134,16 +132,14 @@ from runwayml import RunwayML
 
 client = RunwayML()
 
-all_webapps = []
+all_routers = []
 # Automatically fetches more pages as needed.
-for webapp in client.organization.webapp.list_usage(
-    from_=datetime.fromisoformat("2019-12-27T18:11:19.117"),
+for router in client.routers.list(
     limit=1,
-    to=datetime.fromisoformat("2019-12-27T18:11:19.117"),
 ):
-    # Do something with webapp here
-    all_webapps.append(webapp)
-print(all_webapps)
+    # Do something with router here
+    all_routers.append(router)
+print(all_routers)
 ```
 
 Or, asynchronously:
@@ -156,15 +152,13 @@ client = AsyncRunwayML()
 
 
 async def main() -> None:
-    all_webapps = []
+    all_routers = []
     # Iterate through items across all pages, issuing requests as needed.
-    async for webapp in client.organization.webapp.list_usage(
-        from_=datetime.fromisoformat("2019-12-27T18:11:19.117"),
+    async for router in client.routers.list(
         limit=1,
-        to=datetime.fromisoformat("2019-12-27T18:11:19.117"),
     ):
-        all_webapps.append(webapp)
-    print(all_webapps)
+        all_routers.append(router)
+    print(all_routers)
 
 
 asyncio.run(main())
@@ -173,10 +167,8 @@ asyncio.run(main())
 Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
 
 ```python
-first_page = await client.organization.webapp.list_usage(
-    from_=datetime.fromisoformat("2019-12-27T18:11:19.117"),
+first_page = await client.routers.list(
     limit=1,
-    to=datetime.fromisoformat("2019-12-27T18:11:19.117"),
 )
 if first_page.has_next_page():
     print(f"will fetch next page using these details: {first_page.next_page_info()}")
@@ -189,15 +181,13 @@ if first_page.has_next_page():
 Or just work directly with the returned data:
 
 ```python
-first_page = await client.organization.webapp.list_usage(
-    from_=datetime.fromisoformat("2019-12-27T18:11:19.117"),
+first_page = await client.routers.list(
     limit=1,
-    to=datetime.fromisoformat("2019-12-27T18:11:19.117"),
 )
 
 print(f"next page cursor: {first_page.next_cursor}")  # => "next page cursor: ..."
-for webapp in first_page.data:
-    print(webapp.credits)
+for router in first_page.data:
+    print(router.id)
 
 # Remove `await` for non-async usage.
 ```
