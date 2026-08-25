@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.16.1 (2026-08-25)
+
+Full Changelog: [v5.16.0...v5.16.1](https://github.com/runwayml/sdk-python/compare/v5.16.0...v5.16.1)
+
+### Bug Fixes
+
+* **client:** restore waitable wraps and uploads after stlc cutover ([e4d247f](https://github.com/runwayml/sdk-python/commit/e4d247fd81c4c73ca29fc2eb1f442d3259a815f6))
+
 ## 5.16.0 (2026-08-25)
 
 Full Changelog: [v5.15.0...v5.16.0](https://github.com/runwayml/sdk-python/compare/v5.15.0...v5.16.0)
