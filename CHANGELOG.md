@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.16.2 (2026-08-26)
+
+Full Changelog: [v5.16.1...v5.16.2](https://github.com/runwayml/sdk-python/compare/v5.16.1...v5.16.2)
+
+### Bug Fixes
+
+* **ci:** also publish on v* tag push ([f351d01](https://github.com/runwayml/sdk-python/commit/f351d011bd4c9559708878e923ab91454b9c80e7))
+
 ## 5.16.1 (2026-08-25)
 
 Full Changelog: [v5.16.0...v5.16.1](https://github.com/runwayml/sdk-python/compare/v5.16.0...v5.16.1)
