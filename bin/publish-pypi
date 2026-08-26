@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
 set -eux
+
+VERSION="$(sed -n 's/^version = "\(.*\)"/\1/p' pyproject.toml | head -1)"
+if [ -n "$VERSION" ] && curl -sf "https://pypi.org/pypi/runwayml/${VERSION}/json" >/dev/null; then
+  echo "already published runwayml==$VERSION — skip"
+  exit 0
+fi
+
 mkdir -p dist
 rye build --clean
 rye publish --yes --token=$PYPI_TOKEN

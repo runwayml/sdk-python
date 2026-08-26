@@ -1,12 +1,19 @@
-# This workflow is triggered when a GitHub release is created.
-# It can also be run manually to re-publish to PyPI in case it failed for some reason.
-# You can run this workflow by navigating to https://www.github.com/runwayml/sdk-python/actions/workflows/publish-pypi.yml
+# Publish when a GitHub release is created, when a v* tag is pushed, or by hand.
+# App-created tags sometimes skip the `release` event (GITHUB_TOKEN / App delivery).
+# `push: tags` is the backup. bin/publish-pypi no-ops if the version is already on PyPI.
+# Manual: https://www.github.com/runwayml/sdk-python/actions/workflows/publish-pypi.yml
 name: Publish PyPI
 on:
   workflow_dispatch:
-
   release:
     types: [published]
+  push:
+    tags:
+      - 'v*'
+
+concurrency:
+  group: publish-pypi-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   publish:
