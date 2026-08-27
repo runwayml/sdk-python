@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.16.3 (2026-08-27)
+
+Full Changelog: [v5.16.2...v5.16.3](https://github.com/runwayml/sdk-python/compare/v5.16.2...v5.16.3)
+
+### Chores
+
+* **stlc:** add SDK repo workflows ([#1](https://github.com/runwayml/sdk-python/issues/1)) ([0572324](https://github.com/runwayml/sdk-python/commit/0572324ac7aefe4fb4b633170e1acef1245e1f3f))
+
 ## 5.16.2 (2026-08-26)
 
 Full Changelog: [v5.16.1...v5.16.2](https://github.com/runwayml/sdk-python/compare/v5.16.1...v5.16.2)
