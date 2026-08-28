@@ -21,6 +21,8 @@ __all__ = [
     "GeminiImage3ProReferenceImage",
     "GeminiImage3_1Flash",
     "GeminiImage3_1FlashReferenceImage",
+    "MuseImage",
+    "MuseImageReferenceImage",
     "Seedream5Pro",
     "Seedream5ProReferenceImage",
     "Seedream5Lite",
@@ -461,6 +463,50 @@ class GeminiImage3_1FlashReferenceImage(TypedDict, total=False):
     """
 
 
+class MuseImage(TypedDict, total=False):
+    model: Required[Literal["muse_image"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty text prompt describing what should appear in the output image."""
+
+    ratio: Required[
+        Literal[
+            "2352:1008",
+            "2016:1152",
+            "1920:1280",
+            "1792:1344",
+            "1600:1600",
+            "1344:1792",
+            "1280:1920",
+            "1152:2016",
+            "auto",
+        ]
+    ]
+    """The resolution of the output image, expressed as `<width>:<height>`.
+
+    Use `auto` to let the model choose the framing from the prompt.
+    """
+
+    output_count: Annotated[int, PropertyInfo(alias="outputCount")]
+    """The number of images to generate. Each image costs 1 credit."""
+
+    reference_images: Annotated[Iterable[MuseImageReferenceImage], PropertyInfo(alias="referenceImages")]
+    """Up to 10 images to guide the generation.
+
+    When provided, the model edits and combines them as your prompt describes
+    instead of generating from the prompt alone.
+    """
+
+
+class MuseImageReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
 class Seedream5Pro(TypedDict, total=False):
     model: Required[Literal["seedream5_pro"]]
 
@@ -719,6 +765,7 @@ TextToImageCreateParams: TypeAlias = Union[
     GptImage2,
     GeminiImage3Pro,
     GeminiImage3_1Flash,
+    MuseImage,
     Seedream5Pro,
     Seedream5Lite,
     GrokImagineImage2,

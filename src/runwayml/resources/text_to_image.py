@@ -436,6 +436,57 @@ class TextToImageResource(SyncAPIResource):
     def create(
         self,
         *,
+        model: Literal["muse_image"],
+        prompt_text: str,
+        ratio: Literal[
+            "2352:1008",
+            "2016:1152",
+            "1920:1280",
+            "1792:1344",
+            "1600:1600",
+            "1344:1792",
+            "1280:1920",
+            "1152:2016",
+            "auto",
+        ],
+        output_count: int | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.MuseImageReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty text prompt describing what should appear in the output image.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+              to let the model choose the framing from the prompt.
+
+          output_count: The number of images to generate. Each image costs 1 credit.
+
+          reference_images: Up to 10 images to guide the generation. When provided, the model edits and
+              combines them as your prompt describes instead of generating from the prompt
+              alone.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["seedream5_pro"],
         prompt_text: str,
         ratio: Literal[
@@ -699,6 +750,7 @@ class TextToImageResource(SyncAPIResource):
         | Literal["gpt_image_2"]
         | Literal["gemini_image3_pro"]
         | Literal["gemini_image3.1_flash"]
+        | Literal["muse_image"]
         | Literal["seedream5_pro"]
         | Literal["seedream5_lite"]
         | Literal["grok_imagine_image_2"]
@@ -846,6 +898,17 @@ class TextToImageResource(SyncAPIResource):
             "11264:1408",
         ]
         | Literal[
+            "2352:1008",
+            "2016:1152",
+            "1920:1280",
+            "1792:1344",
+            "1600:1600",
+            "1344:1792",
+            "1280:1920",
+            "1152:2016",
+            "auto",
+        ]
+        | Literal[
             "1024:1024",
             "1184:896",
             "896:1184",
@@ -928,6 +991,7 @@ class TextToImageResource(SyncAPIResource):
         | Iterable[text_to_image_create_params.GptImage2ReferenceImage]
         | Iterable[text_to_image_create_params.GeminiImage3ProReferenceImage]
         | Iterable[text_to_image_create_params.GeminiImage3_1FlashReferenceImage]
+        | Iterable[text_to_image_create_params.MuseImageReferenceImage]
         | Iterable[text_to_image_create_params.Seedream5ProReferenceImage]
         | Iterable[text_to_image_create_params.Seedream5LiteReferenceImage]
         | Iterable[text_to_image_create_params.GrokImagineImage2ReferenceImage]
@@ -1382,6 +1446,57 @@ class AsyncTextToImageResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        model: Literal["muse_image"],
+        prompt_text: str,
+        ratio: Literal[
+            "2352:1008",
+            "2016:1152",
+            "1920:1280",
+            "1792:1344",
+            "1600:1600",
+            "1344:1792",
+            "1280:1920",
+            "1152:2016",
+            "auto",
+        ],
+        output_count: int | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.MuseImageReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty text prompt describing what should appear in the output image.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+              to let the model choose the framing from the prompt.
+
+          output_count: The number of images to generate. Each image costs 1 credit.
+
+          reference_images: Up to 10 images to guide the generation. When provided, the model edits and
+              combines them as your prompt describes instead of generating from the prompt
+              alone.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["seedream5_pro"],
         prompt_text: str,
         ratio: Literal[
@@ -1645,6 +1760,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Literal["gpt_image_2"]
         | Literal["gemini_image3_pro"]
         | Literal["gemini_image3.1_flash"]
+        | Literal["muse_image"]
         | Literal["seedream5_pro"]
         | Literal["seedream5_lite"]
         | Literal["grok_imagine_image_2"]
@@ -1792,6 +1908,17 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "11264:1408",
         ]
         | Literal[
+            "2352:1008",
+            "2016:1152",
+            "1920:1280",
+            "1792:1344",
+            "1600:1600",
+            "1344:1792",
+            "1280:1920",
+            "1152:2016",
+            "auto",
+        ]
+        | Literal[
             "1024:1024",
             "1184:896",
             "896:1184",
@@ -1874,6 +2001,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Iterable[text_to_image_create_params.GptImage2ReferenceImage]
         | Iterable[text_to_image_create_params.GeminiImage3ProReferenceImage]
         | Iterable[text_to_image_create_params.GeminiImage3_1FlashReferenceImage]
+        | Iterable[text_to_image_create_params.MuseImageReferenceImage]
         | Iterable[text_to_image_create_params.Seedream5ProReferenceImage]
         | Iterable[text_to_image_create_params.Seedream5LiteReferenceImage]
         | Iterable[text_to_image_create_params.GrokImagineImage2ReferenceImage]
