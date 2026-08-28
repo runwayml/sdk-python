@@ -6,13 +6,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from runwayml.lib.polling import (
-    NewTaskCreatedResponse,
-    AsyncNewTaskCreatedResponse,
-    create_waitable_resource,
-    create_async_waitable_resource,
-)
-
 from ..types import video_to_hdr_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
@@ -65,7 +58,7 @@ class VideoToHdrResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> VideoToHdrCreateResponse:
         """
         This endpoint starts a task to upconvert an SDR video to true HDR with Ruby,
         Runway's HDR grading model. The output keeps the source's own pixels — luma and
@@ -119,7 +112,7 @@ class VideoToHdrResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_waitable_resource(VideoToHdrCreateResponse, self._client),
+            cast_to=VideoToHdrCreateResponse,
         )
 
 
@@ -158,7 +151,7 @@ class AsyncVideoToHdrResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> VideoToHdrCreateResponse:
         """
         This endpoint starts a task to upconvert an SDR video to true HDR with Ruby,
         Runway's HDR grading model. The output keeps the source's own pixels — luma and
@@ -212,7 +205,7 @@ class AsyncVideoToHdrResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_async_waitable_resource(VideoToHdrCreateResponse, self._client),
+            cast_to=VideoToHdrCreateResponse,
         )
 
 

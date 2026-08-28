@@ -38,6 +38,10 @@ __all__ = [
     "GrokImagine1_5",
     "GrokImagine1_5ReferenceAudio",
     "GrokImagine1_5Reference",
+    "Wan3",
+    "Wan3ReferenceAudio",
+    "Wan3Reference",
+    "Wan3ReferenceVideo",
 ]
 
 
@@ -737,6 +741,103 @@ class GrokImagine1_5Reference(TypedDict, total=False):
     """
 
 
+class Wan3(TypedDict, total=False):
+    model: Required[Literal["wan3"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty text prompt describing what should appear in the output."""
+
+    audio: bool
+    """Whether to generate audio with the video."""
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    ratio: Literal[
+        "832:480",
+        "640:480",
+        "480:480",
+        "480:640",
+        "480:832",
+        "1280:720",
+        "960:720",
+        "720:720",
+        "720:960",
+        "720:1280",
+        "1920:1080",
+        "1440:1080",
+        "1080:1080",
+        "1080:1440",
+        "1080:1920",
+        "auto_480p",
+        "auto_720p",
+        "auto_1080p",
+    ]
+    """The resolution of the output video, as `<width>:<height>`.
+
+    Use `auto_480p`, `auto_720p`, or `auto_1080p` to let the model pick framing at
+    that quality tier.
+    """
+
+    reference_audio: Annotated[Iterable[Wan3ReferenceAudio], PropertyInfo(alias="referenceAudio")]
+    """An optional array of audio references.
+
+    The total combined duration must not exceed 15 seconds.
+    """
+
+    references: Iterable[Wan3Reference]
+    """An optional array of image references (up to 10).
+
+    See [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    reference_videos: Annotated[Iterable[Wan3ReferenceVideo], PropertyInfo(alias="referenceVideos")]
+    """An optional array of video references.
+
+    The combined duration across all video references must not exceed 15 seconds.
+    See [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+
+class Wan3ReferenceAudio(TypedDict, total=False):
+    """
+    An audio reference allows the model to use the audio as additional context for the output.
+    """
+
+    type: Required[Literal["audio"]]
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
+    [our docs](/assets/inputs#audio) on audio inputs for more information.
+    """
+
+
+class Wan3Reference(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class Wan3ReferenceVideo(TypedDict, total=False):
+    """
+    A video reference allows the model to use the video as additional context for the output.
+    """
+
+    type: Required[Literal["video"]]
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+    [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+
 TextToVideoCreateParams: TypeAlias = Union[
     Gen4_5,
     Veo3_1,
@@ -749,4 +850,5 @@ TextToVideoCreateParams: TypeAlias = Union[
     GeminiOmniFlash,
     Seedance2_5,
     GrokImagine1_5,
+    Wan3,
 ]
