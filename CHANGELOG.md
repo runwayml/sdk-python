@@ -1,5 +1,23 @@
 # Changelog
 
+## [5.17.0](https://github.com/runwayml/sdk-python/compare/v5.16.2...v5.17.0) (2026-08-28)
+
+
+### Features
+
+* initial stlc build ([948957a](https://github.com/runwayml/sdk-python/commit/948957ac93588ac8a3c59a9cf101b379f3457d74))
+
+
+### Bug Fixes
+
+* preserve waitable create response types ([#2](https://github.com/runwayml/sdk-python/issues/2)) ([e05746a](https://github.com/runwayml/sdk-python/commit/e05746aee7a614c79d284e03fb387e6751b2e07c))
+* restore waitable Video-to-HDR responses ([#3](https://github.com/runwayml/sdk-python/issues/3)) ([d36c0c8](https://github.com/runwayml/sdk-python/commit/d36c0c888266c0954c3106d258e5a6baae619916))
+
+
+### Chores
+
+* **stlc:** add SDK repo workflows ([#1](https://github.com/runwayml/sdk-python/issues/1)) ([0572324](https://github.com/runwayml/sdk-python/commit/0572324ac7aefe4fb4b633170e1acef1245e1f3f))
+
 ## 5.16.2 (2026-08-26)
 
 Full Changelog: [v5.16.1...v5.16.2](https://github.com/runwayml/sdk-python/compare/v5.16.1...v5.16.2)
