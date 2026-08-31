@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.17.1](https://github.com/runwayml/sdk-python/compare/v5.17.0...v5.17.1) (2026-08-31)
+
+
+### Bug Fixes
+
+* cap media data URIs at 5MB ([fdbef03](https://github.com/runwayml/sdk-python/commit/fdbef034ceba5fe4e73a8eb0f7fc9b2d64653e2b))
+
 ## 5.17.0 (2026-08-28)
 
 Full Changelog: [v5.16.2...v5.17.0](https://github.com/runwayml/sdk-python/compare/v5.16.2...v5.17.0)
