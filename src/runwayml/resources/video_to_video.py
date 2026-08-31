@@ -78,7 +78,7 @@ class VideoToVideoResource(SyncAPIResource):
 
         Args:
           video_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
           content_moderation: Settings that affect the behavior of the content moderation system.
@@ -142,7 +142,7 @@ class VideoToVideoResource(SyncAPIResource):
           prompt_text: A non-empty text prompt describing what should appear in the output.
 
           prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
           duration: The number of seconds of duration for the output video.
@@ -223,7 +223,7 @@ class VideoToVideoResource(SyncAPIResource):
 
         Args:
           prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
           audio: Whether to generate audio for the video.
@@ -294,7 +294,7 @@ class VideoToVideoResource(SyncAPIResource):
 
         Args:
           prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
           audio: Whether to generate audio for the video.
@@ -366,7 +366,7 @@ class VideoToVideoResource(SyncAPIResource):
 
         Args:
           prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
           audio: Whether to generate audio for the video.
@@ -421,7 +421,7 @@ class VideoToVideoResource(SyncAPIResource):
           prompt_text: A non-empty instruction describing the edit to apply.
 
           video_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
           references: An optional array of image references to guide the edit.
@@ -482,7 +482,7 @@ class VideoToVideoResource(SyncAPIResource):
 
         Args:
           prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
           audio: Whether to generate audio for the video.
@@ -717,7 +717,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
 
         Args:
           video_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
           content_moderation: Settings that affect the behavior of the content moderation system.
@@ -781,7 +781,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
           prompt_text: A non-empty text prompt describing what should appear in the output.
 
           prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
           duration: The number of seconds of duration for the output video.
@@ -862,7 +862,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
 
         Args:
           prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
           audio: Whether to generate audio for the video.
@@ -933,7 +933,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
 
         Args:
           prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
           audio: Whether to generate audio for the video.
@@ -1005,7 +1005,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
 
         Args:
           prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
           audio: Whether to generate audio for the video.
@@ -1060,7 +1060,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
           prompt_text: A non-empty instruction describing the edit to apply.
 
           video_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
           references: An optional array of image references to guide the edit.
@@ -1121,7 +1121,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
 
         Args:
           prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
           audio: Whether to generate audio for the video.

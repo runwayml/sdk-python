@@ -47,7 +47,7 @@ class Variant0(TypedDict, total=False):
     video_uri: Required[Annotated[str, PropertyInfo(alias="videoUri")]]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
     [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
@@ -201,7 +201,7 @@ class Hailuo3(TypedDict, total=False):
     prompt_video: Required[Annotated[str, PropertyInfo(alias="promptVideo")]]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
     [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
@@ -249,7 +249,7 @@ class Hailuo3ReferenceAudio(TypedDict, total=False):
     uri: Required[str]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+    `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
     [our docs](/assets/inputs#audio) on audio inputs for more information.
     """
 
@@ -273,7 +273,7 @@ class Hailuo3ReferenceVideo(TypedDict, total=False):
     uri: Required[str]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
     [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
@@ -284,7 +284,7 @@ class Seedance2(TypedDict, total=False):
     prompt_video: Required[Annotated[str, PropertyInfo(alias="promptVideo")]]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
     [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
@@ -358,7 +358,7 @@ class Seedance2ReferenceAudio(TypedDict, total=False):
     uri: Required[str]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+    `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
     [our docs](/assets/inputs#audio) on audio inputs for more information.
     """
 
@@ -382,7 +382,7 @@ class Seedance2ReferenceVideo(TypedDict, total=False):
     uri: Required[str]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
     [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
@@ -393,7 +393,7 @@ class Seedance2Fast(TypedDict, total=False):
     prompt_video: Required[Annotated[str, PropertyInfo(alias="promptVideo")]]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
     [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
@@ -458,7 +458,7 @@ class Seedance2FastReferenceAudio(TypedDict, total=False):
     uri: Required[str]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+    `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
     [our docs](/assets/inputs#audio) on audio inputs for more information.
     """
 
@@ -482,7 +482,7 @@ class Seedance2FastReferenceVideo(TypedDict, total=False):
     uri: Required[str]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
     [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
@@ -493,7 +493,7 @@ class Seedance2Mini(TypedDict, total=False):
     prompt_video: Required[Annotated[str, PropertyInfo(alias="promptVideo")]]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
     [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
@@ -558,7 +558,7 @@ class Seedance2MiniReferenceAudio(TypedDict, total=False):
     uri: Required[str]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+    `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
     [our docs](/assets/inputs#audio) on audio inputs for more information.
     """
 
@@ -582,7 +582,7 @@ class Seedance2MiniReferenceVideo(TypedDict, total=False):
     uri: Required[str]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
     [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
@@ -596,7 +596,7 @@ class GeminiOmniFlash(TypedDict, total=False):
     video_uri: Required[Annotated[str, PropertyInfo(alias="videoUri")]]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
     [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
@@ -619,7 +619,7 @@ class Seedance2_5(TypedDict, total=False):
     prompt_video: Required[Annotated[str, PropertyInfo(alias="promptVideo")]]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
     [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
@@ -699,7 +699,7 @@ class Seedance2_5ReferenceAudio(TypedDict, total=False):
     uri: Required[str]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:audio/mp3;base64,...`, up to 16MB) containing an encoded audio. See
+    `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
     [our docs](/assets/inputs#audio) on audio inputs for more information.
     """
 
@@ -723,7 +723,7 @@ class Seedance2_5ReferenceVideo(TypedDict, total=False):
     uri: Required[str]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
-    `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
     [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
