@@ -80,7 +80,7 @@ class VideoToHdrResource(SyncAPIResource):
 
         Args:
           video_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
           output_format: The HDR delivery profile of the output. `hdr10` (default) returns an HEVC Main
@@ -173,7 +173,7 @@ class AsyncVideoToHdrResource(AsyncAPIResource):
 
         Args:
           video_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:video/mp4;base64,...`, up to 16MB) containing an encoded video. See
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
           output_format: The HDR delivery profile of the output. `hdr10` (default) returns an HEVC Main
