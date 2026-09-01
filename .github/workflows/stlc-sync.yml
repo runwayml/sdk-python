@@ -1,13 +1,13 @@
 name: Sync SDK repos
 
-# Keeps the staging and production trunks in sync and the config repo's
-# tracking files fresh. Each job self-routes by repo + event, so this one file
-# can live in both repos and only the right job runs. The dispatch jobs are
-# eager-only (the polls cover them) and no-op when their token isn't set.
+# Runway render of Stainless fast-forward + merge-commit back-sync.
+# Source: stlc @ 2d1e98f71c3c28db3c6ba9b12f41c1d40eacfab6
+#   examples/sdk-repo/.github/workflows/stlc-sync.yml
+#   examples/sdk-repo-pr/.github/workflows/stlc-sync.yml (merge-commit steps)
+# Decision logic: stainless/scripts/stlc-sync-decision.sh
+# Render: stainless/scripts/render-stlc-sync.sh
 on:
   schedule:
-    # back-sync poll: a cheap pure-git check, twice hourly so an unsynced production
-    # change (e.g. a community PR between releases) can't hold codegen for long.
     - cron: '7,37 * * * *'
   workflow_dispatch: {}
   repository_dispatch:
@@ -15,24 +15,23 @@ on:
   release:
     types: [published]
   push:
-    # main only. stlc preview/integrated/codegen branches never push to main.
     branches: [main]
 
 jobs:
   back-sync:
-    # Fast-forward production main back onto staging so the trunks stay identical.
-    # Runner comes from the STLC_RUNNER repo/org variable when set; defaults to GitHub-hosted.
     runs-on: ${{ vars.STLC_RUNNER || 'ubuntu-latest' }}
     if: >-
       github.repository == 'runwayml/sdk-python-staging' &&
       (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'repository_dispatch')
     permissions:
       contents: write
+      pull-requests: write
     concurrency:
       group: stlc-back-sync
       cancel-in-progress: true
     env:
       PRODUCTION_REPO: runwayml/sdk-python
+      GH_TOKEN: ${{ github.token }}
     steps:
       - name: Check out staging
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -43,42 +42,70 @@ jobs:
         env:
           PRODUCTION_REPO_TOKEN: ${{ secrets.PRODUCTION_REPO_TOKEN }}
         run: |
-          # Public production reads with no credential; a private production
-          # repo needs PRODUCTION_REPO_TOKEN (the same token the promote uses).
           if [ -n "${PRODUCTION_REPO_TOKEN:-}" ]; then
             git remote add production "https://x-access-token:${PRODUCTION_REPO_TOKEN}@github.com/${PRODUCTION_REPO}.git"
           else
             git remote add production "https://github.com/${PRODUCTION_REPO}.git"
           fi
-          # actions/checkout persists this repo's token as an auth header, which
-          # outranks the remote URL credential; blank it for this fetch only.
           git -c "http.https://github.com/.extraheader=" fetch production main
 
-      - name: Check whether production has content staging lacks
+      - name: Check whether staging must advance to production
         id: diff
         run: |
-          # Content compare: would merging production into staging change its tree?
-          # If not, staging already has production's content (release-please commits).
+          set -euo pipefail
+          STAGING_SHA=$(git rev-parse origin/main)
+          PRODUCTION_SHA=$(git rev-parse production/main)
+
+          if [ "$STAGING_SHA" = "$PRODUCTION_SHA" ]; then
+            echo "Staging and production already point to the same commit."
+            echo "behind=false" >> "$GITHUB_OUTPUT"
+            echo "sync_mode=none" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if git merge-base --is-ancestor origin/main production/main; then
+            echo "Production contains newer commits. Staging can fast-forward."
+            echo "behind=true" >> "$GITHUB_OUTPUT"
+            echo "sync_mode=fast-forward" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
           MERGED=$(git merge-tree --write-tree origin/main production/main) || MERGED=conflict
           STAGING_TREE=$(git rev-parse 'origin/main^{tree}')
           if [ "$MERGED" = "$STAGING_TREE" ]; then
-            echo "Staging already has production's content. Nothing to pull back."
-            echo "behind=false" >> "$GITHUB_OUTPUT"
+            echo "Same tree with diverged history — staging must merge production."
           else
-            echo "behind=true" >> "$GITHUB_OUTPUT"
+            echo "Production has content staging lacks — staging must merge production."
           fi
+          echo "behind=true" >> "$GITHUB_OUTPUT"
+          echo "sync_mode=merge-commit" >> "$GITHUB_OUTPUT"
 
       - name: Sync production to staging (fast-forward)
-        if: steps.diff.outputs.behind == 'true'
+        if: steps.diff.outputs.behind == 'true' && steps.diff.outputs.sync_mode == 'fast-forward'
         run: |
-          # Refuse unless staging is an ancestor of production: otherwise the
-          # trunks have forked and a fast-forward would be unsafe.
-          if ! git merge-base --is-ancestor origin/main production/main; then
-            echo "::error title=Back-sync blocked::staging main is not an ancestor of production/main."
-            exit 1
-          fi
           git push origin production/main:refs/heads/main
           echo "Fast-forwarded staging/main to production/main."
+
+      - name: Push production main to the back-sync branch on staging
+        if: steps.diff.outputs.behind == 'true' && steps.diff.outputs.sync_mode == 'merge-commit'
+        run: |
+          git push origin production/main:refs/heads/stlc/from-prod --force
+
+      - name: Open + auto-merge the back-sync PR (merge commit)
+        if: steps.diff.outputs.behind == 'true' && steps.diff.outputs.sync_mode == 'merge-commit'
+        run: |
+          EXISTING_PR=$(gh pr list --head stlc/from-prod --base main --state open --json number --jq '.[0].number')
+          if [ -z "${EXISTING_PR}" ]; then
+            gh pr create \
+              --base main \
+              --head stlc/from-prod \
+              --title "Sync release changes from production" \
+              --body "Pulls production commits back onto staging \`main\` so the next \`stlc build\` re-seals against the released state. Bot-authored; merge with a merge commit."
+          else
+            echo "Back-sync PR #${EXISTING_PR} already exists. The force-push has updated it."
+          fi
+          gh pr merge stlc/from-prod --merge --auto \
+            || echo "Auto-merge unavailable — merge the back-sync PR manually with a merge commit."
 
       - name: Alert on failure
         if: failure()
@@ -96,8 +123,6 @@ jobs:
           fi
 
   notify-back-sync:
-    # On a published release, tell staging to back-sync now instead of waiting for
-    # the poll. Dispatch-only: it cannot write production or staging contents.
     runs-on: ${{ vars.STLC_RUNNER || 'ubuntu-latest' }}
     if: >-
       github.repository == 'runwayml/sdk-python' &&
@@ -148,9 +173,6 @@ jobs:
           fi
 
   seal-dispatch:
-    # When out-of-band custom code lands on staging main, tell the config repo to
-    # re-seal now instead of waiting for its scheduled sync. The loop guards skip
-    # stlc's own pushes, so the bot's commits can't trigger a re-seal loop.
     runs-on: ${{ vars.STLC_RUNNER || 'ubuntu-latest' }}
     if: >-
       github.repository == 'runwayml/sdk-python-staging' &&
@@ -173,13 +195,11 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Loop guard 1: skip the stlc "Build SDK" squash commit (Stainless-Generated-From trailer).
           if printf '%s' "$HEAD_MSG" | grep -q 'Stainless-Generated-From'; then
             echo "Head commit is an stlc build — skipping re-seal dispatch."
             exit 0
           fi
 
-          # Loop guard 2: skip stlc-bot commits (e.g. a regeneration commit).
           if [ "$HEAD_AUTHOR_NAME" = "stlc-bot" ]; then
             echo "Head commit authored by stlc-bot — skipping re-seal dispatch."
             exit 0
