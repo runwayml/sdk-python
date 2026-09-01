@@ -63,6 +63,13 @@ jobs:
             exit 0
           fi
 
+          if git merge-base --is-ancestor production/main origin/main; then
+            echo "Staging already contains production."
+            echo "behind=false" >> "$GITHUB_OUTPUT"
+            echo "sync_mode=none" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
           if git merge-base --is-ancestor origin/main production/main; then
             echo "Production contains newer commits. Staging can fast-forward."
             echo "behind=true" >> "$GITHUB_OUTPUT"
