@@ -291,8 +291,12 @@ class Seedance2(TypedDict, total=False):
     audio: bool
     """Whether to generate audio for the video."""
 
-    duration: int
-    """The number of seconds of duration for the output video."""
+    duration: Union[int, Literal["auto"]]
+    """Seconds of video to generate, or `auto` to let the model choose.
+
+    `auto` is billed at the variant maximum up front; unused credits are refunded
+    after the generation finishes.
+    """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """
@@ -345,6 +349,14 @@ class Seedance2(TypedDict, total=False):
 
     The combined duration across all video references must not exceed 15 seconds.
     See [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
     """
 
 
@@ -400,8 +412,12 @@ class Seedance2Fast(TypedDict, total=False):
     audio: bool
     """Whether to generate audio for the video."""
 
-    duration: int
-    """The number of seconds of duration for the output video."""
+    duration: Union[int, Literal["auto"]]
+    """Seconds of video to generate, or `auto` to let the model choose.
+
+    `auto` is billed at the variant maximum up front; unused credits are refunded
+    after the generation finishes.
+    """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """
@@ -445,6 +461,14 @@ class Seedance2Fast(TypedDict, total=False):
 
     The combined duration across all video references must not exceed 15 seconds.
     See [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
     """
 
 
@@ -500,8 +524,12 @@ class Seedance2Mini(TypedDict, total=False):
     audio: bool
     """Whether to generate audio for the video."""
 
-    duration: int
-    """The number of seconds of duration for the output video."""
+    duration: Union[int, Literal["auto"]]
+    """Seconds of video to generate, or `auto` to let the model choose.
+
+    `auto` is billed at the variant maximum up front; unused credits are refunded
+    after the generation finishes.
+    """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """
@@ -545,6 +573,14 @@ class Seedance2Mini(TypedDict, total=False):
 
     The combined duration across all video references must not exceed 15 seconds.
     See [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
     """
 
 
@@ -626,16 +662,21 @@ class Seedance2_5(TypedDict, total=False):
     audio: bool
     """Whether to generate audio for the video."""
 
-    duration: int
-    """The number of seconds of duration for the output video. Defaults to 5."""
+    duration: Union[int, Literal["auto"]]
+    """Seconds of video to generate, or `auto` to let the model choose.
 
-    mode: Literal["reference", "extend"]
+    `auto` is billed at the variant maximum up front; unused credits are refunded
+    after the generation finishes. Defaults to 5.
+    """
+
+    mode: Literal["reference", "extend", "edit"]
     """How the input video is used.
 
     `reference` (the default) generates a new video conditioned on the input video
     and accepts `duration` and `ratio`. `extend` continues the input video, requires
     `promptText`, and matches the input aspect ratio, so `ratio` may not be
-    provided.
+    provided. `edit` modifies the input video in place, requires `promptText`,
+    requires `duration: "auto"`, and does not accept `ratio`.
     """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
@@ -686,6 +727,14 @@ class Seedance2_5(TypedDict, total=False):
 
     The combined duration across all video references must not exceed 30 seconds.
     See [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
     """
 
 

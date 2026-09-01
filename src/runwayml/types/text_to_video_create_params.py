@@ -155,6 +155,14 @@ class Veo3_1(TypedDict, total=False):
     negative_prompt: Annotated[str, PropertyInfo(alias="negativePrompt")]
     """Text describing what should not appear in the output video."""
 
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
+    """
+
 
 class Veo3_1Fast(TypedDict, total=False):
     model: Required[Literal["veo3.1_fast"]]
@@ -176,6 +184,14 @@ class Veo3_1Fast(TypedDict, total=False):
 
     negative_prompt: Annotated[str, PropertyInfo(alias="negativePrompt")]
     """Text describing what should not appear in the output video."""
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
+    """
 
 
 class Hailuo3(TypedDict, total=False):
@@ -296,8 +312,12 @@ class Seedance2(TypedDict, total=False):
     audio: bool
     """Whether to generate audio for the video."""
 
-    duration: int
-    """The number of seconds of duration for the output video."""
+    duration: Union[int, Literal["auto"]]
+    """Seconds of video to generate, or `auto` to let the model choose.
+
+    `auto` is billed at the variant maximum up front; unused credits are refunded
+    after the generation finishes.
+    """
 
     ratio: Literal[
         "992:432",
@@ -344,6 +364,14 @@ class Seedance2(TypedDict, total=False):
 
     The combined duration across all video references must not exceed 15 seconds.
     See [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
     """
 
 
@@ -398,8 +426,12 @@ class Seedance2Fast(TypedDict, total=False):
     audio: bool
     """Whether to generate audio for the video."""
 
-    duration: int
-    """The number of seconds of duration for the output video."""
+    duration: Union[int, Literal["auto"]]
+    """Seconds of video to generate, or `auto` to let the model choose.
+
+    `auto` is billed at the variant maximum up front; unused credits are refunded
+    after the generation finishes.
+    """
 
     ratio: Literal[
         "992:432",
@@ -437,6 +469,14 @@ class Seedance2Fast(TypedDict, total=False):
 
     The combined duration across all video references must not exceed 15 seconds.
     See [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
     """
 
 
@@ -491,8 +531,12 @@ class Seedance2Mini(TypedDict, total=False):
     audio: bool
     """Whether to generate audio for the video."""
 
-    duration: int
-    """The number of seconds of duration for the output video."""
+    duration: Union[int, Literal["auto"]]
+    """Seconds of video to generate, or `auto` to let the model choose.
+
+    `auto` is billed at the variant maximum up front; unused credits are refunded
+    after the generation finishes.
+    """
 
     ratio: Literal[
         "992:432",
@@ -530,6 +574,14 @@ class Seedance2Mini(TypedDict, total=False):
 
     The combined duration across all video references must not exceed 15 seconds.
     See [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
     """
 
 
@@ -594,8 +646,12 @@ class Seedance2_5(TypedDict, total=False):
     audio: bool
     """Whether to generate audio for the video."""
 
-    duration: int
-    """The number of seconds of duration for the output video."""
+    duration: Union[int, Literal["auto"]]
+    """Seconds of video to generate, or `auto` to let the model choose.
+
+    `auto` is billed at the variant maximum up front; unused credits are refunded
+    after the generation finishes.
+    """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """
@@ -645,6 +701,14 @@ class Seedance2_5(TypedDict, total=False):
 
     The combined duration across all video references must not exceed 30 seconds.
     See [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
     """
 
 

@@ -249,6 +249,14 @@ class Veo3_1(TypedDict, total=False):
     This should describe in detail what should appear in the output.
     """
 
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
+    """
+
 
 class Veo3_1PromptImagePromptImage(TypedDict, total=False):
     position: Required[Literal["first", "last"]]
@@ -294,6 +302,14 @@ class Veo3_1Fast(TypedDict, total=False):
     """A non-empty string up to 1000 characters (measured in UTF-16 code units).
 
     This should describe in detail what should appear in the output.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
     """
 
 
@@ -417,8 +433,12 @@ class Seedance2(TypedDict, total=False):
     audio: bool
     """Whether to generate audio for the video."""
 
-    duration: int
-    """The number of seconds of duration for the output video."""
+    duration: Union[int, Literal["auto"]]
+    """Seconds of video to generate, or `auto` to let the model choose.
+
+    `auto` is billed at the variant maximum up front; unused credits are refunded
+    after the generation finishes.
+    """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """
@@ -458,6 +478,14 @@ class Seedance2(TypedDict, total=False):
     """An optional array of audio references.
 
     The total combined duration must not exceed 15 seconds.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
     """
 
 
@@ -507,8 +535,12 @@ class Seedance2Fast(TypedDict, total=False):
     audio: bool
     """Whether to generate audio for the video."""
 
-    duration: int
-    """The number of seconds of duration for the output video."""
+    duration: Union[int, Literal["auto"]]
+    """Seconds of video to generate, or `auto` to let the model choose.
+
+    `auto` is billed at the variant maximum up front; unused credits are refunded
+    after the generation finishes.
+    """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """
@@ -539,6 +571,14 @@ class Seedance2Fast(TypedDict, total=False):
     """An optional array of audio references.
 
     The total combined duration must not exceed 15 seconds.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
     """
 
 
@@ -588,8 +628,12 @@ class Seedance2Mini(TypedDict, total=False):
     audio: bool
     """Whether to generate audio for the video."""
 
-    duration: int
-    """The number of seconds of duration for the output video."""
+    duration: Union[int, Literal["auto"]]
+    """Seconds of video to generate, or `auto` to let the model choose.
+
+    `auto` is billed at the variant maximum up front; unused credits are refunded
+    after the generation finishes.
+    """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """
@@ -620,6 +664,14 @@ class Seedance2Mini(TypedDict, total=False):
     """An optional array of audio references.
 
     The total combined duration must not exceed 15 seconds.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
     """
 
 
@@ -711,8 +763,12 @@ class Seedance2_5(TypedDict, total=False):
     audio: bool
     """Whether to generate audio for the video."""
 
-    duration: int
-    """The number of seconds of duration for the output video."""
+    duration: Union[int, Literal["auto"]]
+    """Seconds of video to generate, or `auto` to let the model choose.
+
+    `auto` is billed at the variant maximum up front; unused credits are refunded
+    after the generation finishes.
+    """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """
@@ -749,6 +805,14 @@ class Seedance2_5(TypedDict, total=False):
     """An optional array of audio references.
 
     The total combined duration must not exceed 30 seconds.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
     """
 
 

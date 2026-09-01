@@ -202,6 +202,7 @@ class ImageToVideoResource(SyncAPIResource):
         duration: Literal[4, 6, 8] | Omit = omit,
         negative_prompt: str | Omit = omit,
         prompt_text: str | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -227,6 +228,10 @@ class ImageToVideoResource(SyncAPIResource):
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -249,6 +254,7 @@ class ImageToVideoResource(SyncAPIResource):
         duration: Literal[4, 6, 8] | Omit = omit,
         negative_prompt: str | Omit = omit,
         prompt_text: str | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -274,6 +280,10 @@ class ImageToVideoResource(SyncAPIResource):
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -380,7 +390,7 @@ class ImageToVideoResource(SyncAPIResource):
         model: Literal["seedance2"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Seedance2PromptImagePromptImage]],
         audio: bool | Omit = omit,
-        duration: int | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal[
             "992:432",
@@ -410,6 +420,7 @@ class ImageToVideoResource(SyncAPIResource):
         ]
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2ReferenceAudio] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -426,7 +437,9 @@ class ImageToVideoResource(SyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: The number of seconds of duration for the output video.
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
 
           prompt_text: An optional text prompt up to 3500 characters describing what should appear in
               the output.
@@ -435,6 +448,10 @@ class ImageToVideoResource(SyncAPIResource):
 
           reference_audio: An optional array of audio references. The total combined duration must not
               exceed 15 seconds.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -453,7 +470,7 @@ class ImageToVideoResource(SyncAPIResource):
         model: Literal["seedance2_fast"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Seedance2FastPromptImagePromptImage]],
         audio: bool | Omit = omit,
-        duration: int | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal[
             "992:432",
@@ -471,6 +488,7 @@ class ImageToVideoResource(SyncAPIResource):
         ]
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2FastReferenceAudio] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -487,7 +505,9 @@ class ImageToVideoResource(SyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: The number of seconds of duration for the output video.
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
 
           prompt_text: An optional text prompt up to 3500 characters describing what should appear in
               the output.
@@ -497,6 +517,10 @@ class ImageToVideoResource(SyncAPIResource):
 
           reference_audio: An optional array of audio references. The total combined duration must not
               exceed 15 seconds.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -515,7 +539,7 @@ class ImageToVideoResource(SyncAPIResource):
         model: Literal["seedance2_mini"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Seedance2MiniPromptImagePromptImage]],
         audio: bool | Omit = omit,
-        duration: int | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal[
             "992:432",
@@ -533,6 +557,7 @@ class ImageToVideoResource(SyncAPIResource):
         ]
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2MiniReferenceAudio] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -549,7 +574,9 @@ class ImageToVideoResource(SyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: The number of seconds of duration for the output video.
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
 
           prompt_text: An optional text prompt up to 3500 characters describing what should appear in
               the output.
@@ -559,6 +586,10 @@ class ImageToVideoResource(SyncAPIResource):
 
           reference_audio: An optional array of audio references. The total combined duration must not
               exceed 15 seconds.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -618,7 +649,7 @@ class ImageToVideoResource(SyncAPIResource):
         model: Literal["seedance2_5"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]],
         audio: bool | Omit = omit,
-        duration: int | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal[
             "992:432",
@@ -642,6 +673,7 @@ class ImageToVideoResource(SyncAPIResource):
         ]
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -658,7 +690,9 @@ class ImageToVideoResource(SyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: The number of seconds of duration for the output video.
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
 
           prompt_text: An optional text prompt up to 15000 characters describing what should appear in
               the output.
@@ -667,6 +701,10 @@ class ImageToVideoResource(SyncAPIResource):
 
           reference_audio: An optional array of audio references. The total combined duration must not
               exceed 30 seconds.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -799,7 +837,7 @@ class ImageToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
-        duration: int | Literal[4, 6, 8] | Omit = omit,
+        duration: int | Literal[4, 6, 8] | Union[int, Literal["auto"]] | Omit = omit,
         model: Literal["gen4.5"]
         | Literal["gen4_turbo"]
         | Literal["veo3.1"]
@@ -1148,6 +1186,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         duration: Literal[4, 6, 8] | Omit = omit,
         negative_prompt: str | Omit = omit,
         prompt_text: str | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1173,6 +1212,10 @@ class AsyncImageToVideoResource(AsyncAPIResource):
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -1195,6 +1238,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         duration: Literal[4, 6, 8] | Omit = omit,
         negative_prompt: str | Omit = omit,
         prompt_text: str | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1220,6 +1264,10 @@ class AsyncImageToVideoResource(AsyncAPIResource):
 
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -1326,7 +1374,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         model: Literal["seedance2"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Seedance2PromptImagePromptImage]],
         audio: bool | Omit = omit,
-        duration: int | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal[
             "992:432",
@@ -1356,6 +1404,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         ]
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2ReferenceAudio] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1372,7 +1421,9 @@ class AsyncImageToVideoResource(AsyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: The number of seconds of duration for the output video.
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
 
           prompt_text: An optional text prompt up to 3500 characters describing what should appear in
               the output.
@@ -1381,6 +1432,10 @@ class AsyncImageToVideoResource(AsyncAPIResource):
 
           reference_audio: An optional array of audio references. The total combined duration must not
               exceed 15 seconds.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -1399,7 +1454,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         model: Literal["seedance2_fast"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Seedance2FastPromptImagePromptImage]],
         audio: bool | Omit = omit,
-        duration: int | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal[
             "992:432",
@@ -1417,6 +1472,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         ]
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2FastReferenceAudio] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1433,7 +1489,9 @@ class AsyncImageToVideoResource(AsyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: The number of seconds of duration for the output video.
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
 
           prompt_text: An optional text prompt up to 3500 characters describing what should appear in
               the output.
@@ -1443,6 +1501,10 @@ class AsyncImageToVideoResource(AsyncAPIResource):
 
           reference_audio: An optional array of audio references. The total combined duration must not
               exceed 15 seconds.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -1461,7 +1523,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         model: Literal["seedance2_mini"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Seedance2MiniPromptImagePromptImage]],
         audio: bool | Omit = omit,
-        duration: int | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal[
             "992:432",
@@ -1479,6 +1541,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         ]
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2MiniReferenceAudio] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1495,7 +1558,9 @@ class AsyncImageToVideoResource(AsyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: The number of seconds of duration for the output video.
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
 
           prompt_text: An optional text prompt up to 3500 characters describing what should appear in
               the output.
@@ -1505,6 +1570,10 @@ class AsyncImageToVideoResource(AsyncAPIResource):
 
           reference_audio: An optional array of audio references. The total combined duration must not
               exceed 15 seconds.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -1564,7 +1633,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         model: Literal["seedance2_5"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]],
         audio: bool | Omit = omit,
-        duration: int | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal[
             "992:432",
@@ -1588,6 +1657,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         ]
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1604,7 +1674,9 @@ class AsyncImageToVideoResource(AsyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: The number of seconds of duration for the output video.
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
 
           prompt_text: An optional text prompt up to 15000 characters describing what should appear in
               the output.
@@ -1613,6 +1685,10 @@ class AsyncImageToVideoResource(AsyncAPIResource):
 
           reference_audio: An optional array of audio references. The total combined duration must not
               exceed 30 seconds.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -1745,7 +1821,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        duration: int | Literal[4, 6, 8] | Omit = omit,
+        duration: int | Literal[4, 6, 8] | Union[int, Literal["auto"]] | Omit = omit,
         model: Literal["gen4.5"]
         | Literal["gen4_turbo"]
         | Literal["veo3.1"]

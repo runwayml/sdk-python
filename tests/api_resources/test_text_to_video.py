@@ -89,6 +89,7 @@ class TestTextToVideo:
             audio=True,
             duration=4,
             negative_prompt="x",
+            seed=0,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
@@ -138,6 +139,7 @@ class TestTextToVideo:
             audio=True,
             duration=4,
             negative_prompt="x",
+            seed=0,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
@@ -285,7 +287,7 @@ class TestTextToVideo:
             model="seedance2",
             prompt_text="x",
             audio=True,
-            duration=4,
+            duration="auto",
             ratio="992:432",
             reference_audio=[
                 {
@@ -300,6 +302,7 @@ class TestTextToVideo:
                     "uri": "https://example.com/video.mp4",
                 }
             ],
+            seed=0,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
@@ -343,7 +346,7 @@ class TestTextToVideo:
             model="seedance2_fast",
             prompt_text="x",
             audio=True,
-            duration=4,
+            duration="auto",
             ratio="992:432",
             reference_audio=[
                 {
@@ -358,6 +361,7 @@ class TestTextToVideo:
                     "uri": "https://example.com/video.mp4",
                 }
             ],
+            seed=0,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
@@ -401,7 +405,7 @@ class TestTextToVideo:
             model="seedance2_mini",
             prompt_text="x",
             audio=True,
-            duration=4,
+            duration="auto",
             ratio="992:432",
             reference_audio=[
                 {
@@ -416,6 +420,7 @@ class TestTextToVideo:
                     "uri": "https://example.com/video.mp4",
                 }
             ],
+            seed=0,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
@@ -501,7 +506,7 @@ class TestTextToVideo:
         text_to_video = client.text_to_video.create(
             model="seedance2_5",
             audio=True,
-            duration=4,
+            duration="auto",
             prompt_text="x",
             ratio="992:432",
             reference_audio=[
@@ -517,6 +522,7 @@ class TestTextToVideo:
                     "uri": "https://example.com/video.mp4",
                 }
             ],
+            seed=0,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
@@ -732,6 +738,7 @@ class TestAsyncTextToVideo:
             audio=True,
             duration=4,
             negative_prompt="x",
+            seed=0,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
@@ -781,6 +788,7 @@ class TestAsyncTextToVideo:
             audio=True,
             duration=4,
             negative_prompt="x",
+            seed=0,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
@@ -928,7 +936,7 @@ class TestAsyncTextToVideo:
             model="seedance2",
             prompt_text="x",
             audio=True,
-            duration=4,
+            duration="auto",
             ratio="992:432",
             reference_audio=[
                 {
@@ -943,6 +951,7 @@ class TestAsyncTextToVideo:
                     "uri": "https://example.com/video.mp4",
                 }
             ],
+            seed=0,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
@@ -986,7 +995,7 @@ class TestAsyncTextToVideo:
             model="seedance2_fast",
             prompt_text="x",
             audio=True,
-            duration=4,
+            duration="auto",
             ratio="992:432",
             reference_audio=[
                 {
@@ -1001,6 +1010,7 @@ class TestAsyncTextToVideo:
                     "uri": "https://example.com/video.mp4",
                 }
             ],
+            seed=0,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
@@ -1044,7 +1054,7 @@ class TestAsyncTextToVideo:
             model="seedance2_mini",
             prompt_text="x",
             audio=True,
-            duration=4,
+            duration="auto",
             ratio="992:432",
             reference_audio=[
                 {
@@ -1059,6 +1069,7 @@ class TestAsyncTextToVideo:
                     "uri": "https://example.com/video.mp4",
                 }
             ],
+            seed=0,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 
@@ -1144,7 +1155,7 @@ class TestAsyncTextToVideo:
         text_to_video = await async_client.text_to_video.create(
             model="seedance2_5",
             audio=True,
-            duration=4,
+            duration="auto",
             prompt_text="x",
             ratio="992:432",
             reference_audio=[
@@ -1160,6 +1171,7 @@ class TestAsyncTextToVideo:
                     "uri": "https://example.com/video.mp4",
                 }
             ],
+            seed=0,
         )
         assert_matches_type(TextToVideoCreateResponse, text_to_video, path=["response"])
 

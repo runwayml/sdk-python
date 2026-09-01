@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, overload
 
 import httpx
@@ -179,7 +179,7 @@ class VideoToVideoResource(SyncAPIResource):
         model: Literal["seedance2"],
         prompt_video: str,
         audio: bool | Omit = omit,
-        duration: int | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal[
             "992:432",
@@ -211,6 +211,7 @@ class VideoToVideoResource(SyncAPIResource):
         reference_audio: Iterable[video_to_video_create_params.Seedance2ReferenceAudio] | Omit = omit,
         references: Iterable[video_to_video_create_params.Seedance2Reference] | Omit = omit,
         reference_videos: Iterable[video_to_video_create_params.Seedance2ReferenceVideo] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -228,7 +229,9 @@ class VideoToVideoResource(SyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: The number of seconds of duration for the output video.
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
 
           prompt_text: An optional text prompt up to 3500 characters describing what should appear in
               the output.
@@ -244,6 +247,10 @@ class VideoToVideoResource(SyncAPIResource):
           reference_videos: An optional array of video references. The combined duration across all video
               references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -262,7 +269,7 @@ class VideoToVideoResource(SyncAPIResource):
         model: Literal["seedance2_fast"],
         prompt_video: str,
         audio: bool | Omit = omit,
-        duration: int | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal[
             "992:432",
@@ -282,6 +289,7 @@ class VideoToVideoResource(SyncAPIResource):
         reference_audio: Iterable[video_to_video_create_params.Seedance2FastReferenceAudio] | Omit = omit,
         references: Iterable[video_to_video_create_params.Seedance2FastReference] | Omit = omit,
         reference_videos: Iterable[video_to_video_create_params.Seedance2FastReferenceVideo] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -299,7 +307,9 @@ class VideoToVideoResource(SyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: The number of seconds of duration for the output video.
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
 
           prompt_text: An optional text prompt up to 3500 characters describing what should appear in
               the output.
@@ -316,6 +326,10 @@ class VideoToVideoResource(SyncAPIResource):
           reference_videos: An optional array of video references. The combined duration across all video
               references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -334,7 +348,7 @@ class VideoToVideoResource(SyncAPIResource):
         model: Literal["seedance2_mini"],
         prompt_video: str,
         audio: bool | Omit = omit,
-        duration: int | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal[
             "992:432",
@@ -354,6 +368,7 @@ class VideoToVideoResource(SyncAPIResource):
         reference_audio: Iterable[video_to_video_create_params.Seedance2MiniReferenceAudio] | Omit = omit,
         references: Iterable[video_to_video_create_params.Seedance2MiniReference] | Omit = omit,
         reference_videos: Iterable[video_to_video_create_params.Seedance2MiniReferenceVideo] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -371,7 +386,9 @@ class VideoToVideoResource(SyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: The number of seconds of duration for the output video.
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
 
           prompt_text: An optional text prompt up to 3500 characters describing what should appear in
               the output.
@@ -388,6 +405,10 @@ class VideoToVideoResource(SyncAPIResource):
           reference_videos: An optional array of video references. The combined duration across all video
               references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -443,8 +464,8 @@ class VideoToVideoResource(SyncAPIResource):
         model: Literal["seedance2_5"],
         prompt_video: str,
         audio: bool | Omit = omit,
-        duration: int | Omit = omit,
-        mode: Literal["reference", "extend"] | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
+        mode: Literal["reference", "extend", "edit"] | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal[
             "992:432",
@@ -470,6 +491,7 @@ class VideoToVideoResource(SyncAPIResource):
         reference_audio: Iterable[video_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
         references: Iterable[video_to_video_create_params.Seedance2_5Reference] | Omit = omit,
         reference_videos: Iterable[video_to_video_create_params.Seedance2_5ReferenceVideo] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -487,12 +509,15 @@ class VideoToVideoResource(SyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: The number of seconds of duration for the output video. Defaults to 5.
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes. Defaults to 5.
 
           mode: How the input video is used. `reference` (the default) generates a new video
               conditioned on the input video and accepts `duration` and `ratio`. `extend`
               continues the input video, requires `promptText`, and matches the input aspect
-              ratio, so `ratio` may not be provided.
+              ratio, so `ratio` may not be provided. `edit` modifies the input video in place,
+              requires `promptText`, requires `duration: "auto"`, and does not accept `ratio`.
 
           prompt_text: An optional text prompt up to 15000 characters describing what should appear in
               the output.
@@ -508,6 +533,10 @@ class VideoToVideoResource(SyncAPIResource):
           reference_videos: An optional array of video references. The combined duration across all video
               references must not exceed 30 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -607,7 +636,7 @@ class VideoToVideoResource(SyncAPIResource):
         seed: int | Omit = omit,
         target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
         prompt_video: str | Omit = omit,
-        duration: int | Omit = omit,
+        duration: int | Union[int, Literal["auto"]] | Omit = omit,
         reference_audio: Iterable[video_to_video_create_params.Hailuo3ReferenceAudio]
         | Iterable[video_to_video_create_params.Seedance2ReferenceAudio]
         | Iterable[video_to_video_create_params.Seedance2FastReferenceAudio]
@@ -629,7 +658,7 @@ class VideoToVideoResource(SyncAPIResource):
         | Omit = omit,
         resolution: Literal["2K", "768P"] | Omit = omit,
         audio: bool | Omit = omit,
-        mode: Literal["reference", "extend"] | Omit = omit,
+        mode: Literal["reference", "extend", "edit"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -818,7 +847,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         model: Literal["seedance2"],
         prompt_video: str,
         audio: bool | Omit = omit,
-        duration: int | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal[
             "992:432",
@@ -850,6 +879,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         reference_audio: Iterable[video_to_video_create_params.Seedance2ReferenceAudio] | Omit = omit,
         references: Iterable[video_to_video_create_params.Seedance2Reference] | Omit = omit,
         reference_videos: Iterable[video_to_video_create_params.Seedance2ReferenceVideo] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -867,7 +897,9 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: The number of seconds of duration for the output video.
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
 
           prompt_text: An optional text prompt up to 3500 characters describing what should appear in
               the output.
@@ -883,6 +915,10 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
           reference_videos: An optional array of video references. The combined duration across all video
               references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -901,7 +937,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         model: Literal["seedance2_fast"],
         prompt_video: str,
         audio: bool | Omit = omit,
-        duration: int | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal[
             "992:432",
@@ -921,6 +957,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         reference_audio: Iterable[video_to_video_create_params.Seedance2FastReferenceAudio] | Omit = omit,
         references: Iterable[video_to_video_create_params.Seedance2FastReference] | Omit = omit,
         reference_videos: Iterable[video_to_video_create_params.Seedance2FastReferenceVideo] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -938,7 +975,9 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: The number of seconds of duration for the output video.
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
 
           prompt_text: An optional text prompt up to 3500 characters describing what should appear in
               the output.
@@ -955,6 +994,10 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
           reference_videos: An optional array of video references. The combined duration across all video
               references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -973,7 +1016,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         model: Literal["seedance2_mini"],
         prompt_video: str,
         audio: bool | Omit = omit,
-        duration: int | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal[
             "992:432",
@@ -993,6 +1036,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         reference_audio: Iterable[video_to_video_create_params.Seedance2MiniReferenceAudio] | Omit = omit,
         references: Iterable[video_to_video_create_params.Seedance2MiniReference] | Omit = omit,
         reference_videos: Iterable[video_to_video_create_params.Seedance2MiniReferenceVideo] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1010,7 +1054,9 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: The number of seconds of duration for the output video.
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
 
           prompt_text: An optional text prompt up to 3500 characters describing what should appear in
               the output.
@@ -1027,6 +1073,10 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
           reference_videos: An optional array of video references. The combined duration across all video
               references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -1082,8 +1132,8 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         model: Literal["seedance2_5"],
         prompt_video: str,
         audio: bool | Omit = omit,
-        duration: int | Omit = omit,
-        mode: Literal["reference", "extend"] | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
+        mode: Literal["reference", "extend", "edit"] | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal[
             "992:432",
@@ -1109,6 +1159,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         reference_audio: Iterable[video_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
         references: Iterable[video_to_video_create_params.Seedance2_5Reference] | Omit = omit,
         reference_videos: Iterable[video_to_video_create_params.Seedance2_5ReferenceVideo] | Omit = omit,
+        seed: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1126,12 +1177,15 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
 
           audio: Whether to generate audio for the video.
 
-          duration: The number of seconds of duration for the output video. Defaults to 5.
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes. Defaults to 5.
 
           mode: How the input video is used. `reference` (the default) generates a new video
               conditioned on the input video and accepts `duration` and `ratio`. `extend`
               continues the input video, requires `promptText`, and matches the input aspect
-              ratio, so `ratio` may not be provided.
+              ratio, so `ratio` may not be provided. `edit` modifies the input video in place,
+              requires `promptText`, requires `duration: "auto"`, and does not accept `ratio`.
 
           prompt_text: An optional text prompt up to 15000 characters describing what should appear in
               the output.
@@ -1147,6 +1201,10 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
           reference_videos: An optional array of video references. The combined duration across all video
               references must not exceed 30 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -1246,7 +1304,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         seed: int | Omit = omit,
         target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
         prompt_video: str | Omit = omit,
-        duration: int | Omit = omit,
+        duration: int | Union[int, Literal["auto"]] | Omit = omit,
         reference_audio: Iterable[video_to_video_create_params.Hailuo3ReferenceAudio]
         | Iterable[video_to_video_create_params.Seedance2ReferenceAudio]
         | Iterable[video_to_video_create_params.Seedance2FastReferenceAudio]
@@ -1268,7 +1326,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         | Omit = omit,
         resolution: Literal["2K", "768P"] | Omit = omit,
         audio: bool | Omit = omit,
-        mode: Literal["reference", "extend"] | Omit = omit,
+        mode: Literal["reference", "extend", "edit"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
