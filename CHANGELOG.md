@@ -1,5 +1,20 @@
 # Changelog
 
+## [5.18.0](https://github.com/runwayml/sdk-python/compare/v5.17.1...v5.18.0) (2026-09-01)
+
+
+### Features
+
+* add Seedance and Veo generation options ([da970e1](https://github.com/runwayml/sdk-python/commit/da970e14a0b32460c618d2cc9c90c2badbc9b67c))
+
+
+### Bug Fixes
+
+* **stlc:** back-sync when trees match but histories diverge ([97da4f1](https://github.com/runwayml/sdk-python/commit/97da4f11f2005e4e47197976b114178e70914e03))
+* **stlc:** back-sync when trees match but histories diverge ([10363ed](https://github.com/runwayml/sdk-python/commit/10363ed4b361aca0433a060400218273bd4edc1b))
+* **stlc:** no-op back-sync when staging already contains production ([1931c36](https://github.com/runwayml/sdk-python/commit/1931c364c126bb93d260045a484b75a66608e691))
+* **stlc:** no-op back-sync when staging already contains production ([64c5204](https://github.com/runwayml/sdk-python/commit/64c5204a11b7f4eaab0b851004d029d02f74eeef))
+
 ## [5.17.1](https://github.com/runwayml/sdk-python/compare/v5.17.0...v5.17.1) (2026-08-31)
 
 
