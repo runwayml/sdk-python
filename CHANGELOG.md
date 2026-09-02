@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.19.1](https://github.com/runwayml/sdk-python/compare/v5.19.0...v5.19.1) (2026-09-02)
+
+
+### Chores
+
+* reject unknown router and Veo fields ([721cbba](https://github.com/runwayml/sdk-python/commit/721cbba5ed6fbb8c22d02dc0e22e69c10514ebe6))
+
 ## [5.19.0](https://github.com/runwayml/sdk-python/compare/v5.18.0...v5.19.0) (2026-09-02)
 
 
