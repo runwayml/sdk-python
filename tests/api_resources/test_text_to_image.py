@@ -143,7 +143,7 @@ class TestTextToImage:
             model="gpt_image_2",
             prompt_text="x",
             ratio="2048:880",
-            background="opaque",
+            background="transparent",
             output_count=1,
             quality="low",
             reference_images=[
@@ -307,6 +307,7 @@ class TestTextToImage:
             prompt_text="x",
             ratio="2352:1008",
             output_count=1,
+            output_format="webp",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
@@ -673,7 +674,7 @@ class TestAsyncTextToImage:
             model="gpt_image_2",
             prompt_text="x",
             ratio="2048:880",
-            background="opaque",
+            background="transparent",
             output_count=1,
             quality="low",
             reference_images=[
@@ -837,6 +838,7 @@ class TestAsyncTextToImage:
             prompt_text="x",
             ratio="2352:1008",
             output_count=1,
+            output_format="webp",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])

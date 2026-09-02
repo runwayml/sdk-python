@@ -232,11 +232,11 @@ class GptImage2(TypedDict, total=False):
     Use `auto` to let the model choose.
     """
 
-    background: Literal["opaque", "auto"]
+    background: Literal["transparent", "opaque", "auto"]
     """Background treatment.
 
-    Defaults to `auto`, which lets the model pick. `transparent` is not supported by
-    this model.
+    Defaults to `auto`, which lets the model pick. Use `transparent` to generate a
+    PNG with an alpha-channel background.
     """
 
     output_count: Annotated[int, PropertyInfo(alias="outputCount")]
@@ -252,7 +252,7 @@ class GptImage2(TypedDict, total=False):
     reference_images: Annotated[Iterable[GptImage2ReferenceImage], PropertyInfo(alias="referenceImages")]
     """
     An array of up to 16 images to be used as references for the generated image
-    output.
+    output. No two images may share the same tag.
     """
 
 
@@ -490,6 +490,9 @@ class MuseImage(TypedDict, total=False):
     output_count: Annotated[int, PropertyInfo(alias="outputCount")]
     """The number of images to generate. Each image costs 1 credit."""
 
+    output_format: Annotated[Literal["webp", "png", "jpeg"], PropertyInfo(alias="outputFormat")]
+    """The file format of the output image. Defaults to png."""
+
     reference_images: Annotated[Iterable[MuseImageReferenceImage], PropertyInfo(alias="referenceImages")]
     """Up to 10 images to guide the generation.
 
@@ -578,26 +581,33 @@ class Seedream5Lite(TypedDict, total=False):
     """A non-empty string up to 4,000 characters describing the desired image."""
 
     ratio: Required[
-        Literal[
-            "2048:2048",
-            "2304:1728",
-            "1728:2304",
-            "2848:1600",
-            "1600:2848",
-            "2496:1664",
-            "1664:2496",
-            "3136:1344",
-            "3072:3072",
-            "3456:2592",
-            "2592:3456",
-            "4096:2304",
-            "2304:4096",
-            "3744:2496",
-            "2496:3744",
-            "4704:2016",
+        Union[
+            Literal[
+                "2048:2048",
+                "2304:1728",
+                "1728:2304",
+                "2848:1600",
+                "1600:2848",
+                "2496:1664",
+                "1664:2496",
+                "3136:1344",
+                "3072:3072",
+                "3456:2592",
+                "2592:3456",
+                "4096:2304",
+                "2304:4096",
+                "3744:2496",
+                "2496:3744",
+                "4704:2016",
+            ],
+            str,
         ]
     ]
-    """The resolution of the output image, expressed as `<width>:<height>`."""
+    """The resolution of the output image, expressed as `<width>:<height>`.
+
+    Also accepts freeform sizes whose width\\**height is between 3686400 and 16777216
+    pixels.
+    """
 
     grounding: bool
     """
