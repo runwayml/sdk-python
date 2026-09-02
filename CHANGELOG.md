@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.19.0](https://github.com/runwayml/sdk-python/compare/v5.18.0...v5.19.0) (2026-09-02)
+
+
+### Features
+
+* add image generation options ([2a755a9](https://github.com/runwayml/sdk-python/commit/2a755a98cd276d2b96318fbfc3fc00f4294bc640))
+
 ## [5.18.0](https://github.com/runwayml/sdk-python/compare/v5.17.1...v5.18.0) (2026-09-01)
 
 
