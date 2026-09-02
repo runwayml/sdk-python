@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, overload
 
 import httpx
@@ -215,7 +215,7 @@ class TextToImageResource(SyncAPIResource):
             "2160:3840",
             "auto",
         ],
-        background: Literal["opaque", "auto"] | Omit = omit,
+        background: Literal["transparent", "opaque", "auto"] | Omit = omit,
         output_count: int | Omit = omit,
         quality: Literal["low", "medium", "high", "auto"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GptImage2ReferenceImage] | Omit = omit,
@@ -235,8 +235,8 @@ class TextToImageResource(SyncAPIResource):
           ratio: The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
               to let the model choose.
 
-          background: Background treatment. Defaults to `auto`, which lets the model pick.
-              `transparent` is not supported by this model.
+          background: Background treatment. Defaults to `auto`, which lets the model pick. Use
+              `transparent` to generate a PNG with an alpha-channel background.
 
           output_count: The number of images to generate (1-10). Increasing this number will affect the
               number of credits consumed by the generation.
@@ -244,7 +244,7 @@ class TextToImageResource(SyncAPIResource):
           quality: Rendering quality. Higher qualities consume more credits. Defaults to `high`.
 
           reference_images: An array of up to 16 images to be used as references for the generated image
-              output.
+              output. No two images may share the same tag.
 
           extra_headers: Send extra headers
 
@@ -450,6 +450,7 @@ class TextToImageResource(SyncAPIResource):
             "auto",
         ],
         output_count: int | Omit = omit,
+        output_format: Literal["webp", "png", "jpeg"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.MuseImageReferenceImage] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -468,6 +469,8 @@ class TextToImageResource(SyncAPIResource):
               to let the model choose the framing from the prompt.
 
           output_count: The number of images to generate. Each image costs 1 credit.
+
+          output_format: The file format of the output image. Defaults to png.
 
           reference_images: Up to 10 images to guide the generation. When provided, the model edits and
               combines them as your prompt describes instead of generating from the prompt
@@ -555,23 +558,26 @@ class TextToImageResource(SyncAPIResource):
         *,
         model: Literal["seedream5_lite"],
         prompt_text: str,
-        ratio: Literal[
-            "2048:2048",
-            "2304:1728",
-            "1728:2304",
-            "2848:1600",
-            "1600:2848",
-            "2496:1664",
-            "1664:2496",
-            "3136:1344",
-            "3072:3072",
-            "3456:2592",
-            "2592:3456",
-            "4096:2304",
-            "2304:4096",
-            "3744:2496",
-            "2496:3744",
-            "4704:2016",
+        ratio: Union[
+            Literal[
+                "2048:2048",
+                "2304:1728",
+                "1728:2304",
+                "2848:1600",
+                "1600:2848",
+                "2496:1664",
+                "1664:2496",
+                "3136:1344",
+                "3072:3072",
+                "3456:2592",
+                "2592:3456",
+                "4096:2304",
+                "2304:4096",
+                "3744:2496",
+                "2496:3744",
+                "4704:2016",
+            ],
+            str,
         ],
         grounding: bool | Omit = omit,
         output_count: int | Omit = omit,
@@ -590,7 +596,9 @@ class TextToImageResource(SyncAPIResource):
         Args:
           prompt_text: A non-empty string up to 4,000 characters describing the desired image.
 
-          ratio: The resolution of the output image, expressed as `<width>:<height>`.
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. Also
+              accepts freeform sizes whose width\\**height is between 3686400 and 16777216
+              pixels.
 
           grounding: When true, enable live web search so the model can use current brand, trend, or
               event context. Default false for deterministic output.
@@ -926,23 +934,26 @@ class TextToImageResource(SyncAPIResource):
             "auto_1k",
             "auto_2k",
         ]
-        | Literal[
-            "2048:2048",
-            "2304:1728",
-            "1728:2304",
-            "2848:1600",
-            "1600:2848",
-            "2496:1664",
-            "1664:2496",
-            "3136:1344",
-            "3072:3072",
-            "3456:2592",
-            "2592:3456",
-            "4096:2304",
-            "2304:4096",
-            "3744:2496",
-            "2496:3744",
-            "4704:2016",
+        | Union[
+            Literal[
+                "2048:2048",
+                "2304:1728",
+                "1728:2304",
+                "2848:1600",
+                "1600:2848",
+                "2496:1664",
+                "1664:2496",
+                "3136:1344",
+                "3072:3072",
+                "3456:2592",
+                "2592:3456",
+                "4096:2304",
+                "2304:4096",
+                "3744:2496",
+                "2496:3744",
+                "4704:2016",
+            ],
+            str,
         ]
         | Literal[
             "1024:1024",
@@ -1001,11 +1012,11 @@ class TextToImageResource(SyncAPIResource):
         | text_to_image_create_params.Gen4ImageContentModeration
         | Omit = omit,
         seed: int | Omit = omit,
-        background: Literal["opaque", "auto"] | Omit = omit,
+        background: Literal["transparent", "opaque", "auto"] | Omit = omit,
         output_count: int | Literal[1, 4] | Omit = omit,
         quality: Literal["low", "medium", "high", "auto"] | Literal["low", "medium"] | Omit = omit,
+        output_format: Literal["webp", "png", "jpeg"] | Literal["png", "jpeg"] | Omit = omit,
         grounding: bool | Omit = omit,
-        output_format: Literal["png", "jpeg"] | Omit = omit,
         edit: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1027,8 +1038,8 @@ class TextToImageResource(SyncAPIResource):
                     "background": background,
                     "output_count": output_count,
                     "quality": quality,
-                    "grounding": grounding,
                     "output_format": output_format,
+                    "grounding": grounding,
                     "edit": edit,
                 },
                 text_to_image_create_params.TextToImageCreateParams,
@@ -1225,7 +1236,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "2160:3840",
             "auto",
         ],
-        background: Literal["opaque", "auto"] | Omit = omit,
+        background: Literal["transparent", "opaque", "auto"] | Omit = omit,
         output_count: int | Omit = omit,
         quality: Literal["low", "medium", "high", "auto"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GptImage2ReferenceImage] | Omit = omit,
@@ -1245,8 +1256,8 @@ class AsyncTextToImageResource(AsyncAPIResource):
           ratio: The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
               to let the model choose.
 
-          background: Background treatment. Defaults to `auto`, which lets the model pick.
-              `transparent` is not supported by this model.
+          background: Background treatment. Defaults to `auto`, which lets the model pick. Use
+              `transparent` to generate a PNG with an alpha-channel background.
 
           output_count: The number of images to generate (1-10). Increasing this number will affect the
               number of credits consumed by the generation.
@@ -1254,7 +1265,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
           quality: Rendering quality. Higher qualities consume more credits. Defaults to `high`.
 
           reference_images: An array of up to 16 images to be used as references for the generated image
-              output.
+              output. No two images may share the same tag.
 
           extra_headers: Send extra headers
 
@@ -1460,6 +1471,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "auto",
         ],
         output_count: int | Omit = omit,
+        output_format: Literal["webp", "png", "jpeg"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.MuseImageReferenceImage] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1478,6 +1490,8 @@ class AsyncTextToImageResource(AsyncAPIResource):
               to let the model choose the framing from the prompt.
 
           output_count: The number of images to generate. Each image costs 1 credit.
+
+          output_format: The file format of the output image. Defaults to png.
 
           reference_images: Up to 10 images to guide the generation. When provided, the model edits and
               combines them as your prompt describes instead of generating from the prompt
@@ -1565,23 +1579,26 @@ class AsyncTextToImageResource(AsyncAPIResource):
         *,
         model: Literal["seedream5_lite"],
         prompt_text: str,
-        ratio: Literal[
-            "2048:2048",
-            "2304:1728",
-            "1728:2304",
-            "2848:1600",
-            "1600:2848",
-            "2496:1664",
-            "1664:2496",
-            "3136:1344",
-            "3072:3072",
-            "3456:2592",
-            "2592:3456",
-            "4096:2304",
-            "2304:4096",
-            "3744:2496",
-            "2496:3744",
-            "4704:2016",
+        ratio: Union[
+            Literal[
+                "2048:2048",
+                "2304:1728",
+                "1728:2304",
+                "2848:1600",
+                "1600:2848",
+                "2496:1664",
+                "1664:2496",
+                "3136:1344",
+                "3072:3072",
+                "3456:2592",
+                "2592:3456",
+                "4096:2304",
+                "2304:4096",
+                "3744:2496",
+                "2496:3744",
+                "4704:2016",
+            ],
+            str,
         ],
         grounding: bool | Omit = omit,
         output_count: int | Omit = omit,
@@ -1600,7 +1617,9 @@ class AsyncTextToImageResource(AsyncAPIResource):
         Args:
           prompt_text: A non-empty string up to 4,000 characters describing the desired image.
 
-          ratio: The resolution of the output image, expressed as `<width>:<height>`.
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. Also
+              accepts freeform sizes whose width\\**height is between 3686400 and 16777216
+              pixels.
 
           grounding: When true, enable live web search so the model can use current brand, trend, or
               event context. Default false for deterministic output.
@@ -1936,23 +1955,26 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "auto_1k",
             "auto_2k",
         ]
-        | Literal[
-            "2048:2048",
-            "2304:1728",
-            "1728:2304",
-            "2848:1600",
-            "1600:2848",
-            "2496:1664",
-            "1664:2496",
-            "3136:1344",
-            "3072:3072",
-            "3456:2592",
-            "2592:3456",
-            "4096:2304",
-            "2304:4096",
-            "3744:2496",
-            "2496:3744",
-            "4704:2016",
+        | Union[
+            Literal[
+                "2048:2048",
+                "2304:1728",
+                "1728:2304",
+                "2848:1600",
+                "1600:2848",
+                "2496:1664",
+                "1664:2496",
+                "3136:1344",
+                "3072:3072",
+                "3456:2592",
+                "2592:3456",
+                "4096:2304",
+                "2304:4096",
+                "3744:2496",
+                "2496:3744",
+                "4704:2016",
+            ],
+            str,
         ]
         | Literal[
             "1024:1024",
@@ -2011,11 +2033,11 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | text_to_image_create_params.Gen4ImageContentModeration
         | Omit = omit,
         seed: int | Omit = omit,
-        background: Literal["opaque", "auto"] | Omit = omit,
+        background: Literal["transparent", "opaque", "auto"] | Omit = omit,
         output_count: int | Literal[1, 4] | Omit = omit,
         quality: Literal["low", "medium", "high", "auto"] | Literal["low", "medium"] | Omit = omit,
+        output_format: Literal["webp", "png", "jpeg"] | Literal["png", "jpeg"] | Omit = omit,
         grounding: bool | Omit = omit,
-        output_format: Literal["png", "jpeg"] | Omit = omit,
         edit: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2037,8 +2059,8 @@ class AsyncTextToImageResource(AsyncAPIResource):
                     "background": background,
                     "output_count": output_count,
                     "quality": quality,
-                    "grounding": grounding,
                     "output_format": output_format,
+                    "grounding": grounding,
                     "edit": edit,
                 },
                 text_to_image_create_params.TextToImageCreateParams,
