@@ -38,6 +38,8 @@ __all__ = [
     "Seedance2_5ReferenceAudio",
     "Seedance2_5Reference",
     "Seedance2_5ReferenceVideo",
+    "GeminiOmniFlash1_1",
+    "GeminiOmniFlash1_1Reference",
 ]
 
 
@@ -70,7 +72,7 @@ class Variant0(TypedDict, total=False):
     Rec.709 HEVC .mp4 for SDR grading pipelines. Non-mp4 formats incur an additional
     surcharge: 5 credits per second for `prores` and `png_sequence`, and 20 credits
     per second for `sdr_rec709_10bit` — 40 credits per second when the output is
-    larger than 4 megapixels (roughly 4K).
+    larger than 4 megapixels — includes anything larger than 1440p, up through 4K.
     """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
@@ -81,7 +83,10 @@ class Variant0(TypedDict, total=False):
     ]
     """The ProRes profile to use.
 
-    Only valid when `outputFormat` is `prores`. Defaults to `4444`.
+    Only valid when `outputFormat` is `prores`. Defaults to `4444`. Note: generated
+    content contains no transparency — the alpha channel in `4444` / `4444 XQ`
+    outputs is present but fully opaque; choose these tiers for 12-bit 4:4:4 color
+    fidelity, not for mattes.
     """
 
     ratio: str
@@ -235,8 +240,12 @@ class Hailuo3(TypedDict, total=False):
     See [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
-    resolution: Literal["2K", "768P"]
-    """The output resolution. MiniMax H3 supports 768P and 2K."""
+    resolution: Literal["768p", "2k", "768P", "2K"]
+    """The output resolution. Hailuo 3.0 supports 768p and 2k.
+
+    - `768P` - Deprecated: Use "768p" instead.
+    - `2K` - Deprecated: Use "2k" instead.
+    """
 
 
 class Hailuo3ReferenceAudio(TypedDict, total=False):
@@ -777,6 +786,50 @@ class Seedance2_5ReferenceVideo(TypedDict, total=False):
     """
 
 
+class GeminiOmniFlash1_1(TypedDict, total=False):
+    model: Required[Literal["gemini_omni_flash_1.1"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty prompt describing the output or extension."""
+
+    video_uri: Required[Annotated[str, PropertyInfo(alias="videoUri")]]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+    [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+    duration: Union[Literal["auto"], int]
+    """The duration in seconds.
+
+    In reference mode, this is the output video length. In extend mode, this is the
+    amount of footage added to the input video. Use "auto" to let the model choose a
+    duration.
+    """
+
+    mode: Literal["reference", "extend", "edit"]
+    """How the input video is used.
+
+    `reference` generates a new video guided by the input, `extend` continues it,
+    and `edit` transforms it according to the prompt.
+    """
+
+    ratio: Literal["640:360", "360:640", "1280:720", "720:1280", "1920:1080", "1080:1920", "3840:2160", "2160:3840"]
+    """The resolution and aspect ratio of the output video."""
+
+    references: Iterable[GeminiOmniFlash1_1Reference]
+    """An optional array of image references to guide the output."""
+
+
+class GeminiOmniFlash1_1Reference(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
 VideoToVideoCreateParams: TypeAlias = Union[
-    Variant0, Hailuo3, Seedance2, Seedance2Fast, Seedance2Mini, GeminiOmniFlash, Seedance2_5
+    Variant0, Hailuo3, Seedance2, Seedance2Fast, Seedance2Mini, GeminiOmniFlash, Seedance2_5, GeminiOmniFlash1_1
 ]

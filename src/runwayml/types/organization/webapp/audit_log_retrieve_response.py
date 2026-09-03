@@ -14,13 +14,33 @@ __all__ = ["AuditLogRetrieveResponse", "Metadata"]
 class Metadata(BaseModel):
     """Action-specific details."""
 
+    agent_session_id: Optional[object] = FieldInfo(alias="Agent session ID", default=None)
+
+    agent_tagged: Optional[object] = FieldInfo(alias="Agent tagged", default=None)
+
     amount: Optional[object] = FieldInfo(alias="Amount", default=None)
+
+    amount_received: Optional[object] = FieldInfo(alias="Amount received", default=None)
+
+    api_account: Optional[object] = FieldInfo(alias="API account", default=None)
+
+    api_project_id: Optional[object] = FieldInfo(alias="API project ID", default=None)
 
     application: Optional[object] = FieldInfo(alias="Application", default=None)
 
     asset_name: Optional[object] = FieldInfo(alias="Asset name", default=None)
 
+    comment_id: Optional[object] = FieldInfo(alias="Comment ID", default=None)
+
+    comment_target_id: Optional[object] = FieldInfo(alias="Comment target ID", default=None)
+
+    comment_target_type: Optional[object] = FieldInfo(alias="Comment target type", default=None)
+
     default_task_name_template: Optional[object] = FieldInfo(alias="Default task name template", default=None)
+
+    direction: Optional[object] = FieldInfo(alias="Direction", default=None)
+
+    error_code: Optional[object] = FieldInfo(alias="Error code", default=None)
 
     group_name: Optional[object] = FieldInfo(alias="Group name", default=None)
 
@@ -32,13 +52,19 @@ class Metadata(BaseModel):
 
     member_email: Optional[object] = FieldInfo(alias="Member email", default=None)
 
+    mentions: Optional[object] = FieldInfo(alias="Mentions", default=None)
+
     model: Optional[object] = FieldInfo(alias="Model", default=None)
 
     new_role: Optional[object] = FieldInfo(alias="New role", default=None)
 
     new_user: Optional[object] = FieldInfo(alias="New User", default=None)
 
+    new_value: Optional[object] = FieldInfo(alias="New value", default=None)
+
     operation: Optional[object] = FieldInfo(alias="Operation", default=None)
+
+    outcome: Optional[object] = FieldInfo(alias="Outcome", default=None)
 
     plan: Optional[object] = FieldInfo(alias="Plan", default=None)
 
@@ -46,9 +72,15 @@ class Metadata(BaseModel):
 
     previous_role: Optional[object] = FieldInfo(alias="Previous role", default=None)
 
+    previous_value: Optional[object] = FieldInfo(alias="Previous value", default=None)
+
+    reason: Optional[object] = FieldInfo(alias="Reason", default=None)
+
     removed_member: Optional[object] = FieldInfo(alias="Removed member", default=None)
 
     role: Optional[object] = FieldInfo(alias="Role", default=None)
+
+    setting: Optional[object] = FieldInfo(alias="Setting", default=None)
 
     shared_with_projects: Optional[object] = FieldInfo(alias="Shared with projects", default=None)
 
@@ -90,7 +122,10 @@ class AuditLogRetrieveResponse(BaseModel):
         "TeamSettingsUpdated",
         "InviteLinkToggled",
         "UserGroupCreated",
+        "UserGroupUpdated",
         "UserGroupDeleted",
+        "UserGroupArchived",
+        "UserGroupRestored",
         "UserGroupMemberAdded",
         "UserGroupMemberRemoved",
         "SSOLogin",
@@ -104,11 +139,19 @@ class AuditLogRetrieveResponse(BaseModel):
         "AssetDownloaded",
         "AssetShared",
         "AssetUnshared",
+        "CommentCreated",
+        "CommentEdited",
+        "CommentDeleted",
+        "CommentAgentCallRun",
+        "CommentRemovedByModerator",
+        "CommentRestoredByModerator",
+        "CommentRemovalReasonChanged",
         "PermissionGranted",
         "PermissionUpdated",
         "PermissionRevoked",
         "PermissionAccepted",
         "SubscriptionCancelled",
+        "SubscriptionReactivatedWithOffer",
         "SubscriptionPlanSwitched",
         "CreditsTransferred",
         "SeatsTransferred",
@@ -135,6 +178,10 @@ class AuditLogRetrieveResponse(BaseModel):
         "AccountLinkDeleted",
         "OrganizationSettingsUpdated",
         "OrganizationDisabledModelsUpdated",
+        "OrganizationApiAccountReleased",
+        "OrganizationApiAccountMemberInvited",
+        "OrganizationApiAccountMemberRoleChanged",
+        "OrganizationApiAccountMemberRemoved",
         "WorkspaceCountryLockUpdated",
         "WorkspaceTagCreated",
         "WorkspaceTagUpdated",

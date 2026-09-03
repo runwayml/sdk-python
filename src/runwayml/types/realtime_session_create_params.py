@@ -114,7 +114,10 @@ class IntegrationElevenlabs(TypedDict, total=False):
     """ElevenLabs handles conversation; Runway renders the avatar video."""
 
     signed_url: Required[Annotated[str, PropertyInfo(alias="signedUrl")]]
-    """ConvAI signed WebSocket URL (~15 min lifetime)."""
+    """ConvAI signed WebSocket URL (~15 min lifetime).
+
+    Must be a wss:// or https:// URL that resolves to a public host.
+    """
 
     type: Required[Literal["elevenlabs"]]
 
@@ -136,7 +139,10 @@ class IntegrationLivekit(TypedDict, total=False):
     type: Required[Literal["livekit"]]
 
     url: Required[str]
-    """WebSocket URL of the external LiveKit server the avatar worker should join."""
+    """WebSocket URL of the external LiveKit server the avatar worker should join.
+
+    Must be a wss:// or https:// URL that resolves to a public host.
+    """
 
     agent_identity: Annotated[str, PropertyInfo(alias="agentIdentity")]
     """The participant identity of the customer agent already in the room.
