@@ -22,10 +22,7 @@ class DeprecatedLivekitParam(TypedDict, total=False):
     """Name of the external LiveKit room."""
 
     url: Required[str]
-    """WebSocket URL of the external LiveKit server the avatar worker should join.
-
-    Must be a wss:// or https:// URL that resolves to a public host.
-    """
+    """WebSocket URL of the external LiveKit server the avatar worker should join."""
 
     agent_identity: Annotated[str, PropertyInfo(alias="agentIdentity")]
     """The participant identity of the customer agent already in the room.

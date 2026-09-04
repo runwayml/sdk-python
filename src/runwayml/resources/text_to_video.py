@@ -72,8 +72,6 @@ class TextToVideoResource(SyncAPIResource):
             "hdr_prores",
             "hdr_png_sequence",
             "hdr_exr_sequence",
-            "hdr_exr_acescg_sequence_1_3",
-            "hdr_exr_acescg_sequence_2_0",
         ]
         | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
@@ -112,16 +110,11 @@ class TextToVideoResource(SyncAPIResource):
               losslessly (plus a colorimetry.json sidecar and a separate .wav when the output
               has audio); `hdr_exr_sequence` returns a .zip of half-float OpenEXR frames
               carrying the HDR signal as linear BT.2020 display light, 1.0 = 100 nits (plus a
-              colorimetry.json sidecar and a separate .wav when the output has audio);
-              `hdr_exr_acescg_sequence_1_3` returns the same delivery as scene-referred ACEScg
-              (inverted through the ACES 1.3 Output Transform), reading correctly with the
-              stock `ACES - ACEScg` input transform in ACES-configured pipelines, with VFX
-              sequence frame naming (frame.0001.exr). Non-mp4 formats incur an additional
-              per-second credit surcharge: 5 credits per second for `prores` and
-              `png_sequence`, and 20 credits per second for every 10-bit and deeper profile
-              (including the 12-bit, 16-bit, and EXR ones), rising to 40 credits per second
-              when the output is larger than 4 megapixels — that includes 1440p (2560x1440 is
-              under the line, but anything larger crosses it) up through 4K.
+              colorimetry.json sidecar and a separate .wav when the output has audio). Non-mp4
+              formats incur an additional per-second credit surcharge: 5 credits per second
+              for `prores` and `png_sequence`, and 20 credits per second for every 10-bit and
+              deeper profile (including the 12-bit, 16-bit, and EXR ones), rising to 40
+              credits per second when the output is larger than 4 megapixels (roughly 4K).
 
           prores_profile: The ProRes profile to use. Only valid when `outputFormat` is `prores` or
               `hdr_prores`. For `prores`, any profile is accepted and the default is `4444`.
@@ -249,7 +242,7 @@ class TextToVideoResource(SyncAPIResource):
         reference_audio: Iterable[text_to_video_create_params.Hailuo3ReferenceAudio] | Omit = omit,
         references: Iterable[text_to_video_create_params.Hailuo3Reference] | Omit = omit,
         reference_videos: Iterable[text_to_video_create_params.Hailuo3ReferenceVideo] | Omit = omit,
-        resolution: Literal["768p", "2k", "768P", "2K"] | Omit = omit,
+        resolution: Literal["2K", "768P"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -278,10 +271,7 @@ class TextToVideoResource(SyncAPIResource):
               references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
 
-          resolution: The output resolution. Hailuo 3.0 supports 768p and 2k.
-
-              - `768P` - Deprecated: Use "768p" instead.
-              - `2K` - Deprecated: Use "2k" instead.
+          resolution: The output resolution. MiniMax H3 supports 768P and 2K.
 
           extra_headers: Send extra headers
 
@@ -746,19 +736,19 @@ class TextToVideoResource(SyncAPIResource):
         duration: int | Omit = omit,
         ratio: Literal[
             "832:480",
-            "720:544",
-            "624:624",
-            "544:720",
+            "640:480",
+            "480:480",
+            "480:640",
             "480:832",
             "1280:720",
-            "1104:832",
-            "960:960",
-            "832:1104",
+            "960:720",
+            "720:720",
+            "720:960",
             "720:1280",
             "1920:1080",
-            "1648:1248",
-            "1440:1440",
-            "1248:1648",
+            "1440:1080",
+            "1080:1080",
+            "1080:1440",
             "1080:1920",
             "auto_480p",
             "auto_720p",
@@ -785,9 +775,8 @@ class TextToVideoResource(SyncAPIResource):
 
           duration: The number of seconds of duration for the output video.
 
-          ratio: The resolution of the output video, as `<width>:<height>`. Keyframe
-              image-to-video requests must use `auto_480p`, `auto_720p`, or `auto_1080p`
-              because their aspect ratio follows the first frame.
+          ratio: The resolution of the output video, as `<width>:<height>`. Use `auto_480p`,
+              `auto_720p`, or `auto_1080p` to let the model pick framing at that quality tier.
 
           reference_audio: An optional array of audio references. The total combined duration must not
               exceed 15 seconds.
@@ -798,163 +787,6 @@ class TextToVideoResource(SyncAPIResource):
           reference_videos: An optional array of video references. The combined duration across all video
               references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        model: Literal["gemini_omni_flash_1.1"],
-        prompt_text: str,
-        duration: Union[Literal["auto"], int] | Omit = omit,
-        ratio: Literal["640:360", "360:640", "1280:720", "720:1280", "1920:1080", "1080:1920", "3840:2160", "2160:3840"]
-        | Omit = omit,
-        references: Iterable[text_to_video_create_params.GeminiOmniFlash1_1Reference] | Omit = omit,
-        reference_videos: Iterable[text_to_video_create_params.GeminiOmniFlash1_1ReferenceVideo] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate a video from a text prompt.
-
-        Args:
-          prompt_text: A non-empty text prompt describing the video to generate.
-
-          duration: The duration of the output video in seconds. Use "auto" to let the model choose
-              a duration. Numeric durations must be between 3 and 10 seconds.
-
-          ratio: The resolution and aspect ratio of the output video.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        model: Literal["wan3_prime"],
-        prompt_text: str,
-        audio: bool | Omit = omit,
-        duration: int | Omit = omit,
-        ratio: Literal[
-            "832:480",
-            "720:544",
-            "624:624",
-            "544:720",
-            "480:832",
-            "1280:720",
-            "1104:832",
-            "960:960",
-            "832:1104",
-            "720:1280",
-            "1920:1080",
-            "1648:1248",
-            "1440:1440",
-            "1248:1648",
-            "1080:1920",
-            "auto_480p",
-            "auto_720p",
-            "auto_1080p",
-        ]
-        | Omit = omit,
-        reference_audio: Iterable[text_to_video_create_params.Wan3PrimeReferenceAudio] | Omit = omit,
-        references: Iterable[text_to_video_create_params.Wan3PrimeReference] | Omit = omit,
-        reference_videos: Iterable[text_to_video_create_params.Wan3PrimeReferenceVideo] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate a video from a text prompt.
-
-        Args:
-          prompt_text: A non-empty text prompt describing what should appear in the output.
-
-          audio: Whether to generate audio with the video.
-
-          duration: The number of seconds of duration for the output video.
-
-          ratio: The resolution of the output video, as `<width>:<height>`. Keyframe
-              image-to-video requests must use `auto_480p`, `auto_720p`, or `auto_1080p`
-              because their aspect ratio follows the first frame.
-
-          reference_audio: An optional array of audio references. The total combined duration must not
-              exceed 15 seconds.
-
-          references: An optional array of image references (up to 10). See
-              [our docs](/assets/inputs#images) on image inputs for more information.
-
-          reference_videos: An optional array of video references. The combined duration across all video
-              references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
-              video inputs for more information.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        model: Literal["h3_max"],
-        prompt_text: str,
-        duration: int | Omit = omit,
-        prompt_expansion_mode: Literal["disabled", "balanced", "quality"] | Omit = omit,
-        resolution: Literal["480p", "768p"] | Omit = omit,
-        seed: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate a video from a text prompt.
-
-        Args:
-          prompt_text: A non-empty text prompt describing what should appear in the output.
-
-          duration: The number of seconds of duration for the output video.
-
-          prompt_expansion_mode: How the model rewrites the prompt before generating. disabled keeps the prompt
-              as written. balanced (the default) does a short rewrite. quality spends extra
-              time rewriting for a stronger result.
-
-          resolution: The output resolution. MiniMax H3 Max supports 480p and 768p.
-
-          seed: If unspecified, a random number is chosen. Identical results also need
-              promptExpansionMode set to disabled; balanced and quality rewrite the prompt and
-              will not repeat.
 
           extra_headers: Send extra headers
 
@@ -975,7 +807,7 @@ class TextToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
-        duration: int | Literal[4, 6, 8] | Union[int, Literal["auto"]] | Union[Literal["auto"], int] | Omit = omit,
+        duration: int | Literal[4, 6, 8] | Union[int, Literal["auto"]] | Omit = omit,
         model: Literal["gen4.5"]
         | Literal["veo3.1"]
         | Literal["veo3.1_fast"]
@@ -987,10 +819,7 @@ class TextToVideoResource(SyncAPIResource):
         | Literal["gemini_omni_flash"]
         | Literal["seedance2_5"]
         | Literal["grok_imagine_1_5"]
-        | Literal["wan3"]
-        | Literal["gemini_omni_flash_1.1"]
-        | Literal["wan3_prime"]
-        | Literal["h3_max"],
+        | Literal["wan3"],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
@@ -1070,25 +899,24 @@ class TextToVideoResource(SyncAPIResource):
         | Literal["1:1", "16:9", "9:16", "4:3", "3:4", "3:2", "2:3"]
         | Literal[
             "832:480",
-            "720:544",
-            "624:624",
-            "544:720",
+            "640:480",
+            "480:480",
+            "480:640",
             "480:832",
             "1280:720",
-            "1104:832",
-            "960:960",
-            "832:1104",
+            "960:720",
+            "720:720",
+            "720:960",
             "720:1280",
             "1920:1080",
-            "1648:1248",
-            "1440:1440",
-            "1248:1648",
+            "1440:1080",
+            "1080:1080",
+            "1080:1440",
             "1080:1920",
             "auto_480p",
             "auto_720p",
             "auto_1080p",
         ]
-        | Literal["640:360", "360:640", "1280:720", "720:1280", "1920:1080", "1080:1920", "3840:2160", "2160:3840"]
         | Omit = omit,
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
         output_format: Literal[
@@ -1102,8 +930,6 @@ class TextToVideoResource(SyncAPIResource):
             "hdr_prores",
             "hdr_png_sequence",
             "hdr_exr_sequence",
-            "hdr_exr_acescg_sequence_1_3",
-            "hdr_exr_acescg_sequence_2_0",
         ]
         | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
@@ -1117,7 +943,6 @@ class TextToVideoResource(SyncAPIResource):
         | Iterable[text_to_video_create_params.Seedance2_5ReferenceAudio]
         | Iterable[text_to_video_create_params.GrokImagine1_5ReferenceAudio]
         | Iterable[text_to_video_create_params.Wan3ReferenceAudio]
-        | Iterable[text_to_video_create_params.Wan3PrimeReferenceAudio]
         | Omit = omit,
         references: Iterable[text_to_video_create_params.Hailuo3Reference]
         | Iterable[text_to_video_create_params.Seedance2Reference]
@@ -1126,8 +951,6 @@ class TextToVideoResource(SyncAPIResource):
         | Iterable[text_to_video_create_params.Seedance2_5Reference]
         | Iterable[text_to_video_create_params.GrokImagine1_5Reference]
         | Iterable[text_to_video_create_params.Wan3Reference]
-        | Iterable[text_to_video_create_params.GeminiOmniFlash1_1Reference]
-        | Iterable[text_to_video_create_params.Wan3PrimeReference]
         | Omit = omit,
         reference_videos: Iterable[text_to_video_create_params.Hailuo3ReferenceVideo]
         | Iterable[text_to_video_create_params.Seedance2ReferenceVideo]
@@ -1135,14 +958,8 @@ class TextToVideoResource(SyncAPIResource):
         | Iterable[text_to_video_create_params.Seedance2MiniReferenceVideo]
         | Iterable[text_to_video_create_params.Seedance2_5ReferenceVideo]
         | Iterable[text_to_video_create_params.Wan3ReferenceVideo]
-        | Iterable[text_to_video_create_params.GeminiOmniFlash1_1ReferenceVideo]
-        | Iterable[text_to_video_create_params.Wan3PrimeReferenceVideo]
         | Omit = omit,
-        resolution: Literal["768p", "2k", "768P", "2K"]
-        | Literal["480p", "720p", "1080p"]
-        | Literal["480p", "768p"]
-        | Omit = omit,
-        prompt_expansion_mode: Literal["disabled", "balanced", "quality"] | Omit = omit,
+        resolution: Literal["2K", "768P"] | Literal["480p", "720p", "1080p"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1168,7 +985,6 @@ class TextToVideoResource(SyncAPIResource):
                     "references": references,
                     "reference_videos": reference_videos,
                     "resolution": resolution,
-                    "prompt_expansion_mode": prompt_expansion_mode,
                 },
                 text_to_video_create_params.TextToVideoCreateParams,
             ),
@@ -1221,8 +1037,6 @@ class AsyncTextToVideoResource(AsyncAPIResource):
             "hdr_prores",
             "hdr_png_sequence",
             "hdr_exr_sequence",
-            "hdr_exr_acescg_sequence_1_3",
-            "hdr_exr_acescg_sequence_2_0",
         ]
         | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
@@ -1261,16 +1075,11 @@ class AsyncTextToVideoResource(AsyncAPIResource):
               losslessly (plus a colorimetry.json sidecar and a separate .wav when the output
               has audio); `hdr_exr_sequence` returns a .zip of half-float OpenEXR frames
               carrying the HDR signal as linear BT.2020 display light, 1.0 = 100 nits (plus a
-              colorimetry.json sidecar and a separate .wav when the output has audio);
-              `hdr_exr_acescg_sequence_1_3` returns the same delivery as scene-referred ACEScg
-              (inverted through the ACES 1.3 Output Transform), reading correctly with the
-              stock `ACES - ACEScg` input transform in ACES-configured pipelines, with VFX
-              sequence frame naming (frame.0001.exr). Non-mp4 formats incur an additional
-              per-second credit surcharge: 5 credits per second for `prores` and
-              `png_sequence`, and 20 credits per second for every 10-bit and deeper profile
-              (including the 12-bit, 16-bit, and EXR ones), rising to 40 credits per second
-              when the output is larger than 4 megapixels — that includes 1440p (2560x1440 is
-              under the line, but anything larger crosses it) up through 4K.
+              colorimetry.json sidecar and a separate .wav when the output has audio). Non-mp4
+              formats incur an additional per-second credit surcharge: 5 credits per second
+              for `prores` and `png_sequence`, and 20 credits per second for every 10-bit and
+              deeper profile (including the 12-bit, 16-bit, and EXR ones), rising to 40
+              credits per second when the output is larger than 4 megapixels (roughly 4K).
 
           prores_profile: The ProRes profile to use. Only valid when `outputFormat` is `prores` or
               `hdr_prores`. For `prores`, any profile is accepted and the default is `4444`.
@@ -1398,7 +1207,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         reference_audio: Iterable[text_to_video_create_params.Hailuo3ReferenceAudio] | Omit = omit,
         references: Iterable[text_to_video_create_params.Hailuo3Reference] | Omit = omit,
         reference_videos: Iterable[text_to_video_create_params.Hailuo3ReferenceVideo] | Omit = omit,
-        resolution: Literal["768p", "2k", "768P", "2K"] | Omit = omit,
+        resolution: Literal["2K", "768P"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1427,10 +1236,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
               references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
 
-          resolution: The output resolution. Hailuo 3.0 supports 768p and 2k.
-
-              - `768P` - Deprecated: Use "768p" instead.
-              - `2K` - Deprecated: Use "2k" instead.
+          resolution: The output resolution. MiniMax H3 supports 768P and 2K.
 
           extra_headers: Send extra headers
 
@@ -1895,19 +1701,19 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         duration: int | Omit = omit,
         ratio: Literal[
             "832:480",
-            "720:544",
-            "624:624",
-            "544:720",
+            "640:480",
+            "480:480",
+            "480:640",
             "480:832",
             "1280:720",
-            "1104:832",
-            "960:960",
-            "832:1104",
+            "960:720",
+            "720:720",
+            "720:960",
             "720:1280",
             "1920:1080",
-            "1648:1248",
-            "1440:1440",
-            "1248:1648",
+            "1440:1080",
+            "1080:1080",
+            "1080:1440",
             "1080:1920",
             "auto_480p",
             "auto_720p",
@@ -1934,9 +1740,8 @@ class AsyncTextToVideoResource(AsyncAPIResource):
 
           duration: The number of seconds of duration for the output video.
 
-          ratio: The resolution of the output video, as `<width>:<height>`. Keyframe
-              image-to-video requests must use `auto_480p`, `auto_720p`, or `auto_1080p`
-              because their aspect ratio follows the first frame.
+          ratio: The resolution of the output video, as `<width>:<height>`. Use `auto_480p`,
+              `auto_720p`, or `auto_1080p` to let the model pick framing at that quality tier.
 
           reference_audio: An optional array of audio references. The total combined duration must not
               exceed 15 seconds.
@@ -1947,163 +1752,6 @@ class AsyncTextToVideoResource(AsyncAPIResource):
           reference_videos: An optional array of video references. The combined duration across all video
               references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
               video inputs for more information.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        model: Literal["gemini_omni_flash_1.1"],
-        prompt_text: str,
-        duration: Union[Literal["auto"], int] | Omit = omit,
-        ratio: Literal["640:360", "360:640", "1280:720", "720:1280", "1920:1080", "1080:1920", "3840:2160", "2160:3840"]
-        | Omit = omit,
-        references: Iterable[text_to_video_create_params.GeminiOmniFlash1_1Reference] | Omit = omit,
-        reference_videos: Iterable[text_to_video_create_params.GeminiOmniFlash1_1ReferenceVideo] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate a video from a text prompt.
-
-        Args:
-          prompt_text: A non-empty text prompt describing the video to generate.
-
-          duration: The duration of the output video in seconds. Use "auto" to let the model choose
-              a duration. Numeric durations must be between 3 and 10 seconds.
-
-          ratio: The resolution and aspect ratio of the output video.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        model: Literal["wan3_prime"],
-        prompt_text: str,
-        audio: bool | Omit = omit,
-        duration: int | Omit = omit,
-        ratio: Literal[
-            "832:480",
-            "720:544",
-            "624:624",
-            "544:720",
-            "480:832",
-            "1280:720",
-            "1104:832",
-            "960:960",
-            "832:1104",
-            "720:1280",
-            "1920:1080",
-            "1648:1248",
-            "1440:1440",
-            "1248:1648",
-            "1080:1920",
-            "auto_480p",
-            "auto_720p",
-            "auto_1080p",
-        ]
-        | Omit = omit,
-        reference_audio: Iterable[text_to_video_create_params.Wan3PrimeReferenceAudio] | Omit = omit,
-        references: Iterable[text_to_video_create_params.Wan3PrimeReference] | Omit = omit,
-        reference_videos: Iterable[text_to_video_create_params.Wan3PrimeReferenceVideo] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate a video from a text prompt.
-
-        Args:
-          prompt_text: A non-empty text prompt describing what should appear in the output.
-
-          audio: Whether to generate audio with the video.
-
-          duration: The number of seconds of duration for the output video.
-
-          ratio: The resolution of the output video, as `<width>:<height>`. Keyframe
-              image-to-video requests must use `auto_480p`, `auto_720p`, or `auto_1080p`
-              because their aspect ratio follows the first frame.
-
-          reference_audio: An optional array of audio references. The total combined duration must not
-              exceed 15 seconds.
-
-          references: An optional array of image references (up to 10). See
-              [our docs](/assets/inputs#images) on image inputs for more information.
-
-          reference_videos: An optional array of video references. The combined duration across all video
-              references must not exceed 15 seconds. See [our docs](/assets/inputs#videos) on
-              video inputs for more information.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        model: Literal["h3_max"],
-        prompt_text: str,
-        duration: int | Omit = omit,
-        prompt_expansion_mode: Literal["disabled", "balanced", "quality"] | Omit = omit,
-        resolution: Literal["480p", "768p"] | Omit = omit,
-        seed: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate a video from a text prompt.
-
-        Args:
-          prompt_text: A non-empty text prompt describing what should appear in the output.
-
-          duration: The number of seconds of duration for the output video.
-
-          prompt_expansion_mode: How the model rewrites the prompt before generating. disabled keeps the prompt
-              as written. balanced (the default) does a short rewrite. quality spends extra
-              time rewriting for a stronger result.
-
-          resolution: The output resolution. MiniMax H3 Max supports 480p and 768p.
-
-          seed: If unspecified, a random number is chosen. Identical results also need
-              promptExpansionMode set to disabled; balanced and quality rewrite the prompt and
-              will not repeat.
 
           extra_headers: Send extra headers
 
@@ -2124,7 +1772,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        duration: int | Literal[4, 6, 8] | Union[int, Literal["auto"]] | Union[Literal["auto"], int] | Omit = omit,
+        duration: int | Literal[4, 6, 8] | Union[int, Literal["auto"]] | Omit = omit,
         model: Literal["gen4.5"]
         | Literal["veo3.1"]
         | Literal["veo3.1_fast"]
@@ -2136,10 +1784,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Literal["gemini_omni_flash"]
         | Literal["seedance2_5"]
         | Literal["grok_imagine_1_5"]
-        | Literal["wan3"]
-        | Literal["gemini_omni_flash_1.1"]
-        | Literal["wan3_prime"]
-        | Literal["h3_max"],
+        | Literal["wan3"],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
@@ -2219,25 +1864,24 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Literal["1:1", "16:9", "9:16", "4:3", "3:4", "3:2", "2:3"]
         | Literal[
             "832:480",
-            "720:544",
-            "624:624",
-            "544:720",
+            "640:480",
+            "480:480",
+            "480:640",
             "480:832",
             "1280:720",
-            "1104:832",
-            "960:960",
-            "832:1104",
+            "960:720",
+            "720:720",
+            "720:960",
             "720:1280",
             "1920:1080",
-            "1648:1248",
-            "1440:1440",
-            "1248:1648",
+            "1440:1080",
+            "1080:1080",
+            "1080:1440",
             "1080:1920",
             "auto_480p",
             "auto_720p",
             "auto_1080p",
         ]
-        | Literal["640:360", "360:640", "1280:720", "720:1280", "1920:1080", "1080:1920", "3840:2160", "2160:3840"]
         | Omit = omit,
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
         output_format: Literal[
@@ -2251,8 +1895,6 @@ class AsyncTextToVideoResource(AsyncAPIResource):
             "hdr_prores",
             "hdr_png_sequence",
             "hdr_exr_sequence",
-            "hdr_exr_acescg_sequence_1_3",
-            "hdr_exr_acescg_sequence_2_0",
         ]
         | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
@@ -2266,7 +1908,6 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Iterable[text_to_video_create_params.Seedance2_5ReferenceAudio]
         | Iterable[text_to_video_create_params.GrokImagine1_5ReferenceAudio]
         | Iterable[text_to_video_create_params.Wan3ReferenceAudio]
-        | Iterable[text_to_video_create_params.Wan3PrimeReferenceAudio]
         | Omit = omit,
         references: Iterable[text_to_video_create_params.Hailuo3Reference]
         | Iterable[text_to_video_create_params.Seedance2Reference]
@@ -2275,8 +1916,6 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Iterable[text_to_video_create_params.Seedance2_5Reference]
         | Iterable[text_to_video_create_params.GrokImagine1_5Reference]
         | Iterable[text_to_video_create_params.Wan3Reference]
-        | Iterable[text_to_video_create_params.GeminiOmniFlash1_1Reference]
-        | Iterable[text_to_video_create_params.Wan3PrimeReference]
         | Omit = omit,
         reference_videos: Iterable[text_to_video_create_params.Hailuo3ReferenceVideo]
         | Iterable[text_to_video_create_params.Seedance2ReferenceVideo]
@@ -2284,14 +1923,8 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Iterable[text_to_video_create_params.Seedance2MiniReferenceVideo]
         | Iterable[text_to_video_create_params.Seedance2_5ReferenceVideo]
         | Iterable[text_to_video_create_params.Wan3ReferenceVideo]
-        | Iterable[text_to_video_create_params.GeminiOmniFlash1_1ReferenceVideo]
-        | Iterable[text_to_video_create_params.Wan3PrimeReferenceVideo]
         | Omit = omit,
-        resolution: Literal["768p", "2k", "768P", "2K"]
-        | Literal["480p", "720p", "1080p"]
-        | Literal["480p", "768p"]
-        | Omit = omit,
-        prompt_expansion_mode: Literal["disabled", "balanced", "quality"] | Omit = omit,
+        resolution: Literal["2K", "768P"] | Literal["480p", "720p", "1080p"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2317,7 +1950,6 @@ class AsyncTextToVideoResource(AsyncAPIResource):
                     "references": references,
                     "reference_videos": reference_videos,
                     "resolution": resolution,
-                    "prompt_expansion_mode": prompt_expansion_mode,
                 },
                 text_to_video_create_params.TextToVideoCreateParams,
             ),
