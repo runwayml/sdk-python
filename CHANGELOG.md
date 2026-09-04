@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.20.0](https://github.com/runwayml/sdk-python/compare/v5.19.1...v5.20.0) (2026-09-04)
+
+
+### Features
+
+* add new models, image options, and audit-log actions ([856ccb5](https://github.com/runwayml/sdk-python/commit/856ccb53e815a9c274806f9054e68da671d12c87))
+
+
+### Reverts
+
+* reset generated Python SDK update ([d865a54](https://github.com/runwayml/sdk-python/commit/d865a54472bd440f36729a4710a7e5604a50b40a))
+
 ## [5.19.1](https://github.com/runwayml/sdk-python/compare/v5.19.0...v5.19.1) (2026-09-02)
 
 
