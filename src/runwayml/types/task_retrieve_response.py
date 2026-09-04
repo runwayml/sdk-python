@@ -71,7 +71,10 @@ class Throttled(BaseModel):
 
 
 class CancelledCost(BaseModel):
-    """Final cost in credits for a terminal task. A refunded task reports 0."""
+    """Final cost in credits for a terminal task.
+
+    Fully refunded tasks report 0; tasks that later returned unused prepaid credits report what remains charged.
+    """
 
     credits: int
     """Credits charged for this task."""
@@ -84,7 +87,11 @@ class Cancelled(BaseModel):
     """The ID of the task being returned."""
 
     cost: CancelledCost
-    """Final cost in credits for a terminal task. A refunded task reports 0."""
+    """Final cost in credits for a terminal task.
+
+    Fully refunded tasks report 0; tasks that later returned unused prepaid credits
+    report what remains charged.
+    """
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """The timestamp that the task was submitted at."""
@@ -117,7 +124,10 @@ class Running(BaseModel):
 
 
 class FailedCost(BaseModel):
-    """Final cost in credits for a terminal task. A refunded task reports 0."""
+    """Final cost in credits for a terminal task.
+
+    Fully refunded tasks report 0; tasks that later returned unused prepaid credits report what remains charged.
+    """
 
     credits: int
     """Credits charged for this task."""
@@ -130,7 +140,11 @@ class Failed(BaseModel):
     """The ID of the task being returned."""
 
     cost: FailedCost
-    """Final cost in credits for a terminal task. A refunded task reports 0."""
+    """Final cost in credits for a terminal task.
+
+    Fully refunded tasks report 0; tasks that later returned unused prepaid credits
+    report what remains charged.
+    """
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """The timestamp that the task was submitted at."""
@@ -151,7 +165,10 @@ class Failed(BaseModel):
 
 
 class SucceededCost(BaseModel):
-    """Final cost in credits for a terminal task. A refunded task reports 0."""
+    """Final cost in credits for a terminal task.
+
+    Fully refunded tasks report 0; tasks that later returned unused prepaid credits report what remains charged.
+    """
 
     credits: int
     """Credits charged for this task."""
@@ -164,7 +181,11 @@ class Succeeded(BaseModel):
     """The ID of the task being returned."""
 
     cost: SucceededCost
-    """Final cost in credits for a terminal task. A refunded task reports 0."""
+    """Final cost in credits for a terminal task.
+
+    Fully refunded tasks report 0; tasks that later returned unused prepaid credits
+    report what remains charged.
+    """
 
     created_at: datetime = FieldInfo(alias="createdAt")
     """The timestamp that the task was submitted at."""
