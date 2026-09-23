@@ -63,6 +63,14 @@ class RunningNodeErrors(BaseModel):
     message: str
     """A human-readable description of the node error."""
 
+    failure_code: Optional[str] = FieldInfo(alias="failureCode", default=None)
+    """A machine-readable error code for the node failure.
+
+    See https://docs.dev.runwayml.com/errors/task-failures/ for more information.
+    Absent for nodes that failed before generation began, such as an input
+    validation error.
+    """
+
     node_name: Optional[str] = FieldInfo(alias="nodeName", default=None)
     """The human-readable name of the node that errored."""
 
@@ -98,6 +106,14 @@ class Running(BaseModel):
 class FailedNodeErrors(BaseModel):
     message: str
     """A human-readable description of the node error."""
+
+    failure_code: Optional[str] = FieldInfo(alias="failureCode", default=None)
+    """A machine-readable error code for the node failure.
+
+    See https://docs.dev.runwayml.com/errors/task-failures/ for more information.
+    Absent for nodes that failed before generation began, such as an input
+    validation error.
+    """
 
     node_name: Optional[str] = FieldInfo(alias="nodeName", default=None)
     """The human-readable name of the node that errored."""
@@ -137,6 +153,14 @@ class SucceededNodeErrors(BaseModel):
     message: str
     """A human-readable description of the node error."""
 
+    failure_code: Optional[str] = FieldInfo(alias="failureCode", default=None)
+    """A machine-readable error code for the node failure.
+
+    See https://docs.dev.runwayml.com/errors/task-failures/ for more information.
+    Absent for nodes that failed before generation began, such as an input
+    validation error.
+    """
+
     node_name: Optional[str] = FieldInfo(alias="nodeName", default=None)
     """The human-readable name of the node that errored."""
 
@@ -164,8 +188,11 @@ class Succeeded(BaseModel):
     node_errors: Optional[Dict[str, SucceededNodeErrors]] = FieldInfo(alias="nodeErrors", default=None)
     """A record mapping workflow node IDs to their error details.
 
-    Even when the overall workflow succeeds, individual nodes may have encountered
-    non-fatal errors. Only present when one or more nodes have errored.
+    A workflow invocation succeeds as long as every node reached a terminal state,
+    so individual nodes may still have failed — for example a moderated prompt or an
+    upstream provider outage — leaving their output missing from `output`. Check
+    this field to detect a partial run. Only present when one or more nodes have
+    errored.
     """
 
 

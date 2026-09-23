@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
+from typing_extensions import Literal, overload
 
 import httpx
 
@@ -15,7 +15,7 @@ from runwayml.lib.polling import (
 
 from ..types import video_upscale_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -52,6 +52,7 @@ class VideoUpscaleResource(SyncAPIResource):
         """
         return VideoUpscaleResourceWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         *,
@@ -101,6 +102,64 @@ class VideoUpscaleResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["enhance_frame_rate"],
+        target_framerate: Literal["24", "25", "30", "48", "50", "60", "120", "23_98", "29_97", "59_94"],
+        video_uri: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """This endpoint starts a task to upscale a video.
+
+        Set `model` to choose the
+        upscaler.
+
+        Args:
+          target_framerate: The output frame rate.
+
+          video_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["model", "video_uri"], ["model", "target_framerate", "video_uri"])
+    def create(
+        self,
+        *,
+        model: Literal["magnific_video_upscaler_creative"] | Literal["enhance_frame_rate"],
+        video_uri: str,
+        creativity: int | Omit = omit,
+        flavor: Literal["vivid", "natural"] | Omit = omit,
+        fps_boost: bool | Omit = omit,
+        resolution: Literal["720p", "1k", "2k", "4k"] | Omit = omit,
+        sharpen: int | Omit = omit,
+        smart_grain: int | Omit = omit,
+        target_framerate: Literal["24", "25", "30", "48", "50", "60", "120", "23_98", "29_97", "59_94"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
         return self._post(
             "/v1/video_upscale",
             body=maybe_transform(
@@ -113,6 +172,7 @@ class VideoUpscaleResource(SyncAPIResource):
                     "resolution": resolution,
                     "sharpen": sharpen,
                     "smart_grain": smart_grain,
+                    "target_framerate": target_framerate,
                 },
                 video_upscale_create_params.VideoUpscaleCreateParams,
             ),
@@ -145,6 +205,7 @@ class AsyncVideoUpscaleResource(AsyncAPIResource):
         """
         return AsyncVideoUpscaleResourceWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         *,
@@ -194,6 +255,64 @@ class AsyncVideoUpscaleResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["enhance_frame_rate"],
+        target_framerate: Literal["24", "25", "30", "48", "50", "60", "120", "23_98", "29_97", "59_94"],
+        video_uri: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """This endpoint starts a task to upscale a video.
+
+        Set `model` to choose the
+        upscaler.
+
+        Args:
+          target_framerate: The output frame rate.
+
+          video_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["model", "video_uri"], ["model", "target_framerate", "video_uri"])
+    async def create(
+        self,
+        *,
+        model: Literal["magnific_video_upscaler_creative"] | Literal["enhance_frame_rate"],
+        video_uri: str,
+        creativity: int | Omit = omit,
+        flavor: Literal["vivid", "natural"] | Omit = omit,
+        fps_boost: bool | Omit = omit,
+        resolution: Literal["720p", "1k", "2k", "4k"] | Omit = omit,
+        sharpen: int | Omit = omit,
+        smart_grain: int | Omit = omit,
+        target_framerate: Literal["24", "25", "30", "48", "50", "60", "120", "23_98", "29_97", "59_94"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
         return await self._post(
             "/v1/video_upscale",
             body=await async_maybe_transform(
@@ -206,6 +325,7 @@ class AsyncVideoUpscaleResource(AsyncAPIResource):
                     "resolution": resolution,
                     "sharpen": sharpen,
                     "smart_grain": smart_grain,
+                    "target_framerate": target_framerate,
                 },
                 video_upscale_create_params.VideoUpscaleCreateParams,
             ),

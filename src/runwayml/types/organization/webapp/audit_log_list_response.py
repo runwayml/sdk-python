@@ -98,6 +98,7 @@ class AuditLogListResponse(BaseModel):
         "MeteredBillingRefillTriggered",
         "MeteredBillingRetryTriggered",
         "EnterpriseSpendCapEnforcementUpdated",
+        "AwsMarketplaceEnterpriseSubscriptionLinked",
     ]
     """The action performed."""
 

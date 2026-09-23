@@ -62,7 +62,9 @@ class WorkflowInvocationsResource(SyncAPIResource):
 
         Consumers of this API should not
         expect updates more frequent than once every five seconds for a given workflow
-        invocation.
+        invocation. A `SUCCEEDED` invocation may still have had individual nodes fail,
+        so check `nodeErrors` to detect a partial run rather than relying on `status`
+        alone.
 
         Args:
           extra_headers: Send extra headers
@@ -125,7 +127,9 @@ class AsyncWorkflowInvocationsResource(AsyncAPIResource):
 
         Consumers of this API should not
         expect updates more frequent than once every five seconds for a given workflow
-        invocation.
+        invocation. A `SUCCEEDED` invocation may still have had individual nodes fail,
+        so check `nodeErrors` to detect a partial run rather than relying on `status`
+        alone.
 
         Args:
           extra_headers: Send extra headers
