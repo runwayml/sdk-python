@@ -207,13 +207,13 @@ class UploadsResource(SyncAPIResource):
         form_data = _prepare_upload_data(upload_placeholder.fields, file_metadata)
         upload_timeout = _get_upload_timeout(timeout, self._client.timeout)
 
-        with httpx.Client(timeout=upload_timeout) as client:
-            response = client.post(
-                upload_placeholder.uploadUrl,
-                data=form_data,
-                files={"file": file_tuple},
-            )
-            _handle_upload_errors(response, upload_placeholder.uploadUrl)
+        response = self._client._send_external_multipart_request(
+            url=upload_placeholder.uploadUrl,
+            data=form_data,
+            files={"file": file_tuple},
+            timeout=upload_timeout,
+        )
+        _handle_upload_errors(response, upload_placeholder.uploadUrl)
 
         return UploadCreateEphemeralResponse(uri=upload_placeholder.runwayUri)
 
@@ -289,13 +289,13 @@ class AsyncUploadsResource(AsyncAPIResource):
         form_data = _prepare_upload_data(upload_placeholder.fields, file_metadata)
         upload_timeout = _get_upload_timeout(timeout, self._client.timeout)
 
-        async with httpx.AsyncClient(timeout=upload_timeout) as client:
-            response = await client.post(
-                upload_placeholder.uploadUrl,
-                data=form_data,
-                files={"file": file_tuple},
-            )
-            _handle_upload_errors(response, upload_placeholder.uploadUrl)
+        response = await self._client._send_external_multipart_request(
+            url=upload_placeholder.uploadUrl,
+            data=form_data,
+            files={"file": file_tuple},
+            timeout=upload_timeout,
+        )
+        _handle_upload_errors(response, upload_placeholder.uploadUrl)
 
         return UploadCreateEphemeralResponse(uri=upload_placeholder.runwayUri)
 
