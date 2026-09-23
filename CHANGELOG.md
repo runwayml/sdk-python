@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.20.1](https://github.com/runwayml/sdk-python/compare/v5.20.0...v5.20.1) (2026-09-23)
+
+
+### Chores
+
+* regenerate SDKs from dev-docs main ([e7d3340](https://github.com/runwayml/sdk-python/commit/e7d334096e331d1be620a57fdb2edfbcb8fefa81))
+
 ## [5.20.0](https://github.com/runwayml/sdk-python/compare/v5.19.1...v5.20.0) (2026-09-04)
 
 
