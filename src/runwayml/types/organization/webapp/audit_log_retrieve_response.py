@@ -30,13 +30,21 @@ class Metadata(BaseModel):
 
     asset_name: Optional[object] = FieldInfo(alias="Asset name", default=None)
 
+    aws_license: Optional[object] = FieldInfo(alias="AWS license", default=None)
+
+    brand_kit_id: Optional[object] = FieldInfo(alias="Brand kit ID", default=None)
+
     comment_id: Optional[object] = FieldInfo(alias="Comment ID", default=None)
 
     comment_target_id: Optional[object] = FieldInfo(alias="Comment target ID", default=None)
 
     comment_target_type: Optional[object] = FieldInfo(alias="Comment target type", default=None)
 
+    comment_text: Optional[object] = FieldInfo(alias="Comment text", default=None)
+
     default_task_name_template: Optional[object] = FieldInfo(alias="Default task name template", default=None)
+
+    destination_category_id: Optional[object] = FieldInfo(alias="Destination category ID", default=None)
 
     direction: Optional[object] = FieldInfo(alias="Direction", default=None)
 
@@ -50,6 +58,8 @@ class Metadata(BaseModel):
 
     login_method: Optional[object] = FieldInfo(alias="Login method", default=None)
 
+    media_included: Optional[object] = FieldInfo(alias="Media included", default=None)
+
     member_email: Optional[object] = FieldInfo(alias="Member email", default=None)
 
     mentions: Optional[object] = FieldInfo(alias="Mentions", default=None)
@@ -58,11 +68,15 @@ class Metadata(BaseModel):
 
     new_role: Optional[object] = FieldInfo(alias="New role", default=None)
 
+    new_text: Optional[object] = FieldInfo(alias="New text", default=None)
+
     new_user: Optional[object] = FieldInfo(alias="New User", default=None)
 
     new_value: Optional[object] = FieldInfo(alias="New value", default=None)
 
     operation: Optional[object] = FieldInfo(alias="Operation", default=None)
+
+    organization: Optional[object] = FieldInfo(alias="Organization", default=None)
 
     outcome: Optional[object] = FieldInfo(alias="Outcome", default=None)
 
@@ -72,6 +86,8 @@ class Metadata(BaseModel):
 
     previous_role: Optional[object] = FieldInfo(alias="Previous role", default=None)
 
+    previous_text: Optional[object] = FieldInfo(alias="Previous text", default=None)
+
     previous_value: Optional[object] = FieldInfo(alias="Previous value", default=None)
 
     reason: Optional[object] = FieldInfo(alias="Reason", default=None)
@@ -80,19 +96,27 @@ class Metadata(BaseModel):
 
     role: Optional[object] = FieldInfo(alias="Role", default=None)
 
+    root_asset_id: Optional[object] = FieldInfo(alias="Root asset ID", default=None)
+
     setting: Optional[object] = FieldInfo(alias="Setting", default=None)
 
     shared_with_projects: Optional[object] = FieldInfo(alias="Shared with projects", default=None)
 
     shared_with_workspace: Optional[object] = FieldInfo(alias="Shared with workspace", default=None)
 
+    source_category_id: Optional[object] = FieldInfo(alias="Source category ID", default=None)
+
     spend_cap: Optional[object] = FieldInfo(alias="Spend cap", default=None)
+
+    spend_cap_change: Optional[object] = FieldInfo(alias="Spend cap change", default=None)
 
     tag_color: Optional[object] = FieldInfo(alias="Tag color", default=None)
 
     tag_name: Optional[object] = FieldInfo(alias="Tag name", default=None)
 
     target_member: Optional[object] = FieldInfo(alias="Target member", default=None)
+
+    via_public_api: Optional[object] = FieldInfo(alias="Via public API", default=None)
 
     workspace: Optional[object] = FieldInfo(alias="Workspace", default=None)
 
@@ -192,6 +216,7 @@ class AuditLogRetrieveResponse(BaseModel):
         "MeteredBillingRefillTriggered",
         "MeteredBillingRetryTriggered",
         "EnterpriseSpendCapEnforcementUpdated",
+        "AwsMarketplaceEnterpriseSubscriptionLinked",
     ]
     """The action performed."""
 

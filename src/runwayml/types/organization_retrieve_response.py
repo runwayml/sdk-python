@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict
+from typing import Dict, Optional
 
 from pydantic import Field as FieldInfo
 
@@ -12,11 +12,17 @@ __all__ = ["OrganizationRetrieveResponse", "Tier", "TierModels", "Usage", "Usage
 class TierModels(BaseModel):
     """Limits associated with the model."""
 
-    max_concurrent_generations: int = FieldInfo(alias="maxConcurrentGenerations")
-    """The maximum number of generations that can be run concurrently for this model."""
+    max_concurrent_generations: Optional[int] = FieldInfo(alias="maxConcurrentGenerations", default=None)
+    """The maximum number of generations that can be run concurrently for this model.
 
-    max_daily_generations: int = FieldInfo(alias="maxDailyGenerations")
-    """The maximum number of generations that can be created each day for this model."""
+    null means no limit.
+    """
+
+    max_daily_generations: Optional[int] = FieldInfo(alias="maxDailyGenerations", default=None)
+    """The maximum number of generations that can be created each day for this model.
+
+    null means no limit.
+    """
 
 
 class Tier(BaseModel):

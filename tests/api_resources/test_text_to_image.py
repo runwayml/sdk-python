@@ -186,18 +186,18 @@ class TestTextToImage:
     @parametrize
     def test_method_create_overload_4(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
-            model="gemini_image3_pro",
+            model="gemini_image3.1_flash",
             prompt_text="x",
-            ratio="1344:768",
+            ratio="512:512",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params_overload_4(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
-            model="gemini_image3_pro",
+            model="gemini_image3.1_flash",
             prompt_text="x",
-            ratio="1344:768",
+            ratio="512:512",
             output_count=1,
             reference_images=[
                 {
@@ -212,9 +212,9 @@ class TestTextToImage:
     @parametrize
     def test_raw_response_create_overload_4(self, client: RunwayML) -> None:
         response = client.text_to_image.with_raw_response.create(
-            model="gemini_image3_pro",
+            model="gemini_image3.1_flash",
             prompt_text="x",
-            ratio="1344:768",
+            ratio="512:512",
         )
 
         assert response.is_closed is True
@@ -225,9 +225,9 @@ class TestTextToImage:
     @parametrize
     def test_streaming_response_create_overload_4(self, client: RunwayML) -> None:
         with client.text_to_image.with_streaming_response.create(
-            model="gemini_image3_pro",
+            model="gemini_image3.1_flash",
             prompt_text="x",
-            ratio="1344:768",
+            ratio="512:512",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -240,35 +240,30 @@ class TestTextToImage:
     @parametrize
     def test_method_create_overload_5(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
-            model="gemini_image3.1_flash",
+            model="muse_image",
             prompt_text="x",
-            ratio="512:512",
+            ratio="2352:1008",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params_overload_5(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
-            model="gemini_image3.1_flash",
+            model="muse_image",
             prompt_text="x",
-            ratio="512:512",
+            ratio="2352:1008",
             output_count=1,
-            reference_images=[
-                {
-                    "uri": "https://example.com/image.jpg",
-                    "subject": "object",
-                    "tag": "tag",
-                }
-            ],
+            output_format="webp",
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
     def test_raw_response_create_overload_5(self, client: RunwayML) -> None:
         response = client.text_to_image.with_raw_response.create(
-            model="gemini_image3.1_flash",
+            model="muse_image",
             prompt_text="x",
-            ratio="512:512",
+            ratio="2352:1008",
         )
 
         assert response.is_closed is True
@@ -279,9 +274,9 @@ class TestTextToImage:
     @parametrize
     def test_streaming_response_create_overload_5(self, client: RunwayML) -> None:
         with client.text_to_image.with_streaming_response.create(
-            model="gemini_image3.1_flash",
+            model="muse_image",
             prompt_text="x",
-            ratio="512:512",
+            ratio="2352:1008",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -294,20 +289,21 @@ class TestTextToImage:
     @parametrize
     def test_method_create_overload_6(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
-            model="muse_image",
+            model="seedream5_pro",
             prompt_text="x",
-            ratio="2352:1008",
+            ratio="1024:1024",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params_overload_6(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
-            model="muse_image",
+            model="seedream5_pro",
             prompt_text="x",
-            ratio="2352:1008",
+            ratio="1024:1024",
+            grounding=True,
             output_count=1,
-            output_format="webp",
+            output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
@@ -315,9 +311,9 @@ class TestTextToImage:
     @parametrize
     def test_raw_response_create_overload_6(self, client: RunwayML) -> None:
         response = client.text_to_image.with_raw_response.create(
-            model="muse_image",
+            model="seedream5_pro",
             prompt_text="x",
-            ratio="2352:1008",
+            ratio="1024:1024",
         )
 
         assert response.is_closed is True
@@ -328,9 +324,9 @@ class TestTextToImage:
     @parametrize
     def test_streaming_response_create_overload_6(self, client: RunwayML) -> None:
         with client.text_to_image.with_streaming_response.create(
-            model="muse_image",
+            model="seedream5_pro",
             prompt_text="x",
-            ratio="2352:1008",
+            ratio="1024:1024",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -343,18 +339,18 @@ class TestTextToImage:
     @parametrize
     def test_method_create_overload_7(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
-            model="seedream5_pro",
+            model="seedream5_lite",
             prompt_text="x",
-            ratio="1024:1024",
+            ratio="2048:2048",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params_overload_7(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
-            model="seedream5_pro",
+            model="seedream5_lite",
             prompt_text="x",
-            ratio="1024:1024",
+            ratio="2048:2048",
             grounding=True,
             output_count=1,
             output_format="png",
@@ -365,9 +361,9 @@ class TestTextToImage:
     @parametrize
     def test_raw_response_create_overload_7(self, client: RunwayML) -> None:
         response = client.text_to_image.with_raw_response.create(
-            model="seedream5_pro",
+            model="seedream5_lite",
             prompt_text="x",
-            ratio="1024:1024",
+            ratio="2048:2048",
         )
 
         assert response.is_closed is True
@@ -378,9 +374,9 @@ class TestTextToImage:
     @parametrize
     def test_streaming_response_create_overload_7(self, client: RunwayML) -> None:
         with client.text_to_image.with_streaming_response.create(
-            model="seedream5_pro",
+            model="seedream5_lite",
             prompt_text="x",
-            ratio="1024:1024",
+            ratio="2048:2048",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -393,56 +389,6 @@ class TestTextToImage:
     @parametrize
     def test_method_create_overload_8(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
-            model="seedream5_lite",
-            prompt_text="x",
-            ratio="2048:2048",
-        )
-        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params_overload_8(self, client: RunwayML) -> None:
-        text_to_image = client.text_to_image.create(
-            model="seedream5_lite",
-            prompt_text="x",
-            ratio="2048:2048",
-            grounding=True,
-            output_count=1,
-            output_format="png",
-            reference_images=[{"uri": "https://example.com/image.jpg"}],
-        )
-        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
-
-    @parametrize
-    def test_raw_response_create_overload_8(self, client: RunwayML) -> None:
-        response = client.text_to_image.with_raw_response.create(
-            model="seedream5_lite",
-            prompt_text="x",
-            ratio="2048:2048",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        text_to_image = response.parse()
-        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
-
-    @parametrize
-    def test_streaming_response_create_overload_8(self, client: RunwayML) -> None:
-        with client.text_to_image.with_streaming_response.create(
-            model="seedream5_lite",
-            prompt_text="x",
-            ratio="2048:2048",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            text_to_image = response.parse()
-            assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_method_create_overload_9(self, client: RunwayML) -> None:
-        text_to_image = client.text_to_image.create(
             model="grok_imagine_image_2",
             prompt_text="x",
             ratio="1024:1024",
@@ -450,7 +396,7 @@ class TestTextToImage:
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params_overload_9(self, client: RunwayML) -> None:
+    def test_method_create_with_all_params_overload_8(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
             model="grok_imagine_image_2",
             prompt_text="x",
@@ -463,7 +409,7 @@ class TestTextToImage:
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    def test_raw_response_create_overload_9(self, client: RunwayML) -> None:
+    def test_raw_response_create_overload_8(self, client: RunwayML) -> None:
         response = client.text_to_image.with_raw_response.create(
             model="grok_imagine_image_2",
             prompt_text="x",
@@ -476,7 +422,7 @@ class TestTextToImage:
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_overload_9(self, client: RunwayML) -> None:
+    def test_streaming_response_create_overload_8(self, client: RunwayML) -> None:
         with client.text_to_image.with_streaming_response.create(
             model="grok_imagine_image_2",
             prompt_text="x",
@@ -491,7 +437,171 @@ class TestTextToImage:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_method_create_overload_9(self, client: RunwayML) -> None:
+        text_to_image = client.text_to_image.create(
+            model="gemini_image3_pro",
+            prompt_text="xxx",
+            ratio="1344:768",
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_9(self, client: RunwayML) -> None:
+        text_to_image = client.text_to_image.create(
+            model="gemini_image3_pro",
+            prompt_text="xxx",
+            ratio="1344:768",
+            output_count=1,
+            reference_images=[
+                {
+                    "uri": "https://example.com/image.jpg",
+                    "subject": "object",
+                    "tag": "tag",
+                }
+            ],
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_9(self, client: RunwayML) -> None:
+        response = client.text_to_image.with_raw_response.create(
+            model="gemini_image3_pro",
+            prompt_text="xxx",
+            ratio="1344:768",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        text_to_image = response.parse()
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_9(self, client: RunwayML) -> None:
+        with client.text_to_image.with_streaming_response.create(
+            model="gemini_image3_pro",
+            prompt_text="xxx",
+            ratio="1344:768",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            text_to_image = response.parse()
+            assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     def test_method_create_overload_10(self, client: RunwayML) -> None:
+        text_to_image = client.text_to_image.create(
+            model="gpt_image_2_5_flare",
+            prompt_text="x",
+            ratio="2048:880",
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_10(self, client: RunwayML) -> None:
+        text_to_image = client.text_to_image.create(
+            model="gpt_image_2_5_flare",
+            prompt_text="x",
+            ratio="2048:880",
+            background="opaque",
+            output_count=1,
+            quality="low",
+            reference_images=[
+                {
+                    "uri": "https://example.com/image.jpg",
+                    "tag": "tag",
+                }
+            ],
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_10(self, client: RunwayML) -> None:
+        response = client.text_to_image.with_raw_response.create(
+            model="gpt_image_2_5_flare",
+            prompt_text="x",
+            ratio="2048:880",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        text_to_image = response.parse()
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_10(self, client: RunwayML) -> None:
+        with client.text_to_image.with_streaming_response.create(
+            model="gpt_image_2_5_flare",
+            prompt_text="x",
+            ratio="2048:880",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            text_to_image = response.parse()
+            assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_11(self, client: RunwayML) -> None:
+        text_to_image = client.text_to_image.create(
+            model="gpt_image_2_5_sunburst",
+            prompt_text="x",
+            ratio="2048:880",
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_11(self, client: RunwayML) -> None:
+        text_to_image = client.text_to_image.create(
+            model="gpt_image_2_5_sunburst",
+            prompt_text="x",
+            ratio="2048:880",
+            background="transparent",
+            output_count=1,
+            quality="low",
+            reference_images=[
+                {
+                    "uri": "https://example.com/image.jpg",
+                    "tag": "tag",
+                }
+            ],
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_11(self, client: RunwayML) -> None:
+        response = client.text_to_image.with_raw_response.create(
+            model="gpt_image_2_5_sunburst",
+            prompt_text="x",
+            ratio="2048:880",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        text_to_image = response.parse()
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_11(self, client: RunwayML) -> None:
+        with client.text_to_image.with_streaming_response.create(
+            model="gpt_image_2_5_sunburst",
+            prompt_text="x",
+            ratio="2048:880",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            text_to_image = response.parse()
+            assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_12(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
             model="gemini_2.5_flash",
             prompt_text="x",
@@ -500,7 +610,7 @@ class TestTextToImage:
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params_overload_10(self, client: RunwayML) -> None:
+    def test_method_create_with_all_params_overload_12(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
             model="gemini_2.5_flash",
             prompt_text="x",
@@ -515,7 +625,7 @@ class TestTextToImage:
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    def test_raw_response_create_overload_10(self, client: RunwayML) -> None:
+    def test_raw_response_create_overload_12(self, client: RunwayML) -> None:
         response = client.text_to_image.with_raw_response.create(
             model="gemini_2.5_flash",
             prompt_text="x",
@@ -528,7 +638,7 @@ class TestTextToImage:
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_overload_10(self, client: RunwayML) -> None:
+    def test_streaming_response_create_overload_12(self, client: RunwayML) -> None:
         with client.text_to_image.with_streaming_response.create(
             model="gemini_2.5_flash",
             prompt_text="x",
@@ -717,18 +827,18 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_method_create_overload_4(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
-            model="gemini_image3_pro",
+            model="gemini_image3.1_flash",
             prompt_text="x",
-            ratio="1344:768",
+            ratio="512:512",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params_overload_4(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
-            model="gemini_image3_pro",
+            model="gemini_image3.1_flash",
             prompt_text="x",
-            ratio="1344:768",
+            ratio="512:512",
             output_count=1,
             reference_images=[
                 {
@@ -743,9 +853,9 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_raw_response_create_overload_4(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.text_to_image.with_raw_response.create(
-            model="gemini_image3_pro",
+            model="gemini_image3.1_flash",
             prompt_text="x",
-            ratio="1344:768",
+            ratio="512:512",
         )
 
         assert response.is_closed is True
@@ -756,9 +866,9 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_streaming_response_create_overload_4(self, async_client: AsyncRunwayML) -> None:
         async with async_client.text_to_image.with_streaming_response.create(
-            model="gemini_image3_pro",
+            model="gemini_image3.1_flash",
             prompt_text="x",
-            ratio="1344:768",
+            ratio="512:512",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -771,35 +881,30 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_method_create_overload_5(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
-            model="gemini_image3.1_flash",
+            model="muse_image",
             prompt_text="x",
-            ratio="512:512",
+            ratio="2352:1008",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params_overload_5(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
-            model="gemini_image3.1_flash",
+            model="muse_image",
             prompt_text="x",
-            ratio="512:512",
+            ratio="2352:1008",
             output_count=1,
-            reference_images=[
-                {
-                    "uri": "https://example.com/image.jpg",
-                    "subject": "object",
-                    "tag": "tag",
-                }
-            ],
+            output_format="webp",
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
     async def test_raw_response_create_overload_5(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.text_to_image.with_raw_response.create(
-            model="gemini_image3.1_flash",
+            model="muse_image",
             prompt_text="x",
-            ratio="512:512",
+            ratio="2352:1008",
         )
 
         assert response.is_closed is True
@@ -810,9 +915,9 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_streaming_response_create_overload_5(self, async_client: AsyncRunwayML) -> None:
         async with async_client.text_to_image.with_streaming_response.create(
-            model="gemini_image3.1_flash",
+            model="muse_image",
             prompt_text="x",
-            ratio="512:512",
+            ratio="2352:1008",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -825,20 +930,21 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_method_create_overload_6(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
-            model="muse_image",
+            model="seedream5_pro",
             prompt_text="x",
-            ratio="2352:1008",
+            ratio="1024:1024",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params_overload_6(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
-            model="muse_image",
+            model="seedream5_pro",
             prompt_text="x",
-            ratio="2352:1008",
+            ratio="1024:1024",
+            grounding=True,
             output_count=1,
-            output_format="webp",
+            output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
@@ -846,9 +952,9 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_raw_response_create_overload_6(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.text_to_image.with_raw_response.create(
-            model="muse_image",
+            model="seedream5_pro",
             prompt_text="x",
-            ratio="2352:1008",
+            ratio="1024:1024",
         )
 
         assert response.is_closed is True
@@ -859,9 +965,9 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_streaming_response_create_overload_6(self, async_client: AsyncRunwayML) -> None:
         async with async_client.text_to_image.with_streaming_response.create(
-            model="muse_image",
+            model="seedream5_pro",
             prompt_text="x",
-            ratio="2352:1008",
+            ratio="1024:1024",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -874,18 +980,18 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_method_create_overload_7(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
-            model="seedream5_pro",
+            model="seedream5_lite",
             prompt_text="x",
-            ratio="1024:1024",
+            ratio="2048:2048",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params_overload_7(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
-            model="seedream5_pro",
+            model="seedream5_lite",
             prompt_text="x",
-            ratio="1024:1024",
+            ratio="2048:2048",
             grounding=True,
             output_count=1,
             output_format="png",
@@ -896,9 +1002,9 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_raw_response_create_overload_7(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.text_to_image.with_raw_response.create(
-            model="seedream5_pro",
+            model="seedream5_lite",
             prompt_text="x",
-            ratio="1024:1024",
+            ratio="2048:2048",
         )
 
         assert response.is_closed is True
@@ -909,9 +1015,9 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_streaming_response_create_overload_7(self, async_client: AsyncRunwayML) -> None:
         async with async_client.text_to_image.with_streaming_response.create(
-            model="seedream5_pro",
+            model="seedream5_lite",
             prompt_text="x",
-            ratio="1024:1024",
+            ratio="2048:2048",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -924,56 +1030,6 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_method_create_overload_8(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
-            model="seedream5_lite",
-            prompt_text="x",
-            ratio="2048:2048",
-        )
-        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params_overload_8(self, async_client: AsyncRunwayML) -> None:
-        text_to_image = await async_client.text_to_image.create(
-            model="seedream5_lite",
-            prompt_text="x",
-            ratio="2048:2048",
-            grounding=True,
-            output_count=1,
-            output_format="png",
-            reference_images=[{"uri": "https://example.com/image.jpg"}],
-        )
-        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
-
-    @parametrize
-    async def test_raw_response_create_overload_8(self, async_client: AsyncRunwayML) -> None:
-        response = await async_client.text_to_image.with_raw_response.create(
-            model="seedream5_lite",
-            prompt_text="x",
-            ratio="2048:2048",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        text_to_image = await response.parse()
-        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_create_overload_8(self, async_client: AsyncRunwayML) -> None:
-        async with async_client.text_to_image.with_streaming_response.create(
-            model="seedream5_lite",
-            prompt_text="x",
-            ratio="2048:2048",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            text_to_image = await response.parse()
-            assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_create_overload_9(self, async_client: AsyncRunwayML) -> None:
-        text_to_image = await async_client.text_to_image.create(
             model="grok_imagine_image_2",
             prompt_text="x",
             ratio="1024:1024",
@@ -981,7 +1037,7 @@ class TestAsyncTextToImage:
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params_overload_9(self, async_client: AsyncRunwayML) -> None:
+    async def test_method_create_with_all_params_overload_8(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
             model="grok_imagine_image_2",
             prompt_text="x",
@@ -994,7 +1050,7 @@ class TestAsyncTextToImage:
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_overload_9(self, async_client: AsyncRunwayML) -> None:
+    async def test_raw_response_create_overload_8(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.text_to_image.with_raw_response.create(
             model="grok_imagine_image_2",
             prompt_text="x",
@@ -1007,7 +1063,7 @@ class TestAsyncTextToImage:
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_overload_9(self, async_client: AsyncRunwayML) -> None:
+    async def test_streaming_response_create_overload_8(self, async_client: AsyncRunwayML) -> None:
         async with async_client.text_to_image.with_streaming_response.create(
             model="grok_imagine_image_2",
             prompt_text="x",
@@ -1022,7 +1078,171 @@ class TestAsyncTextToImage:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_method_create_overload_9(self, async_client: AsyncRunwayML) -> None:
+        text_to_image = await async_client.text_to_image.create(
+            model="gemini_image3_pro",
+            prompt_text="xxx",
+            ratio="1344:768",
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_9(self, async_client: AsyncRunwayML) -> None:
+        text_to_image = await async_client.text_to_image.create(
+            model="gemini_image3_pro",
+            prompt_text="xxx",
+            ratio="1344:768",
+            output_count=1,
+            reference_images=[
+                {
+                    "uri": "https://example.com/image.jpg",
+                    "subject": "object",
+                    "tag": "tag",
+                }
+            ],
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_9(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.text_to_image.with_raw_response.create(
+            model="gemini_image3_pro",
+            prompt_text="xxx",
+            ratio="1344:768",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        text_to_image = await response.parse()
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_9(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.text_to_image.with_streaming_response.create(
+            model="gemini_image3_pro",
+            prompt_text="xxx",
+            ratio="1344:768",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            text_to_image = await response.parse()
+            assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     async def test_method_create_overload_10(self, async_client: AsyncRunwayML) -> None:
+        text_to_image = await async_client.text_to_image.create(
+            model="gpt_image_2_5_flare",
+            prompt_text="x",
+            ratio="2048:880",
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_10(self, async_client: AsyncRunwayML) -> None:
+        text_to_image = await async_client.text_to_image.create(
+            model="gpt_image_2_5_flare",
+            prompt_text="x",
+            ratio="2048:880",
+            background="opaque",
+            output_count=1,
+            quality="low",
+            reference_images=[
+                {
+                    "uri": "https://example.com/image.jpg",
+                    "tag": "tag",
+                }
+            ],
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_10(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.text_to_image.with_raw_response.create(
+            model="gpt_image_2_5_flare",
+            prompt_text="x",
+            ratio="2048:880",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        text_to_image = await response.parse()
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_10(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.text_to_image.with_streaming_response.create(
+            model="gpt_image_2_5_flare",
+            prompt_text="x",
+            ratio="2048:880",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            text_to_image = await response.parse()
+            assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_11(self, async_client: AsyncRunwayML) -> None:
+        text_to_image = await async_client.text_to_image.create(
+            model="gpt_image_2_5_sunburst",
+            prompt_text="x",
+            ratio="2048:880",
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_11(self, async_client: AsyncRunwayML) -> None:
+        text_to_image = await async_client.text_to_image.create(
+            model="gpt_image_2_5_sunburst",
+            prompt_text="x",
+            ratio="2048:880",
+            background="transparent",
+            output_count=1,
+            quality="low",
+            reference_images=[
+                {
+                    "uri": "https://example.com/image.jpg",
+                    "tag": "tag",
+                }
+            ],
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_11(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.text_to_image.with_raw_response.create(
+            model="gpt_image_2_5_sunburst",
+            prompt_text="x",
+            ratio="2048:880",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        text_to_image = await response.parse()
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_11(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.text_to_image.with_streaming_response.create(
+            model="gpt_image_2_5_sunburst",
+            prompt_text="x",
+            ratio="2048:880",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            text_to_image = await response.parse()
+            assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_12(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
             model="gemini_2.5_flash",
             prompt_text="x",
@@ -1031,7 +1251,7 @@ class TestAsyncTextToImage:
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params_overload_10(self, async_client: AsyncRunwayML) -> None:
+    async def test_method_create_with_all_params_overload_12(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
             model="gemini_2.5_flash",
             prompt_text="x",
@@ -1046,7 +1266,7 @@ class TestAsyncTextToImage:
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_overload_10(self, async_client: AsyncRunwayML) -> None:
+    async def test_raw_response_create_overload_12(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.text_to_image.with_raw_response.create(
             model="gemini_2.5_flash",
             prompt_text="x",
@@ -1059,7 +1279,7 @@ class TestAsyncTextToImage:
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_overload_10(self, async_client: AsyncRunwayML) -> None:
+    async def test_streaming_response_create_overload_12(self, async_client: AsyncRunwayML) -> None:
         async with async_client.text_to_image.with_streaming_response.create(
             model="gemini_2.5_flash",
             prompt_text="x",

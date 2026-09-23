@@ -149,7 +149,8 @@ class AuditLogsResource(SyncAPIResource):
               `WorkspaceTagCreated`, `WorkspaceTagUpdated`, `WorkspaceTagDeleted`,
               `WorkspaceTagAssigned`, `WorkspaceTagUnassigned`, `MeteredBillingConfigUpdated`,
               `MeteredBillingRefillTriggered`, `MeteredBillingRetryTriggered`,
-              `EnterpriseSpendCapEnforcementUpdated`.
+              `EnterpriseSpendCapEnforcementUpdated`,
+              `AwsMarketplaceEnterpriseSubscriptionLinked`.
 
           actor_emails: Restrict results to entries performed by the users with these emails, as a
               comma-separated list of up to 50 emails.
@@ -323,7 +324,8 @@ class AsyncAuditLogsResource(AsyncAPIResource):
               `WorkspaceTagCreated`, `WorkspaceTagUpdated`, `WorkspaceTagDeleted`,
               `WorkspaceTagAssigned`, `WorkspaceTagUnassigned`, `MeteredBillingConfigUpdated`,
               `MeteredBillingRefillTriggered`, `MeteredBillingRetryTriggered`,
-              `EnterpriseSpendCapEnforcementUpdated`.
+              `EnterpriseSpendCapEnforcementUpdated`,
+              `AwsMarketplaceEnterpriseSubscriptionLinked`.
 
           actor_emails: Restrict results to entries performed by the users with these emails, as a
               comma-separated list of up to 50 emails.

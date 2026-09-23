@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing import Union
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["VideoUpscaleCreateParams"]
+__all__ = ["VideoUpscaleCreateParams", "MagnificVideoUpscalerCreative", "EnhanceFrameRate"]
 
 
-class VideoUpscaleCreateParams(TypedDict, total=False):
+class MagnificVideoUpscalerCreative(TypedDict, total=False):
     model: Required[Literal["magnific_video_upscaler_creative"]]
 
     video_uri: Required[Annotated[str, PropertyInfo(alias="videoUri")]]
@@ -39,3 +40,25 @@ class VideoUpscaleCreateParams(TypedDict, total=False):
 
     smart_grain: Annotated[int, PropertyInfo(alias="smartGrain")]
     """Grain and texture enhancement from 0 to 100."""
+
+
+class EnhanceFrameRate(TypedDict, total=False):
+    model: Required[Literal["enhance_frame_rate"]]
+
+    target_framerate: Required[
+        Annotated[
+            Literal["24", "25", "30", "48", "50", "60", "120", "23_98", "29_97", "59_94"],
+            PropertyInfo(alias="targetFramerate"),
+        ]
+    ]
+    """The output frame rate."""
+
+    video_uri: Required[Annotated[str, PropertyInfo(alias="videoUri")]]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+    [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+
+VideoUpscaleCreateParams: TypeAlias = Union[MagnificVideoUpscalerCreative, EnhanceFrameRate]

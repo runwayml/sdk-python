@@ -49,7 +49,8 @@ class AuditLogListParams(TypedDict, total=False):
     `WorkspaceTagCreated`, `WorkspaceTagUpdated`, `WorkspaceTagDeleted`,
     `WorkspaceTagAssigned`, `WorkspaceTagUnassigned`, `MeteredBillingConfigUpdated`,
     `MeteredBillingRefillTriggered`, `MeteredBillingRetryTriggered`,
-    `EnterpriseSpendCapEnforcementUpdated`.
+    `EnterpriseSpendCapEnforcementUpdated`,
+    `AwsMarketplaceEnterpriseSubscriptionLinked`.
     """
 
     actor_emails: Annotated[str, PropertyInfo(alias="actorEmails")]
