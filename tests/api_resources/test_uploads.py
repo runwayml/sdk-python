@@ -14,6 +14,7 @@ from respx import MockRouter
 from runwayml import RunwayML, AsyncRunwayML
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
+api_key = "My API Key"
 sample_file = Path(__file__).parent.parent / "sample_file.txt"
 
 
@@ -70,6 +71,40 @@ class TestUploads:
             if file_type == "file_object":
                 file.close()
 
+    def test_create_ephemeral_reuses_configured_http_client_for_storage_upload(self) -> None:
+        seen_urls: list[str] = []
+
+        def mock_handler(request: httpx.Request) -> httpx.Response:
+            request_url = str(request.url)
+            seen_urls.append(request_url)
+
+            if request_url == f"{base_url}/v1/uploads":
+                assert request.headers["Authorization"] == f"Bearer {api_key}"
+                return httpx.Response(
+                    200,
+                    json={
+                        "runwayUri": "runway://upload/test123",
+                        "uploadUrl": "https://storage.example.com/upload",
+                        "fields": {"key": "value"},
+                    },
+                )
+
+            assert request_url == "https://storage.example.com/upload"
+            assert "Authorization" not in request.headers
+            assert "X-Runway-Version" not in request.headers
+            return httpx.Response(204)
+
+        with RunwayML(
+            base_url=base_url,
+            api_key=api_key,
+            _strict_response_validation=True,
+            http_client=httpx.Client(transport=httpx.MockTransport(handler=mock_handler)),
+        ) as client:
+            response = client.uploads.create_ephemeral(file=("test.txt", b"content"))
+
+        assert response.uri == "runway://upload/test123"
+        assert seen_urls == [f"{base_url}/v1/uploads", "https://storage.example.com/upload"]
+
 
 class TestAsyncUploads:
     @pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -123,3 +158,37 @@ class TestAsyncUploads:
         finally:
             if file_type == "file_object":
                 file.close()
+
+    async def test_create_ephemeral_reuses_configured_http_client_for_storage_upload(self) -> None:
+        seen_urls: list[str] = []
+
+        async def mock_handler(request: httpx.Request) -> httpx.Response:
+            request_url = str(request.url)
+            seen_urls.append(request_url)
+
+            if request_url == f"{base_url}/v1/uploads":
+                assert request.headers["Authorization"] == f"Bearer {api_key}"
+                return httpx.Response(
+                    200,
+                    json={
+                        "runwayUri": "runway://upload/test123",
+                        "uploadUrl": "https://storage.example.com/upload",
+                        "fields": {"key": "value"},
+                    },
+                )
+
+            assert request_url == "https://storage.example.com/upload"
+            assert "Authorization" not in request.headers
+            assert "X-Runway-Version" not in request.headers
+            return httpx.Response(204)
+
+        async with AsyncRunwayML(
+            base_url=base_url,
+            api_key=api_key,
+            _strict_response_validation=True,
+            http_client=httpx.AsyncClient(transport=httpx.MockTransport(handler=mock_handler)),
+        ) as client:
+            response = await client.uploads.create_ephemeral(file=("test.txt", b"content"))
+
+        assert response.uri == "runway://upload/test123"
+        assert seen_urls == [f"{base_url}/v1/uploads", "https://storage.example.com/upload"]
