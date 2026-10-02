@@ -1,5 +1,23 @@
 # Changelog
 
+## [5.21.0](https://github.com/runwayml/sdk-python/compare/v5.20.1...v5.21.0) (2026-10-02)
+
+
+### Features
+
+* add Grok Imagine Video 1.5 Lite (`grok_imagine_1_5_lite`) to text-to-video and image-to-video
+* add Eleven v4 (`eleven_v4`) text-to-speech
+
+### Improvements
+
+* add new audit-log event types (including `MemberJoinedViaDomain`, `UserGroupCreditCapUpdated`, `StudioSessionOpened`, `OrganizationAgentSandboxUpdated`, and ad-connection events) and their metadata fields
+* add optional `cost` to workflow invocations, reported once every task in the run is terminal
+* include `grok_imagine_1_5_lite` and `eleven_v4` in organization usage results
+
+### Bug Fixes
+
+* **client:** make `grok_imagine_1_5_lite` and `eleven_v4` responses awaitable
+
 ## [5.20.1](https://github.com/runwayml/sdk-python/compare/v5.20.0...v5.20.1) (2026-09-23)
 
 
