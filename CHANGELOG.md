@@ -5,13 +5,18 @@
 
 ### Features
 
-* add Grok Imagine Video 1.5 Lite and Eleven v4 text-to-speech models ([a209ca7](https://github.com/runwayml/sdk-python/commit/a209ca7612aa5da2165bf220ed1ce5533fc27d8c))
-* add Grok Imagine Video 1.5 Lite and Eleven v4 text-to-speech models ([b06d2a7](https://github.com/runwayml/sdk-python/commit/b06d2a7fba06433d36fd2413aee1ca2ee333ca40))
+* add Grok Imagine Video 1.5 Lite (`grok_imagine_1_5_lite`) to text-to-video and image-to-video
+* add Eleven v4 (`eleven_v4`) text-to-speech
 
+### Improvements
+
+* add new audit-log event types (including `MemberJoinedViaDomain`, `UserGroupCreditCapUpdated`, `StudioSessionOpened`, `OrganizationAgentSandboxUpdated`, and ad-connection events) and their metadata fields
+* add optional `cost` to workflow invocations, reported once every task in the run is terminal
+* include `grok_imagine_1_5_lite` and `eleven_v4` in organization usage results
 
 ### Bug Fixes
 
-* **client:** make grok_imagine_1_5_lite and eleven_v4 responses awaitable ([e61bafe](https://github.com/runwayml/sdk-python/commit/e61bafe64bfd2ba52686bc507e8c6ec13aa96534))
+* **client:** make `grok_imagine_1_5_lite` and `eleven_v4` responses awaitable
 
 ## [5.20.1](https://github.com/runwayml/sdk-python/compare/v5.20.0...v5.20.1) (2026-09-23)
 
