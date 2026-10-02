@@ -105,6 +105,72 @@ class TextToSpeechResource(SyncAPIResource):
     def create(
         self,
         *,
+        model: Literal["eleven_v4"],
+        prompt_text: str,
+        voice: text_to_speech_create_params.ElevenV4Voice,
+        language_code: str | Omit = omit,
+        next_text: str | Omit = omit,
+        previous_text: str | Omit = omit,
+        seed: int | Omit = omit,
+        similarity_boost: float | Omit = omit,
+        speed: float | Omit = omit,
+        stability: float | Omit = omit,
+        style: float | Omit = omit,
+        use_speaker_boost: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate speech from text.
+
+        Args:
+          prompt_text: The text to convert to speech. You can include expressive audio tags like
+              [laughs], [whispers], or [pause] in the script.
+
+          voice: A voice preset from the RunwayML API.
+
+          language_code: Language code to enforce pronunciation, such as "en" or "pt". A regional code
+              such as "pt-BR" is read as its language.
+
+          next_text: Text that comes after this request, so the speech can lead into a later
+              generation.
+
+          previous_text: Text that comes before this request, so the speech can continue from an earlier
+              generation.
+
+          seed: Optional seed for more consistent output. The same seed and settings tend to
+              sound alike, but it is not guaranteed.
+
+          similarity_boost: How closely the output tracks the original speaker.
+
+          speed: Speech speed multiplier. Values below 1 slow the speech down, and values above 1
+              speed it up.
+
+          stability: Voice stability. Lower values allow broader emotional range; higher values are
+              steadier.
+
+          style: Style exaggeration. Higher values amplify the speaker style.
+
+          use_speaker_boost: Boost similarity to the original speaker at a small latency cost.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["eleven_multilingual_v2"],
         prompt_text: str,
         voice: text_to_speech_create_params.ElevenMultilingualV2Voice,
@@ -198,7 +264,7 @@ class TextToSpeechResource(SyncAPIResource):
     def create(
         self,
         *,
-        model: Literal["seed_audio"] | Literal["eleven_multilingual_v2"] | Literal["eleven_v3"],
+        model: Literal["seed_audio"] | Literal["eleven_v4"] | Literal["eleven_multilingual_v2"] | Literal["eleven_v3"],
         prompt_text: str,
         loudness_rate: int | Omit = omit,
         output_format: Literal["wav", "mp3", "ogg_opus"] | Omit = omit,
@@ -206,17 +272,20 @@ class TextToSpeechResource(SyncAPIResource):
         sample_rate: Literal[8000, 16000, 24000, 32000, 44100, 48000] | Omit = omit,
         speech_rate: int | Omit = omit,
         voice: text_to_speech_create_params.SeedAudioVoice
+        | text_to_speech_create_params.ElevenV4Voice
         | text_to_speech_create_params.ElevenMultilingualV2Voice
         | text_to_speech_create_params.ElevenV3Voice
         | Omit = omit,
-        apply_text_normalization: Literal["auto", "on", "off"] | Omit = omit,
         language_code: str | Omit = omit,
+        next_text: str | Omit = omit,
+        previous_text: str | Omit = omit,
         seed: int | Omit = omit,
         similarity_boost: float | Omit = omit,
         speed: float | Omit = omit,
         stability: float | Omit = omit,
         style: float | Omit = omit,
         use_speaker_boost: bool | Omit = omit,
+        apply_text_normalization: Literal["auto", "on", "off"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -236,14 +305,16 @@ class TextToSpeechResource(SyncAPIResource):
                     "sample_rate": sample_rate,
                     "speech_rate": speech_rate,
                     "voice": voice,
-                    "apply_text_normalization": apply_text_normalization,
                     "language_code": language_code,
+                    "next_text": next_text,
+                    "previous_text": previous_text,
                     "seed": seed,
                     "similarity_boost": similarity_boost,
                     "speed": speed,
                     "stability": stability,
                     "style": style,
                     "use_speaker_boost": use_speaker_boost,
+                    "apply_text_normalization": apply_text_normalization,
                 },
                 text_to_speech_create_params.TextToSpeechCreateParams,
             ),
@@ -330,6 +401,72 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        model: Literal["eleven_v4"],
+        prompt_text: str,
+        voice: text_to_speech_create_params.ElevenV4Voice,
+        language_code: str | Omit = omit,
+        next_text: str | Omit = omit,
+        previous_text: str | Omit = omit,
+        seed: int | Omit = omit,
+        similarity_boost: float | Omit = omit,
+        speed: float | Omit = omit,
+        stability: float | Omit = omit,
+        style: float | Omit = omit,
+        use_speaker_boost: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate speech from text.
+
+        Args:
+          prompt_text: The text to convert to speech. You can include expressive audio tags like
+              [laughs], [whispers], or [pause] in the script.
+
+          voice: A voice preset from the RunwayML API.
+
+          language_code: Language code to enforce pronunciation, such as "en" or "pt". A regional code
+              such as "pt-BR" is read as its language.
+
+          next_text: Text that comes after this request, so the speech can lead into a later
+              generation.
+
+          previous_text: Text that comes before this request, so the speech can continue from an earlier
+              generation.
+
+          seed: Optional seed for more consistent output. The same seed and settings tend to
+              sound alike, but it is not guaranteed.
+
+          similarity_boost: How closely the output tracks the original speaker.
+
+          speed: Speech speed multiplier. Values below 1 slow the speech down, and values above 1
+              speed it up.
+
+          stability: Voice stability. Lower values allow broader emotional range; higher values are
+              steadier.
+
+          style: Style exaggeration. Higher values amplify the speaker style.
+
+          use_speaker_boost: Boost similarity to the original speaker at a small latency cost.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["eleven_multilingual_v2"],
         prompt_text: str,
         voice: text_to_speech_create_params.ElevenMultilingualV2Voice,
@@ -423,7 +560,7 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        model: Literal["seed_audio"] | Literal["eleven_multilingual_v2"] | Literal["eleven_v3"],
+        model: Literal["seed_audio"] | Literal["eleven_v4"] | Literal["eleven_multilingual_v2"] | Literal["eleven_v3"],
         prompt_text: str,
         loudness_rate: int | Omit = omit,
         output_format: Literal["wav", "mp3", "ogg_opus"] | Omit = omit,
@@ -431,17 +568,20 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         sample_rate: Literal[8000, 16000, 24000, 32000, 44100, 48000] | Omit = omit,
         speech_rate: int | Omit = omit,
         voice: text_to_speech_create_params.SeedAudioVoice
+        | text_to_speech_create_params.ElevenV4Voice
         | text_to_speech_create_params.ElevenMultilingualV2Voice
         | text_to_speech_create_params.ElevenV3Voice
         | Omit = omit,
-        apply_text_normalization: Literal["auto", "on", "off"] | Omit = omit,
         language_code: str | Omit = omit,
+        next_text: str | Omit = omit,
+        previous_text: str | Omit = omit,
         seed: int | Omit = omit,
         similarity_boost: float | Omit = omit,
         speed: float | Omit = omit,
         stability: float | Omit = omit,
         style: float | Omit = omit,
         use_speaker_boost: bool | Omit = omit,
+        apply_text_normalization: Literal["auto", "on", "off"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -461,14 +601,16 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
                     "sample_rate": sample_rate,
                     "speech_rate": speech_rate,
                     "voice": voice,
-                    "apply_text_normalization": apply_text_normalization,
                     "language_code": language_code,
+                    "next_text": next_text,
+                    "previous_text": previous_text,
                     "seed": seed,
                     "similarity_boost": similarity_boost,
                     "speed": speed,
                     "stability": stability,
                     "style": style,
                     "use_speaker_boost": use_speaker_boost,
+                    "apply_text_normalization": apply_text_normalization,
                 },
                 text_to_speech_create_params.TextToSpeechCreateParams,
             ),

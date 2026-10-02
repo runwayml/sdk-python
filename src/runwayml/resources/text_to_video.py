@@ -966,6 +966,65 @@ class TextToVideoResource(SyncAPIResource):
         """
         ...
 
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["grok_imagine_1_5_lite"],
+        prompt_text: str,
+        duration: int | Omit = omit,
+        ratio: Literal[
+            "848:480",
+            "480:848",
+            "480:480",
+            "640:480",
+            "480:640",
+            "720:480",
+            "480:720",
+            "1280:720",
+            "720:1280",
+            "720:720",
+            "960:720",
+            "720:960",
+            "1088:720",
+            "720:1088",
+            "1904:1072",
+            "1072:1904",
+            "1424:1424",
+            "1648:1232",
+            "1232:1648",
+            "1744:1152",
+            "1152:1744",
+        ]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate a video from a text prompt.
+
+        Args:
+          prompt_text: A non-empty text prompt describing what should appear in the output.
+
+          duration: The number of seconds of duration for the output video.
+
+          ratio: The resolution of the output video. The 1080p sizes are rendered at 720p and
+              upscaled.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["duration", "model", "prompt_text", "ratio"],
         ["model", "prompt_text", "ratio"],
@@ -990,7 +1049,8 @@ class TextToVideoResource(SyncAPIResource):
         | Literal["wan3"]
         | Literal["gemini_omni_flash_1.1"]
         | Literal["wan3_prime"]
-        | Literal["h3_max"],
+        | Literal["h3_max"]
+        | Literal["grok_imagine_1_5_lite"],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
@@ -1089,6 +1149,29 @@ class TextToVideoResource(SyncAPIResource):
             "auto_1080p",
         ]
         | Literal["640:360", "360:640", "1280:720", "720:1280", "1920:1080", "1080:1920", "3840:2160", "2160:3840"]
+        | Literal[
+            "848:480",
+            "480:848",
+            "480:480",
+            "640:480",
+            "480:640",
+            "720:480",
+            "480:720",
+            "1280:720",
+            "720:1280",
+            "720:720",
+            "960:720",
+            "720:960",
+            "1088:720",
+            "720:1088",
+            "1904:1072",
+            "1072:1904",
+            "1424:1424",
+            "1648:1232",
+            "1232:1648",
+            "1744:1152",
+            "1152:1744",
+        ]
         | Omit = omit,
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
         output_format: Literal[
@@ -2115,6 +2198,65 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         """
         ...
 
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["grok_imagine_1_5_lite"],
+        prompt_text: str,
+        duration: int | Omit = omit,
+        ratio: Literal[
+            "848:480",
+            "480:848",
+            "480:480",
+            "640:480",
+            "480:640",
+            "720:480",
+            "480:720",
+            "1280:720",
+            "720:1280",
+            "720:720",
+            "960:720",
+            "720:960",
+            "1088:720",
+            "720:1088",
+            "1904:1072",
+            "1072:1904",
+            "1424:1424",
+            "1648:1232",
+            "1232:1648",
+            "1744:1152",
+            "1152:1744",
+        ]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate a video from a text prompt.
+
+        Args:
+          prompt_text: A non-empty text prompt describing what should appear in the output.
+
+          duration: The number of seconds of duration for the output video.
+
+          ratio: The resolution of the output video. The 1080p sizes are rendered at 720p and
+              upscaled.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["duration", "model", "prompt_text", "ratio"],
         ["model", "prompt_text", "ratio"],
@@ -2139,7 +2281,8 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Literal["wan3"]
         | Literal["gemini_omni_flash_1.1"]
         | Literal["wan3_prime"]
-        | Literal["h3_max"],
+        | Literal["h3_max"]
+        | Literal["grok_imagine_1_5_lite"],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
@@ -2238,6 +2381,29 @@ class AsyncTextToVideoResource(AsyncAPIResource):
             "auto_1080p",
         ]
         | Literal["640:360", "360:640", "1280:720", "720:1280", "1920:1080", "1080:1920", "3840:2160", "2160:3840"]
+        | Literal[
+            "848:480",
+            "480:848",
+            "480:480",
+            "640:480",
+            "480:640",
+            "720:480",
+            "480:720",
+            "1280:720",
+            "720:1280",
+            "720:720",
+            "960:720",
+            "720:960",
+            "1088:720",
+            "720:1088",
+            "1904:1072",
+            "1072:1904",
+            "1424:1424",
+            "1648:1232",
+            "1232:1648",
+            "1744:1152",
+            "1152:1744",
+        ]
         | Omit = omit,
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
         output_format: Literal[

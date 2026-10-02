@@ -14,6 +14,14 @@ __all__ = ["AuditLogRetrieveResponse", "Metadata"]
 class Metadata(BaseModel):
     """Action-specific details."""
 
+    ad_account_id: Optional[object] = FieldInfo(alias="Ad account ID", default=None)
+
+    ad_sync_end_date: Optional[object] = FieldInfo(alias="Ad sync end date", default=None)
+
+    ad_sync_run_id: Optional[object] = FieldInfo(alias="Ad sync run ID", default=None)
+
+    ad_sync_start_date: Optional[object] = FieldInfo(alias="Ad sync start date", default=None)
+
     agent_session_id: Optional[object] = FieldInfo(alias="Agent session ID", default=None)
 
     agent_tagged: Optional[object] = FieldInfo(alias="Agent tagged", default=None)
@@ -25,6 +33,10 @@ class Metadata(BaseModel):
     api_account: Optional[object] = FieldInfo(alias="API account", default=None)
 
     api_project_id: Optional[object] = FieldInfo(alias="API project ID", default=None)
+
+    app_studio_app: Optional[object] = FieldInfo(alias="App Studio app", default=None)
+
+    app_studio_session: Optional[object] = FieldInfo(alias="App Studio session", default=None)
 
     application: Optional[object] = FieldInfo(alias="Application", default=None)
 
@@ -47,6 +59,8 @@ class Metadata(BaseModel):
     destination_category_id: Optional[object] = FieldInfo(alias="Destination category ID", default=None)
 
     direction: Optional[object] = FieldInfo(alias="Direction", default=None)
+
+    email_domain: Optional[object] = FieldInfo(alias="Email domain", default=None)
 
     error_code: Optional[object] = FieldInfo(alias="Error code", default=None)
 
@@ -84,11 +98,17 @@ class Metadata(BaseModel):
 
     platform: Optional[object] = FieldInfo(alias="Platform", default=None)
 
+    previous_project_credit_cap: Optional[object] = FieldInfo(alias="Previous project credit cap", default=None)
+
     previous_role: Optional[object] = FieldInfo(alias="Previous role", default=None)
 
     previous_text: Optional[object] = FieldInfo(alias="Previous text", default=None)
 
     previous_value: Optional[object] = FieldInfo(alias="Previous value", default=None)
+
+    project_credit_cap: Optional[object] = FieldInfo(alias="Project credit cap", default=None)
+
+    provider: Optional[object] = FieldInfo(alias="Provider", default=None)
 
     reason: Optional[object] = FieldInfo(alias="Reason", default=None)
 
@@ -97,6 +117,8 @@ class Metadata(BaseModel):
     role: Optional[object] = FieldInfo(alias="Role", default=None)
 
     root_asset_id: Optional[object] = FieldInfo(alias="Root asset ID", default=None)
+
+    selected: Optional[object] = FieldInfo(alias="Selected", default=None)
 
     setting: Optional[object] = FieldInfo(alias="Setting", default=None)
 
@@ -143,6 +165,7 @@ class AuditLogRetrieveResponse(BaseModel):
         "MemberRemoved",
         "MemberRoleChanged",
         "InviteAccepted",
+        "MemberJoinedViaDomain",
         "TeamSettingsUpdated",
         "InviteLinkToggled",
         "UserGroupCreated",
@@ -152,6 +175,7 @@ class AuditLogRetrieveResponse(BaseModel):
         "UserGroupRestored",
         "UserGroupMemberAdded",
         "UserGroupMemberRemoved",
+        "UserGroupCreditCapUpdated",
         "SSOLogin",
         "SSOUserProvisioned",
         "SSOConfigCreated",
@@ -198,10 +222,17 @@ class AuditLogRetrieveResponse(BaseModel):
         "AgentConnectorSessionEnabled",
         "AgentConnectorSessionDisabled",
         "GenerationCreated",
+        "StudioSessionOpened",
         "AccountLinkCreated",
         "AccountLinkDeleted",
+        "AdConnectionAuthorizationStarted",
+        "AdConnectionConnected",
+        "AdAccountSelectionUpdated",
+        "AdAccountSyncRequested",
+        "AdConnectionDisconnected",
         "OrganizationSettingsUpdated",
         "OrganizationDisabledModelsUpdated",
+        "OrganizationAgentSandboxUpdated",
         "OrganizationApiAccountReleased",
         "OrganizationApiAccountMemberInvited",
         "OrganizationApiAccountMemberRoleChanged",
