@@ -50,6 +50,7 @@ __all__ = [
     "Wan3PrimeReference",
     "Wan3PrimeReferenceVideo",
     "H3Max",
+    "GrokImagine1_5Lite",
 ]
 
 
@@ -1086,6 +1087,44 @@ class H3Max(TypedDict, total=False):
     """
 
 
+class GrokImagine1_5Lite(TypedDict, total=False):
+    model: Required[Literal["grok_imagine_1_5_lite"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty text prompt describing what should appear in the output."""
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    ratio: Literal[
+        "848:480",
+        "480:848",
+        "480:480",
+        "640:480",
+        "480:640",
+        "720:480",
+        "480:720",
+        "1280:720",
+        "720:1280",
+        "720:720",
+        "960:720",
+        "720:960",
+        "1088:720",
+        "720:1088",
+        "1904:1072",
+        "1072:1904",
+        "1424:1424",
+        "1648:1232",
+        "1232:1648",
+        "1744:1152",
+        "1152:1744",
+    ]
+    """The resolution of the output video.
+
+    The 1080p sizes are rendered at 720p and upscaled.
+    """
+
+
 TextToVideoCreateParams: TypeAlias = Union[
     Gen4_5,
     Veo3_1,
@@ -1102,4 +1141,5 @@ TextToVideoCreateParams: TypeAlias = Union[
     GeminiOmniFlash1_1,
     Wan3Prime,
     H3Max,
+    GrokImagine1_5Lite,
 ]

@@ -11,6 +11,8 @@ __all__ = [
     "TextToSpeechCreateParams",
     "SeedAudio",
     "SeedAudioVoice",
+    "ElevenV4",
+    "ElevenV4Voice",
     "ElevenMultilingualV2",
     "ElevenMultilingualV2Voice",
     "ElevenV3",
@@ -64,6 +66,129 @@ class SeedAudioVoice(TypedDict, total=False):
     """
 
     type: Required[Literal["reference-audio"]]
+
+
+class ElevenV4(TypedDict, total=False):
+    model: Required[Literal["eleven_v4"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """The text to convert to speech.
+
+    You can include expressive audio tags like [laughs], [whispers], or [pause] in
+    the script.
+    """
+
+    voice: Required[ElevenV4Voice]
+    """A voice preset from the RunwayML API."""
+
+    language_code: Annotated[str, PropertyInfo(alias="languageCode")]
+    """Language code to enforce pronunciation, such as "en" or "pt".
+
+    A regional code such as "pt-BR" is read as its language.
+    """
+
+    next_text: Annotated[str, PropertyInfo(alias="nextText")]
+    """
+    Text that comes after this request, so the speech can lead into a later
+    generation.
+    """
+
+    previous_text: Annotated[str, PropertyInfo(alias="previousText")]
+    """
+    Text that comes before this request, so the speech can continue from an earlier
+    generation.
+    """
+
+    seed: int
+    """Optional seed for more consistent output.
+
+    The same seed and settings tend to sound alike, but it is not guaranteed.
+    """
+
+    similarity_boost: Annotated[float, PropertyInfo(alias="similarityBoost")]
+    """How closely the output tracks the original speaker."""
+
+    speed: float
+    """Speech speed multiplier.
+
+    Values below 1 slow the speech down, and values above 1 speed it up.
+    """
+
+    stability: float
+    """Voice stability.
+
+    Lower values allow broader emotional range; higher values are steadier.
+    """
+
+    style: float
+    """Style exaggeration. Higher values amplify the speaker style."""
+
+    use_speaker_boost: Annotated[bool, PropertyInfo(alias="useSpeakerBoost")]
+    """Boost similarity to the original speaker at a small latency cost."""
+
+
+class ElevenV4Voice(TypedDict, total=False):
+    """A voice preset from the RunwayML API."""
+
+    preset_id: Required[
+        Annotated[
+            Literal[
+                "Maya",
+                "Arjun",
+                "Serene",
+                "Bernard",
+                "Billy",
+                "Mark",
+                "Clint",
+                "Mabel",
+                "Chad",
+                "Leslie",
+                "Eleanor",
+                "Elias",
+                "Elliot",
+                "Grungle",
+                "Brodie",
+                "Sandra",
+                "Kirk",
+                "Kylie",
+                "Lara",
+                "Lisa",
+                "Malachi",
+                "Marlene",
+                "Martin",
+                "Miriam",
+                "Monster",
+                "Paula",
+                "Pip",
+                "Rusty",
+                "Ragnar",
+                "Xylar",
+                "Maggie",
+                "Jack",
+                "Katie",
+                "Noah",
+                "James",
+                "Rina",
+                "Ella",
+                "Mariah",
+                "Frank",
+                "Claudia",
+                "Niki",
+                "Vincent",
+                "Kendrick",
+                "Myrna",
+                "Tom",
+                "Wanda",
+                "Benjamin",
+                "Kiana",
+                "Rachel",
+            ],
+            PropertyInfo(alias="presetId"),
+        ]
+    ]
+    """The preset voice ID to use for the generated speech."""
+
+    type: Required[Literal["runway-preset"]]
 
 
 class ElevenMultilingualV2(TypedDict, total=False):
@@ -253,4 +378,4 @@ class ElevenV3Voice(TypedDict, total=False):
     type: Required[Literal["runway-preset"]]
 
 
-TextToSpeechCreateParams: TypeAlias = Union[SeedAudio, ElevenMultilingualV2, ElevenV3]
+TextToSpeechCreateParams: TypeAlias = Union[SeedAudio, ElevenV4, ElevenMultilingualV2, ElevenV3]

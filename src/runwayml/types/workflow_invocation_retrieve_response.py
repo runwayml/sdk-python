@@ -17,8 +17,10 @@ __all__ = [
     "Running",
     "RunningNodeErrors",
     "Failed",
+    "FailedCost",
     "FailedNodeErrors",
     "Succeeded",
+    "SucceededCost",
     "SucceededNodeErrors",
 ]
 
@@ -103,6 +105,15 @@ class Running(BaseModel):
     """
 
 
+class FailedCost(BaseModel):
+    """
+    Omitted until every descendant task is terminal, so a later GET cannot return a larger value.
+    """
+
+    credits: int
+    """Credits charged for this task."""
+
+
 class FailedNodeErrors(BaseModel):
     message: str
     """A human-readable description of the node error."""
@@ -136,6 +147,12 @@ class Failed(BaseModel):
 
     status: Literal["FAILED"]
 
+    cost: Optional[FailedCost] = None
+    """
+    Omitted until every descendant task is terminal, so a later GET cannot return a
+    larger value.
+    """
+
     failure_code: Optional[str] = FieldInfo(alias="failureCode", default=None)
     """A machine-readable error code for the failure.
 
@@ -147,6 +164,15 @@ class Failed(BaseModel):
 
     Only present when one or more nodes have errored.
     """
+
+
+class SucceededCost(BaseModel):
+    """
+    Omitted until every descendant task is terminal, so a later GET cannot return a larger value.
+    """
+
+    credits: int
+    """Credits charged for this task."""
 
 
 class SucceededNodeErrors(BaseModel):
@@ -185,14 +211,16 @@ class Succeeded(BaseModel):
 
     status: Literal["SUCCEEDED"]
 
+    cost: Optional[SucceededCost] = None
+    """
+    Omitted until every descendant task is terminal, so a later GET cannot return a
+    larger value.
+    """
+
     node_errors: Optional[Dict[str, SucceededNodeErrors]] = FieldInfo(alias="nodeErrors", default=None)
     """A record mapping workflow node IDs to their error details.
 
-    A workflow invocation succeeds as long as every node reached a terminal state,
-    so individual nodes may still have failed — for example a moderated prompt or an
-    upstream provider outage — leaving their output missing from `output`. Check
-    this field to detect a partial run. Only present when one or more nodes have
-    errored.
+    Only present when one or more nodes have errored.
     """
 
 

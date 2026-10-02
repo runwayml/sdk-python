@@ -49,6 +49,8 @@ __all__ = [
     "Wan3PrimeReferenceVideo",
     "H3Max",
     "H3MaxPromptImagePromptImage",
+    "GrokImagine1_5Lite",
+    "GrokImagine1_5LitePromptImagePromptImage",
 ]
 
 
@@ -1182,6 +1184,47 @@ class H3MaxPromptImagePromptImage(TypedDict, total=False):
     """
 
 
+class GrokImagine1_5Lite(TypedDict, total=False):
+    model: Required[Literal["grok_imagine_1_5_lite"]]
+
+    prompt_image: Required[
+        Annotated[Union[str, Iterable[GrokImagine1_5LitePromptImagePromptImage]], PropertyInfo(alias="promptImage")]
+    ]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """An optional text prompt describing motion or changes in the output video."""
+
+    ratio: Literal["auto_480p", "auto_720p", "auto_1080p"]
+    """The resolution of the output video.
+
+    The output keeps the input image's aspect ratio. `auto_1080p` is rendered at
+    720p and upscaled.
+    """
+
+
+class GrokImagine1_5LitePromptImagePromptImage(TypedDict, total=False):
+    position: Required[Literal["first"]]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame of the video.
+    """
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
 ImageToVideoCreateParams: TypeAlias = Union[
     Gen4_5,
     Gen4Turbo,
@@ -1199,4 +1242,5 @@ ImageToVideoCreateParams: TypeAlias = Union[
     GeminiOmniFlash1_1,
     Wan3Prime,
     H3Max,
+    GrokImagine1_5Lite,
 ]
