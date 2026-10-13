@@ -5,12 +5,7 @@
 
 ### Features
 
-* add Ideogram 4.0 and 4.5 text-to-image models ([f31e34c](https://github.com/runwayml/sdk-python/commit/f31e34c23f14138f6b6d342c7344addf7acb7b2f))
-
-
-### Chores
-
-* **internal:** make new model overloads return waitable responses ([5da0e7e](https://github.com/runwayml/sdk-python/commit/5da0e7e8dcd4faf0b14f753f370b0343b90ba61a))
+* add Ideogram 4.0 (`ideogram_4_0`) and Ideogram 4.5 (`ideogram_4_5`) to text-to-image
 
 ## [5.21.0](https://github.com/runwayml/sdk-python/compare/v5.20.1...v5.21.0) (2026-10-02)
 
