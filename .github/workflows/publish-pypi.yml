@@ -1,15 +1,11 @@
-# Publish when a GitHub release is created, when a v* tag is pushed, or by hand.
-# App-created tags sometimes skip the `release` event (GITHUB_TOKEN / App delivery).
-# `push: tags` is the backup. bin/publish-pypi no-ops if the version is already on PyPI.
+# Publish when release-please publishes a GitHub release, or by hand.
+# No `push: tags` trigger: the release creates the tag, so both would fire and publish twice.
 # Manual: https://www.github.com/runwayml/sdk-python/actions/workflows/publish-pypi.yml
 name: Publish PyPI
 on:
   workflow_dispatch:
   release:
     types: [published]
-  push:
-    tags:
-      - 'v*'
 
 concurrency:
   group: publish-pypi-${{ github.ref }}
