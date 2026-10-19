@@ -1,10 +1,13 @@
-# RunwayML Python API library
+# Runway Dev Python API library
 
 <!-- prettier-ignore -->
 [![PyPI version](https://img.shields.io/pypi/v/runwayml.svg?label=pypi%20(stable))](https://pypi.org/project/runwayml/)
 
-The RunwayML Python library provides convenient access to the RunwayML REST API from any Python 3.9+
-application. The library includes type definitions for all request params and response fields,
+The official Python SDK for [Runway Dev](https://dev.runway.com), Runway's API for video, image and audio generation
+and real-time conversational avatars. One API key calls Runway's own models and models from other labs, listed in the
+[model catalog](https://dev.runway.com/models/catalog), along with Model Routers, Recipes and published Workflows.
+
+The library works from any Python 3.9+ application. It includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
 It is generated with [Stainless](https://www.stainless.com/).
@@ -20,31 +23,52 @@ The REST API documentation can be found on [docs.dev.runwayml.com](https://docs.
 pip install runwayml
 ```
 
+Create an API key in [Runway Dev](https://dev.runway.com) and set it as `RUNWAYML_API_SECRET` in your server environment.
+
 ## Usage
 
 The full API of this library can be found in [api.md](api.md).
 
+Generation is asynchronous: a create call starts a task, and `wait_for_task_output()` polls it until the output is ready.
+
 ```python
 import os
-from runwayml import RunwayML
+from runwayml import RunwayML, TaskFailedError
 
 client = RunwayML(
     api_key=os.environ.get("RUNWAYML_API_SECRET"),  # This is the default and can be omitted
 )
 
-image_to_video = client.image_to_video.create(
-    model="gen4_turbo",
-    prompt_image="https://example.com/assets/bunny.jpg",
-    ratio="1280:720",
-    prompt_text="The bunny is eating a carrot",
-)
-print(image_to_video.id)
+try:
+    task = client.image_to_video.create(
+        model="gen4.5",
+        prompt_image="https://example.com/assets/bunny.jpg",
+        prompt_text="The bunny is eating a carrot",
+        ratio="1280:720",
+        duration=5,
+    ).wait_for_task_output()
+    # On success, task.output lists the output URLs. They are temporary, so download anything you want to keep.
+    print(task)
+except TaskFailedError as error:
+    print(error.task_details)
 ```
+
+To start a task without waiting, drop `.wait_for_task_output()`, keep the returned `id` and check it later with `client.tasks.retrieve(id)`.
 
 While you can provide a `api_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
 to add `RUNWAYML_API_SECRET="My API Key"` to your `.env` file
 so that your API Key is not stored in source control.
+
+## Build with a coding agent
+
+Runway Dev MCP gives Claude Code, Codex or Cursor live access to your Runway Dev account while it writes code with this SDK: the models, prices and limits available to your project, your Model Routers, and the cause of a failed task. To add it to Claude Code:
+
+```sh
+claude mcp add --transport http --scope user runway-dev-mcp https://dev.runwayml.com/mcp
+```
+
+Sign-in is OAuth, so no API key goes into the configuration. Setup for other agents, and the Runway Dev skills that show your agent how to use this SDK, are in [runwayml/skills](https://github.com/runwayml/skills) and the [MCP guide](https://docs.dev.runwayml.com/guides/mcp/).
 
 ## Async usage
 

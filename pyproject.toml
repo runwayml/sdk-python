@@ -1,9 +1,23 @@
 [project]
 name = "runwayml"
 version = "5.22.0"
-description = "The official Python library for the runwayml API"
+description = "The official Python SDK for Runway Dev, Runway's API for video, image and audio generation"
 dynamic = ["readme"]
 license = "Apache-2.0"
+keywords = [
+  "runway",
+  "runway-dev",
+  "runwayml",
+  "ai-video",
+  "video-generation",
+  "image-generation",
+  "text-to-video",
+  "image-to-video",
+  "text-to-speech",
+  "generative-ai",
+  "api",
+  "sdk",
+]
 authors = [
 { name = "RunwayML", email = "dev-feedback@runwayml.com" },
 ]
@@ -37,7 +51,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/runwayml/sdk-python"
+Homepage = "https://dev.runway.com"
+Documentation = "https://docs.dev.runwayml.com"
 Repository = "https://github.com/runwayml/sdk-python"
 
 [project.optional-dependencies]
