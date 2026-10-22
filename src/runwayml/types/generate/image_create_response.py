@@ -30,17 +30,18 @@ class RoutingResolvedInput(BaseModel):
     Not necessarily identical to prepared model options.
     """
 
-    aspect_ratio: str = FieldInfo(alias="aspectRatio")
-    """Aspect ratio used for routing display."""
-
     ratio: str
-    """
-    Concrete output ratio derived from aspectRatio and resolution for the selected
-    model.
+    """Output ratio for the selected model, as `<width>:<height>`.
+
+    `auto` means the output keeps the source image's framing, so no pixel size was
+    chosen.
     """
 
-    resolution: str
-    """Megapixel tier used for routing display."""
+    aspect_ratio: Optional[str] = FieldInfo(alias="aspectRatio", default=None)
+    """Aspect ratio the output will use. Omitted when `ratio` is `auto`."""
+
+    resolution: Optional[str] = None
+    """Megapixel tier the output will use. Omitted when `ratio` is `auto`."""
 
 
 class RoutingResolvedSettings(BaseModel):

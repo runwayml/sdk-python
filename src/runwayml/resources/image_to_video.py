@@ -85,7 +85,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -166,7 +166,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -216,7 +216,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -268,7 +268,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -306,8 +306,59 @@ class ImageToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
+        model: Literal["klingO3_4k"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.KlingO3_4kPromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        provider_settings: image_to_video_create_params.KlingO3_4kProviderSettings | Omit = omit,
+        ratio: Literal["3840:2160", "2160:3840", "2880:2880"] | Omit = omit,
+        references: Union[str, Iterable[image_to_video_create_params.KlingO3_4kReferencesReferenceImage]] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: You may specify an image to use as the first frame of the output video, or an
+              array with a first frame and optionally a last frame. When both keyframes are
+              provided, output aspect ratio follows the first frame. See
+              [image inputs](/assets/inputs#images) for file size limits.
+
+          audio: Whether to generate audio for the video.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A text prompt describing what should appear in the output video.
+
+          provider_settings: Provider-specific settings for multishot video generation.
+
+          ratio: The resolution of the output video.
+
+          references: An optional array of reference images (up to 7). See
+              [our docs](/assets/inputs#images) on image inputs for more information.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["hailuo3"],
-        prompt_image: Union[str, Iterable[object]],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Hailuo3PromptImagePromptImage]],
         prompt_text: str,
         duration: int | Omit = omit,
         ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
@@ -319,7 +370,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -356,6 +407,57 @@ class ImageToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
+        model: Literal["kling3.0_4k"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Kling3_0_4kPromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        cfg_scale: float | Omit = omit,
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        provider_settings: image_to_video_create_params.Kling3_0_4kProviderSettings | Omit = omit,
+        ratio: Literal["3840:2160", "2160:3840", "2880:2880"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: You may specify an image to use as the first frame of the output video, or an
+              array with a first frame and optionally a last frame. When both keyframes are
+              provided, output aspect ratio follows the first frame. See
+              [image inputs](/assets/inputs#images) for file size limits.
+
+          audio: Whether to generate audio for the video.
+
+          cfg_scale: Creativity/freedom scale for generation. 0 gives the model maximum creative
+              freedom, 1 makes it follow the prompt most strictly. Defaults to 0.5.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A text prompt describing what should appear in the output video.
+
+          provider_settings: Provider-specific settings for multishot video generation.
+
+          ratio: The resolution of the output video.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["happyhorse_1_0"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Happyhorse1_0PromptImagePromptImage]],
         duration: int | Omit = omit,
@@ -367,7 +469,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -385,6 +487,253 @@ class ImageToVideoResource(SyncAPIResource):
 
               - `720P` - Deprecated: Use "720p" instead.
               - `1080P` - Deprecated: Use "1080p" instead.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["kling2.5_turbo_pro"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Kling2_5TurboProPromptImagePromptImage]],
+        prompt_text: str,
+        cfg_scale: float | Omit = omit,
+        duration: Literal[5, 10] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: Image for the first frame of the output video, or an array with first and
+              optionally last frames. Output aspect ratio follows the input image; `ratio` is
+              not supported on image-to-video. See [image inputs](/assets/inputs#images) for
+              file size limits.
+
+          prompt_text: A text prompt describing what should appear in the output video.
+
+          cfg_scale: Creativity/freedom scale for generation. 0 gives the model maximum creative
+              freedom, 1 makes it follow the prompt most strictly. Defaults to 0.5.
+
+          duration: The duration of the output video in seconds. Defaults to 5.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["kling3.0_pro"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Kling3_0ProPromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        cfg_scale: float | Omit = omit,
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        provider_settings: image_to_video_create_params.Kling3_0ProProviderSettings | Omit = omit,
+        ratio: Literal["1920:1080", "1080:1920", "1440:1440"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: You may specify an image to use as the first frame of the output video, or an
+              array with a first frame and optionally a last frame. When both keyframes are
+              provided, output aspect ratio follows the first frame. See
+              [image inputs](/assets/inputs#images) for file size limits.
+
+          audio: Whether to generate audio for the video.
+
+          cfg_scale: Creativity/freedom scale for generation. 0 gives the model maximum creative
+              freedom, 1 makes it follow the prompt most strictly. Defaults to 0.5.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A text prompt describing what should appear in the output video.
+
+          provider_settings: Provider-specific settings for multishot video generation.
+
+          ratio: The resolution of the output video.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["kling3.0_standard"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Kling3_0StandardPromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        cfg_scale: float | Omit = omit,
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        provider_settings: image_to_video_create_params.Kling3_0StandardProviderSettings | Omit = omit,
+        ratio: Literal["1280:720", "720:1280", "960:960"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: You may specify an image to use as the first frame of the output video, or an
+              array with a first frame and optionally a last frame. When both keyframes are
+              provided, output aspect ratio follows the first frame. See
+              [image inputs](/assets/inputs#images) for file size limits.
+
+          audio: Whether to generate audio for the video.
+
+          cfg_scale: Creativity/freedom scale for generation. 0 gives the model maximum creative
+              freedom, 1 makes it follow the prompt most strictly. Defaults to 0.5.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A text prompt describing what should appear in the output video.
+
+          provider_settings: Provider-specific settings for multishot video generation.
+
+          ratio: The resolution of the output video.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["klingO3_pro"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.KlingO3ProPromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        provider_settings: image_to_video_create_params.KlingO3ProProviderSettings | Omit = omit,
+        ratio: Literal["1920:1080", "1080:1920", "1440:1440"] | Omit = omit,
+        references: Union[str, Iterable[image_to_video_create_params.KlingO3ProReferencesReferenceImage]] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: You may specify an image to use as the first frame of the output video, or an
+              array with a first frame and optionally a last frame. When both keyframes are
+              provided, output aspect ratio follows the first frame. See
+              [image inputs](/assets/inputs#images) for file size limits.
+
+          audio: Whether to generate audio for the video.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A text prompt describing what should appear in the output video.
+
+          provider_settings: Provider-specific settings for multishot video generation.
+
+          ratio: The resolution of the output video.
+
+          references: An optional array of reference images (up to 7). See
+              [our docs](/assets/inputs#images) on image inputs for more information.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["klingO3_standard"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.KlingO3StandardPromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        provider_settings: image_to_video_create_params.KlingO3StandardProviderSettings | Omit = omit,
+        ratio: Literal["1280:720", "720:1280", "960:960"] | Omit = omit,
+        references: Union[str, Iterable[image_to_video_create_params.KlingO3StandardReferencesReferenceImage]]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: You may specify an image to use as the first frame of the output video, or an
+              array with a first frame and optionally a last frame. When both keyframes are
+              provided, output aspect ratio follows the first frame. See
+              [image inputs](/assets/inputs#images) for file size limits.
+
+          audio: Whether to generate audio for the video.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A text prompt describing what should appear in the output video.
+
+          provider_settings: Provider-specific settings for multishot video generation.
+
+          ratio: The resolution of the output video.
+
+          references: An optional array of reference images (up to 7). See
+              [our docs](/assets/inputs#images) on image inputs for more information.
 
           extra_headers: Send extra headers
 
@@ -440,7 +789,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -508,7 +857,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -577,7 +926,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -629,7 +978,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -659,80 +1008,6 @@ class ImageToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
-        model: Literal["seedance2_5"],
-        prompt_image: Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]],
-        audio: bool | Omit = omit,
-        duration: Union[int, Literal["auto"]] | Omit = omit,
-        prompt_text: str | Omit = omit,
-        ratio: Literal[
-            "992:432",
-            "854:480",
-            "752:560",
-            "640:640",
-            "560:752",
-            "480:854",
-            "1470:630",
-            "1280:720",
-            "1112:834",
-            "960:960",
-            "834:1112",
-            "720:1280",
-            "2206:946",
-            "1920:1080",
-            "1664:1248",
-            "1440:1440",
-            "1248:1664",
-            "1080:1920",
-        ]
-        | Omit = omit,
-        reference_audio: Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
-        seed: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate a video from an image.
-
-        Args:
-          prompt_image: An image or array of images. Use position `first`/`last` for keyframe mode, or
-              omit position for reference images. The two modes cannot be mixed.
-
-          audio: Whether to generate audio for the video.
-
-          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
-              billed at the variant maximum up front; unused credits are refunded after the
-              generation finishes.
-
-          prompt_text: An optional text prompt up to 15000 characters describing what should appear in
-              the output.
-
-          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
-
-          reference_audio: An optional array of audio references. The total combined duration must not
-              exceed 30 seconds.
-
-          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
-              get different results for the same other request parameters. Using the same seed
-              integer for an identical request will produce similar results.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
         model: Literal["grok_imagine_1_5"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.GrokImagine1_5PromptImagePromptImage]],
         duration: int | Omit = omit,
@@ -744,14 +1019,14 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
         Args:
-          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-              [our docs](/assets/inputs#images) on image inputs for more information.
+          prompt_image: The start frame of the output video. The output keeps its aspect ratio, which
+              (width / height) must be between 0.4 and 2.5. See
+              [our docs](/assets/inputs#images) for image input requirements.
 
           duration: The number of seconds of duration for the output video.
 
@@ -774,7 +1049,7 @@ class ImageToVideoResource(SyncAPIResource):
         self,
         *,
         model: Literal["wan3"],
-        prompt_image: Union[str, Iterable[object]],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Wan3PromptImagePromptImage]],
         prompt_text: str,
         audio: bool | Omit = omit,
         duration: int | Omit = omit,
@@ -807,7 +1082,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -858,7 +1133,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -889,7 +1164,7 @@ class ImageToVideoResource(SyncAPIResource):
         self,
         *,
         model: Literal["wan3_prime"],
-        prompt_image: Union[str, Iterable[object]],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Wan3PrimePromptImagePromptImage]],
         prompt_text: str,
         audio: bool | Omit = omit,
         duration: int | Omit = omit,
@@ -922,7 +1197,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -974,7 +1249,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -1011,6 +1286,90 @@ class ImageToVideoResource(SyncAPIResource):
     def create(
         self,
         *,
+        model: Literal["seedance2_5"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        draft: bool | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
+        output_format: Literal["mp4", "mov"] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        ratio: Literal[
+            "992:432",
+            "854:480",
+            "752:560",
+            "640:640",
+            "560:752",
+            "480:854",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+            "2206:946",
+            "1920:1080",
+            "1664:1248",
+            "1440:1440",
+            "1248:1664",
+            "1080:1920",
+        ]
+        | Omit = omit,
+        reference_audio: Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: An image or array of images. Use position `first`/`last` for keyframe mode, or
+              omit position for reference images. The two modes cannot be mixed.
+
+          audio: Whether to generate audio for the video.
+
+          draft: Generate a cheap 480p preview instead of a full-quality video. The returned task
+              ID can later be enhanced to a 1080p video with the same content by passing it as
+              `draftTaskId` to `text_to_video`. Drafts can be enhanced within 7 days of
+              creation. Defaults to false.
+
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
+
+          output_format: Container for the output video. `mov` keeps high colour precision for grading
+              and compositing. Defaults to `mp4`. Draft mode only supports `mp4`.
+
+          prompt_text: An optional text prompt up to 15000 characters describing what should appear in
+              the output.
+
+          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
+
+          reference_audio: An optional array of audio references. The total combined duration must not
+              exceed 30 seconds.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["grok_imagine_1_5_lite"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.GrokImagine1_5LitePromptImagePromptImage]],
         duration: int | Omit = omit,
@@ -1022,14 +1381,14 @@ class ImageToVideoResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
         Args:
-          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-              [our docs](/assets/inputs#images) on image inputs for more information.
+          prompt_image: The start frame of the output video. The output keeps its aspect ratio, which
+              (width / height) must be between 0.4 and 2.5. See
+              [our docs](/assets/inputs#images) for image input requirements.
 
           duration: The number of seconds of duration for the output video.
 
@@ -1051,50 +1410,74 @@ class ImageToVideoResource(SyncAPIResource):
     @required_args(
         ["duration", "model", "prompt_image", "prompt_text", "ratio"],
         ["model", "prompt_image", "ratio"],
-        ["model", "prompt_image", "prompt_text"],
         ["model", "prompt_image"],
+        ["model", "prompt_image", "prompt_text"],
     )
     def create(
         self,
         *,
-        duration: int | Literal[4, 6, 8] | Union[int, Literal["auto"]] | Union[Literal["auto"], int] | Omit = omit,
+        duration: int
+        | Literal[4, 6, 8]
+        | Literal[5, 10]
+        | Union[int, Literal["auto"]]
+        | Union[Literal["auto"], int]
+        | Omit = omit,
         model: Literal["gen4.5"]
         | Literal["gen4_turbo"]
         | Literal["veo3.1"]
         | Literal["veo3.1_fast"]
+        | Literal["klingO3_4k"]
         | Literal["hailuo3"]
+        | Literal["kling3.0_4k"]
         | Literal["happyhorse_1_0"]
+        | Literal["kling2.5_turbo_pro"]
+        | Literal["kling3.0_pro"]
+        | Literal["kling3.0_standard"]
+        | Literal["klingO3_pro"]
+        | Literal["klingO3_standard"]
         | Literal["seedance2"]
         | Literal["seedance2_fast"]
         | Literal["seedance2_mini"]
         | Literal["gemini_omni_flash"]
-        | Literal["seedance2_5"]
         | Literal["grok_imagine_1_5"]
         | Literal["wan3"]
         | Literal["gemini_omni_flash_1.1"]
         | Literal["wan3_prime"]
         | Literal["h3_max"]
+        | Literal["seedance2_5"]
         | Literal["grok_imagine_1_5_lite"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]]
-        | Union[str, Iterable[object]]
+        | Union[str, Iterable[image_to_video_create_params.KlingO3_4kPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Hailuo3PromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Kling3_0_4kPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Happyhorse1_0PromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Kling2_5TurboProPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Kling3_0ProPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Kling3_0StandardPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.KlingO3ProPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.KlingO3StandardPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Seedance2PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Seedance2FastPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Seedance2MiniPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlashPromptImagePromptImage]]
-        | Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GrokImagine1_5PromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Wan3PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlash1_1PromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Wan3PrimePromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.H3MaxPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GrokImagine1_5LitePromptImagePromptImage]],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
         | Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
+        | Literal["3840:2160", "2160:3840", "2880:2880"]
         | Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"]
+        | Literal["1920:1080", "1080:1920", "1440:1440"]
+        | Literal["1280:720", "720:1280", "960:960"]
         | Literal[
             "992:432",
             "864:496",
@@ -1137,26 +1520,6 @@ class ImageToVideoResource(SyncAPIResource):
         ]
         | Literal["1280:720", "720:1280"]
         | Literal[
-            "992:432",
-            "854:480",
-            "752:560",
-            "640:640",
-            "560:752",
-            "480:854",
-            "1470:630",
-            "1280:720",
-            "1112:834",
-            "960:960",
-            "834:1112",
-            "720:1280",
-            "2206:946",
-            "1920:1080",
-            "1664:1248",
-            "1440:1440",
-            "1248:1664",
-            "1080:1920",
-        ]
-        | Literal[
             "832:480",
             "720:544",
             "624:624",
@@ -1177,6 +1540,26 @@ class ImageToVideoResource(SyncAPIResource):
             "auto_1080p",
         ]
         | Literal["640:360", "360:640", "1280:720", "720:1280", "1920:1080", "1080:1920", "3840:2160", "2160:3840"]
+        | Literal[
+            "992:432",
+            "854:480",
+            "752:560",
+            "640:640",
+            "560:752",
+            "480:854",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+            "2206:946",
+            "1920:1080",
+            "1664:1248",
+            "1440:1440",
+            "1248:1664",
+            "1080:1920",
+        ]
         | Literal["auto_480p", "auto_720p", "auto_1080p"]
         | Omit = omit,
         content_moderation: image_to_video_create_params.Gen4_5ContentModeration
@@ -1196,28 +1579,42 @@ class ImageToVideoResource(SyncAPIResource):
             "hdr_exr_acescg_sequence_1_3",
             "hdr_exr_acescg_sequence_2_0",
         ]
+        | Literal["mp4", "mov"]
         | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
         seed: int | Omit = omit,
         audio: bool | Omit = omit,
         negative_prompt: str | Omit = omit,
+        provider_settings: image_to_video_create_params.KlingO3_4kProviderSettings
+        | image_to_video_create_params.Kling3_0_4kProviderSettings
+        | image_to_video_create_params.Kling3_0ProProviderSettings
+        | image_to_video_create_params.Kling3_0StandardProviderSettings
+        | image_to_video_create_params.KlingO3ProProviderSettings
+        | image_to_video_create_params.KlingO3StandardProviderSettings
+        | Omit = omit,
+        references: Union[str, Iterable[image_to_video_create_params.KlingO3_4kReferencesReferenceImage]]
+        | Union[str, Iterable[image_to_video_create_params.KlingO3ProReferencesReferenceImage]]
+        | Union[str, Iterable[image_to_video_create_params.KlingO3StandardReferencesReferenceImage]]
+        | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Hailuo3ReferenceAudio]
         | Iterable[image_to_video_create_params.Seedance2ReferenceAudio]
         | Iterable[image_to_video_create_params.Seedance2FastReferenceAudio]
         | Iterable[image_to_video_create_params.Seedance2MiniReferenceAudio]
-        | Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio]
         | Iterable[image_to_video_create_params.Wan3ReferenceAudio]
         | Iterable[image_to_video_create_params.Wan3PrimeReferenceAudio]
+        | Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio]
         | Omit = omit,
         resolution: Literal["768p", "2k", "768P", "2K"]
         | Literal["720p", "1080p", "720P", "1080P"]
         | Literal["480p", "720p", "1080p"]
         | Literal["480p", "768p"]
         | Omit = omit,
+        cfg_scale: float | Omit = omit,
         reference_videos: Iterable[image_to_video_create_params.Wan3ReferenceVideo]
         | Iterable[image_to_video_create_params.Wan3PrimeReferenceVideo]
         | Omit = omit,
         prompt_expansion_mode: Literal["disabled", "balanced", "quality"] | Omit = omit,
+        draft: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1240,10 +1637,14 @@ class ImageToVideoResource(SyncAPIResource):
                     "seed": seed,
                     "audio": audio,
                     "negative_prompt": negative_prompt,
+                    "provider_settings": provider_settings,
+                    "references": references,
                     "reference_audio": reference_audio,
                     "resolution": resolution,
+                    "cfg_scale": cfg_scale,
                     "reference_videos": reference_videos,
                     "prompt_expansion_mode": prompt_expansion_mode,
+                    "draft": draft,
                 },
                 image_to_video_create_params.ImageToVideoCreateParams,
             ),
@@ -1309,7 +1710,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -1390,7 +1791,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -1440,7 +1841,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -1492,7 +1893,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -1530,8 +1931,59 @@ class AsyncImageToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        model: Literal["klingO3_4k"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.KlingO3_4kPromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        provider_settings: image_to_video_create_params.KlingO3_4kProviderSettings | Omit = omit,
+        ratio: Literal["3840:2160", "2160:3840", "2880:2880"] | Omit = omit,
+        references: Union[str, Iterable[image_to_video_create_params.KlingO3_4kReferencesReferenceImage]] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: You may specify an image to use as the first frame of the output video, or an
+              array with a first frame and optionally a last frame. When both keyframes are
+              provided, output aspect ratio follows the first frame. See
+              [image inputs](/assets/inputs#images) for file size limits.
+
+          audio: Whether to generate audio for the video.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A text prompt describing what should appear in the output video.
+
+          provider_settings: Provider-specific settings for multishot video generation.
+
+          ratio: The resolution of the output video.
+
+          references: An optional array of reference images (up to 7). See
+              [our docs](/assets/inputs#images) on image inputs for more information.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["hailuo3"],
-        prompt_image: Union[str, Iterable[object]],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Hailuo3PromptImagePromptImage]],
         prompt_text: str,
         duration: int | Omit = omit,
         ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
@@ -1543,7 +1995,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -1580,6 +2032,57 @@ class AsyncImageToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        model: Literal["kling3.0_4k"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Kling3_0_4kPromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        cfg_scale: float | Omit = omit,
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        provider_settings: image_to_video_create_params.Kling3_0_4kProviderSettings | Omit = omit,
+        ratio: Literal["3840:2160", "2160:3840", "2880:2880"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: You may specify an image to use as the first frame of the output video, or an
+              array with a first frame and optionally a last frame. When both keyframes are
+              provided, output aspect ratio follows the first frame. See
+              [image inputs](/assets/inputs#images) for file size limits.
+
+          audio: Whether to generate audio for the video.
+
+          cfg_scale: Creativity/freedom scale for generation. 0 gives the model maximum creative
+              freedom, 1 makes it follow the prompt most strictly. Defaults to 0.5.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A text prompt describing what should appear in the output video.
+
+          provider_settings: Provider-specific settings for multishot video generation.
+
+          ratio: The resolution of the output video.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["happyhorse_1_0"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Happyhorse1_0PromptImagePromptImage]],
         duration: int | Omit = omit,
@@ -1591,7 +2094,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -1609,6 +2112,253 @@ class AsyncImageToVideoResource(AsyncAPIResource):
 
               - `720P` - Deprecated: Use "720p" instead.
               - `1080P` - Deprecated: Use "1080p" instead.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["kling2.5_turbo_pro"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Kling2_5TurboProPromptImagePromptImage]],
+        prompt_text: str,
+        cfg_scale: float | Omit = omit,
+        duration: Literal[5, 10] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: Image for the first frame of the output video, or an array with first and
+              optionally last frames. Output aspect ratio follows the input image; `ratio` is
+              not supported on image-to-video. See [image inputs](/assets/inputs#images) for
+              file size limits.
+
+          prompt_text: A text prompt describing what should appear in the output video.
+
+          cfg_scale: Creativity/freedom scale for generation. 0 gives the model maximum creative
+              freedom, 1 makes it follow the prompt most strictly. Defaults to 0.5.
+
+          duration: The duration of the output video in seconds. Defaults to 5.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["kling3.0_pro"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Kling3_0ProPromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        cfg_scale: float | Omit = omit,
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        provider_settings: image_to_video_create_params.Kling3_0ProProviderSettings | Omit = omit,
+        ratio: Literal["1920:1080", "1080:1920", "1440:1440"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: You may specify an image to use as the first frame of the output video, or an
+              array with a first frame and optionally a last frame. When both keyframes are
+              provided, output aspect ratio follows the first frame. See
+              [image inputs](/assets/inputs#images) for file size limits.
+
+          audio: Whether to generate audio for the video.
+
+          cfg_scale: Creativity/freedom scale for generation. 0 gives the model maximum creative
+              freedom, 1 makes it follow the prompt most strictly. Defaults to 0.5.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A text prompt describing what should appear in the output video.
+
+          provider_settings: Provider-specific settings for multishot video generation.
+
+          ratio: The resolution of the output video.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["kling3.0_standard"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Kling3_0StandardPromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        cfg_scale: float | Omit = omit,
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        provider_settings: image_to_video_create_params.Kling3_0StandardProviderSettings | Omit = omit,
+        ratio: Literal["1280:720", "720:1280", "960:960"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: You may specify an image to use as the first frame of the output video, or an
+              array with a first frame and optionally a last frame. When both keyframes are
+              provided, output aspect ratio follows the first frame. See
+              [image inputs](/assets/inputs#images) for file size limits.
+
+          audio: Whether to generate audio for the video.
+
+          cfg_scale: Creativity/freedom scale for generation. 0 gives the model maximum creative
+              freedom, 1 makes it follow the prompt most strictly. Defaults to 0.5.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A text prompt describing what should appear in the output video.
+
+          provider_settings: Provider-specific settings for multishot video generation.
+
+          ratio: The resolution of the output video.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["klingO3_pro"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.KlingO3ProPromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        provider_settings: image_to_video_create_params.KlingO3ProProviderSettings | Omit = omit,
+        ratio: Literal["1920:1080", "1080:1920", "1440:1440"] | Omit = omit,
+        references: Union[str, Iterable[image_to_video_create_params.KlingO3ProReferencesReferenceImage]] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: You may specify an image to use as the first frame of the output video, or an
+              array with a first frame and optionally a last frame. When both keyframes are
+              provided, output aspect ratio follows the first frame. See
+              [image inputs](/assets/inputs#images) for file size limits.
+
+          audio: Whether to generate audio for the video.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A text prompt describing what should appear in the output video.
+
+          provider_settings: Provider-specific settings for multishot video generation.
+
+          ratio: The resolution of the output video.
+
+          references: An optional array of reference images (up to 7). See
+              [our docs](/assets/inputs#images) on image inputs for more information.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["klingO3_standard"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.KlingO3StandardPromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        provider_settings: image_to_video_create_params.KlingO3StandardProviderSettings | Omit = omit,
+        ratio: Literal["1280:720", "720:1280", "960:960"] | Omit = omit,
+        references: Union[str, Iterable[image_to_video_create_params.KlingO3StandardReferencesReferenceImage]]
+        | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: You may specify an image to use as the first frame of the output video, or an
+              array with a first frame and optionally a last frame. When both keyframes are
+              provided, output aspect ratio follows the first frame. See
+              [image inputs](/assets/inputs#images) for file size limits.
+
+          audio: Whether to generate audio for the video.
+
+          duration: The number of seconds of duration for the output video.
+
+          prompt_text: A text prompt describing what should appear in the output video.
+
+          provider_settings: Provider-specific settings for multishot video generation.
+
+          ratio: The resolution of the output video.
+
+          references: An optional array of reference images (up to 7). See
+              [our docs](/assets/inputs#images) on image inputs for more information.
 
           extra_headers: Send extra headers
 
@@ -1664,7 +2414,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -1732,7 +2482,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -1801,7 +2551,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -1853,7 +2603,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -1883,80 +2633,6 @@ class AsyncImageToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        model: Literal["seedance2_5"],
-        prompt_image: Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]],
-        audio: bool | Omit = omit,
-        duration: Union[int, Literal["auto"]] | Omit = omit,
-        prompt_text: str | Omit = omit,
-        ratio: Literal[
-            "992:432",
-            "854:480",
-            "752:560",
-            "640:640",
-            "560:752",
-            "480:854",
-            "1470:630",
-            "1280:720",
-            "1112:834",
-            "960:960",
-            "834:1112",
-            "720:1280",
-            "2206:946",
-            "1920:1080",
-            "1664:1248",
-            "1440:1440",
-            "1248:1664",
-            "1080:1920",
-        ]
-        | Omit = omit,
-        reference_audio: Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
-        seed: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate a video from an image.
-
-        Args:
-          prompt_image: An image or array of images. Use position `first`/`last` for keyframe mode, or
-              omit position for reference images. The two modes cannot be mixed.
-
-          audio: Whether to generate audio for the video.
-
-          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
-              billed at the variant maximum up front; unused credits are refunded after the
-              generation finishes.
-
-          prompt_text: An optional text prompt up to 15000 characters describing what should appear in
-              the output.
-
-          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
-
-          reference_audio: An optional array of audio references. The total combined duration must not
-              exceed 30 seconds.
-
-          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
-              get different results for the same other request parameters. Using the same seed
-              integer for an identical request will produce similar results.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
         model: Literal["grok_imagine_1_5"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.GrokImagine1_5PromptImagePromptImage]],
         duration: int | Omit = omit,
@@ -1968,14 +2644,14 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
         Args:
-          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-              [our docs](/assets/inputs#images) on image inputs for more information.
+          prompt_image: The start frame of the output video. The output keeps its aspect ratio, which
+              (width / height) must be between 0.4 and 2.5. See
+              [our docs](/assets/inputs#images) for image input requirements.
 
           duration: The number of seconds of duration for the output video.
 
@@ -1998,7 +2674,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         self,
         *,
         model: Literal["wan3"],
-        prompt_image: Union[str, Iterable[object]],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Wan3PromptImagePromptImage]],
         prompt_text: str,
         audio: bool | Omit = omit,
         duration: int | Omit = omit,
@@ -2031,7 +2707,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -2082,7 +2758,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -2113,7 +2789,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         self,
         *,
         model: Literal["wan3_prime"],
-        prompt_image: Union[str, Iterable[object]],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Wan3PrimePromptImagePromptImage]],
         prompt_text: str,
         audio: bool | Omit = omit,
         duration: int | Omit = omit,
@@ -2146,7 +2822,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -2198,7 +2874,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -2235,6 +2911,90 @@ class AsyncImageToVideoResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        model: Literal["seedance2_5"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        draft: bool | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
+        output_format: Literal["mp4", "mov"] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        ratio: Literal[
+            "992:432",
+            "854:480",
+            "752:560",
+            "640:640",
+            "560:752",
+            "480:854",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+            "2206:946",
+            "1920:1080",
+            "1664:1248",
+            "1440:1440",
+            "1248:1664",
+            "1080:1920",
+        ]
+        | Omit = omit,
+        reference_audio: Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: An image or array of images. Use position `first`/`last` for keyframe mode, or
+              omit position for reference images. The two modes cannot be mixed.
+
+          audio: Whether to generate audio for the video.
+
+          draft: Generate a cheap 480p preview instead of a full-quality video. The returned task
+              ID can later be enhanced to a 1080p video with the same content by passing it as
+              `draftTaskId` to `text_to_video`. Drafts can be enhanced within 7 days of
+              creation. Defaults to false.
+
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
+
+          output_format: Container for the output video. `mov` keeps high colour precision for grading
+              and compositing. Defaults to `mp4`. Draft mode only supports `mp4`.
+
+          prompt_text: An optional text prompt up to 15000 characters describing what should appear in
+              the output.
+
+          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
+
+          reference_audio: An optional array of audio references. The total combined duration must not
+              exceed 30 seconds.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["grok_imagine_1_5_lite"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.GrokImagine1_5LitePromptImagePromptImage]],
         duration: int | Omit = omit,
@@ -2246,14 +3006,14 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
         Args:
-          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-              [our docs](/assets/inputs#images) on image inputs for more information.
+          prompt_image: The start frame of the output video. The output keeps its aspect ratio, which
+              (width / height) must be between 0.4 and 2.5. See
+              [our docs](/assets/inputs#images) for image input requirements.
 
           duration: The number of seconds of duration for the output video.
 
@@ -2275,50 +3035,74 @@ class AsyncImageToVideoResource(AsyncAPIResource):
     @required_args(
         ["duration", "model", "prompt_image", "prompt_text", "ratio"],
         ["model", "prompt_image", "ratio"],
-        ["model", "prompt_image", "prompt_text"],
         ["model", "prompt_image"],
+        ["model", "prompt_image", "prompt_text"],
     )
     async def create(
         self,
         *,
-        duration: int | Literal[4, 6, 8] | Union[int, Literal["auto"]] | Union[Literal["auto"], int] | Omit = omit,
+        duration: int
+        | Literal[4, 6, 8]
+        | Literal[5, 10]
+        | Union[int, Literal["auto"]]
+        | Union[Literal["auto"], int]
+        | Omit = omit,
         model: Literal["gen4.5"]
         | Literal["gen4_turbo"]
         | Literal["veo3.1"]
         | Literal["veo3.1_fast"]
+        | Literal["klingO3_4k"]
         | Literal["hailuo3"]
+        | Literal["kling3.0_4k"]
         | Literal["happyhorse_1_0"]
+        | Literal["kling2.5_turbo_pro"]
+        | Literal["kling3.0_pro"]
+        | Literal["kling3.0_standard"]
+        | Literal["klingO3_pro"]
+        | Literal["klingO3_standard"]
         | Literal["seedance2"]
         | Literal["seedance2_fast"]
         | Literal["seedance2_mini"]
         | Literal["gemini_omni_flash"]
-        | Literal["seedance2_5"]
         | Literal["grok_imagine_1_5"]
         | Literal["wan3"]
         | Literal["gemini_omni_flash_1.1"]
         | Literal["wan3_prime"]
         | Literal["h3_max"]
+        | Literal["seedance2_5"]
         | Literal["grok_imagine_1_5_lite"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]]
-        | Union[str, Iterable[object]]
+        | Union[str, Iterable[image_to_video_create_params.KlingO3_4kPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Hailuo3PromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Kling3_0_4kPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Happyhorse1_0PromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Kling2_5TurboProPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Kling3_0ProPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Kling3_0StandardPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.KlingO3ProPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.KlingO3StandardPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Seedance2PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Seedance2FastPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Seedance2MiniPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlashPromptImagePromptImage]]
-        | Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GrokImagine1_5PromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Wan3PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlash1_1PromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Wan3PrimePromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.H3MaxPromptImagePromptImage]]
+        | Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GrokImagine1_5LitePromptImagePromptImage]],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
         | Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
+        | Literal["3840:2160", "2160:3840", "2880:2880"]
         | Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"]
+        | Literal["1920:1080", "1080:1920", "1440:1440"]
+        | Literal["1280:720", "720:1280", "960:960"]
         | Literal[
             "992:432",
             "864:496",
@@ -2361,26 +3145,6 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         ]
         | Literal["1280:720", "720:1280"]
         | Literal[
-            "992:432",
-            "854:480",
-            "752:560",
-            "640:640",
-            "560:752",
-            "480:854",
-            "1470:630",
-            "1280:720",
-            "1112:834",
-            "960:960",
-            "834:1112",
-            "720:1280",
-            "2206:946",
-            "1920:1080",
-            "1664:1248",
-            "1440:1440",
-            "1248:1664",
-            "1080:1920",
-        ]
-        | Literal[
             "832:480",
             "720:544",
             "624:624",
@@ -2401,6 +3165,26 @@ class AsyncImageToVideoResource(AsyncAPIResource):
             "auto_1080p",
         ]
         | Literal["640:360", "360:640", "1280:720", "720:1280", "1920:1080", "1080:1920", "3840:2160", "2160:3840"]
+        | Literal[
+            "992:432",
+            "854:480",
+            "752:560",
+            "640:640",
+            "560:752",
+            "480:854",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+            "2206:946",
+            "1920:1080",
+            "1664:1248",
+            "1440:1440",
+            "1248:1664",
+            "1080:1920",
+        ]
         | Literal["auto_480p", "auto_720p", "auto_1080p"]
         | Omit = omit,
         content_moderation: image_to_video_create_params.Gen4_5ContentModeration
@@ -2420,28 +3204,42 @@ class AsyncImageToVideoResource(AsyncAPIResource):
             "hdr_exr_acescg_sequence_1_3",
             "hdr_exr_acescg_sequence_2_0",
         ]
+        | Literal["mp4", "mov"]
         | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
         seed: int | Omit = omit,
         audio: bool | Omit = omit,
         negative_prompt: str | Omit = omit,
+        provider_settings: image_to_video_create_params.KlingO3_4kProviderSettings
+        | image_to_video_create_params.Kling3_0_4kProviderSettings
+        | image_to_video_create_params.Kling3_0ProProviderSettings
+        | image_to_video_create_params.Kling3_0StandardProviderSettings
+        | image_to_video_create_params.KlingO3ProProviderSettings
+        | image_to_video_create_params.KlingO3StandardProviderSettings
+        | Omit = omit,
+        references: Union[str, Iterable[image_to_video_create_params.KlingO3_4kReferencesReferenceImage]]
+        | Union[str, Iterable[image_to_video_create_params.KlingO3ProReferencesReferenceImage]]
+        | Union[str, Iterable[image_to_video_create_params.KlingO3StandardReferencesReferenceImage]]
+        | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Hailuo3ReferenceAudio]
         | Iterable[image_to_video_create_params.Seedance2ReferenceAudio]
         | Iterable[image_to_video_create_params.Seedance2FastReferenceAudio]
         | Iterable[image_to_video_create_params.Seedance2MiniReferenceAudio]
-        | Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio]
         | Iterable[image_to_video_create_params.Wan3ReferenceAudio]
         | Iterable[image_to_video_create_params.Wan3PrimeReferenceAudio]
+        | Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio]
         | Omit = omit,
         resolution: Literal["768p", "2k", "768P", "2K"]
         | Literal["720p", "1080p", "720P", "1080P"]
         | Literal["480p", "720p", "1080p"]
         | Literal["480p", "768p"]
         | Omit = omit,
+        cfg_scale: float | Omit = omit,
         reference_videos: Iterable[image_to_video_create_params.Wan3ReferenceVideo]
         | Iterable[image_to_video_create_params.Wan3PrimeReferenceVideo]
         | Omit = omit,
         prompt_expansion_mode: Literal["disabled", "balanced", "quality"] | Omit = omit,
+        draft: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2464,10 +3262,14 @@ class AsyncImageToVideoResource(AsyncAPIResource):
                     "seed": seed,
                     "audio": audio,
                     "negative_prompt": negative_prompt,
+                    "provider_settings": provider_settings,
+                    "references": references,
                     "reference_audio": reference_audio,
                     "resolution": resolution,
+                    "cfg_scale": cfg_scale,
                     "reference_videos": reference_videos,
                     "prompt_expansion_mode": prompt_expansion_mode,
+                    "draft": draft,
                 },
                 image_to_video_create_params.ImageToVideoCreateParams,
             ),

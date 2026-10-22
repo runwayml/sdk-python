@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from datetime import datetime
+from datetime import date, datetime
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
@@ -12,16 +12,22 @@ __all__ = ["WebappListUsageParams"]
 
 
 class WebappListUsageParams(TypedDict, total=False):
-    from_: Required[Annotated[Union[str, datetime], PropertyInfo(alias="from", format="iso8601")]]
-    """Start of the time window (inclusive), ISO-8601 datetime."""
+    from_: Required[
+        Annotated[Union[Union[str, datetime], Union[str, date]], PropertyInfo(alias="from", format="iso8601")]
+    ]
+    """Start of the time window (inclusive), ISO-8601 datetime or date.
+
+    A date means midnight UTC.
+    """
 
     limit: Required[int]
     """The maximum number of items to return per page."""
 
-    to: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-    """End of the time window (exclusive), ISO-8601 datetime.
+    to: Required[Annotated[Union[Union[str, datetime], Union[str, date]], PropertyInfo(format="iso8601")]]
+    """End of the time window (exclusive), ISO-8601 datetime or date.
 
-    A `cursor` can only narrow this window, never extend it past `to`.
+    A date means midnight UTC, so `to=2026-08-01` covers all of July 31. A `cursor`
+    can only narrow this window, never extend it past `to`.
     """
 
     cursor: str

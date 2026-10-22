@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from datetime import datetime
+from datetime import date, datetime
 
 import httpx
 
@@ -60,9 +60,9 @@ class WebappResource(SyncAPIResource):
     def list_usage(
         self,
         *,
-        from_: Union[str, datetime],
+        from_: Union[Union[str, datetime], Union[str, date]],
         limit: int,
-        to: Union[str, datetime],
+        to: Union[Union[str, datetime], Union[str, date]],
         cursor: str | Omit = omit,
         organization_id: str | Omit = omit,
         workspace_ids: str | Omit = omit,
@@ -80,11 +80,13 @@ class WebappResource(SyncAPIResource):
         Authorized via that account link.
 
         Args:
-          from_: Start of the time window (inclusive), ISO-8601 datetime.
+          from_: Start of the time window (inclusive), ISO-8601 datetime or date. A date means
+              midnight UTC.
 
           limit: The maximum number of items to return per page.
 
-          to: End of the time window (exclusive), ISO-8601 datetime. A `cursor` can only
+          to: End of the time window (exclusive), ISO-8601 datetime or date. A date means
+              midnight UTC, so `to=2026-08-01` covers all of July 31. A `cursor` can only
               narrow this window, never extend it past `to`.
 
           cursor: Cursor from a previous response for fetching the next page of results.
@@ -154,9 +156,9 @@ class AsyncWebappResource(AsyncAPIResource):
     def list_usage(
         self,
         *,
-        from_: Union[str, datetime],
+        from_: Union[Union[str, datetime], Union[str, date]],
         limit: int,
-        to: Union[str, datetime],
+        to: Union[Union[str, datetime], Union[str, date]],
         cursor: str | Omit = omit,
         organization_id: str | Omit = omit,
         workspace_ids: str | Omit = omit,
@@ -174,11 +176,13 @@ class AsyncWebappResource(AsyncAPIResource):
         Authorized via that account link.
 
         Args:
-          from_: Start of the time window (inclusive), ISO-8601 datetime.
+          from_: Start of the time window (inclusive), ISO-8601 datetime or date. A date means
+              midnight UTC.
 
           limit: The maximum number of items to return per page.
 
-          to: End of the time window (exclusive), ISO-8601 datetime. A `cursor` can only
+          to: End of the time window (exclusive), ISO-8601 datetime or date. A date means
+              midnight UTC, so `to=2026-08-01` covers all of July 31. A `cursor` can only
               narrow this window, never extend it past `to`.
 
           cursor: Cursor from a previous response for fetching the next page of results.

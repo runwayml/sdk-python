@@ -162,7 +162,9 @@ class RoutersResource(SyncAPIResource):
 
           settings: Nested merge: omitted settings fields keep their current values. When models is
               present, omitted models.mode or models.ids are preserved (sending only
-              optimizeFor does not clear the model allowlist or credit ceiling).
+              optimizeFor does not clear the model allowlist or credit ceiling). Set
+              maxCreditsPerGeneration, or one of its modalities, to null to remove those
+              credit caps.
 
           extra_headers: Send extra headers
 
@@ -460,7 +462,9 @@ class AsyncRoutersResource(AsyncAPIResource):
 
           settings: Nested merge: omitted settings fields keep their current values. When models is
               present, omitted models.mode or models.ids are preserved (sending only
-              optimizeFor does not clear the model allowlist or credit ceiling).
+              optimizeFor does not clear the model allowlist or credit ceiling). Set
+              maxCreditsPerGeneration, or one of its modalities, to null to remove those
+              credit caps.
 
           extra_headers: Send extra headers
 

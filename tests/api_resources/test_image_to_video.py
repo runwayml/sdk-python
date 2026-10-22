@@ -230,6 +230,62 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_overload_5(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
+            model="klingO3_4k",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_5(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="klingO3_4k",
+            prompt_image="https://example.com/image.jpg",
+            audio=True,
+            duration=3,
+            prompt_text="xx",
+            provider_settings={
+                "multi_prompt": [
+                    {
+                        "duration": 1,
+                        "prompt": "xxx",
+                    }
+                ],
+                "shot_type": "intelligence",
+            },
+            ratio="3840:2160",
+            references="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_5(self, client: RunwayML) -> None:
+        response = client.image_to_video.with_raw_response.create(
+            model="klingO3_4k",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_5(self, client: RunwayML) -> None:
+        with client.image_to_video.with_streaming_response.create(
+            model="klingO3_4k",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_6(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
             model="hailuo3",
             prompt_image="https://example.com/image.jpg",
             prompt_text="x",
@@ -237,7 +293,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params_overload_5(self, client: RunwayML) -> None:
+    def test_method_create_with_all_params_overload_6(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
             model="hailuo3",
             prompt_image="https://example.com/image.jpg",
@@ -255,57 +311,11 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_raw_response_create_overload_5(self, client: RunwayML) -> None:
-        response = client.image_to_video.with_raw_response.create(
-            model="hailuo3",
-            prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        image_to_video = response.parse()
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    def test_streaming_response_create_overload_5(self, client: RunwayML) -> None:
-        with client.image_to_video.with_streaming_response.create(
-            model="hailuo3",
-            prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            image_to_video = response.parse()
-            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_method_create_overload_6(self, client: RunwayML) -> None:
-        image_to_video = client.image_to_video.create(
-            model="happyhorse_1_0",
-            prompt_image="https://example.com/image.jpg",
-        )
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params_overload_6(self, client: RunwayML) -> None:
-        image_to_video = client.image_to_video.create(
-            model="happyhorse_1_0",
-            prompt_image="https://example.com/image.jpg",
-            duration=3,
-            prompt_text="xx",
-            resolution="720p",
-        )
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
     def test_raw_response_create_overload_6(self, client: RunwayML) -> None:
         response = client.image_to_video.with_raw_response.create(
-            model="happyhorse_1_0",
+            model="hailuo3",
             prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
         )
 
         assert response.is_closed is True
@@ -316,8 +326,9 @@ class TestImageToVideo:
     @parametrize
     def test_streaming_response_create_overload_6(self, client: RunwayML) -> None:
         with client.image_to_video.with_streaming_response.create(
-            model="happyhorse_1_0",
+            model="hailuo3",
             prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -330,7 +341,7 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_overload_7(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="seedance2",
+            model="kling3.0_4k",
             prompt_image="https://example.com/image.jpg",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -338,26 +349,29 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_with_all_params_overload_7(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="seedance2",
+            model="kling3.0_4k",
             prompt_image="https://example.com/image.jpg",
             audio=True,
-            duration="auto",
-            prompt_text="x",
-            ratio="992:432",
-            reference_audio=[
-                {
-                    "type": "audio",
-                    "uri": "https://example.com/audio.mp3",
-                }
-            ],
-            seed=0,
+            cfg_scale=0,
+            duration=3,
+            prompt_text="xx",
+            provider_settings={
+                "multi_prompt": [
+                    {
+                        "duration": 1,
+                        "prompt": "xxx",
+                    }
+                ],
+                "shot_type": "intelligence",
+            },
+            ratio="3840:2160",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
     def test_raw_response_create_overload_7(self, client: RunwayML) -> None:
         response = client.image_to_video.with_raw_response.create(
-            model="seedance2",
+            model="kling3.0_4k",
             prompt_image="https://example.com/image.jpg",
         )
 
@@ -369,7 +383,7 @@ class TestImageToVideo:
     @parametrize
     def test_streaming_response_create_overload_7(self, client: RunwayML) -> None:
         with client.image_to_video.with_streaming_response.create(
-            model="seedance2",
+            model="kling3.0_4k",
             prompt_image="https://example.com/image.jpg",
         ) as response:
             assert not response.is_closed
@@ -383,7 +397,7 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_overload_8(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="seedance2_fast",
+            model="happyhorse_1_0",
             prompt_image="https://example.com/image.jpg",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -391,26 +405,18 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_with_all_params_overload_8(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="seedance2_fast",
+            model="happyhorse_1_0",
             prompt_image="https://example.com/image.jpg",
-            audio=True,
-            duration="auto",
-            prompt_text="x",
-            ratio="992:432",
-            reference_audio=[
-                {
-                    "type": "audio",
-                    "uri": "https://example.com/audio.mp3",
-                }
-            ],
-            seed=0,
+            duration=3,
+            prompt_text="xx",
+            resolution="720p",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
     def test_raw_response_create_overload_8(self, client: RunwayML) -> None:
         response = client.image_to_video.with_raw_response.create(
-            model="seedance2_fast",
+            model="happyhorse_1_0",
             prompt_image="https://example.com/image.jpg",
         )
 
@@ -422,7 +428,7 @@ class TestImageToVideo:
     @parametrize
     def test_streaming_response_create_overload_8(self, client: RunwayML) -> None:
         with client.image_to_video.with_streaming_response.create(
-            model="seedance2_fast",
+            model="happyhorse_1_0",
             prompt_image="https://example.com/image.jpg",
         ) as response:
             assert not response.is_closed
@@ -436,35 +442,29 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_overload_9(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="seedance2_mini",
+            model="kling2.5_turbo_pro",
             prompt_image="https://example.com/image.jpg",
+            prompt_text="xx",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params_overload_9(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="seedance2_mini",
+            model="kling2.5_turbo_pro",
             prompt_image="https://example.com/image.jpg",
-            audio=True,
-            duration="auto",
-            prompt_text="x",
-            ratio="992:432",
-            reference_audio=[
-                {
-                    "type": "audio",
-                    "uri": "https://example.com/audio.mp3",
-                }
-            ],
-            seed=0,
+            prompt_text="xx",
+            cfg_scale=0,
+            duration=5,
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
     def test_raw_response_create_overload_9(self, client: RunwayML) -> None:
         response = client.image_to_video.with_raw_response.create(
-            model="seedance2_mini",
+            model="kling2.5_turbo_pro",
             prompt_image="https://example.com/image.jpg",
+            prompt_text="xx",
         )
 
         assert response.is_closed is True
@@ -475,8 +475,9 @@ class TestImageToVideo:
     @parametrize
     def test_streaming_response_create_overload_9(self, client: RunwayML) -> None:
         with client.image_to_video.with_streaming_response.create(
-            model="seedance2_mini",
+            model="kling2.5_turbo_pro",
             prompt_image="https://example.com/image.jpg",
+            prompt_text="xx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -489,7 +490,7 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_overload_10(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="gemini_omni_flash",
+            model="kling3.0_pro",
             prompt_image="https://example.com/image.jpg",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -497,18 +498,29 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_with_all_params_overload_10(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="gemini_omni_flash",
+            model="kling3.0_pro",
             prompt_image="https://example.com/image.jpg",
+            audio=True,
+            cfg_scale=0,
             duration=3,
-            prompt_text="x",
-            ratio="1280:720",
+            prompt_text="xx",
+            provider_settings={
+                "multi_prompt": [
+                    {
+                        "duration": 1,
+                        "prompt": "xxx",
+                    }
+                ],
+                "shot_type": "intelligence",
+            },
+            ratio="1920:1080",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
     def test_raw_response_create_overload_10(self, client: RunwayML) -> None:
         response = client.image_to_video.with_raw_response.create(
-            model="gemini_omni_flash",
+            model="kling3.0_pro",
             prompt_image="https://example.com/image.jpg",
         )
 
@@ -520,7 +532,7 @@ class TestImageToVideo:
     @parametrize
     def test_streaming_response_create_overload_10(self, client: RunwayML) -> None:
         with client.image_to_video.with_streaming_response.create(
-            model="gemini_omni_flash",
+            model="kling3.0_pro",
             prompt_image="https://example.com/image.jpg",
         ) as response:
             assert not response.is_closed
@@ -534,7 +546,7 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_overload_11(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="seedance2_5",
+            model="kling3.0_standard",
             prompt_image="https://example.com/image.jpg",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -542,7 +554,175 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_with_all_params_overload_11(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
-            model="seedance2_5",
+            model="kling3.0_standard",
+            prompt_image="https://example.com/image.jpg",
+            audio=True,
+            cfg_scale=0,
+            duration=3,
+            prompt_text="xx",
+            provider_settings={
+                "multi_prompt": [
+                    {
+                        "duration": 1,
+                        "prompt": "xxx",
+                    }
+                ],
+                "shot_type": "intelligence",
+            },
+            ratio="1280:720",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_11(self, client: RunwayML) -> None:
+        response = client.image_to_video.with_raw_response.create(
+            model="kling3.0_standard",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_11(self, client: RunwayML) -> None:
+        with client.image_to_video.with_streaming_response.create(
+            model="kling3.0_standard",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_12(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="klingO3_pro",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_12(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="klingO3_pro",
+            prompt_image="https://example.com/image.jpg",
+            audio=True,
+            duration=3,
+            prompt_text="xx",
+            provider_settings={
+                "multi_prompt": [
+                    {
+                        "duration": 1,
+                        "prompt": "xxx",
+                    }
+                ],
+                "shot_type": "intelligence",
+            },
+            ratio="1920:1080",
+            references="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_12(self, client: RunwayML) -> None:
+        response = client.image_to_video.with_raw_response.create(
+            model="klingO3_pro",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_12(self, client: RunwayML) -> None:
+        with client.image_to_video.with_streaming_response.create(
+            model="klingO3_pro",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_13(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="klingO3_standard",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_13(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="klingO3_standard",
+            prompt_image="https://example.com/image.jpg",
+            audio=True,
+            duration=3,
+            prompt_text="xx",
+            provider_settings={
+                "multi_prompt": [
+                    {
+                        "duration": 1,
+                        "prompt": "xxx",
+                    }
+                ],
+                "shot_type": "intelligence",
+            },
+            ratio="1280:720",
+            references="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_13(self, client: RunwayML) -> None:
+        response = client.image_to_video.with_raw_response.create(
+            model="klingO3_standard",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_13(self, client: RunwayML) -> None:
+        with client.image_to_video.with_streaming_response.create(
+            model="klingO3_standard",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_14(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="seedance2",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_14(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="seedance2",
             prompt_image="https://example.com/image.jpg",
             audio=True,
             duration="auto",
@@ -559,163 +739,10 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_raw_response_create_overload_11(self, client: RunwayML) -> None:
-        response = client.image_to_video.with_raw_response.create(
-            model="seedance2_5",
-            prompt_image="https://example.com/image.jpg",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        image_to_video = response.parse()
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    def test_streaming_response_create_overload_11(self, client: RunwayML) -> None:
-        with client.image_to_video.with_streaming_response.create(
-            model="seedance2_5",
-            prompt_image="https://example.com/image.jpg",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            image_to_video = response.parse()
-            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_method_create_overload_12(self, client: RunwayML) -> None:
-        image_to_video = client.image_to_video.create(
-            model="grok_imagine_1_5",
-            prompt_image="https://example.com/image.jpg",
-        )
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params_overload_12(self, client: RunwayML) -> None:
-        image_to_video = client.image_to_video.create(
-            model="grok_imagine_1_5",
-            prompt_image="https://example.com/image.jpg",
-            duration=1,
-            prompt_text="x",
-            resolution="480p",
-        )
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    def test_raw_response_create_overload_12(self, client: RunwayML) -> None:
-        response = client.image_to_video.with_raw_response.create(
-            model="grok_imagine_1_5",
-            prompt_image="https://example.com/image.jpg",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        image_to_video = response.parse()
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    def test_streaming_response_create_overload_12(self, client: RunwayML) -> None:
-        with client.image_to_video.with_streaming_response.create(
-            model="grok_imagine_1_5",
-            prompt_image="https://example.com/image.jpg",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            image_to_video = response.parse()
-            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_method_create_overload_13(self, client: RunwayML) -> None:
-        image_to_video = client.image_to_video.create(
-            model="wan3",
-            prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
-        )
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params_overload_13(self, client: RunwayML) -> None:
-        image_to_video = client.image_to_video.create(
-            model="wan3",
-            prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
-            audio=True,
-            duration=2,
-            ratio="832:480",
-            reference_audio=[
-                {
-                    "type": "audio",
-                    "uri": "https://example.com/audio.mp3",
-                }
-            ],
-            reference_videos=[
-                {
-                    "type": "video",
-                    "uri": "https://example.com/video.mp4",
-                }
-            ],
-        )
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    def test_raw_response_create_overload_13(self, client: RunwayML) -> None:
-        response = client.image_to_video.with_raw_response.create(
-            model="wan3",
-            prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        image_to_video = response.parse()
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    def test_streaming_response_create_overload_13(self, client: RunwayML) -> None:
-        with client.image_to_video.with_streaming_response.create(
-            model="wan3",
-            prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            image_to_video = response.parse()
-            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_method_create_overload_14(self, client: RunwayML) -> None:
-        image_to_video = client.image_to_video.create(
-            model="gemini_omni_flash_1.1",
-            prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
-        )
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params_overload_14(self, client: RunwayML) -> None:
-        image_to_video = client.image_to_video.create(
-            model="gemini_omni_flash_1.1",
-            prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
-            duration="auto",
-            ratio="640:360",
-        )
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
     def test_raw_response_create_overload_14(self, client: RunwayML) -> None:
         response = client.image_to_video.with_raw_response.create(
-            model="gemini_omni_flash_1.1",
+            model="seedance2",
             prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
         )
 
         assert response.is_closed is True
@@ -726,9 +753,8 @@ class TestImageToVideo:
     @parametrize
     def test_streaming_response_create_overload_14(self, client: RunwayML) -> None:
         with client.image_to_video.with_streaming_response.create(
-            model="gemini_omni_flash_1.1",
+            model="seedance2",
             prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -741,6 +767,311 @@ class TestImageToVideo:
     @parametrize
     def test_method_create_overload_15(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
+            model="seedance2_fast",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_15(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="seedance2_fast",
+            prompt_image="https://example.com/image.jpg",
+            audio=True,
+            duration="auto",
+            prompt_text="x",
+            ratio="992:432",
+            reference_audio=[
+                {
+                    "type": "audio",
+                    "uri": "https://example.com/audio.mp3",
+                }
+            ],
+            seed=0,
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_15(self, client: RunwayML) -> None:
+        response = client.image_to_video.with_raw_response.create(
+            model="seedance2_fast",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_15(self, client: RunwayML) -> None:
+        with client.image_to_video.with_streaming_response.create(
+            model="seedance2_fast",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_16(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="seedance2_mini",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_16(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="seedance2_mini",
+            prompt_image="https://example.com/image.jpg",
+            audio=True,
+            duration="auto",
+            prompt_text="x",
+            ratio="992:432",
+            reference_audio=[
+                {
+                    "type": "audio",
+                    "uri": "https://example.com/audio.mp3",
+                }
+            ],
+            seed=0,
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_16(self, client: RunwayML) -> None:
+        response = client.image_to_video.with_raw_response.create(
+            model="seedance2_mini",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_16(self, client: RunwayML) -> None:
+        with client.image_to_video.with_streaming_response.create(
+            model="seedance2_mini",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_17(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="gemini_omni_flash",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_17(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="gemini_omni_flash",
+            prompt_image="https://example.com/image.jpg",
+            duration=3,
+            prompt_text="x",
+            ratio="1280:720",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_17(self, client: RunwayML) -> None:
+        response = client.image_to_video.with_raw_response.create(
+            model="gemini_omni_flash",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_17(self, client: RunwayML) -> None:
+        with client.image_to_video.with_streaming_response.create(
+            model="gemini_omni_flash",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_18(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="grok_imagine_1_5",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_18(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="grok_imagine_1_5",
+            prompt_image="https://example.com/image.jpg",
+            duration=1,
+            prompt_text="x",
+            resolution="480p",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_18(self, client: RunwayML) -> None:
+        response = client.image_to_video.with_raw_response.create(
+            model="grok_imagine_1_5",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_18(self, client: RunwayML) -> None:
+        with client.image_to_video.with_streaming_response.create(
+            model="grok_imagine_1_5",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_19(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="wan3",
+            prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_19(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="wan3",
+            prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
+            audio=True,
+            duration=2,
+            ratio="832:480",
+            reference_audio=[
+                {
+                    "type": "audio",
+                    "uri": "https://example.com/audio.mp3",
+                }
+            ],
+            reference_videos=[
+                {
+                    "type": "video",
+                    "uri": "https://example.com/video.mp4",
+                }
+            ],
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_19(self, client: RunwayML) -> None:
+        response = client.image_to_video.with_raw_response.create(
+            model="wan3",
+            prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_19(self, client: RunwayML) -> None:
+        with client.image_to_video.with_streaming_response.create(
+            model="wan3",
+            prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_20(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="gemini_omni_flash_1.1",
+            prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_20(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="gemini_omni_flash_1.1",
+            prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
+            duration="auto",
+            ratio="640:360",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_20(self, client: RunwayML) -> None:
+        response = client.image_to_video.with_raw_response.create(
+            model="gemini_omni_flash_1.1",
+            prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_20(self, client: RunwayML) -> None:
+        with client.image_to_video.with_streaming_response.create(
+            model="gemini_omni_flash_1.1",
+            prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_21(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
             model="wan3_prime",
             prompt_image="https://example.com/image.jpg",
             prompt_text="x",
@@ -748,7 +1079,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params_overload_15(self, client: RunwayML) -> None:
+    def test_method_create_with_all_params_overload_21(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
             model="wan3_prime",
             prompt_image="https://example.com/image.jpg",
@@ -772,7 +1103,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_raw_response_create_overload_15(self, client: RunwayML) -> None:
+    def test_raw_response_create_overload_21(self, client: RunwayML) -> None:
         response = client.image_to_video.with_raw_response.create(
             model="wan3_prime",
             prompt_image="https://example.com/image.jpg",
@@ -785,7 +1116,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_overload_15(self, client: RunwayML) -> None:
+    def test_streaming_response_create_overload_21(self, client: RunwayML) -> None:
         with client.image_to_video.with_streaming_response.create(
             model="wan3_prime",
             prompt_image="https://example.com/image.jpg",
@@ -800,7 +1131,7 @@ class TestImageToVideo:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_create_overload_16(self, client: RunwayML) -> None:
+    def test_method_create_overload_22(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
             model="h3_max",
             prompt_image="https://example.com/image.jpg",
@@ -809,7 +1140,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params_overload_16(self, client: RunwayML) -> None:
+    def test_method_create_with_all_params_overload_22(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
             model="h3_max",
             prompt_image="https://example.com/image.jpg",
@@ -822,7 +1153,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_raw_response_create_overload_16(self, client: RunwayML) -> None:
+    def test_raw_response_create_overload_22(self, client: RunwayML) -> None:
         response = client.image_to_video.with_raw_response.create(
             model="h3_max",
             prompt_image="https://example.com/image.jpg",
@@ -835,7 +1166,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_overload_16(self, client: RunwayML) -> None:
+    def test_streaming_response_create_overload_22(self, client: RunwayML) -> None:
         with client.image_to_video.with_streaming_response.create(
             model="h3_max",
             prompt_image="https://example.com/image.jpg",
@@ -850,7 +1181,62 @@ class TestImageToVideo:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_create_overload_17(self, client: RunwayML) -> None:
+    def test_method_create_overload_23(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="seedance2_5",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_23(self, client: RunwayML) -> None:
+        image_to_video = client.image_to_video.create(
+            model="seedance2_5",
+            prompt_image="https://example.com/image.jpg",
+            audio=True,
+            draft=True,
+            duration="auto",
+            output_format="mp4",
+            prompt_text="x",
+            ratio="992:432",
+            reference_audio=[
+                {
+                    "type": "audio",
+                    "uri": "https://example.com/audio.mp3",
+                }
+            ],
+            seed=0,
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_23(self, client: RunwayML) -> None:
+        response = client.image_to_video.with_raw_response.create(
+            model="seedance2_5",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_23(self, client: RunwayML) -> None:
+        with client.image_to_video.with_streaming_response.create(
+            model="seedance2_5",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_24(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
             model="grok_imagine_1_5_lite",
             prompt_image="https://example.com/image.jpg",
@@ -858,7 +1244,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params_overload_17(self, client: RunwayML) -> None:
+    def test_method_create_with_all_params_overload_24(self, client: RunwayML) -> None:
         image_to_video = client.image_to_video.create(
             model="grok_imagine_1_5_lite",
             prompt_image="https://example.com/image.jpg",
@@ -869,7 +1255,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_raw_response_create_overload_17(self, client: RunwayML) -> None:
+    def test_raw_response_create_overload_24(self, client: RunwayML) -> None:
         response = client.image_to_video.with_raw_response.create(
             model="grok_imagine_1_5_lite",
             prompt_image="https://example.com/image.jpg",
@@ -881,7 +1267,7 @@ class TestImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_overload_17(self, client: RunwayML) -> None:
+    def test_streaming_response_create_overload_24(self, client: RunwayML) -> None:
         with client.image_to_video.with_streaming_response.create(
             model="grok_imagine_1_5_lite",
             prompt_image="https://example.com/image.jpg",
@@ -1113,6 +1499,62 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_overload_5(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
+            model="klingO3_4k",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_5(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="klingO3_4k",
+            prompt_image="https://example.com/image.jpg",
+            audio=True,
+            duration=3,
+            prompt_text="xx",
+            provider_settings={
+                "multi_prompt": [
+                    {
+                        "duration": 1,
+                        "prompt": "xxx",
+                    }
+                ],
+                "shot_type": "intelligence",
+            },
+            ratio="3840:2160",
+            references="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_5(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.image_to_video.with_raw_response.create(
+            model="klingO3_4k",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = await response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_5(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.image_to_video.with_streaming_response.create(
+            model="klingO3_4k",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = await response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_6(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
             model="hailuo3",
             prompt_image="https://example.com/image.jpg",
             prompt_text="x",
@@ -1120,7 +1562,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params_overload_5(self, async_client: AsyncRunwayML) -> None:
+    async def test_method_create_with_all_params_overload_6(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
             model="hailuo3",
             prompt_image="https://example.com/image.jpg",
@@ -1138,57 +1580,11 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_overload_5(self, async_client: AsyncRunwayML) -> None:
-        response = await async_client.image_to_video.with_raw_response.create(
-            model="hailuo3",
-            prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        image_to_video = await response.parse()
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_create_overload_5(self, async_client: AsyncRunwayML) -> None:
-        async with async_client.image_to_video.with_streaming_response.create(
-            model="hailuo3",
-            prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            image_to_video = await response.parse()
-            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_create_overload_6(self, async_client: AsyncRunwayML) -> None:
-        image_to_video = await async_client.image_to_video.create(
-            model="happyhorse_1_0",
-            prompt_image="https://example.com/image.jpg",
-        )
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params_overload_6(self, async_client: AsyncRunwayML) -> None:
-        image_to_video = await async_client.image_to_video.create(
-            model="happyhorse_1_0",
-            prompt_image="https://example.com/image.jpg",
-            duration=3,
-            prompt_text="xx",
-            resolution="720p",
-        )
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
     async def test_raw_response_create_overload_6(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.image_to_video.with_raw_response.create(
-            model="happyhorse_1_0",
+            model="hailuo3",
             prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
         )
 
         assert response.is_closed is True
@@ -1199,8 +1595,9 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_streaming_response_create_overload_6(self, async_client: AsyncRunwayML) -> None:
         async with async_client.image_to_video.with_streaming_response.create(
-            model="happyhorse_1_0",
+            model="hailuo3",
             prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1213,7 +1610,7 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_overload_7(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="seedance2",
+            model="kling3.0_4k",
             prompt_image="https://example.com/image.jpg",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -1221,26 +1618,29 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_with_all_params_overload_7(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="seedance2",
+            model="kling3.0_4k",
             prompt_image="https://example.com/image.jpg",
             audio=True,
-            duration="auto",
-            prompt_text="x",
-            ratio="992:432",
-            reference_audio=[
-                {
-                    "type": "audio",
-                    "uri": "https://example.com/audio.mp3",
-                }
-            ],
-            seed=0,
+            cfg_scale=0,
+            duration=3,
+            prompt_text="xx",
+            provider_settings={
+                "multi_prompt": [
+                    {
+                        "duration": 1,
+                        "prompt": "xxx",
+                    }
+                ],
+                "shot_type": "intelligence",
+            },
+            ratio="3840:2160",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
     async def test_raw_response_create_overload_7(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.image_to_video.with_raw_response.create(
-            model="seedance2",
+            model="kling3.0_4k",
             prompt_image="https://example.com/image.jpg",
         )
 
@@ -1252,7 +1652,7 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_streaming_response_create_overload_7(self, async_client: AsyncRunwayML) -> None:
         async with async_client.image_to_video.with_streaming_response.create(
-            model="seedance2",
+            model="kling3.0_4k",
             prompt_image="https://example.com/image.jpg",
         ) as response:
             assert not response.is_closed
@@ -1266,7 +1666,7 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_overload_8(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="seedance2_fast",
+            model="happyhorse_1_0",
             prompt_image="https://example.com/image.jpg",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -1274,26 +1674,18 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_with_all_params_overload_8(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="seedance2_fast",
+            model="happyhorse_1_0",
             prompt_image="https://example.com/image.jpg",
-            audio=True,
-            duration="auto",
-            prompt_text="x",
-            ratio="992:432",
-            reference_audio=[
-                {
-                    "type": "audio",
-                    "uri": "https://example.com/audio.mp3",
-                }
-            ],
-            seed=0,
+            duration=3,
+            prompt_text="xx",
+            resolution="720p",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
     async def test_raw_response_create_overload_8(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.image_to_video.with_raw_response.create(
-            model="seedance2_fast",
+            model="happyhorse_1_0",
             prompt_image="https://example.com/image.jpg",
         )
 
@@ -1305,7 +1697,7 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_streaming_response_create_overload_8(self, async_client: AsyncRunwayML) -> None:
         async with async_client.image_to_video.with_streaming_response.create(
-            model="seedance2_fast",
+            model="happyhorse_1_0",
             prompt_image="https://example.com/image.jpg",
         ) as response:
             assert not response.is_closed
@@ -1319,35 +1711,29 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_overload_9(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="seedance2_mini",
+            model="kling2.5_turbo_pro",
             prompt_image="https://example.com/image.jpg",
+            prompt_text="xx",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params_overload_9(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="seedance2_mini",
+            model="kling2.5_turbo_pro",
             prompt_image="https://example.com/image.jpg",
-            audio=True,
-            duration="auto",
-            prompt_text="x",
-            ratio="992:432",
-            reference_audio=[
-                {
-                    "type": "audio",
-                    "uri": "https://example.com/audio.mp3",
-                }
-            ],
-            seed=0,
+            prompt_text="xx",
+            cfg_scale=0,
+            duration=5,
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
     async def test_raw_response_create_overload_9(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.image_to_video.with_raw_response.create(
-            model="seedance2_mini",
+            model="kling2.5_turbo_pro",
             prompt_image="https://example.com/image.jpg",
+            prompt_text="xx",
         )
 
         assert response.is_closed is True
@@ -1358,8 +1744,9 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_streaming_response_create_overload_9(self, async_client: AsyncRunwayML) -> None:
         async with async_client.image_to_video.with_streaming_response.create(
-            model="seedance2_mini",
+            model="kling2.5_turbo_pro",
             prompt_image="https://example.com/image.jpg",
+            prompt_text="xx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1372,7 +1759,7 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_overload_10(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="gemini_omni_flash",
+            model="kling3.0_pro",
             prompt_image="https://example.com/image.jpg",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -1380,18 +1767,29 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_with_all_params_overload_10(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="gemini_omni_flash",
+            model="kling3.0_pro",
             prompt_image="https://example.com/image.jpg",
+            audio=True,
+            cfg_scale=0,
             duration=3,
-            prompt_text="x",
-            ratio="1280:720",
+            prompt_text="xx",
+            provider_settings={
+                "multi_prompt": [
+                    {
+                        "duration": 1,
+                        "prompt": "xxx",
+                    }
+                ],
+                "shot_type": "intelligence",
+            },
+            ratio="1920:1080",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
     async def test_raw_response_create_overload_10(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.image_to_video.with_raw_response.create(
-            model="gemini_omni_flash",
+            model="kling3.0_pro",
             prompt_image="https://example.com/image.jpg",
         )
 
@@ -1403,7 +1801,7 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_streaming_response_create_overload_10(self, async_client: AsyncRunwayML) -> None:
         async with async_client.image_to_video.with_streaming_response.create(
-            model="gemini_omni_flash",
+            model="kling3.0_pro",
             prompt_image="https://example.com/image.jpg",
         ) as response:
             assert not response.is_closed
@@ -1417,7 +1815,7 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_overload_11(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="seedance2_5",
+            model="kling3.0_standard",
             prompt_image="https://example.com/image.jpg",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
@@ -1425,7 +1823,175 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_with_all_params_overload_11(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
-            model="seedance2_5",
+            model="kling3.0_standard",
+            prompt_image="https://example.com/image.jpg",
+            audio=True,
+            cfg_scale=0,
+            duration=3,
+            prompt_text="xx",
+            provider_settings={
+                "multi_prompt": [
+                    {
+                        "duration": 1,
+                        "prompt": "xxx",
+                    }
+                ],
+                "shot_type": "intelligence",
+            },
+            ratio="1280:720",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_11(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.image_to_video.with_raw_response.create(
+            model="kling3.0_standard",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = await response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_11(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.image_to_video.with_streaming_response.create(
+            model="kling3.0_standard",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = await response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_12(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="klingO3_pro",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_12(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="klingO3_pro",
+            prompt_image="https://example.com/image.jpg",
+            audio=True,
+            duration=3,
+            prompt_text="xx",
+            provider_settings={
+                "multi_prompt": [
+                    {
+                        "duration": 1,
+                        "prompt": "xxx",
+                    }
+                ],
+                "shot_type": "intelligence",
+            },
+            ratio="1920:1080",
+            references="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_12(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.image_to_video.with_raw_response.create(
+            model="klingO3_pro",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = await response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_12(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.image_to_video.with_streaming_response.create(
+            model="klingO3_pro",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = await response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_13(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="klingO3_standard",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_13(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="klingO3_standard",
+            prompt_image="https://example.com/image.jpg",
+            audio=True,
+            duration=3,
+            prompt_text="xx",
+            provider_settings={
+                "multi_prompt": [
+                    {
+                        "duration": 1,
+                        "prompt": "xxx",
+                    }
+                ],
+                "shot_type": "intelligence",
+            },
+            ratio="1280:720",
+            references="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_13(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.image_to_video.with_raw_response.create(
+            model="klingO3_standard",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = await response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_13(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.image_to_video.with_streaming_response.create(
+            model="klingO3_standard",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = await response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_14(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="seedance2",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_14(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="seedance2",
             prompt_image="https://example.com/image.jpg",
             audio=True,
             duration="auto",
@@ -1442,163 +2008,10 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_overload_11(self, async_client: AsyncRunwayML) -> None:
-        response = await async_client.image_to_video.with_raw_response.create(
-            model="seedance2_5",
-            prompt_image="https://example.com/image.jpg",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        image_to_video = await response.parse()
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_create_overload_11(self, async_client: AsyncRunwayML) -> None:
-        async with async_client.image_to_video.with_streaming_response.create(
-            model="seedance2_5",
-            prompt_image="https://example.com/image.jpg",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            image_to_video = await response.parse()
-            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_create_overload_12(self, async_client: AsyncRunwayML) -> None:
-        image_to_video = await async_client.image_to_video.create(
-            model="grok_imagine_1_5",
-            prompt_image="https://example.com/image.jpg",
-        )
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params_overload_12(self, async_client: AsyncRunwayML) -> None:
-        image_to_video = await async_client.image_to_video.create(
-            model="grok_imagine_1_5",
-            prompt_image="https://example.com/image.jpg",
-            duration=1,
-            prompt_text="x",
-            resolution="480p",
-        )
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    async def test_raw_response_create_overload_12(self, async_client: AsyncRunwayML) -> None:
-        response = await async_client.image_to_video.with_raw_response.create(
-            model="grok_imagine_1_5",
-            prompt_image="https://example.com/image.jpg",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        image_to_video = await response.parse()
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_create_overload_12(self, async_client: AsyncRunwayML) -> None:
-        async with async_client.image_to_video.with_streaming_response.create(
-            model="grok_imagine_1_5",
-            prompt_image="https://example.com/image.jpg",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            image_to_video = await response.parse()
-            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_create_overload_13(self, async_client: AsyncRunwayML) -> None:
-        image_to_video = await async_client.image_to_video.create(
-            model="wan3",
-            prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
-        )
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params_overload_13(self, async_client: AsyncRunwayML) -> None:
-        image_to_video = await async_client.image_to_video.create(
-            model="wan3",
-            prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
-            audio=True,
-            duration=2,
-            ratio="832:480",
-            reference_audio=[
-                {
-                    "type": "audio",
-                    "uri": "https://example.com/audio.mp3",
-                }
-            ],
-            reference_videos=[
-                {
-                    "type": "video",
-                    "uri": "https://example.com/video.mp4",
-                }
-            ],
-        )
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    async def test_raw_response_create_overload_13(self, async_client: AsyncRunwayML) -> None:
-        response = await async_client.image_to_video.with_raw_response.create(
-            model="wan3",
-            prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        image_to_video = await response.parse()
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_create_overload_13(self, async_client: AsyncRunwayML) -> None:
-        async with async_client.image_to_video.with_streaming_response.create(
-            model="wan3",
-            prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            image_to_video = await response.parse()
-            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_create_overload_14(self, async_client: AsyncRunwayML) -> None:
-        image_to_video = await async_client.image_to_video.create(
-            model="gemini_omni_flash_1.1",
-            prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
-        )
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params_overload_14(self, async_client: AsyncRunwayML) -> None:
-        image_to_video = await async_client.image_to_video.create(
-            model="gemini_omni_flash_1.1",
-            prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
-            duration="auto",
-            ratio="640:360",
-        )
-        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
-
-    @parametrize
     async def test_raw_response_create_overload_14(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.image_to_video.with_raw_response.create(
-            model="gemini_omni_flash_1.1",
+            model="seedance2",
             prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
         )
 
         assert response.is_closed is True
@@ -1609,9 +2022,8 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_streaming_response_create_overload_14(self, async_client: AsyncRunwayML) -> None:
         async with async_client.image_to_video.with_streaming_response.create(
-            model="gemini_omni_flash_1.1",
+            model="seedance2",
             prompt_image="https://example.com/image.jpg",
-            prompt_text="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1624,6 +2036,311 @@ class TestAsyncImageToVideo:
     @parametrize
     async def test_method_create_overload_15(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
+            model="seedance2_fast",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_15(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="seedance2_fast",
+            prompt_image="https://example.com/image.jpg",
+            audio=True,
+            duration="auto",
+            prompt_text="x",
+            ratio="992:432",
+            reference_audio=[
+                {
+                    "type": "audio",
+                    "uri": "https://example.com/audio.mp3",
+                }
+            ],
+            seed=0,
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_15(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.image_to_video.with_raw_response.create(
+            model="seedance2_fast",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = await response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_15(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.image_to_video.with_streaming_response.create(
+            model="seedance2_fast",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = await response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_16(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="seedance2_mini",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_16(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="seedance2_mini",
+            prompt_image="https://example.com/image.jpg",
+            audio=True,
+            duration="auto",
+            prompt_text="x",
+            ratio="992:432",
+            reference_audio=[
+                {
+                    "type": "audio",
+                    "uri": "https://example.com/audio.mp3",
+                }
+            ],
+            seed=0,
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_16(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.image_to_video.with_raw_response.create(
+            model="seedance2_mini",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = await response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_16(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.image_to_video.with_streaming_response.create(
+            model="seedance2_mini",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = await response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_17(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="gemini_omni_flash",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_17(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="gemini_omni_flash",
+            prompt_image="https://example.com/image.jpg",
+            duration=3,
+            prompt_text="x",
+            ratio="1280:720",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_17(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.image_to_video.with_raw_response.create(
+            model="gemini_omni_flash",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = await response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_17(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.image_to_video.with_streaming_response.create(
+            model="gemini_omni_flash",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = await response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_18(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="grok_imagine_1_5",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_18(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="grok_imagine_1_5",
+            prompt_image="https://example.com/image.jpg",
+            duration=1,
+            prompt_text="x",
+            resolution="480p",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_18(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.image_to_video.with_raw_response.create(
+            model="grok_imagine_1_5",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = await response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_18(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.image_to_video.with_streaming_response.create(
+            model="grok_imagine_1_5",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = await response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_19(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="wan3",
+            prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_19(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="wan3",
+            prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
+            audio=True,
+            duration=2,
+            ratio="832:480",
+            reference_audio=[
+                {
+                    "type": "audio",
+                    "uri": "https://example.com/audio.mp3",
+                }
+            ],
+            reference_videos=[
+                {
+                    "type": "video",
+                    "uri": "https://example.com/video.mp4",
+                }
+            ],
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_19(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.image_to_video.with_raw_response.create(
+            model="wan3",
+            prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = await response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_19(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.image_to_video.with_streaming_response.create(
+            model="wan3",
+            prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = await response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_20(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="gemini_omni_flash_1.1",
+            prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_20(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="gemini_omni_flash_1.1",
+            prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
+            duration="auto",
+            ratio="640:360",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_20(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.image_to_video.with_raw_response.create(
+            model="gemini_omni_flash_1.1",
+            prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = await response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_20(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.image_to_video.with_streaming_response.create(
+            model="gemini_omni_flash_1.1",
+            prompt_image="https://example.com/image.jpg",
+            prompt_text="x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = await response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_21(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
             model="wan3_prime",
             prompt_image="https://example.com/image.jpg",
             prompt_text="x",
@@ -1631,7 +2348,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params_overload_15(self, async_client: AsyncRunwayML) -> None:
+    async def test_method_create_with_all_params_overload_21(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
             model="wan3_prime",
             prompt_image="https://example.com/image.jpg",
@@ -1655,7 +2372,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_overload_15(self, async_client: AsyncRunwayML) -> None:
+    async def test_raw_response_create_overload_21(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.image_to_video.with_raw_response.create(
             model="wan3_prime",
             prompt_image="https://example.com/image.jpg",
@@ -1668,7 +2385,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_overload_15(self, async_client: AsyncRunwayML) -> None:
+    async def test_streaming_response_create_overload_21(self, async_client: AsyncRunwayML) -> None:
         async with async_client.image_to_video.with_streaming_response.create(
             model="wan3_prime",
             prompt_image="https://example.com/image.jpg",
@@ -1683,7 +2400,7 @@ class TestAsyncImageToVideo:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_create_overload_16(self, async_client: AsyncRunwayML) -> None:
+    async def test_method_create_overload_22(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
             model="h3_max",
             prompt_image="https://example.com/image.jpg",
@@ -1692,7 +2409,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params_overload_16(self, async_client: AsyncRunwayML) -> None:
+    async def test_method_create_with_all_params_overload_22(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
             model="h3_max",
             prompt_image="https://example.com/image.jpg",
@@ -1705,7 +2422,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_overload_16(self, async_client: AsyncRunwayML) -> None:
+    async def test_raw_response_create_overload_22(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.image_to_video.with_raw_response.create(
             model="h3_max",
             prompt_image="https://example.com/image.jpg",
@@ -1718,7 +2435,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_overload_16(self, async_client: AsyncRunwayML) -> None:
+    async def test_streaming_response_create_overload_22(self, async_client: AsyncRunwayML) -> None:
         async with async_client.image_to_video.with_streaming_response.create(
             model="h3_max",
             prompt_image="https://example.com/image.jpg",
@@ -1733,7 +2450,62 @@ class TestAsyncImageToVideo:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_create_overload_17(self, async_client: AsyncRunwayML) -> None:
+    async def test_method_create_overload_23(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="seedance2_5",
+            prompt_image="https://example.com/image.jpg",
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_23(self, async_client: AsyncRunwayML) -> None:
+        image_to_video = await async_client.image_to_video.create(
+            model="seedance2_5",
+            prompt_image="https://example.com/image.jpg",
+            audio=True,
+            draft=True,
+            duration="auto",
+            output_format="mp4",
+            prompt_text="x",
+            ratio="992:432",
+            reference_audio=[
+                {
+                    "type": "audio",
+                    "uri": "https://example.com/audio.mp3",
+                }
+            ],
+            seed=0,
+        )
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_23(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.image_to_video.with_raw_response.create(
+            model="seedance2_5",
+            prompt_image="https://example.com/image.jpg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        image_to_video = await response.parse()
+        assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_23(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.image_to_video.with_streaming_response.create(
+            model="seedance2_5",
+            prompt_image="https://example.com/image.jpg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            image_to_video = await response.parse()
+            assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_24(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
             model="grok_imagine_1_5_lite",
             prompt_image="https://example.com/image.jpg",
@@ -1741,7 +2513,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params_overload_17(self, async_client: AsyncRunwayML) -> None:
+    async def test_method_create_with_all_params_overload_24(self, async_client: AsyncRunwayML) -> None:
         image_to_video = await async_client.image_to_video.create(
             model="grok_imagine_1_5_lite",
             prompt_image="https://example.com/image.jpg",
@@ -1752,7 +2524,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_overload_17(self, async_client: AsyncRunwayML) -> None:
+    async def test_raw_response_create_overload_24(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.image_to_video.with_raw_response.create(
             model="grok_imagine_1_5_lite",
             prompt_image="https://example.com/image.jpg",
@@ -1764,7 +2536,7 @@ class TestAsyncImageToVideo:
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_overload_17(self, async_client: AsyncRunwayML) -> None:
+    async def test_streaming_response_create_overload_24(self, async_client: AsyncRunwayML) -> None:
         async with async_client.image_to_video.with_streaming_response.create(
             model="grok_imagine_1_5_lite",
             prompt_image="https://example.com/image.jpg",

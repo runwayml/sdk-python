@@ -631,6 +631,59 @@ class TextToImageResource(SyncAPIResource):
     def create(
         self,
         *,
+        model: Literal["gemini_image3.1_flash_lite"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "848:1264",
+            "1264:848",
+            "896:1200",
+            "1200:896",
+            "928:1152",
+            "1152:928",
+            "768:1376",
+            "1376:768",
+            "1584:672",
+        ],
+        output_count: Literal[1, 4] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.GeminiImage3_1FlashLiteReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: This should describe in detail what should appear in the output.
+
+          ratio: The resolution of the output image.
+
+          output_count: The number of images to generate. Increasing this number will affect the number
+              of credits consumed by the generation. Up to four images can be generated at
+              once.
+
+          reference_images: An array of up to 14 images to be used as references for the generated image
+              output. Up to five can pass `subject: "human"` and up to nine can pass
+              `subject: "object"`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["gemini_image3_pro"],
         prompt_text: str,
         ratio: Literal[
@@ -867,6 +920,127 @@ class TextToImageResource(SyncAPIResource):
     def create(
         self,
         *,
+        model: Literal["bria_fibo_1_5"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "768:1152",
+            "1152:768",
+            "768:1024",
+            "1024:768",
+            "768:960",
+            "960:768",
+            "576:1024",
+            "1024:576",
+            "2048:2048",
+            "1536:2304",
+            "2304:1536",
+            "1536:2048",
+            "2048:1536",
+            "1536:1920",
+            "1920:1536",
+            "1152:2048",
+            "2048:1152",
+        ],
+        output_format: Literal["png", "jpeg"] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.BriaFibo1_5ReferenceImage] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty text prompt describing what should appear in the output image.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. 1MP sizes
+              cost 5 credits per image and 4MP sizes 10.
+
+          output_format: The file format of the output image. Defaults to png.
+
+          reference_images: Up to 1 image to guide the generation. The prompt describes how the output
+              should build on it.
+
+          seed: If unspecified, a random number is chosen. Using the same seed with an identical
+              request reproduces the same image.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["bria_fibo_edit_1_5"],
+        prompt_text: str,
+        output_format: Literal["png", "jpeg"] | Omit = omit,
+        ratio: Literal[
+            "1024:1024",
+            "768:1152",
+            "1152:768",
+            "768:1024",
+            "1024:768",
+            "768:960",
+            "960:768",
+            "576:1024",
+            "1024:576",
+            "auto",
+        ]
+        | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.BriaFiboEdit1_5ReferenceImage] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: An instruction describing how to edit the reference images.
+
+          output_format: The file format of the output image. Defaults to png.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. Omit it or
+              use `auto` to keep the framing of the first reference image. Choosing a size
+              requires at least 2 reference images; a single image always keeps its own
+              framing.
+
+          reference_images: 1 to 4 images to edit. With several, the instruction describes how to combine
+              them.
+
+          seed: If unspecified, a random number is chosen. Using the same seed with an identical
+              request reproduces the same image.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["ideogram_4_0"],
         prompt_text: str,
         output_count: int | Omit = omit,
@@ -1010,6 +1184,156 @@ class TextToImageResource(SyncAPIResource):
     def create(
         self,
         *,
+        model: Literal["seedream5_flash"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "1184:896",
+            "896:1184",
+            "1376:768",
+            "768:1376",
+            "1248:832",
+            "832:1248",
+            "1568:672",
+            "2048:2048",
+            "2304:1728",
+            "1728:2304",
+            "2848:1600",
+            "1600:2848",
+            "2496:1664",
+            "1664:2496",
+            "3136:1344",
+            "auto_1k",
+            "auto_2k",
+        ],
+        output_count: int | Omit = omit,
+        output_format: Literal["png", "jpeg"] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.Seedream5FlashReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A description of the image you want to generate.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. Use
+              `auto_1k` or `auto_2k` to let the model pick the aspect ratio at a fixed
+              resolution tier.
+
+          output_count: The number of images to generate. Increasing this number will affect the number
+              of credits consumed by the generation.
+
+          output_format: The file format of the output image. Defaults to png.
+
+          reference_images: Images to edit or combine. Refer to them in the prompt by upload order (Figure
+              1, Figure 2, and so on).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["nano_banana_2.1"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "848:1264",
+            "1264:848",
+            "896:1200",
+            "1200:896",
+            "928:1152",
+            "1152:928",
+            "768:1376",
+            "1376:768",
+            "1584:672",
+            "512:2064",
+            "2064:512",
+            "352:2928",
+            "2928:352",
+            "2048:2048",
+            "1696:2528",
+            "2528:1696",
+            "1792:2400",
+            "2400:1792",
+            "1856:2304",
+            "2304:1856",
+            "1536:2752",
+            "2752:1536",
+            "3168:1344",
+            "1024:4128",
+            "4128:1024",
+            "704:5856",
+            "5856:704",
+            "4096:4096",
+            "3392:5056",
+            "5056:3392",
+            "3584:4800",
+            "4800:3584",
+            "3712:4608",
+            "4608:3712",
+            "3072:5504",
+            "5504:3072",
+            "6336:2688",
+            "2048:8256",
+            "8256:2048",
+            "1408:11712",
+            "11712:1408",
+        ],
+        output_count: int | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.NanoBanana2_1ReferenceImage] | Omit = omit,
+        thinking_level: Literal["minimal", "medium", "high"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A description of the image you want to generate.
+
+          ratio: The resolution of the output image.
+
+          output_count: The number of images to generate. Increasing this number will affect the number
+              of credits consumed by the generation.
+
+          reference_images: Up to 14 images to edit, combine, or use as references for the output.
+
+          thinking_level: How much the model reasons about the prompt before generating. Defaults to
+              medium.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -1069,11 +1393,16 @@ class TextToImageResource(SyncAPIResource):
         | Literal["seedream5_pro"]
         | Literal["seedream5_lite"]
         | Literal["grok_imagine_image_2"]
+        | Literal["gemini_image3.1_flash_lite"]
         | Literal["gemini_image3_pro"]
         | Literal["gpt_image_2_5_flare"]
         | Literal["gpt_image_2_5_sunburst"]
+        | Literal["bria_fibo_1_5"]
+        | Literal["bria_fibo_edit_1_5"]
         | Literal["ideogram_4_0"]
         | Literal["ideogram_4_5"]
+        | Literal["seedream5_flash"]
+        | Literal["nano_banana_2.1"]
         | Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -1266,6 +1595,18 @@ class TextToImageResource(SyncAPIResource):
             "auto_2k",
         ]
         | Literal[
+            "1024:1024",
+            "848:1264",
+            "1264:848",
+            "896:1200",
+            "1200:896",
+            "928:1152",
+            "1152:928",
+            "768:1376",
+            "1376:768",
+            "1584:672",
+        ]
+        | Literal[
             "1344:768",
             "768:1344",
             "1024:1024",
@@ -1296,6 +1637,38 @@ class TextToImageResource(SyncAPIResource):
             "3072:5504",
             "5504:3072",
             "6336:2688",
+        ]
+        | Literal[
+            "1024:1024",
+            "768:1152",
+            "1152:768",
+            "768:1024",
+            "1024:768",
+            "768:960",
+            "960:768",
+            "576:1024",
+            "1024:576",
+            "2048:2048",
+            "1536:2304",
+            "2304:1536",
+            "1536:2048",
+            "2048:1536",
+            "1536:1920",
+            "1920:1536",
+            "1152:2048",
+            "2048:1152",
+        ]
+        | Literal[
+            "1024:1024",
+            "768:1152",
+            "1152:768",
+            "768:1024",
+            "1024:768",
+            "768:960",
+            "960:768",
+            "576:1024",
+            "1024:576",
+            "auto",
         ]
         | Literal[
             "2048:2048",
@@ -1338,6 +1711,70 @@ class TextToImageResource(SyncAPIResource):
             "auto",
         ]
         | Literal[
+            "1024:1024",
+            "1184:896",
+            "896:1184",
+            "1376:768",
+            "768:1376",
+            "1248:832",
+            "832:1248",
+            "1568:672",
+            "2048:2048",
+            "2304:1728",
+            "1728:2304",
+            "2848:1600",
+            "1600:2848",
+            "2496:1664",
+            "1664:2496",
+            "3136:1344",
+            "auto_1k",
+            "auto_2k",
+        ]
+        | Literal[
+            "1024:1024",
+            "848:1264",
+            "1264:848",
+            "896:1200",
+            "1200:896",
+            "928:1152",
+            "1152:928",
+            "768:1376",
+            "1376:768",
+            "1584:672",
+            "512:2064",
+            "2064:512",
+            "352:2928",
+            "2928:352",
+            "2048:2048",
+            "1696:2528",
+            "2528:1696",
+            "1792:2400",
+            "2400:1792",
+            "1856:2304",
+            "2304:1856",
+            "1536:2752",
+            "2752:1536",
+            "3168:1344",
+            "1024:4128",
+            "4128:1024",
+            "704:5856",
+            "5856:704",
+            "4096:4096",
+            "3392:5056",
+            "5056:3392",
+            "3584:4800",
+            "4800:3584",
+            "3712:4608",
+            "4608:3712",
+            "3072:5504",
+            "5504:3072",
+            "6336:2688",
+            "2048:8256",
+            "8256:2048",
+            "1408:11712",
+            "11712:1408",
+        ]
+        | Literal[
             "1344:768",
             "768:1344",
             "1024:1024",
@@ -1358,11 +1795,16 @@ class TextToImageResource(SyncAPIResource):
         | Iterable[text_to_image_create_params.Seedream5ProReferenceImage]
         | Iterable[text_to_image_create_params.Seedream5LiteReferenceImage]
         | Iterable[text_to_image_create_params.GrokImagineImage2ReferenceImage]
+        | Iterable[text_to_image_create_params.GeminiImage3_1FlashLiteReferenceImage]
         | Iterable[text_to_image_create_params.GeminiImage3ProReferenceImage]
         | Iterable[text_to_image_create_params.GptImage2_5FlareReferenceImage]
         | Iterable[text_to_image_create_params.GptImage2_5SunburstReferenceImage]
+        | Iterable[text_to_image_create_params.BriaFibo1_5ReferenceImage]
+        | Iterable[text_to_image_create_params.BriaFiboEdit1_5ReferenceImage]
         | Iterable[text_to_image_create_params.Ideogram4_0ReferenceImage]
         | Iterable[text_to_image_create_params.Ideogram4_5ReferenceImage]
+        | Iterable[text_to_image_create_params.Seedream5FlashReferenceImage]
+        | Iterable[text_to_image_create_params.NanoBanana2_1ReferenceImage]
         | Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage]
         | Omit = omit,
         content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration
@@ -1382,6 +1824,7 @@ class TextToImageResource(SyncAPIResource):
         edit: bool | Omit = omit,
         mask_uri: str | Omit = omit,
         precise_edit: bool | Omit = omit,
+        thinking_level: Literal["minimal", "medium", "high"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1407,6 +1850,7 @@ class TextToImageResource(SyncAPIResource):
                     "edit": edit,
                     "mask_uri": mask_uri,
                     "precise_edit": precise_edit,
+                    "thinking_level": thinking_level,
                 },
                 text_to_image_create_params.TextToImageCreateParams,
             ),
@@ -2018,6 +2462,59 @@ class AsyncTextToImageResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        model: Literal["gemini_image3.1_flash_lite"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "848:1264",
+            "1264:848",
+            "896:1200",
+            "1200:896",
+            "928:1152",
+            "1152:928",
+            "768:1376",
+            "1376:768",
+            "1584:672",
+        ],
+        output_count: Literal[1, 4] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.GeminiImage3_1FlashLiteReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: This should describe in detail what should appear in the output.
+
+          ratio: The resolution of the output image.
+
+          output_count: The number of images to generate. Increasing this number will affect the number
+              of credits consumed by the generation. Up to four images can be generated at
+              once.
+
+          reference_images: An array of up to 14 images to be used as references for the generated image
+              output. Up to five can pass `subject: "human"` and up to nine can pass
+              `subject: "object"`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["gemini_image3_pro"],
         prompt_text: str,
         ratio: Literal[
@@ -2254,6 +2751,127 @@ class AsyncTextToImageResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        model: Literal["bria_fibo_1_5"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "768:1152",
+            "1152:768",
+            "768:1024",
+            "1024:768",
+            "768:960",
+            "960:768",
+            "576:1024",
+            "1024:576",
+            "2048:2048",
+            "1536:2304",
+            "2304:1536",
+            "1536:2048",
+            "2048:1536",
+            "1536:1920",
+            "1920:1536",
+            "1152:2048",
+            "2048:1152",
+        ],
+        output_format: Literal["png", "jpeg"] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.BriaFibo1_5ReferenceImage] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty text prompt describing what should appear in the output image.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. 1MP sizes
+              cost 5 credits per image and 4MP sizes 10.
+
+          output_format: The file format of the output image. Defaults to png.
+
+          reference_images: Up to 1 image to guide the generation. The prompt describes how the output
+              should build on it.
+
+          seed: If unspecified, a random number is chosen. Using the same seed with an identical
+              request reproduces the same image.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["bria_fibo_edit_1_5"],
+        prompt_text: str,
+        output_format: Literal["png", "jpeg"] | Omit = omit,
+        ratio: Literal[
+            "1024:1024",
+            "768:1152",
+            "1152:768",
+            "768:1024",
+            "1024:768",
+            "768:960",
+            "960:768",
+            "576:1024",
+            "1024:576",
+            "auto",
+        ]
+        | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.BriaFiboEdit1_5ReferenceImage] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: An instruction describing how to edit the reference images.
+
+          output_format: The file format of the output image. Defaults to png.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. Omit it or
+              use `auto` to keep the framing of the first reference image. Choosing a size
+              requires at least 2 reference images; a single image always keeps its own
+              framing.
+
+          reference_images: 1 to 4 images to edit. With several, the instruction describes how to combine
+              them.
+
+          seed: If unspecified, a random number is chosen. Using the same seed with an identical
+              request reproduces the same image.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["ideogram_4_0"],
         prompt_text: str,
         output_count: int | Omit = omit,
@@ -2397,6 +3015,156 @@ class AsyncTextToImageResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        model: Literal["seedream5_flash"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "1184:896",
+            "896:1184",
+            "1376:768",
+            "768:1376",
+            "1248:832",
+            "832:1248",
+            "1568:672",
+            "2048:2048",
+            "2304:1728",
+            "1728:2304",
+            "2848:1600",
+            "1600:2848",
+            "2496:1664",
+            "1664:2496",
+            "3136:1344",
+            "auto_1k",
+            "auto_2k",
+        ],
+        output_count: int | Omit = omit,
+        output_format: Literal["png", "jpeg"] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.Seedream5FlashReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A description of the image you want to generate.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. Use
+              `auto_1k` or `auto_2k` to let the model pick the aspect ratio at a fixed
+              resolution tier.
+
+          output_count: The number of images to generate. Increasing this number will affect the number
+              of credits consumed by the generation.
+
+          output_format: The file format of the output image. Defaults to png.
+
+          reference_images: Images to edit or combine. Refer to them in the prompt by upload order (Figure
+              1, Figure 2, and so on).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["nano_banana_2.1"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "848:1264",
+            "1264:848",
+            "896:1200",
+            "1200:896",
+            "928:1152",
+            "1152:928",
+            "768:1376",
+            "1376:768",
+            "1584:672",
+            "512:2064",
+            "2064:512",
+            "352:2928",
+            "2928:352",
+            "2048:2048",
+            "1696:2528",
+            "2528:1696",
+            "1792:2400",
+            "2400:1792",
+            "1856:2304",
+            "2304:1856",
+            "1536:2752",
+            "2752:1536",
+            "3168:1344",
+            "1024:4128",
+            "4128:1024",
+            "704:5856",
+            "5856:704",
+            "4096:4096",
+            "3392:5056",
+            "5056:3392",
+            "3584:4800",
+            "4800:3584",
+            "3712:4608",
+            "4608:3712",
+            "3072:5504",
+            "5504:3072",
+            "6336:2688",
+            "2048:8256",
+            "8256:2048",
+            "1408:11712",
+            "11712:1408",
+        ],
+        output_count: int | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.NanoBanana2_1ReferenceImage] | Omit = omit,
+        thinking_level: Literal["minimal", "medium", "high"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToImageCreateResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A description of the image you want to generate.
+
+          ratio: The resolution of the output image.
+
+          output_count: The number of images to generate. Increasing this number will affect the number
+              of credits consumed by the generation.
+
+          reference_images: Up to 14 images to edit, combine, or use as references for the output.
+
+          thinking_level: How much the model reasons about the prompt before generating. Defaults to
+              medium.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -2456,11 +3224,16 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Literal["seedream5_pro"]
         | Literal["seedream5_lite"]
         | Literal["grok_imagine_image_2"]
+        | Literal["gemini_image3.1_flash_lite"]
         | Literal["gemini_image3_pro"]
         | Literal["gpt_image_2_5_flare"]
         | Literal["gpt_image_2_5_sunburst"]
+        | Literal["bria_fibo_1_5"]
+        | Literal["bria_fibo_edit_1_5"]
         | Literal["ideogram_4_0"]
         | Literal["ideogram_4_5"]
+        | Literal["seedream5_flash"]
+        | Literal["nano_banana_2.1"]
         | Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -2653,6 +3426,18 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "auto_2k",
         ]
         | Literal[
+            "1024:1024",
+            "848:1264",
+            "1264:848",
+            "896:1200",
+            "1200:896",
+            "928:1152",
+            "1152:928",
+            "768:1376",
+            "1376:768",
+            "1584:672",
+        ]
+        | Literal[
             "1344:768",
             "768:1344",
             "1024:1024",
@@ -2683,6 +3468,38 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "3072:5504",
             "5504:3072",
             "6336:2688",
+        ]
+        | Literal[
+            "1024:1024",
+            "768:1152",
+            "1152:768",
+            "768:1024",
+            "1024:768",
+            "768:960",
+            "960:768",
+            "576:1024",
+            "1024:576",
+            "2048:2048",
+            "1536:2304",
+            "2304:1536",
+            "1536:2048",
+            "2048:1536",
+            "1536:1920",
+            "1920:1536",
+            "1152:2048",
+            "2048:1152",
+        ]
+        | Literal[
+            "1024:1024",
+            "768:1152",
+            "1152:768",
+            "768:1024",
+            "1024:768",
+            "768:960",
+            "960:768",
+            "576:1024",
+            "1024:576",
+            "auto",
         ]
         | Literal[
             "2048:2048",
@@ -2725,6 +3542,70 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "auto",
         ]
         | Literal[
+            "1024:1024",
+            "1184:896",
+            "896:1184",
+            "1376:768",
+            "768:1376",
+            "1248:832",
+            "832:1248",
+            "1568:672",
+            "2048:2048",
+            "2304:1728",
+            "1728:2304",
+            "2848:1600",
+            "1600:2848",
+            "2496:1664",
+            "1664:2496",
+            "3136:1344",
+            "auto_1k",
+            "auto_2k",
+        ]
+        | Literal[
+            "1024:1024",
+            "848:1264",
+            "1264:848",
+            "896:1200",
+            "1200:896",
+            "928:1152",
+            "1152:928",
+            "768:1376",
+            "1376:768",
+            "1584:672",
+            "512:2064",
+            "2064:512",
+            "352:2928",
+            "2928:352",
+            "2048:2048",
+            "1696:2528",
+            "2528:1696",
+            "1792:2400",
+            "2400:1792",
+            "1856:2304",
+            "2304:1856",
+            "1536:2752",
+            "2752:1536",
+            "3168:1344",
+            "1024:4128",
+            "4128:1024",
+            "704:5856",
+            "5856:704",
+            "4096:4096",
+            "3392:5056",
+            "5056:3392",
+            "3584:4800",
+            "4800:3584",
+            "3712:4608",
+            "4608:3712",
+            "3072:5504",
+            "5504:3072",
+            "6336:2688",
+            "2048:8256",
+            "8256:2048",
+            "1408:11712",
+            "11712:1408",
+        ]
+        | Literal[
             "1344:768",
             "768:1344",
             "1024:1024",
@@ -2745,11 +3626,16 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Iterable[text_to_image_create_params.Seedream5ProReferenceImage]
         | Iterable[text_to_image_create_params.Seedream5LiteReferenceImage]
         | Iterable[text_to_image_create_params.GrokImagineImage2ReferenceImage]
+        | Iterable[text_to_image_create_params.GeminiImage3_1FlashLiteReferenceImage]
         | Iterable[text_to_image_create_params.GeminiImage3ProReferenceImage]
         | Iterable[text_to_image_create_params.GptImage2_5FlareReferenceImage]
         | Iterable[text_to_image_create_params.GptImage2_5SunburstReferenceImage]
+        | Iterable[text_to_image_create_params.BriaFibo1_5ReferenceImage]
+        | Iterable[text_to_image_create_params.BriaFiboEdit1_5ReferenceImage]
         | Iterable[text_to_image_create_params.Ideogram4_0ReferenceImage]
         | Iterable[text_to_image_create_params.Ideogram4_5ReferenceImage]
+        | Iterable[text_to_image_create_params.Seedream5FlashReferenceImage]
+        | Iterable[text_to_image_create_params.NanoBanana2_1ReferenceImage]
         | Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage]
         | Omit = omit,
         content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration
@@ -2769,6 +3655,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         edit: bool | Omit = omit,
         mask_uri: str | Omit = omit,
         precise_edit: bool | Omit = omit,
+        thinking_level: Literal["minimal", "medium", "high"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2794,6 +3681,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
                     "edit": edit,
                     "mask_uri": mask_uri,
                     "precise_edit": precise_edit,
+                    "thinking_level": thinking_level,
                 },
                 text_to_image_create_params.TextToImageCreateParams,
             ),

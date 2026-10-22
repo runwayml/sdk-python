@@ -160,7 +160,7 @@ class AvatarConversationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a conversation and its associated data.
+        Permanently delete a conversation, including its transcript and recording.
 
         Args:
           extra_headers: Send extra headers
@@ -317,7 +317,7 @@ class AsyncAvatarConversationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a conversation and its associated data.
+        Permanently delete a conversation, including its transcript and recording.
 
         Args:
           extra_headers: Send extra headers
