@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = [
@@ -27,16 +28,28 @@ __all__ = [
     "Seedream5LiteReferenceImage",
     "GrokImagineImage2",
     "GrokImagineImage2ReferenceImage",
+    "GeminiImage3_1FlashLite",
+    "GeminiImage3_1FlashLiteReferenceImage",
     "GeminiImage3Pro",
     "GeminiImage3ProReferenceImage",
     "GptImage2_5Flare",
     "GptImage2_5FlareReferenceImage",
     "GptImage2_5Sunburst",
     "GptImage2_5SunburstReferenceImage",
+    "BriaFibo1_5",
+    "BriaFibo1_5ReferenceImage",
+    "BriaFiboEdit1_5",
+    "BriaFiboEdit1_5ReferenceImage",
     "Ideogram4_0",
     "Ideogram4_0ReferenceImage",
     "Ideogram4_5",
     "Ideogram4_5ReferenceImage",
+    "Seedream5Flash",
+    "Seedream5FlashReferenceImage",
+    "NanoBanana2_1",
+    "NanoBanana2_1ReferenceImage",
+    "RecraftV4_1Flash",
+    "RecraftV4_1Vector",
     "Gemini2_5Flash",
     "Gemini2_5FlashReferenceImage",
 ]
@@ -649,6 +662,56 @@ class GrokImagineImage2ReferenceImage(TypedDict, total=False):
     """
 
 
+class GeminiImage3_1FlashLite(TypedDict, total=False):
+    model: Required[Literal["gemini_image3.1_flash_lite"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """This should describe in detail what should appear in the output."""
+
+    ratio: Required[
+        Literal[
+            "1024:1024",
+            "848:1264",
+            "1264:848",
+            "896:1200",
+            "1200:896",
+            "928:1152",
+            "1152:928",
+            "768:1376",
+            "1376:768",
+            "1584:672",
+        ]
+    ]
+    """The resolution of the output image."""
+
+    output_count: Annotated[Literal[1, 4], PropertyInfo(alias="outputCount")]
+    """The number of images to generate.
+
+    Increasing this number will affect the number of credits consumed by the
+    generation. Up to four images can be generated at once.
+    """
+
+    reference_images: Annotated[Iterable[GeminiImage3_1FlashLiteReferenceImage], PropertyInfo(alias="referenceImages")]
+    """
+    An array of up to 14 images to be used as references for the generated image
+    output. Up to five can pass `subject: "human"` and up to nine can pass
+    `subject: "object"`.
+    """
+
+
+class GeminiImage3_1FlashLiteReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    subject: Literal["object", "human"]
+
+    tag: str
+
+
 class GeminiImage3Pro(TypedDict, total=False):
     model: Required[Literal["gemini_image3_pro"]]
 
@@ -903,6 +966,114 @@ class GptImage2_5SunburstReferenceImage(TypedDict, total=False):
     """
 
 
+class BriaFibo1_5(TypedDict, total=False):
+    model: Required[Literal["bria_fibo_1_5"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty text prompt describing what should appear in the output image."""
+
+    ratio: Required[
+        Literal[
+            "1024:1024",
+            "768:1152",
+            "1152:768",
+            "768:1024",
+            "1024:768",
+            "768:960",
+            "960:768",
+            "576:1024",
+            "1024:576",
+            "2048:2048",
+            "1536:2304",
+            "2304:1536",
+            "1536:2048",
+            "2048:1536",
+            "1536:1920",
+            "1920:1536",
+            "1152:2048",
+            "2048:1152",
+        ]
+    ]
+    """The resolution of the output image, expressed as `<width>:<height>`.
+
+    1MP sizes cost 5 credits per image and 4MP sizes 10.
+    """
+
+    output_format: Annotated[Literal["png", "jpeg"], PropertyInfo(alias="outputFormat")]
+    """The file format of the output image. Defaults to png."""
+
+    reference_images: Annotated[Iterable[BriaFibo1_5ReferenceImage], PropertyInfo(alias="referenceImages")]
+    """Up to 1 image to guide the generation.
+
+    The prompt describes how the output should build on it.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Using the same seed with an identical request reproduces the same image.
+    """
+
+
+class BriaFibo1_5ReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class BriaFiboEdit1_5(TypedDict, total=False):
+    model: Required[Literal["bria_fibo_edit_1_5"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """An instruction describing how to edit the reference images."""
+
+    output_format: Annotated[Literal["png", "jpeg"], PropertyInfo(alias="outputFormat")]
+    """The file format of the output image. Defaults to png."""
+
+    ratio: Literal[
+        "1024:1024",
+        "768:1152",
+        "1152:768",
+        "768:1024",
+        "1024:768",
+        "768:960",
+        "960:768",
+        "576:1024",
+        "1024:576",
+        "auto",
+    ]
+    """The resolution of the output image, expressed as `<width>:<height>`.
+
+    Omit it or use `auto` to keep the framing of the first reference image. Choosing
+    a size requires at least 2 reference images; a single image always keeps its own
+    framing.
+    """
+
+    reference_images: Annotated[Iterable[BriaFiboEdit1_5ReferenceImage], PropertyInfo(alias="referenceImages")]
+    """1 to 4 images to edit.
+
+    With several, the instruction describes how to combine them.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Using the same seed with an identical request reproduces the same image.
+    """
+
+
+class BriaFiboEdit1_5ReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
 class Ideogram4_0(TypedDict, total=False):
     model: Required[Literal["ideogram_4_0"]]
 
@@ -1037,6 +1208,217 @@ class Ideogram4_5ReferenceImage(TypedDict, total=False):
     """
 
 
+class Seedream5Flash(TypedDict, total=False):
+    model: Required[Literal["seedream5_flash"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A description of the image you want to generate."""
+
+    ratio: Required[
+        Literal[
+            "1024:1024",
+            "1184:896",
+            "896:1184",
+            "1376:768",
+            "768:1376",
+            "1248:832",
+            "832:1248",
+            "1568:672",
+            "2048:2048",
+            "2304:1728",
+            "1728:2304",
+            "2848:1600",
+            "1600:2848",
+            "2496:1664",
+            "1664:2496",
+            "3136:1344",
+            "auto_1k",
+            "auto_2k",
+        ]
+    ]
+    """The resolution of the output image, expressed as `<width>:<height>`.
+
+    Use `auto_1k` or `auto_2k` to let the model pick the aspect ratio at a fixed
+    resolution tier.
+    """
+
+    output_count: Annotated[int, PropertyInfo(alias="outputCount")]
+    """The number of images to generate.
+
+    Increasing this number will affect the number of credits consumed by the
+    generation.
+    """
+
+    output_format: Annotated[Literal["png", "jpeg"], PropertyInfo(alias="outputFormat")]
+    """The file format of the output image. Defaults to png."""
+
+    reference_images: Annotated[Iterable[Seedream5FlashReferenceImage], PropertyInfo(alias="referenceImages")]
+    """Images to edit or combine.
+
+    Refer to them in the prompt by upload order (Figure 1, Figure 2, and so on).
+    """
+
+
+class Seedream5FlashReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class NanoBanana2_1(TypedDict, total=False):
+    model: Required[Literal["nano_banana_2.1"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A description of the image you want to generate."""
+
+    ratio: Required[
+        Literal[
+            "1024:1024",
+            "848:1264",
+            "1264:848",
+            "896:1200",
+            "1200:896",
+            "928:1152",
+            "1152:928",
+            "768:1376",
+            "1376:768",
+            "1584:672",
+            "512:2064",
+            "2064:512",
+            "352:2928",
+            "2928:352",
+            "2048:2048",
+            "1696:2528",
+            "2528:1696",
+            "1792:2400",
+            "2400:1792",
+            "1856:2304",
+            "2304:1856",
+            "1536:2752",
+            "2752:1536",
+            "3168:1344",
+            "1024:4128",
+            "4128:1024",
+            "704:5856",
+            "5856:704",
+            "4096:4096",
+            "3392:5056",
+            "5056:3392",
+            "3584:4800",
+            "4800:3584",
+            "3712:4608",
+            "4608:3712",
+            "3072:5504",
+            "5504:3072",
+            "6336:2688",
+            "2048:8256",
+            "8256:2048",
+            "1408:11712",
+            "11712:1408",
+        ]
+    ]
+    """The resolution of the output image."""
+
+    output_count: Annotated[int, PropertyInfo(alias="outputCount")]
+    """The number of images to generate.
+
+    Increasing this number will affect the number of credits consumed by the
+    generation.
+    """
+
+    reference_images: Annotated[Iterable[NanoBanana2_1ReferenceImage], PropertyInfo(alias="referenceImages")]
+    """Up to 14 images to edit, combine, or use as references for the output."""
+
+    thinking_level: Annotated[Literal["minimal", "medium", "high"], PropertyInfo(alias="thinkingLevel")]
+    """How much the model reasons about the prompt before generating.
+
+    Defaults to medium.
+    """
+
+
+class NanoBanana2_1ReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    tag: str
+    """A tag to identify the reference image.
+
+    This is used to reference the image in prompt text. Must be 3-16 characters,
+    start with a letter, and use only letters, digits, and underscores.
+    """
+
+
+class RecraftV4_1Flash(TypedDict, total=False):
+    model: Required[Literal["recraft_v4_1_flash"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A description of the image you want to generate."""
+
+    ratio: Required[
+        Literal[
+            "1024:1024",
+            "1536:768",
+            "768:1536",
+            "1280:832",
+            "832:1280",
+            "1216:896",
+            "896:1216",
+            "1152:896",
+            "896:1152",
+            "832:1344",
+            "1280:896",
+            "896:1280",
+            "1344:768",
+            "768:1344",
+        ]
+    ]
+    """The output dimensions, expressed as `<width>:<height>`."""
+
+    background_color: Annotated[str, PropertyInfo(alias="backgroundColor")]
+    """A preferred background color as a six-digit hex string."""
+
+    colors: SequenceNotStr[str]
+    """Preferred colors as six-digit hex strings."""
+
+    output_count: Annotated[int, PropertyInfo(alias="outputCount")]
+    """The number of images to generate. Each image is billed separately."""
+
+    output_format: Annotated[Literal["webp", "png"], PropertyInfo(alias="outputFormat")]
+    """The output file format. Defaults to webp."""
+
+    seed: int
+
+
+class RecraftV4_1Vector(TypedDict, total=False):
+    model: Required[Literal["recraft_v4_1_vector"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """Describe the vector illustration you want to generate."""
+
+    background_color: Annotated[str, PropertyInfo(alias="backgroundColor")]
+    """The preferred background color as a six-digit hex value.
+
+    This is a generation hint, not an exact color constraint; the generated
+    background may use a different shade.
+    """
+
+    colors: SequenceNotStr[str]
+    """Preferred colors as six-digit hex values, such as #FF8800."""
+
+    ratio: Literal["1024:1024", "1216:896", "896:1216", "1344:768", "768:1344"]
+    """The width and height declared by the output SVG.
+
+    Vector artwork can be scaled after generation.
+    """
+
+
 class Gemini2_5Flash(TypedDict, total=False):
     model: Required[Literal["gemini_2.5_flash"]]
 
@@ -1092,10 +1474,17 @@ TextToImageCreateParams: TypeAlias = Union[
     Seedream5Pro,
     Seedream5Lite,
     GrokImagineImage2,
+    GeminiImage3_1FlashLite,
     GeminiImage3Pro,
     GptImage2_5Flare,
     GptImage2_5Sunburst,
+    BriaFibo1_5,
+    BriaFiboEdit1_5,
     Ideogram4_0,
     Ideogram4_5,
+    Seedream5Flash,
+    NanoBanana2_1,
+    RecraftV4_1Flash,
+    RecraftV4_1Vector,
     Gemini2_5Flash,
 ]

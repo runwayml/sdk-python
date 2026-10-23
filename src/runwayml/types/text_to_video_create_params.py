@@ -13,11 +13,30 @@ __all__ = [
     "Gen4_5ContentModeration",
     "Veo3_1",
     "Veo3_1Fast",
+    "KlingO3_4k",
+    "KlingO3_4kProviderSettings",
+    "KlingO3_4kProviderSettingsMultiPrompt",
     "Hailuo3",
     "Hailuo3ReferenceAudio",
     "Hailuo3Reference",
     "Hailuo3ReferenceVideo",
+    "Kling3_0_4k",
+    "Kling3_0_4kProviderSettings",
+    "Kling3_0_4kProviderSettingsMultiPrompt",
     "Happyhorse1_0",
+    "Kling2_5TurboPro",
+    "Kling3_0Pro",
+    "Kling3_0ProProviderSettings",
+    "Kling3_0ProProviderSettingsMultiPrompt",
+    "Kling3_0Standard",
+    "Kling3_0StandardProviderSettings",
+    "Kling3_0StandardProviderSettingsMultiPrompt",
+    "KlingO3Pro",
+    "KlingO3ProProviderSettings",
+    "KlingO3ProProviderSettingsMultiPrompt",
+    "KlingO3Standard",
+    "KlingO3StandardProviderSettings",
+    "KlingO3StandardProviderSettingsMultiPrompt",
     "Seedance2",
     "Seedance2ReferenceAudio",
     "Seedance2Reference",
@@ -31,10 +50,6 @@ __all__ = [
     "Seedance2MiniReference",
     "Seedance2MiniReferenceVideo",
     "GeminiOmniFlash",
-    "Seedance2_5",
-    "Seedance2_5ReferenceAudio",
-    "Seedance2_5Reference",
-    "Seedance2_5ReferenceVideo",
     "GrokImagine1_5",
     "GrokImagine1_5ReferenceAudio",
     "GrokImagine1_5Reference",
@@ -50,6 +65,10 @@ __all__ = [
     "Wan3PrimeReference",
     "Wan3PrimeReferenceVideo",
     "H3Max",
+    "Seedance2_5",
+    "Seedance2_5ReferenceAudio",
+    "Seedance2_5Reference",
+    "Seedance2_5ReferenceVideo",
     "GrokImagine1_5Lite",
 ]
 
@@ -210,6 +229,51 @@ class Veo3_1Fast(TypedDict, total=False):
     """
 
 
+class KlingO3_4k(TypedDict, total=False):
+    model: Required[Literal["klingO3_4k"]]
+
+    ratio: Required[Literal["3840:2160", "2160:3840", "2880:2880"]]
+    """The resolution of the output video."""
+
+    audio: bool
+    """Whether to generate audio for the video."""
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """A text prompt describing what should appear in the output video."""
+
+    provider_settings: Annotated[KlingO3_4kProviderSettings, PropertyInfo(alias="providerSettings")]
+    """Provider-specific settings for multishot video generation."""
+
+
+class KlingO3_4kProviderSettingsMultiPrompt(TypedDict, total=False):
+    duration: Required[int]
+    """Duration in seconds for this segment."""
+
+    prompt: Required[str]
+    """The text prompt for this segment."""
+
+
+class KlingO3_4kProviderSettings(TypedDict, total=False):
+    """Provider-specific settings for multishot video generation."""
+
+    multi_prompt: Annotated[Iterable[KlingO3_4kProviderSettingsMultiPrompt], PropertyInfo(alias="multiPrompt")]
+    """An array of prompt segments for multishot video generation.
+
+    Each segment has its own prompt and duration. Total duration across all segments
+    must be between 3 and 15 seconds. `promptText` is still required when `shotType`
+    is `"intelligence"`.
+    """
+
+    shot_type: Annotated[Literal["intelligence", "customize"], PropertyInfo(alias="shotType")]
+    """Shot transition type for multishot videos.
+
+    Defaults to "customize" when multiPrompt is provided.
+    """
+
+
 class Hailuo3(TypedDict, total=False):
     model: Required[Literal["hailuo3"]]
 
@@ -293,6 +357,58 @@ class Hailuo3ReferenceVideo(TypedDict, total=False):
     """
 
 
+class Kling3_0_4k(TypedDict, total=False):
+    model: Required[Literal["kling3.0_4k"]]
+
+    ratio: Required[Literal["3840:2160", "2160:3840", "2880:2880"]]
+    """The resolution of the output video."""
+
+    audio: bool
+    """Whether to generate audio for the video."""
+
+    cfg_scale: Annotated[float, PropertyInfo(alias="cfgScale")]
+    """Creativity/freedom scale for generation.
+
+    0 gives the model maximum creative freedom, 1 makes it follow the prompt most
+    strictly. Defaults to 0.5.
+    """
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """A text prompt describing what should appear in the output video."""
+
+    provider_settings: Annotated[Kling3_0_4kProviderSettings, PropertyInfo(alias="providerSettings")]
+    """Provider-specific settings for multishot video generation."""
+
+
+class Kling3_0_4kProviderSettingsMultiPrompt(TypedDict, total=False):
+    duration: Required[int]
+    """Duration in seconds for this segment."""
+
+    prompt: Required[str]
+    """The text prompt for this segment."""
+
+
+class Kling3_0_4kProviderSettings(TypedDict, total=False):
+    """Provider-specific settings for multishot video generation."""
+
+    multi_prompt: Annotated[Iterable[Kling3_0_4kProviderSettingsMultiPrompt], PropertyInfo(alias="multiPrompt")]
+    """An array of prompt segments for multishot video generation.
+
+    Each segment has its own prompt and duration. Total duration across all segments
+    must be between 3 and 15 seconds. `promptText` is still required when `shotType`
+    is `"intelligence"`.
+    """
+
+    shot_type: Annotated[Literal["intelligence", "customize"], PropertyInfo(alias="shotType")]
+    """Shot transition type for multishot videos.
+
+    Defaults to "customize" when multiPrompt is provided.
+    """
+
+
 class Happyhorse1_0(TypedDict, total=False):
     model: Required[Literal["happyhorse_1_0"]]
 
@@ -318,6 +434,219 @@ class Happyhorse1_0(TypedDict, total=False):
         "1248:1662",
     ]
     """The resolution of the output video."""
+
+
+class Kling2_5TurboPro(TypedDict, total=False):
+    model: Required[Literal["kling2.5_turbo_pro"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A text prompt describing what should appear in the output video."""
+
+    cfg_scale: Annotated[float, PropertyInfo(alias="cfgScale")]
+    """Creativity/freedom scale for generation.
+
+    0 gives the model maximum creative freedom, 1 makes it follow the prompt most
+    strictly. Defaults to 0.5.
+    """
+
+    duration: Literal[5, 10]
+    """The duration of the output video in seconds. Defaults to 5."""
+
+    ratio: Literal["1920:1080", "1440:1440", "1080:1920", "1280:720", "720:720", "720:1280"]
+
+
+class Kling3_0Pro(TypedDict, total=False):
+    model: Required[Literal["kling3.0_pro"]]
+
+    ratio: Required[Literal["1920:1080", "1080:1920", "1440:1440"]]
+    """The resolution of the output video."""
+
+    audio: bool
+    """Whether to generate audio for the video."""
+
+    cfg_scale: Annotated[float, PropertyInfo(alias="cfgScale")]
+    """Creativity/freedom scale for generation.
+
+    0 gives the model maximum creative freedom, 1 makes it follow the prompt most
+    strictly. Defaults to 0.5.
+    """
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """A text prompt describing what should appear in the output video."""
+
+    provider_settings: Annotated[Kling3_0ProProviderSettings, PropertyInfo(alias="providerSettings")]
+    """Provider-specific settings for multishot video generation."""
+
+
+class Kling3_0ProProviderSettingsMultiPrompt(TypedDict, total=False):
+    duration: Required[int]
+    """Duration in seconds for this segment."""
+
+    prompt: Required[str]
+    """The text prompt for this segment."""
+
+
+class Kling3_0ProProviderSettings(TypedDict, total=False):
+    """Provider-specific settings for multishot video generation."""
+
+    multi_prompt: Annotated[Iterable[Kling3_0ProProviderSettingsMultiPrompt], PropertyInfo(alias="multiPrompt")]
+    """An array of prompt segments for multishot video generation.
+
+    Each segment has its own prompt and duration. Total duration across all segments
+    must be between 3 and 15 seconds. `promptText` is still required when `shotType`
+    is `"intelligence"`.
+    """
+
+    shot_type: Annotated[Literal["intelligence", "customize"], PropertyInfo(alias="shotType")]
+    """Shot transition type for multishot videos.
+
+    Defaults to "customize" when multiPrompt is provided.
+    """
+
+
+class Kling3_0Standard(TypedDict, total=False):
+    model: Required[Literal["kling3.0_standard"]]
+
+    ratio: Required[Literal["1280:720", "720:1280", "960:960"]]
+    """The resolution of the output video."""
+
+    audio: bool
+    """Whether to generate audio for the video."""
+
+    cfg_scale: Annotated[float, PropertyInfo(alias="cfgScale")]
+    """Creativity/freedom scale for generation.
+
+    0 gives the model maximum creative freedom, 1 makes it follow the prompt most
+    strictly. Defaults to 0.5.
+    """
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """A text prompt describing what should appear in the output video."""
+
+    provider_settings: Annotated[Kling3_0StandardProviderSettings, PropertyInfo(alias="providerSettings")]
+    """Provider-specific settings for multishot video generation."""
+
+
+class Kling3_0StandardProviderSettingsMultiPrompt(TypedDict, total=False):
+    duration: Required[int]
+    """Duration in seconds for this segment."""
+
+    prompt: Required[str]
+    """The text prompt for this segment."""
+
+
+class Kling3_0StandardProviderSettings(TypedDict, total=False):
+    """Provider-specific settings for multishot video generation."""
+
+    multi_prompt: Annotated[Iterable[Kling3_0StandardProviderSettingsMultiPrompt], PropertyInfo(alias="multiPrompt")]
+    """An array of prompt segments for multishot video generation.
+
+    Each segment has its own prompt and duration. Total duration across all segments
+    must be between 3 and 15 seconds. `promptText` is still required when `shotType`
+    is `"intelligence"`.
+    """
+
+    shot_type: Annotated[Literal["intelligence", "customize"], PropertyInfo(alias="shotType")]
+    """Shot transition type for multishot videos.
+
+    Defaults to "customize" when multiPrompt is provided.
+    """
+
+
+class KlingO3Pro(TypedDict, total=False):
+    model: Required[Literal["klingO3_pro"]]
+
+    ratio: Required[Literal["1920:1080", "1080:1920", "1440:1440"]]
+    """The resolution of the output video."""
+
+    audio: bool
+    """Whether to generate audio for the video."""
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """A text prompt describing what should appear in the output video."""
+
+    provider_settings: Annotated[KlingO3ProProviderSettings, PropertyInfo(alias="providerSettings")]
+    """Provider-specific settings for multishot video generation."""
+
+
+class KlingO3ProProviderSettingsMultiPrompt(TypedDict, total=False):
+    duration: Required[int]
+    """Duration in seconds for this segment."""
+
+    prompt: Required[str]
+    """The text prompt for this segment."""
+
+
+class KlingO3ProProviderSettings(TypedDict, total=False):
+    """Provider-specific settings for multishot video generation."""
+
+    multi_prompt: Annotated[Iterable[KlingO3ProProviderSettingsMultiPrompt], PropertyInfo(alias="multiPrompt")]
+    """An array of prompt segments for multishot video generation.
+
+    Each segment has its own prompt and duration. Total duration across all segments
+    must be between 3 and 15 seconds. `promptText` is still required when `shotType`
+    is `"intelligence"`.
+    """
+
+    shot_type: Annotated[Literal["intelligence", "customize"], PropertyInfo(alias="shotType")]
+    """Shot transition type for multishot videos.
+
+    Defaults to "customize" when multiPrompt is provided.
+    """
+
+
+class KlingO3Standard(TypedDict, total=False):
+    model: Required[Literal["klingO3_standard"]]
+
+    ratio: Required[Literal["1280:720", "720:1280", "960:960"]]
+    """The resolution of the output video."""
+
+    audio: bool
+    """Whether to generate audio for the video."""
+
+    duration: int
+    """The number of seconds of duration for the output video."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """A text prompt describing what should appear in the output video."""
+
+    provider_settings: Annotated[KlingO3StandardProviderSettings, PropertyInfo(alias="providerSettings")]
+    """Provider-specific settings for multishot video generation."""
+
+
+class KlingO3StandardProviderSettingsMultiPrompt(TypedDict, total=False):
+    duration: Required[int]
+    """Duration in seconds for this segment."""
+
+    prompt: Required[str]
+    """The text prompt for this segment."""
+
+
+class KlingO3StandardProviderSettings(TypedDict, total=False):
+    """Provider-specific settings for multishot video generation."""
+
+    multi_prompt: Annotated[Iterable[KlingO3StandardProviderSettingsMultiPrompt], PropertyInfo(alias="multiPrompt")]
+    """An array of prompt segments for multishot video generation.
+
+    Each segment has its own prompt and duration. Total duration across all segments
+    must be between 3 and 15 seconds. `promptText` is still required when `shotType`
+    is `"intelligence"`.
+    """
+
+    shot_type: Annotated[Literal["intelligence", "customize"], PropertyInfo(alias="shotType")]
+    """Shot transition type for multishot videos.
+
+    Defaults to "customize" when multiPrompt is provided.
+    """
 
 
 class Seedance2(TypedDict, total=False):
@@ -660,117 +989,6 @@ class GeminiOmniFlash(TypedDict, total=False):
     """
 
 
-class Seedance2_5(TypedDict, total=False):
-    model: Required[Literal["seedance2_5"]]
-
-    audio: bool
-    """Whether to generate audio for the video."""
-
-    duration: Union[int, Literal["auto"]]
-    """Seconds of video to generate, or `auto` to let the model choose.
-
-    `auto` is billed at the variant maximum up front; unused credits are refunded
-    after the generation finishes.
-    """
-
-    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
-    """
-    An optional text prompt up to 15000 characters describing what should appear in
-    the output.
-    """
-
-    ratio: Literal[
-        "992:432",
-        "854:480",
-        "752:560",
-        "640:640",
-        "560:752",
-        "480:854",
-        "1470:630",
-        "1280:720",
-        "1112:834",
-        "960:960",
-        "834:1112",
-        "720:1280",
-        "2206:946",
-        "1920:1080",
-        "1664:1248",
-        "1440:1440",
-        "1248:1664",
-        "1080:1920",
-    ]
-    """The resolution of the output video.
-
-    Seedance 2.5 supports 480p, 720p, and 1080p.
-    """
-
-    reference_audio: Annotated[Iterable[Seedance2_5ReferenceAudio], PropertyInfo(alias="referenceAudio")]
-    """An optional array of audio references.
-
-    The total combined duration must be less than 30 seconds.
-    """
-
-    references: Iterable[Seedance2_5Reference]
-    """An optional array of image references (up to 30).
-
-    See [our docs](/assets/inputs#images) on image inputs for more information.
-    """
-
-    reference_videos: Annotated[Iterable[Seedance2_5ReferenceVideo], PropertyInfo(alias="referenceVideos")]
-    """An optional array of video references.
-
-    The combined duration across all video references must not exceed 30 seconds.
-    See [our docs](/assets/inputs#videos) on video inputs for more information.
-    """
-
-    seed: int
-    """If unspecified, a random number is chosen.
-
-    Varying the seed integer is a way to get different results for the same other
-    request parameters. Using the same seed integer for an identical request will
-    produce similar results.
-    """
-
-
-class Seedance2_5ReferenceAudio(TypedDict, total=False):
-    """
-    An audio reference allows the model to use the audio as additional context for the output.
-    """
-
-    type: Required[Literal["audio"]]
-
-    uri: Required[str]
-    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-
-    `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
-    [our docs](/assets/inputs#audio) on audio inputs for more information.
-    """
-
-
-class Seedance2_5Reference(TypedDict, total=False):
-    uri: Required[str]
-    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-
-    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-    [our docs](/assets/inputs#images) on image inputs for more information.
-    """
-
-
-class Seedance2_5ReferenceVideo(TypedDict, total=False):
-    """
-    A video reference allows the model to use the video as additional context for the output.
-    """
-
-    type: Required[Literal["video"]]
-
-    uri: Required[str]
-    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-
-    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
-    [our docs](/assets/inputs#videos) on video inputs for more information.
-    """
-
-
 class GrokImagine1_5(TypedDict, total=False):
     model: Required[Literal["grok_imagine_1_5"]]
 
@@ -1087,6 +1305,139 @@ class H3Max(TypedDict, total=False):
     """
 
 
+class Seedance2_5(TypedDict, total=False):
+    model: Required[Literal["seedance2_5"]]
+
+    audio: bool
+    """Whether to generate audio for the video. Defaults to `true`."""
+
+    draft: bool
+    """Generate a cheap 480p preview instead of a full-quality video.
+
+    The returned task ID can later be enhanced to a 1080p video with the same
+    content by passing it as `draftTaskId` to `text_to_video`. Drafts can be
+    enhanced within 7 days of creation. Defaults to false.
+    """
+
+    draft_task_id: Annotated[str, PropertyInfo(alias="draftTaskId")]
+    """The ID of a succeeded draft task to enhance to 1080p.
+
+    The draft is regenerated with its original prompt, references, and settings, so
+    no other generation fields may be provided.
+    """
+
+    duration: Union[int, Literal["auto"]]
+    """Seconds of video to generate, or `auto` to let the model choose.
+
+    `auto` is billed at the variant maximum up front; unused credits are refunded
+    after the generation finishes. Defaults to 5.
+    """
+
+    output_format: Annotated[Literal["mp4", "mov"], PropertyInfo(alias="outputFormat")]
+    """Container for the output video.
+
+    `mov` keeps high colour precision for grading and compositing. Defaults to
+    `mp4`. Draft mode only supports `mp4`.
+    """
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """
+    An optional text prompt up to 15000 characters describing what should appear in
+    the output.
+    """
+
+    ratio: Literal[
+        "992:432",
+        "854:480",
+        "752:560",
+        "640:640",
+        "560:752",
+        "480:854",
+        "1470:630",
+        "1280:720",
+        "1112:834",
+        "960:960",
+        "834:1112",
+        "720:1280",
+        "2206:946",
+        "1920:1080",
+        "1664:1248",
+        "1440:1440",
+        "1248:1664",
+        "1080:1920",
+    ]
+    """The resolution of the output video.
+
+    Seedance 2.5 supports 480p, 720p, and 1080p. Defaults to `1280:720`.
+    """
+
+    reference_audio: Annotated[Iterable[Seedance2_5ReferenceAudio], PropertyInfo(alias="referenceAudio")]
+    """An optional array of audio references.
+
+    The total combined duration must be less than 30 seconds.
+    """
+
+    references: Iterable[Seedance2_5Reference]
+    """An optional array of image references (up to 30).
+
+    See [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    reference_videos: Annotated[Iterable[Seedance2_5ReferenceVideo], PropertyInfo(alias="referenceVideos")]
+    """An optional array of video references.
+
+    The combined duration across all video references must not exceed 30 seconds.
+    See [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
+    """
+
+
+class Seedance2_5ReferenceAudio(TypedDict, total=False):
+    """
+    An audio reference allows the model to use the audio as additional context for the output.
+    """
+
+    type: Required[Literal["audio"]]
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
+    [our docs](/assets/inputs#audio) on audio inputs for more information.
+    """
+
+
+class Seedance2_5Reference(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class Seedance2_5ReferenceVideo(TypedDict, total=False):
+    """
+    A video reference allows the model to use the video as additional context for the output.
+    """
+
+    type: Required[Literal["video"]]
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+    [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+
 class GrokImagine1_5Lite(TypedDict, total=False):
     model: Required[Literal["grok_imagine_1_5_lite"]]
 
@@ -1129,17 +1480,24 @@ TextToVideoCreateParams: TypeAlias = Union[
     Gen4_5,
     Veo3_1,
     Veo3_1Fast,
+    KlingO3_4k,
     Hailuo3,
+    Kling3_0_4k,
     Happyhorse1_0,
+    Kling2_5TurboPro,
+    Kling3_0Pro,
+    Kling3_0Standard,
+    KlingO3Pro,
+    KlingO3Standard,
     Seedance2,
     Seedance2Fast,
     Seedance2Mini,
     GeminiOmniFlash,
-    Seedance2_5,
     GrokImagine1_5,
     Wan3,
     GeminiOmniFlash1_1,
     Wan3Prime,
     H3Max,
+    Seedance2_5,
     GrokImagine1_5Lite,
 ]

@@ -16,10 +16,22 @@ __all__ = [
     "Variant0KeyframeUnionMember0Range",
     "Variant0KeyframeUnionMember1",
     "Variant0KeyframeUnionMember1Range",
+    "KlingO3_4k",
+    "KlingO3_4kProviderSettings",
+    "KlingO3_4kProviderSettingsMultiPrompt",
+    "KlingO3_4kReferencesPromptImage",
     "Hailuo3",
     "Hailuo3ReferenceAudio",
     "Hailuo3Reference",
     "Hailuo3ReferenceVideo",
+    "KlingO3Pro",
+    "KlingO3ProProviderSettings",
+    "KlingO3ProProviderSettingsMultiPrompt",
+    "KlingO3ProReferencesPromptImage",
+    "KlingO3Standard",
+    "KlingO3StandardProviderSettings",
+    "KlingO3StandardProviderSettingsMultiPrompt",
+    "KlingO3StandardReferencesPromptImage",
     "Seedance2",
     "Seedance2ReferenceAudio",
     "Seedance2Reference",
@@ -34,12 +46,12 @@ __all__ = [
     "Seedance2MiniReferenceVideo",
     "GeminiOmniFlash",
     "GeminiOmniFlashReference",
+    "GeminiOmniFlash1_1",
+    "GeminiOmniFlash1_1Reference",
     "Seedance2_5",
     "Seedance2_5ReferenceAudio",
     "Seedance2_5Reference",
     "Seedance2_5ReferenceVideo",
-    "GeminiOmniFlash1_1",
-    "GeminiOmniFlash1_1Reference",
 ]
 
 
@@ -197,6 +209,77 @@ class Variant0KeyframeUnionMember1(TypedDict, total=False):
 Variant0Keyframe: TypeAlias = Union[Variant0KeyframeUnionMember0, Variant0KeyframeUnionMember1]
 
 
+class KlingO3_4k(TypedDict, total=False):
+    model: Required[Literal["klingO3_4k"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A text prompt describing what should appear in the output video."""
+
+    prompt_video: Required[Annotated[str, PropertyInfo(alias="promptVideo")]]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+    [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+    provider_settings: Annotated[KlingO3_4kProviderSettings, PropertyInfo(alias="providerSettings")]
+    """Provider-specific settings for multishot video generation and video editing."""
+
+    references: Union[str, Iterable[KlingO3_4kReferencesPromptImage]]
+    """An optional array of reference images (up to 4).
+
+    See [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class KlingO3_4kProviderSettingsMultiPrompt(TypedDict, total=False):
+    duration: Required[int]
+    """Duration in seconds for this segment."""
+
+    prompt: Required[str]
+    """The text prompt for this segment."""
+
+
+class KlingO3_4kProviderSettings(TypedDict, total=False):
+    """Provider-specific settings for multishot video generation and video editing."""
+
+    keep_original_sound: Annotated[bool, PropertyInfo(alias="keepOriginalSound")]
+    """Whether to preserve the original audio when editing a video.
+
+    Only applicable for video-to-video. Defaults to true.
+    """
+
+    multi_prompt: Annotated[Iterable[KlingO3_4kProviderSettingsMultiPrompt], PropertyInfo(alias="multiPrompt")]
+    """An array of prompt segments for multishot video generation.
+
+    Each segment has its own prompt and duration. Total duration across all segments
+    must be between 3 and 15 seconds. `promptText` is still required when `shotType`
+    is `"intelligence"`.
+    """
+
+    shot_type: Annotated[Literal["intelligence", "customize"], PropertyInfo(alias="shotType")]
+    """Shot transition type for multishot videos.
+
+    Defaults to "customize" when multiPrompt is provided.
+    """
+
+
+class KlingO3_4kReferencesPromptImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    position: Literal["first", "last"]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame, "last" as the last frame. Omit
+    for a reference image.
+    """
+
+
 class Hailuo3(TypedDict, total=False):
     model: Required[Literal["hailuo3"]]
 
@@ -284,6 +367,148 @@ class Hailuo3ReferenceVideo(TypedDict, total=False):
 
     `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
     [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+
+class KlingO3Pro(TypedDict, total=False):
+    model: Required[Literal["klingO3_pro"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A text prompt describing what should appear in the output video."""
+
+    prompt_video: Required[Annotated[str, PropertyInfo(alias="promptVideo")]]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+    [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+    provider_settings: Annotated[KlingO3ProProviderSettings, PropertyInfo(alias="providerSettings")]
+    """Provider-specific settings for multishot video generation and video editing."""
+
+    references: Union[str, Iterable[KlingO3ProReferencesPromptImage]]
+    """An optional array of reference images (up to 4).
+
+    See [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class KlingO3ProProviderSettingsMultiPrompt(TypedDict, total=False):
+    duration: Required[int]
+    """Duration in seconds for this segment."""
+
+    prompt: Required[str]
+    """The text prompt for this segment."""
+
+
+class KlingO3ProProviderSettings(TypedDict, total=False):
+    """Provider-specific settings for multishot video generation and video editing."""
+
+    keep_original_sound: Annotated[bool, PropertyInfo(alias="keepOriginalSound")]
+    """Whether to preserve the original audio when editing a video.
+
+    Only applicable for video-to-video. Defaults to true.
+    """
+
+    multi_prompt: Annotated[Iterable[KlingO3ProProviderSettingsMultiPrompt], PropertyInfo(alias="multiPrompt")]
+    """An array of prompt segments for multishot video generation.
+
+    Each segment has its own prompt and duration. Total duration across all segments
+    must be between 3 and 15 seconds. `promptText` is still required when `shotType`
+    is `"intelligence"`.
+    """
+
+    shot_type: Annotated[Literal["intelligence", "customize"], PropertyInfo(alias="shotType")]
+    """Shot transition type for multishot videos.
+
+    Defaults to "customize" when multiPrompt is provided.
+    """
+
+
+class KlingO3ProReferencesPromptImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    position: Literal["first", "last"]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame, "last" as the last frame. Omit
+    for a reference image.
+    """
+
+
+class KlingO3Standard(TypedDict, total=False):
+    model: Required[Literal["klingO3_standard"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A text prompt describing what should appear in the output video."""
+
+    prompt_video: Required[Annotated[str, PropertyInfo(alias="promptVideo")]]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+    [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+    provider_settings: Annotated[KlingO3StandardProviderSettings, PropertyInfo(alias="providerSettings")]
+    """Provider-specific settings for multishot video generation and video editing."""
+
+    references: Union[str, Iterable[KlingO3StandardReferencesPromptImage]]
+    """An optional array of reference images (up to 4).
+
+    See [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class KlingO3StandardProviderSettingsMultiPrompt(TypedDict, total=False):
+    duration: Required[int]
+    """Duration in seconds for this segment."""
+
+    prompt: Required[str]
+    """The text prompt for this segment."""
+
+
+class KlingO3StandardProviderSettings(TypedDict, total=False):
+    """Provider-specific settings for multishot video generation and video editing."""
+
+    keep_original_sound: Annotated[bool, PropertyInfo(alias="keepOriginalSound")]
+    """Whether to preserve the original audio when editing a video.
+
+    Only applicable for video-to-video. Defaults to true.
+    """
+
+    multi_prompt: Annotated[Iterable[KlingO3StandardProviderSettingsMultiPrompt], PropertyInfo(alias="multiPrompt")]
+    """An array of prompt segments for multishot video generation.
+
+    Each segment has its own prompt and duration. Total duration across all segments
+    must be between 3 and 15 seconds. `promptText` is still required when `shotType`
+    is `"intelligence"`.
+    """
+
+    shot_type: Annotated[Literal["intelligence", "customize"], PropertyInfo(alias="shotType")]
+    """Shot transition type for multishot videos.
+
+    Defaults to "customize" when multiPrompt is provided.
+    """
+
+
+class KlingO3StandardReferencesPromptImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    position: Literal["first", "last"]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame, "last" as the last frame. Omit
+    for a reference image.
     """
 
 
@@ -658,6 +883,50 @@ class GeminiOmniFlashReference(TypedDict, total=False):
     """
 
 
+class GeminiOmniFlash1_1(TypedDict, total=False):
+    model: Required[Literal["gemini_omni_flash_1.1"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty prompt describing the output or extension."""
+
+    video_uri: Required[Annotated[str, PropertyInfo(alias="videoUri")]]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+    [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+    duration: Union[Literal["auto"], int]
+    """The duration in seconds.
+
+    In reference mode, this is the output video length. In extend mode, this is the
+    amount of footage added to the input video. Use "auto" to let the model choose a
+    duration.
+    """
+
+    mode: Literal["reference", "extend", "edit"]
+    """How the input video is used.
+
+    `reference` generates a new video guided by the input, `extend` continues it,
+    and `edit` transforms it according to the prompt.
+    """
+
+    ratio: Literal["640:360", "360:640", "1280:720", "720:1280", "1920:1080", "1080:1920", "3840:2160", "2160:3840"]
+    """The resolution and aspect ratio of the output video."""
+
+    references: Iterable[GeminiOmniFlash1_1Reference]
+    """An optional array of image references to guide the output."""
+
+
+class GeminiOmniFlash1_1Reference(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
 class Seedance2_5(TypedDict, total=False):
     model: Required[Literal["seedance2_5"]]
 
@@ -670,6 +939,14 @@ class Seedance2_5(TypedDict, total=False):
 
     audio: bool
     """Whether to generate audio for the video."""
+
+    draft: bool
+    """Generate a cheap 480p preview instead of a full-quality video.
+
+    The returned task ID can later be enhanced to a 1080p video with the same
+    content by passing it as `draftTaskId` to `text_to_video`. Drafts can be
+    enhanced within 7 days of creation. Defaults to false.
+    """
 
     duration: Union[int, Literal["auto"]]
     """Seconds of video to generate, or `auto` to let the model choose.
@@ -686,6 +963,13 @@ class Seedance2_5(TypedDict, total=False):
     `promptText`, and matches the input aspect ratio, so `ratio` may not be
     provided. `edit` modifies the input video in place, requires `promptText`,
     requires `duration: "auto"`, and does not accept `ratio`.
+    """
+
+    output_format: Annotated[Literal["mp4", "mov"], PropertyInfo(alias="outputFormat")]
+    """Container for the output video.
+
+    `mov` keeps high colour precision for grading and compositing. Defaults to
+    `mp4`. Draft mode only supports `mp4`.
     """
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
@@ -786,50 +1070,16 @@ class Seedance2_5ReferenceVideo(TypedDict, total=False):
     """
 
 
-class GeminiOmniFlash1_1(TypedDict, total=False):
-    model: Required[Literal["gemini_omni_flash_1.1"]]
-
-    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
-    """A non-empty prompt describing the output or extension."""
-
-    video_uri: Required[Annotated[str, PropertyInfo(alias="videoUri")]]
-    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-
-    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
-    [our docs](/assets/inputs#videos) on video inputs for more information.
-    """
-
-    duration: Union[Literal["auto"], int]
-    """The duration in seconds.
-
-    In reference mode, this is the output video length. In extend mode, this is the
-    amount of footage added to the input video. Use "auto" to let the model choose a
-    duration.
-    """
-
-    mode: Literal["reference", "extend", "edit"]
-    """How the input video is used.
-
-    `reference` generates a new video guided by the input, `extend` continues it,
-    and `edit` transforms it according to the prompt.
-    """
-
-    ratio: Literal["640:360", "360:640", "1280:720", "720:1280", "1920:1080", "1080:1920", "3840:2160", "2160:3840"]
-    """The resolution and aspect ratio of the output video."""
-
-    references: Iterable[GeminiOmniFlash1_1Reference]
-    """An optional array of image references to guide the output."""
-
-
-class GeminiOmniFlash1_1Reference(TypedDict, total=False):
-    uri: Required[str]
-    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-
-    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-    [our docs](/assets/inputs#images) on image inputs for more information.
-    """
-
-
 VideoToVideoCreateParams: TypeAlias = Union[
-    Variant0, Hailuo3, Seedance2, Seedance2Fast, Seedance2Mini, GeminiOmniFlash, Seedance2_5, GeminiOmniFlash1_1
+    Variant0,
+    KlingO3_4k,
+    Hailuo3,
+    KlingO3Pro,
+    KlingO3Standard,
+    Seedance2,
+    Seedance2Fast,
+    Seedance2Mini,
+    GeminiOmniFlash,
+    GeminiOmniFlash1_1,
+    Seedance2_5,
 ]

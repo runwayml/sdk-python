@@ -1,0 +1,272 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Type, cast
+from typing_extensions import Literal
+
+import httpx
+
+from runwayml.lib.polling import (
+    AwaitableTaskResponseMixin,
+    AsyncAwaitableTaskResponseMixin,
+    create_waitable_resource,
+    create_async_waitable_resource,
+)
+
+from ..types import video_to_audio_create_params
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._utils import maybe_transform, async_maybe_transform
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from .._base_client import make_request_options
+from ..types.video_to_audio_create_response import VideoToAudioCreateResponse
+
+__all__ = [
+    "VideoToAudioResource",
+    "AsyncVideoToAudioResource",
+    "WaitableVideoToAudioCreateResponse",
+    "AsyncWaitableVideoToAudioCreateResponse",
+]
+
+
+class WaitableVideoToAudioCreateResponse(VideoToAudioCreateResponse, AwaitableTaskResponseMixin): ...
+
+
+class AsyncWaitableVideoToAudioCreateResponse(VideoToAudioCreateResponse, AsyncAwaitableTaskResponseMixin): ...
+
+
+class VideoToAudioResource(SyncAPIResource):
+    """These endpoints all kick off tasks to create generations."""
+
+    @cached_property
+    def with_raw_response(self) -> VideoToAudioResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/runwayml/sdk-python#accessing-raw-response-data-eg-headers
+        """
+        return VideoToAudioResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> VideoToAudioResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/runwayml/sdk-python#with_streaming_response
+        """
+        return VideoToAudioResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        *,
+        duration: float,
+        model: Literal["mirelo_sfx_2_0"],
+        video_uri: str,
+        format: Literal["mp3", "wav", "flac"] | Omit = omit,
+        negative_prompt: str | Omit = omit,
+        num_variants: int | Omit = omit,
+        preserve_speech: bool | Omit = omit,
+        prompt_text: str | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> WaitableVideoToAudioCreateResponse:
+        """
+        Generate synchronized sound effects for a video, optionally guided by a text
+        description. Returns audio, not a video with a replacement soundtrack.
+
+        Args:
+          video_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
+
+          format: The format of the generated audio.
+
+          negative_prompt: Sounds to avoid in the generated audio.
+
+          num_variants: The number of audio variations to generate.
+
+          preserve_speech: Whether to preserve dialogue from the input video. Disabling this does not
+              guarantee speech-free output.
+
+          prompt_text: A description of the sound effects to generate.
+
+          seed: A seed for reproducible generation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/v1/video_to_audio",
+            body=maybe_transform(
+                {
+                    "duration": duration,
+                    "model": model,
+                    "video_uri": video_uri,
+                    "format": format,
+                    "negative_prompt": negative_prompt,
+                    "num_variants": num_variants,
+                    "preserve_speech": preserve_speech,
+                    "prompt_text": prompt_text,
+                    "seed": seed,
+                },
+                video_to_audio_create_params.VideoToAudioCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=cast(
+                Type[WaitableVideoToAudioCreateResponse],
+                create_waitable_resource(WaitableVideoToAudioCreateResponse, self._client),
+            ),
+        )
+
+
+class AsyncVideoToAudioResource(AsyncAPIResource):
+    """These endpoints all kick off tasks to create generations."""
+
+    @cached_property
+    def with_raw_response(self) -> AsyncVideoToAudioResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/runwayml/sdk-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncVideoToAudioResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncVideoToAudioResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/runwayml/sdk-python#with_streaming_response
+        """
+        return AsyncVideoToAudioResourceWithStreamingResponse(self)
+
+    async def create(
+        self,
+        *,
+        duration: float,
+        model: Literal["mirelo_sfx_2_0"],
+        video_uri: str,
+        format: Literal["mp3", "wav", "flac"] | Omit = omit,
+        negative_prompt: str | Omit = omit,
+        num_variants: int | Omit = omit,
+        preserve_speech: bool | Omit = omit,
+        prompt_text: str | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncWaitableVideoToAudioCreateResponse:
+        """
+        Generate synchronized sound effects for a video, optionally guided by a text
+        description. Returns audio, not a video with a replacement soundtrack.
+
+        Args:
+          video_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
+
+          format: The format of the generated audio.
+
+          negative_prompt: Sounds to avoid in the generated audio.
+
+          num_variants: The number of audio variations to generate.
+
+          preserve_speech: Whether to preserve dialogue from the input video. Disabling this does not
+              guarantee speech-free output.
+
+          prompt_text: A description of the sound effects to generate.
+
+          seed: A seed for reproducible generation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/v1/video_to_audio",
+            body=await async_maybe_transform(
+                {
+                    "duration": duration,
+                    "model": model,
+                    "video_uri": video_uri,
+                    "format": format,
+                    "negative_prompt": negative_prompt,
+                    "num_variants": num_variants,
+                    "preserve_speech": preserve_speech,
+                    "prompt_text": prompt_text,
+                    "seed": seed,
+                },
+                video_to_audio_create_params.VideoToAudioCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=cast(
+                Type[AsyncWaitableVideoToAudioCreateResponse],
+                create_async_waitable_resource(AsyncWaitableVideoToAudioCreateResponse, self._client),
+            ),
+        )
+
+
+class VideoToAudioResourceWithRawResponse:
+    def __init__(self, video_to_audio: VideoToAudioResource) -> None:
+        self._video_to_audio = video_to_audio
+
+        self.create = to_raw_response_wrapper(
+            video_to_audio.create,
+        )
+
+
+class AsyncVideoToAudioResourceWithRawResponse:
+    def __init__(self, video_to_audio: AsyncVideoToAudioResource) -> None:
+        self._video_to_audio = video_to_audio
+
+        self.create = async_to_raw_response_wrapper(
+            video_to_audio.create,
+        )
+
+
+class VideoToAudioResourceWithStreamingResponse:
+    def __init__(self, video_to_audio: VideoToAudioResource) -> None:
+        self._video_to_audio = video_to_audio
+
+        self.create = to_streamed_response_wrapper(
+            video_to_audio.create,
+        )
+
+
+class AsyncVideoToAudioResourceWithStreamingResponse:
+    def __init__(self, video_to_audio: AsyncVideoToAudioResource) -> None:
+        self._video_to_audio = video_to_audio
+
+        self.create = async_to_streamed_response_wrapper(
+            video_to_audio.create,
+        )

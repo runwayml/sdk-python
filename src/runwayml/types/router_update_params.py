@@ -21,7 +21,9 @@ class RouterUpdateParams(TypedDict, total=False):
     """Nested merge: omitted settings fields keep their current values.
 
     When models is present, omitted models.mode or models.ids are preserved (sending
-    only optimizeFor does not clear the model allowlist or credit ceiling).
+    only optimizeFor does not clear the model allowlist or credit ceiling). Set
+    maxCreditsPerGeneration, or one of its modalities, to null to remove those
+    credit caps.
     """
 
 
@@ -40,16 +42,16 @@ class SettingsFallback(TypedDict, total=False):
 
 
 class SettingsMaxCreditsPerGeneration(TypedDict, total=False):
-    """Optional per-modality credit caps, applied per generated output.
+    """Per-modality credit caps to change, applied per generated output.
 
-    Models whose estimated per-output cost exceeds the cap are excluded.
+    Omitted modalities keep their current cap; null removes that cap.
     """
 
-    audio: int
+    audio: Optional[int]
 
-    image: int
+    image: Optional[int]
 
-    video: int
+    video: Optional[int]
 
 
 class SettingsModels(TypedDict, total=False):
@@ -65,7 +67,7 @@ class SettingsModels(TypedDict, total=False):
 class Settings(TypedDict, total=False):
     """Nested merge: omitted settings fields keep their current values.
 
-    When models is present, omitted models.mode or models.ids are preserved (sending only optimizeFor does not clear the model allowlist or credit ceiling).
+    When models is present, omitted models.mode or models.ids are preserved (sending only optimizeFor does not clear the model allowlist or credit ceiling). Set maxCreditsPerGeneration, or one of its modalities, to null to remove those credit caps.
     """
 
     fallback: SettingsFallback
@@ -75,11 +77,11 @@ class Settings(TypedDict, total=False):
     """
 
     max_credits_per_generation: Annotated[
-        SettingsMaxCreditsPerGeneration, PropertyInfo(alias="maxCreditsPerGeneration")
+        Optional[SettingsMaxCreditsPerGeneration], PropertyInfo(alias="maxCreditsPerGeneration")
     ]
-    """Optional per-modality credit caps, applied per generated output.
+    """Per-modality credit caps to change, applied per generated output.
 
-    Models whose estimated per-output cost exceeds the cap are excluded.
+    Omitted modalities keep their current cap; null removes that cap.
     """
 
     models: SettingsModels

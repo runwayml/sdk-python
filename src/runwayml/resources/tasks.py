@@ -102,6 +102,13 @@ class TasksResource(SyncAPIResource):
         Tasks that are running, pending, or throttled can be canceled by invoking this
         method. Invoking this method for other tasks will delete them.
 
+        Refund eligibility is based on the task status observed by the server during
+        cancellation. If that check observes RUNNING, cancellation does not refund
+        credits. Task execution can advance concurrently with cancellation, so neither a
+        refund nor successful cancellation guarantees that generation stops. A prior GET
+        response reporting PENDING or THROTTLED does not guarantee a refund. Deleting a
+        completed task does not refund its charge.
+
         The output data associated with a deleted task will be deleted from persistent
         storage in accordance with our data retention policy. Aborted and deleted tasks
         will not be able to be fetched again in the future.
@@ -201,6 +208,13 @@ class AsyncTasksResource(AsyncAPIResource):
         """
         Tasks that are running, pending, or throttled can be canceled by invoking this
         method. Invoking this method for other tasks will delete them.
+
+        Refund eligibility is based on the task status observed by the server during
+        cancellation. If that check observes RUNNING, cancellation does not refund
+        credits. Task execution can advance concurrently with cancellation, so neither a
+        refund nor successful cancellation guarantees that generation stops. A prior GET
+        response reporting PENDING or THROTTLED does not guarantee a refund. Deleting a
+        completed task does not refund its charge.
 
         The output data associated with a deleted task will be deleted from persistent
         storage in accordance with our data retention policy. Aborted and deleted tasks
