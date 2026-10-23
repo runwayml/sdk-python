@@ -12,10 +12,10 @@ __all__ = [
     "Variant0",
     "Variant0ContentModeration",
     "Variant0Keyframe",
-    "Variant0KeyframeKeyframeWithSeconds",
-    "Variant0KeyframeKeyframeWithSecondsRange",
-    "Variant0KeyframeKeyframeWithAt",
-    "Variant0KeyframeKeyframeWithAtRange",
+    "Variant0KeyframeUnionMember0",
+    "Variant0KeyframeUnionMember0Range",
+    "Variant0KeyframeUnionMember1",
+    "Variant0KeyframeUnionMember1Range",
     "KlingO3_4k",
     "KlingO3_4kProviderSettings",
     "KlingO3_4kProviderSettingsMultiPrompt",
@@ -130,7 +130,7 @@ class Variant0ContentModeration(TypedDict, total=False):
     """
 
 
-class Variant0KeyframeKeyframeWithSecondsRange(TypedDict, total=False):
+class Variant0KeyframeUnionMember0Range(TypedDict, total=False):
     """Optional edit window.
 
     When set, the edit applies only to this time range and the keyframe timestamp must fall within it. All keyframes must either set a range or none may.
@@ -146,7 +146,7 @@ class Variant0KeyframeKeyframeWithSecondsRange(TypedDict, total=False):
     """Start of the edit window in whole seconds from the start of the input video."""
 
 
-class Variant0KeyframeKeyframeWithSeconds(TypedDict, total=False):
+class Variant0KeyframeUnionMember0(TypedDict, total=False):
     seconds: Required[float]
     """
     Absolute timestamp in seconds from the start of the input video when this
@@ -160,7 +160,7 @@ class Variant0KeyframeKeyframeWithSeconds(TypedDict, total=False):
     [our docs](/assets/inputs#images) on image inputs for more information.
     """
 
-    range: Variant0KeyframeKeyframeWithSecondsRange
+    range: Variant0KeyframeUnionMember0Range
     """Optional edit window.
 
     When set, the edit applies only to this time range and the keyframe timestamp
@@ -168,7 +168,7 @@ class Variant0KeyframeKeyframeWithSeconds(TypedDict, total=False):
     """
 
 
-class Variant0KeyframeKeyframeWithAtRange(TypedDict, total=False):
+class Variant0KeyframeUnionMember1Range(TypedDict, total=False):
     """Optional edit window.
 
     When set, the edit applies only to this time range and the keyframe timestamp must fall within it. All keyframes must either set a range or none may.
@@ -184,7 +184,7 @@ class Variant0KeyframeKeyframeWithAtRange(TypedDict, total=False):
     """Start of the edit window in whole seconds from the start of the input video."""
 
 
-class Variant0KeyframeKeyframeWithAt(TypedDict, total=False):
+class Variant0KeyframeUnionMember1(TypedDict, total=False):
     at: Required[float]
     """
     Position as a fraction [0.0, 1.0] of the input video duration when this guidance
@@ -198,7 +198,7 @@ class Variant0KeyframeKeyframeWithAt(TypedDict, total=False):
     [our docs](/assets/inputs#images) on image inputs for more information.
     """
 
-    range: Variant0KeyframeKeyframeWithAtRange
+    range: Variant0KeyframeUnionMember1Range
     """Optional edit window.
 
     When set, the edit applies only to this time range and the keyframe timestamp
@@ -206,7 +206,7 @@ class Variant0KeyframeKeyframeWithAt(TypedDict, total=False):
     """
 
 
-Variant0Keyframe: TypeAlias = Union[Variant0KeyframeKeyframeWithSeconds, Variant0KeyframeKeyframeWithAt]
+Variant0Keyframe: TypeAlias = Union[Variant0KeyframeUnionMember0, Variant0KeyframeUnionMember1]
 
 
 class KlingO3_4k(TypedDict, total=False):

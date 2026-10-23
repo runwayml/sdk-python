@@ -18,6 +18,8 @@ class Metadata(BaseModel):
 
     ad_creative_id: Optional[str] = FieldInfo(alias="Ad creative ID", default=None)
 
+    ad_publish_batch_id: Optional[str] = FieldInfo(alias="Ad publish batch ID", default=None)
+
     ad_review_batch_id: Optional[str] = FieldInfo(alias="Ad review batch ID", default=None)
 
     ad_review_request_id: Optional[str] = FieldInfo(alias="Ad review request ID", default=None)
@@ -64,6 +66,12 @@ class Metadata(BaseModel):
 
     comment_text: Optional[str] = FieldInfo(alias="Comment text", default=None)
 
+    creatives_cancelled: Optional[float] = FieldInfo(alias="Creatives cancelled", default=None)
+
+    creatives_queued: Optional[float] = FieldInfo(alias="Creatives queued", default=None)
+
+    creatives_retried: Optional[float] = FieldInfo(alias="Creatives retried", default=None)
+
     default_project_discoverability: Optional[str] = FieldInfo(alias="Default project discoverability", default=None)
 
     default_task_name_template: Optional[str] = FieldInfo(alias="Default task name template", default=None)
@@ -79,6 +87,8 @@ class Metadata(BaseModel):
     group_name: Optional[str] = FieldInfo(alias="Group name", default=None)
 
     hard_spend_cap: Optional[bool] = FieldInfo(alias="Hard spend cap", default=None)
+
+    into_a_new_test_ad_set: Optional[bool] = FieldInfo(alias="Into a new test ad set", default=None)
 
     invited_member: Optional[str] = FieldInfo(alias="Invited member", default=None)
 
@@ -111,6 +121,8 @@ class Metadata(BaseModel):
     plan: Optional[str] = FieldInfo(alias="Plan", default=None)
 
     platform: Optional[str] = FieldInfo(alias="Platform", default=None)
+
+    platform_ad_account_id: Optional[str] = FieldInfo(alias="Platform ad account ID", default=None)
 
     previous_project_credit_cap: Optional[float] = FieldInfo(alias="Previous project credit cap", default=None)
 
@@ -243,6 +255,7 @@ class AuditLogRetrieveResponse(BaseModel):
         "AgentConnectorSessionDisabled",
         "GenerationCreated",
         "StudioSessionOpened",
+        "AppStudioAiRunOpened",
         "AccountLinkCreated",
         "AccountLinkDeleted",
         "AdConnectionAuthorizationStarted",
@@ -257,6 +270,9 @@ class AuditLogRetrieveResponse(BaseModel):
         "AdCreativeApprovalRevoked",
         "AdCreativeArchived",
         "AdCreativeUnarchived",
+        "AdPublishBatchQueued",
+        "AdPublishBatchCancelled",
+        "AdPublishBatchRetried",
         "OrganizationSettingsUpdated",
         "OrganizationDisabledModelsUpdated",
         "OrganizationAgentSandboxUpdated",

@@ -68,13 +68,63 @@ class TestSoundEffect:
     @parametrize
     def test_method_create_overload_2(self, client: RunwayML) -> None:
         sound_effect = client.sound_effect.create(
-            model="eleven_text_to_sound_v2",
+            duration=0.1,
+            model="mirelo_sfx_2_0",
             prompt_text="x",
         )
         assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: RunwayML) -> None:
+        sound_effect = client.sound_effect.create(
+            duration=0.1,
+            model="mirelo_sfx_2_0",
+            prompt_text="x",
+            format="mp3",
+            negative_prompt="x",
+            num_variants=1,
+            seed=0,
+        )
+        assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_2(self, client: RunwayML) -> None:
+        response = client.sound_effect.with_raw_response.create(
+            duration=0.1,
+            model="mirelo_sfx_2_0",
+            prompt_text="x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        sound_effect = response.parse()
+        assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_2(self, client: RunwayML) -> None:
+        with client.sound_effect.with_streaming_response.create(
+            duration=0.1,
+            model="mirelo_sfx_2_0",
+            prompt_text="x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            sound_effect = response.parse()
+            assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_3(self, client: RunwayML) -> None:
+        sound_effect = client.sound_effect.create(
+            model="eleven_text_to_sound_v2",
+            prompt_text="x",
+        )
+        assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_3(self, client: RunwayML) -> None:
         sound_effect = client.sound_effect.create(
             model="eleven_text_to_sound_v2",
             prompt_text="x",
@@ -84,7 +134,7 @@ class TestSoundEffect:
         assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
 
     @parametrize
-    def test_raw_response_create_overload_2(self, client: RunwayML) -> None:
+    def test_raw_response_create_overload_3(self, client: RunwayML) -> None:
         response = client.sound_effect.with_raw_response.create(
             model="eleven_text_to_sound_v2",
             prompt_text="x",
@@ -96,7 +146,7 @@ class TestSoundEffect:
         assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_overload_2(self, client: RunwayML) -> None:
+    def test_streaming_response_create_overload_3(self, client: RunwayML) -> None:
         with client.sound_effect.with_streaming_response.create(
             model="eleven_text_to_sound_v2",
             prompt_text="x",
@@ -166,13 +216,63 @@ class TestAsyncSoundEffect:
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncRunwayML) -> None:
         sound_effect = await async_client.sound_effect.create(
-            model="eleven_text_to_sound_v2",
+            duration=0.1,
+            model="mirelo_sfx_2_0",
             prompt_text="x",
         )
         assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncRunwayML) -> None:
+        sound_effect = await async_client.sound_effect.create(
+            duration=0.1,
+            model="mirelo_sfx_2_0",
+            prompt_text="x",
+            format="mp3",
+            negative_prompt="x",
+            num_variants=1,
+            seed=0,
+        )
+        assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_2(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.sound_effect.with_raw_response.create(
+            duration=0.1,
+            model="mirelo_sfx_2_0",
+            prompt_text="x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        sound_effect = await response.parse()
+        assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.sound_effect.with_streaming_response.create(
+            duration=0.1,
+            model="mirelo_sfx_2_0",
+            prompt_text="x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            sound_effect = await response.parse()
+            assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_3(self, async_client: AsyncRunwayML) -> None:
+        sound_effect = await async_client.sound_effect.create(
+            model="eleven_text_to_sound_v2",
+            prompt_text="x",
+        )
+        assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_3(self, async_client: AsyncRunwayML) -> None:
         sound_effect = await async_client.sound_effect.create(
             model="eleven_text_to_sound_v2",
             prompt_text="x",
@@ -182,7 +282,7 @@ class TestAsyncSoundEffect:
         assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_overload_2(self, async_client: AsyncRunwayML) -> None:
+    async def test_raw_response_create_overload_3(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.sound_effect.with_raw_response.create(
             model="eleven_text_to_sound_v2",
             prompt_text="x",
@@ -194,7 +294,7 @@ class TestAsyncSoundEffect:
         assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_overload_2(self, async_client: AsyncRunwayML) -> None:
+    async def test_streaming_response_create_overload_3(self, async_client: AsyncRunwayML) -> None:
         async with async_client.sound_effect.with_streaming_response.create(
             model="eleven_text_to_sound_v2",
             prompt_text="x",

@@ -8,7 +8,7 @@ from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
-__all__ = ["SoundEffectCreateParams", "SeedAudio", "ElevenTextToSoundV2"]
+__all__ = ["SoundEffectCreateParams", "SeedAudio", "MireloSfx2_0", "ElevenTextToSoundV2"]
 
 
 class SeedAudio(TypedDict, total=False):
@@ -44,6 +44,28 @@ class SeedAudio(TypedDict, total=False):
     """Relative speech speed. Negative is slower, positive is faster; 0 is normal."""
 
 
+class MireloSfx2_0(TypedDict, total=False):
+    duration: Required[float]
+    """The duration of the generated audio in seconds."""
+
+    model: Required[Literal["mirelo_sfx_2_0"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A description of the sound effects to generate."""
+
+    format: Literal["mp3", "wav", "flac"]
+    """The format of the generated audio."""
+
+    negative_prompt: Annotated[str, PropertyInfo(alias="negativePrompt")]
+    """Sounds to avoid in the generated audio."""
+
+    num_variants: Annotated[int, PropertyInfo(alias="numVariants")]
+    """The number of audio variations to generate."""
+
+    seed: int
+    """A seed for reproducible generation."""
+
+
 class ElevenTextToSoundV2(TypedDict, total=False):
     model: Required[Literal["eleven_text_to_sound_v2"]]
 
@@ -61,4 +83,4 @@ class ElevenTextToSoundV2(TypedDict, total=False):
     """Whether the output sound effect should be designed to loop seamlessly."""
 
 
-SoundEffectCreateParams: TypeAlias = Union[SeedAudio, ElevenTextToSoundV2]
+SoundEffectCreateParams: TypeAlias = Union[SeedAudio, MireloSfx2_0, ElevenTextToSoundV2]

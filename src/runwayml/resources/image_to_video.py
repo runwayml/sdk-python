@@ -358,7 +358,7 @@ class ImageToVideoResource(SyncAPIResource):
         self,
         *,
         model: Literal["hailuo3"],
-        prompt_image: Union[str, Iterable[image_to_video_create_params.Hailuo3PromptImagePromptImage]],
+        prompt_image: Union[str, Iterable[object]],
         prompt_text: str,
         duration: int | Omit = omit,
         ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
@@ -1049,7 +1049,7 @@ class ImageToVideoResource(SyncAPIResource):
         self,
         *,
         model: Literal["wan3"],
-        prompt_image: Union[str, Iterable[image_to_video_create_params.Wan3PromptImagePromptImage]],
+        prompt_image: Union[str, Iterable[object]],
         prompt_text: str,
         audio: bool | Omit = omit,
         duration: int | Omit = omit,
@@ -1164,7 +1164,7 @@ class ImageToVideoResource(SyncAPIResource):
         self,
         *,
         model: Literal["wan3_prime"],
-        prompt_image: Union[str, Iterable[image_to_video_create_params.Wan3PrimePromptImagePromptImage]],
+        prompt_image: Union[str, Iterable[object]],
         prompt_text: str,
         audio: bool | Omit = omit,
         duration: int | Omit = omit,
@@ -1451,7 +1451,7 @@ class ImageToVideoResource(SyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.KlingO3_4kPromptImagePromptImage]]
-        | Union[str, Iterable[image_to_video_create_params.Hailuo3PromptImagePromptImage]]
+        | Union[str, Iterable[object]]
         | Union[str, Iterable[image_to_video_create_params.Kling3_0_4kPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Happyhorse1_0PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Kling2_5TurboProPromptImagePromptImage]]
@@ -1464,9 +1464,7 @@ class ImageToVideoResource(SyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.Seedance2MiniPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlashPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GrokImagine1_5PromptImagePromptImage]]
-        | Union[str, Iterable[image_to_video_create_params.Wan3PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlash1_1PromptImagePromptImage]]
-        | Union[str, Iterable[image_to_video_create_params.Wan3PrimePromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.H3MaxPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GrokImagine1_5LitePromptImagePromptImage]],
@@ -1983,7 +1981,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         self,
         *,
         model: Literal["hailuo3"],
-        prompt_image: Union[str, Iterable[image_to_video_create_params.Hailuo3PromptImagePromptImage]],
+        prompt_image: Union[str, Iterable[object]],
         prompt_text: str,
         duration: int | Omit = omit,
         ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
@@ -2674,7 +2672,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         self,
         *,
         model: Literal["wan3"],
-        prompt_image: Union[str, Iterable[image_to_video_create_params.Wan3PromptImagePromptImage]],
+        prompt_image: Union[str, Iterable[object]],
         prompt_text: str,
         audio: bool | Omit = omit,
         duration: int | Omit = omit,
@@ -2789,7 +2787,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         self,
         *,
         model: Literal["wan3_prime"],
-        prompt_image: Union[str, Iterable[image_to_video_create_params.Wan3PrimePromptImagePromptImage]],
+        prompt_image: Union[str, Iterable[object]],
         prompt_text: str,
         audio: bool | Omit = omit,
         duration: int | Omit = omit,
@@ -3076,7 +3074,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1FastPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.KlingO3_4kPromptImagePromptImage]]
-        | Union[str, Iterable[image_to_video_create_params.Hailuo3PromptImagePromptImage]]
+        | Union[str, Iterable[object]]
         | Union[str, Iterable[image_to_video_create_params.Kling3_0_4kPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Happyhorse1_0PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Kling2_5TurboProPromptImagePromptImage]]
@@ -3089,9 +3087,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.Seedance2MiniPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlashPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GrokImagine1_5PromptImagePromptImage]]
-        | Union[str, Iterable[image_to_video_create_params.Wan3PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlash1_1PromptImagePromptImage]]
-        | Union[str, Iterable[image_to_video_create_params.Wan3PrimePromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.H3MaxPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GrokImagine1_5LitePromptImagePromptImage]],

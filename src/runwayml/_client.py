@@ -56,6 +56,7 @@ if TYPE_CHECKING:
         voice_dubbing,
         image_to_video,
         text_to_speech,
+        video_to_audio,
         video_to_video,
         voice_isolation,
         speech_to_speech,
@@ -82,6 +83,7 @@ if TYPE_CHECKING:
     from .resources.voice_dubbing import VoiceDubbingResource, AsyncVoiceDubbingResource
     from .resources.image_to_video import ImageToVideoResource, AsyncImageToVideoResource
     from .resources.text_to_speech import TextToSpeechResource, AsyncTextToSpeechResource
+    from .resources.video_to_audio import VideoToAudioResource, AsyncVideoToAudioResource
     from .resources.video_to_video import VideoToVideoResource, AsyncVideoToVideoResource
     from .resources.voice_isolation import VoiceIsolationResource, AsyncVoiceIsolationResource
     from .resources.speech_to_speech import SpeechToSpeechResource, AsyncSpeechToSpeechResource
@@ -200,6 +202,13 @@ class RunwayML(SyncAPIClient):
         from .resources.video_to_video import VideoToVideoResource
 
         return VideoToVideoResource(self)
+
+    @cached_property
+    def video_to_audio(self) -> VideoToAudioResource:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.video_to_audio import VideoToAudioResource
+
+        return VideoToAudioResource(self)
 
     @cached_property
     def video_to_hdr(self) -> VideoToHdrResource:
@@ -564,6 +573,13 @@ class AsyncRunwayML(AsyncAPIClient):
         return AsyncVideoToVideoResource(self)
 
     @cached_property
+    def video_to_audio(self) -> AsyncVideoToAudioResource:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.video_to_audio import AsyncVideoToAudioResource
+
+        return AsyncVideoToAudioResource(self)
+
+    @cached_property
     def video_to_hdr(self) -> AsyncVideoToHdrResource:
         """These endpoints all kick off tasks to create generations."""
         from .resources.video_to_hdr import AsyncVideoToHdrResource
@@ -862,6 +878,13 @@ class RunwayMLWithRawResponse:
         return VideoToVideoResourceWithRawResponse(self._client.video_to_video)
 
     @cached_property
+    def video_to_audio(self) -> video_to_audio.VideoToAudioResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.video_to_audio import VideoToAudioResourceWithRawResponse
+
+        return VideoToAudioResourceWithRawResponse(self._client.video_to_audio)
+
+    @cached_property
     def video_to_hdr(self) -> video_to_hdr.VideoToHdrResourceWithRawResponse:
         """These endpoints all kick off tasks to create generations."""
         from .resources.video_to_hdr import VideoToHdrResourceWithRawResponse
@@ -1043,6 +1066,13 @@ class AsyncRunwayMLWithRawResponse:
         from .resources.video_to_video import AsyncVideoToVideoResourceWithRawResponse
 
         return AsyncVideoToVideoResourceWithRawResponse(self._client.video_to_video)
+
+    @cached_property
+    def video_to_audio(self) -> video_to_audio.AsyncVideoToAudioResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.video_to_audio import AsyncVideoToAudioResourceWithRawResponse
+
+        return AsyncVideoToAudioResourceWithRawResponse(self._client.video_to_audio)
 
     @cached_property
     def video_to_hdr(self) -> video_to_hdr.AsyncVideoToHdrResourceWithRawResponse:
@@ -1228,6 +1258,13 @@ class RunwayMLWithStreamedResponse:
         return VideoToVideoResourceWithStreamingResponse(self._client.video_to_video)
 
     @cached_property
+    def video_to_audio(self) -> video_to_audio.VideoToAudioResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.video_to_audio import VideoToAudioResourceWithStreamingResponse
+
+        return VideoToAudioResourceWithStreamingResponse(self._client.video_to_audio)
+
+    @cached_property
     def video_to_hdr(self) -> video_to_hdr.VideoToHdrResourceWithStreamingResponse:
         """These endpoints all kick off tasks to create generations."""
         from .resources.video_to_hdr import VideoToHdrResourceWithStreamingResponse
@@ -1409,6 +1446,13 @@ class AsyncRunwayMLWithStreamedResponse:
         from .resources.video_to_video import AsyncVideoToVideoResourceWithStreamingResponse
 
         return AsyncVideoToVideoResourceWithStreamingResponse(self._client.video_to_video)
+
+    @cached_property
+    def video_to_audio(self) -> video_to_audio.AsyncVideoToAudioResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.video_to_audio import AsyncVideoToAudioResourceWithStreamingResponse
+
+        return AsyncVideoToAudioResourceWithStreamingResponse(self._client.video_to_audio)
 
     @cached_property
     def video_to_hdr(self) -> video_to_hdr.AsyncVideoToHdrResourceWithStreamingResponse:

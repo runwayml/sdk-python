@@ -160,6 +160,14 @@ from .text_to_speech import (
     TextToSpeechResourceWithStreamingResponse,
     AsyncTextToSpeechResourceWithStreamingResponse,
 )
+from .video_to_audio import (
+    VideoToAudioResource,
+    AsyncVideoToAudioResource,
+    VideoToAudioResourceWithRawResponse,
+    AsyncVideoToAudioResourceWithRawResponse,
+    VideoToAudioResourceWithStreamingResponse,
+    AsyncVideoToAudioResourceWithStreamingResponse,
+)
 from .video_to_video import (
     VideoToVideoResource,
     AsyncVideoToVideoResource,
@@ -236,6 +244,12 @@ __all__ = [
     "AsyncVideoToVideoResourceWithRawResponse",
     "VideoToVideoResourceWithStreamingResponse",
     "AsyncVideoToVideoResourceWithStreamingResponse",
+    "VideoToAudioResource",
+    "AsyncVideoToAudioResource",
+    "VideoToAudioResourceWithRawResponse",
+    "AsyncVideoToAudioResourceWithRawResponse",
+    "VideoToAudioResourceWithStreamingResponse",
+    "AsyncVideoToAudioResourceWithStreamingResponse",
     "VideoToHdrResource",
     "AsyncVideoToHdrResource",
     "VideoToHdrResourceWithRawResponse",
