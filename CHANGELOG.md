@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.23.0](https://github.com/runwayml/sdk-python/compare/v5.22.0...v5.23.0) (2026-10-23)
+
+
+### Features
+
+* add Nano Banana 2 Lite and expand image and video model support ([5f5ae46](https://github.com/runwayml/sdk-python/commit/5f5ae46bfcdb09321942b25698a5b4c53987efa4))
+* add video-to-audio and newly released image and audio models ([a12ad7f](https://github.com/runwayml/sdk-python/commit/a12ad7f06aa56f5d57ec7397198d5f63f1dedaf1))
+
+
+### Chores
+
+* **internal:** align waitable overload return types ([fb3e261](https://github.com/runwayml/sdk-python/commit/fb3e261f2ab49686597ade94e6141683fcc9a0a0))
+
 ## [5.22.0](https://github.com/runwayml/sdk-python/compare/v5.21.0...v5.22.0) (2026-10-13)
 
 
