@@ -28,7 +28,7 @@ def test_video_to_audio_waits_for_created_task() -> None:
         response = client.video_to_audio.create(
             duration=5, model="mirelo_sfx_2_0", video_uri="https://example.com/video.mp4"
         )
-        assert response.model_dump(by_alias=True)["estimatedCost"] == {"credits": 2}
+        assert response.estimated_cost.credits == 2
         with patch("runwayml.lib.polling.time.sleep"):
             result = response.wait_for_task_output()
         assert result.status == "SUCCEEDED"
@@ -59,7 +59,7 @@ async def test_async_video_to_audio_waits_for_created_task() -> None:
         response = await client.video_to_audio.create(
             duration=5, model="mirelo_sfx_2_0", video_uri="https://example.com/video.mp4"
         )
-        assert response.model_dump(by_alias=True)["estimatedCost"] == {"credits": 2}
+        assert response.estimated_cost.credits == 2
         with patch("runwayml.lib.polling.anyio.sleep", new_callable=AsyncMock):
             result = await response.wait_for_task_output()
         assert result.status == "SUCCEEDED"

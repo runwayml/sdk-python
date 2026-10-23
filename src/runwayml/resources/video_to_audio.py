@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
 
 from runwayml.lib.polling import (
-    NewTaskCreatedResponse,
-    AsyncNewTaskCreatedResponse,
+    AwaitableTaskResponseMixin,
+    AsyncAwaitableTaskResponseMixin,
     create_waitable_resource,
     create_async_waitable_resource,
 )
@@ -27,7 +28,18 @@ from .._response import (
 from .._base_client import make_request_options
 from ..types.video_to_audio_create_response import VideoToAudioCreateResponse
 
-__all__ = ["VideoToAudioResource", "AsyncVideoToAudioResource"]
+__all__ = [
+    "VideoToAudioResource",
+    "AsyncVideoToAudioResource",
+    "WaitableVideoToAudioCreateResponse",
+    "AsyncWaitableVideoToAudioCreateResponse",
+]
+
+
+class WaitableVideoToAudioCreateResponse(VideoToAudioCreateResponse, AwaitableTaskResponseMixin): ...
+
+
+class AsyncWaitableVideoToAudioCreateResponse(VideoToAudioCreateResponse, AsyncAwaitableTaskResponseMixin): ...
 
 
 class VideoToAudioResource(SyncAPIResource):
@@ -70,7 +82,7 @@ class VideoToAudioResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> WaitableVideoToAudioCreateResponse:
         """
         Generate synchronized sound effects for a video, optionally guided by a text
         description. Returns audio, not a video with a replacement soundtrack.
@@ -120,7 +132,10 @@ class VideoToAudioResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_waitable_resource(VideoToAudioCreateResponse, self._client),
+            cast_to=cast(
+                Type[WaitableVideoToAudioCreateResponse],
+                create_waitable_resource(WaitableVideoToAudioCreateResponse, self._client),
+            ),
         )
 
 
@@ -164,7 +179,7 @@ class AsyncVideoToAudioResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> AsyncWaitableVideoToAudioCreateResponse:
         """
         Generate synchronized sound effects for a video, optionally guided by a text
         description. Returns audio, not a video with a replacement soundtrack.
@@ -214,7 +229,10 @@ class AsyncVideoToAudioResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=create_async_waitable_resource(VideoToAudioCreateResponse, self._client),
+            cast_to=cast(
+                Type[AsyncWaitableVideoToAudioCreateResponse],
+                create_async_waitable_resource(AsyncWaitableVideoToAudioCreateResponse, self._client),
+            ),
         )
 
 
