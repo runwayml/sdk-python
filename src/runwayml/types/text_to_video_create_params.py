@@ -1487,10 +1487,22 @@ class Kling4(TypedDict, total=False):
     duration: int
     """The duration of the output video in seconds."""
 
-    ratio: Literal["21:9", "16:9", "9:16", "1:1", "adaptive"]
-    """The aspect ratio of the output video.
+    ratio: Literal[
+        "1280:720",
+        "720:1280",
+        "940:940",
+        "1460:624",
+        "1920:1080",
+        "1080:1920",
+        "1440:1440",
+        "2200:940",
+        "auto_720p",
+        "auto_1080p",
+    ]
+    """The target output size.
 
-    `adaptive` lets Kling pick one that suits the prompt and references.
+    Use a pixel ratio such as `1280:720` or `auto_720p` / `auto_1080p` for adaptive
+    framing.
     """
 
     references: Iterable[Kling4Reference]
@@ -1504,9 +1516,6 @@ class Kling4(TypedDict, total=False):
     Up to 5 videos whose style, motion or camera work should guide the output,
     together at most 30 seconds long.
     """
-
-    resolution: Literal["720p", "1080p"]
-    """The resolution of the output video."""
 
 
 class Kling4Reference(TypedDict, total=False):

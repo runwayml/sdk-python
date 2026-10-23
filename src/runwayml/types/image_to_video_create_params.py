@@ -1842,6 +1842,9 @@ class Kling4(TypedDict, total=False):
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """A text prompt describing what should happen in the video."""
 
+    ratio: Literal["auto_720p", "auto_1080p"]
+    """Output quality tier. The video keeps the input media framing."""
+
     references: Iterable[Kling4Reference]
     """Images of characters, objects or styles to use in the video.
 
@@ -1853,9 +1856,6 @@ class Kling4(TypedDict, total=False):
     Up to 5 videos whose style, motion or camera work should guide the output,
     together at most 30 seconds long.
     """
-
-    resolution: Literal["720p", "1080p"]
-    """The resolution of the output video."""
 
 
 class Kling4Reference(TypedDict, total=False):

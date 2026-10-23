@@ -1415,16 +1415,16 @@ class ImageToVideoResource(SyncAPIResource):
         prompt_image: Union[str, Iterable[object]],
         duration: int | Omit = omit,
         prompt_text: str | Omit = omit,
+        ratio: Literal["auto_720p", "auto_1080p"] | Omit = omit,
         references: Iterable[image_to_video_create_params.Kling4Reference] | Omit = omit,
         reference_videos: Iterable[object] | Omit = omit,
-        resolution: Literal["720p", "1080p"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -1436,13 +1436,13 @@ class ImageToVideoResource(SyncAPIResource):
 
           prompt_text: A text prompt describing what should happen in the video.
 
+          ratio: Output quality tier. The video keeps the input media framing.
+
           references: Images of characters, objects or styles to use in the video. Up to 10 images in
               total, frames included.
 
           reference_videos: Up to 5 videos whose style, motion or camera work should guide the output,
               together at most 30 seconds long.
-
-          resolution: The resolution of the output video.
 
           extra_headers: Send extra headers
 
@@ -1607,6 +1607,7 @@ class ImageToVideoResource(SyncAPIResource):
             "1080:1920",
         ]
         | Literal["auto_480p", "auto_720p", "auto_1080p"]
+        | Literal["auto_720p", "auto_1080p"]
         | Omit = omit,
         content_moderation: image_to_video_create_params.Gen4_5ContentModeration
         | image_to_video_create_params.Gen4TurboContentModeration
@@ -1655,7 +1656,6 @@ class ImageToVideoResource(SyncAPIResource):
         | Literal["720p", "1080p", "720P", "1080P"]
         | Literal["480p", "720p", "1080p"]
         | Literal["480p", "768p"]
-        | Literal["720p", "1080p"]
         | Omit = omit,
         cfg_scale: float | Omit = omit,
         reference_videos: Iterable[image_to_video_create_params.Wan3ReferenceVideo]
@@ -3089,16 +3089,16 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         prompt_image: Union[str, Iterable[object]],
         duration: int | Omit = omit,
         prompt_text: str | Omit = omit,
+        ratio: Literal["auto_720p", "auto_1080p"] | Omit = omit,
         references: Iterable[image_to_video_create_params.Kling4Reference] | Omit = omit,
         reference_videos: Iterable[object] | Omit = omit,
-        resolution: Literal["720p", "1080p"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> ImageToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from an image.
 
@@ -3110,13 +3110,13 @@ class AsyncImageToVideoResource(AsyncAPIResource):
 
           prompt_text: A text prompt describing what should happen in the video.
 
+          ratio: Output quality tier. The video keeps the input media framing.
+
           references: Images of characters, objects or styles to use in the video. Up to 10 images in
               total, frames included.
 
           reference_videos: Up to 5 videos whose style, motion or camera work should guide the output,
               together at most 30 seconds long.
-
-          resolution: The resolution of the output video.
 
           extra_headers: Send extra headers
 
@@ -3281,6 +3281,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
             "1080:1920",
         ]
         | Literal["auto_480p", "auto_720p", "auto_1080p"]
+        | Literal["auto_720p", "auto_1080p"]
         | Omit = omit,
         content_moderation: image_to_video_create_params.Gen4_5ContentModeration
         | image_to_video_create_params.Gen4TurboContentModeration
@@ -3329,7 +3330,6 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Literal["720p", "1080p", "720P", "1080P"]
         | Literal["480p", "720p", "1080p"]
         | Literal["480p", "768p"]
-        | Literal["720p", "1080p"]
         | Omit = omit,
         cfg_scale: float | Omit = omit,
         reference_videos: Iterable[image_to_video_create_params.Wan3ReferenceVideo]

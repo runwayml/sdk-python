@@ -664,8 +664,8 @@ class TestVideoToVideo:
             model="kling_4",
             prompt_text="x",
             video_uri="https://example.com/video.mp4",
+            ratio="auto_720p",
             references=[{"uri": "https://example.com/image.jpg"}],
-            resolution="720p",
         )
         assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
 
@@ -1350,8 +1350,8 @@ class TestAsyncVideoToVideo:
             model="kling_4",
             prompt_text="x",
             video_uri="https://example.com/video.mp4",
+            ratio="auto_720p",
             references=[{"uri": "https://example.com/image.jpg"}],
-            resolution="720p",
         )
         assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
 

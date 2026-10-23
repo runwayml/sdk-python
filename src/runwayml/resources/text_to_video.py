@@ -1343,17 +1343,28 @@ class TextToVideoResource(SyncAPIResource):
         model: Literal["kling_4"],
         prompt_text: str,
         duration: int | Omit = omit,
-        ratio: Literal["21:9", "16:9", "9:16", "1:1", "adaptive"] | Omit = omit,
+        ratio: Literal[
+            "1280:720",
+            "720:1280",
+            "940:940",
+            "1460:624",
+            "1920:1080",
+            "1080:1920",
+            "1440:1440",
+            "2200:940",
+            "auto_720p",
+            "auto_1080p",
+        ]
+        | Omit = omit,
         references: Iterable[text_to_video_create_params.Kling4Reference] | Omit = omit,
         reference_videos: Iterable[object] | Omit = omit,
-        resolution: Literal["720p", "1080p"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> TextToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a text prompt.
 
@@ -1362,16 +1373,14 @@ class TextToVideoResource(SyncAPIResource):
 
           duration: The duration of the output video in seconds.
 
-          ratio: The aspect ratio of the output video. `adaptive` lets Kling pick one that suits
-              the prompt and references.
+          ratio: The target output size. Use a pixel ratio such as `1280:720` or `auto_720p` /
+              `auto_1080p` for adaptive framing.
 
           references: Images of characters, objects or styles to use in the video. Up to 10 images in
               total, frames included.
 
           reference_videos: Up to 5 videos whose style, motion or camera work should guide the output,
               together at most 30 seconds long.
-
-          resolution: The resolution of the output video.
 
           extra_headers: Send extra headers
 
@@ -1548,7 +1557,18 @@ class TextToVideoResource(SyncAPIResource):
             "1744:1152",
             "1152:1744",
         ]
-        | Literal["21:9", "16:9", "9:16", "1:1", "adaptive"]
+        | Literal[
+            "1280:720",
+            "720:1280",
+            "940:940",
+            "1460:624",
+            "1920:1080",
+            "1080:1920",
+            "1440:1440",
+            "2200:940",
+            "auto_720p",
+            "auto_1080p",
+        ]
         | Omit = omit,
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
         output_format: Literal[
@@ -1611,7 +1631,6 @@ class TextToVideoResource(SyncAPIResource):
         resolution: Literal["768p", "2k", "768P", "2K"]
         | Literal["480p", "720p", "1080p"]
         | Literal["480p", "768p"]
-        | Literal["720p", "1080p"]
         | Omit = omit,
         cfg_scale: float | Omit = omit,
         prompt_expansion_mode: Literal["disabled", "balanced", "quality"] | Omit = omit,
@@ -2970,17 +2989,28 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         model: Literal["kling_4"],
         prompt_text: str,
         duration: int | Omit = omit,
-        ratio: Literal["21:9", "16:9", "9:16", "1:1", "adaptive"] | Omit = omit,
+        ratio: Literal[
+            "1280:720",
+            "720:1280",
+            "940:940",
+            "1460:624",
+            "1920:1080",
+            "1080:1920",
+            "1440:1440",
+            "2200:940",
+            "auto_720p",
+            "auto_1080p",
+        ]
+        | Omit = omit,
         references: Iterable[text_to_video_create_params.Kling4Reference] | Omit = omit,
         reference_videos: Iterable[object] | Omit = omit,
-        resolution: Literal["720p", "1080p"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> TextToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a text prompt.
 
@@ -2989,16 +3019,14 @@ class AsyncTextToVideoResource(AsyncAPIResource):
 
           duration: The duration of the output video in seconds.
 
-          ratio: The aspect ratio of the output video. `adaptive` lets Kling pick one that suits
-              the prompt and references.
+          ratio: The target output size. Use a pixel ratio such as `1280:720` or `auto_720p` /
+              `auto_1080p` for adaptive framing.
 
           references: Images of characters, objects or styles to use in the video. Up to 10 images in
               total, frames included.
 
           reference_videos: Up to 5 videos whose style, motion or camera work should guide the output,
               together at most 30 seconds long.
-
-          resolution: The resolution of the output video.
 
           extra_headers: Send extra headers
 
@@ -3175,7 +3203,18 @@ class AsyncTextToVideoResource(AsyncAPIResource):
             "1744:1152",
             "1152:1744",
         ]
-        | Literal["21:9", "16:9", "9:16", "1:1", "adaptive"]
+        | Literal[
+            "1280:720",
+            "720:1280",
+            "940:940",
+            "1460:624",
+            "1920:1080",
+            "1080:1920",
+            "1440:1440",
+            "2200:940",
+            "auto_720p",
+            "auto_1080p",
+        ]
         | Omit = omit,
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
         output_format: Literal[
@@ -3238,7 +3277,6 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         resolution: Literal["768p", "2k", "768P", "2K"]
         | Literal["480p", "720p", "1080p"]
         | Literal["480p", "768p"]
-        | Literal["720p", "1080p"]
         | Omit = omit,
         cfg_scale: float | Omit = omit,
         prompt_expansion_mode: Literal["disabled", "balanced", "quality"] | Omit = omit,

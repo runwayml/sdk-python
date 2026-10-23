@@ -1085,14 +1085,14 @@ class Kling4(TypedDict, total=False):
     [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
+    ratio: Literal["auto_720p", "auto_1080p"]
+    """Output quality tier. The video keeps the input media framing."""
+
     references: Iterable[Kling4Reference]
     """Images of characters, objects or styles to use in the video.
 
     Up to 10 images in total, frames included.
     """
-
-    resolution: Literal["720p", "1080p"]
-    """The resolution of the output video."""
 
 
 class Kling4Reference(TypedDict, total=False):

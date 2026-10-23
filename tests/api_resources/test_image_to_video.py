@@ -1295,9 +1295,9 @@ class TestImageToVideo:
             prompt_image="https://example.com/image.jpg",
             duration=3,
             prompt_text="x",
+            ratio="auto_720p",
             references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[{}],
-            resolution="720p",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2611,9 +2611,9 @@ class TestAsyncImageToVideo:
             prompt_image="https://example.com/image.jpg",
             duration=3,
             prompt_text="x",
+            ratio="auto_720p",
             references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[{}],
-            resolution="720p",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 

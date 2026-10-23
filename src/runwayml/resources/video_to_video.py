@@ -745,15 +745,15 @@ class VideoToVideoResource(SyncAPIResource):
         model: Literal["kling_4"],
         prompt_text: str,
         video_uri: str,
+        ratio: Literal["auto_720p", "auto_1080p"] | Omit = omit,
         references: Iterable[video_to_video_create_params.Kling4Reference] | Omit = omit,
-        resolution: Literal["720p", "1080p"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
 
@@ -764,10 +764,10 @@ class VideoToVideoResource(SyncAPIResource):
               `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
+          ratio: Output quality tier. The video keeps the input media framing.
+
           references: Images of characters, objects or styles to use in the video. Up to 10 images in
               total, frames included.
-
-          resolution: The resolution of the output video.
 
           extra_headers: Send extra headers
 
@@ -871,6 +871,7 @@ class VideoToVideoResource(SyncAPIResource):
             "1248:1664",
             "1080:1920",
         ]
+        | Literal["auto_720p", "auto_1080p"]
         | Omit = omit,
         seed: int | Omit = omit,
         target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
@@ -904,7 +905,7 @@ class VideoToVideoResource(SyncAPIResource):
         | Iterable[video_to_video_create_params.Seedance2MiniReferenceVideo]
         | Iterable[video_to_video_create_params.Seedance2_5ReferenceVideo]
         | Omit = omit,
-        resolution: Literal["768p", "2k", "768P", "2K"] | Literal["720p", "1080p"] | Omit = omit,
+        resolution: Literal["768p", "2k", "768P", "2K"] | Omit = omit,
         audio: bool | Omit = omit,
         mode: Literal["reference", "extend", "edit"] | Omit = omit,
         draft: bool | Omit = omit,
@@ -1664,15 +1665,15 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         model: Literal["kling_4"],
         prompt_text: str,
         video_uri: str,
+        ratio: Literal["auto_720p", "auto_1080p"] | Omit = omit,
         references: Iterable[video_to_video_create_params.Kling4Reference] | Omit = omit,
-        resolution: Literal["720p", "1080p"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncNewTaskCreatedResponse:
+    ) -> VideoToVideoCreateResponse:
         """
         This endpoint will start a new task to generate a video from a video.
 
@@ -1683,10 +1684,10 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
               `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
+          ratio: Output quality tier. The video keeps the input media framing.
+
           references: Images of characters, objects or styles to use in the video. Up to 10 images in
               total, frames included.
-
-          resolution: The resolution of the output video.
 
           extra_headers: Send extra headers
 
@@ -1790,6 +1791,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
             "1248:1664",
             "1080:1920",
         ]
+        | Literal["auto_720p", "auto_1080p"]
         | Omit = omit,
         seed: int | Omit = omit,
         target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
@@ -1823,7 +1825,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         | Iterable[video_to_video_create_params.Seedance2MiniReferenceVideo]
         | Iterable[video_to_video_create_params.Seedance2_5ReferenceVideo]
         | Omit = omit,
-        resolution: Literal["768p", "2k", "768P", "2K"] | Literal["720p", "1080p"] | Omit = omit,
+        resolution: Literal["768p", "2k", "768P", "2K"] | Omit = omit,
         audio: bool | Omit = omit,
         mode: Literal["reference", "extend", "edit"] | Omit = omit,
         draft: bool | Omit = omit,
