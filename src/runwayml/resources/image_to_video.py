@@ -1407,6 +1407,53 @@ class ImageToVideoResource(SyncAPIResource):
         """
         ...
 
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["kling_4"],
+        prompt_image: Union[str, Iterable[object]],
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        references: Iterable[image_to_video_create_params.Kling4Reference] | Omit = omit,
+        reference_videos: Iterable[object] | Omit = omit,
+        resolution: Literal["720p", "1080p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: The first frame of the video, or an array with a first frame and optional middle
+              and last frames. The video follows the first frame’s aspect ratio.
+
+          duration: The duration of the output video in seconds.
+
+          prompt_text: A text prompt describing what should happen in the video.
+
+          references: Images of characters, objects or styles to use in the video. Up to 10 images in
+              total, frames included.
+
+          reference_videos: Up to 5 videos whose style, motion or camera work should guide the output,
+              together at most 30 seconds long.
+
+          resolution: The resolution of the output video.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["duration", "model", "prompt_image", "prompt_text", "ratio"],
         ["model", "prompt_image", "ratio"],
@@ -1445,7 +1492,8 @@ class ImageToVideoResource(SyncAPIResource):
         | Literal["wan3_prime"]
         | Literal["h3_max"]
         | Literal["seedance2_5"]
-        | Literal["grok_imagine_1_5_lite"],
+        | Literal["grok_imagine_1_5_lite"]
+        | Literal["kling_4"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
@@ -1593,6 +1641,7 @@ class ImageToVideoResource(SyncAPIResource):
         references: Union[str, Iterable[image_to_video_create_params.KlingO3_4kReferencesReferenceImage]]
         | Union[str, Iterable[image_to_video_create_params.KlingO3ProReferencesReferenceImage]]
         | Union[str, Iterable[image_to_video_create_params.KlingO3StandardReferencesReferenceImage]]
+        | Iterable[image_to_video_create_params.Kling4Reference]
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Hailuo3ReferenceAudio]
         | Iterable[image_to_video_create_params.Seedance2ReferenceAudio]
@@ -1606,10 +1655,12 @@ class ImageToVideoResource(SyncAPIResource):
         | Literal["720p", "1080p", "720P", "1080P"]
         | Literal["480p", "720p", "1080p"]
         | Literal["480p", "768p"]
+        | Literal["720p", "1080p"]
         | Omit = omit,
         cfg_scale: float | Omit = omit,
         reference_videos: Iterable[image_to_video_create_params.Wan3ReferenceVideo]
         | Iterable[image_to_video_create_params.Wan3PrimeReferenceVideo]
+        | Iterable[object]
         | Omit = omit,
         prompt_expansion_mode: Literal["disabled", "balanced", "quality"] | Omit = omit,
         draft: bool | Omit = omit,
@@ -3030,6 +3081,53 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         """
         ...
 
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["kling_4"],
+        prompt_image: Union[str, Iterable[object]],
+        duration: int | Omit = omit,
+        prompt_text: str | Omit = omit,
+        references: Iterable[image_to_video_create_params.Kling4Reference] | Omit = omit,
+        reference_videos: Iterable[object] | Omit = omit,
+        resolution: Literal["720p", "1080p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ImageToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: The first frame of the video, or an array with a first frame and optional middle
+              and last frames. The video follows the first frame’s aspect ratio.
+
+          duration: The duration of the output video in seconds.
+
+          prompt_text: A text prompt describing what should happen in the video.
+
+          references: Images of characters, objects or styles to use in the video. Up to 10 images in
+              total, frames included.
+
+          reference_videos: Up to 5 videos whose style, motion or camera work should guide the output,
+              together at most 30 seconds long.
+
+          resolution: The resolution of the output video.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["duration", "model", "prompt_image", "prompt_text", "ratio"],
         ["model", "prompt_image", "ratio"],
@@ -3068,7 +3166,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Literal["wan3_prime"]
         | Literal["h3_max"]
         | Literal["seedance2_5"]
-        | Literal["grok_imagine_1_5_lite"],
+        | Literal["grok_imagine_1_5_lite"]
+        | Literal["kling_4"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
@@ -3216,6 +3315,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         references: Union[str, Iterable[image_to_video_create_params.KlingO3_4kReferencesReferenceImage]]
         | Union[str, Iterable[image_to_video_create_params.KlingO3ProReferencesReferenceImage]]
         | Union[str, Iterable[image_to_video_create_params.KlingO3StandardReferencesReferenceImage]]
+        | Iterable[image_to_video_create_params.Kling4Reference]
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Hailuo3ReferenceAudio]
         | Iterable[image_to_video_create_params.Seedance2ReferenceAudio]
@@ -3229,10 +3329,12 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Literal["720p", "1080p", "720P", "1080P"]
         | Literal["480p", "720p", "1080p"]
         | Literal["480p", "768p"]
+        | Literal["720p", "1080p"]
         | Omit = omit,
         cfg_scale: float | Omit = omit,
         reference_videos: Iterable[image_to_video_create_params.Wan3ReferenceVideo]
         | Iterable[image_to_video_create_params.Wan3PrimeReferenceVideo]
+        | Iterable[object]
         | Omit = omit,
         prompt_expansion_mode: Literal["disabled", "balanced", "quality"] | Omit = omit,
         draft: bool | Omit = omit,

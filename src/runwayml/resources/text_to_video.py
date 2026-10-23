@@ -1336,6 +1336,53 @@ class TextToVideoResource(SyncAPIResource):
         """
         ...
 
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["kling_4"],
+        prompt_text: str,
+        duration: int | Omit = omit,
+        ratio: Literal["21:9", "16:9", "9:16", "1:1", "adaptive"] | Omit = omit,
+        references: Iterable[text_to_video_create_params.Kling4Reference] | Omit = omit,
+        reference_videos: Iterable[object] | Omit = omit,
+        resolution: Literal["720p", "1080p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a text prompt.
+
+        Args:
+          prompt_text: A text prompt describing what should happen in the video.
+
+          duration: The duration of the output video in seconds.
+
+          ratio: The aspect ratio of the output video. `adaptive` lets Kling pick one that suits
+              the prompt and references.
+
+          references: Images of characters, objects or styles to use in the video. Up to 10 images in
+              total, frames included.
+
+          reference_videos: Up to 5 videos whose style, motion or camera work should guide the output,
+              together at most 30 seconds long.
+
+          resolution: The resolution of the output video.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["duration", "model", "prompt_text", "ratio"],
         ["model", "prompt_text", "ratio"],
@@ -1374,7 +1421,8 @@ class TextToVideoResource(SyncAPIResource):
         | Literal["wan3_prime"]
         | Literal["h3_max"]
         | Literal["seedance2_5"]
-        | Literal["grok_imagine_1_5_lite"],
+        | Literal["grok_imagine_1_5_lite"]
+        | Literal["kling_4"],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
@@ -1500,6 +1548,7 @@ class TextToVideoResource(SyncAPIResource):
             "1744:1152",
             "1152:1744",
         ]
+        | Literal["21:9", "16:9", "9:16", "1:1", "adaptive"]
         | Omit = omit,
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
         output_format: Literal[
@@ -1547,6 +1596,7 @@ class TextToVideoResource(SyncAPIResource):
         | Iterable[text_to_video_create_params.GeminiOmniFlash1_1Reference]
         | Iterable[text_to_video_create_params.Wan3PrimeReference]
         | Iterable[text_to_video_create_params.Seedance2_5Reference]
+        | Iterable[text_to_video_create_params.Kling4Reference]
         | Omit = omit,
         reference_videos: Iterable[text_to_video_create_params.Hailuo3ReferenceVideo]
         | Iterable[text_to_video_create_params.Seedance2ReferenceVideo]
@@ -1556,10 +1606,12 @@ class TextToVideoResource(SyncAPIResource):
         | Iterable[text_to_video_create_params.GeminiOmniFlash1_1ReferenceVideo]
         | Iterable[text_to_video_create_params.Wan3PrimeReferenceVideo]
         | Iterable[text_to_video_create_params.Seedance2_5ReferenceVideo]
+        | Iterable[object]
         | Omit = omit,
         resolution: Literal["768p", "2k", "768P", "2K"]
         | Literal["480p", "720p", "1080p"]
         | Literal["480p", "768p"]
+        | Literal["720p", "1080p"]
         | Omit = omit,
         cfg_scale: float | Omit = omit,
         prompt_expansion_mode: Literal["disabled", "balanced", "quality"] | Omit = omit,
@@ -2911,6 +2963,53 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         """
         ...
 
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["kling_4"],
+        prompt_text: str,
+        duration: int | Omit = omit,
+        ratio: Literal["21:9", "16:9", "9:16", "1:1", "adaptive"] | Omit = omit,
+        references: Iterable[text_to_video_create_params.Kling4Reference] | Omit = omit,
+        reference_videos: Iterable[object] | Omit = omit,
+        resolution: Literal["720p", "1080p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a text prompt.
+
+        Args:
+          prompt_text: A text prompt describing what should happen in the video.
+
+          duration: The duration of the output video in seconds.
+
+          ratio: The aspect ratio of the output video. `adaptive` lets Kling pick one that suits
+              the prompt and references.
+
+          references: Images of characters, objects or styles to use in the video. Up to 10 images in
+              total, frames included.
+
+          reference_videos: Up to 5 videos whose style, motion or camera work should guide the output,
+              together at most 30 seconds long.
+
+          resolution: The resolution of the output video.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["duration", "model", "prompt_text", "ratio"],
         ["model", "prompt_text", "ratio"],
@@ -2949,7 +3048,8 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Literal["wan3_prime"]
         | Literal["h3_max"]
         | Literal["seedance2_5"]
-        | Literal["grok_imagine_1_5_lite"],
+        | Literal["grok_imagine_1_5_lite"]
+        | Literal["kling_4"],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
@@ -3075,6 +3175,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
             "1744:1152",
             "1152:1744",
         ]
+        | Literal["21:9", "16:9", "9:16", "1:1", "adaptive"]
         | Omit = omit,
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
         output_format: Literal[
@@ -3122,6 +3223,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Iterable[text_to_video_create_params.GeminiOmniFlash1_1Reference]
         | Iterable[text_to_video_create_params.Wan3PrimeReference]
         | Iterable[text_to_video_create_params.Seedance2_5Reference]
+        | Iterable[text_to_video_create_params.Kling4Reference]
         | Omit = omit,
         reference_videos: Iterable[text_to_video_create_params.Hailuo3ReferenceVideo]
         | Iterable[text_to_video_create_params.Seedance2ReferenceVideo]
@@ -3131,10 +3233,12 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Iterable[text_to_video_create_params.GeminiOmniFlash1_1ReferenceVideo]
         | Iterable[text_to_video_create_params.Wan3PrimeReferenceVideo]
         | Iterable[text_to_video_create_params.Seedance2_5ReferenceVideo]
+        | Iterable[object]
         | Omit = omit,
         resolution: Literal["768p", "2k", "768P", "2K"]
         | Literal["480p", "720p", "1080p"]
         | Literal["480p", "768p"]
+        | Literal["720p", "1080p"]
         | Omit = omit,
         cfg_scale: float | Omit = omit,
         prompt_expansion_mode: Literal["disabled", "balanced", "quality"] | Omit = omit,
