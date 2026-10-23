@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..types import text_to_image_create_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -1334,6 +1334,107 @@ class TextToImageResource(SyncAPIResource):
     def create(
         self,
         *,
+        model: Literal["recraft_v4_1_flash"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "1536:768",
+            "768:1536",
+            "1280:832",
+            "832:1280",
+            "1216:896",
+            "896:1216",
+            "1152:896",
+            "896:1152",
+            "832:1344",
+            "1280:896",
+            "896:1280",
+            "1344:768",
+            "768:1344",
+        ],
+        background_color: str | Omit = omit,
+        colors: SequenceNotStr[str] | Omit = omit,
+        output_count: int | Omit = omit,
+        output_format: Literal["webp", "png"] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A description of the image you want to generate.
+
+          ratio: The output dimensions, expressed as `<width>:<height>`.
+
+          background_color: A preferred background color as a six-digit hex string.
+
+          colors: Preferred colors as six-digit hex strings.
+
+          output_count: The number of images to generate. Each image is billed separately.
+
+          output_format: The output file format. Defaults to webp.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["recraft_v4_1_vector"],
+        prompt_text: str,
+        background_color: str | Omit = omit,
+        colors: SequenceNotStr[str] | Omit = omit,
+        ratio: Literal["1024:1024", "1216:896", "896:1216", "1344:768", "768:1344"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: Describe the vector illustration you want to generate.
+
+          background_color: The preferred background color as a six-digit hex value. This is a generation
+              hint, not an exact color constraint; the generated background may use a
+              different shade.
+
+          colors: Preferred colors as six-digit hex values, such as #FF8800.
+
+          ratio: The width and height declared by the output SVG. Vector artwork can be scaled
+              after generation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -1403,6 +1504,8 @@ class TextToImageResource(SyncAPIResource):
         | Literal["ideogram_4_5"]
         | Literal["seedream5_flash"]
         | Literal["nano_banana_2.1"]
+        | Literal["recraft_v4_1_flash"]
+        | Literal["recraft_v4_1_vector"]
         | Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -1775,6 +1878,23 @@ class TextToImageResource(SyncAPIResource):
             "11712:1408",
         ]
         | Literal[
+            "1024:1024",
+            "1536:768",
+            "768:1536",
+            "1280:832",
+            "832:1280",
+            "1216:896",
+            "896:1216",
+            "1152:896",
+            "896:1152",
+            "832:1344",
+            "1280:896",
+            "896:1280",
+            "1344:768",
+            "768:1344",
+        ]
+        | Literal["1024:1024", "1216:896", "896:1216", "1344:768", "768:1344"]
+        | Literal[
             "1344:768",
             "768:1344",
             "1024:1024",
@@ -1819,12 +1939,14 @@ class TextToImageResource(SyncAPIResource):
         | Literal["low", "medium", "high"]
         | Literal["very_low", "low", "medium", "high"]
         | Omit = omit,
-        output_format: Literal["webp", "png", "jpeg"] | Literal["png", "jpeg"] | Omit = omit,
+        output_format: Literal["webp", "png", "jpeg"] | Literal["png", "jpeg"] | Literal["webp", "png"] | Omit = omit,
         grounding: bool | Omit = omit,
         edit: bool | Omit = omit,
         mask_uri: str | Omit = omit,
         precise_edit: bool | Omit = omit,
         thinking_level: Literal["minimal", "medium", "high"] | Omit = omit,
+        background_color: str | Omit = omit,
+        colors: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1851,6 +1973,8 @@ class TextToImageResource(SyncAPIResource):
                     "mask_uri": mask_uri,
                     "precise_edit": precise_edit,
                     "thinking_level": thinking_level,
+                    "background_color": background_color,
+                    "colors": colors,
                 },
                 text_to_image_create_params.TextToImageCreateParams,
             ),
@@ -3165,6 +3289,107 @@ class AsyncTextToImageResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        model: Literal["recraft_v4_1_flash"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "1536:768",
+            "768:1536",
+            "1280:832",
+            "832:1280",
+            "1216:896",
+            "896:1216",
+            "1152:896",
+            "896:1152",
+            "832:1344",
+            "1280:896",
+            "896:1280",
+            "1344:768",
+            "768:1344",
+        ],
+        background_color: str | Omit = omit,
+        colors: SequenceNotStr[str] | Omit = omit,
+        output_count: int | Omit = omit,
+        output_format: Literal["webp", "png"] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A description of the image you want to generate.
+
+          ratio: The output dimensions, expressed as `<width>:<height>`.
+
+          background_color: A preferred background color as a six-digit hex string.
+
+          colors: Preferred colors as six-digit hex strings.
+
+          output_count: The number of images to generate. Each image is billed separately.
+
+          output_format: The output file format. Defaults to webp.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["recraft_v4_1_vector"],
+        prompt_text: str,
+        background_color: str | Omit = omit,
+        colors: SequenceNotStr[str] | Omit = omit,
+        ratio: Literal["1024:1024", "1216:896", "896:1216", "1344:768", "768:1344"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: Describe the vector illustration you want to generate.
+
+          background_color: The preferred background color as a six-digit hex value. This is a generation
+              hint, not an exact color constraint; the generated background may use a
+              different shade.
+
+          colors: Preferred colors as six-digit hex values, such as #FF8800.
+
+          ratio: The width and height declared by the output SVG. Vector artwork can be scaled
+              after generation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -3234,6 +3459,8 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Literal["ideogram_4_5"]
         | Literal["seedream5_flash"]
         | Literal["nano_banana_2.1"]
+        | Literal["recraft_v4_1_flash"]
+        | Literal["recraft_v4_1_vector"]
         | Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -3606,6 +3833,23 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "11712:1408",
         ]
         | Literal[
+            "1024:1024",
+            "1536:768",
+            "768:1536",
+            "1280:832",
+            "832:1280",
+            "1216:896",
+            "896:1216",
+            "1152:896",
+            "896:1152",
+            "832:1344",
+            "1280:896",
+            "896:1280",
+            "1344:768",
+            "768:1344",
+        ]
+        | Literal["1024:1024", "1216:896", "896:1216", "1344:768", "768:1344"]
+        | Literal[
             "1344:768",
             "768:1344",
             "1024:1024",
@@ -3650,12 +3894,14 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Literal["low", "medium", "high"]
         | Literal["very_low", "low", "medium", "high"]
         | Omit = omit,
-        output_format: Literal["webp", "png", "jpeg"] | Literal["png", "jpeg"] | Omit = omit,
+        output_format: Literal["webp", "png", "jpeg"] | Literal["png", "jpeg"] | Literal["webp", "png"] | Omit = omit,
         grounding: bool | Omit = omit,
         edit: bool | Omit = omit,
         mask_uri: str | Omit = omit,
         precise_edit: bool | Omit = omit,
         thinking_level: Literal["minimal", "medium", "high"] | Omit = omit,
+        background_color: str | Omit = omit,
+        colors: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3682,6 +3928,8 @@ class AsyncTextToImageResource(AsyncAPIResource):
                     "mask_uri": mask_uri,
                     "precise_edit": precise_edit,
                     "thinking_level": thinking_level,
+                    "background_color": background_color,
+                    "colors": colors,
                 },
                 text_to_image_create_params.TextToImageCreateParams,
             ),

@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = [
@@ -47,6 +48,8 @@ __all__ = [
     "Seedream5FlashReferenceImage",
     "NanoBanana2_1",
     "NanoBanana2_1ReferenceImage",
+    "RecraftV4_1Flash",
+    "RecraftV4_1Vector",
     "Gemini2_5Flash",
     "Gemini2_5FlashReferenceImage",
 ]
@@ -1352,6 +1355,70 @@ class NanoBanana2_1ReferenceImage(TypedDict, total=False):
     """
 
 
+class RecraftV4_1Flash(TypedDict, total=False):
+    model: Required[Literal["recraft_v4_1_flash"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A description of the image you want to generate."""
+
+    ratio: Required[
+        Literal[
+            "1024:1024",
+            "1536:768",
+            "768:1536",
+            "1280:832",
+            "832:1280",
+            "1216:896",
+            "896:1216",
+            "1152:896",
+            "896:1152",
+            "832:1344",
+            "1280:896",
+            "896:1280",
+            "1344:768",
+            "768:1344",
+        ]
+    ]
+    """The output dimensions, expressed as `<width>:<height>`."""
+
+    background_color: Annotated[str, PropertyInfo(alias="backgroundColor")]
+    """A preferred background color as a six-digit hex string."""
+
+    colors: SequenceNotStr[str]
+    """Preferred colors as six-digit hex strings."""
+
+    output_count: Annotated[int, PropertyInfo(alias="outputCount")]
+    """The number of images to generate. Each image is billed separately."""
+
+    output_format: Annotated[Literal["webp", "png"], PropertyInfo(alias="outputFormat")]
+    """The output file format. Defaults to webp."""
+
+    seed: int
+
+
+class RecraftV4_1Vector(TypedDict, total=False):
+    model: Required[Literal["recraft_v4_1_vector"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """Describe the vector illustration you want to generate."""
+
+    background_color: Annotated[str, PropertyInfo(alias="backgroundColor")]
+    """The preferred background color as a six-digit hex value.
+
+    This is a generation hint, not an exact color constraint; the generated
+    background may use a different shade.
+    """
+
+    colors: SequenceNotStr[str]
+    """Preferred colors as six-digit hex values, such as #FF8800."""
+
+    ratio: Literal["1024:1024", "1216:896", "896:1216", "1344:768", "768:1344"]
+    """The width and height declared by the output SVG.
+
+    Vector artwork can be scaled after generation.
+    """
+
+
 class Gemini2_5Flash(TypedDict, total=False):
     model: Required[Literal["gemini_2.5_flash"]]
 
@@ -1417,5 +1484,7 @@ TextToImageCreateParams: TypeAlias = Union[
     Ideogram4_5,
     Seedream5Flash,
     NanoBanana2_1,
+    RecraftV4_1Flash,
+    RecraftV4_1Vector,
     Gemini2_5Flash,
 ]

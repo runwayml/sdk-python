@@ -25,7 +25,6 @@ __all__ = [
     "KlingO3_4kProviderSettingsMultiPrompt",
     "KlingO3_4kReferencesReferenceImage",
     "Hailuo3",
-    "Hailuo3PromptImagePromptImage",
     "Hailuo3ReferenceAudio",
     "Kling3_0_4k",
     "Kling3_0_4kPromptImagePromptImage",
@@ -67,13 +66,11 @@ __all__ = [
     "GrokImagine1_5",
     "GrokImagine1_5PromptImagePromptImage",
     "Wan3",
-    "Wan3PromptImagePromptImage",
     "Wan3ReferenceAudio",
     "Wan3ReferenceVideo",
     "GeminiOmniFlash1_1",
     "GeminiOmniFlash1_1PromptImagePromptImage",
     "Wan3Prime",
-    "Wan3PrimePromptImagePromptImage",
     "Wan3PrimeReferenceAudio",
     "Wan3PrimeReferenceVideo",
     "H3Max",
@@ -473,9 +470,7 @@ class KlingO3_4kReferencesReferenceImage(TypedDict, total=False):
 class Hailuo3(TypedDict, total=False):
     model: Required[Literal["hailuo3"]]
 
-    prompt_image: Required[
-        Annotated[Union[str, Iterable[Hailuo3PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
-    ]
+    prompt_image: Required[Annotated[Union[str, Iterable[object]], PropertyInfo(alias="promptImage")]]
     """An image or array of images.
 
     Use position `first`/`last` for keyframe mode, or omit position for reference
@@ -507,22 +502,6 @@ class Hailuo3(TypedDict, total=False):
 
     - `768P` - Deprecated: Use "768p" instead.
     - `2K` - Deprecated: Use "2k" instead.
-    """
-
-
-class Hailuo3PromptImagePromptImage(TypedDict, total=False):
-    uri: Required[str]
-    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-
-    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-    [our docs](/assets/inputs#images) on image inputs for more information.
-    """
-
-    position: Literal["first", "last"]
-    """The position of the image in the output video.
-
-    "first" will use the image as the first frame, "last" as the last frame. Omit
-    for a reference image.
     """
 
 
@@ -1418,9 +1397,7 @@ class GrokImagine1_5PromptImagePromptImage(TypedDict, total=False):
 class Wan3(TypedDict, total=False):
     model: Required[Literal["wan3"]]
 
-    prompt_image: Required[
-        Annotated[Union[str, Iterable[Wan3PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
-    ]
+    prompt_image: Required[Annotated[Union[str, Iterable[object]], PropertyInfo(alias="promptImage")]]
     """An image or array of images.
 
     Use position `first`/`last` for keyframe mode, or omit position for reference
@@ -1473,22 +1450,6 @@ class Wan3(TypedDict, total=False):
 
     The combined duration across all video references must not exceed 15 seconds.
     See [our docs](/assets/inputs#videos) on video inputs for more information.
-    """
-
-
-class Wan3PromptImagePromptImage(TypedDict, total=False):
-    uri: Required[str]
-    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-
-    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-    [our docs](/assets/inputs#images) on image inputs for more information.
-    """
-
-    position: Literal["first", "last"]
-    """The position of the image in the output video.
-
-    "first" will use the image as the first frame, "last" as the last frame. Omit
-    for a reference image.
     """
 
 
@@ -1569,9 +1530,7 @@ class GeminiOmniFlash1_1PromptImagePromptImage(TypedDict, total=False):
 class Wan3Prime(TypedDict, total=False):
     model: Required[Literal["wan3_prime"]]
 
-    prompt_image: Required[
-        Annotated[Union[str, Iterable[Wan3PrimePromptImagePromptImage]], PropertyInfo(alias="promptImage")]
-    ]
+    prompt_image: Required[Annotated[Union[str, Iterable[object]], PropertyInfo(alias="promptImage")]]
     """An image or array of images.
 
     Use position `first`/`last` for keyframe mode, or omit position for reference
@@ -1624,22 +1583,6 @@ class Wan3Prime(TypedDict, total=False):
 
     The combined duration across all video references must not exceed 15 seconds.
     See [our docs](/assets/inputs#videos) on video inputs for more information.
-    """
-
-
-class Wan3PrimePromptImagePromptImage(TypedDict, total=False):
-    uri: Required[str]
-    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
-
-    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
-    [our docs](/assets/inputs#images) on image inputs for more information.
-    """
-
-    position: Literal["first", "last"]
-    """The position of the image in the output video.
-
-    "first" will use the image as the first frame, "last" as the last frame. Omit
-    for a reference image.
     """
 
 

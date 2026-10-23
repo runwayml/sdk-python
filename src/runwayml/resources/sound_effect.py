@@ -106,6 +106,51 @@ class SoundEffectResource(SyncAPIResource):
     def create(
         self,
         *,
+        duration: float,
+        model: Literal["mirelo_sfx_2_0"],
+        prompt_text: str,
+        format: Literal["mp3", "wav", "flac"] | Omit = omit,
+        negative_prompt: str | Omit = omit,
+        num_variants: int | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate sound effects from a text
+        description.
+
+        Args:
+          duration: The duration of the generated audio in seconds.
+
+          prompt_text: A description of the sound effects to generate.
+
+          format: The format of the generated audio.
+
+          negative_prompt: Sounds to avoid in the generated audio.
+
+          num_variants: The number of audio variations to generate.
+
+          seed: A seed for reproducible generation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["eleven_text_to_sound_v2"],
         prompt_text: str,
         duration: float | Omit = omit,
@@ -140,11 +185,11 @@ class SoundEffectResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["model", "prompt_text"])
+    @required_args(["model", "prompt_text"], ["duration", "model", "prompt_text"])
     def create(
         self,
         *,
-        model: Literal["seed_audio"] | Literal["eleven_text_to_sound_v2"],
+        model: Literal["seed_audio"] | Literal["mirelo_sfx_2_0"] | Literal["eleven_text_to_sound_v2"],
         prompt_text: str,
         loudness_rate: int | Omit = omit,
         output_format: Literal["wav", "mp3", "ogg_opus"] | Omit = omit,
@@ -153,6 +198,10 @@ class SoundEffectResource(SyncAPIResource):
         sample_rate: Literal[8000, 16000, 24000, 32000, 44100, 48000] | Omit = omit,
         speech_rate: int | Omit = omit,
         duration: float | Omit = omit,
+        format: Literal["mp3", "wav", "flac"] | Omit = omit,
+        negative_prompt: str | Omit = omit,
+        num_variants: int | Omit = omit,
+        seed: int | Omit = omit,
         loop: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -174,6 +223,10 @@ class SoundEffectResource(SyncAPIResource):
                     "sample_rate": sample_rate,
                     "speech_rate": speech_rate,
                     "duration": duration,
+                    "format": format,
+                    "negative_prompt": negative_prompt,
+                    "num_variants": num_variants,
+                    "seed": seed,
                     "loop": loop,
                 },
                 sound_effect_create_params.SoundEffectCreateParams,
@@ -262,6 +315,51 @@ class AsyncSoundEffectResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        duration: float,
+        model: Literal["mirelo_sfx_2_0"],
+        prompt_text: str,
+        format: Literal["mp3", "wav", "flac"] | Omit = omit,
+        negative_prompt: str | Omit = omit,
+        num_variants: int | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate sound effects from a text
+        description.
+
+        Args:
+          duration: The duration of the generated audio in seconds.
+
+          prompt_text: A description of the sound effects to generate.
+
+          format: The format of the generated audio.
+
+          negative_prompt: Sounds to avoid in the generated audio.
+
+          num_variants: The number of audio variations to generate.
+
+          seed: A seed for reproducible generation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["eleven_text_to_sound_v2"],
         prompt_text: str,
         duration: float | Omit = omit,
@@ -296,11 +394,11 @@ class AsyncSoundEffectResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["model", "prompt_text"])
+    @required_args(["model", "prompt_text"], ["duration", "model", "prompt_text"])
     async def create(
         self,
         *,
-        model: Literal["seed_audio"] | Literal["eleven_text_to_sound_v2"],
+        model: Literal["seed_audio"] | Literal["mirelo_sfx_2_0"] | Literal["eleven_text_to_sound_v2"],
         prompt_text: str,
         loudness_rate: int | Omit = omit,
         output_format: Literal["wav", "mp3", "ogg_opus"] | Omit = omit,
@@ -309,6 +407,10 @@ class AsyncSoundEffectResource(AsyncAPIResource):
         sample_rate: Literal[8000, 16000, 24000, 32000, 44100, 48000] | Omit = omit,
         speech_rate: int | Omit = omit,
         duration: float | Omit = omit,
+        format: Literal["mp3", "wav", "flac"] | Omit = omit,
+        negative_prompt: str | Omit = omit,
+        num_variants: int | Omit = omit,
+        seed: int | Omit = omit,
         loop: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -330,6 +432,10 @@ class AsyncSoundEffectResource(AsyncAPIResource):
                     "sample_rate": sample_rate,
                     "speech_rate": speech_rate,
                     "duration": duration,
+                    "format": format,
+                    "negative_prompt": negative_prompt,
+                    "num_variants": num_variants,
+                    "seed": seed,
                     "loop": loop,
                 },
                 sound_effect_create_params.SoundEffectCreateParams,
