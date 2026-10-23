@@ -1,5 +1,23 @@
 # Changelog
 
+## [5.24.0](https://github.com/runwayml/sdk-python/compare/v5.23.0...v5.24.0) (2026-10-23)
+
+
+### Features
+
+* add Kling 4.0 video generation ([5d05df3](https://github.com/runwayml/sdk-python/commit/5d05df3bf35176ceb9a9d3f5fff0ae02a07de0c7))
+
+
+### Bug Fixes
+
+* use pixel output ratios for Kling 4 ([e4fdbf3](https://github.com/runwayml/sdk-python/commit/e4fdbf35eb7094877dd2b0c50009114fe411e8a3))
+
+
+### Chores
+
+* **internal:** make new model overloads return waitable responses ([05eef19](https://github.com/runwayml/sdk-python/commit/05eef197b5163923f50f53239a3607a0fb91ea63))
+* **internal:** make new model overloads return waitable responses ([3db312b](https://github.com/runwayml/sdk-python/commit/3db312b4e2ae8d9e905658b9ffe476e9d840cb3c))
+
 ## [5.23.0](https://github.com/runwayml/sdk-python/compare/v5.22.0...v5.23.0) (2026-10-23)
 
 
