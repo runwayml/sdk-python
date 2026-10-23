@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.24.0](https://github.com/runwayml/sdk-python/compare/v5.23.0...v5.24.0) (2026-10-23)
+
+### Features
+
+* Add Kling 4.0 text-to-video, image-to-video, and video-to-video generation.
+* Support pixel output ratios for text-to-video and automatic 720p or 1080p sizing across Kling 4.0 endpoints.
+* Kling 4.0 task responses support `wait_for_task_output()` in both synchronous and asynchronous clients.
+
 ## [5.23.0](https://github.com/runwayml/sdk-python/compare/v5.22.0...v5.23.0) (2026-10-23)
 
 
