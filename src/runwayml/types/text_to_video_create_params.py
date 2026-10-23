@@ -70,6 +70,8 @@ __all__ = [
     "Seedance2_5Reference",
     "Seedance2_5ReferenceVideo",
     "GrokImagine1_5Lite",
+    "Kling4",
+    "Kling4Reference",
 ]
 
 
@@ -1476,6 +1478,55 @@ class GrokImagine1_5Lite(TypedDict, total=False):
     """
 
 
+class Kling4(TypedDict, total=False):
+    model: Required[Literal["kling_4"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A text prompt describing what should happen in the video."""
+
+    duration: int
+    """The duration of the output video in seconds."""
+
+    ratio: Literal[
+        "1280:720",
+        "720:1280",
+        "940:940",
+        "1460:624",
+        "1920:1080",
+        "1080:1920",
+        "1440:1440",
+        "2200:940",
+        "auto_720p",
+        "auto_1080p",
+    ]
+    """The target output size.
+
+    Use a pixel ratio such as `1280:720` or `auto_720p` / `auto_1080p` for adaptive
+    framing.
+    """
+
+    references: Iterable[Kling4Reference]
+    """Images of characters, objects or styles to use in the video.
+
+    Up to 10 images in total, frames included.
+    """
+
+    reference_videos: Annotated[Iterable[object], PropertyInfo(alias="referenceVideos")]
+    """
+    Up to 5 videos whose style, motion or camera work should guide the output,
+    together at most 30 seconds long.
+    """
+
+
+class Kling4Reference(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
 TextToVideoCreateParams: TypeAlias = Union[
     Gen4_5,
     Veo3_1,
@@ -1500,4 +1551,5 @@ TextToVideoCreateParams: TypeAlias = Union[
     H3Max,
     Seedance2_5,
     GrokImagine1_5Lite,
+    Kling4,
 ]

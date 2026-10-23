@@ -738,6 +738,47 @@ class VideoToVideoResource(SyncAPIResource):
         """
         ...
 
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["kling_4"],
+        prompt_text: str,
+        video_uri: str,
+        ratio: Literal["auto_720p", "auto_1080p"] | Omit = omit,
+        references: Iterable[video_to_video_create_params.Kling4Reference] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate a video from a video.
+
+        Args:
+          prompt_text: A text prompt describing how to edit the video.
+
+          video_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
+
+          ratio: Output quality tier. The video keeps the input media framing.
+
+          references: Images of characters, objects or styles to use in the video. Up to 10 images in
+              total, frames included.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["model", "video_uri"],
         ["model", "prompt_text", "prompt_video"],
@@ -757,7 +798,8 @@ class VideoToVideoResource(SyncAPIResource):
         | Literal["seedance2_mini"]
         | Literal["gemini_omni_flash"]
         | Literal["gemini_omni_flash_1.1"]
-        | Literal["seedance2_5"],
+        | Literal["seedance2_5"]
+        | Literal["kling_4"],
         video_uri: str | Omit = omit,
         content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
@@ -829,6 +871,7 @@ class VideoToVideoResource(SyncAPIResource):
             "1248:1664",
             "1080:1920",
         ]
+        | Literal["auto_720p", "auto_1080p"]
         | Omit = omit,
         seed: int | Omit = omit,
         target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
@@ -847,6 +890,7 @@ class VideoToVideoResource(SyncAPIResource):
         | Iterable[video_to_video_create_params.GeminiOmniFlashReference]
         | Iterable[video_to_video_create_params.GeminiOmniFlash1_1Reference]
         | Iterable[video_to_video_create_params.Seedance2_5Reference]
+        | Iterable[video_to_video_create_params.Kling4Reference]
         | Omit = omit,
         duration: int | Union[int, Literal["auto"]] | Union[Literal["auto"], int] | Omit = omit,
         reference_audio: Iterable[video_to_video_create_params.Hailuo3ReferenceAudio]
@@ -1614,6 +1658,47 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         """
         ...
 
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["kling_4"],
+        prompt_text: str,
+        video_uri: str,
+        ratio: Literal["auto_720p", "auto_1080p"] | Omit = omit,
+        references: Iterable[video_to_video_create_params.Kling4Reference] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate a video from a video.
+
+        Args:
+          prompt_text: A text prompt describing how to edit the video.
+
+          video_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
+
+          ratio: Output quality tier. The video keeps the input media framing.
+
+          references: Images of characters, objects or styles to use in the video. Up to 10 images in
+              total, frames included.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["model", "video_uri"],
         ["model", "prompt_text", "prompt_video"],
@@ -1633,7 +1718,8 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         | Literal["seedance2_mini"]
         | Literal["gemini_omni_flash"]
         | Literal["gemini_omni_flash_1.1"]
-        | Literal["seedance2_5"],
+        | Literal["seedance2_5"]
+        | Literal["kling_4"],
         video_uri: str | Omit = omit,
         content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
@@ -1705,6 +1791,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
             "1248:1664",
             "1080:1920",
         ]
+        | Literal["auto_720p", "auto_1080p"]
         | Omit = omit,
         seed: int | Omit = omit,
         target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
@@ -1723,6 +1810,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         | Iterable[video_to_video_create_params.GeminiOmniFlashReference]
         | Iterable[video_to_video_create_params.GeminiOmniFlash1_1Reference]
         | Iterable[video_to_video_create_params.Seedance2_5Reference]
+        | Iterable[video_to_video_create_params.Kling4Reference]
         | Omit = omit,
         duration: int | Union[int, Literal["auto"]] | Union[Literal["auto"], int] | Omit = omit,
         reference_audio: Iterable[video_to_video_create_params.Hailuo3ReferenceAudio]

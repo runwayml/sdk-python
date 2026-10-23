@@ -52,6 +52,8 @@ __all__ = [
     "Seedance2_5ReferenceAudio",
     "Seedance2_5Reference",
     "Seedance2_5ReferenceVideo",
+    "Kling4",
+    "Kling4Reference",
 ]
 
 
@@ -1070,6 +1072,38 @@ class Seedance2_5ReferenceVideo(TypedDict, total=False):
     """
 
 
+class Kling4(TypedDict, total=False):
+    model: Required[Literal["kling_4"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A text prompt describing how to edit the video."""
+
+    video_uri: Required[Annotated[str, PropertyInfo(alias="videoUri")]]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+    [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+    ratio: Literal["auto_720p", "auto_1080p"]
+    """Output quality tier. The video keeps the input media framing."""
+
+    references: Iterable[Kling4Reference]
+    """Images of characters, objects or styles to use in the video.
+
+    Up to 10 images in total, frames included.
+    """
+
+
+class Kling4Reference(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
 VideoToVideoCreateParams: TypeAlias = Union[
     Variant0,
     KlingO3_4k,
@@ -1082,4 +1116,5 @@ VideoToVideoCreateParams: TypeAlias = Union[
     GeminiOmniFlash,
     GeminiOmniFlash1_1,
     Seedance2_5,
+    Kling4,
 ]
