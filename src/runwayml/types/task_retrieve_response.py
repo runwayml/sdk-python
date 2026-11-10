@@ -23,6 +23,8 @@ __all__ = [
     "FailedCost",
     "Succeeded",
     "SucceededCost",
+    "SucceededLayer",
+    "SucceededLayerBoundingBox",
 ]
 
 
@@ -174,6 +176,33 @@ class SucceededCost(BaseModel):
     """Credits charged for this task."""
 
 
+class SucceededLayerBoundingBox(BaseModel):
+    """
+    The layer bounds in absolute and normalized coordinates, when returned by the model provider.
+    """
+
+    absolute: List[float]
+
+    normalized: List[float]
+
+
+class SucceededLayer(BaseModel):
+    uri: str
+    """An ephemeral URL for this layer, matching output at the same index."""
+
+    bounding_box: Optional[SucceededLayerBoundingBox] = FieldInfo(alias="boundingBox", default=None)
+    """
+    The layer bounds in absolute and normalized coordinates, when returned by the
+    model provider.
+    """
+
+    name: Optional[str] = None
+    """The layer filename."""
+
+    z_index: Optional[float] = FieldInfo(alias="zIndex", default=None)
+    """The layer stacking order returned by the model provider."""
+
+
 class Succeeded(BaseModel):
     """A succeeded task"""
 
@@ -199,6 +228,12 @@ class Succeeded(BaseModel):
     """
 
     status: Literal["SUCCEEDED"]
+
+    layers: Optional[List[SucceededLayer]] = None
+    """Layer details for successful Seedream 5 Pro Layers tasks.
+
+    Each URI matches the output URL at the same index.
+    """
 
 
 TaskRetrieveResponse: TypeAlias = Annotated[

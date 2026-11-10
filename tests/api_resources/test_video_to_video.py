@@ -323,6 +323,7 @@ class TestVideoToVideo:
             model="seedance2",
             prompt_video="https://example.com/video.mp4",
             audio=True,
+            bitrate="standard",
             duration="auto",
             prompt_text="x",
             ratio="992:432",
@@ -383,6 +384,7 @@ class TestVideoToVideo:
             model="seedance2_fast",
             prompt_video="https://example.com/video.mp4",
             audio=True,
+            bitrate="standard",
             duration="auto",
             prompt_text="x",
             ratio="992:432",
@@ -443,6 +445,7 @@ class TestVideoToVideo:
             model="seedance2_mini",
             prompt_video="https://example.com/video.mp4",
             audio=True,
+            bitrate="standard",
             duration="auto",
             prompt_text="x",
             ratio="992:432",
@@ -640,6 +643,155 @@ class TestVideoToVideo:
         with client.video_to_video.with_streaming_response.create(
             model="seedance2_5",
             prompt_video="https://example.com/video.mp4",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            video_to_video = response.parse()
+            assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_12(self, client: RunwayML) -> None:
+        video_to_video = client.video_to_video.create(
+            model="kling_4",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+        )
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_12(self, client: RunwayML) -> None:
+        video_to_video = client.video_to_video.create(
+            model="kling_4",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+            ratio="auto_720p",
+            references=[{"uri": "https://example.com/image.jpg"}],
+        )
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_12(self, client: RunwayML) -> None:
+        response = client.video_to_video.with_raw_response.create(
+            model="kling_4",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        video_to_video = response.parse()
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_12(self, client: RunwayML) -> None:
+        with client.video_to_video.with_streaming_response.create(
+            model="kling_4",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            video_to_video = response.parse()
+            assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_13(self, client: RunwayML) -> None:
+        video_to_video = client.video_to_video.create(
+            model="gemini_omni_flash_1.2",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+        )
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_13(self, client: RunwayML) -> None:
+        video_to_video = client.video_to_video.create(
+            model="gemini_omni_flash_1.2",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+            duration="auto",
+            mode="reference",
+            ratio="640:360",
+            references=[{"uri": "https://example.com/image.jpg"}],
+            resolution="360p",
+        )
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_13(self, client: RunwayML) -> None:
+        response = client.video_to_video.with_raw_response.create(
+            model="gemini_omni_flash_1.2",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        video_to_video = response.parse()
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_13(self, client: RunwayML) -> None:
+        with client.video_to_video.with_streaming_response.create(
+            model="gemini_omni_flash_1.2",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            video_to_video = response.parse()
+            assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_14(self, client: RunwayML) -> None:
+        video_to_video = client.video_to_video.create(
+            model="kling_4_flash",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+        )
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_14(self, client: RunwayML) -> None:
+        video_to_video = client.video_to_video.create(
+            model="kling_4_flash",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+            duration=3,
+            ratio="1280:720",
+            references=[{"uri": "https://example.com/image.jpg"}],
+            reference_videos=[{"uri": "https://example.com/video.mp4"}],
+        )
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_14(self, client: RunwayML) -> None:
+        response = client.video_to_video.with_raw_response.create(
+            model="kling_4_flash",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        video_to_video = response.parse()
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_14(self, client: RunwayML) -> None:
+        with client.video_to_video.with_streaming_response.create(
+            model="kling_4_flash",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -961,6 +1113,7 @@ class TestAsyncVideoToVideo:
             model="seedance2",
             prompt_video="https://example.com/video.mp4",
             audio=True,
+            bitrate="standard",
             duration="auto",
             prompt_text="x",
             ratio="992:432",
@@ -1021,6 +1174,7 @@ class TestAsyncVideoToVideo:
             model="seedance2_fast",
             prompt_video="https://example.com/video.mp4",
             audio=True,
+            bitrate="standard",
             duration="auto",
             prompt_text="x",
             ratio="992:432",
@@ -1081,6 +1235,7 @@ class TestAsyncVideoToVideo:
             model="seedance2_mini",
             prompt_video="https://example.com/video.mp4",
             audio=True,
+            bitrate="standard",
             duration="auto",
             prompt_text="x",
             ratio="992:432",
@@ -1278,6 +1433,155 @@ class TestAsyncVideoToVideo:
         async with async_client.video_to_video.with_streaming_response.create(
             model="seedance2_5",
             prompt_video="https://example.com/video.mp4",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            video_to_video = await response.parse()
+            assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_12(self, async_client: AsyncRunwayML) -> None:
+        video_to_video = await async_client.video_to_video.create(
+            model="kling_4",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+        )
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_12(self, async_client: AsyncRunwayML) -> None:
+        video_to_video = await async_client.video_to_video.create(
+            model="kling_4",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+            ratio="auto_720p",
+            references=[{"uri": "https://example.com/image.jpg"}],
+        )
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_12(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.video_to_video.with_raw_response.create(
+            model="kling_4",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        video_to_video = await response.parse()
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_12(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.video_to_video.with_streaming_response.create(
+            model="kling_4",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            video_to_video = await response.parse()
+            assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_13(self, async_client: AsyncRunwayML) -> None:
+        video_to_video = await async_client.video_to_video.create(
+            model="gemini_omni_flash_1.2",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+        )
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_13(self, async_client: AsyncRunwayML) -> None:
+        video_to_video = await async_client.video_to_video.create(
+            model="gemini_omni_flash_1.2",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+            duration="auto",
+            mode="reference",
+            ratio="640:360",
+            references=[{"uri": "https://example.com/image.jpg"}],
+            resolution="360p",
+        )
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_13(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.video_to_video.with_raw_response.create(
+            model="gemini_omni_flash_1.2",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        video_to_video = await response.parse()
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_13(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.video_to_video.with_streaming_response.create(
+            model="gemini_omni_flash_1.2",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            video_to_video = await response.parse()
+            assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_14(self, async_client: AsyncRunwayML) -> None:
+        video_to_video = await async_client.video_to_video.create(
+            model="kling_4_flash",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+        )
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_14(self, async_client: AsyncRunwayML) -> None:
+        video_to_video = await async_client.video_to_video.create(
+            model="kling_4_flash",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+            duration=3,
+            ratio="1280:720",
+            references=[{"uri": "https://example.com/image.jpg"}],
+            reference_videos=[{"uri": "https://example.com/video.mp4"}],
+        )
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_14(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.video_to_video.with_raw_response.create(
+            model="kling_4_flash",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        video_to_video = await response.parse()
+        assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_14(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.video_to_video.with_streaming_response.create(
+            model="kling_4_flash",
+            prompt_text="x",
+            video_uri="https://example.com/video.mp4",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -80,6 +80,14 @@ __all__ = [
     "Seedance2_5ReferenceAudio",
     "GrokImagine1_5Lite",
     "GrokImagine1_5LitePromptImagePromptImage",
+    "Kling4",
+    "Kling4Reference",
+    "GeminiOmniFlash1_2",
+    "GeminiOmniFlash1_2PromptImagePromptImage",
+    "Kling4Flash",
+    "Kling4FlashPromptImageUnionMember1",
+    "Kling4FlashReference",
+    "Kling4FlashReferenceVideo",
 ]
 
 
@@ -1042,6 +1050,13 @@ class Seedance2(TypedDict, total=False):
     audio: bool
     """Whether to generate audio for the video."""
 
+    bitrate: Literal["standard", "high"]
+    """Bitrate of the output video.
+
+    `high` keeps more detail with fewer compression artifacts, at a larger file
+    size. Defaults to `standard`.
+    """
+
     duration: Union[int, Literal["auto"]]
     """Seconds of video to generate, or `auto` to let the model choose.
 
@@ -1051,7 +1066,7 @@ class Seedance2(TypedDict, total=False):
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """
-    An optional text prompt up to 3500 characters describing what should appear in
+    An optional text prompt up to 10000 characters describing what should appear in
     the output.
     """
 
@@ -1144,6 +1159,13 @@ class Seedance2Fast(TypedDict, total=False):
     audio: bool
     """Whether to generate audio for the video."""
 
+    bitrate: Literal["standard", "high"]
+    """Bitrate of the output video.
+
+    `high` keeps more detail with fewer compression artifacts, at a larger file
+    size. Defaults to `standard`.
+    """
+
     duration: Union[int, Literal["auto"]]
     """Seconds of video to generate, or `auto` to let the model choose.
 
@@ -1153,7 +1175,7 @@ class Seedance2Fast(TypedDict, total=False):
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """
-    An optional text prompt up to 3500 characters describing what should appear in
+    An optional text prompt up to 10000 characters describing what should appear in
     the output.
     """
 
@@ -1237,6 +1259,13 @@ class Seedance2Mini(TypedDict, total=False):
     audio: bool
     """Whether to generate audio for the video."""
 
+    bitrate: Literal["standard", "high"]
+    """Bitrate of the output video.
+
+    `high` keeps more detail with fewer compression artifacts, at a larger file
+    size. Defaults to `standard`.
+    """
+
     duration: Union[int, Literal["auto"]]
     """Seconds of video to generate, or `auto` to let the model choose.
 
@@ -1246,7 +1275,7 @@ class Seedance2Mini(TypedDict, total=False):
 
     prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
     """
-    An optional text prompt up to 3500 characters describing what should appear in
+    An optional text prompt up to 10000 characters describing what should appear in
     the output.
     """
 
@@ -1825,6 +1854,140 @@ class GrokImagine1_5LitePromptImagePromptImage(TypedDict, total=False):
     """
 
 
+class Kling4(TypedDict, total=False):
+    model: Required[Literal["kling_4"]]
+
+    prompt_image: Required[Annotated[Union[str, Iterable[object]], PropertyInfo(alias="promptImage")]]
+    """
+    The first frame of the video, or an array with a first frame and optional middle
+    and last frames. The video follows the first frame’s aspect ratio.
+    """
+
+    duration: int
+    """The duration of the output video in seconds."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """A text prompt describing what should happen in the video."""
+
+    ratio: Literal["auto_720p", "auto_1080p"]
+    """Output quality tier. The video keeps the input media framing."""
+
+    references: Iterable[Kling4Reference]
+    """Images of characters, objects or styles to use in the video.
+
+    Up to 10 images in total, frames included.
+    """
+
+    reference_videos: Annotated[Iterable[object], PropertyInfo(alias="referenceVideos")]
+    """
+    Up to 5 videos whose style, motion or camera work should guide the output,
+    together at most 30 seconds long.
+    """
+
+
+class Kling4Reference(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class GeminiOmniFlash1_2(TypedDict, total=False):
+    model: Required[Literal["gemini_omni_flash_1.2"]]
+
+    prompt_image: Required[
+        Annotated[Union[str, Iterable[GeminiOmniFlash1_2PromptImagePromptImage]], PropertyInfo(alias="promptImage")]
+    ]
+    """
+    An image to use as the first frame, or an array containing a first frame and
+    optional last frame.
+    """
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """
+    A non-empty text prompt describing how the video should evolve between the
+    provided frames.
+    """
+
+    duration: Union[Literal["auto"], int]
+    """The duration of the output video in seconds.
+
+    Use "auto" to let the model choose a duration. Numeric durations must be between
+    3 and 15 seconds.
+    """
+
+    ratio: Literal["640:360", "360:640", "1280:720", "720:1280", "1920:1080", "1080:1920", "3840:2160", "2160:3840"]
+    """The resolution and aspect ratio of the output video."""
+
+
+class GeminiOmniFlash1_2PromptImagePromptImage(TypedDict, total=False):
+    position: Required[Literal["first", "last"]]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame of the video, "last" will use the
+    image as the last frame of the video.
+    """
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class Kling4Flash(TypedDict, total=False):
+    model: Required[Literal["kling_4_flash"]]
+
+    prompt_image: Required[
+        Annotated[Union[str, Iterable[Kling4FlashPromptImageUnionMember1]], PropertyInfo(alias="promptImage")]
+    ]
+    """The first frame of the video. Output framing follows this image."""
+
+    duration: int
+    """The duration of the output video in seconds."""
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """A text prompt describing what should happen in the video."""
+
+    ratio: Literal["auto_720p"]
+
+    references: Iterable[Kling4FlashReference]
+
+    reference_videos: Annotated[Iterable[Kling4FlashReferenceVideo], PropertyInfo(alias="referenceVideos")]
+
+
+class Kling4FlashPromptImageUnionMember1(TypedDict, total=False):
+    position: Required[Literal["first"]]
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class Kling4FlashReference(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class Kling4FlashReferenceVideo(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+    [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+
 ImageToVideoCreateParams: TypeAlias = Union[
     Gen4_5,
     Gen4Turbo,
@@ -1850,4 +2013,7 @@ ImageToVideoCreateParams: TypeAlias = Union[
     H3Max,
     Seedance2_5,
     GrokImagine1_5Lite,
+    Kling4,
+    GeminiOmniFlash1_2,
+    Kling4Flash,
 ]

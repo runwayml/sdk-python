@@ -62,8 +62,9 @@ class AudioResource(SyncAPIResource):
     ) -> NewTaskCreatedResponse:
         """
         Start an audio generation task using a saved Model Router config instead of
-        naming a model. Set input.type to speech to speak promptText verbatim, or audio
-        to generate audio described by promptText.
+        naming a model. Set input.type to speech to speak promptText verbatim, audio to
+        generate audio described by promptText, or music to generate a song or
+        instrumental track described by promptText.
 
         Args:
           config_id: The slug of a saved Model Router config to route this request with.
@@ -129,8 +130,9 @@ class AsyncAudioResource(AsyncAPIResource):
     ) -> AsyncNewTaskCreatedResponse:
         """
         Start an audio generation task using a saved Model Router config instead of
-        naming a model. Set input.type to speech to speak promptText verbatim, or audio
-        to generate audio described by promptText.
+        naming a model. Set input.type to speech to speak promptText verbatim, audio to
+        generate audio described by promptText, or music to generate a song or
+        instrumental track described by promptText.
 
         Args:
           config_id: The slug of a saved Model Router config to route this request with.

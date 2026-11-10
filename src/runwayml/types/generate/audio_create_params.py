@@ -102,20 +102,21 @@ class Input(TypedDict, total=False):
     prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
     """For `speech`, the words to speak.
 
-    For `audio`, a description of the desired output.
+    For `audio` and `music`, a description of the desired output.
     """
 
-    type: Required[Literal["speech", "audio"]]
+    type: Required[Literal["speech", "audio", "music"]]
     """
     How promptText is interpreted: `speech` speaks it verbatim as a script; `audio`
     treats it as a description of the desired audio, which may combine speech,
-    music, ambience, and sound effects.
+    music, ambience, and sound effects; `music` treats it as a description of a song
+    or instrumental track.
     """
 
     duration: float
-    """Desired output duration in seconds for `audio` generation.
-
-    Models that cannot honor an explicit duration are excluded.
+    """
+    Desired output duration in seconds: 0.5–30 for `audio`, or whole seconds from 3
+    to 600 for `music`. Models that cannot honor an explicit duration are excluded.
     """
 
     loop: bool

@@ -18,6 +18,8 @@ class Metadata(BaseModel):
 
     ad_creative_id: Optional[str] = FieldInfo(alias="Ad creative ID", default=None)
 
+    ad_level: Optional[str] = FieldInfo(alias="Ad level", default=None)
+
     ad_publish_batch_id: Optional[str] = FieldInfo(alias="Ad publish batch ID", default=None)
 
     ad_review_batch_id: Optional[str] = FieldInfo(alias="Ad review batch ID", default=None)
@@ -29,6 +31,8 @@ class Metadata(BaseModel):
     ad_sync_run_id: Optional[str] = FieldInfo(alias="Ad sync run ID", default=None)
 
     ad_sync_start_date: Optional[str] = FieldInfo(alias="Ad sync start date", default=None)
+
+    ads_created_as: Optional[str] = FieldInfo(alias="Ads created as", default=None)
 
     ads_onboarding_answers: Optional[List[str]] = FieldInfo(alias="Ads onboarding answers", default=None)
 
@@ -47,6 +51,10 @@ class Metadata(BaseModel):
     api_project_id: Optional[str] = FieldInfo(alias="API project ID", default=None)
 
     app_studio_app: Optional[str] = FieldInfo(alias="App Studio app", default=None)
+
+    app_studio_app_id: Optional[str] = FieldInfo(alias="App Studio app ID", default=None)
+
+    app_studio_deploy: Optional[str] = FieldInfo(alias="App Studio deploy", default=None)
 
     app_studio_session: Optional[str] = FieldInfo(alias="App Studio session", default=None)
 
@@ -124,6 +132,8 @@ class Metadata(BaseModel):
 
     platform_ad_account_id: Optional[str] = FieldInfo(alias="Platform ad account ID", default=None)
 
+    platform_object_id: Optional[str] = FieldInfo(alias="Platform object ID", default=None)
+
     previous_project_credit_cap: Optional[float] = FieldInfo(alias="Previous project credit cap", default=None)
 
     previous_role: Optional[str] = FieldInfo(alias="Previous role", default=None)
@@ -146,6 +156,8 @@ class Metadata(BaseModel):
 
     root_asset_id: Optional[str] = FieldInfo(alias="Root asset ID", default=None)
 
+    secret_name: Optional[str] = FieldInfo(alias="Secret name", default=None)
+
     selected: Optional[bool] = FieldInfo(alias="Selected", default=None)
 
     setting: Optional[str] = FieldInfo(alias="Setting", default=None)
@@ -159,6 +171,10 @@ class Metadata(BaseModel):
     spend_cap: Optional[float] = FieldInfo(alias="Spend cap", default=None)
 
     spend_cap_change: Optional[float] = FieldInfo(alias="Spend cap change", default=None)
+
+    status_after: Optional[str] = FieldInfo(alias="Status after", default=None)
+
+    status_before: Optional[str] = FieldInfo(alias="Status before", default=None)
 
     submitted_via: Optional[str] = FieldInfo(alias="Submitted via", default=None)
 
@@ -256,6 +272,15 @@ class AuditLogRetrieveResponse(BaseModel):
         "GenerationCreated",
         "StudioSessionOpened",
         "AppStudioAiRunOpened",
+        "AppStudioAppCreated",
+        "AppStudioAppPublished",
+        "AppStudioAppVisibilityChanged",
+        "AppStudioAppRenamed",
+        "AppStudioAppDeleted",
+        "AppStudioAppCoOwnerChanged",
+        "AppStudioAppSecretChanged",
+        "AppStudioAppRunwayAccessGranted",
+        "AppStudioAppRunwayAccessRevoked",
         "AccountLinkCreated",
         "AccountLinkDeleted",
         "AdConnectionAuthorizationStarted",
@@ -273,6 +298,7 @@ class AuditLogRetrieveResponse(BaseModel):
         "AdPublishBatchQueued",
         "AdPublishBatchCancelled",
         "AdPublishBatchRetried",
+        "AdStatusChanged",
         "OrganizationSettingsUpdated",
         "OrganizationDisabledModelsUpdated",
         "OrganizationAgentSandboxUpdated",
