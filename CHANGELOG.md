@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.25.0](https://github.com/runwayml/sdk-python/compare/v5.24.0...v5.25.0) (2026-11-11)
+
+
+### Features
+
+* add Seedream Layers and GPT Image 2.6 output controls ([fce4eb1](https://github.com/runwayml/sdk-python/commit/fce4eb1d525e441b49e01625628fc7cc653e61ba))
+
 ## [5.24.0](https://github.com/runwayml/sdk-python/compare/v5.23.0...v5.24.0) (2026-10-23)
 
 ### Features
