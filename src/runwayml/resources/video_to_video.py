@@ -680,6 +680,12 @@ class VideoToVideoResource(SyncAPIResource):
             "1440:1440",
             "1248:1664",
             "1080:1920",
+            "3840:1646",
+            "3840:2160",
+            "3840:2880",
+            "3840:3840",
+            "2880:3840",
+            "2160:3840",
         ]
         | Omit = omit,
         reference_audio: Iterable[video_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
@@ -724,7 +730,8 @@ class VideoToVideoResource(SyncAPIResource):
           prompt_text: An optional text prompt up to 15000 characters describing what should appear in
               the output.
 
-          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
+          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, 1080p, and
+              4K.
 
           reference_audio: An optional array of audio references. The total combined duration must be less
               than 30 seconds.
@@ -888,6 +895,90 @@ class VideoToVideoResource(SyncAPIResource):
         """
         ...
 
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["hailuo3_highspeed"],
+        prompt_text: str,
+        prompt_video: str,
+        duration: int | Omit = omit,
+        ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
+        reference_audio: Iterable[video_to_video_create_params.Hailuo3HighspeedReferenceAudio] | Omit = omit,
+        references: Iterable[video_to_video_create_params.Hailuo3HighspeedReference] | Omit = omit,
+        reference_videos: Iterable[video_to_video_create_params.Hailuo3HighspeedReferenceVideo] | Omit = omit,
+        resolution: Literal["480p", "768p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VideoToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a video.
+
+        Args:
+          prompt_text: The text prompt describing the output video.
+
+          prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
+
+          resolution: The output video resolution.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["hailuo3_lite"],
+        prompt_text: str,
+        prompt_video: str,
+        duration: int | Omit = omit,
+        ratio: Literal["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
+        reference_audio: Iterable[video_to_video_create_params.Hailuo3LiteReferenceAudio] | Omit = omit,
+        references: Iterable[video_to_video_create_params.Hailuo3LiteReference] | Omit = omit,
+        reference_videos: Iterable[video_to_video_create_params.Hailuo3LiteReferenceVideo] | Omit = omit,
+        resolution: Literal["480p", "768p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VideoToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a video.
+
+        Args:
+          prompt_text: The text prompt describing the output video.
+
+          prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
+
+          resolution: The output video resolution.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["model", "video_uri"],
         ["model", "prompt_text", "prompt_video"],
@@ -910,7 +1001,9 @@ class VideoToVideoResource(SyncAPIResource):
         | Literal["seedance2_5"]
         | Literal["kling_4"]
         | Literal["gemini_omni_flash_1.2"]
-        | Literal["kling_4_flash"],
+        | Literal["kling_4_flash"]
+        | Literal["hailuo3_highspeed"]
+        | Literal["hailuo3_lite"],
         video_uri: str | Omit = omit,
         content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
@@ -981,9 +1074,16 @@ class VideoToVideoResource(SyncAPIResource):
             "1440:1440",
             "1248:1664",
             "1080:1920",
+            "3840:1646",
+            "3840:2160",
+            "3840:2880",
+            "3840:3840",
+            "2880:3840",
+            "2160:3840",
         ]
         | Literal["auto_720p", "auto_1080p"]
         | Literal["1280:720", "720:1280", "960:960", "1464:628", "auto_720p", "940:940", "1460:624"]
+        | Literal["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"]
         | Omit = omit,
         seed: int | Omit = omit,
         target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
@@ -1005,6 +1105,8 @@ class VideoToVideoResource(SyncAPIResource):
         | Iterable[video_to_video_create_params.Kling4Reference]
         | Iterable[video_to_video_create_params.GeminiOmniFlash1_2Reference]
         | Iterable[video_to_video_create_params.Kling4FlashReference]
+        | Iterable[video_to_video_create_params.Hailuo3HighspeedReference]
+        | Iterable[video_to_video_create_params.Hailuo3LiteReference]
         | Omit = omit,
         duration: int | Union[int, Literal["auto"]] | Union[Literal["auto"], int] | Omit = omit,
         reference_audio: Iterable[video_to_video_create_params.Hailuo3ReferenceAudio]
@@ -1012,6 +1114,8 @@ class VideoToVideoResource(SyncAPIResource):
         | Iterable[video_to_video_create_params.Seedance2FastReferenceAudio]
         | Iterable[video_to_video_create_params.Seedance2MiniReferenceAudio]
         | Iterable[video_to_video_create_params.Seedance2_5ReferenceAudio]
+        | Iterable[video_to_video_create_params.Hailuo3HighspeedReferenceAudio]
+        | Iterable[video_to_video_create_params.Hailuo3LiteReferenceAudio]
         | Omit = omit,
         reference_videos: Iterable[video_to_video_create_params.Hailuo3ReferenceVideo]
         | Iterable[video_to_video_create_params.Seedance2ReferenceVideo]
@@ -1019,8 +1123,13 @@ class VideoToVideoResource(SyncAPIResource):
         | Iterable[video_to_video_create_params.Seedance2MiniReferenceVideo]
         | Iterable[video_to_video_create_params.Seedance2_5ReferenceVideo]
         | Iterable[video_to_video_create_params.Kling4FlashReferenceVideo]
+        | Iterable[video_to_video_create_params.Hailuo3HighspeedReferenceVideo]
+        | Iterable[video_to_video_create_params.Hailuo3LiteReferenceVideo]
         | Omit = omit,
-        resolution: Literal["768p", "2k", "768P", "2K"] | Literal["360p", "720p", "1080p", "4k"] | Omit = omit,
+        resolution: Literal["768p", "2k", "768P", "2K"]
+        | Literal["360p", "720p", "1080p", "4k"]
+        | Literal["480p", "768p"]
+        | Omit = omit,
         audio: bool | Omit = omit,
         bitrate: Literal["standard", "high"] | Omit = omit,
         mode: Literal["reference", "extend", "edit"] | Omit = omit,
@@ -1717,6 +1826,12 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
             "1440:1440",
             "1248:1664",
             "1080:1920",
+            "3840:1646",
+            "3840:2160",
+            "3840:2880",
+            "3840:3840",
+            "2880:3840",
+            "2160:3840",
         ]
         | Omit = omit,
         reference_audio: Iterable[video_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
@@ -1761,7 +1876,8 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
           prompt_text: An optional text prompt up to 15000 characters describing what should appear in
               the output.
 
-          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
+          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, 1080p, and
+              4K.
 
           reference_audio: An optional array of audio references. The total combined duration must be less
               than 30 seconds.
@@ -1925,6 +2041,90 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         """
         ...
 
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["hailuo3_highspeed"],
+        prompt_text: str,
+        prompt_video: str,
+        duration: int | Omit = omit,
+        ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
+        reference_audio: Iterable[video_to_video_create_params.Hailuo3HighspeedReferenceAudio] | Omit = omit,
+        references: Iterable[video_to_video_create_params.Hailuo3HighspeedReference] | Omit = omit,
+        reference_videos: Iterable[video_to_video_create_params.Hailuo3HighspeedReferenceVideo] | Omit = omit,
+        resolution: Literal["480p", "768p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VideoToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a video.
+
+        Args:
+          prompt_text: The text prompt describing the output video.
+
+          prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
+
+          resolution: The output video resolution.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["hailuo3_lite"],
+        prompt_text: str,
+        prompt_video: str,
+        duration: int | Omit = omit,
+        ratio: Literal["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
+        reference_audio: Iterable[video_to_video_create_params.Hailuo3LiteReferenceAudio] | Omit = omit,
+        references: Iterable[video_to_video_create_params.Hailuo3LiteReference] | Omit = omit,
+        reference_videos: Iterable[video_to_video_create_params.Hailuo3LiteReferenceVideo] | Omit = omit,
+        resolution: Literal["480p", "768p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> VideoToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a video.
+
+        Args:
+          prompt_text: The text prompt describing the output video.
+
+          prompt_video: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+              [our docs](/assets/inputs#videos) on video inputs for more information.
+
+          resolution: The output video resolution.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["model", "video_uri"],
         ["model", "prompt_text", "prompt_video"],
@@ -1947,7 +2147,9 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         | Literal["seedance2_5"]
         | Literal["kling_4"]
         | Literal["gemini_omni_flash_1.2"]
-        | Literal["kling_4_flash"],
+        | Literal["kling_4_flash"]
+        | Literal["hailuo3_highspeed"]
+        | Literal["hailuo3_lite"],
         video_uri: str | Omit = omit,
         content_moderation: video_to_video_create_params.Variant0ContentModeration | Omit = omit,
         keyframes: Iterable[video_to_video_create_params.Variant0Keyframe] | Omit = omit,
@@ -2018,9 +2220,16 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
             "1440:1440",
             "1248:1664",
             "1080:1920",
+            "3840:1646",
+            "3840:2160",
+            "3840:2880",
+            "3840:3840",
+            "2880:3840",
+            "2160:3840",
         ]
         | Literal["auto_720p", "auto_1080p"]
         | Literal["1280:720", "720:1280", "960:960", "1464:628", "auto_720p", "940:940", "1460:624"]
+        | Literal["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"]
         | Omit = omit,
         seed: int | Omit = omit,
         target_aspect_ratio: Literal["16:9", "4:3", "3:2", "1:1", "2:3", "3:4", "9:16", "21:9"] | Omit = omit,
@@ -2042,6 +2251,8 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         | Iterable[video_to_video_create_params.Kling4Reference]
         | Iterable[video_to_video_create_params.GeminiOmniFlash1_2Reference]
         | Iterable[video_to_video_create_params.Kling4FlashReference]
+        | Iterable[video_to_video_create_params.Hailuo3HighspeedReference]
+        | Iterable[video_to_video_create_params.Hailuo3LiteReference]
         | Omit = omit,
         duration: int | Union[int, Literal["auto"]] | Union[Literal["auto"], int] | Omit = omit,
         reference_audio: Iterable[video_to_video_create_params.Hailuo3ReferenceAudio]
@@ -2049,6 +2260,8 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         | Iterable[video_to_video_create_params.Seedance2FastReferenceAudio]
         | Iterable[video_to_video_create_params.Seedance2MiniReferenceAudio]
         | Iterable[video_to_video_create_params.Seedance2_5ReferenceAudio]
+        | Iterable[video_to_video_create_params.Hailuo3HighspeedReferenceAudio]
+        | Iterable[video_to_video_create_params.Hailuo3LiteReferenceAudio]
         | Omit = omit,
         reference_videos: Iterable[video_to_video_create_params.Hailuo3ReferenceVideo]
         | Iterable[video_to_video_create_params.Seedance2ReferenceVideo]
@@ -2056,8 +2269,13 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         | Iterable[video_to_video_create_params.Seedance2MiniReferenceVideo]
         | Iterable[video_to_video_create_params.Seedance2_5ReferenceVideo]
         | Iterable[video_to_video_create_params.Kling4FlashReferenceVideo]
+        | Iterable[video_to_video_create_params.Hailuo3HighspeedReferenceVideo]
+        | Iterable[video_to_video_create_params.Hailuo3LiteReferenceVideo]
         | Omit = omit,
-        resolution: Literal["768p", "2k", "768P", "2K"] | Literal["360p", "720p", "1080p", "4k"] | Omit = omit,
+        resolution: Literal["768p", "2k", "768P", "2K"]
+        | Literal["360p", "720p", "1080p", "4k"]
+        | Literal["480p", "768p"]
+        | Omit = omit,
         audio: bool | Omit = omit,
         bitrate: Literal["standard", "high"] | Omit = omit,
         mode: Literal["reference", "extend", "edit"] | Omit = omit,

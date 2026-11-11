@@ -70,8 +70,11 @@ class TextToSpeechResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate speech from text.
+        """This endpoint will start a new task to generate speech from text.
+
+        ElevenLabs
+        models accept preset voices or custom voices created via the Voices API. Seed
+        Audio accepts a reference audio clip.
 
         Args:
           prompt_text: A non-empty text prompt. For text-to-speech, the words to speak. For
@@ -124,14 +127,17 @@ class TextToSpeechResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate speech from text.
+        """This endpoint will start a new task to generate speech from text.
+
+        ElevenLabs
+        models accept preset voices or custom voices created via the Voices API. Seed
+        Audio accepts a reference audio clip.
 
         Args:
           prompt_text: The text to convert to speech. You can include expressive audio tags like
               [laughs], [whispers], or [pause] in the script.
 
-          voice: A voice preset from the RunwayML API.
+          voice: The voice to use for the generated speech.
 
           language_code: Language code to enforce pronunciation, such as "en" or "pt". A regional code
               such as "pt-BR" is read as its language.
@@ -181,14 +187,17 @@ class TextToSpeechResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate speech from text.
+        """This endpoint will start a new task to generate speech from text.
+
+        ElevenLabs
+        models accept preset voices or custom voices created via the Voices API. Seed
+        Audio accepts a reference audio clip.
 
         Args:
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
 
-          voice: A voice preset from the RunwayML API.
+          voice: The voice to use for the generated speech.
 
           extra_headers: Send extra headers
 
@@ -222,14 +231,17 @@ class TextToSpeechResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate speech from text.
+        """This endpoint will start a new task to generate speech from text.
+
+        ElevenLabs
+        models accept preset voices or custom voices created via the Voices API. Seed
+        Audio accepts a reference audio clip.
 
         Args:
           prompt_text: The text to convert to speech. You can include expressive audio tags like
               [laughs] or [whispers] in the script.
 
-          voice: A voice preset from the RunwayML API.
+          voice: The voice to use for the generated speech.
 
           apply_text_normalization: Text normalization mode: 'auto', 'on', or 'off' (e.g. spelling out numbers).
 
@@ -366,8 +378,11 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncNewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate speech from text.
+        """This endpoint will start a new task to generate speech from text.
+
+        ElevenLabs
+        models accept preset voices or custom voices created via the Voices API. Seed
+        Audio accepts a reference audio clip.
 
         Args:
           prompt_text: A non-empty text prompt. For text-to-speech, the words to speak. For
@@ -420,14 +435,17 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncNewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate speech from text.
+        """This endpoint will start a new task to generate speech from text.
+
+        ElevenLabs
+        models accept preset voices or custom voices created via the Voices API. Seed
+        Audio accepts a reference audio clip.
 
         Args:
           prompt_text: The text to convert to speech. You can include expressive audio tags like
               [laughs], [whispers], or [pause] in the script.
 
-          voice: A voice preset from the RunwayML API.
+          voice: The voice to use for the generated speech.
 
           language_code: Language code to enforce pronunciation, such as "en" or "pt". A regional code
               such as "pt-BR" is read as its language.
@@ -477,14 +495,17 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncNewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate speech from text.
+        """This endpoint will start a new task to generate speech from text.
+
+        ElevenLabs
+        models accept preset voices or custom voices created via the Voices API. Seed
+        Audio accepts a reference audio clip.
 
         Args:
           prompt_text: A non-empty string up to 1000 characters (measured in UTF-16 code units). This
               should describe in detail what should appear in the output.
 
-          voice: A voice preset from the RunwayML API.
+          voice: The voice to use for the generated speech.
 
           extra_headers: Send extra headers
 
@@ -518,14 +539,17 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncNewTaskCreatedResponse:
-        """
-        This endpoint will start a new task to generate speech from text.
+        """This endpoint will start a new task to generate speech from text.
+
+        ElevenLabs
+        models accept preset voices or custom voices created via the Voices API. Seed
+        Audio accepts a reference audio clip.
 
         Args:
           prompt_text: The text to convert to speech. You can include expressive audio tags like
               [laughs] or [whispers] in the script.
 
-          voice: A voice preset from the RunwayML API.
+          voice: The voice to use for the generated speech.
 
           apply_text_normalization: Text normalization mode: 'auto', 'on', or 'off' (e.g. spelling out numbers).
 

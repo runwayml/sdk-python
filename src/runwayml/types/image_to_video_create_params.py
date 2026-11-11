@@ -88,6 +88,16 @@ __all__ = [
     "Kling4FlashPromptImageUnionMember1",
     "Kling4FlashReference",
     "Kling4FlashReferenceVideo",
+    "Hailuo3Highspeed",
+    "Hailuo3HighspeedPromptImageUnionMember1",
+    "Hailuo3HighspeedReferenceAudio",
+    "Hailuo3HighspeedReference",
+    "Hailuo3HighspeedReferenceVideo",
+    "Hailuo3Lite",
+    "Hailuo3LitePromptImageUnionMember1",
+    "Hailuo3LiteReferenceAudio",
+    "Hailuo3LiteReference",
+    "Hailuo3LiteReferenceVideo",
 ]
 
 
@@ -1761,10 +1771,16 @@ class Seedance2_5(TypedDict, total=False):
         "1440:1440",
         "1248:1664",
         "1080:1920",
+        "3840:1646",
+        "3840:2160",
+        "3840:2880",
+        "3840:3840",
+        "2880:3840",
+        "2160:3840",
     ]
     """The resolution of the output video.
 
-    Seedance 2.5 supports 480p, 720p, and 1080p.
+    Seedance 2.5 supports 480p, 720p, 1080p, and 4K.
     """
 
     reference_audio: Annotated[Iterable[Seedance2_5ReferenceAudio], PropertyInfo(alias="referenceAudio")]
@@ -1988,6 +2004,148 @@ class Kling4FlashReferenceVideo(TypedDict, total=False):
     """
 
 
+class Hailuo3Highspeed(TypedDict, total=False):
+    model: Required[Literal["hailuo3_highspeed"]]
+
+    prompt_image: Required[
+        Annotated[Union[str, Iterable[Hailuo3HighspeedPromptImageUnionMember1]], PropertyInfo(alias="promptImage")]
+    ]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """The text prompt describing the output video."""
+
+    duration: int
+
+    ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"]
+
+    reference_audio: Annotated[Iterable[Hailuo3HighspeedReferenceAudio], PropertyInfo(alias="referenceAudio")]
+
+    references: Iterable[Hailuo3HighspeedReference]
+
+    reference_videos: Annotated[Iterable[Hailuo3HighspeedReferenceVideo], PropertyInfo(alias="referenceVideos")]
+
+    resolution: Literal["480p", "768p"]
+    """The output video resolution."""
+
+
+class Hailuo3HighspeedPromptImageUnionMember1(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    position: Literal["first", "last"]
+
+
+class Hailuo3HighspeedReferenceAudio(TypedDict, total=False):
+    type: Required[Literal["audio"]]
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
+    [our docs](/assets/inputs#audio) on audio inputs for more information.
+    """
+
+
+class Hailuo3HighspeedReference(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class Hailuo3HighspeedReferenceVideo(TypedDict, total=False):
+    type: Required[Literal["video"]]
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+    [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+
+class Hailuo3Lite(TypedDict, total=False):
+    model: Required[Literal["hailuo3_lite"]]
+
+    prompt_image: Required[
+        Annotated[Union[str, Iterable[Hailuo3LitePromptImageUnionMember1]], PropertyInfo(alias="promptImage")]
+    ]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """The text prompt describing the output video."""
+
+    duration: int
+
+    ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"]
+
+    reference_audio: Annotated[Iterable[Hailuo3LiteReferenceAudio], PropertyInfo(alias="referenceAudio")]
+
+    references: Iterable[Hailuo3LiteReference]
+
+    reference_videos: Annotated[Iterable[Hailuo3LiteReferenceVideo], PropertyInfo(alias="referenceVideos")]
+
+    resolution: Literal["480p", "768p"]
+    """The output video resolution."""
+
+
+class Hailuo3LitePromptImageUnionMember1(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    position: Literal["first", "last"]
+
+
+class Hailuo3LiteReferenceAudio(TypedDict, total=False):
+    type: Required[Literal["audio"]]
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
+    [our docs](/assets/inputs#audio) on audio inputs for more information.
+    """
+
+
+class Hailuo3LiteReference(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class Hailuo3LiteReferenceVideo(TypedDict, total=False):
+    type: Required[Literal["video"]]
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+    [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+
 ImageToVideoCreateParams: TypeAlias = Union[
     Gen4_5,
     Gen4Turbo,
@@ -2016,4 +2174,6 @@ ImageToVideoCreateParams: TypeAlias = Union[
     Kling4,
     GeminiOmniFlash1_2,
     Kling4Flash,
+    Hailuo3Highspeed,
+    Hailuo3Lite,
 ]

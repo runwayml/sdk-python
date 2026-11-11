@@ -1224,6 +1224,12 @@ class TextToVideoResource(SyncAPIResource):
             "1440:1440",
             "1248:1664",
             "1080:1920",
+            "3840:1646",
+            "3840:2160",
+            "3840:2880",
+            "3840:3840",
+            "2880:3840",
+            "2160:3840",
         ]
         | Omit = omit,
         reference_audio: Iterable[text_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
@@ -1262,8 +1268,8 @@ class TextToVideoResource(SyncAPIResource):
           prompt_text: An optional text prompt up to 15000 characters describing what should appear in
               the output.
 
-          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
-              Defaults to `1280:720`.
+          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, 1080p, and
+              4K. Defaults to `1280:720`.
 
           reference_audio: An optional array of audio references. The total combined duration must be less
               than 30 seconds.
@@ -1481,6 +1487,80 @@ class TextToVideoResource(SyncAPIResource):
         """
         ...
 
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["hailuo3_highspeed"],
+        prompt_text: str,
+        duration: int | Omit = omit,
+        ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
+        reference_audio: Iterable[text_to_video_create_params.Hailuo3HighspeedReferenceAudio] | Omit = omit,
+        references: Iterable[text_to_video_create_params.Hailuo3HighspeedReference] | Omit = omit,
+        reference_videos: Iterable[text_to_video_create_params.Hailuo3HighspeedReferenceVideo] | Omit = omit,
+        resolution: Literal["480p", "768p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a text prompt.
+
+        Args:
+          prompt_text: The text prompt describing the output video.
+
+          resolution: The output video resolution.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["hailuo3_lite"],
+        prompt_text: str,
+        duration: int | Omit = omit,
+        ratio: Literal["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
+        reference_audio: Iterable[text_to_video_create_params.Hailuo3LiteReferenceAudio] | Omit = omit,
+        references: Iterable[text_to_video_create_params.Hailuo3LiteReference] | Omit = omit,
+        reference_videos: Iterable[text_to_video_create_params.Hailuo3LiteReferenceVideo] | Omit = omit,
+        resolution: Literal["480p", "768p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a text prompt.
+
+        Args:
+          prompt_text: The text prompt describing the output video.
+
+          resolution: The output video resolution.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["duration", "model", "prompt_text", "ratio"],
         ["model", "prompt_text", "ratio"],
@@ -1522,7 +1602,9 @@ class TextToVideoResource(SyncAPIResource):
         | Literal["grok_imagine_1_5_lite"]
         | Literal["kling_4"]
         | Literal["gemini_omni_flash_1.2"]
-        | Literal["kling_4_flash"],
+        | Literal["kling_4_flash"]
+        | Literal["hailuo3_highspeed"]
+        | Literal["hailuo3_lite"],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
@@ -1624,6 +1706,12 @@ class TextToVideoResource(SyncAPIResource):
             "1440:1440",
             "1248:1664",
             "1080:1920",
+            "3840:1646",
+            "3840:2160",
+            "3840:2880",
+            "3840:3840",
+            "2880:3840",
+            "2160:3840",
         ]
         | Literal[
             "848:480",
@@ -1661,6 +1749,7 @@ class TextToVideoResource(SyncAPIResource):
             "auto_1080p",
         ]
         | Literal["1280:720", "720:1280", "960:960", "1464:628", "auto_720p", "940:940", "1460:624"]
+        | Literal["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"]
         | Omit = omit,
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
         output_format: Literal[
@@ -1698,6 +1787,8 @@ class TextToVideoResource(SyncAPIResource):
         | Iterable[text_to_video_create_params.Wan3ReferenceAudio]
         | Iterable[text_to_video_create_params.Wan3PrimeReferenceAudio]
         | Iterable[text_to_video_create_params.Seedance2_5ReferenceAudio]
+        | Iterable[text_to_video_create_params.Hailuo3HighspeedReferenceAudio]
+        | Iterable[text_to_video_create_params.Hailuo3LiteReferenceAudio]
         | Omit = omit,
         references: Iterable[text_to_video_create_params.Hailuo3Reference]
         | Iterable[text_to_video_create_params.Seedance2Reference]
@@ -1711,6 +1802,8 @@ class TextToVideoResource(SyncAPIResource):
         | Iterable[text_to_video_create_params.Kling4Reference]
         | Iterable[text_to_video_create_params.GeminiOmniFlash1_2Reference]
         | Iterable[text_to_video_create_params.Kling4FlashReference]
+        | Iterable[text_to_video_create_params.Hailuo3HighspeedReference]
+        | Iterable[text_to_video_create_params.Hailuo3LiteReference]
         | Omit = omit,
         reference_videos: Iterable[text_to_video_create_params.Hailuo3ReferenceVideo]
         | Iterable[text_to_video_create_params.Seedance2ReferenceVideo]
@@ -1723,6 +1816,8 @@ class TextToVideoResource(SyncAPIResource):
         | Iterable[object]
         | Iterable[text_to_video_create_params.GeminiOmniFlash1_2ReferenceVideo]
         | Iterable[text_to_video_create_params.Kling4FlashReferenceVideo]
+        | Iterable[text_to_video_create_params.Hailuo3HighspeedReferenceVideo]
+        | Iterable[text_to_video_create_params.Hailuo3LiteReferenceVideo]
         | Omit = omit,
         resolution: Literal["768p", "2k", "768P", "2K"]
         | Literal["480p", "720p", "1080p"]
@@ -2968,6 +3063,12 @@ class AsyncTextToVideoResource(AsyncAPIResource):
             "1440:1440",
             "1248:1664",
             "1080:1920",
+            "3840:1646",
+            "3840:2160",
+            "3840:2880",
+            "3840:3840",
+            "2880:3840",
+            "2160:3840",
         ]
         | Omit = omit,
         reference_audio: Iterable[text_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
@@ -3006,8 +3107,8 @@ class AsyncTextToVideoResource(AsyncAPIResource):
           prompt_text: An optional text prompt up to 15000 characters describing what should appear in
               the output.
 
-          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
-              Defaults to `1280:720`.
+          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, 1080p, and
+              4K. Defaults to `1280:720`.
 
           reference_audio: An optional array of audio references. The total combined duration must be less
               than 30 seconds.
@@ -3225,6 +3326,80 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         """
         ...
 
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["hailuo3_highspeed"],
+        prompt_text: str,
+        duration: int | Omit = omit,
+        ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
+        reference_audio: Iterable[text_to_video_create_params.Hailuo3HighspeedReferenceAudio] | Omit = omit,
+        references: Iterable[text_to_video_create_params.Hailuo3HighspeedReference] | Omit = omit,
+        reference_videos: Iterable[text_to_video_create_params.Hailuo3HighspeedReferenceVideo] | Omit = omit,
+        resolution: Literal["480p", "768p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a text prompt.
+
+        Args:
+          prompt_text: The text prompt describing the output video.
+
+          resolution: The output video resolution.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["hailuo3_lite"],
+        prompt_text: str,
+        duration: int | Omit = omit,
+        ratio: Literal["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
+        reference_audio: Iterable[text_to_video_create_params.Hailuo3LiteReferenceAudio] | Omit = omit,
+        references: Iterable[text_to_video_create_params.Hailuo3LiteReference] | Omit = omit,
+        reference_videos: Iterable[text_to_video_create_params.Hailuo3LiteReferenceVideo] | Omit = omit,
+        resolution: Literal["480p", "768p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> TextToVideoCreateResponse:
+        """
+        This endpoint will start a new task to generate a video from a text prompt.
+
+        Args:
+          prompt_text: The text prompt describing the output video.
+
+          resolution: The output video resolution.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["duration", "model", "prompt_text", "ratio"],
         ["model", "prompt_text", "ratio"],
@@ -3266,7 +3441,9 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Literal["grok_imagine_1_5_lite"]
         | Literal["kling_4"]
         | Literal["gemini_omni_flash_1.2"]
-        | Literal["kling_4_flash"],
+        | Literal["kling_4_flash"]
+        | Literal["hailuo3_highspeed"]
+        | Literal["hailuo3_lite"],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
@@ -3368,6 +3545,12 @@ class AsyncTextToVideoResource(AsyncAPIResource):
             "1440:1440",
             "1248:1664",
             "1080:1920",
+            "3840:1646",
+            "3840:2160",
+            "3840:2880",
+            "3840:3840",
+            "2880:3840",
+            "2160:3840",
         ]
         | Literal[
             "848:480",
@@ -3405,6 +3588,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
             "auto_1080p",
         ]
         | Literal["1280:720", "720:1280", "960:960", "1464:628", "auto_720p", "940:940", "1460:624"]
+        | Literal["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"]
         | Omit = omit,
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
         output_format: Literal[
@@ -3442,6 +3626,8 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Iterable[text_to_video_create_params.Wan3ReferenceAudio]
         | Iterable[text_to_video_create_params.Wan3PrimeReferenceAudio]
         | Iterable[text_to_video_create_params.Seedance2_5ReferenceAudio]
+        | Iterable[text_to_video_create_params.Hailuo3HighspeedReferenceAudio]
+        | Iterable[text_to_video_create_params.Hailuo3LiteReferenceAudio]
         | Omit = omit,
         references: Iterable[text_to_video_create_params.Hailuo3Reference]
         | Iterable[text_to_video_create_params.Seedance2Reference]
@@ -3455,6 +3641,8 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Iterable[text_to_video_create_params.Kling4Reference]
         | Iterable[text_to_video_create_params.GeminiOmniFlash1_2Reference]
         | Iterable[text_to_video_create_params.Kling4FlashReference]
+        | Iterable[text_to_video_create_params.Hailuo3HighspeedReference]
+        | Iterable[text_to_video_create_params.Hailuo3LiteReference]
         | Omit = omit,
         reference_videos: Iterable[text_to_video_create_params.Hailuo3ReferenceVideo]
         | Iterable[text_to_video_create_params.Seedance2ReferenceVideo]
@@ -3467,6 +3655,8 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Iterable[object]
         | Iterable[text_to_video_create_params.GeminiOmniFlash1_2ReferenceVideo]
         | Iterable[text_to_video_create_params.Kling4FlashReferenceVideo]
+        | Iterable[text_to_video_create_params.Hailuo3HighspeedReferenceVideo]
+        | Iterable[text_to_video_create_params.Hailuo3LiteReferenceVideo]
         | Omit = omit,
         resolution: Literal["768p", "2k", "768P", "2K"]
         | Literal["480p", "720p", "1080p"]

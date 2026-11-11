@@ -13,10 +13,16 @@ __all__ = [
     "SeedAudioVoice",
     "ElevenV4",
     "ElevenV4Voice",
+    "ElevenV4VoiceRunwayPreset",
+    "ElevenV4VoiceCustom",
     "ElevenMultilingualV2",
     "ElevenMultilingualV2Voice",
+    "ElevenMultilingualV2VoiceRunwayPreset",
+    "ElevenMultilingualV2VoiceCustom",
     "ElevenV3",
     "ElevenV3Voice",
+    "ElevenV3VoiceRunwayPreset",
+    "ElevenV3VoiceCustom",
 ]
 
 
@@ -79,7 +85,7 @@ class ElevenV4(TypedDict, total=False):
     """
 
     voice: Required[ElevenV4Voice]
-    """A voice preset from the RunwayML API."""
+    """The voice to use for the generated speech."""
 
     language_code: Annotated[str, PropertyInfo(alias="languageCode")]
     """Language code to enforce pronunciation, such as "en" or "pt".
@@ -127,7 +133,7 @@ class ElevenV4(TypedDict, total=False):
     """Boost similarity to the original speaker at a small latency cost."""
 
 
-class ElevenV4Voice(TypedDict, total=False):
+class ElevenV4VoiceRunwayPreset(TypedDict, total=False):
     """A voice preset from the RunwayML API."""
 
     preset_id: Required[
@@ -189,6 +195,18 @@ class ElevenV4Voice(TypedDict, total=False):
     """The preset voice ID to use for the generated speech."""
 
     type: Required[Literal["runway-preset"]]
+
+
+class ElevenV4VoiceCustom(TypedDict, total=False):
+    """A custom voice belonging to the authenticated organization."""
+
+    id: Required[str]
+    """The ID of a custom voice created via the Voices API."""
+
+    type: Required[Literal["custom"]]
+
+
+ElevenV4Voice: TypeAlias = Union[ElevenV4VoiceRunwayPreset, ElevenV4VoiceCustom]
 
 
 class ElevenMultilingualV2(TypedDict, total=False):
@@ -201,10 +219,10 @@ class ElevenMultilingualV2(TypedDict, total=False):
     """
 
     voice: Required[ElevenMultilingualV2Voice]
-    """A voice preset from the RunwayML API."""
+    """The voice to use for the generated speech."""
 
 
-class ElevenMultilingualV2Voice(TypedDict, total=False):
+class ElevenMultilingualV2VoiceRunwayPreset(TypedDict, total=False):
     """A voice preset from the RunwayML API."""
 
     preset_id: Required[
@@ -268,6 +286,18 @@ class ElevenMultilingualV2Voice(TypedDict, total=False):
     type: Required[Literal["runway-preset"]]
 
 
+class ElevenMultilingualV2VoiceCustom(TypedDict, total=False):
+    """A custom voice belonging to the authenticated organization."""
+
+    id: Required[str]
+    """The ID of a custom voice created via the Voices API."""
+
+    type: Required[Literal["custom"]]
+
+
+ElevenMultilingualV2Voice: TypeAlias = Union[ElevenMultilingualV2VoiceRunwayPreset, ElevenMultilingualV2VoiceCustom]
+
+
 class ElevenV3(TypedDict, total=False):
     model: Required[Literal["eleven_v3"]]
 
@@ -278,7 +308,7 @@ class ElevenV3(TypedDict, total=False):
     """
 
     voice: Required[ElevenV3Voice]
-    """A voice preset from the RunwayML API."""
+    """The voice to use for the generated speech."""
 
     apply_text_normalization: Annotated[Literal["auto", "on", "off"], PropertyInfo(alias="applyTextNormalization")]
     """Text normalization mode: 'auto', 'on', or 'off' (e.g. spelling out numbers)."""
@@ -314,7 +344,7 @@ class ElevenV3(TypedDict, total=False):
     """Boost similarity to the original speaker at a small latency cost."""
 
 
-class ElevenV3Voice(TypedDict, total=False):
+class ElevenV3VoiceRunwayPreset(TypedDict, total=False):
     """A voice preset from the RunwayML API."""
 
     preset_id: Required[
@@ -377,5 +407,16 @@ class ElevenV3Voice(TypedDict, total=False):
 
     type: Required[Literal["runway-preset"]]
 
+
+class ElevenV3VoiceCustom(TypedDict, total=False):
+    """A custom voice belonging to the authenticated organization."""
+
+    id: Required[str]
+    """The ID of a custom voice created via the Voices API."""
+
+    type: Required[Literal["custom"]]
+
+
+ElevenV3Voice: TypeAlias = Union[ElevenV3VoiceRunwayPreset, ElevenV3VoiceCustom]
 
 TextToSpeechCreateParams: TypeAlias = Union[SeedAudio, ElevenV4, ElevenMultilingualV2, ElevenV3]
