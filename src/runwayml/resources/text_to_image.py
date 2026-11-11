@@ -1097,6 +1097,7 @@ class TextToImageResource(SyncAPIResource):
         *,
         model: Literal["ideogram_4_5"],
         prompt_text: str,
+        context_window: str | Omit = omit,
         mask_uri: str | Omit = omit,
         output_count: int | Omit = omit,
         precise_edit: bool | Omit = omit,
@@ -1145,6 +1146,12 @@ class TextToImageResource(SyncAPIResource):
         Args:
           prompt_text: Describe the image to generate, or the changes to make to the reference images.
 
+          context_window: Precise-edit region: none, auto (requires maskUri), or top,left,bottom,right in
+              original-image pixels, with exclusive maximum edges. A manual region preserves
+              full resolution and all pixels outside it. All masked edit pixels must lie
+              inside a manual region. Auto-fit may fall back to downscaling if the mask is too
+              large. Requires edit-window access.
+
           mask_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
               `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
               [our docs](/assets/inputs#images) on image inputs for more information.
@@ -1152,8 +1159,10 @@ class TextToImageResource(SyncAPIResource):
           output_count: The number of images to generate. Increasing this number will affect the number
               of credits consumed by the generation.
 
-          precise_edit: When true, edit the first reference image while preserving its composition and
-              dimensions. Requires at least one reference image.
+          precise_edit: When true, edit the first reference image. Requires at least one reference
+              image. Whole-image edits above 4,194,304 pixels are scaled down. Set
+              contextWindow to edit a region at full source resolution; auto-fit may still
+              scale down if the mask cannot fit.
 
           quality: How much rendering effort the model spends on each image. Defaults to `medium`
               (8 credits per image) when generating from reference images and `high` (25
@@ -1165,7 +1174,7 @@ class TextToImageResource(SyncAPIResource):
               use `auto` to let the model choose. With reference images, widescreen 1K sizes
               are `1024:576`, `576:1024`, `1408:704`, `704:1408` instead of `1280:720`,
               `720:1280`, `1440:720`, `720:1440`. Not available with `maskUri` or
-              `preciseEdit`, which keep the size of the first reference image.
+              `preciseEdit`, where the source and edit window determine output dimensions.
 
           reference_images: Up to 5 images to guide the generation. With `maskUri` or `preciseEdit`, the
               first image is the one being edited and the rest are references.
@@ -1435,6 +1444,284 @@ class TextToImageResource(SyncAPIResource):
     def create(
         self,
         *,
+        model: Literal["ideogram_vector"],
+        prompt_text: str,
+        quality: Literal["low", "medium", "high"] | Omit = omit,
+        ratio: Literal["auto"] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.IdeogramVectorReferenceImage] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: Describe the vector illustration you want to generate.
+
+          quality: Rendering quality. Higher quality costs more credits.
+
+          ratio: Let the model choose the framing of the SVG.
+
+          reference_images: Images to guide the illustration. To trace a source image, use image_to_vector
+              instead.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["gpt_image_2_6_sunburst"],
+        prompt_text: str,
+        ratio: Literal[
+            "2048:880",
+            "1920:1088",
+            "1920:1280",
+            "1920:1440",
+            "1920:1536",
+            "1920:1920",
+            "1536:1920",
+            "1440:1920",
+            "1280:1920",
+            "1088:1920",
+            "2912:1248",
+            "2560:1440",
+            "2560:1712",
+            "2560:1920",
+            "2560:2048",
+            "2560:2560",
+            "2048:2560",
+            "1920:2560",
+            "1712:2560",
+            "1440:2560",
+            "3840:1648",
+            "3840:2160",
+            "3504:2336",
+            "3264:2448",
+            "3200:2560",
+            "2880:2880",
+            "2560:3200",
+            "2448:3264",
+            "2336:3504",
+            "2160:3840",
+            "auto",
+        ],
+        background: Literal["transparent", "opaque", "auto"] | Omit = omit,
+        frame_count: int | Omit = omit,
+        frame_duration_ms: int | Omit = omit,
+        output_count: int | Omit = omit,
+        output_format: Literal["png", "jpeg", "webp", "gif", "svg"] | Omit = omit,
+        quality: Literal["low", "medium", "high"] | Omit = omit,
+        reasoning_effort: Literal["low", "medium", "high"] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.GptImage2_6SunburstReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty string describing the desired image.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+              to let the model choose.
+
+          background: Background treatment. Defaults to `auto`, which lets the model pick. Use
+              `transparent` for an alpha-channel background, which `jpeg` output does not
+              support.
+
+          frame_count: Number of animation frames. Only supported for GIF output.
+
+          frame_duration_ms: Duration of each animation frame in milliseconds. Only supported for GIF output.
+
+          output_count: The number of images to generate (1-10). Increasing this number will affect the
+              number of credits consumed by the generation.
+
+          output_format: Output format. Defaults to PNG. JPEG and WebP produce smaller files; JPEG cannot
+              have a transparent background. GIF and SVG cannot use reference images; GIF
+              requires ratio auto.
+
+          quality: Rendering quality. Higher qualities consume more credits. Defaults to `high`.
+
+          reasoning_effort: How much reasoning to use before rendering. Defaults to `high`.
+
+          reference_images: An array of up to 16 images to be used as references for the generated image
+              output. No two images may share the same tag. Each reference image adds 1 credit
+              per generated image.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["gpt_image_2_6_flare"],
+        prompt_text: str,
+        ratio: Literal[
+            "2048:880",
+            "1920:1088",
+            "1920:1280",
+            "1920:1440",
+            "1920:1536",
+            "1920:1920",
+            "1536:1920",
+            "1440:1920",
+            "1280:1920",
+            "1088:1920",
+            "2912:1248",
+            "2560:1440",
+            "2560:1712",
+            "2560:1920",
+            "2560:2048",
+            "2560:2560",
+            "2048:2560",
+            "1920:2560",
+            "1712:2560",
+            "1440:2560",
+            "3840:1648",
+            "3840:2160",
+            "3504:2336",
+            "3264:2448",
+            "3200:2560",
+            "2880:2880",
+            "2560:3200",
+            "2448:3264",
+            "2336:3504",
+            "2160:3840",
+            "auto",
+        ],
+        background: Literal["transparent", "opaque", "auto"] | Omit = omit,
+        frame_count: int | Omit = omit,
+        frame_duration_ms: int | Omit = omit,
+        output_count: int | Omit = omit,
+        output_format: Literal["png", "jpeg", "webp", "gif", "svg"] | Omit = omit,
+        quality: Literal["low", "medium", "high"] | Omit = omit,
+        reasoning_effort: Literal["low", "medium", "high"] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.GptImage2_6FlareReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty string describing the desired image.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+              to let the model choose.
+
+          background: Background treatment. Defaults to `auto`, which lets the model pick. Use
+              `transparent` for an alpha-channel background, which `jpeg` output does not
+              support.
+
+          frame_count: Number of animation frames. Only supported for GIF output.
+
+          frame_duration_ms: Duration of each animation frame in milliseconds. Only supported for GIF output.
+
+          output_count: The number of images to generate (1-10). Increasing this number will affect the
+              number of credits consumed by the generation.
+
+          output_format: Output format. Defaults to PNG. JPEG and WebP produce smaller files; JPEG cannot
+              have a transparent background. GIF and SVG cannot use reference images; GIF
+              requires ratio auto.
+
+          quality: Rendering quality. Higher qualities consume more credits. Defaults to `high`.
+
+          reasoning_effort: How much reasoning to use before rendering. Defaults to `high`.
+
+          reference_images: An array of up to 16 images to be used as references for the generated image
+              output. No two images may share the same tag. Each reference image adds 1 credit
+              per generated image.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["seedream5_pro_layers"],
+        reference_images: Iterable[text_to_image_create_params.Seedream5ProLayersReferenceImage],
+        optimize_prompt_mode: Literal["standard", "fast"] | Omit = omit,
+        output_format: Literal["png", "jpeg"] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        resolution: Literal["auto", "1k", "1.5k", "2k"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          reference_images: The image to split into editable layers. Layer ordering and positioning are
+              returned in the completed task’s layers field.
+
+          optimize_prompt_mode: Prompt optimization: standard prioritizes quality; fast reduces generation time.
+              Defaults to standard.
+
+          output_format: Base image format; defaults to png. Separated layers always use PNG with
+              transparency.
+
+          prompt_text: Optional instructions describing which elements to separate. Omit to split the
+              image automatically.
+
+          resolution: Output resolution tier. Defaults to auto, which adapts to the input image. The
+              base image and layers preserve their respective aspect ratios.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -1482,6 +1769,7 @@ class TextToImageResource(SyncAPIResource):
         ["model", "prompt_text", "ratio", "reference_images"],
         ["model", "prompt_text", "ratio"],
         ["model", "prompt_text"],
+        ["model", "reference_images"],
     )
     def create(
         self,
@@ -1506,8 +1794,12 @@ class TextToImageResource(SyncAPIResource):
         | Literal["nano_banana_2.1"]
         | Literal["recraft_v4_1_flash"]
         | Literal["recraft_v4_1_vector"]
+        | Literal["ideogram_vector"]
+        | Literal["gpt_image_2_6_sunburst"]
+        | Literal["gpt_image_2_6_flare"]
+        | Literal["seedream5_pro_layers"]
         | Literal["gemini_2.5_flash"],
-        prompt_text: str,
+        prompt_text: str | Omit = omit,
         ratio: Literal[
             "1024:1024",
             "1080:1080",
@@ -1894,6 +2186,7 @@ class TextToImageResource(SyncAPIResource):
             "768:1344",
         ]
         | Literal["1024:1024", "1216:896", "896:1216", "1344:768", "768:1344"]
+        | Literal["auto"]
         | Literal[
             "1344:768",
             "768:1344",
@@ -1925,6 +2218,10 @@ class TextToImageResource(SyncAPIResource):
         | Iterable[text_to_image_create_params.Ideogram4_5ReferenceImage]
         | Iterable[text_to_image_create_params.Seedream5FlashReferenceImage]
         | Iterable[text_to_image_create_params.NanoBanana2_1ReferenceImage]
+        | Iterable[text_to_image_create_params.IdeogramVectorReferenceImage]
+        | Iterable[text_to_image_create_params.GptImage2_6SunburstReferenceImage]
+        | Iterable[text_to_image_create_params.GptImage2_6FlareReferenceImage]
+        | Iterable[text_to_image_create_params.Seedream5ProLayersReferenceImage]
         | Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage]
         | Omit = omit,
         content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration
@@ -1939,14 +2236,24 @@ class TextToImageResource(SyncAPIResource):
         | Literal["low", "medium", "high"]
         | Literal["very_low", "low", "medium", "high"]
         | Omit = omit,
-        output_format: Literal["webp", "png", "jpeg"] | Literal["png", "jpeg"] | Literal["webp", "png"] | Omit = omit,
+        output_format: Literal["webp", "png", "jpeg"]
+        | Literal["png", "jpeg"]
+        | Literal["webp", "png"]
+        | Literal["png", "jpeg", "webp", "gif", "svg"]
+        | Omit = omit,
         grounding: bool | Omit = omit,
         edit: bool | Omit = omit,
+        context_window: str | Omit = omit,
         mask_uri: str | Omit = omit,
         precise_edit: bool | Omit = omit,
         thinking_level: Literal["minimal", "medium", "high"] | Omit = omit,
         background_color: str | Omit = omit,
         colors: SequenceNotStr[str] | Omit = omit,
+        frame_count: int | Omit = omit,
+        frame_duration_ms: int | Omit = omit,
+        reasoning_effort: Literal["low", "medium", "high"] | Omit = omit,
+        optimize_prompt_mode: Literal["standard", "fast"] | Omit = omit,
+        resolution: Literal["auto", "1k", "1.5k", "2k"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1970,11 +2277,17 @@ class TextToImageResource(SyncAPIResource):
                     "output_format": output_format,
                     "grounding": grounding,
                     "edit": edit,
+                    "context_window": context_window,
                     "mask_uri": mask_uri,
                     "precise_edit": precise_edit,
                     "thinking_level": thinking_level,
                     "background_color": background_color,
                     "colors": colors,
+                    "frame_count": frame_count,
+                    "frame_duration_ms": frame_duration_ms,
+                    "reasoning_effort": reasoning_effort,
+                    "optimize_prompt_mode": optimize_prompt_mode,
+                    "resolution": resolution,
                 },
                 text_to_image_create_params.TextToImageCreateParams,
             ),
@@ -3052,6 +3365,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         *,
         model: Literal["ideogram_4_5"],
         prompt_text: str,
+        context_window: str | Omit = omit,
         mask_uri: str | Omit = omit,
         output_count: int | Omit = omit,
         precise_edit: bool | Omit = omit,
@@ -3100,6 +3414,12 @@ class AsyncTextToImageResource(AsyncAPIResource):
         Args:
           prompt_text: Describe the image to generate, or the changes to make to the reference images.
 
+          context_window: Precise-edit region: none, auto (requires maskUri), or top,left,bottom,right in
+              original-image pixels, with exclusive maximum edges. A manual region preserves
+              full resolution and all pixels outside it. All masked edit pixels must lie
+              inside a manual region. Auto-fit may fall back to downscaling if the mask is too
+              large. Requires edit-window access.
+
           mask_uri: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
               `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
               [our docs](/assets/inputs#images) on image inputs for more information.
@@ -3107,8 +3427,10 @@ class AsyncTextToImageResource(AsyncAPIResource):
           output_count: The number of images to generate. Increasing this number will affect the number
               of credits consumed by the generation.
 
-          precise_edit: When true, edit the first reference image while preserving its composition and
-              dimensions. Requires at least one reference image.
+          precise_edit: When true, edit the first reference image. Requires at least one reference
+              image. Whole-image edits above 4,194,304 pixels are scaled down. Set
+              contextWindow to edit a region at full source resolution; auto-fit may still
+              scale down if the mask cannot fit.
 
           quality: How much rendering effort the model spends on each image. Defaults to `medium`
               (8 credits per image) when generating from reference images and `high` (25
@@ -3120,7 +3442,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
               use `auto` to let the model choose. With reference images, widescreen 1K sizes
               are `1024:576`, `576:1024`, `1408:704`, `704:1408` instead of `1280:720`,
               `720:1280`, `1440:720`, `720:1440`. Not available with `maskUri` or
-              `preciseEdit`, which keep the size of the first reference image.
+              `preciseEdit`, where the source and edit window determine output dimensions.
 
           reference_images: Up to 5 images to guide the generation. With `maskUri` or `preciseEdit`, the
               first image is the one being edited and the rest are references.
@@ -3390,6 +3712,284 @@ class AsyncTextToImageResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        model: Literal["ideogram_vector"],
+        prompt_text: str,
+        quality: Literal["low", "medium", "high"] | Omit = omit,
+        ratio: Literal["auto"] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.IdeogramVectorReferenceImage] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: Describe the vector illustration you want to generate.
+
+          quality: Rendering quality. Higher quality costs more credits.
+
+          ratio: Let the model choose the framing of the SVG.
+
+          reference_images: Images to guide the illustration. To trace a source image, use image_to_vector
+              instead.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["gpt_image_2_6_sunburst"],
+        prompt_text: str,
+        ratio: Literal[
+            "2048:880",
+            "1920:1088",
+            "1920:1280",
+            "1920:1440",
+            "1920:1536",
+            "1920:1920",
+            "1536:1920",
+            "1440:1920",
+            "1280:1920",
+            "1088:1920",
+            "2912:1248",
+            "2560:1440",
+            "2560:1712",
+            "2560:1920",
+            "2560:2048",
+            "2560:2560",
+            "2048:2560",
+            "1920:2560",
+            "1712:2560",
+            "1440:2560",
+            "3840:1648",
+            "3840:2160",
+            "3504:2336",
+            "3264:2448",
+            "3200:2560",
+            "2880:2880",
+            "2560:3200",
+            "2448:3264",
+            "2336:3504",
+            "2160:3840",
+            "auto",
+        ],
+        background: Literal["transparent", "opaque", "auto"] | Omit = omit,
+        frame_count: int | Omit = omit,
+        frame_duration_ms: int | Omit = omit,
+        output_count: int | Omit = omit,
+        output_format: Literal["png", "jpeg", "webp", "gif", "svg"] | Omit = omit,
+        quality: Literal["low", "medium", "high"] | Omit = omit,
+        reasoning_effort: Literal["low", "medium", "high"] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.GptImage2_6SunburstReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty string describing the desired image.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+              to let the model choose.
+
+          background: Background treatment. Defaults to `auto`, which lets the model pick. Use
+              `transparent` for an alpha-channel background, which `jpeg` output does not
+              support.
+
+          frame_count: Number of animation frames. Only supported for GIF output.
+
+          frame_duration_ms: Duration of each animation frame in milliseconds. Only supported for GIF output.
+
+          output_count: The number of images to generate (1-10). Increasing this number will affect the
+              number of credits consumed by the generation.
+
+          output_format: Output format. Defaults to PNG. JPEG and WebP produce smaller files; JPEG cannot
+              have a transparent background. GIF and SVG cannot use reference images; GIF
+              requires ratio auto.
+
+          quality: Rendering quality. Higher qualities consume more credits. Defaults to `high`.
+
+          reasoning_effort: How much reasoning to use before rendering. Defaults to `high`.
+
+          reference_images: An array of up to 16 images to be used as references for the generated image
+              output. No two images may share the same tag. Each reference image adds 1 credit
+              per generated image.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["gpt_image_2_6_flare"],
+        prompt_text: str,
+        ratio: Literal[
+            "2048:880",
+            "1920:1088",
+            "1920:1280",
+            "1920:1440",
+            "1920:1536",
+            "1920:1920",
+            "1536:1920",
+            "1440:1920",
+            "1280:1920",
+            "1088:1920",
+            "2912:1248",
+            "2560:1440",
+            "2560:1712",
+            "2560:1920",
+            "2560:2048",
+            "2560:2560",
+            "2048:2560",
+            "1920:2560",
+            "1712:2560",
+            "1440:2560",
+            "3840:1648",
+            "3840:2160",
+            "3504:2336",
+            "3264:2448",
+            "3200:2560",
+            "2880:2880",
+            "2560:3200",
+            "2448:3264",
+            "2336:3504",
+            "2160:3840",
+            "auto",
+        ],
+        background: Literal["transparent", "opaque", "auto"] | Omit = omit,
+        frame_count: int | Omit = omit,
+        frame_duration_ms: int | Omit = omit,
+        output_count: int | Omit = omit,
+        output_format: Literal["png", "jpeg", "webp", "gif", "svg"] | Omit = omit,
+        quality: Literal["low", "medium", "high"] | Omit = omit,
+        reasoning_effort: Literal["low", "medium", "high"] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.GptImage2_6FlareReferenceImage] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty string describing the desired image.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. Use `auto`
+              to let the model choose.
+
+          background: Background treatment. Defaults to `auto`, which lets the model pick. Use
+              `transparent` for an alpha-channel background, which `jpeg` output does not
+              support.
+
+          frame_count: Number of animation frames. Only supported for GIF output.
+
+          frame_duration_ms: Duration of each animation frame in milliseconds. Only supported for GIF output.
+
+          output_count: The number of images to generate (1-10). Increasing this number will affect the
+              number of credits consumed by the generation.
+
+          output_format: Output format. Defaults to PNG. JPEG and WebP produce smaller files; JPEG cannot
+              have a transparent background. GIF and SVG cannot use reference images; GIF
+              requires ratio auto.
+
+          quality: Rendering quality. Higher qualities consume more credits. Defaults to `high`.
+
+          reasoning_effort: How much reasoning to use before rendering. Defaults to `high`.
+
+          reference_images: An array of up to 16 images to be used as references for the generated image
+              output. No two images may share the same tag. Each reference image adds 1 credit
+              per generated image.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["seedream5_pro_layers"],
+        reference_images: Iterable[text_to_image_create_params.Seedream5ProLayersReferenceImage],
+        optimize_prompt_mode: Literal["standard", "fast"] | Omit = omit,
+        output_format: Literal["png", "jpeg"] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        resolution: Literal["auto", "1k", "1.5k", "2k"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          reference_images: The image to split into editable layers. Layer ordering and positioning are
+              returned in the completed task’s layers field.
+
+          optimize_prompt_mode: Prompt optimization: standard prioritizes quality; fast reduces generation time.
+              Defaults to standard.
+
+          output_format: Base image format; defaults to png. Separated layers always use PNG with
+              transparency.
+
+          prompt_text: Optional instructions describing which elements to separate. Omit to split the
+              image automatically.
+
+          resolution: Output resolution tier. Defaults to auto, which adapts to the input image. The
+              base image and layers preserve their respective aspect ratios.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -3437,6 +4037,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         ["model", "prompt_text", "ratio", "reference_images"],
         ["model", "prompt_text", "ratio"],
         ["model", "prompt_text"],
+        ["model", "reference_images"],
     )
     async def create(
         self,
@@ -3461,8 +4062,12 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Literal["nano_banana_2.1"]
         | Literal["recraft_v4_1_flash"]
         | Literal["recraft_v4_1_vector"]
+        | Literal["ideogram_vector"]
+        | Literal["gpt_image_2_6_sunburst"]
+        | Literal["gpt_image_2_6_flare"]
+        | Literal["seedream5_pro_layers"]
         | Literal["gemini_2.5_flash"],
-        prompt_text: str,
+        prompt_text: str | Omit = omit,
         ratio: Literal[
             "1024:1024",
             "1080:1080",
@@ -3849,6 +4454,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "768:1344",
         ]
         | Literal["1024:1024", "1216:896", "896:1216", "1344:768", "768:1344"]
+        | Literal["auto"]
         | Literal[
             "1344:768",
             "768:1344",
@@ -3880,6 +4486,10 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Iterable[text_to_image_create_params.Ideogram4_5ReferenceImage]
         | Iterable[text_to_image_create_params.Seedream5FlashReferenceImage]
         | Iterable[text_to_image_create_params.NanoBanana2_1ReferenceImage]
+        | Iterable[text_to_image_create_params.IdeogramVectorReferenceImage]
+        | Iterable[text_to_image_create_params.GptImage2_6SunburstReferenceImage]
+        | Iterable[text_to_image_create_params.GptImage2_6FlareReferenceImage]
+        | Iterable[text_to_image_create_params.Seedream5ProLayersReferenceImage]
         | Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage]
         | Omit = omit,
         content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration
@@ -3894,14 +4504,24 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Literal["low", "medium", "high"]
         | Literal["very_low", "low", "medium", "high"]
         | Omit = omit,
-        output_format: Literal["webp", "png", "jpeg"] | Literal["png", "jpeg"] | Literal["webp", "png"] | Omit = omit,
+        output_format: Literal["webp", "png", "jpeg"]
+        | Literal["png", "jpeg"]
+        | Literal["webp", "png"]
+        | Literal["png", "jpeg", "webp", "gif", "svg"]
+        | Omit = omit,
         grounding: bool | Omit = omit,
         edit: bool | Omit = omit,
+        context_window: str | Omit = omit,
         mask_uri: str | Omit = omit,
         precise_edit: bool | Omit = omit,
         thinking_level: Literal["minimal", "medium", "high"] | Omit = omit,
         background_color: str | Omit = omit,
         colors: SequenceNotStr[str] | Omit = omit,
+        frame_count: int | Omit = omit,
+        frame_duration_ms: int | Omit = omit,
+        reasoning_effort: Literal["low", "medium", "high"] | Omit = omit,
+        optimize_prompt_mode: Literal["standard", "fast"] | Omit = omit,
+        resolution: Literal["auto", "1k", "1.5k", "2k"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3925,11 +4545,17 @@ class AsyncTextToImageResource(AsyncAPIResource):
                     "output_format": output_format,
                     "grounding": grounding,
                     "edit": edit,
+                    "context_window": context_window,
                     "mask_uri": mask_uri,
                     "precise_edit": precise_edit,
                     "thinking_level": thinking_level,
                     "background_color": background_color,
                     "colors": colors,
+                    "frame_count": frame_count,
+                    "frame_duration_ms": frame_duration_ms,
+                    "reasoning_effort": reasoning_effort,
+                    "optimize_prompt_mode": optimize_prompt_mode,
+                    "resolution": resolution,
                 },
                 text_to_image_create_params.TextToImageCreateParams,
             ),
