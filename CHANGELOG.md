@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.26.0](https://github.com/runwayml/sdk-python/compare/v5.25.0...v5.26.0) (2026-11-11)
+
+
+### Features
+
+* add image-to-vector and text-to-music methods ([72640f5](https://github.com/runwayml/sdk-python/commit/72640f5f3cc5da301cf8537d3dc4f6e2e3770af3))
+
 ## [5.25.0](https://github.com/runwayml/sdk-python/compare/v5.24.0...v5.25.0) (2026-11-11)
 
 
