@@ -50,6 +50,14 @@ __all__ = [
     "NanoBanana2_1ReferenceImage",
     "RecraftV4_1Flash",
     "RecraftV4_1Vector",
+    "IdeogramVector",
+    "IdeogramVectorReferenceImage",
+    "GptImage2_6Sunburst",
+    "GptImage2_6SunburstReferenceImage",
+    "GptImage2_6Flare",
+    "GptImage2_6FlareReferenceImage",
+    "Seedream5ProLayers",
+    "Seedream5ProLayersReferenceImage",
     "Gemini2_5Flash",
     "Gemini2_5FlashReferenceImage",
 ]
@@ -286,11 +294,13 @@ class GptImage2ReferenceImage(TypedDict, total=False):
     """
 
     tag: str
-    """A tag to identify the reference image.
+    """An optional label for the reference image.
 
-    This may be used to reference the image in prompt text. Must be 3-16 characters,
-    start with a letter, and use only letters, digits, and underscores (no hyphens
-    or other punctuation).
+    Tags are not sent to the model and cannot be used to reference images in prompt
+    text. Instead, refer to images by their order in this array (for example, "the
+    first image" or "the second image"). Must be 3-16 characters, start with a
+    letter, and use only letters, digits, and underscores (no hyphens or other
+    punctuation).
     """
 
 
@@ -870,11 +880,13 @@ class GptImage2_5FlareReferenceImage(TypedDict, total=False):
     """
 
     tag: str
-    """A tag to identify the reference image.
+    """An optional label for the reference image.
 
-    This may be used to reference the image in prompt text. Must be 3-16 characters,
-    start with a letter, and use only letters, digits, and underscores (no hyphens
-    or other punctuation).
+    Tags are not sent to the model and cannot be used to reference images in prompt
+    text. Instead, refer to images by their order in this array (for example, "the
+    first image" or "the second image"). Must be 3-16 characters, start with a
+    letter, and use only letters, digits, and underscores (no hyphens or other
+    punctuation).
     """
 
 
@@ -958,11 +970,13 @@ class GptImage2_5SunburstReferenceImage(TypedDict, total=False):
     """
 
     tag: str
-    """A tag to identify the reference image.
+    """An optional label for the reference image.
 
-    This may be used to reference the image in prompt text. Must be 3-16 characters,
-    start with a letter, and use only letters, digits, and underscores (no hyphens
-    or other punctuation).
+    Tags are not sent to the model and cannot be used to reference images in prompt
+    text. Instead, refer to images by their order in this array (for example, "the
+    first image" or "the second image"). Must be 3-16 characters, start with a
+    letter, and use only letters, digits, and underscores (no hyphens or other
+    punctuation).
     """
 
 
@@ -1125,6 +1139,15 @@ class Ideogram4_5(TypedDict, total=False):
     prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
     """Describe the image to generate, or the changes to make to the reference images."""
 
+    context_window: Annotated[str, PropertyInfo(alias="contextWindow")]
+    """
+    Precise-edit region: none, auto (requires maskUri), or top,left,bottom,right in
+    original-image pixels, with exclusive maximum edges. A manual region preserves
+    full resolution and all pixels outside it. All masked edit pixels must lie
+    inside a manual region. Auto-fit may fall back to downscaling if the mask is too
+    large. Requires edit-window access.
+    """
+
     mask_uri: Annotated[str, PropertyInfo(alias="maskUri")]
     """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
 
@@ -1140,9 +1163,11 @@ class Ideogram4_5(TypedDict, total=False):
     """
 
     precise_edit: Annotated[bool, PropertyInfo(alias="preciseEdit")]
-    """
-    When true, edit the first reference image while preserving its composition and
-    dimensions. Requires at least one reference image.
+    """When true, edit the first reference image.
+
+    Requires at least one reference image. Whole-image edits above 4,194,304 pixels
+    are scaled down. Set contextWindow to edit a region at full source resolution;
+    auto-fit may still scale down if the mask cannot fit.
     """
 
     quality: Literal["very_low", "low", "medium", "high"]
@@ -1188,7 +1213,7 @@ class Ideogram4_5(TypedDict, total=False):
     Omit it or use `auto` to let the model choose. With reference images, widescreen
     1K sizes are `1024:576`, `576:1024`, `1408:704`, `704:1408` instead of
     `1280:720`, `720:1280`, `1440:720`, `720:1440`. Not available with `maskUri` or
-    `preciseEdit`, which keep the size of the first reference image.
+    `preciseEdit`, where the source and edit window determine output dimensions.
     """
 
     reference_images: Annotated[Iterable[Ideogram4_5ReferenceImage], PropertyInfo(alias="referenceImages")]
@@ -1419,6 +1444,303 @@ class RecraftV4_1Vector(TypedDict, total=False):
     """
 
 
+class IdeogramVector(TypedDict, total=False):
+    model: Required[Literal["ideogram_vector"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """Describe the vector illustration you want to generate."""
+
+    quality: Literal["low", "medium", "high"]
+    """Rendering quality. Higher quality costs more credits."""
+
+    ratio: Literal["auto"]
+    """Let the model choose the framing of the SVG."""
+
+    reference_images: Annotated[Iterable[IdeogramVectorReferenceImage], PropertyInfo(alias="referenceImages")]
+    """Images to guide the illustration.
+
+    To trace a source image, use image_to_vector instead.
+    """
+
+    seed: int
+
+
+class IdeogramVectorReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class GptImage2_6Sunburst(TypedDict, total=False):
+    model: Required[Literal["gpt_image_2_6_sunburst"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty string describing the desired image."""
+
+    ratio: Required[
+        Literal[
+            "2048:880",
+            "1920:1088",
+            "1920:1280",
+            "1920:1440",
+            "1920:1536",
+            "1920:1920",
+            "1536:1920",
+            "1440:1920",
+            "1280:1920",
+            "1088:1920",
+            "2912:1248",
+            "2560:1440",
+            "2560:1712",
+            "2560:1920",
+            "2560:2048",
+            "2560:2560",
+            "2048:2560",
+            "1920:2560",
+            "1712:2560",
+            "1440:2560",
+            "3840:1648",
+            "3840:2160",
+            "3504:2336",
+            "3264:2448",
+            "3200:2560",
+            "2880:2880",
+            "2560:3200",
+            "2448:3264",
+            "2336:3504",
+            "2160:3840",
+            "auto",
+        ]
+    ]
+    """The resolution of the output image, expressed as `<width>:<height>`.
+
+    Use `auto` to let the model choose.
+    """
+
+    background: Literal["transparent", "opaque", "auto"]
+    """Background treatment.
+
+    Defaults to `auto`, which lets the model pick. Use `transparent` for an
+    alpha-channel background, which `jpeg` output does not support.
+    """
+
+    frame_count: Annotated[int, PropertyInfo(alias="frameCount")]
+    """Number of animation frames. Only supported for GIF output."""
+
+    frame_duration_ms: Annotated[int, PropertyInfo(alias="frameDurationMs")]
+    """Duration of each animation frame in milliseconds.
+
+    Only supported for GIF output.
+    """
+
+    output_count: Annotated[int, PropertyInfo(alias="outputCount")]
+    """The number of images to generate (1-10).
+
+    Increasing this number will affect the number of credits consumed by the
+    generation.
+    """
+
+    output_format: Annotated[Literal["png", "jpeg", "webp", "gif", "svg"], PropertyInfo(alias="outputFormat")]
+    """Output format.
+
+    Defaults to PNG. JPEG and WebP produce smaller files; JPEG cannot have a
+    transparent background. GIF and SVG cannot use reference images; GIF requires
+    ratio auto.
+    """
+
+    quality: Literal["low", "medium", "high"]
+    """Rendering quality. Higher qualities consume more credits. Defaults to `high`."""
+
+    reasoning_effort: Annotated[Literal["low", "medium", "high"], PropertyInfo(alias="reasoningEffort")]
+    """How much reasoning to use before rendering. Defaults to `high`."""
+
+    reference_images: Annotated[Iterable[GptImage2_6SunburstReferenceImage], PropertyInfo(alias="referenceImages")]
+    """
+    An array of up to 16 images to be used as references for the generated image
+    output. No two images may share the same tag. Each reference image adds 1 credit
+    per generated image.
+    """
+
+
+class GptImage2_6SunburstReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    tag: str
+    """An optional label for the reference image.
+
+    Tags are not sent to the model and cannot be used to reference images in prompt
+    text. Instead, refer to images by their order in this array (for example, "the
+    first image" or "the second image"). Must be 3-16 characters, start with a
+    letter, and use only letters, digits, and underscores (no hyphens or other
+    punctuation).
+    """
+
+
+class GptImage2_6Flare(TypedDict, total=False):
+    model: Required[Literal["gpt_image_2_6_flare"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty string describing the desired image."""
+
+    ratio: Required[
+        Literal[
+            "2048:880",
+            "1920:1088",
+            "1920:1280",
+            "1920:1440",
+            "1920:1536",
+            "1920:1920",
+            "1536:1920",
+            "1440:1920",
+            "1280:1920",
+            "1088:1920",
+            "2912:1248",
+            "2560:1440",
+            "2560:1712",
+            "2560:1920",
+            "2560:2048",
+            "2560:2560",
+            "2048:2560",
+            "1920:2560",
+            "1712:2560",
+            "1440:2560",
+            "3840:1648",
+            "3840:2160",
+            "3504:2336",
+            "3264:2448",
+            "3200:2560",
+            "2880:2880",
+            "2560:3200",
+            "2448:3264",
+            "2336:3504",
+            "2160:3840",
+            "auto",
+        ]
+    ]
+    """The resolution of the output image, expressed as `<width>:<height>`.
+
+    Use `auto` to let the model choose.
+    """
+
+    background: Literal["transparent", "opaque", "auto"]
+    """Background treatment.
+
+    Defaults to `auto`, which lets the model pick. Use `transparent` for an
+    alpha-channel background, which `jpeg` output does not support.
+    """
+
+    frame_count: Annotated[int, PropertyInfo(alias="frameCount")]
+    """Number of animation frames. Only supported for GIF output."""
+
+    frame_duration_ms: Annotated[int, PropertyInfo(alias="frameDurationMs")]
+    """Duration of each animation frame in milliseconds.
+
+    Only supported for GIF output.
+    """
+
+    output_count: Annotated[int, PropertyInfo(alias="outputCount")]
+    """The number of images to generate (1-10).
+
+    Increasing this number will affect the number of credits consumed by the
+    generation.
+    """
+
+    output_format: Annotated[Literal["png", "jpeg", "webp", "gif", "svg"], PropertyInfo(alias="outputFormat")]
+    """Output format.
+
+    Defaults to PNG. JPEG and WebP produce smaller files; JPEG cannot have a
+    transparent background. GIF and SVG cannot use reference images; GIF requires
+    ratio auto.
+    """
+
+    quality: Literal["low", "medium", "high"]
+    """Rendering quality. Higher qualities consume more credits. Defaults to `high`."""
+
+    reasoning_effort: Annotated[Literal["low", "medium", "high"], PropertyInfo(alias="reasoningEffort")]
+    """How much reasoning to use before rendering. Defaults to `high`."""
+
+    reference_images: Annotated[Iterable[GptImage2_6FlareReferenceImage], PropertyInfo(alias="referenceImages")]
+    """
+    An array of up to 16 images to be used as references for the generated image
+    output. No two images may share the same tag. Each reference image adds 1 credit
+    per generated image.
+    """
+
+
+class GptImage2_6FlareReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    tag: str
+    """An optional label for the reference image.
+
+    Tags are not sent to the model and cannot be used to reference images in prompt
+    text. Instead, refer to images by their order in this array (for example, "the
+    first image" or "the second image"). Must be 3-16 characters, start with a
+    letter, and use only letters, digits, and underscores (no hyphens or other
+    punctuation).
+    """
+
+
+class Seedream5ProLayers(TypedDict, total=False):
+    model: Required[Literal["seedream5_pro_layers"]]
+
+    reference_images: Required[
+        Annotated[Iterable[Seedream5ProLayersReferenceImage], PropertyInfo(alias="referenceImages")]
+    ]
+    """The image to split into editable layers.
+
+    Layer ordering and positioning are returned in the completed task’s layers
+    field.
+    """
+
+    optimize_prompt_mode: Annotated[Literal["standard", "fast"], PropertyInfo(alias="optimizePromptMode")]
+    """Prompt optimization: standard prioritizes quality; fast reduces generation time.
+
+    Defaults to standard.
+    """
+
+    output_format: Annotated[Literal["png", "jpeg"], PropertyInfo(alias="outputFormat")]
+    """Base image format; defaults to png.
+
+    Separated layers always use PNG with transparency.
+    """
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """Optional instructions describing which elements to separate.
+
+    Omit to split the image automatically.
+    """
+
+    resolution: Literal["auto", "1k", "1.5k", "2k"]
+    """Output resolution tier.
+
+    Defaults to auto, which adapts to the input image. The base image and layers
+    preserve their respective aspect ratios.
+    """
+
+
+class Seedream5ProLayersReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
 class Gemini2_5Flash(TypedDict, total=False):
     model: Required[Literal["gemini_2.5_flash"]]
 
@@ -1486,5 +1808,9 @@ TextToImageCreateParams: TypeAlias = Union[
     NanoBanana2_1,
     RecraftV4_1Flash,
     RecraftV4_1Vector,
+    IdeogramVector,
+    GptImage2_6Sunburst,
+    GptImage2_6Flare,
+    Seedream5ProLayers,
     Gemini2_5Flash,
 ]

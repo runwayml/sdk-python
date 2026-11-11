@@ -30,14 +30,14 @@ class RoutingResolvedInput(BaseModel):
     Not necessarily identical to prepared model options.
     """
 
-    type: Literal["speech", "audio"]
+    type: Literal["speech", "audio", "music"]
     """The prompt mode the router routed for."""
 
     voice: Literal["preset", "reference-audio", "default", "none"]
     """
     How the selected model resolves the voice: the requested preset or
     reference-audio clone, the model default for voiceless speech, or none for
-    general audio.
+    general audio and music.
     """
 
 
