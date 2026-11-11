@@ -1677,7 +1677,7 @@ class TextToImageResource(SyncAPIResource):
         self,
         *,
         model: Literal["seedream5_pro_layers"],
-        reference_images: Iterable[object],
+        reference_images: Iterable[text_to_image_create_params.Seedream5ProLayersReferenceImage],
         optimize_prompt_mode: Literal["standard", "fast"] | Omit = omit,
         output_format: Literal["png", "jpeg"] | Omit = omit,
         prompt_text: str | Omit = omit,
@@ -2221,7 +2221,7 @@ class TextToImageResource(SyncAPIResource):
         | Iterable[text_to_image_create_params.IdeogramVectorReferenceImage]
         | Iterable[text_to_image_create_params.GptImage2_6SunburstReferenceImage]
         | Iterable[text_to_image_create_params.GptImage2_6FlareReferenceImage]
-        | Iterable[object]
+        | Iterable[text_to_image_create_params.Seedream5ProLayersReferenceImage]
         | Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage]
         | Omit = omit,
         content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration
@@ -3945,7 +3945,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         self,
         *,
         model: Literal["seedream5_pro_layers"],
-        reference_images: Iterable[object],
+        reference_images: Iterable[text_to_image_create_params.Seedream5ProLayersReferenceImage],
         optimize_prompt_mode: Literal["standard", "fast"] | Omit = omit,
         output_format: Literal["png", "jpeg"] | Omit = omit,
         prompt_text: str | Omit = omit,
@@ -4489,7 +4489,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Iterable[text_to_image_create_params.IdeogramVectorReferenceImage]
         | Iterable[text_to_image_create_params.GptImage2_6SunburstReferenceImage]
         | Iterable[text_to_image_create_params.GptImage2_6FlareReferenceImage]
-        | Iterable[object]
+        | Iterable[text_to_image_create_params.Seedream5ProLayersReferenceImage]
         | Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage]
         | Omit = omit,
         content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration

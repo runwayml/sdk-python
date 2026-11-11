@@ -1211,7 +1211,7 @@ class TestTextToImage:
     def test_method_create_overload_24(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
             model="seedream5_pro_layers",
-            reference_images=[{}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1219,7 +1219,7 @@ class TestTextToImage:
     def test_method_create_with_all_params_overload_24(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
             model="seedream5_pro_layers",
-            reference_images=[{}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
             optimize_prompt_mode="standard",
             output_format="png",
             prompt_text="x",
@@ -1231,7 +1231,7 @@ class TestTextToImage:
     def test_raw_response_create_overload_24(self, client: RunwayML) -> None:
         response = client.text_to_image.with_raw_response.create(
             model="seedream5_pro_layers",
-            reference_images=[{}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
 
         assert response.is_closed is True
@@ -1243,7 +1243,7 @@ class TestTextToImage:
     def test_streaming_response_create_overload_24(self, client: RunwayML) -> None:
         with client.text_to_image.with_streaming_response.create(
             model="seedream5_pro_layers",
-            reference_images=[{}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2505,7 +2505,7 @@ class TestAsyncTextToImage:
     async def test_method_create_overload_24(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
             model="seedream5_pro_layers",
-            reference_images=[{}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2513,7 +2513,7 @@ class TestAsyncTextToImage:
     async def test_method_create_with_all_params_overload_24(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
             model="seedream5_pro_layers",
-            reference_images=[{}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
             optimize_prompt_mode="standard",
             output_format="png",
             prompt_text="x",
@@ -2525,7 +2525,7 @@ class TestAsyncTextToImage:
     async def test_raw_response_create_overload_24(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.text_to_image.with_raw_response.create(
             model="seedream5_pro_layers",
-            reference_images=[{}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         )
 
         assert response.is_closed is True
@@ -2537,7 +2537,7 @@ class TestAsyncTextToImage:
     async def test_streaming_response_create_overload_24(self, async_client: AsyncRunwayML) -> None:
         async with async_client.text_to_image.with_streaming_response.create(
             model="seedream5_pro_layers",
-            reference_images=[{}],
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

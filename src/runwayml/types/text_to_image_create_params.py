@@ -57,6 +57,7 @@ __all__ = [
     "GptImage2_6Flare",
     "GptImage2_6FlareReferenceImage",
     "Seedream5ProLayers",
+    "Seedream5ProLayersReferenceImage",
     "Gemini2_5Flash",
     "Gemini2_5FlashReferenceImage",
 ]
@@ -1696,7 +1697,9 @@ class GptImage2_6FlareReferenceImage(TypedDict, total=False):
 class Seedream5ProLayers(TypedDict, total=False):
     model: Required[Literal["seedream5_pro_layers"]]
 
-    reference_images: Required[Annotated[Iterable[object], PropertyInfo(alias="referenceImages")]]
+    reference_images: Required[
+        Annotated[Iterable[Seedream5ProLayersReferenceImage], PropertyInfo(alias="referenceImages")]
+    ]
     """The image to split into editable layers.
 
     Layer ordering and positioning are returned in the completed task’s layers
@@ -1726,6 +1729,15 @@ class Seedream5ProLayers(TypedDict, total=False):
 
     Defaults to auto, which adapts to the input image. The base image and layers
     preserve their respective aspect ratios.
+    """
+
+
+class Seedream5ProLayersReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
     """
 
 
