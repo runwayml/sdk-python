@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -17,10 +18,27 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..lib.polling import (
+    AwaitableTaskResponseMixin,
+    AsyncAwaitableTaskResponseMixin,
+    create_waitable_resource,
+    create_async_waitable_resource,
+)
 from .._base_client import make_request_options
 from ..types.image_to_vector_create_response import ImageToVectorCreateResponse
 
-__all__ = ["ImageToVectorResource", "AsyncImageToVectorResource"]
+__all__ = [
+    "ImageToVectorResource",
+    "AsyncImageToVectorResource",
+    "WaitableImageToVectorCreateResponse",
+    "AsyncWaitableImageToVectorCreateResponse",
+]
+
+
+class WaitableImageToVectorCreateResponse(ImageToVectorCreateResponse, AwaitableTaskResponseMixin): ...
+
+
+class AsyncWaitableImageToVectorCreateResponse(ImageToVectorCreateResponse, AsyncAwaitableTaskResponseMixin): ...
 
 
 class ImageToVectorResource(SyncAPIResource):
@@ -57,7 +75,7 @@ class ImageToVectorResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImageToVectorCreateResponse:
+    ) -> WaitableImageToVectorCreateResponse:
         """
         Convert a source image into a scalable SVG.
 
@@ -89,7 +107,10 @@ class ImageToVectorResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ImageToVectorCreateResponse,
+            cast_to=cast(
+                Type[WaitableImageToVectorCreateResponse],
+                create_waitable_resource(WaitableImageToVectorCreateResponse, self._client),
+            ),
         )
 
 
@@ -127,7 +148,7 @@ class AsyncImageToVectorResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ImageToVectorCreateResponse:
+    ) -> AsyncWaitableImageToVectorCreateResponse:
         """
         Convert a source image into a scalable SVG.
 
@@ -159,7 +180,10 @@ class AsyncImageToVectorResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ImageToVectorCreateResponse,
+            cast_to=cast(
+                Type[AsyncWaitableImageToVectorCreateResponse],
+                create_async_waitable_resource(AsyncWaitableImageToVectorCreateResponse, self._client),
+            ),
         )
 
 

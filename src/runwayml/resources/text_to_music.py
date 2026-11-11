@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -17,10 +18,27 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..lib.polling import (
+    AwaitableTaskResponseMixin,
+    AsyncAwaitableTaskResponseMixin,
+    create_waitable_resource,
+    create_async_waitable_resource,
+)
 from .._base_client import make_request_options
 from ..types.text_to_music_create_response import TextToMusicCreateResponse
 
-__all__ = ["TextToMusicResource", "AsyncTextToMusicResource"]
+__all__ = [
+    "TextToMusicResource",
+    "AsyncTextToMusicResource",
+    "WaitableTextToMusicCreateResponse",
+    "AsyncWaitableTextToMusicCreateResponse",
+]
+
+
+class WaitableTextToMusicCreateResponse(TextToMusicCreateResponse, AwaitableTaskResponseMixin): ...
+
+
+class AsyncWaitableTextToMusicCreateResponse(TextToMusicCreateResponse, AsyncAwaitableTaskResponseMixin): ...
 
 
 class TextToMusicResource(SyncAPIResource):
@@ -58,7 +76,7 @@ class TextToMusicResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TextToMusicCreateResponse:
+    ) -> WaitableTextToMusicCreateResponse:
         """
         This endpoint will start a new task to generate a song or instrumental track
         from a text description.
@@ -95,7 +113,10 @@ class TextToMusicResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TextToMusicCreateResponse,
+            cast_to=cast(
+                Type[WaitableTextToMusicCreateResponse],
+                create_waitable_resource(WaitableTextToMusicCreateResponse, self._client),
+            ),
         )
 
 
@@ -134,7 +155,7 @@ class AsyncTextToMusicResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TextToMusicCreateResponse:
+    ) -> AsyncWaitableTextToMusicCreateResponse:
         """
         This endpoint will start a new task to generate a song or instrumental track
         from a text description.
@@ -171,7 +192,10 @@ class AsyncTextToMusicResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TextToMusicCreateResponse,
+            cast_to=cast(
+                Type[AsyncWaitableTextToMusicCreateResponse],
+                create_async_waitable_resource(AsyncWaitableTextToMusicCreateResponse, self._client),
+            ),
         )
 
 
