@@ -120,6 +120,14 @@ from .text_to_image import (
     TextToImageResourceWithStreamingResponse,
     AsyncTextToImageResourceWithStreamingResponse,
 )
+from .text_to_music import (
+    TextToMusicResource,
+    AsyncTextToMusicResource,
+    TextToMusicResourceWithRawResponse,
+    AsyncTextToMusicResourceWithRawResponse,
+    TextToMusicResourceWithStreamingResponse,
+    AsyncTextToMusicResourceWithStreamingResponse,
+)
 from .text_to_video import (
     TextToVideoResource,
     AsyncTextToVideoResource,
@@ -175,6 +183,14 @@ from .video_to_video import (
     AsyncVideoToVideoResourceWithRawResponse,
     VideoToVideoResourceWithStreamingResponse,
     AsyncVideoToVideoResourceWithStreamingResponse,
+)
+from .image_to_vector import (
+    ImageToVectorResource,
+    AsyncImageToVectorResource,
+    ImageToVectorResourceWithRawResponse,
+    AsyncImageToVectorResourceWithRawResponse,
+    ImageToVectorResourceWithStreamingResponse,
+    AsyncImageToVectorResourceWithStreamingResponse,
 )
 from .voice_isolation import (
     VoiceIsolationResource,
@@ -268,6 +284,18 @@ __all__ = [
     "AsyncTextToImageResourceWithRawResponse",
     "TextToImageResourceWithStreamingResponse",
     "AsyncTextToImageResourceWithStreamingResponse",
+    "ImageToVectorResource",
+    "AsyncImageToVectorResource",
+    "ImageToVectorResourceWithRawResponse",
+    "AsyncImageToVectorResourceWithRawResponse",
+    "ImageToVectorResourceWithStreamingResponse",
+    "AsyncImageToVectorResourceWithStreamingResponse",
+    "TextToMusicResource",
+    "AsyncTextToMusicResource",
+    "TextToMusicResourceWithRawResponse",
+    "AsyncTextToMusicResourceWithRawResponse",
+    "TextToMusicResourceWithStreamingResponse",
+    "AsyncTextToMusicResourceWithStreamingResponse",
     "CharacterPerformanceResource",
     "AsyncCharacterPerformanceResource",
     "CharacterPerformanceResourceWithRawResponse",

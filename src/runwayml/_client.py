@@ -51,6 +51,7 @@ if TYPE_CHECKING:
         avatar_videos,
         image_upscale,
         text_to_image,
+        text_to_music,
         text_to_video,
         video_upscale,
         voice_dubbing,
@@ -58,6 +59,7 @@ if TYPE_CHECKING:
         text_to_speech,
         video_to_audio,
         video_to_video,
+        image_to_vector,
         voice_isolation,
         speech_to_speech,
         realtime_sessions,
@@ -78,6 +80,7 @@ if TYPE_CHECKING:
     from .resources.avatar_videos import AvatarVideosResource, AsyncAvatarVideosResource
     from .resources.image_upscale import ImageUpscaleResource, AsyncImageUpscaleResource
     from .resources.text_to_image import TextToImageResource, AsyncTextToImageResource
+    from .resources.text_to_music import TextToMusicResource, AsyncTextToMusicResource
     from .resources.text_to_video import TextToVideoResource, AsyncTextToVideoResource
     from .resources.video_upscale import VideoUpscaleResource, AsyncVideoUpscaleResource
     from .resources.voice_dubbing import VoiceDubbingResource, AsyncVoiceDubbingResource
@@ -85,6 +88,7 @@ if TYPE_CHECKING:
     from .resources.text_to_speech import TextToSpeechResource, AsyncTextToSpeechResource
     from .resources.video_to_audio import VideoToAudioResource, AsyncVideoToAudioResource
     from .resources.video_to_video import VideoToVideoResource, AsyncVideoToVideoResource
+    from .resources.image_to_vector import ImageToVectorResource, AsyncImageToVectorResource
     from .resources.voice_isolation import VoiceIsolationResource, AsyncVoiceIsolationResource
     from .resources.speech_to_speech import SpeechToSpeechResource, AsyncSpeechToSpeechResource
     from .resources.generate.generate import GenerateResource, AsyncGenerateResource
@@ -230,6 +234,20 @@ class RunwayML(SyncAPIClient):
         from .resources.text_to_image import TextToImageResource
 
         return TextToImageResource(self)
+
+    @cached_property
+    def image_to_vector(self) -> ImageToVectorResource:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.image_to_vector import ImageToVectorResource
+
+        return ImageToVectorResource(self)
+
+    @cached_property
+    def text_to_music(self) -> TextToMusicResource:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.text_to_music import TextToMusicResource
+
+        return TextToMusicResource(self)
 
     @cached_property
     def character_performance(self) -> CharacterPerformanceResource:
@@ -601,6 +619,20 @@ class AsyncRunwayML(AsyncAPIClient):
         return AsyncTextToImageResource(self)
 
     @cached_property
+    def image_to_vector(self) -> AsyncImageToVectorResource:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.image_to_vector import AsyncImageToVectorResource
+
+        return AsyncImageToVectorResource(self)
+
+    @cached_property
+    def text_to_music(self) -> AsyncTextToMusicResource:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.text_to_music import AsyncTextToMusicResource
+
+        return AsyncTextToMusicResource(self)
+
+    @cached_property
     def character_performance(self) -> AsyncCharacterPerformanceResource:
         """These endpoints all kick off tasks to create generations."""
         from .resources.character_performance import AsyncCharacterPerformanceResource
@@ -906,6 +938,20 @@ class RunwayMLWithRawResponse:
         return TextToImageResourceWithRawResponse(self._client.text_to_image)
 
     @cached_property
+    def image_to_vector(self) -> image_to_vector.ImageToVectorResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.image_to_vector import ImageToVectorResourceWithRawResponse
+
+        return ImageToVectorResourceWithRawResponse(self._client.image_to_vector)
+
+    @cached_property
+    def text_to_music(self) -> text_to_music.TextToMusicResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.text_to_music import TextToMusicResourceWithRawResponse
+
+        return TextToMusicResourceWithRawResponse(self._client.text_to_music)
+
+    @cached_property
     def character_performance(self) -> character_performance.CharacterPerformanceResourceWithRawResponse:
         """These endpoints all kick off tasks to create generations."""
         from .resources.character_performance import CharacterPerformanceResourceWithRawResponse
@@ -1094,6 +1140,20 @@ class AsyncRunwayMLWithRawResponse:
         from .resources.text_to_image import AsyncTextToImageResourceWithRawResponse
 
         return AsyncTextToImageResourceWithRawResponse(self._client.text_to_image)
+
+    @cached_property
+    def image_to_vector(self) -> image_to_vector.AsyncImageToVectorResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.image_to_vector import AsyncImageToVectorResourceWithRawResponse
+
+        return AsyncImageToVectorResourceWithRawResponse(self._client.image_to_vector)
+
+    @cached_property
+    def text_to_music(self) -> text_to_music.AsyncTextToMusicResourceWithRawResponse:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.text_to_music import AsyncTextToMusicResourceWithRawResponse
+
+        return AsyncTextToMusicResourceWithRawResponse(self._client.text_to_music)
 
     @cached_property
     def character_performance(self) -> character_performance.AsyncCharacterPerformanceResourceWithRawResponse:
@@ -1286,6 +1346,20 @@ class RunwayMLWithStreamedResponse:
         return TextToImageResourceWithStreamingResponse(self._client.text_to_image)
 
     @cached_property
+    def image_to_vector(self) -> image_to_vector.ImageToVectorResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.image_to_vector import ImageToVectorResourceWithStreamingResponse
+
+        return ImageToVectorResourceWithStreamingResponse(self._client.image_to_vector)
+
+    @cached_property
+    def text_to_music(self) -> text_to_music.TextToMusicResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.text_to_music import TextToMusicResourceWithStreamingResponse
+
+        return TextToMusicResourceWithStreamingResponse(self._client.text_to_music)
+
+    @cached_property
     def character_performance(self) -> character_performance.CharacterPerformanceResourceWithStreamingResponse:
         """These endpoints all kick off tasks to create generations."""
         from .resources.character_performance import CharacterPerformanceResourceWithStreamingResponse
@@ -1474,6 +1548,20 @@ class AsyncRunwayMLWithStreamedResponse:
         from .resources.text_to_image import AsyncTextToImageResourceWithStreamingResponse
 
         return AsyncTextToImageResourceWithStreamingResponse(self._client.text_to_image)
+
+    @cached_property
+    def image_to_vector(self) -> image_to_vector.AsyncImageToVectorResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.image_to_vector import AsyncImageToVectorResourceWithStreamingResponse
+
+        return AsyncImageToVectorResourceWithStreamingResponse(self._client.image_to_vector)
+
+    @cached_property
+    def text_to_music(self) -> text_to_music.AsyncTextToMusicResourceWithStreamingResponse:
+        """These endpoints all kick off tasks to create generations."""
+        from .resources.text_to_music import AsyncTextToMusicResourceWithStreamingResponse
+
+        return AsyncTextToMusicResourceWithStreamingResponse(self._client.text_to_music)
 
     @cached_property
     def character_performance(self) -> character_performance.AsyncCharacterPerformanceResourceWithStreamingResponse:
