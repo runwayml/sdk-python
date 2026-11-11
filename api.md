@@ -83,6 +83,30 @@ Methods:
 
 - <code title="post /v1/text_to_image">client.text_to_image.<a href="./src/runwayml/resources/text_to_image.py">create</a>(\*\*<a href="src/runwayml/types/text_to_image_create_params.py">params</a>) -> <a href="./src/runwayml/types/text_to_image_create_response.py">TextToImageCreateResponse</a></code>
 
+# ImageToVector
+
+Types:
+
+```python
+from runwayml.types import ImageToVectorCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/image_to_vector">client.image_to_vector.<a href="./src/runwayml/resources/image_to_vector.py">create</a>(\*\*<a href="src/runwayml/types/image_to_vector_create_params.py">params</a>) -> <a href="./src/runwayml/types/image_to_vector_create_response.py">ImageToVectorCreateResponse</a></code>
+
+# TextToMusic
+
+Types:
+
+```python
+from runwayml.types import TextToMusicCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/text_to_music">client.text_to_music.<a href="./src/runwayml/resources/text_to_music.py">create</a>(\*\*<a href="src/runwayml/types/text_to_music_create_params.py">params</a>) -> <a href="./src/runwayml/types/text_to_music_create_response.py">TextToMusicCreateResponse</a></code>
+
 # CharacterPerformance
 
 Types:
