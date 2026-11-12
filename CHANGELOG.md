@@ -1,5 +1,19 @@
 # Changelog
 
+## [5.27.0](https://github.com/runwayml/sdk-python/compare/v5.26.0...v5.27.0) (2026-11-12)
+
+
+### Features
+
+* Accept custom voice IDs for text-to-speech with Eleven v4, v3, and Multilingual v2.
+* Add Hailuo 3 Highspeed (`hailuo3_highspeed`) and Lite (`hailuo3_lite`) model inputs.
+* Add Seedance 2.5 4K output ratios.
+
+
+### Bug Fixes
+
+* **client:** preserve waitable custom voice speech responses ([c7b8137](https://github.com/runwayml/sdk-python/commit/c7b8137e09f227aa4e8d487c5ac971aa3ead7ae6))
+
 ## [5.26.0](https://github.com/runwayml/sdk-python/compare/v5.25.0...v5.26.0) (2026-11-11)
 
 
