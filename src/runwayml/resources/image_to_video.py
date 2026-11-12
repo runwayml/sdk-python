@@ -1324,6 +1324,12 @@ class ImageToVideoResource(SyncAPIResource):
             "1440:1440",
             "1248:1664",
             "1080:1920",
+            "3840:1646",
+            "3840:2160",
+            "3840:2880",
+            "3840:3840",
+            "2880:3840",
+            "2160:3840",
         ]
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
@@ -1359,7 +1365,8 @@ class ImageToVideoResource(SyncAPIResource):
           prompt_text: An optional text prompt up to 15000 characters describing what should appear in
               the output.
 
-          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
+          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, 1080p, and
+              4K.
 
           reference_audio: An optional array of audio references. The total combined duration must not
               exceed 30 seconds.
@@ -1546,6 +1553,90 @@ class ImageToVideoResource(SyncAPIResource):
         """
         ...
 
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["hailuo3_highspeed"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Hailuo3HighspeedPromptImageUnionMember1]],
+        prompt_text: str,
+        duration: int | Omit = omit,
+        ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
+        reference_audio: Iterable[image_to_video_create_params.Hailuo3HighspeedReferenceAudio] | Omit = omit,
+        references: Iterable[image_to_video_create_params.Hailuo3HighspeedReference] | Omit = omit,
+        reference_videos: Iterable[image_to_video_create_params.Hailuo3HighspeedReferenceVideo] | Omit = omit,
+        resolution: Literal["480p", "768p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
+
+          prompt_text: The text prompt describing the output video.
+
+          resolution: The output video resolution.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["hailuo3_lite"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Hailuo3LitePromptImageUnionMember1]],
+        prompt_text: str,
+        duration: int | Omit = omit,
+        ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
+        reference_audio: Iterable[image_to_video_create_params.Hailuo3LiteReferenceAudio] | Omit = omit,
+        references: Iterable[image_to_video_create_params.Hailuo3LiteReference] | Omit = omit,
+        reference_videos: Iterable[image_to_video_create_params.Hailuo3LiteReferenceVideo] | Omit = omit,
+        resolution: Literal["480p", "768p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
+
+          prompt_text: The text prompt describing the output video.
+
+          resolution: The output video resolution.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["duration", "model", "prompt_image", "prompt_text", "ratio"],
         ["model", "prompt_image", "ratio"],
@@ -1587,7 +1678,9 @@ class ImageToVideoResource(SyncAPIResource):
         | Literal["grok_imagine_1_5_lite"]
         | Literal["kling_4"]
         | Literal["gemini_omni_flash_1.2"]
-        | Literal["kling_4_flash"],
+        | Literal["kling_4_flash"]
+        | Literal["hailuo3_highspeed"]
+        | Literal["hailuo3_lite"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
@@ -1611,7 +1704,9 @@ class ImageToVideoResource(SyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GrokImagine1_5LitePromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlash1_2PromptImagePromptImage]]
-        | Union[str, Iterable[image_to_video_create_params.Kling4FlashPromptImageUnionMember1]],
+        | Union[str, Iterable[image_to_video_create_params.Kling4FlashPromptImageUnionMember1]]
+        | Union[str, Iterable[image_to_video_create_params.Hailuo3HighspeedPromptImageUnionMember1]]
+        | Union[str, Iterable[image_to_video_create_params.Hailuo3LitePromptImageUnionMember1]],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
         | Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
@@ -1701,6 +1796,12 @@ class ImageToVideoResource(SyncAPIResource):
             "1440:1440",
             "1248:1664",
             "1080:1920",
+            "3840:1646",
+            "3840:2160",
+            "3840:2880",
+            "3840:3840",
+            "2880:3840",
+            "2160:3840",
         ]
         | Literal["auto_480p", "auto_720p", "auto_1080p"]
         | Literal["auto_720p", "auto_1080p"]
@@ -1741,6 +1842,8 @@ class ImageToVideoResource(SyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.KlingO3StandardReferencesReferenceImage]]
         | Iterable[image_to_video_create_params.Kling4Reference]
         | Iterable[image_to_video_create_params.Kling4FlashReference]
+        | Iterable[image_to_video_create_params.Hailuo3HighspeedReference]
+        | Iterable[image_to_video_create_params.Hailuo3LiteReference]
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Hailuo3ReferenceAudio]
         | Iterable[image_to_video_create_params.Seedance2ReferenceAudio]
@@ -1749,6 +1852,8 @@ class ImageToVideoResource(SyncAPIResource):
         | Iterable[image_to_video_create_params.Wan3ReferenceAudio]
         | Iterable[image_to_video_create_params.Wan3PrimeReferenceAudio]
         | Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio]
+        | Iterable[image_to_video_create_params.Hailuo3HighspeedReferenceAudio]
+        | Iterable[image_to_video_create_params.Hailuo3LiteReferenceAudio]
         | Omit = omit,
         resolution: Literal["768p", "2k", "768P", "2K"]
         | Literal["720p", "1080p", "720P", "1080P"]
@@ -1761,6 +1866,8 @@ class ImageToVideoResource(SyncAPIResource):
         | Iterable[image_to_video_create_params.Wan3PrimeReferenceVideo]
         | Iterable[object]
         | Iterable[image_to_video_create_params.Kling4FlashReferenceVideo]
+        | Iterable[image_to_video_create_params.Hailuo3HighspeedReferenceVideo]
+        | Iterable[image_to_video_create_params.Hailuo3LiteReferenceVideo]
         | Omit = omit,
         prompt_expansion_mode: Literal["disabled", "balanced", "quality"] | Omit = omit,
         draft: bool | Omit = omit,
@@ -3099,6 +3206,12 @@ class AsyncImageToVideoResource(AsyncAPIResource):
             "1440:1440",
             "1248:1664",
             "1080:1920",
+            "3840:1646",
+            "3840:2160",
+            "3840:2880",
+            "3840:3840",
+            "2880:3840",
+            "2160:3840",
         ]
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
@@ -3134,7 +3247,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
           prompt_text: An optional text prompt up to 15000 characters describing what should appear in
               the output.
 
-          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, and 1080p.
+          ratio: The resolution of the output video. Seedance 2.5 supports 480p, 720p, 1080p, and
+              4K.
 
           reference_audio: An optional array of audio references. The total combined duration must not
               exceed 30 seconds.
@@ -3321,6 +3435,90 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         """
         ...
 
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["hailuo3_highspeed"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Hailuo3HighspeedPromptImageUnionMember1]],
+        prompt_text: str,
+        duration: int | Omit = omit,
+        ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
+        reference_audio: Iterable[image_to_video_create_params.Hailuo3HighspeedReferenceAudio] | Omit = omit,
+        references: Iterable[image_to_video_create_params.Hailuo3HighspeedReference] | Omit = omit,
+        reference_videos: Iterable[image_to_video_create_params.Hailuo3HighspeedReferenceVideo] | Omit = omit,
+        resolution: Literal["480p", "768p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
+
+          prompt_text: The text prompt describing the output video.
+
+          resolution: The output video resolution.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["hailuo3_lite"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Hailuo3LitePromptImageUnionMember1]],
+        prompt_text: str,
+        duration: int | Omit = omit,
+        ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
+        reference_audio: Iterable[image_to_video_create_params.Hailuo3LiteReferenceAudio] | Omit = omit,
+        references: Iterable[image_to_video_create_params.Hailuo3LiteReference] | Omit = omit,
+        reference_videos: Iterable[image_to_video_create_params.Hailuo3LiteReferenceVideo] | Omit = omit,
+        resolution: Literal["480p", "768p"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+              `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+              [our docs](/assets/inputs#images) on image inputs for more information.
+
+          prompt_text: The text prompt describing the output video.
+
+          resolution: The output video resolution.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["duration", "model", "prompt_image", "prompt_text", "ratio"],
         ["model", "prompt_image", "ratio"],
@@ -3362,7 +3560,9 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Literal["grok_imagine_1_5_lite"]
         | Literal["kling_4"]
         | Literal["gemini_omni_flash_1.2"]
-        | Literal["kling_4_flash"],
+        | Literal["kling_4_flash"]
+        | Literal["hailuo3_highspeed"]
+        | Literal["hailuo3_lite"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
@@ -3386,7 +3586,9 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.Seedance2_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GrokImagine1_5LitePromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlash1_2PromptImagePromptImage]]
-        | Union[str, Iterable[image_to_video_create_params.Kling4FlashPromptImageUnionMember1]],
+        | Union[str, Iterable[image_to_video_create_params.Kling4FlashPromptImageUnionMember1]]
+        | Union[str, Iterable[image_to_video_create_params.Hailuo3HighspeedPromptImageUnionMember1]]
+        | Union[str, Iterable[image_to_video_create_params.Hailuo3LitePromptImageUnionMember1]],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
         | Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
@@ -3476,6 +3678,12 @@ class AsyncImageToVideoResource(AsyncAPIResource):
             "1440:1440",
             "1248:1664",
             "1080:1920",
+            "3840:1646",
+            "3840:2160",
+            "3840:2880",
+            "3840:3840",
+            "2880:3840",
+            "2160:3840",
         ]
         | Literal["auto_480p", "auto_720p", "auto_1080p"]
         | Literal["auto_720p", "auto_1080p"]
@@ -3516,6 +3724,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.KlingO3StandardReferencesReferenceImage]]
         | Iterable[image_to_video_create_params.Kling4Reference]
         | Iterable[image_to_video_create_params.Kling4FlashReference]
+        | Iterable[image_to_video_create_params.Hailuo3HighspeedReference]
+        | Iterable[image_to_video_create_params.Hailuo3LiteReference]
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Hailuo3ReferenceAudio]
         | Iterable[image_to_video_create_params.Seedance2ReferenceAudio]
@@ -3524,6 +3734,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Iterable[image_to_video_create_params.Wan3ReferenceAudio]
         | Iterable[image_to_video_create_params.Wan3PrimeReferenceAudio]
         | Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio]
+        | Iterable[image_to_video_create_params.Hailuo3HighspeedReferenceAudio]
+        | Iterable[image_to_video_create_params.Hailuo3LiteReferenceAudio]
         | Omit = omit,
         resolution: Literal["768p", "2k", "768P", "2K"]
         | Literal["720p", "1080p", "720P", "1080P"]
@@ -3536,6 +3748,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Iterable[image_to_video_create_params.Wan3PrimeReferenceVideo]
         | Iterable[object]
         | Iterable[image_to_video_create_params.Kling4FlashReferenceVideo]
+        | Iterable[image_to_video_create_params.Hailuo3HighspeedReferenceVideo]
+        | Iterable[image_to_video_create_params.Hailuo3LiteReferenceVideo]
         | Omit = omit,
         prompt_expansion_mode: Literal["disabled", "balanced", "quality"] | Omit = omit,
         draft: bool | Omit = omit,
