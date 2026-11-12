@@ -93,7 +93,7 @@ def create_waitable_resource(base_class: Type[T], client: "RunwayML") -> Type[Ne
                 task_details = client.tasks.retrieve(self.id)
                 if task_details.status == "SUCCEEDED":
                     return task_details
-                if task_details.status == "FAILED":
+                if task_details.status == "FAILED" or task_details.status == "CANCELLED":
                     raise TaskFailedError(task_details)
                 if timeout is not None and time.time() - start_time > timeout:
                     raise TaskTimeoutError(task_details)
@@ -209,7 +209,7 @@ def _make_sync_wait_for_task_output(
             task_details = client.tasks.retrieve(self.id)  # type: ignore[attr-defined]
             if task_details.status == "SUCCEEDED":
                 return task_details
-            if task_details.status == "FAILED":
+            if task_details.status == "FAILED" or task_details.status == "CANCELLED":
                 raise TaskFailedError(task_details)
             if timeout is not None and time.time() - start_time > timeout:
                 raise TaskTimeoutError(task_details)
