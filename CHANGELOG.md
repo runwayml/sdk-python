@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.27.0](https://github.com/runwayml/sdk-python/compare/v5.26.0...v5.27.0) (2026-11-12)
+
+
+### Features
+
+* add custom voices for text-to-speech and update model support ([57b5b25](https://github.com/runwayml/sdk-python/commit/57b5b25a0b5ceeaf6da0b7d3797f0880b04a1e18))
+
+
+### Bug Fixes
+
+* **client:** preserve waitable custom voice speech responses ([c7b8137](https://github.com/runwayml/sdk-python/commit/c7b8137e09f227aa4e8d487c5ac971aa3ead7ae6))
+
 ## [5.26.0](https://github.com/runwayml/sdk-python/compare/v5.25.0...v5.26.0) (2026-11-11)
 
 
