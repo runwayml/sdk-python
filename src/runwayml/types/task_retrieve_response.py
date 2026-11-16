@@ -230,7 +230,7 @@ class Succeeded(BaseModel):
     status: Literal["SUCCEEDED"]
 
     layers: Optional[List[SucceededLayer]] = None
-    """Layer details for successful Seedream 5 Pro Layers tasks.
+    """Layer details for successful Seedream layer decomposition tasks.
 
     Each URI matches the output URL at the same index.
     """

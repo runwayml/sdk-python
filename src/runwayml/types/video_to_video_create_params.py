@@ -1125,13 +1125,43 @@ class Kling4(TypedDict, total=False):
     [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
-    ratio: Literal["auto_720p", "auto_1080p"]
-    """Output quality tier. The video keeps the input media framing."""
+    duration: int
+    """The duration of the edited video in seconds."""
+
+    prompt_image: Annotated[Union[str, Iterable[object]], PropertyInfo(alias="promptImage")]
+    """Optional first, middle, and last frames guiding the edit.
+
+    Middle or last frames can be provided without a first frame.
+    """
+
+    ratio: Literal[
+        "1280:720",
+        "720:1280",
+        "940:940",
+        "1460:624",
+        "1920:1080",
+        "1080:1920",
+        "1440:1440",
+        "2200:940",
+        "auto_720p",
+        "auto_1080p",
+    ]
+    """The target output size.
+
+    Use a pixel ratio such as `1280:720` or `auto_720p` / `auto_1080p` for adaptive
+    framing.
+    """
 
     references: Iterable[Kling4Reference]
     """Images of characters, objects or styles to use in the video.
 
     Up to 10 images in total, frames included.
+    """
+
+    reference_videos: Annotated[Iterable[object], PropertyInfo(alias="referenceVideos")]
+    """
+    Up to 4 videos whose style, motion or camera work should guide the output,
+    together at most 30 seconds long.
     """
 
 

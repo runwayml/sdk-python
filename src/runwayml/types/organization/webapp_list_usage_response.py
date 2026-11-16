@@ -18,6 +18,31 @@ class WebappListUsageResponse(BaseModel):
     email: str
     """Email of the user who generated."""
 
+    output_count: Optional[int] = FieldInfo(alias="outputCount", default=None)
+    """
+    Number of output files the generation returned, including ones the user later
+    deleted and excluding attachments such as playable proxies. Copying an output
+    into a project can raise it. 0 when it returned no files, for example while it
+    runs or after it failed. `null` when `taskId` is null or the generation no
+    longer exists.
+    """
+
+    output_type: Optional[
+        Literal["image", "video", "text", "file", "audio", "font", "model", "project", "mesh", "cloud", "splat"]
+    ] = FieldInfo(alias="outputType", default=None)
+    """
+    Media type of the generation's output: one of the listed values, which won't be
+    remapped. Agent sandbox sessions report `file`. `null` when `taskId` is null,
+    the generation no longer exists, or the type wasn't recorded.
+    """
+
+    status: Optional[Literal["PENDING", "THROTTLED", "RUNNING", "FAILED", "SUCCEEDED", "CANCELLED"]] = None
+    """
+    Current status of the generation when you request it, so it can change between
+    pulls (upsert on `transactionId`). A refund row doesn't mean the generation
+    failed. `null` when `taskId` is null or the generation no longer exists.
+    """
+
     task_id: Optional[str] = FieldInfo(alias="taskId", default=None)
     """ID of the generation this row belongs to.
 

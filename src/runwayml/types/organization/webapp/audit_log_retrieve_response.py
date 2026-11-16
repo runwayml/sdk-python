@@ -14,6 +14,8 @@ __all__ = ["AuditLogRetrieveResponse", "Metadata"]
 class Metadata(BaseModel):
     """Action-specific details."""
 
+    accepted_by: Optional[str] = FieldInfo(alias="Accepted by", default=None)
+
     ad_account_id: Optional[str] = FieldInfo(alias="Ad account ID", default=None)
 
     ad_creative_id: Optional[str] = FieldInfo(alias="Ad creative ID", default=None)
@@ -32,6 +34,8 @@ class Metadata(BaseModel):
 
     ad_sync_start_date: Optional[str] = FieldInfo(alias="Ad sync start date", default=None)
 
+    added_member: Optional[str] = FieldInfo(alias="Added member", default=None)
+
     ads_created_as: Optional[str] = FieldInfo(alias="Ads created as", default=None)
 
     ads_onboarding_answers: Optional[List[str]] = FieldInfo(alias="Ads onboarding answers", default=None)
@@ -45,6 +49,8 @@ class Metadata(BaseModel):
     amount: Optional[float] = FieldInfo(alias="Amount", default=None)
 
     amount_received: Optional[float] = FieldInfo(alias="Amount received", default=None)
+
+    anonymous: Optional[bool] = FieldInfo(alias="Anonymous", default=None)
 
     api_account: Optional[str] = FieldInfo(alias="API account", default=None)
 
@@ -62,9 +68,15 @@ class Metadata(BaseModel):
 
     asset_name: Optional[str] = FieldInfo(alias="Asset name", default=None)
 
+    asset_type: Optional[str] = FieldInfo(alias="Asset type", default=None)
+
+    automatic: Optional[bool] = FieldInfo(alias="Automatic", default=None)
+
     aws_license: Optional[str] = FieldInfo(alias="AWS license", default=None)
 
     brand_kit_id: Optional[str] = FieldInfo(alias="Brand kit ID", default=None)
+
+    cancels_at_period_end: Optional[bool] = FieldInfo(alias="Cancels at period end", default=None)
 
     comment_id: Optional[str] = FieldInfo(alias="Comment ID", default=None)
 
@@ -74,11 +86,15 @@ class Metadata(BaseModel):
 
     comment_text: Optional[str] = FieldInfo(alias="Comment text", default=None)
 
+    connector: Optional[str] = FieldInfo(alias="Connector", default=None)
+
     creatives_cancelled: Optional[float] = FieldInfo(alias="Creatives cancelled", default=None)
 
     creatives_queued: Optional[float] = FieldInfo(alias="Creatives queued", default=None)
 
     creatives_retried: Optional[float] = FieldInfo(alias="Creatives retried", default=None)
+
+    credits_used: Optional[float] = FieldInfo(alias="Credits used", default=None)
 
     default_project_discoverability: Optional[str] = FieldInfo(alias="Default project discoverability", default=None)
 
@@ -88,9 +104,17 @@ class Metadata(BaseModel):
 
     direction: Optional[str] = FieldInfo(alias="Direction", default=None)
 
+    downloaded_by_owner: Optional[bool] = FieldInfo(alias="Downloaded by owner", default=None)
+
     email_domain: Optional[str] = FieldInfo(alias="Email domain", default=None)
 
+    enabled: Optional[bool] = FieldInfo(alias="Enabled", default=None)
+
     error_code: Optional[str] = FieldInfo(alias="Error code", default=None)
+
+    filename: Optional[str] = FieldInfo(alias="Filename", default=None)
+
+    from_workspace_id: Optional[float] = FieldInfo(alias="From workspace ID", default=None)
 
     group_name: Optional[str] = FieldInfo(alias="Group name", default=None)
 
@@ -100,7 +124,11 @@ class Metadata(BaseModel):
 
     invited_member: Optional[str] = FieldInfo(alias="Invited member", default=None)
 
+    join_policy: Optional[str] = FieldInfo(alias="Join policy", default=None)
+
     language_model_or_provider: Optional[str] = FieldInfo(alias="Language model or provider", default=None)
+
+    link_type: Optional[str] = FieldInfo(alias="Link type", default=None)
 
     login_method: Optional[str] = FieldInfo(alias="Login method", default=None)
 
@@ -110,7 +138,11 @@ class Metadata(BaseModel):
 
     mentions: Optional[float] = FieldInfo(alias="Mentions", default=None)
 
+    method: Optional[str] = FieldInfo(alias="Method", default=None)
+
     model: Optional[str] = FieldInfo(alias="Model", default=None)
+
+    new_email: Optional[str] = FieldInfo(alias="New email", default=None)
 
     new_role: Optional[str] = FieldInfo(alias="New role", default=None)
 
@@ -134,6 +166,8 @@ class Metadata(BaseModel):
 
     platform_object_id: Optional[str] = FieldInfo(alias="Platform object ID", default=None)
 
+    previous_email: Optional[str] = FieldInfo(alias="Previous email", default=None)
+
     previous_project_credit_cap: Optional[float] = FieldInfo(alias="Previous project credit cap", default=None)
 
     previous_role: Optional[str] = FieldInfo(alias="Previous role", default=None)
@@ -144,11 +178,21 @@ class Metadata(BaseModel):
 
     project_credit_cap: Optional[float] = FieldInfo(alias="Project credit cap", default=None)
 
+    project_id: Optional[str] = FieldInfo(alias="Project ID", default=None)
+
     provider: Optional[str] = FieldInfo(alias="Provider", default=None)
 
     reason: Optional[str] = FieldInfo(alias="Reason", default=None)
 
+    recharge_amount_usd_cents: Optional[float] = FieldInfo(alias="Recharge amount (USD cents)", default=None)
+
+    recharge_below_credits: Optional[float] = FieldInfo(alias="Recharge below (credits)", default=None)
+
     removed_member: Optional[str] = FieldInfo(alias="Removed member", default=None)
+
+    requested_via: Optional[List[str]] = FieldInfo(alias="Requested via", default=None)
+
+    result_metric_id: Optional[str] = FieldInfo(alias="Result metric ID", default=None)
 
     review_decision: Optional[str] = FieldInfo(alias="Review decision", default=None)
 
@@ -162,13 +206,21 @@ class Metadata(BaseModel):
 
     setting: Optional[str] = FieldInfo(alias="Setting", default=None)
 
+    shared_in_project: Optional[str] = FieldInfo(alias="Shared in project", default=None)
+
     shared_with_projects: Optional[List[str]] = FieldInfo(alias="Shared with projects", default=None)
 
     shared_with_workspace: Optional[bool] = FieldInfo(alias="Shared with workspace", default=None)
 
+    source: Optional[str] = FieldInfo(alias="Source", default=None)
+
+    source_application: Optional[str] = FieldInfo(alias="Source application", default=None)
+
     source_category_id: Optional[str] = FieldInfo(alias="Source category ID", default=None)
 
     spend_cap: Optional[float] = FieldInfo(alias="Spend cap", default=None)
+
+    spend_cap_usd_cents: Optional[float] = FieldInfo(alias="Spend cap (USD cents)", default=None)
 
     spend_cap_change: Optional[float] = FieldInfo(alias="Spend cap change", default=None)
 
@@ -184,7 +236,17 @@ class Metadata(BaseModel):
 
     target_member: Optional[str] = FieldInfo(alias="Target member", default=None)
 
+    task_id: Optional[str] = FieldInfo(alias="Task ID", default=None)
+
+    to_workspace_id: Optional[float] = FieldInfo(alias="To workspace ID", default=None)
+
+    tool: Optional[str] = FieldInfo(alias="Tool", default=None)
+
+    updated_fields: Optional[List[str]] = FieldInfo(alias="Updated fields", default=None)
+
     via_public_api: Optional[bool] = FieldInfo(alias="Via public API", default=None)
+
+    watermarked: Optional[bool] = FieldInfo(alias="Watermarked", default=None)
 
     workspace: Optional[str] = FieldInfo(alias="Workspace", default=None)
 
