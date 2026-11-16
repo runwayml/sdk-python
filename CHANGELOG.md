@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.28.0](https://github.com/runwayml/sdk-python/compare/v5.27.0...v5.28.0) (2026-11-16)
+
+
+### Features
+
+* add Kling 4 edit controls and Gemini speech models ([ce2ba93](https://github.com/runwayml/sdk-python/commit/ce2ba939a37dead00a460e1344431dc7dbb3d569))
+
+
+### Chores
+
+* **internal:** make new model overloads return waitable responses ([d797c77](https://github.com/runwayml/sdk-python/commit/d797c776ea97f0b3425daef6d84d716f969bac41))
+
 ## [5.27.0](https://github.com/runwayml/sdk-python/compare/v5.26.0...v5.27.0) (2026-11-12)
 
 
