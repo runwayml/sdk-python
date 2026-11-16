@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import Literal, overload
 
 import httpx
 
 from ..types import text_to_speech_create_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -177,6 +178,86 @@ class TextToSpeechResource(SyncAPIResource):
     def create(
         self,
         *,
+        model: Literal["gemini_3.8_flash_tts"],
+        turns: Iterable[text_to_speech_create_params.Gemini3_8FlashTtsTurn],
+        voice_ids: SequenceNotStr[str],
+        language_code: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """This endpoint will start a new task to generate speech from text.
+
+        ElevenLabs
+        models accept preset voices or custom voices created via the Voices API. Seed
+        Audio accepts a reference audio clip.
+
+        Args:
+          turns: The script, in the order it is spoken. Use one turn for a single speaker, or
+              alternate speakers across turns for a dialogue.
+
+          voice_ids: The Google voice for each speaker, such as "Kore" or "Puck". Pass one voice for
+              a single speaker, or two for a dialogue.
+
+          language_code: The language of the script, such as "en-US". When omitted, the model detects it.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["gemini_3.8_flash_lite_tts"],
+        turns: Iterable[text_to_speech_create_params.Gemini3_8FlashLiteTtsTurn],
+        voice_ids: SequenceNotStr[str],
+        language_code: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """This endpoint will start a new task to generate speech from text.
+
+        ElevenLabs
+        models accept preset voices or custom voices created via the Voices API. Seed
+        Audio accepts a reference audio clip.
+
+        Args:
+          turns: The script, in the order it is spoken. Use one turn for a single speaker, or
+              alternate speakers across turns for a dialogue.
+
+          voice_ids: The Google voice for each speaker, such as "Kore" or "Puck". Pass one voice for
+              a single speaker, or two for a dialogue.
+
+          language_code: The language of the script, such as "en-US". When omitted, the model detects it.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["eleven_multilingual_v2"],
         prompt_text: str,
         voice: text_to_speech_create_params.ElevenMultilingualV2Voice,
@@ -272,12 +353,17 @@ class TextToSpeechResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["model", "prompt_text"], ["model", "prompt_text", "voice"])
+    @required_args(["model", "prompt_text"], ["model", "prompt_text", "voice"], ["model", "turns", "voice_ids"])
     def create(
         self,
         *,
-        model: Literal["seed_audio"] | Literal["eleven_v4"] | Literal["eleven_multilingual_v2"] | Literal["eleven_v3"],
-        prompt_text: str,
+        model: Literal["seed_audio"]
+        | Literal["eleven_v4"]
+        | Literal["gemini_3.8_flash_tts"]
+        | Literal["gemini_3.8_flash_lite_tts"]
+        | Literal["eleven_multilingual_v2"]
+        | Literal["eleven_v3"],
+        prompt_text: str | Omit = omit,
         loudness_rate: int | Omit = omit,
         output_format: Literal["wav", "mp3", "ogg_opus"] | Omit = omit,
         pitch_rate: int | Omit = omit,
@@ -297,6 +383,10 @@ class TextToSpeechResource(SyncAPIResource):
         stability: float | Omit = omit,
         style: float | Omit = omit,
         use_speaker_boost: bool | Omit = omit,
+        turns: Iterable[text_to_speech_create_params.Gemini3_8FlashTtsTurn]
+        | Iterable[text_to_speech_create_params.Gemini3_8FlashLiteTtsTurn]
+        | Omit = omit,
+        voice_ids: SequenceNotStr[str] | Omit = omit,
         apply_text_normalization: Literal["auto", "on", "off"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -326,6 +416,8 @@ class TextToSpeechResource(SyncAPIResource):
                     "stability": stability,
                     "style": style,
                     "use_speaker_boost": use_speaker_boost,
+                    "turns": turns,
+                    "voice_ids": voice_ids,
                     "apply_text_normalization": apply_text_normalization,
                 },
                 text_to_speech_create_params.TextToSpeechCreateParams,
@@ -485,6 +577,86 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        model: Literal["gemini_3.8_flash_tts"],
+        turns: Iterable[text_to_speech_create_params.Gemini3_8FlashTtsTurn],
+        voice_ids: SequenceNotStr[str],
+        language_code: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """This endpoint will start a new task to generate speech from text.
+
+        ElevenLabs
+        models accept preset voices or custom voices created via the Voices API. Seed
+        Audio accepts a reference audio clip.
+
+        Args:
+          turns: The script, in the order it is spoken. Use one turn for a single speaker, or
+              alternate speakers across turns for a dialogue.
+
+          voice_ids: The Google voice for each speaker, such as "Kore" or "Puck". Pass one voice for
+              a single speaker, or two for a dialogue.
+
+          language_code: The language of the script, such as "en-US". When omitted, the model detects it.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["gemini_3.8_flash_lite_tts"],
+        turns: Iterable[text_to_speech_create_params.Gemini3_8FlashLiteTtsTurn],
+        voice_ids: SequenceNotStr[str],
+        language_code: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """This endpoint will start a new task to generate speech from text.
+
+        ElevenLabs
+        models accept preset voices or custom voices created via the Voices API. Seed
+        Audio accepts a reference audio clip.
+
+        Args:
+          turns: The script, in the order it is spoken. Use one turn for a single speaker, or
+              alternate speakers across turns for a dialogue.
+
+          voice_ids: The Google voice for each speaker, such as "Kore" or "Puck". Pass one voice for
+              a single speaker, or two for a dialogue.
+
+          language_code: The language of the script, such as "en-US". When omitted, the model detects it.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["eleven_multilingual_v2"],
         prompt_text: str,
         voice: text_to_speech_create_params.ElevenMultilingualV2Voice,
@@ -580,12 +752,17 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["model", "prompt_text"], ["model", "prompt_text", "voice"])
+    @required_args(["model", "prompt_text"], ["model", "prompt_text", "voice"], ["model", "turns", "voice_ids"])
     async def create(
         self,
         *,
-        model: Literal["seed_audio"] | Literal["eleven_v4"] | Literal["eleven_multilingual_v2"] | Literal["eleven_v3"],
-        prompt_text: str,
+        model: Literal["seed_audio"]
+        | Literal["eleven_v4"]
+        | Literal["gemini_3.8_flash_tts"]
+        | Literal["gemini_3.8_flash_lite_tts"]
+        | Literal["eleven_multilingual_v2"]
+        | Literal["eleven_v3"],
+        prompt_text: str | Omit = omit,
         loudness_rate: int | Omit = omit,
         output_format: Literal["wav", "mp3", "ogg_opus"] | Omit = omit,
         pitch_rate: int | Omit = omit,
@@ -605,6 +782,10 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         stability: float | Omit = omit,
         style: float | Omit = omit,
         use_speaker_boost: bool | Omit = omit,
+        turns: Iterable[text_to_speech_create_params.Gemini3_8FlashTtsTurn]
+        | Iterable[text_to_speech_create_params.Gemini3_8FlashLiteTtsTurn]
+        | Omit = omit,
+        voice_ids: SequenceNotStr[str] | Omit = omit,
         apply_text_normalization: Literal["auto", "on", "off"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -634,6 +815,8 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
                     "stability": stability,
                     "style": style,
                     "use_speaker_boost": use_speaker_boost,
+                    "turns": turns,
+                    "voice_ids": voice_ids,
                     "apply_text_normalization": apply_text_normalization,
                 },
                 text_to_speech_create_params.TextToSpeechCreateParams,

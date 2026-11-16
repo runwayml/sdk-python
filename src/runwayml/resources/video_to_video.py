@@ -764,8 +764,23 @@ class VideoToVideoResource(SyncAPIResource):
         model: Literal["kling_4"],
         prompt_text: str,
         video_uri: str,
-        ratio: Literal["auto_720p", "auto_1080p"] | Omit = omit,
+        duration: int | Omit = omit,
+        prompt_image: Union[str, Iterable[object]] | Omit = omit,
+        ratio: Literal[
+            "1280:720",
+            "720:1280",
+            "940:940",
+            "1460:624",
+            "1920:1080",
+            "1080:1920",
+            "1440:1440",
+            "2200:940",
+            "auto_720p",
+            "auto_1080p",
+        ]
+        | Omit = omit,
         references: Iterable[video_to_video_create_params.Kling4Reference] | Omit = omit,
+        reference_videos: Iterable[object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -783,10 +798,19 @@ class VideoToVideoResource(SyncAPIResource):
               `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
-          ratio: Output quality tier. The video keeps the input media framing.
+          duration: The duration of the edited video in seconds.
+
+          prompt_image: Optional first, middle, and last frames guiding the edit. Middle or last frames
+              can be provided without a first frame.
+
+          ratio: The target output size. Use a pixel ratio such as `1280:720` or `auto_720p` /
+              `auto_1080p` for adaptive framing.
 
           references: Images of characters, objects or styles to use in the video. Up to 10 images in
               total, frames included.
+
+          reference_videos: Up to 4 videos whose style, motion or camera work should guide the output,
+              together at most 30 seconds long.
 
           extra_headers: Send extra headers
 
@@ -1081,7 +1105,18 @@ class VideoToVideoResource(SyncAPIResource):
             "2880:3840",
             "2160:3840",
         ]
-        | Literal["auto_720p", "auto_1080p"]
+        | Literal[
+            "1280:720",
+            "720:1280",
+            "940:940",
+            "1460:624",
+            "1920:1080",
+            "1080:1920",
+            "1440:1440",
+            "2200:940",
+            "auto_720p",
+            "auto_1080p",
+        ]
         | Literal["1280:720", "720:1280", "960:960", "1464:628", "auto_720p", "940:940", "1460:624"]
         | Literal["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"]
         | Omit = omit,
@@ -1122,6 +1157,7 @@ class VideoToVideoResource(SyncAPIResource):
         | Iterable[video_to_video_create_params.Seedance2FastReferenceVideo]
         | Iterable[video_to_video_create_params.Seedance2MiniReferenceVideo]
         | Iterable[video_to_video_create_params.Seedance2_5ReferenceVideo]
+        | Iterable[object]
         | Iterable[video_to_video_create_params.Kling4FlashReferenceVideo]
         | Iterable[video_to_video_create_params.Hailuo3HighspeedReferenceVideo]
         | Iterable[video_to_video_create_params.Hailuo3LiteReferenceVideo]
@@ -1134,6 +1170,7 @@ class VideoToVideoResource(SyncAPIResource):
         bitrate: Literal["standard", "high"] | Omit = omit,
         mode: Literal["reference", "extend", "edit"] | Omit = omit,
         draft: bool | Omit = omit,
+        prompt_image: Union[str, Iterable[object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1166,6 +1203,7 @@ class VideoToVideoResource(SyncAPIResource):
                     "bitrate": bitrate,
                     "mode": mode,
                     "draft": draft,
+                    "prompt_image": prompt_image,
                 },
                 video_to_video_create_params.VideoToVideoCreateParams,
             ),
@@ -1910,8 +1948,23 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         model: Literal["kling_4"],
         prompt_text: str,
         video_uri: str,
-        ratio: Literal["auto_720p", "auto_1080p"] | Omit = omit,
+        duration: int | Omit = omit,
+        prompt_image: Union[str, Iterable[object]] | Omit = omit,
+        ratio: Literal[
+            "1280:720",
+            "720:1280",
+            "940:940",
+            "1460:624",
+            "1920:1080",
+            "1080:1920",
+            "1440:1440",
+            "2200:940",
+            "auto_720p",
+            "auto_1080p",
+        ]
+        | Omit = omit,
         references: Iterable[video_to_video_create_params.Kling4Reference] | Omit = omit,
+        reference_videos: Iterable[object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1929,10 +1982,19 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
               `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
               [our docs](/assets/inputs#videos) on video inputs for more information.
 
-          ratio: Output quality tier. The video keeps the input media framing.
+          duration: The duration of the edited video in seconds.
+
+          prompt_image: Optional first, middle, and last frames guiding the edit. Middle or last frames
+              can be provided without a first frame.
+
+          ratio: The target output size. Use a pixel ratio such as `1280:720` or `auto_720p` /
+              `auto_1080p` for adaptive framing.
 
           references: Images of characters, objects or styles to use in the video. Up to 10 images in
               total, frames included.
+
+          reference_videos: Up to 4 videos whose style, motion or camera work should guide the output,
+              together at most 30 seconds long.
 
           extra_headers: Send extra headers
 
@@ -2227,7 +2289,18 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
             "2880:3840",
             "2160:3840",
         ]
-        | Literal["auto_720p", "auto_1080p"]
+        | Literal[
+            "1280:720",
+            "720:1280",
+            "940:940",
+            "1460:624",
+            "1920:1080",
+            "1080:1920",
+            "1440:1440",
+            "2200:940",
+            "auto_720p",
+            "auto_1080p",
+        ]
         | Literal["1280:720", "720:1280", "960:960", "1464:628", "auto_720p", "940:940", "1460:624"]
         | Literal["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"]
         | Omit = omit,
@@ -2268,6 +2341,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         | Iterable[video_to_video_create_params.Seedance2FastReferenceVideo]
         | Iterable[video_to_video_create_params.Seedance2MiniReferenceVideo]
         | Iterable[video_to_video_create_params.Seedance2_5ReferenceVideo]
+        | Iterable[object]
         | Iterable[video_to_video_create_params.Kling4FlashReferenceVideo]
         | Iterable[video_to_video_create_params.Hailuo3HighspeedReferenceVideo]
         | Iterable[video_to_video_create_params.Hailuo3LiteReferenceVideo]
@@ -2280,6 +2354,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
         bitrate: Literal["standard", "high"] | Omit = omit,
         mode: Literal["reference", "extend", "edit"] | Omit = omit,
         draft: bool | Omit = omit,
+        prompt_image: Union[str, Iterable[object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2312,6 +2387,7 @@ class AsyncVideoToVideoResource(AsyncAPIResource):
                     "bitrate": bitrate,
                     "mode": mode,
                     "draft": draft,
+                    "prompt_image": prompt_image,
                 },
                 video_to_video_create_params.VideoToVideoCreateParams,
             ),

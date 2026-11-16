@@ -667,8 +667,11 @@ class TestVideoToVideo:
             model="kling_4",
             prompt_text="x",
             video_uri="https://example.com/video.mp4",
-            ratio="auto_720p",
+            duration=3,
+            prompt_image="https://example.com/image.jpg",
+            ratio="1280:720",
             references=[{"uri": "https://example.com/image.jpg"}],
+            reference_videos=[{}],
         )
         assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
 
@@ -1581,8 +1584,11 @@ class TestAsyncVideoToVideo:
             model="kling_4",
             prompt_text="x",
             video_uri="https://example.com/video.mp4",
-            ratio="auto_720p",
+            duration=3,
+            prompt_image="https://example.com/image.jpg",
+            ratio="1280:720",
             references=[{"uri": "https://example.com/image.jpg"}],
+            reference_videos=[{}],
         )
         assert_matches_type(VideoToVideoCreateResponse, video_to_video, path=["response"])
 

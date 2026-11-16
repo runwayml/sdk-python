@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = [
@@ -15,6 +16,10 @@ __all__ = [
     "ElevenV4Voice",
     "ElevenV4VoiceRunwayPreset",
     "ElevenV4VoiceCustom",
+    "Gemini3_8FlashTts",
+    "Gemini3_8FlashTtsTurn",
+    "Gemini3_8FlashLiteTts",
+    "Gemini3_8FlashLiteTtsTurn",
     "ElevenMultilingualV2",
     "ElevenMultilingualV2Voice",
     "ElevenMultilingualV2VoiceRunwayPreset",
@@ -207,6 +212,86 @@ class ElevenV4VoiceCustom(TypedDict, total=False):
 
 
 ElevenV4Voice: TypeAlias = Union[ElevenV4VoiceRunwayPreset, ElevenV4VoiceCustom]
+
+
+class Gemini3_8FlashTts(TypedDict, total=False):
+    model: Required[Literal["gemini_3.8_flash_tts"]]
+
+    turns: Required[Iterable[Gemini3_8FlashTtsTurn]]
+    """The script, in the order it is spoken.
+
+    Use one turn for a single speaker, or alternate speakers across turns for a
+    dialogue.
+    """
+
+    voice_ids: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="voiceIds")]]
+    """The Google voice for each speaker, such as "Kore" or "Puck".
+
+    Pass one voice for a single speaker, or two for a dialogue.
+    """
+
+    language_code: Annotated[str, PropertyInfo(alias="languageCode")]
+    """The language of the script, such as "en-US".
+
+    When omitted, the model detects it.
+    """
+
+
+class Gemini3_8FlashTtsTurn(TypedDict, total=False):
+    text: Required[str]
+    """The words to speak in this turn."""
+
+    speaker: int
+    """The position in `voiceIds` of the voice that speaks this turn.
+
+    Defaults to the first voice.
+    """
+
+    style: str
+    """How this turn should be delivered, such as "calm and reassuring".
+
+    It guides the delivery and is not read aloud.
+    """
+
+
+class Gemini3_8FlashLiteTts(TypedDict, total=False):
+    model: Required[Literal["gemini_3.8_flash_lite_tts"]]
+
+    turns: Required[Iterable[Gemini3_8FlashLiteTtsTurn]]
+    """The script, in the order it is spoken.
+
+    Use one turn for a single speaker, or alternate speakers across turns for a
+    dialogue.
+    """
+
+    voice_ids: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="voiceIds")]]
+    """The Google voice for each speaker, such as "Kore" or "Puck".
+
+    Pass one voice for a single speaker, or two for a dialogue.
+    """
+
+    language_code: Annotated[str, PropertyInfo(alias="languageCode")]
+    """The language of the script, such as "en-US".
+
+    When omitted, the model detects it.
+    """
+
+
+class Gemini3_8FlashLiteTtsTurn(TypedDict, total=False):
+    text: Required[str]
+    """The words to speak in this turn."""
+
+    speaker: int
+    """The position in `voiceIds` of the voice that speaks this turn.
+
+    Defaults to the first voice.
+    """
+
+    style: str
+    """How this turn should be delivered, such as "calm and reassuring".
+
+    It guides the delivery and is not read aloud.
+    """
 
 
 class ElevenMultilingualV2(TypedDict, total=False):
@@ -419,4 +504,6 @@ class ElevenV3VoiceCustom(TypedDict, total=False):
 
 ElevenV3Voice: TypeAlias = Union[ElevenV3VoiceRunwayPreset, ElevenV3VoiceCustom]
 
-TextToSpeechCreateParams: TypeAlias = Union[SeedAudio, ElevenV4, ElevenMultilingualV2, ElevenV3]
+TextToSpeechCreateParams: TypeAlias = Union[
+    SeedAudio, ElevenV4, Gemini3_8FlashTts, Gemini3_8FlashLiteTts, ElevenMultilingualV2, ElevenV3
+]
