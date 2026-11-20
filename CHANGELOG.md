@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.29.0](https://github.com/runwayml/sdk-python/compare/v5.28.0...v5.29.0) (2026-11-20)
+
+
+### Features
+
+* add MiniMax H3 Image, Seedance 2.5 Flash, and Seedream 5.5 models, plus request tags ([35694fe](https://github.com/runwayml/sdk-python/commit/35694fe720d024b712eab6a8fcd4d5c44b414378))
+
+
+### Bug Fixes
+
+* **client:** keep client-wide X-Runway-Tags headers on create calls ([be12790](https://github.com/runwayml/sdk-python/commit/be12790d35f441a410e0a1b3c75fdeced49dfada))
+
 ## [5.28.0](https://github.com/runwayml/sdk-python/compare/v5.27.0...v5.28.0) (2026-11-16)
 
 ### Features
