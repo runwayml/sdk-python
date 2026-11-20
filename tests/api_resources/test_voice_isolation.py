@@ -26,15 +26,6 @@ class TestVoiceIsolation:
         assert_matches_type(VoiceIsolationCreateResponse, voice_isolation, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params(self, client: RunwayML) -> None:
-        voice_isolation = client.voice_isolation.create(
-            audio_uri="https://example.com/audio.mp3",
-            model="eleven_voice_isolation",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
-        )
-        assert_matches_type(VoiceIsolationCreateResponse, voice_isolation, path=["response"])
-
-    @parametrize
     def test_raw_response_create(self, client: RunwayML) -> None:
         response = client.voice_isolation.with_raw_response.create(
             audio_uri="https://example.com/audio.mp3",
@@ -71,15 +62,6 @@ class TestAsyncVoiceIsolation:
         voice_isolation = await async_client.voice_isolation.create(
             audio_uri="https://example.com/audio.mp3",
             model="eleven_voice_isolation",
-        )
-        assert_matches_type(VoiceIsolationCreateResponse, voice_isolation, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncRunwayML) -> None:
-        voice_isolation = await async_client.voice_isolation.create(
-            audio_uri="https://example.com/audio.mp3",
-            model="eleven_voice_isolation",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(VoiceIsolationCreateResponse, voice_isolation, path=["response"])
 

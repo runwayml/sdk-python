@@ -35,7 +35,6 @@ class TestImageUpscale:
             sharpen=0,
             smart_grain=0,
             ultra_detail=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageUpscaleCreateResponse, image_upscale, path=["response"])
 
@@ -89,7 +88,6 @@ class TestAsyncImageUpscale:
             sharpen=0,
             smart_grain=0,
             ultra_detail=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageUpscaleCreateResponse, image_upscale, path=["response"])
 

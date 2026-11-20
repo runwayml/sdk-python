@@ -43,8 +43,6 @@ class SeedAudio(TypedDict, total=False):
     speech_rate: Annotated[int, PropertyInfo(alias="speechRate")]
     """Relative speech speed. Negative is slower, positive is faster; 0 is normal."""
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class MireloSfx2_0(TypedDict, total=False):
     duration: Required[float]
@@ -67,8 +65,6 @@ class MireloSfx2_0(TypedDict, total=False):
     seed: int
     """A seed for reproducible generation."""
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class ElevenTextToSoundV2(TypedDict, total=False):
     model: Required[Literal["eleven_text_to_sound_v2"]]
@@ -85,8 +81,6 @@ class ElevenTextToSoundV2(TypedDict, total=False):
 
     loop: bool
     """Whether the output sound effect should be designed to loop seamlessly."""
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 SoundEffectCreateParams: TypeAlias = Union[SeedAudio, MireloSfx2_0, ElevenTextToSoundV2]

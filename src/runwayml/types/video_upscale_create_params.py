@@ -41,8 +41,6 @@ class MagnificVideoUpscalerCreative(TypedDict, total=False):
     smart_grain: Annotated[int, PropertyInfo(alias="smartGrain")]
     """Grain and texture enhancement from 0 to 100."""
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class EnhanceFrameRate(TypedDict, total=False):
     model: Required[Literal["enhance_frame_rate"]]
@@ -61,8 +59,6 @@ class EnhanceFrameRate(TypedDict, total=False):
     `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
     [our docs](/assets/inputs#videos) on video inputs for more information.
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 VideoUpscaleCreateParams: TypeAlias = Union[MagnificVideoUpscalerCreative, EnhanceFrameRate]

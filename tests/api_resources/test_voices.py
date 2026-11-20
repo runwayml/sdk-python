@@ -44,7 +44,6 @@ class TestVoices:
             },
             name="x",
             description="x",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(VoiceCreateResponse, voice, path=["response"])
 
@@ -296,7 +295,6 @@ class TestAsyncVoices:
             },
             name="x",
             description="x",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(VoiceCreateResponse, voice, path=["response"])
 

@@ -8,7 +8,7 @@ import httpx
 
 from ..types import workflow_run_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -105,7 +105,6 @@ class WorkflowsResource(SyncAPIResource):
         id: str,
         *,
         node_outputs: Dict[str, Dict[str, workflow_run_params.NodeOutputsNodeOutputsItem]] | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -133,7 +132,6 @@ class WorkflowsResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return self._post(
             path_template("/v1/workflows/{id}", id=id),
             body=maybe_transform({"node_outputs": node_outputs}, workflow_run_params.WorkflowRunParams),
@@ -224,7 +222,6 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         id: str,
         *,
         node_outputs: Dict[str, Dict[str, workflow_run_params.NodeOutputsNodeOutputsItem]] | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -252,7 +249,6 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return await self._post(
             path_template("/v1/workflows/{id}", id=id),
             body=await async_maybe_transform({"node_outputs": node_outputs}, workflow_run_params.WorkflowRunParams),

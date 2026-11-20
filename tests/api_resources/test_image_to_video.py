@@ -40,7 +40,6 @@ class TestImageToVideo:
             output_format="mp4",
             prores_profile="422",
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -95,7 +94,6 @@ class TestImageToVideo:
             duration=2,
             prompt_text="x",
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -147,7 +145,6 @@ class TestImageToVideo:
             negative_prompt="x",
             prompt_text="x",
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -199,7 +196,6 @@ class TestImageToVideo:
             negative_prompt="x",
             prompt_text="x",
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -258,7 +254,6 @@ class TestImageToVideo:
             },
             ratio="3840:2160",
             references="https://example.com/image.jpg",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -312,7 +307,6 @@ class TestImageToVideo:
                 }
             ],
             resolution="2k",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -371,7 +365,6 @@ class TestImageToVideo:
                 "shot_type": "intelligence",
             },
             ratio="3840:2160",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -417,7 +410,6 @@ class TestImageToVideo:
             duration=3,
             prompt_text="xx",
             resolution="720p",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -464,7 +456,6 @@ class TestImageToVideo:
             prompt_text="xx",
             cfg_scale=0,
             duration=5,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -523,7 +514,6 @@ class TestImageToVideo:
                 "shot_type": "intelligence",
             },
             ratio="1920:1080",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -580,7 +570,6 @@ class TestImageToVideo:
                 "shot_type": "intelligence",
             },
             ratio="1280:720",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -637,7 +626,6 @@ class TestImageToVideo:
             },
             ratio="1920:1080",
             references="https://example.com/image.jpg",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -694,7 +682,6 @@ class TestImageToVideo:
             },
             ratio="1280:720",
             references="https://example.com/image.jpg",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -749,7 +736,6 @@ class TestImageToVideo:
                 }
             ],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -804,7 +790,6 @@ class TestImageToVideo:
                 }
             ],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -859,7 +844,6 @@ class TestImageToVideo:
                 }
             ],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -905,7 +889,6 @@ class TestImageToVideo:
             duration=3,
             prompt_text="x",
             ratio="1280:720",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -951,7 +934,6 @@ class TestImageToVideo:
             duration=1,
             prompt_text="x",
             resolution="480p",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1011,7 +993,6 @@ class TestImageToVideo:
                     "uri": "https://example.com/video.mp4",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1060,7 +1041,6 @@ class TestImageToVideo:
             prompt_text="x",
             duration="auto",
             ratio="640:360",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1122,7 +1102,6 @@ class TestImageToVideo:
                     "uri": "https://example.com/video.mp4",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1173,7 +1152,6 @@ class TestImageToVideo:
             prompt_expansion_mode="disabled",
             resolution="768p",
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1231,7 +1209,6 @@ class TestImageToVideo:
                 }
             ],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1277,7 +1254,6 @@ class TestImageToVideo:
             duration=1,
             prompt_text="x",
             ratio="auto_480p",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1325,7 +1301,6 @@ class TestImageToVideo:
             ratio="auto_720p",
             references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[{}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1372,7 +1347,6 @@ class TestImageToVideo:
             prompt_text="x",
             duration="auto",
             ratio="640:360",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1422,7 +1396,6 @@ class TestImageToVideo:
             ratio="auto_720p",
             references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[{"uri": "https://example.com/video.mp4"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1483,7 +1456,6 @@ class TestImageToVideo:
                 }
             ],
             resolution="480p",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1546,7 +1518,6 @@ class TestImageToVideo:
                 }
             ],
             resolution="480p",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1603,7 +1574,6 @@ class TestImageToVideo:
                 }
             ],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1662,7 +1632,6 @@ class TestAsyncImageToVideo:
             output_format="mp4",
             prores_profile="422",
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1717,7 +1686,6 @@ class TestAsyncImageToVideo:
             duration=2,
             prompt_text="x",
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1769,7 +1737,6 @@ class TestAsyncImageToVideo:
             negative_prompt="x",
             prompt_text="x",
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1821,7 +1788,6 @@ class TestAsyncImageToVideo:
             negative_prompt="x",
             prompt_text="x",
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1880,7 +1846,6 @@ class TestAsyncImageToVideo:
             },
             ratio="3840:2160",
             references="https://example.com/image.jpg",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1934,7 +1899,6 @@ class TestAsyncImageToVideo:
                 }
             ],
             resolution="2k",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -1993,7 +1957,6 @@ class TestAsyncImageToVideo:
                 "shot_type": "intelligence",
             },
             ratio="3840:2160",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2039,7 +2002,6 @@ class TestAsyncImageToVideo:
             duration=3,
             prompt_text="xx",
             resolution="720p",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2086,7 +2048,6 @@ class TestAsyncImageToVideo:
             prompt_text="xx",
             cfg_scale=0,
             duration=5,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2145,7 +2106,6 @@ class TestAsyncImageToVideo:
                 "shot_type": "intelligence",
             },
             ratio="1920:1080",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2202,7 +2162,6 @@ class TestAsyncImageToVideo:
                 "shot_type": "intelligence",
             },
             ratio="1280:720",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2259,7 +2218,6 @@ class TestAsyncImageToVideo:
             },
             ratio="1920:1080",
             references="https://example.com/image.jpg",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2316,7 +2274,6 @@ class TestAsyncImageToVideo:
             },
             ratio="1280:720",
             references="https://example.com/image.jpg",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2371,7 +2328,6 @@ class TestAsyncImageToVideo:
                 }
             ],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2426,7 +2382,6 @@ class TestAsyncImageToVideo:
                 }
             ],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2481,7 +2436,6 @@ class TestAsyncImageToVideo:
                 }
             ],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2527,7 +2481,6 @@ class TestAsyncImageToVideo:
             duration=3,
             prompt_text="x",
             ratio="1280:720",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2573,7 +2526,6 @@ class TestAsyncImageToVideo:
             duration=1,
             prompt_text="x",
             resolution="480p",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2633,7 +2585,6 @@ class TestAsyncImageToVideo:
                     "uri": "https://example.com/video.mp4",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2682,7 +2633,6 @@ class TestAsyncImageToVideo:
             prompt_text="x",
             duration="auto",
             ratio="640:360",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2744,7 +2694,6 @@ class TestAsyncImageToVideo:
                     "uri": "https://example.com/video.mp4",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2795,7 +2744,6 @@ class TestAsyncImageToVideo:
             prompt_expansion_mode="disabled",
             resolution="768p",
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2853,7 +2801,6 @@ class TestAsyncImageToVideo:
                 }
             ],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2899,7 +2846,6 @@ class TestAsyncImageToVideo:
             duration=1,
             prompt_text="x",
             ratio="auto_480p",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2947,7 +2893,6 @@ class TestAsyncImageToVideo:
             ratio="auto_720p",
             references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[{}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -2994,7 +2939,6 @@ class TestAsyncImageToVideo:
             prompt_text="x",
             duration="auto",
             ratio="640:360",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -3044,7 +2988,6 @@ class TestAsyncImageToVideo:
             ratio="auto_720p",
             references=[{"uri": "https://example.com/image.jpg"}],
             reference_videos=[{"uri": "https://example.com/video.mp4"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -3105,7 +3048,6 @@ class TestAsyncImageToVideo:
                 }
             ],
             resolution="480p",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -3168,7 +3110,6 @@ class TestAsyncImageToVideo:
                 }
             ],
             resolution="480p",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 
@@ -3225,7 +3166,6 @@ class TestAsyncImageToVideo:
                 }
             ],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVideoCreateResponse, image_to_video, path=["response"])
 

@@ -22,8 +22,6 @@ class AudioCreateParams(TypedDict, total=False):
     The router selects a model and maps these options to it.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class InputVoicePreset(TypedDict, total=False):
     """A preset voice."""

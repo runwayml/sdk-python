@@ -20,8 +20,6 @@ class ImageCreateParams(TypedDict, total=False):
     The router selects a model and maps these options to it.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class InputContentModeration(TypedDict, total=False):
     """Settings that affect the behavior of the content moderation system."""

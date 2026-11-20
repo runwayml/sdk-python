@@ -39,5 +39,3 @@ class ImageUpscaleCreateParams(TypedDict, total=False):
 
     ultra_detail: Annotated[int, PropertyInfo(alias="ultraDetail")]
     """Fine detail enhancement from 0 to 100."""
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]

@@ -71,5 +71,3 @@ class VoiceDubbingCreateParams(TypedDict, total=False):
 
     If not provided, it will be detected automatically.
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]

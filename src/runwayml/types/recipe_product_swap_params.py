@@ -49,8 +49,6 @@ class RecipeProductSwapParams(TypedDict, total=False):
     resolution: Literal["720p", "1080p"]
     """Output video resolution. Defaults to 720p."""
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class NewProductImage(TypedDict, total=False):
     uri: Required[str]

@@ -57,8 +57,6 @@ class RecipeAdLocalizationParams(TypedDict, total=False):
     track the newest stable version (may break without notice).
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class ReferenceImage(TypedDict, total=False):
     """Reference ad image to localize.

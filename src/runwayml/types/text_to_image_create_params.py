@@ -117,8 +117,6 @@ class Gen4ImageTurbo(TypedDict, total=False):
     produce similar results.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class Gen4ImageTurboReferenceImage(TypedDict, total=False):
     uri: Required[str]
@@ -194,8 +192,6 @@ class Gen4Image(TypedDict, total=False):
     request parameters. Using the same seed integer for an identical request will
     produce similar results.
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Gen4ImageContentModeration(TypedDict, total=False):
@@ -293,8 +289,6 @@ class GptImage2(TypedDict, total=False):
     An array of up to 16 images to be used as references for the generated image
     output. No two images may share the same tag.
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class GptImage2ReferenceImage(TypedDict, total=False):
@@ -400,8 +394,6 @@ class GeminiImage3_1Flash(TypedDict, total=False):
     output.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class GeminiImage3_1FlashReferenceImage(TypedDict, total=False):
     uri: Required[str]
@@ -462,8 +454,6 @@ class MuseImage(TypedDict, total=False):
     When provided, the model edits and combines them as your prompt describes
     instead of generating from the prompt alone.
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class MuseImageReferenceImage(TypedDict, total=False):
@@ -528,8 +518,6 @@ class Seedream5Pro(TypedDict, total=False):
 
     Reference by upload order in prompt text (Figure 1, Figure 2, etc.).
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Seedream5ProReferenceImage(TypedDict, total=False):
@@ -597,8 +585,6 @@ class Seedream5Lite(TypedDict, total=False):
 
     Reference by upload order in prompt text (Figure 1, Figure 2, etc.).
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Seedream5LiteReferenceImage(TypedDict, total=False):
@@ -682,8 +668,6 @@ class GrokImagineImage2(TypedDict, total=False):
     1 credit to the generation.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class GrokImagineImage2ReferenceImage(TypedDict, total=False):
     uri: Required[str]
@@ -729,8 +713,6 @@ class GeminiImage3_1FlashLite(TypedDict, total=False):
     output. Up to five can pass `subject: "human"` and up to nine can pass
     `subject: "object"`.
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class GeminiImage3_1FlashLiteReferenceImage(TypedDict, total=False):
@@ -803,8 +785,6 @@ class GeminiImage3Pro(TypedDict, total=False):
     `subject: "object"` with high-fidelity images of objects to include in the
     output.
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class GeminiImage3ProReferenceImage(TypedDict, total=False):
@@ -896,8 +876,6 @@ class GptImage2_5Flare(TypedDict, total=False):
     per generated image.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class GptImage2_5FlareReferenceImage(TypedDict, total=False):
     uri: Required[str]
@@ -988,8 +966,6 @@ class GptImage2_5Sunburst(TypedDict, total=False):
     per generated image.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class GptImage2_5SunburstReferenceImage(TypedDict, total=False):
     uri: Required[str]
@@ -1058,8 +1034,6 @@ class BriaFibo1_5(TypedDict, total=False):
     Using the same seed with an identical request reproduces the same image.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class BriaFibo1_5ReferenceImage(TypedDict, total=False):
     uri: Required[str]
@@ -1110,8 +1084,6 @@ class BriaFiboEdit1_5(TypedDict, total=False):
     Using the same seed with an identical request reproduces the same image.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class BriaFiboEdit1_5ReferenceImage(TypedDict, total=False):
     uri: Required[str]
@@ -1156,8 +1128,6 @@ class Ideogram4_0(TypedDict, total=False):
 
     reference_images: Annotated[Iterable[Ideogram4_0ReferenceImage], PropertyInfo(alias="referenceImages")]
     """An image to remix. The prompt describes how the output should differ from it."""
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Ideogram4_0ReferenceImage(TypedDict, total=False):
@@ -1259,8 +1229,6 @@ class Ideogram4_5(TypedDict, total=False):
     rest are references.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class Ideogram4_5ReferenceImage(TypedDict, total=False):
     uri: Required[str]
@@ -1320,8 +1288,6 @@ class Seedream5Flash(TypedDict, total=False):
 
     Refer to them in the prompt by upload order (Figure 1, Figure 2, and so on).
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Seedream5FlashReferenceImage(TypedDict, total=False):
@@ -1403,8 +1369,6 @@ class NanoBanana2_1(TypedDict, total=False):
     Defaults to medium.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class NanoBanana2_1ReferenceImage(TypedDict, total=False):
     uri: Required[str]
@@ -1462,8 +1426,6 @@ class RecraftV4_1Flash(TypedDict, total=False):
 
     seed: int
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class RecraftV4_1Vector(TypedDict, total=False):
     model: Required[Literal["recraft_v4_1_vector"]]
@@ -1487,8 +1449,6 @@ class RecraftV4_1Vector(TypedDict, total=False):
     Vector artwork can be scaled after generation.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class IdeogramVector(TypedDict, total=False):
     model: Required[Literal["ideogram_vector"]]
@@ -1509,8 +1469,6 @@ class IdeogramVector(TypedDict, total=False):
     """
 
     seed: int
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class IdeogramVectorReferenceImage(TypedDict, total=False):
@@ -1611,8 +1569,6 @@ class GptImage2_6Sunburst(TypedDict, total=False):
     output. No two images may share the same tag. Each reference image adds 1 credit
     per generated image.
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class GptImage2_6SunburstReferenceImage(TypedDict, total=False):
@@ -1724,8 +1680,6 @@ class GptImage2_6Flare(TypedDict, total=False):
     per generated image.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class GptImage2_6FlareReferenceImage(TypedDict, total=False):
     uri: Required[str]
@@ -1782,8 +1736,6 @@ class Seedream5ProLayers(TypedDict, total=False):
     Defaults to auto, which adapts to the input image. The base image and layers
     preserve their respective aspect ratios.
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Seedream5ProLayersReferenceImage(TypedDict, total=False):
@@ -1861,8 +1813,6 @@ class Seedream5_5(TypedDict, total=False):
     Refer to them in the prompt by upload order (Figure 1, Figure 2, and so on).
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class Seedream5_5ReferenceImage(TypedDict, total=False):
     uri: Required[str]
@@ -1909,8 +1859,6 @@ class Seedream5_5Layers(TypedDict, total=False):
     Defaults to auto, which adapts to the input image. The base image and layers
     preserve their respective aspect ratios.
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Seedream5_5LayersReferenceImage(TypedDict, total=False):
@@ -2007,8 +1955,6 @@ class MinimaxH3Image(TypedDict, total=False):
     reference image adds to the credits per image.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class MinimaxH3ImageReferenceImage(TypedDict, total=False):
     uri: Required[str]
@@ -2046,8 +1992,6 @@ class Gemini2_5Flash(TypedDict, total=False):
     An array of up to three images to be used as references for the generated image
     output.
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Gemini2_5FlashReferenceImage(TypedDict, total=False):

@@ -60,8 +60,6 @@ class CharacterPerformanceCreateParams(TypedDict, total=False):
     produce similar results.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class CharacterImage(TypedDict, total=False):
     """An image of your character.

@@ -49,7 +49,6 @@ class TestCharacterPerformance:
             expression_intensity=3,
             ratio="1280:720",
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(CharacterPerformanceCreateResponse, character_performance, path=["response"])
 
@@ -131,7 +130,6 @@ class TestAsyncCharacterPerformance:
             expression_intensity=3,
             ratio="1280:720",
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(CharacterPerformanceCreateResponse, character_performance, path=["response"])
 

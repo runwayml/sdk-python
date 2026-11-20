@@ -25,8 +25,6 @@ class WorkflowRunParams(TypedDict, total=False):
     keys to typed values.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class NodeOutputsNodeOutputsItemPrimitive(TypedDict, total=False):
     """A primitive value (string, number, or boolean)"""

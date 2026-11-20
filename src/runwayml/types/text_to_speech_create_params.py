@@ -62,8 +62,6 @@ class SeedAudio(TypedDict, total=False):
     If omitted, a default voice is used.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class SeedAudioVoice(TypedDict, total=False):
     """The voice to use for text-to-speech generation.
@@ -138,8 +136,6 @@ class ElevenV4(TypedDict, total=False):
 
     use_speaker_boost: Annotated[bool, PropertyInfo(alias="useSpeakerBoost")]
     """Boost similarity to the original speaker at a small latency cost."""
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class ElevenV4VoiceRunwayPreset(TypedDict, total=False):
@@ -240,8 +236,6 @@ class Gemini3_8FlashTts(TypedDict, total=False):
     When omitted, the model detects it.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class Gemini3_8FlashTtsTurn(TypedDict, total=False):
     text: Required[str]
@@ -282,8 +276,6 @@ class Gemini3_8FlashLiteTts(TypedDict, total=False):
     When omitted, the model detects it.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class Gemini3_8FlashLiteTtsTurn(TypedDict, total=False):
     text: Required[str]
@@ -313,8 +305,6 @@ class ElevenMultilingualV2(TypedDict, total=False):
 
     voice: Required[ElevenMultilingualV2Voice]
     """The voice to use for the generated speech."""
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class ElevenMultilingualV2VoiceRunwayPreset(TypedDict, total=False):
@@ -437,8 +427,6 @@ class ElevenV3(TypedDict, total=False):
 
     use_speaker_boost: Annotated[bool, PropertyInfo(alias="useSpeakerBoost")]
     """Boost similarity to the original speaker at a small latency cost."""
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class ElevenV3VoiceRunwayPreset(TypedDict, total=False):

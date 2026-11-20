@@ -138,8 +138,6 @@ class Variant0(TypedDict, total=False):
     Letterboxes the input video and keyframes before generation.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class Variant0ContentModeration(TypedDict, total=False):
     """Settings that affect the behavior of the content moderation system."""
@@ -252,8 +250,6 @@ class KlingO3_4k(TypedDict, total=False):
     See [our docs](/assets/inputs#images) on image inputs for more information.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class KlingO3_4kProviderSettingsMultiPrompt(TypedDict, total=False):
     duration: Required[int]
@@ -353,8 +349,6 @@ class Hailuo3(TypedDict, total=False):
     - `2K` - Deprecated: Use "2k" instead.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class Hailuo3ReferenceAudio(TypedDict, total=False):
     """
@@ -416,8 +410,6 @@ class KlingO3Pro(TypedDict, total=False):
 
     See [our docs](/assets/inputs#images) on image inputs for more information.
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class KlingO3ProProviderSettingsMultiPrompt(TypedDict, total=False):
@@ -489,8 +481,6 @@ class KlingO3Standard(TypedDict, total=False):
 
     See [our docs](/assets/inputs#images) on image inputs for more information.
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class KlingO3StandardProviderSettingsMultiPrompt(TypedDict, total=False):
@@ -629,8 +619,6 @@ class Seedance2(TypedDict, total=False):
     produce similar results.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class Seedance2ReferenceAudio(TypedDict, total=False):
     """
@@ -749,8 +737,6 @@ class Seedance2Fast(TypedDict, total=False):
     request parameters. Using the same seed integer for an identical request will
     produce similar results.
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Seedance2FastReferenceAudio(TypedDict, total=False):
@@ -871,8 +857,6 @@ class Seedance2Mini(TypedDict, total=False):
     produce similar results.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class Seedance2MiniReferenceAudio(TypedDict, total=False):
     """
@@ -929,8 +913,6 @@ class GeminiOmniFlash(TypedDict, total=False):
     references: Iterable[GeminiOmniFlashReference]
     """An optional array of image references to guide the edit."""
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class GeminiOmniFlashReference(TypedDict, total=False):
     uri: Required[str]
@@ -974,8 +956,6 @@ class GeminiOmniFlash1_1(TypedDict, total=False):
 
     references: Iterable[GeminiOmniFlash1_1Reference]
     """An optional array of image references to guide the output."""
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class GeminiOmniFlash1_1Reference(TypedDict, total=False):
@@ -1096,8 +1076,6 @@ class Seedance2_5(TypedDict, total=False):
     produce similar results.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class Seedance2_5ReferenceAudio(TypedDict, total=False):
     """
@@ -1190,8 +1168,6 @@ class Kling4(TypedDict, total=False):
     together at most 30 seconds long.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class Kling4Reference(TypedDict, total=False):
     uri: Required[str]
@@ -1242,8 +1218,6 @@ class GeminiOmniFlash1_2(TypedDict, total=False):
     In reference mode, use ratio instead.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class GeminiOmniFlash1_2Reference(TypedDict, total=False):
     uri: Required[str]
@@ -1280,8 +1254,6 @@ class Kling4Flash(TypedDict, total=False):
     references: Iterable[Kling4FlashReference]
 
     reference_videos: Annotated[Iterable[Kling4FlashReferenceVideo], PropertyInfo(alias="referenceVideos")]
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Kling4FlashReference(TypedDict, total=False):
@@ -1327,8 +1299,6 @@ class Hailuo3Highspeed(TypedDict, total=False):
 
     resolution: Literal["480p", "768p"]
     """The output video resolution."""
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Hailuo3HighspeedReferenceAudio(TypedDict, total=False):
@@ -1387,8 +1357,6 @@ class Hailuo3Lite(TypedDict, total=False):
 
     resolution: Literal["480p", "768p"]
     """The output video resolution."""
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Hailuo3LiteReferenceAudio(TypedDict, total=False):
@@ -1507,8 +1475,6 @@ class Seedance2_5Flash(TypedDict, total=False):
     request parameters. Using the same seed integer for an identical request will
     produce similar results.
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Seedance2_5FlashReferenceAudio(TypedDict, total=False):

@@ -32,7 +32,6 @@ class TestVideoToHdr:
             video_uri="https://example.com/video.mp4",
             output_format="hdr10",
             prores_profile="422",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(VideoToHdrCreateResponse, video_to_hdr, path=["response"])
 
@@ -83,7 +82,6 @@ class TestAsyncVideoToHdr:
             video_uri="https://example.com/video.mp4",
             output_format="hdr10",
             prores_profile="422",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(VideoToHdrCreateResponse, video_to_hdr, path=["response"])
 

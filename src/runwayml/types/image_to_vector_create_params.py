@@ -21,5 +21,3 @@ class ImageToVectorCreateParams(TypedDict, total=False):
 
     vectorization_mode: Annotated[Literal["simple", "default"], PropertyInfo(alias="vectorizationMode")]
     """Use simple for fewer shapes, or default to retain more detail."""
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]

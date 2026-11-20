@@ -68,7 +68,6 @@ class TestRealtimeSessions:
                     ],
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(RealtimeSessionCreateResponse, realtime_session, path=["response"])
 
@@ -234,7 +233,6 @@ class TestAsyncRealtimeSessions:
                     ],
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(RealtimeSessionCreateResponse, realtime_session, path=["response"])
 

@@ -39,7 +39,6 @@ class TestTextToSpeech:
                 "audio_uri": "https://example.com/audio.mp3",
                 "type": "reference-audio",
             },
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
 
@@ -99,7 +98,6 @@ class TestTextToSpeech:
             stability=0,
             style=0,
             use_speaker_boost=True,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
 
@@ -159,7 +157,6 @@ class TestTextToSpeech:
             ],
             voice_ids=["x"],
             language_code="xx",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
 
@@ -213,7 +210,6 @@ class TestTextToSpeech:
             ],
             voice_ids=["x"],
             language_code="xx",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
 
@@ -254,19 +250,6 @@ class TestTextToSpeech:
                 "preset_id": "Maya",
                 "type": "runway-preset",
             },
-        )
-        assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params_overload_5(self, client: RunwayML) -> None:
-        text_to_speech = client.text_to_speech.create(
-            model="eleven_multilingual_v2",
-            prompt_text="x",
-            voice={
-                "preset_id": "Maya",
-                "type": "runway-preset",
-            },
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
 
@@ -333,7 +316,6 @@ class TestTextToSpeech:
             stability=0,
             style=0,
             use_speaker_boost=True,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
 
@@ -399,7 +381,6 @@ class TestAsyncTextToSpeech:
                 "audio_uri": "https://example.com/audio.mp3",
                 "type": "reference-audio",
             },
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
 
@@ -459,7 +440,6 @@ class TestAsyncTextToSpeech:
             stability=0,
             style=0,
             use_speaker_boost=True,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
 
@@ -519,7 +499,6 @@ class TestAsyncTextToSpeech:
             ],
             voice_ids=["x"],
             language_code="xx",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
 
@@ -573,7 +552,6 @@ class TestAsyncTextToSpeech:
             ],
             voice_ids=["x"],
             language_code="xx",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
 
@@ -614,19 +592,6 @@ class TestAsyncTextToSpeech:
                 "preset_id": "Maya",
                 "type": "runway-preset",
             },
-        )
-        assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params_overload_5(self, async_client: AsyncRunwayML) -> None:
-        text_to_speech = await async_client.text_to_speech.create(
-            model="eleven_multilingual_v2",
-            prompt_text="x",
-            voice={
-                "preset_id": "Maya",
-                "type": "runway-preset",
-            },
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
 
@@ -693,7 +658,6 @@ class TestAsyncTextToSpeech:
             stability=0,
             style=0,
             use_speaker_boost=True,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToSpeechCreateResponse, text_to_speech, path=["response"])
 

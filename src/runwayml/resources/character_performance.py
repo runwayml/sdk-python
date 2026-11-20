@@ -8,7 +8,7 @@ import httpx
 
 from ..types import character_performance_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, strip_not_given, async_maybe_transform
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -62,7 +62,6 @@ class CharacterPerformanceResource(SyncAPIResource):
         expression_intensity: int | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "960:960", "1104:832", "832:1104", "1584:672"] | Omit = omit,
         seed: int | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -104,7 +103,6 @@ class CharacterPerformanceResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return self._post(
             "/v1/character_performance",
             body=maybe_transform(
@@ -160,7 +158,6 @@ class AsyncCharacterPerformanceResource(AsyncAPIResource):
         expression_intensity: int | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "960:960", "1104:832", "832:1104", "1584:672"] | Omit = omit,
         seed: int | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -202,7 +199,6 @@ class AsyncCharacterPerformanceResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return await self._post(
             "/v1/character_performance",
             body=await async_maybe_transform(

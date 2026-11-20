@@ -32,7 +32,6 @@ class TestTextToMusic:
             prompt_text="x",
             duration=3,
             instrumental=True,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToMusicCreateResponse, text_to_music, path=["response"])
 
@@ -83,7 +82,6 @@ class TestAsyncTextToMusic:
             prompt_text="x",
             duration=3,
             instrumental=True,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToMusicCreateResponse, text_to_music, path=["response"])
 

@@ -52,8 +52,6 @@ class RecipeProductUgcParams(TypedDict, total=False):
     message, or an entire dialog script.
     """
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class CharacterImage(TypedDict, total=False):
     """Image of the character who will appear on camera in the UGC video.

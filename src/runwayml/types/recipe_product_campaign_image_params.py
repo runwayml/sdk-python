@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, Annotated, TypedDict
-
-from .._utils import PropertyInfo
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["RecipeProductCampaignImageParams", "Image"]
 
@@ -28,8 +26,6 @@ class RecipeProductCampaignImageParams(TypedDict, total=False):
     Use a dated version (e.g. "2026-06") to pin behavior, or "unsafe-latest" to
     track the newest stable version (may break without notice).
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Image(TypedDict, total=False):

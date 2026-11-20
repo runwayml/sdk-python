@@ -44,7 +44,6 @@ class TestAvatarVideos:
                 "audio": "https://example.com/audio.mp3",
                 "type": "audio",
             },
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(AvatarVideoCreateResponse, avatar_video, path=["response"])
 
@@ -121,7 +120,6 @@ class TestAsyncAvatarVideos:
                 "audio": "https://example.com/audio.mp3",
                 "type": "audio",
             },
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(AvatarVideoCreateResponse, avatar_video, path=["response"])
 

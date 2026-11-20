@@ -99,7 +99,6 @@ class TestWorkflows:
                     }
                 }
             },
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(WorkflowRunResponse, workflow, path=["response"])
 
@@ -222,7 +221,6 @@ class TestAsyncWorkflows:
                     }
                 }
             },
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(WorkflowRunResponse, workflow, path=["response"])
 

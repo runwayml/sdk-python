@@ -9,7 +9,7 @@ import httpx
 
 from ..types import text_to_speech_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import required_args, maybe_transform, strip_not_given, async_maybe_transform
+from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -64,7 +64,6 @@ class TextToSpeechResource(SyncAPIResource):
         sample_rate: Literal[8000, 16000, 24000, 32000, 44100, 48000] | Omit = omit,
         speech_rate: int | Omit = omit,
         voice: text_to_speech_create_params.SeedAudioVoice | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -122,7 +121,6 @@ class TextToSpeechResource(SyncAPIResource):
         stability: float | Omit = omit,
         style: float | Omit = omit,
         use_speaker_boost: bool | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -184,7 +182,6 @@ class TextToSpeechResource(SyncAPIResource):
         turns: Iterable[text_to_speech_create_params.Gemini3_8FlashTtsTurn],
         voice_ids: SequenceNotStr[str],
         language_code: str | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -225,7 +222,6 @@ class TextToSpeechResource(SyncAPIResource):
         turns: Iterable[text_to_speech_create_params.Gemini3_8FlashLiteTtsTurn],
         voice_ids: SequenceNotStr[str],
         language_code: str | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -265,7 +261,6 @@ class TextToSpeechResource(SyncAPIResource):
         model: Literal["eleven_multilingual_v2"],
         prompt_text: str,
         voice: text_to_speech_create_params.ElevenMultilingualV2Voice,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -310,7 +305,6 @@ class TextToSpeechResource(SyncAPIResource):
         stability: float | Omit = omit,
         style: float | Omit = omit,
         use_speaker_boost: bool | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -380,7 +374,6 @@ class TextToSpeechResource(SyncAPIResource):
         | text_to_speech_create_params.ElevenMultilingualV2Voice
         | text_to_speech_create_params.ElevenV3Voice
         | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         language_code: str | Omit = omit,
         next_text: str | Omit = omit,
         previous_text: str | Omit = omit,
@@ -402,7 +395,6 @@ class TextToSpeechResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NewTaskCreatedResponse:
-        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return self._post(
             "/v1/text_to_speech",
             body=maybe_transform(
@@ -471,7 +463,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         sample_rate: Literal[8000, 16000, 24000, 32000, 44100, 48000] | Omit = omit,
         speech_rate: int | Omit = omit,
         voice: text_to_speech_create_params.SeedAudioVoice | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -529,7 +520,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         stability: float | Omit = omit,
         style: float | Omit = omit,
         use_speaker_boost: bool | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -591,7 +581,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         turns: Iterable[text_to_speech_create_params.Gemini3_8FlashTtsTurn],
         voice_ids: SequenceNotStr[str],
         language_code: str | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -632,7 +621,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         turns: Iterable[text_to_speech_create_params.Gemini3_8FlashLiteTtsTurn],
         voice_ids: SequenceNotStr[str],
         language_code: str | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -672,7 +660,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         model: Literal["eleven_multilingual_v2"],
         prompt_text: str,
         voice: text_to_speech_create_params.ElevenMultilingualV2Voice,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -717,7 +704,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         stability: float | Omit = omit,
         style: float | Omit = omit,
         use_speaker_boost: bool | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -787,7 +773,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         | text_to_speech_create_params.ElevenMultilingualV2Voice
         | text_to_speech_create_params.ElevenV3Voice
         | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         language_code: str | Omit = omit,
         next_text: str | Omit = omit,
         previous_text: str | Omit = omit,
@@ -809,7 +794,6 @@ class AsyncTextToSpeechResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncNewTaskCreatedResponse:
-        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return await self._post(
             "/v1/text_to_speech",
             body=await async_maybe_transform(

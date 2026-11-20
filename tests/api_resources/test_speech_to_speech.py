@@ -45,7 +45,6 @@ class TestSpeechToSpeech:
                 "type": "runway-preset",
             },
             remove_background_noise=True,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(SpeechToSpeechCreateResponse, speech_to_speech, path=["response"])
 
@@ -123,7 +122,6 @@ class TestAsyncSpeechToSpeech:
                 "type": "runway-preset",
             },
             remove_background_noise=True,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(SpeechToSpeechCreateResponse, speech_to_speech, path=["response"])
 

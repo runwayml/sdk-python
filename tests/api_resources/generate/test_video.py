@@ -62,7 +62,6 @@ class TestVideo:
                 "resolution": "480p",
                 "seed": 0,
             },
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(VideoCreateResponse, video, path=["response"])
 
@@ -143,7 +142,6 @@ class TestAsyncVideo:
                 "resolution": "480p",
                 "seed": 0,
             },
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(VideoCreateResponse, video, path=["response"])
 

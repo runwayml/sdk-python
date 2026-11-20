@@ -9,7 +9,7 @@ import httpx
 
 from ..types import realtime_session_create_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -57,7 +57,6 @@ class RealtimeSessionsResource(SyncAPIResource):
         personality: str | Omit = omit,
         start_script: str | Omit = omit,
         tools: Iterable[realtime_session_create_params.Tool] | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -99,7 +98,6 @@ class RealtimeSessionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return self._post(
             "/v1/realtime_sessions",
             body=maybe_transform(
@@ -227,7 +225,6 @@ class AsyncRealtimeSessionsResource(AsyncAPIResource):
         personality: str | Omit = omit,
         start_script: str | Omit = omit,
         tools: Iterable[realtime_session_create_params.Tool] | Omit = omit,
-        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -269,7 +266,6 @@ class AsyncRealtimeSessionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return await self._post(
             "/v1/realtime_sessions",
             body=await async_maybe_transform(

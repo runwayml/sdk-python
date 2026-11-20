@@ -63,5 +63,3 @@ class VideoToHdrCreateParams(TypedDict, total=False):
     with an alpha channel is always delivered as `4444`, the only tier with an alpha
     plane, whatever tier is requested.
     """
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]

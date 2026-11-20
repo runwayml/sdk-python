@@ -73,8 +73,6 @@ class RealtimeSessionCreateParams(TypedDict, total=False):
     tools: Iterable[Tool]
     """Tools available to the avatar during the session."""
 
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
-
 
 class AvatarRunwayPreset(TypedDict, total=False):
     """A preset avatar from Runway."""

@@ -18,5 +18,3 @@ class VoiceIsolationCreateParams(TypedDict, total=False):
     """
 
     model: Required[Literal["eleven_voice_isolation"]]
-
-    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]

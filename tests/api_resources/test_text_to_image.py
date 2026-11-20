@@ -41,7 +41,6 @@ class TestTextToImage:
             ],
             content_moderation={"public_figure_threshold": "auto"},
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -98,7 +97,6 @@ class TestTextToImage:
                 }
             ],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -154,7 +152,6 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -209,7 +206,6 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -259,7 +255,6 @@ class TestTextToImage:
             output_count=1,
             output_format="webp",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -310,7 +305,6 @@ class TestTextToImage:
             output_count=1,
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -361,7 +355,6 @@ class TestTextToImage:
             output_count=1,
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -412,7 +405,6 @@ class TestTextToImage:
             output_count=1,
             quality="low",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -467,7 +459,6 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -522,7 +513,6 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -578,7 +568,6 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -634,7 +623,6 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -684,7 +672,6 @@ class TestTextToImage:
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -733,7 +720,6 @@ class TestTextToImage:
             ratio="1024:1024",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -780,7 +766,6 @@ class TestTextToImage:
             quality="low",
             ratio="2048:2048",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -830,7 +815,6 @@ class TestTextToImage:
             quality="very_low",
             ratio="1024:1024",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -878,7 +862,6 @@ class TestTextToImage:
             output_count=1,
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -933,7 +916,6 @@ class TestTextToImage:
                 }
             ],
             thinking_level="minimal",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -985,7 +967,6 @@ class TestTextToImage:
             output_count=1,
             output_format="webp",
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1033,7 +1014,6 @@ class TestTextToImage:
             background_color="#E1CB97",
             colors=["#E1CB97"],
             ratio="1024:1024",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1080,7 +1060,6 @@ class TestTextToImage:
             ratio="auto",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1138,7 +1117,6 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1198,7 +1176,6 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1247,7 +1224,6 @@ class TestTextToImage:
             output_format="png",
             prompt_text="x",
             resolution="auto",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1296,7 +1272,6 @@ class TestTextToImage:
             output_count=1,
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1345,7 +1320,6 @@ class TestTextToImage:
             output_format="png",
             prompt_text="x",
             resolution="auto",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1393,7 +1367,6 @@ class TestTextToImage:
             highspeed=True,
             output_count=1,
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1446,7 +1419,6 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1508,7 +1480,6 @@ class TestAsyncTextToImage:
             ],
             content_moderation={"public_figure_threshold": "auto"},
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1565,7 +1536,6 @@ class TestAsyncTextToImage:
                 }
             ],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1621,7 +1591,6 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1676,7 +1645,6 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1726,7 +1694,6 @@ class TestAsyncTextToImage:
             output_count=1,
             output_format="webp",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1777,7 +1744,6 @@ class TestAsyncTextToImage:
             output_count=1,
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1828,7 +1794,6 @@ class TestAsyncTextToImage:
             output_count=1,
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1879,7 +1844,6 @@ class TestAsyncTextToImage:
             output_count=1,
             quality="low",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1934,7 +1898,6 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1989,7 +1952,6 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2045,7 +2007,6 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2101,7 +2062,6 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2151,7 +2111,6 @@ class TestAsyncTextToImage:
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2200,7 +2159,6 @@ class TestAsyncTextToImage:
             ratio="1024:1024",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2247,7 +2205,6 @@ class TestAsyncTextToImage:
             quality="low",
             ratio="2048:2048",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2297,7 +2254,6 @@ class TestAsyncTextToImage:
             quality="very_low",
             ratio="1024:1024",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2345,7 +2301,6 @@ class TestAsyncTextToImage:
             output_count=1,
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2400,7 +2355,6 @@ class TestAsyncTextToImage:
                 }
             ],
             thinking_level="minimal",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2452,7 +2406,6 @@ class TestAsyncTextToImage:
             output_count=1,
             output_format="webp",
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2500,7 +2453,6 @@ class TestAsyncTextToImage:
             background_color="#E1CB97",
             colors=["#E1CB97"],
             ratio="1024:1024",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2547,7 +2499,6 @@ class TestAsyncTextToImage:
             ratio="auto",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
             seed=0,
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2605,7 +2556,6 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2665,7 +2615,6 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2714,7 +2663,6 @@ class TestAsyncTextToImage:
             output_format="png",
             prompt_text="x",
             resolution="auto",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2763,7 +2711,6 @@ class TestAsyncTextToImage:
             output_count=1,
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2812,7 +2759,6 @@ class TestAsyncTextToImage:
             output_format="png",
             prompt_text="x",
             resolution="auto",
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2860,7 +2806,6 @@ class TestAsyncTextToImage:
             highspeed=True,
             output_count=1,
             reference_images=[{"uri": "https://example.com/image.jpg"}],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2913,7 +2858,6 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
-            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
