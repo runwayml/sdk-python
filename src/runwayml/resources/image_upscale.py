@@ -15,7 +15,7 @@ from runwayml.lib.polling import (
 
 from ..types import image_upscale_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -62,6 +62,7 @@ class ImageUpscaleResource(SyncAPIResource):
         sharpen: int | Omit = omit,
         smart_grain: int | Omit = omit,
         ultra_detail: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -101,6 +102,7 @@ class ImageUpscaleResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return self._post(
             "/v1/image_upscale",
             body=maybe_transform(
@@ -154,6 +156,7 @@ class AsyncImageUpscaleResource(AsyncAPIResource):
         sharpen: int | Omit = omit,
         smart_grain: int | Omit = omit,
         ultra_detail: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -193,6 +196,7 @@ class AsyncImageUpscaleResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return await self._post(
             "/v1/image_upscale",
             body=await async_maybe_transform(

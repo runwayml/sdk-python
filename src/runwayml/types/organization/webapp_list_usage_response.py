@@ -36,6 +36,21 @@ class WebappListUsageResponse(BaseModel):
     the generation no longer exists, or the type wasn't recorded.
     """
 
+    project_id: Optional[str] = FieldInfo(alias="projectId", default=None)
+    """
+    ID of the Runway web app project the generation was made in (not this API
+    project). `null` when no project is recorded for it, which includes generations
+    made outside a project, generations made before project tracking was rolled out
+    (late May to mid-August 2026), and rows with a null `taskId`.
+    """
+
+    project_name: Optional[str] = FieldInfo(alias="projectName", default=None)
+    """
+    Current name of that project, so it changes when the project is renamed (group
+    by `projectId`). Still returned after the project is archived or deleted. `null`
+    when `projectId` is null.
+    """
+
     status: Optional[Literal["PENDING", "THROTTLED", "RUNNING", "FAILED", "SUCCEEDED", "CANCELLED"]] = None
     """
     Current status of the generation when you request it, so it can change between

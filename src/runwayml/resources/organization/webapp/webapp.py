@@ -61,9 +61,9 @@ class WebappResource(SyncAPIResource):
         self,
         *,
         from_: Union[Union[str, datetime], Union[str, date]],
-        limit: int,
         to: Union[Union[str, datetime], Union[str, date]],
         cursor: str | Omit = omit,
+        limit: int | Omit = omit,
         organization_id: str | Omit = omit,
         workspace_ids: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -83,16 +83,18 @@ class WebappResource(SyncAPIResource):
           from_: Start of the time window (inclusive), ISO-8601 datetime or date. A date means
               midnight UTC.
 
-          limit: The maximum number of items to return per page.
-
           to: End of the time window (exclusive), ISO-8601 datetime or date. A date means
               midnight UTC, so `to=2026-08-01` covers all of July 31. A `cursor` can only
               narrow this window, never extend it past `to`.
 
           cursor: Cursor from a previous response for fetching the next page of results.
 
+          limit: The maximum number of items to return per page.
+
           organization_id: Organization to report on. Optional when this API project is linked to a single
-              organization; required when it is linked to more than one.
+              organization; required when it is linked to more than one. If it is missing
+              then, the 400 response lists the IDs and names of the linked organizations in
+              `details.organizations`.
 
           workspace_ids: Restrict results to these workspace IDs, as a comma-separated list. Defaults to
               every workspace you administer in the organization.
@@ -116,9 +118,9 @@ class WebappResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "from_": from_,
-                        "limit": limit,
                         "to": to,
                         "cursor": cursor,
+                        "limit": limit,
                         "organization_id": organization_id,
                         "workspace_ids": workspace_ids,
                     },
@@ -157,9 +159,9 @@ class AsyncWebappResource(AsyncAPIResource):
         self,
         *,
         from_: Union[Union[str, datetime], Union[str, date]],
-        limit: int,
         to: Union[Union[str, datetime], Union[str, date]],
         cursor: str | Omit = omit,
+        limit: int | Omit = omit,
         organization_id: str | Omit = omit,
         workspace_ids: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -179,16 +181,18 @@ class AsyncWebappResource(AsyncAPIResource):
           from_: Start of the time window (inclusive), ISO-8601 datetime or date. A date means
               midnight UTC.
 
-          limit: The maximum number of items to return per page.
-
           to: End of the time window (exclusive), ISO-8601 datetime or date. A date means
               midnight UTC, so `to=2026-08-01` covers all of July 31. A `cursor` can only
               narrow this window, never extend it past `to`.
 
           cursor: Cursor from a previous response for fetching the next page of results.
 
+          limit: The maximum number of items to return per page.
+
           organization_id: Organization to report on. Optional when this API project is linked to a single
-              organization; required when it is linked to more than one.
+              organization; required when it is linked to more than one. If it is missing
+              then, the 400 response lists the IDs and names of the linked organizations in
+              `details.organizations`.
 
           workspace_ids: Restrict results to these workspace IDs, as a comma-separated list. Defaults to
               every workspace you administer in the organization.
@@ -212,9 +216,9 @@ class AsyncWebappResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "from_": from_,
-                        "limit": limit,
                         "to": to,
                         "cursor": cursor,
+                        "limit": limit,
                         "organization_id": organization_id,
                         "workspace_ids": workspace_ids,
                     },

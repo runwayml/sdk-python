@@ -55,6 +55,8 @@ class RecipeProductAdParams(TypedDict, total=False):
     specifics, lighting, camera motion, and narrative.
     """
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class ProductImage(TypedDict, total=False):
     uri: Required[str]

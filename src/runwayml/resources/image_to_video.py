@@ -9,7 +9,7 @@ import httpx
 
 from ..types import image_to_video_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import required_args, maybe_transform, async_maybe_transform
+from .._utils import required_args, maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -79,6 +79,7 @@ class ImageToVideoResource(SyncAPIResource):
         | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -160,6 +161,7 @@ class ImageToVideoResource(SyncAPIResource):
         duration: int | Omit = omit,
         prompt_text: str | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -210,6 +212,7 @@ class ImageToVideoResource(SyncAPIResource):
         negative_prompt: str | Omit = omit,
         prompt_text: str | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -262,6 +265,7 @@ class ImageToVideoResource(SyncAPIResource):
         negative_prompt: str | Omit = omit,
         prompt_text: str | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -314,6 +318,7 @@ class ImageToVideoResource(SyncAPIResource):
         provider_settings: image_to_video_create_params.KlingO3_4kProviderSettings | Omit = omit,
         ratio: Literal["3840:2160", "2160:3840", "2880:2880"] | Omit = omit,
         references: Union[str, Iterable[image_to_video_create_params.KlingO3_4kReferencesReferenceImage]] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -364,6 +369,7 @@ class ImageToVideoResource(SyncAPIResource):
         ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Hailuo3ReferenceAudio] | Omit = omit,
         resolution: Literal["768p", "2k", "768P", "2K"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -415,6 +421,7 @@ class ImageToVideoResource(SyncAPIResource):
         prompt_text: str | Omit = omit,
         provider_settings: image_to_video_create_params.Kling3_0_4kProviderSettings | Omit = omit,
         ratio: Literal["3840:2160", "2160:3840", "2880:2880"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -463,6 +470,7 @@ class ImageToVideoResource(SyncAPIResource):
         duration: int | Omit = omit,
         prompt_text: str | Omit = omit,
         resolution: Literal["720p", "1080p", "720P", "1080P"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -507,6 +515,7 @@ class ImageToVideoResource(SyncAPIResource):
         prompt_text: str,
         cfg_scale: float | Omit = omit,
         duration: Literal[5, 10] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -552,6 +561,7 @@ class ImageToVideoResource(SyncAPIResource):
         prompt_text: str | Omit = omit,
         provider_settings: image_to_video_create_params.Kling3_0ProProviderSettings | Omit = omit,
         ratio: Literal["1920:1080", "1080:1920", "1440:1440"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -603,6 +613,7 @@ class ImageToVideoResource(SyncAPIResource):
         prompt_text: str | Omit = omit,
         provider_settings: image_to_video_create_params.Kling3_0StandardProviderSettings | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "960:960"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -654,6 +665,7 @@ class ImageToVideoResource(SyncAPIResource):
         provider_settings: image_to_video_create_params.KlingO3ProProviderSettings | Omit = omit,
         ratio: Literal["1920:1080", "1080:1920", "1440:1440"] | Omit = omit,
         references: Union[str, Iterable[image_to_video_create_params.KlingO3ProReferencesReferenceImage]] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -706,6 +718,7 @@ class ImageToVideoResource(SyncAPIResource):
         ratio: Literal["1280:720", "720:1280", "960:960"] | Omit = omit,
         references: Union[str, Iterable[image_to_video_create_params.KlingO3StandardReferencesReferenceImage]]
         | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -784,6 +797,7 @@ class ImageToVideoResource(SyncAPIResource):
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2ReferenceAudio] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -856,6 +870,7 @@ class ImageToVideoResource(SyncAPIResource):
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2FastReferenceAudio] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -929,6 +944,7 @@ class ImageToVideoResource(SyncAPIResource):
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2MiniReferenceAudio] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -984,6 +1000,7 @@ class ImageToVideoResource(SyncAPIResource):
         duration: int | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1025,6 +1042,7 @@ class ImageToVideoResource(SyncAPIResource):
         duration: int | Omit = omit,
         prompt_text: str | Omit = omit,
         resolution: Literal["480p", "720p", "1080p"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1088,6 +1106,7 @@ class ImageToVideoResource(SyncAPIResource):
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Wan3ReferenceAudio] | Omit = omit,
         reference_videos: Iterable[image_to_video_create_params.Wan3ReferenceVideo] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1139,6 +1158,7 @@ class ImageToVideoResource(SyncAPIResource):
         duration: Union[Literal["auto"], int] | Omit = omit,
         ratio: Literal["640:360", "360:640", "1280:720", "720:1280", "1920:1080", "1080:1920", "3840:2160", "2160:3840"]
         | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1203,6 +1223,7 @@ class ImageToVideoResource(SyncAPIResource):
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Wan3PrimeReferenceAudio] | Omit = omit,
         reference_videos: Iterable[image_to_video_create_params.Wan3PrimeReferenceVideo] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1255,6 +1276,7 @@ class ImageToVideoResource(SyncAPIResource):
         prompt_expansion_mode: Literal["disabled", "balanced", "quality"] | Omit = omit,
         resolution: Literal["480p", "768p"] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1334,6 +1356,7 @@ class ImageToVideoResource(SyncAPIResource):
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1394,6 +1417,7 @@ class ImageToVideoResource(SyncAPIResource):
         duration: int | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal["auto_480p", "auto_720p", "auto_1080p"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1437,6 +1461,7 @@ class ImageToVideoResource(SyncAPIResource):
         ratio: Literal["auto_720p", "auto_1080p"] | Omit = omit,
         references: Iterable[image_to_video_create_params.Kling4Reference] | Omit = omit,
         reference_videos: Iterable[object] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1483,6 +1508,7 @@ class ImageToVideoResource(SyncAPIResource):
         duration: Union[Literal["auto"], int] | Omit = omit,
         ratio: Literal["640:360", "360:640", "1280:720", "720:1280", "1920:1080", "1080:1920", "3840:2160", "2160:3840"]
         | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1526,6 +1552,7 @@ class ImageToVideoResource(SyncAPIResource):
         ratio: Literal["auto_720p"] | Omit = omit,
         references: Iterable[image_to_video_create_params.Kling4FlashReference] | Omit = omit,
         reference_videos: Iterable[image_to_video_create_params.Kling4FlashReferenceVideo] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1566,6 +1593,7 @@ class ImageToVideoResource(SyncAPIResource):
         references: Iterable[image_to_video_create_params.Hailuo3HighspeedReference] | Omit = omit,
         reference_videos: Iterable[image_to_video_create_params.Hailuo3HighspeedReferenceVideo] | Omit = omit,
         resolution: Literal["480p", "768p"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1608,6 +1636,7 @@ class ImageToVideoResource(SyncAPIResource):
         references: Iterable[image_to_video_create_params.Hailuo3LiteReference] | Omit = omit,
         reference_videos: Iterable[image_to_video_create_params.Hailuo3LiteReferenceVideo] | Omit = omit,
         resolution: Literal["480p", "768p"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1626,6 +1655,79 @@ class ImageToVideoResource(SyncAPIResource):
           prompt_text: The text prompt describing the output video.
 
           resolution: The output video resolution.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["seedance2_5_flash"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Seedance2_5FlashPromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
+        output_format: Literal["mp4", "mov"] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        ratio: Literal[
+            "992:432",
+            "854:480",
+            "752:560",
+            "640:640",
+            "560:752",
+            "480:854",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+        ]
+        | Omit = omit,
+        reference_audio: Iterable[image_to_video_create_params.Seedance2_5FlashReferenceAudio] | Omit = omit,
+        seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: An image or array of images. Use position `first`/`last` for keyframe mode, or
+              omit position for reference images. The two modes cannot be mixed.
+
+          audio: Whether to generate audio for the video.
+
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
+
+          output_format: Container for the output video. `mov` keeps high colour precision for grading
+              and compositing. Defaults to `mp4`.
+
+          prompt_text: An optional text prompt up to 15000 characters describing what should appear in
+              the output.
+
+          ratio: The resolution of the output video. Seedance 2.5 Flash supports 480p and 720p.
+
+          reference_audio: An optional array of audio references. The total combined duration must be less
+              than 30 seconds.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -1680,7 +1782,8 @@ class ImageToVideoResource(SyncAPIResource):
         | Literal["gemini_omni_flash_1.2"]
         | Literal["kling_4_flash"]
         | Literal["hailuo3_highspeed"]
-        | Literal["hailuo3_lite"],
+        | Literal["hailuo3_lite"]
+        | Literal["seedance2_5_flash"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
@@ -1706,7 +1809,8 @@ class ImageToVideoResource(SyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlash1_2PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Kling4FlashPromptImageUnionMember1]]
         | Union[str, Iterable[image_to_video_create_params.Hailuo3HighspeedPromptImageUnionMember1]]
-        | Union[str, Iterable[image_to_video_create_params.Hailuo3LitePromptImageUnionMember1]],
+        | Union[str, Iterable[image_to_video_create_params.Hailuo3LitePromptImageUnionMember1]]
+        | Union[str, Iterable[image_to_video_create_params.Seedance2_5FlashPromptImagePromptImage]],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
         | Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
@@ -1806,6 +1910,20 @@ class ImageToVideoResource(SyncAPIResource):
         | Literal["auto_480p", "auto_720p", "auto_1080p"]
         | Literal["auto_720p", "auto_1080p"]
         | Literal["auto_720p"]
+        | Literal[
+            "992:432",
+            "854:480",
+            "752:560",
+            "640:640",
+            "560:752",
+            "480:854",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+        ]
         | Omit = omit,
         content_moderation: image_to_video_create_params.Gen4_5ContentModeration
         | image_to_video_create_params.Gen4TurboContentModeration
@@ -1828,6 +1946,7 @@ class ImageToVideoResource(SyncAPIResource):
         | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         audio: bool | Omit = omit,
         negative_prompt: str | Omit = omit,
         provider_settings: image_to_video_create_params.KlingO3_4kProviderSettings
@@ -1854,6 +1973,7 @@ class ImageToVideoResource(SyncAPIResource):
         | Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio]
         | Iterable[image_to_video_create_params.Hailuo3HighspeedReferenceAudio]
         | Iterable[image_to_video_create_params.Hailuo3LiteReferenceAudio]
+        | Iterable[image_to_video_create_params.Seedance2_5FlashReferenceAudio]
         | Omit = omit,
         resolution: Literal["768p", "2k", "768P", "2K"]
         | Literal["720p", "1080p", "720P", "1080P"]
@@ -1878,6 +1998,7 @@ class ImageToVideoResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NewTaskCreatedResponse:
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return self._post(
             "/v1/image_to_video",
             body=maybe_transform(
@@ -1961,6 +2082,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2042,6 +2164,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         duration: int | Omit = omit,
         prompt_text: str | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2092,6 +2215,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         negative_prompt: str | Omit = omit,
         prompt_text: str | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2144,6 +2268,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         negative_prompt: str | Omit = omit,
         prompt_text: str | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2196,6 +2321,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         provider_settings: image_to_video_create_params.KlingO3_4kProviderSettings | Omit = omit,
         ratio: Literal["3840:2160", "2160:3840", "2880:2880"] | Omit = omit,
         references: Union[str, Iterable[image_to_video_create_params.KlingO3_4kReferencesReferenceImage]] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2246,6 +2372,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         ratio: Literal["adaptive", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"] | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Hailuo3ReferenceAudio] | Omit = omit,
         resolution: Literal["768p", "2k", "768P", "2K"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2297,6 +2424,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         prompt_text: str | Omit = omit,
         provider_settings: image_to_video_create_params.Kling3_0_4kProviderSettings | Omit = omit,
         ratio: Literal["3840:2160", "2160:3840", "2880:2880"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2345,6 +2473,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         duration: int | Omit = omit,
         prompt_text: str | Omit = omit,
         resolution: Literal["720p", "1080p", "720P", "1080P"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2389,6 +2518,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         prompt_text: str,
         cfg_scale: float | Omit = omit,
         duration: Literal[5, 10] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2434,6 +2564,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         prompt_text: str | Omit = omit,
         provider_settings: image_to_video_create_params.Kling3_0ProProviderSettings | Omit = omit,
         ratio: Literal["1920:1080", "1080:1920", "1440:1440"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2485,6 +2616,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         prompt_text: str | Omit = omit,
         provider_settings: image_to_video_create_params.Kling3_0StandardProviderSettings | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "960:960"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2536,6 +2668,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         provider_settings: image_to_video_create_params.KlingO3ProProviderSettings | Omit = omit,
         ratio: Literal["1920:1080", "1080:1920", "1440:1440"] | Omit = omit,
         references: Union[str, Iterable[image_to_video_create_params.KlingO3ProReferencesReferenceImage]] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2588,6 +2721,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         ratio: Literal["1280:720", "720:1280", "960:960"] | Omit = omit,
         references: Union[str, Iterable[image_to_video_create_params.KlingO3StandardReferencesReferenceImage]]
         | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2666,6 +2800,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2ReferenceAudio] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2738,6 +2873,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2FastReferenceAudio] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2811,6 +2947,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2MiniReferenceAudio] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2866,6 +3003,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         duration: int | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2907,6 +3045,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         duration: int | Omit = omit,
         prompt_text: str | Omit = omit,
         resolution: Literal["480p", "720p", "1080p"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2970,6 +3109,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Wan3ReferenceAudio] | Omit = omit,
         reference_videos: Iterable[image_to_video_create_params.Wan3ReferenceVideo] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3021,6 +3161,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         duration: Union[Literal["auto"], int] | Omit = omit,
         ratio: Literal["640:360", "360:640", "1280:720", "720:1280", "1920:1080", "1080:1920", "3840:2160", "2160:3840"]
         | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3085,6 +3226,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Wan3PrimeReferenceAudio] | Omit = omit,
         reference_videos: Iterable[image_to_video_create_params.Wan3PrimeReferenceVideo] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3137,6 +3279,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         prompt_expansion_mode: Literal["disabled", "balanced", "quality"] | Omit = omit,
         resolution: Literal["480p", "768p"] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3216,6 +3359,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Omit = omit,
         reference_audio: Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3276,6 +3420,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         duration: int | Omit = omit,
         prompt_text: str | Omit = omit,
         ratio: Literal["auto_480p", "auto_720p", "auto_1080p"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3319,6 +3464,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         ratio: Literal["auto_720p", "auto_1080p"] | Omit = omit,
         references: Iterable[image_to_video_create_params.Kling4Reference] | Omit = omit,
         reference_videos: Iterable[object] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3365,6 +3511,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         duration: Union[Literal["auto"], int] | Omit = omit,
         ratio: Literal["640:360", "360:640", "1280:720", "720:1280", "1920:1080", "1080:1920", "3840:2160", "2160:3840"]
         | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3408,6 +3555,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         ratio: Literal["auto_720p"] | Omit = omit,
         references: Iterable[image_to_video_create_params.Kling4FlashReference] | Omit = omit,
         reference_videos: Iterable[image_to_video_create_params.Kling4FlashReferenceVideo] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3448,6 +3596,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         references: Iterable[image_to_video_create_params.Hailuo3HighspeedReference] | Omit = omit,
         reference_videos: Iterable[image_to_video_create_params.Hailuo3HighspeedReferenceVideo] | Omit = omit,
         resolution: Literal["480p", "768p"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3490,6 +3639,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         references: Iterable[image_to_video_create_params.Hailuo3LiteReference] | Omit = omit,
         reference_videos: Iterable[image_to_video_create_params.Hailuo3LiteReferenceVideo] | Omit = omit,
         resolution: Literal["480p", "768p"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3508,6 +3658,79 @@ class AsyncImageToVideoResource(AsyncAPIResource):
           prompt_text: The text prompt describing the output video.
 
           resolution: The output video resolution.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["seedance2_5_flash"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Seedance2_5FlashPromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
+        output_format: Literal["mp4", "mov"] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        ratio: Literal[
+            "992:432",
+            "854:480",
+            "752:560",
+            "640:640",
+            "560:752",
+            "480:854",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+        ]
+        | Omit = omit,
+        reference_audio: Iterable[image_to_video_create_params.Seedance2_5FlashReferenceAudio] | Omit = omit,
+        seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: An image or array of images. Use position `first`/`last` for keyframe mode, or
+              omit position for reference images. The two modes cannot be mixed.
+
+          audio: Whether to generate audio for the video.
+
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
+
+          output_format: Container for the output video. `mov` keeps high colour precision for grading
+              and compositing. Defaults to `mp4`.
+
+          prompt_text: An optional text prompt up to 15000 characters describing what should appear in
+              the output.
+
+          ratio: The resolution of the output video. Seedance 2.5 Flash supports 480p and 720p.
+
+          reference_audio: An optional array of audio references. The total combined duration must be less
+              than 30 seconds.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
 
           extra_headers: Send extra headers
 
@@ -3562,7 +3785,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Literal["gemini_omni_flash_1.2"]
         | Literal["kling_4_flash"]
         | Literal["hailuo3_highspeed"]
-        | Literal["hailuo3_lite"],
+        | Literal["hailuo3_lite"]
+        | Literal["seedance2_5_flash"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
@@ -3588,7 +3812,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlash1_2PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Kling4FlashPromptImageUnionMember1]]
         | Union[str, Iterable[image_to_video_create_params.Hailuo3HighspeedPromptImageUnionMember1]]
-        | Union[str, Iterable[image_to_video_create_params.Hailuo3LitePromptImageUnionMember1]],
+        | Union[str, Iterable[image_to_video_create_params.Hailuo3LitePromptImageUnionMember1]]
+        | Union[str, Iterable[image_to_video_create_params.Seedance2_5FlashPromptImagePromptImage]],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
         | Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
@@ -3688,6 +3913,20 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Literal["auto_480p", "auto_720p", "auto_1080p"]
         | Literal["auto_720p", "auto_1080p"]
         | Literal["auto_720p"]
+        | Literal[
+            "992:432",
+            "854:480",
+            "752:560",
+            "640:640",
+            "560:752",
+            "480:854",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+        ]
         | Omit = omit,
         content_moderation: image_to_video_create_params.Gen4_5ContentModeration
         | image_to_video_create_params.Gen4TurboContentModeration
@@ -3710,6 +3949,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Omit = omit,
         prores_profile: Literal["422", "4444", "422 Proxy", "422 LT", "422 HQ", "4444 XQ"] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         audio: bool | Omit = omit,
         negative_prompt: str | Omit = omit,
         provider_settings: image_to_video_create_params.KlingO3_4kProviderSettings
@@ -3736,6 +3976,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio]
         | Iterable[image_to_video_create_params.Hailuo3HighspeedReferenceAudio]
         | Iterable[image_to_video_create_params.Hailuo3LiteReferenceAudio]
+        | Iterable[image_to_video_create_params.Seedance2_5FlashReferenceAudio]
         | Omit = omit,
         resolution: Literal["768p", "2k", "768P", "2K"]
         | Literal["720p", "1080p", "720P", "1080P"]
@@ -3760,6 +4001,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncNewTaskCreatedResponse:
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return await self._post(
             "/v1/image_to_video",
             body=await async_maybe_transform(

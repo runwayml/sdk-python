@@ -31,6 +31,7 @@ class TestImageToVector:
             image_uri="https://example.com/image.jpg",
             model="ideogram_vector",
             vectorization_mode="simple",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVectorCreateResponse, image_to_vector, path=["response"])
 
@@ -80,6 +81,7 @@ class TestAsyncImageToVector:
             image_uri="https://example.com/image.jpg",
             model="ideogram_vector",
             vectorization_mode="simple",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(ImageToVectorCreateResponse, image_to_vector, path=["response"])
 

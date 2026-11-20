@@ -8,7 +8,7 @@ from datetime import date
 import httpx
 
 from ...types import organization_retrieve_usage_params
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -83,7 +83,9 @@ class OrganizationResource(SyncAPIResource):
         self,
         *,
         before_date: Union[str, date] | Omit = omit,
+        group_by: str | Omit = omit,
         start_date: Union[str, date] | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -94,16 +96,25 @@ class OrganizationResource(SyncAPIResource):
         """
         Fetch credit usage data broken down by model and day for the organization
         associated with the API key used to make the request. Up to 90 days of data can
-        be queried at a time.
+        be queried at a time. Usage updates hourly; recent activity may not appear yet.
 
         Args:
           before_date: The end date of the usage data in ISO-8601 format (YYYY-MM-DD), not inclusive.
               If unspecified, it will default to thirty days after the start date. Must be
               less than or equal to 90 days after the start date. All dates are in UTC.
 
+          group_by: Also break usage down by tag in `resultsByTag`. `"tag"` gives one bucket per
+              tag; a generation with several tags counts toward each of them. `"tag:<key>"`
+              (for example `"tag:team"`) gives one bucket per value of that key, so each
+              generation counts once. Generations without a matching tag fall under a `null`
+              tag.
+
           start_date: The start date of the usage data in ISO-8601 format (YYYY-MM-DD). If
               unspecified, it will default to 30 days before the current date. All dates are
               in UTC.
+
+          tags: Only count generations that were created with every one of these tags in the
+              `X-Runway-Tags` header. Tags are case-insensitive. Up to 10 tags.
 
           extra_headers: Send extra headers
 
@@ -118,7 +129,9 @@ class OrganizationResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "before_date": before_date,
+                    "group_by": group_by,
                     "start_date": start_date,
+                    "tags": tags,
                 },
                 organization_retrieve_usage_params.OrganizationRetrieveUsageParams,
             ),
@@ -179,7 +192,9 @@ class AsyncOrganizationResource(AsyncAPIResource):
         self,
         *,
         before_date: Union[str, date] | Omit = omit,
+        group_by: str | Omit = omit,
         start_date: Union[str, date] | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -190,16 +205,25 @@ class AsyncOrganizationResource(AsyncAPIResource):
         """
         Fetch credit usage data broken down by model and day for the organization
         associated with the API key used to make the request. Up to 90 days of data can
-        be queried at a time.
+        be queried at a time. Usage updates hourly; recent activity may not appear yet.
 
         Args:
           before_date: The end date of the usage data in ISO-8601 format (YYYY-MM-DD), not inclusive.
               If unspecified, it will default to thirty days after the start date. Must be
               less than or equal to 90 days after the start date. All dates are in UTC.
 
+          group_by: Also break usage down by tag in `resultsByTag`. `"tag"` gives one bucket per
+              tag; a generation with several tags counts toward each of them. `"tag:<key>"`
+              (for example `"tag:team"`) gives one bucket per value of that key, so each
+              generation counts once. Generations without a matching tag fall under a `null`
+              tag.
+
           start_date: The start date of the usage data in ISO-8601 format (YYYY-MM-DD). If
               unspecified, it will default to 30 days before the current date. All dates are
               in UTC.
+
+          tags: Only count generations that were created with every one of these tags in the
+              `X-Runway-Tags` header. Tags are case-insensitive. Up to 10 tags.
 
           extra_headers: Send extra headers
 
@@ -214,7 +238,9 @@ class AsyncOrganizationResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "before_date": before_date,
+                    "group_by": group_by,
                     "start_date": start_date,
+                    "tags": tags,
                 },
                 organization_retrieve_usage_params.OrganizationRetrieveUsageParams,
             ),

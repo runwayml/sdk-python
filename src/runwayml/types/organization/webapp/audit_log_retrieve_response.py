@@ -66,6 +66,8 @@ class Metadata(BaseModel):
 
     application: Optional[str] = FieldInfo(alias="Application", default=None)
 
+    asset_id: Optional[str] = FieldInfo(alias="Asset ID", default=None)
+
     asset_name: Optional[str] = FieldInfo(alias="Asset name", default=None)
 
     asset_type: Optional[str] = FieldInfo(alias="Asset type", default=None)
@@ -75,6 +77,12 @@ class Metadata(BaseModel):
     aws_license: Optional[str] = FieldInfo(alias="AWS license", default=None)
 
     brand_kit_id: Optional[str] = FieldInfo(alias="Brand kit ID", default=None)
+
+    campaign_setup_id: Optional[str] = FieldInfo(alias="Campaign setup ID", default=None)
+
+    campaign_setup_type: Optional[str] = FieldInfo(alias="Campaign setup type", default=None)
+
+    campaign_setup_version: Optional[float] = FieldInfo(alias="Campaign setup version", default=None)
 
     cancels_at_period_end: Optional[bool] = FieldInfo(alias="Cancels at period end", default=None)
 
@@ -113,6 +121,8 @@ class Metadata(BaseModel):
     error_code: Optional[str] = FieldInfo(alias="Error code", default=None)
 
     filename: Optional[str] = FieldInfo(alias="Filename", default=None)
+
+    files_moved: Optional[float] = FieldInfo(alias="Files moved", default=None)
 
     from_workspace_id: Optional[float] = FieldInfo(alias="From workspace ID", default=None)
 
@@ -176,11 +186,17 @@ class Metadata(BaseModel):
 
     previous_value: Union[str, float, bool, Dict[str, bool], None] = FieldInfo(alias="Previous value", default=None)
 
+    previously_shared_in_project: Optional[str] = FieldInfo(alias="Previously shared in project", default=None)
+
     project_credit_cap: Optional[float] = FieldInfo(alias="Project credit cap", default=None)
 
     project_id: Optional[str] = FieldInfo(alias="Project ID", default=None)
 
+    promotion: Optional[str] = FieldInfo(alias="Promotion", default=None)
+
     provider: Optional[str] = FieldInfo(alias="Provider", default=None)
+
+    read_or_write: Optional[str] = FieldInfo(alias="Read or write", default=None)
 
     reason: Optional[str] = FieldInfo(alias="Reason", default=None)
 
@@ -191,6 +207,8 @@ class Metadata(BaseModel):
     removed_member: Optional[str] = FieldInfo(alias="Removed member", default=None)
 
     requested_via: Optional[List[str]] = FieldInfo(alias="Requested via", default=None)
+
+    result: Optional[str] = FieldInfo(alias="Result", default=None)
 
     result_metric_id: Optional[str] = FieldInfo(alias="Result metric ID", default=None)
 
@@ -217,6 +235,8 @@ class Metadata(BaseModel):
     source_application: Optional[str] = FieldInfo(alias="Source application", default=None)
 
     source_category_id: Optional[str] = FieldInfo(alias="Source category ID", default=None)
+
+    source_version_asset_id: Optional[str] = FieldInfo(alias="Source version asset ID", default=None)
 
     spend_cap: Optional[float] = FieldInfo(alias="Spend cap", default=None)
 
@@ -261,6 +281,11 @@ class Metadata(BaseModel):
 
 class AuditLogRetrieveResponse(BaseModel):
     action: Literal[
+        "AgentArtifactCommentCreated",
+        "AgentArtifactCreated",
+        "AgentArtifactVersionSaved",
+        "AgentArtifactSessionAttached",
+        "AgentArtifactSessionDetached",
         "UserLogin",
         "PasswordChanged",
         "EmailChangeRequested",
@@ -315,6 +340,7 @@ class AuditLogRetrieveResponse(BaseModel):
         "SeatsTransferred",
         "SessionShared",
         "SessionUnshared",
+        "SessionMadePrivateByAdmin",
         "VideoProjectShared",
         "VideoProjectUnshared",
         "BrandKitShared",
@@ -343,6 +369,12 @@ class AuditLogRetrieveResponse(BaseModel):
         "AppStudioAppSecretChanged",
         "AppStudioAppRunwayAccessGranted",
         "AppStudioAppRunwayAccessRevoked",
+        "AppStudioConnectorConnected",
+        "AppStudioConnectorDisconnected",
+        "AppStudioConnectorAppGranted",
+        "AppStudioConnectorAppRevoked",
+        "AppStudioConnectorPolicyChanged",
+        "AppStudioConnectorToolCalled",
         "AccountLinkCreated",
         "AccountLinkDeleted",
         "AdConnectionAuthorizationStarted",
@@ -361,6 +393,11 @@ class AuditLogRetrieveResponse(BaseModel):
         "AdPublishBatchCancelled",
         "AdPublishBatchRetried",
         "AdStatusChanged",
+        "AdCampaignSetupDrafted",
+        "AdCampaignSetupDiscarded",
+        "AdCampaignSetupConfirmed",
+        "AdCampaignSetupCancelled",
+        "AdCampaignSetupRetried",
         "OrganizationSettingsUpdated",
         "OrganizationDisabledModelsUpdated",
         "OrganizationAgentSandboxUpdated",
@@ -379,6 +416,7 @@ class AuditLogRetrieveResponse(BaseModel):
         "MeteredBillingRetryTriggered",
         "EnterpriseSpendCapEnforcementUpdated",
         "OnboardingBonusGranted",
+        "PromotionCreditsGranted",
         "AwsMarketplaceEnterpriseSubscriptionLinked",
     ]
     """The action performed."""

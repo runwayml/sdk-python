@@ -143,30 +143,22 @@ class TestDocuments:
 
     @parametrize
     def test_method_list(self, client: RunwayML) -> None:
-        document = client.documents.list(
-            limit=1,
-            order="asc",
-            sort="createdAt",
-        )
+        document = client.documents.list()
         assert_matches_type(SyncCursorPage[DocumentListResponse], document, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: RunwayML) -> None:
         document = client.documents.list(
+            cursor="x",
             limit=1,
             order="asc",
             sort="createdAt",
-            cursor="x",
         )
         assert_matches_type(SyncCursorPage[DocumentListResponse], document, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: RunwayML) -> None:
-        response = client.documents.with_raw_response.list(
-            limit=1,
-            order="asc",
-            sort="createdAt",
-        )
+        response = client.documents.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -175,11 +167,7 @@ class TestDocuments:
 
     @parametrize
     def test_streaming_response_list(self, client: RunwayML) -> None:
-        with client.documents.with_streaming_response.list(
-            limit=1,
-            order="asc",
-            sort="createdAt",
-        ) as response:
+        with client.documents.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -353,30 +341,22 @@ class TestAsyncDocuments:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncRunwayML) -> None:
-        document = await async_client.documents.list(
-            limit=1,
-            order="asc",
-            sort="createdAt",
-        )
+        document = await async_client.documents.list()
         assert_matches_type(AsyncCursorPage[DocumentListResponse], document, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncRunwayML) -> None:
         document = await async_client.documents.list(
+            cursor="x",
             limit=1,
             order="asc",
             sort="createdAt",
-            cursor="x",
         )
         assert_matches_type(AsyncCursorPage[DocumentListResponse], document, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncRunwayML) -> None:
-        response = await async_client.documents.with_raw_response.list(
-            limit=1,
-            order="asc",
-            sort="createdAt",
-        )
+        response = await async_client.documents.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -385,11 +365,7 @@ class TestAsyncDocuments:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncRunwayML) -> None:
-        async with async_client.documents.with_streaming_response.list(
-            limit=1,
-            order="asc",
-            sort="createdAt",
-        ) as response:
+        async with async_client.documents.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

@@ -9,7 +9,7 @@ import httpx
 
 from ..types import text_to_image_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import required_args, maybe_transform, async_maybe_transform
+from .._utils import required_args, maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -79,6 +79,7 @@ class TextToImageResource(SyncAPIResource):
         reference_images: Iterable[text_to_image_create_params.Gen4ImageTurboReferenceImage],
         content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -141,6 +142,7 @@ class TextToImageResource(SyncAPIResource):
         content_moderation: text_to_image_create_params.Gen4ImageContentModeration | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.Gen4ImageReferenceImage] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -219,6 +221,7 @@ class TextToImageResource(SyncAPIResource):
         output_count: int | Omit = omit,
         quality: Literal["low", "medium", "high", "auto"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GptImage2ReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -322,6 +325,7 @@ class TextToImageResource(SyncAPIResource):
         ],
         output_count: Literal[1, 4] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GeminiImage3_1FlashReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -377,6 +381,7 @@ class TextToImageResource(SyncAPIResource):
         output_count: int | Omit = omit,
         output_format: Literal["webp", "png", "jpeg"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.MuseImageReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -439,6 +444,7 @@ class TextToImageResource(SyncAPIResource):
         output_count: int | Omit = omit,
         output_format: Literal["png", "jpeg"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.Seedream5ProReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -508,6 +514,7 @@ class TextToImageResource(SyncAPIResource):
         output_count: int | Omit = omit,
         output_format: Literal["png", "jpeg"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.Seedream5LiteReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -586,6 +593,7 @@ class TextToImageResource(SyncAPIResource):
         output_count: int | Omit = omit,
         quality: Literal["low", "medium"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GrokImagineImage2ReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -647,6 +655,7 @@ class TextToImageResource(SyncAPIResource):
         ],
         output_count: Literal[1, 4] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GeminiImage3_1FlashLiteReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -720,6 +729,7 @@ class TextToImageResource(SyncAPIResource):
         ],
         output_count: Literal[1, 4] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GeminiImage3ProReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -798,6 +808,7 @@ class TextToImageResource(SyncAPIResource):
         output_count: int | Omit = omit,
         quality: Literal["low", "medium", "high", "xhigh", "max"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GptImage2_5FlareReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -878,6 +889,7 @@ class TextToImageResource(SyncAPIResource):
         output_count: int | Omit = omit,
         quality: Literal["low", "medium", "high", "xhigh", "max"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GptImage2_5SunburstReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -945,6 +957,7 @@ class TextToImageResource(SyncAPIResource):
         output_format: Literal["png", "jpeg"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.BriaFibo1_5ReferenceImage] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1001,6 +1014,7 @@ class TextToImageResource(SyncAPIResource):
         | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.BriaFiboEdit1_5ReferenceImage] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1058,6 +1072,7 @@ class TextToImageResource(SyncAPIResource):
         ]
         | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.Ideogram4_0ReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1133,6 +1148,7 @@ class TextToImageResource(SyncAPIResource):
         ]
         | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.Ideogram4_5ReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1218,6 +1234,7 @@ class TextToImageResource(SyncAPIResource):
         output_count: int | Omit = omit,
         output_format: Literal["png", "jpeg"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.Seedream5FlashReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1306,6 +1323,7 @@ class TextToImageResource(SyncAPIResource):
         output_count: int | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.NanoBanana2_1ReferenceImage] | Omit = omit,
         thinking_level: Literal["minimal", "medium", "high"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1366,6 +1384,7 @@ class TextToImageResource(SyncAPIResource):
         output_count: int | Omit = omit,
         output_format: Literal["webp", "png"] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1408,6 +1427,7 @@ class TextToImageResource(SyncAPIResource):
         background_color: str | Omit = omit,
         colors: SequenceNotStr[str] | Omit = omit,
         ratio: Literal["1024:1024", "1216:896", "896:1216", "1344:768", "768:1344"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1450,6 +1470,7 @@ class TextToImageResource(SyncAPIResource):
         ratio: Literal["auto"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.IdeogramVectorReferenceImage] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1527,6 +1548,7 @@ class TextToImageResource(SyncAPIResource):
         quality: Literal["low", "medium", "high"] | Omit = omit,
         reasoning_effort: Literal["low", "medium", "high"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GptImage2_6SunburstReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1623,6 +1645,7 @@ class TextToImageResource(SyncAPIResource):
         quality: Literal["low", "medium", "high"] | Omit = omit,
         reasoning_effort: Literal["low", "medium", "high"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GptImage2_6FlareReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1682,6 +1705,7 @@ class TextToImageResource(SyncAPIResource):
         output_format: Literal["png", "jpeg"] | Omit = omit,
         prompt_text: str | Omit = omit,
         resolution: Literal["auto", "1k", "1.5k", "2k"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1722,6 +1746,230 @@ class TextToImageResource(SyncAPIResource):
     def create(
         self,
         *,
+        model: Literal["seedream5.5"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "1152:864",
+            "864:1152",
+            "1424:800",
+            "800:1424",
+            "1248:832",
+            "832:1248",
+            "1568:672",
+            "1536:1536",
+            "1792:1344",
+            "1344:1792",
+            "2048:1152",
+            "1152:2048",
+            "1872:1248",
+            "1248:1872",
+            "2352:1008",
+            "2048:2048",
+            "2368:1776",
+            "1776:2368",
+            "2816:1584",
+            "1584:2816",
+            "2496:1664",
+            "1664:2496",
+            "3136:1344",
+            "auto_1k",
+            "auto_1.5k",
+            "auto_2k",
+        ],
+        background: Literal["transparent", "opaque"] | Omit = omit,
+        output_count: int | Omit = omit,
+        output_format: Literal["png", "jpeg"] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.Seedream5_5ReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A description of the image you want to generate.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. Use
+              `auto_1k`, `auto_1.5k` or `auto_2k` to let the model pick the aspect ratio at a
+              fixed resolution tier.
+
+          background: Whether the image has a transparent or an opaque background. A transparent
+              background needs the png output format. Omit to let the model decide from the
+              prompt.
+
+          output_count: The number of images to generate. Increasing this number will affect the number
+              of credits consumed by the generation.
+
+          output_format: The file format of the output image. Defaults to png.
+
+          reference_images: Images to edit or combine. Refer to them in the prompt by upload order (Figure
+              1, Figure 2, and so on).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["seedream5.5_layers"],
+        reference_images: Iterable[text_to_image_create_params.Seedream5_5LayersReferenceImage],
+        max_images: int | Omit = omit,
+        output_format: Literal["png", "jpeg"] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        resolution: Literal["auto", "1k", "1.5k", "2k"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          reference_images: The image to split into editable layers. Layer ordering and positioning are
+              returned in the completed task’s layers field.
+
+          max_images: The most images the task may return, counting the base image. Each returned
+              image is billed separately. Defaults to 30.
+
+          output_format: Base image format; defaults to png. Separated layers always use PNG with
+              transparency.
+
+          prompt_text: Optional instructions describing which elements to separate. Omit to split the
+              image automatically.
+
+          resolution: Output resolution tier. Defaults to auto, which adapts to the input image. The
+              base image and layers preserve their respective aspect ratios.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["minimax_h3_image"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "1152:928",
+            "928:1152",
+            "1184:896",
+            "896:1184",
+            "1248:832",
+            "832:1248",
+            "1376:768",
+            "768:1376",
+            "1440:736",
+            "736:1440",
+            "1568:672",
+            "672:1568",
+            "1760:576",
+            "576:1760",
+            "2048:2048",
+            "2304:1824",
+            "1824:2304",
+            "2368:1760",
+            "1760:2368",
+            "2496:1664",
+            "1664:2496",
+            "2720:1536",
+            "1536:2720",
+            "2912:1440",
+            "1440:2912",
+            "3136:1344",
+            "1344:3136",
+            "3552:1184",
+            "1184:3552",
+            "4096:4096",
+            "4576:3648",
+            "3648:4576",
+            "4736:3552",
+            "3552:4736",
+            "5024:3360",
+            "3360:5024",
+            "5472:3072",
+            "3072:5472",
+            "5792:2912",
+            "2912:5792",
+            "6272:2688",
+            "2688:6272",
+            "7104:2368",
+            "2368:7104",
+            "auto_1k",
+            "auto_2k",
+            "auto_4k",
+        ],
+        highspeed: bool | Omit = omit,
+        output_count: int | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.MinimaxH3ImageReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty text prompt describing what should appear in the output image.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. 4K ratios
+              cost more credits per image than 1K and 2K. Use `auto_1k`, `auto_2k` or
+              `auto_4k` to pick a resolution tier and let the model choose the framing from
+              the prompt.
+
+          highspeed: When true, generate with the faster MiniMax H3 Image Highspeed model, which
+              costs more credits per image. Defaults to false.
+
+          output_count: The number of images to generate. Increasing this number will affect the number
+              of credits consumed by the generation.
+
+          reference_images: Up to 16 images to edit or combine. Refer to them in the prompt by upload order
+              (image 1, image 2, and so on). Each reference image adds to the credits per
+              image.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
         model: Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -1737,6 +1985,7 @@ class TextToImageResource(SyncAPIResource):
             "1152:896",
         ],
         reference_images: Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1798,6 +2047,9 @@ class TextToImageResource(SyncAPIResource):
         | Literal["gpt_image_2_6_sunburst"]
         | Literal["gpt_image_2_6_flare"]
         | Literal["seedream5_pro_layers"]
+        | Literal["seedream5.5"]
+        | Literal["seedream5.5_layers"]
+        | Literal["minimax_h3_image"]
         | Literal["gemini_2.5_flash"],
         prompt_text: str | Omit = omit,
         ratio: Literal[
@@ -2188,6 +2440,85 @@ class TextToImageResource(SyncAPIResource):
         | Literal["1024:1024", "1216:896", "896:1216", "1344:768", "768:1344"]
         | Literal["auto"]
         | Literal[
+            "1024:1024",
+            "1152:864",
+            "864:1152",
+            "1424:800",
+            "800:1424",
+            "1248:832",
+            "832:1248",
+            "1568:672",
+            "1536:1536",
+            "1792:1344",
+            "1344:1792",
+            "2048:1152",
+            "1152:2048",
+            "1872:1248",
+            "1248:1872",
+            "2352:1008",
+            "2048:2048",
+            "2368:1776",
+            "1776:2368",
+            "2816:1584",
+            "1584:2816",
+            "2496:1664",
+            "1664:2496",
+            "3136:1344",
+            "auto_1k",
+            "auto_1.5k",
+            "auto_2k",
+        ]
+        | Literal[
+            "1024:1024",
+            "1152:928",
+            "928:1152",
+            "1184:896",
+            "896:1184",
+            "1248:832",
+            "832:1248",
+            "1376:768",
+            "768:1376",
+            "1440:736",
+            "736:1440",
+            "1568:672",
+            "672:1568",
+            "1760:576",
+            "576:1760",
+            "2048:2048",
+            "2304:1824",
+            "1824:2304",
+            "2368:1760",
+            "1760:2368",
+            "2496:1664",
+            "1664:2496",
+            "2720:1536",
+            "1536:2720",
+            "2912:1440",
+            "1440:2912",
+            "3136:1344",
+            "1344:3136",
+            "3552:1184",
+            "1184:3552",
+            "4096:4096",
+            "4576:3648",
+            "3648:4576",
+            "4736:3552",
+            "3552:4736",
+            "5024:3360",
+            "3360:5024",
+            "5472:3072",
+            "3072:5472",
+            "5792:2912",
+            "2912:5792",
+            "6272:2688",
+            "2688:6272",
+            "7104:2368",
+            "2368:7104",
+            "auto_1k",
+            "auto_2k",
+            "auto_4k",
+        ]
+        | Literal[
             "1344:768",
             "768:1344",
             "1024:1024",
@@ -2222,13 +2553,20 @@ class TextToImageResource(SyncAPIResource):
         | Iterable[text_to_image_create_params.GptImage2_6SunburstReferenceImage]
         | Iterable[text_to_image_create_params.GptImage2_6FlareReferenceImage]
         | Iterable[text_to_image_create_params.Seedream5ProLayersReferenceImage]
+        | Iterable[text_to_image_create_params.Seedream5_5ReferenceImage]
+        | Iterable[text_to_image_create_params.Seedream5_5LayersReferenceImage]
+        | Iterable[text_to_image_create_params.MinimaxH3ImageReferenceImage]
         | Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage]
         | Omit = omit,
         content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration
         | text_to_image_create_params.Gen4ImageContentModeration
         | Omit = omit,
         seed: int | Omit = omit,
-        background: Literal["transparent", "opaque", "auto"] | Literal["opaque", "auto"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
+        background: Literal["transparent", "opaque", "auto"]
+        | Literal["opaque", "auto"]
+        | Literal["transparent", "opaque"]
+        | Omit = omit,
         output_count: int | Literal[1, 4] | Omit = omit,
         quality: Literal["low", "medium", "high", "auto"]
         | Literal["low", "medium"]
@@ -2254,6 +2592,8 @@ class TextToImageResource(SyncAPIResource):
         reasoning_effort: Literal["low", "medium", "high"] | Omit = omit,
         optimize_prompt_mode: Literal["standard", "fast"] | Omit = omit,
         resolution: Literal["auto", "1k", "1.5k", "2k"] | Omit = omit,
+        max_images: int | Omit = omit,
+        highspeed: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2261,6 +2601,7 @@ class TextToImageResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NewTaskCreatedResponse:
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return self._post(
             "/v1/text_to_image",
             body=maybe_transform(
@@ -2288,6 +2629,8 @@ class TextToImageResource(SyncAPIResource):
                     "reasoning_effort": reasoning_effort,
                     "optimize_prompt_mode": optimize_prompt_mode,
                     "resolution": resolution,
+                    "max_images": max_images,
+                    "highspeed": highspeed,
                 },
                 text_to_image_create_params.TextToImageCreateParams,
             ),
@@ -2347,6 +2690,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         reference_images: Iterable[text_to_image_create_params.Gen4ImageTurboReferenceImage],
         content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2409,6 +2753,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         content_moderation: text_to_image_create_params.Gen4ImageContentModeration | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.Gen4ImageReferenceImage] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2487,6 +2832,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         output_count: int | Omit = omit,
         quality: Literal["low", "medium", "high", "auto"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GptImage2ReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2590,6 +2936,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         ],
         output_count: Literal[1, 4] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GeminiImage3_1FlashReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2645,6 +2992,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         output_count: int | Omit = omit,
         output_format: Literal["webp", "png", "jpeg"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.MuseImageReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2707,6 +3055,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         output_count: int | Omit = omit,
         output_format: Literal["png", "jpeg"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.Seedream5ProReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2776,6 +3125,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         output_count: int | Omit = omit,
         output_format: Literal["png", "jpeg"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.Seedream5LiteReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2854,6 +3204,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         output_count: int | Omit = omit,
         quality: Literal["low", "medium"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GrokImagineImage2ReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2915,6 +3266,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         ],
         output_count: Literal[1, 4] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GeminiImage3_1FlashLiteReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2988,6 +3340,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         ],
         output_count: Literal[1, 4] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GeminiImage3ProReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3066,6 +3419,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         output_count: int | Omit = omit,
         quality: Literal["low", "medium", "high", "xhigh", "max"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GptImage2_5FlareReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3146,6 +3500,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         output_count: int | Omit = omit,
         quality: Literal["low", "medium", "high", "xhigh", "max"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GptImage2_5SunburstReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3213,6 +3568,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         output_format: Literal["png", "jpeg"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.BriaFibo1_5ReferenceImage] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3269,6 +3625,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.BriaFiboEdit1_5ReferenceImage] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3326,6 +3683,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         ]
         | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.Ideogram4_0ReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3401,6 +3759,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         ]
         | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.Ideogram4_5ReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3486,6 +3845,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         output_count: int | Omit = omit,
         output_format: Literal["png", "jpeg"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.Seedream5FlashReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3574,6 +3934,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         output_count: int | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.NanoBanana2_1ReferenceImage] | Omit = omit,
         thinking_level: Literal["minimal", "medium", "high"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3634,6 +3995,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         output_count: int | Omit = omit,
         output_format: Literal["webp", "png"] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3676,6 +4038,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         background_color: str | Omit = omit,
         colors: SequenceNotStr[str] | Omit = omit,
         ratio: Literal["1024:1024", "1216:896", "896:1216", "1344:768", "768:1344"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3718,6 +4081,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         ratio: Literal["auto"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.IdeogramVectorReferenceImage] | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3795,6 +4159,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         quality: Literal["low", "medium", "high"] | Omit = omit,
         reasoning_effort: Literal["low", "medium", "high"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GptImage2_6SunburstReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3891,6 +4256,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         quality: Literal["low", "medium", "high"] | Omit = omit,
         reasoning_effort: Literal["low", "medium", "high"] | Omit = omit,
         reference_images: Iterable[text_to_image_create_params.GptImage2_6FlareReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3950,6 +4316,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         output_format: Literal["png", "jpeg"] | Omit = omit,
         prompt_text: str | Omit = omit,
         resolution: Literal["auto", "1k", "1.5k", "2k"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3990,6 +4357,230 @@ class AsyncTextToImageResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        model: Literal["seedream5.5"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "1152:864",
+            "864:1152",
+            "1424:800",
+            "800:1424",
+            "1248:832",
+            "832:1248",
+            "1568:672",
+            "1536:1536",
+            "1792:1344",
+            "1344:1792",
+            "2048:1152",
+            "1152:2048",
+            "1872:1248",
+            "1248:1872",
+            "2352:1008",
+            "2048:2048",
+            "2368:1776",
+            "1776:2368",
+            "2816:1584",
+            "1584:2816",
+            "2496:1664",
+            "1664:2496",
+            "3136:1344",
+            "auto_1k",
+            "auto_1.5k",
+            "auto_2k",
+        ],
+        background: Literal["transparent", "opaque"] | Omit = omit,
+        output_count: int | Omit = omit,
+        output_format: Literal["png", "jpeg"] | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.Seedream5_5ReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A description of the image you want to generate.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. Use
+              `auto_1k`, `auto_1.5k` or `auto_2k` to let the model pick the aspect ratio at a
+              fixed resolution tier.
+
+          background: Whether the image has a transparent or an opaque background. A transparent
+              background needs the png output format. Omit to let the model decide from the
+              prompt.
+
+          output_count: The number of images to generate. Increasing this number will affect the number
+              of credits consumed by the generation.
+
+          output_format: The file format of the output image. Defaults to png.
+
+          reference_images: Images to edit or combine. Refer to them in the prompt by upload order (Figure
+              1, Figure 2, and so on).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["seedream5.5_layers"],
+        reference_images: Iterable[text_to_image_create_params.Seedream5_5LayersReferenceImage],
+        max_images: int | Omit = omit,
+        output_format: Literal["png", "jpeg"] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        resolution: Literal["auto", "1k", "1.5k", "2k"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          reference_images: The image to split into editable layers. Layer ordering and positioning are
+              returned in the completed task’s layers field.
+
+          max_images: The most images the task may return, counting the base image. Each returned
+              image is billed separately. Defaults to 30.
+
+          output_format: Base image format; defaults to png. Separated layers always use PNG with
+              transparency.
+
+          prompt_text: Optional instructions describing which elements to separate. Omit to split the
+              image automatically.
+
+          resolution: Output resolution tier. Defaults to auto, which adapts to the input image. The
+              base image and layers preserve their respective aspect ratios.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["minimax_h3_image"],
+        prompt_text: str,
+        ratio: Literal[
+            "1024:1024",
+            "1152:928",
+            "928:1152",
+            "1184:896",
+            "896:1184",
+            "1248:832",
+            "832:1248",
+            "1376:768",
+            "768:1376",
+            "1440:736",
+            "736:1440",
+            "1568:672",
+            "672:1568",
+            "1760:576",
+            "576:1760",
+            "2048:2048",
+            "2304:1824",
+            "1824:2304",
+            "2368:1760",
+            "1760:2368",
+            "2496:1664",
+            "1664:2496",
+            "2720:1536",
+            "1536:2720",
+            "2912:1440",
+            "1440:2912",
+            "3136:1344",
+            "1344:3136",
+            "3552:1184",
+            "1184:3552",
+            "4096:4096",
+            "4576:3648",
+            "3648:4576",
+            "4736:3552",
+            "3552:4736",
+            "5024:3360",
+            "3360:5024",
+            "5472:3072",
+            "3072:5472",
+            "5792:2912",
+            "2912:5792",
+            "6272:2688",
+            "2688:6272",
+            "7104:2368",
+            "2368:7104",
+            "auto_1k",
+            "auto_2k",
+            "auto_4k",
+        ],
+        highspeed: bool | Omit = omit,
+        output_count: int | Omit = omit,
+        reference_images: Iterable[text_to_image_create_params.MinimaxH3ImageReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate images from text and/or image(s)
+
+        Args:
+          prompt_text: A non-empty text prompt describing what should appear in the output image.
+
+          ratio: The resolution of the output image, expressed as `<width>:<height>`. 4K ratios
+              cost more credits per image than 1K and 2K. Use `auto_1k`, `auto_2k` or
+              `auto_4k` to pick a resolution tier and let the model choose the framing from
+              the prompt.
+
+          highspeed: When true, generate with the faster MiniMax H3 Image Highspeed model, which
+              costs more credits per image. Defaults to false.
+
+          output_count: The number of images to generate. Increasing this number will affect the number
+              of credits consumed by the generation.
+
+          reference_images: Up to 16 images to edit or combine. Refer to them in the prompt by upload order
+              (image 1, image 2, and so on). Each reference image adds to the credits per
+              image.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
         model: Literal["gemini_2.5_flash"],
         prompt_text: str,
         ratio: Literal[
@@ -4005,6 +4596,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
             "1152:896",
         ],
         reference_images: Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4066,6 +4658,9 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Literal["gpt_image_2_6_sunburst"]
         | Literal["gpt_image_2_6_flare"]
         | Literal["seedream5_pro_layers"]
+        | Literal["seedream5.5"]
+        | Literal["seedream5.5_layers"]
+        | Literal["minimax_h3_image"]
         | Literal["gemini_2.5_flash"],
         prompt_text: str | Omit = omit,
         ratio: Literal[
@@ -4456,6 +5051,85 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Literal["1024:1024", "1216:896", "896:1216", "1344:768", "768:1344"]
         | Literal["auto"]
         | Literal[
+            "1024:1024",
+            "1152:864",
+            "864:1152",
+            "1424:800",
+            "800:1424",
+            "1248:832",
+            "832:1248",
+            "1568:672",
+            "1536:1536",
+            "1792:1344",
+            "1344:1792",
+            "2048:1152",
+            "1152:2048",
+            "1872:1248",
+            "1248:1872",
+            "2352:1008",
+            "2048:2048",
+            "2368:1776",
+            "1776:2368",
+            "2816:1584",
+            "1584:2816",
+            "2496:1664",
+            "1664:2496",
+            "3136:1344",
+            "auto_1k",
+            "auto_1.5k",
+            "auto_2k",
+        ]
+        | Literal[
+            "1024:1024",
+            "1152:928",
+            "928:1152",
+            "1184:896",
+            "896:1184",
+            "1248:832",
+            "832:1248",
+            "1376:768",
+            "768:1376",
+            "1440:736",
+            "736:1440",
+            "1568:672",
+            "672:1568",
+            "1760:576",
+            "576:1760",
+            "2048:2048",
+            "2304:1824",
+            "1824:2304",
+            "2368:1760",
+            "1760:2368",
+            "2496:1664",
+            "1664:2496",
+            "2720:1536",
+            "1536:2720",
+            "2912:1440",
+            "1440:2912",
+            "3136:1344",
+            "1344:3136",
+            "3552:1184",
+            "1184:3552",
+            "4096:4096",
+            "4576:3648",
+            "3648:4576",
+            "4736:3552",
+            "3552:4736",
+            "5024:3360",
+            "3360:5024",
+            "5472:3072",
+            "3072:5472",
+            "5792:2912",
+            "2912:5792",
+            "6272:2688",
+            "2688:6272",
+            "7104:2368",
+            "2368:7104",
+            "auto_1k",
+            "auto_2k",
+            "auto_4k",
+        ]
+        | Literal[
             "1344:768",
             "768:1344",
             "1024:1024",
@@ -4490,13 +5164,20 @@ class AsyncTextToImageResource(AsyncAPIResource):
         | Iterable[text_to_image_create_params.GptImage2_6SunburstReferenceImage]
         | Iterable[text_to_image_create_params.GptImage2_6FlareReferenceImage]
         | Iterable[text_to_image_create_params.Seedream5ProLayersReferenceImage]
+        | Iterable[text_to_image_create_params.Seedream5_5ReferenceImage]
+        | Iterable[text_to_image_create_params.Seedream5_5LayersReferenceImage]
+        | Iterable[text_to_image_create_params.MinimaxH3ImageReferenceImage]
         | Iterable[text_to_image_create_params.Gemini2_5FlashReferenceImage]
         | Omit = omit,
         content_moderation: text_to_image_create_params.Gen4ImageTurboContentModeration
         | text_to_image_create_params.Gen4ImageContentModeration
         | Omit = omit,
         seed: int | Omit = omit,
-        background: Literal["transparent", "opaque", "auto"] | Literal["opaque", "auto"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
+        background: Literal["transparent", "opaque", "auto"]
+        | Literal["opaque", "auto"]
+        | Literal["transparent", "opaque"]
+        | Omit = omit,
         output_count: int | Literal[1, 4] | Omit = omit,
         quality: Literal["low", "medium", "high", "auto"]
         | Literal["low", "medium"]
@@ -4522,6 +5203,8 @@ class AsyncTextToImageResource(AsyncAPIResource):
         reasoning_effort: Literal["low", "medium", "high"] | Omit = omit,
         optimize_prompt_mode: Literal["standard", "fast"] | Omit = omit,
         resolution: Literal["auto", "1k", "1.5k", "2k"] | Omit = omit,
+        max_images: int | Omit = omit,
+        highspeed: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4529,6 +5212,7 @@ class AsyncTextToImageResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncNewTaskCreatedResponse:
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return await self._post(
             "/v1/text_to_image",
             body=await async_maybe_transform(
@@ -4556,6 +5240,8 @@ class AsyncTextToImageResource(AsyncAPIResource):
                     "reasoning_effort": reasoning_effort,
                     "optimize_prompt_mode": optimize_prompt_mode,
                     "resolution": resolution,
+                    "max_images": max_images,
+                    "highspeed": highspeed,
                 },
                 text_to_image_create_params.TextToImageCreateParams,
             ),

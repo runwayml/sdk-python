@@ -34,6 +34,8 @@ class AvatarVideoCreateParams(TypedDict, total=False):
     Either an audio file or text script.
     """
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class AvatarRunwayPreset(TypedDict, total=False):
     """A preset avatar from Runway."""

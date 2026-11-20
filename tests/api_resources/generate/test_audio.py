@@ -43,6 +43,7 @@ class TestAudio:
                     "type": "preset",
                 },
             },
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(AudioCreateResponse, audio, path=["response"])
 
@@ -110,6 +111,7 @@ class TestAsyncAudio:
                     "type": "preset",
                 },
             },
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(AudioCreateResponse, audio, path=["response"])
 

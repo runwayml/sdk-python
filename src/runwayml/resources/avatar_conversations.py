@@ -89,10 +89,10 @@ class AvatarConversationsResource(SyncAPIResource):
     def list(
         self,
         *,
-        limit: int,
         avatar: str | Omit = omit,
         cursor: str | Omit = omit,
         end_date: Union[str, datetime] | Omit = omit,
+        limit: int | Omit = omit,
         start_date: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -108,13 +108,13 @@ class AvatarConversationsResource(SyncAPIResource):
         results to a single avatar.
 
         Args:
-          limit: The maximum number of items to return per page.
-
           avatar: Filter to conversations that used the given custom avatar.
 
           cursor: Cursor from a previous response for fetching the next page of results.
 
           end_date: Filter conversations created before this timestamp (exclusive).
+
+          limit: The maximum number of items to return per page.
 
           start_date: Filter conversations created on or after this timestamp (inclusive).
 
@@ -136,10 +136,10 @@ class AvatarConversationsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "limit": limit,
                         "avatar": avatar,
                         "cursor": cursor,
                         "end_date": end_date,
+                        "limit": limit,
                         "start_date": start_date,
                     },
                     avatar_conversation_list_params.AvatarConversationListParams,
@@ -246,10 +246,10 @@ class AsyncAvatarConversationsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        limit: int,
         avatar: str | Omit = omit,
         cursor: str | Omit = omit,
         end_date: Union[str, datetime] | Omit = omit,
+        limit: int | Omit = omit,
         start_date: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -265,13 +265,13 @@ class AsyncAvatarConversationsResource(AsyncAPIResource):
         results to a single avatar.
 
         Args:
-          limit: The maximum number of items to return per page.
-
           avatar: Filter to conversations that used the given custom avatar.
 
           cursor: Cursor from a previous response for fetching the next page of results.
 
           end_date: Filter conversations created before this timestamp (exclusive).
+
+          limit: The maximum number of items to return per page.
 
           start_date: Filter conversations created on or after this timestamp (inclusive).
 
@@ -293,10 +293,10 @@ class AsyncAvatarConversationsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "limit": limit,
                         "avatar": avatar,
                         "cursor": cursor,
                         "end_date": end_date,
+                        "limit": limit,
                         "start_date": start_date,
                     },
                     avatar_conversation_list_params.AvatarConversationListParams,

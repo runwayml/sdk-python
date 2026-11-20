@@ -8,7 +8,7 @@ import httpx
 
 from ..types import sound_effect_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import required_args, maybe_transform, async_maybe_transform
+from .._utils import required_args, maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -63,6 +63,7 @@ class SoundEffectResource(SyncAPIResource):
         reference_audios: SequenceNotStr[str] | Omit = omit,
         sample_rate: Literal[8000, 16000, 24000, 32000, 44100, 48000] | Omit = omit,
         speech_rate: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -113,6 +114,7 @@ class SoundEffectResource(SyncAPIResource):
         negative_prompt: str | Omit = omit,
         num_variants: int | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -155,6 +157,7 @@ class SoundEffectResource(SyncAPIResource):
         prompt_text: str,
         duration: float | Omit = omit,
         loop: bool | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -197,6 +200,7 @@ class SoundEffectResource(SyncAPIResource):
         reference_audios: SequenceNotStr[str] | Omit = omit,
         sample_rate: Literal[8000, 16000, 24000, 32000, 44100, 48000] | Omit = omit,
         speech_rate: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         duration: float | Omit = omit,
         format: Literal["mp3", "wav", "flac"] | Omit = omit,
         negative_prompt: str | Omit = omit,
@@ -210,6 +214,7 @@ class SoundEffectResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NewTaskCreatedResponse:
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return self._post(
             "/v1/sound_effect",
             body=maybe_transform(
@@ -272,6 +277,7 @@ class AsyncSoundEffectResource(AsyncAPIResource):
         reference_audios: SequenceNotStr[str] | Omit = omit,
         sample_rate: Literal[8000, 16000, 24000, 32000, 44100, 48000] | Omit = omit,
         speech_rate: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -322,6 +328,7 @@ class AsyncSoundEffectResource(AsyncAPIResource):
         negative_prompt: str | Omit = omit,
         num_variants: int | Omit = omit,
         seed: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -364,6 +371,7 @@ class AsyncSoundEffectResource(AsyncAPIResource):
         prompt_text: str,
         duration: float | Omit = omit,
         loop: bool | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -406,6 +414,7 @@ class AsyncSoundEffectResource(AsyncAPIResource):
         reference_audios: SequenceNotStr[str] | Omit = omit,
         sample_rate: Literal[8000, 16000, 24000, 32000, 44100, 48000] | Omit = omit,
         speech_rate: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         duration: float | Omit = omit,
         format: Literal["mp3", "wav", "flac"] | Omit = omit,
         negative_prompt: str | Omit = omit,
@@ -419,6 +428,7 @@ class AsyncSoundEffectResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncNewTaskCreatedResponse:
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return await self._post(
             "/v1/sound_effect",
             body=await async_maybe_transform(

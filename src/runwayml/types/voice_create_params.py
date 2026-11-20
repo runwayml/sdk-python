@@ -19,6 +19,8 @@ class VoiceCreateParams(TypedDict, total=False):
     description: Optional[str]
     """An optional description of the voice."""
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class FromAudio(TypedDict, total=False):
     audio: Required[str]

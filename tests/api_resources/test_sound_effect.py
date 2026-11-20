@@ -36,6 +36,7 @@ class TestSoundEffect:
             reference_audios=["https://example.com/audio.mp3"],
             sample_rate=8000,
             speech_rate=-50,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
 
@@ -84,6 +85,7 @@ class TestSoundEffect:
             negative_prompt="x",
             num_variants=1,
             seed=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
 
@@ -130,6 +132,7 @@ class TestSoundEffect:
             prompt_text="x",
             duration=0.5,
             loop=True,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
 
@@ -184,6 +187,7 @@ class TestAsyncSoundEffect:
             reference_audios=["https://example.com/audio.mp3"],
             sample_rate=8000,
             speech_rate=-50,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
 
@@ -232,6 +236,7 @@ class TestAsyncSoundEffect:
             negative_prompt="x",
             num_variants=1,
             seed=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
 
@@ -278,6 +283,7 @@ class TestAsyncSoundEffect:
             prompt_text="x",
             duration=0.5,
             loop=True,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(SoundEffectCreateResponse, sound_effect, path=["response"])
 

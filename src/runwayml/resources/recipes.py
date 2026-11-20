@@ -24,7 +24,7 @@ from ..types import (
     recipe_product_campaign_image_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import required_args, maybe_transform, async_maybe_transform
+from .._utils import required_args, maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -94,6 +94,7 @@ class RecipesResource(SyncAPIResource):
             "el",
         ],
         version: Literal["2026-06", "unsafe-latest"],
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -123,6 +124,7 @@ class RecipesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return self._post(
             "/v1/recipes/ad_localization",
             body=maybe_transform(
@@ -147,6 +149,7 @@ class RecipesResource(SyncAPIResource):
         output_count: int | Omit = omit,
         quality: Literal["low", "medium", "high"] | Omit = omit,
         reference_image: recipe_marketing_stock_image_params.ReferenceImage | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -182,6 +185,7 @@ class RecipesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return self._post(
             "/v1/recipes/marketing_stock_image",
             body=maybe_transform(
@@ -211,6 +215,7 @@ class RecipesResource(SyncAPIResource):
         duration: Literal[5, 10, 15] | Omit = omit,
         first_frame: recipe_multi_shot_video_params.Variant0FirstFrame | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "960:960", "1920:1080", "1080:1920", "1440:1440"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -262,6 +267,7 @@ class RecipesResource(SyncAPIResource):
         duration: Literal[5, 10, 15] | Omit = omit,
         first_frame: recipe_multi_shot_video_params.Variant1FirstFrame | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "960:960", "1920:1080", "1080:1920", "1440:1440"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -316,6 +322,7 @@ class RecipesResource(SyncAPIResource):
         | recipe_multi_shot_video_params.Variant1FirstFrame
         | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "960:960", "1920:1080", "1080:1920", "1440:1440"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         shots: Iterable[recipe_multi_shot_video_params.Variant1Shot] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -324,6 +331,7 @@ class RecipesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NewTaskCreatedResponse:
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return self._post(
             "/v1/recipes/multi_shot_video",
             body=maybe_transform(
@@ -359,6 +367,7 @@ class RecipesResource(SyncAPIResource):
         | Omit = omit,
         style_images: Iterable[recipe_product_ad_params.StyleImage] | Omit = omit,
         user_concept: str | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -402,6 +411,7 @@ class RecipesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return self._post(
             "/v1/recipes/product_ad",
             body=maybe_transform(
@@ -429,6 +439,7 @@ class RecipesResource(SyncAPIResource):
         image: recipe_product_campaign_image_params.Image,
         prompt: str,
         version: Literal["2026-06", "unsafe-latest"],
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -457,6 +468,7 @@ class RecipesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return self._post(
             "/v1/recipes/product_campaign_image",
             body=maybe_transform(
@@ -483,6 +495,7 @@ class RecipesResource(SyncAPIResource):
         audio: bool | Omit = omit,
         duration: int | Omit = omit,
         resolution: Literal["720p", "1080p"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -524,6 +537,7 @@ class RecipesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return self._post(
             "/v1/recipes/product_swap",
             body=maybe_transform(
@@ -555,6 +569,7 @@ class RecipesResource(SyncAPIResource):
         product_info: str | Omit = omit,
         ratio: Literal["720:1280", "1080:1920"] | Omit = omit,
         user_concept: str | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -598,6 +613,7 @@ class RecipesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return self._post(
             "/v1/recipes/product_ugc",
             body=maybe_transform(
@@ -669,6 +685,7 @@ class AsyncRecipesResource(AsyncAPIResource):
             "el",
         ],
         version: Literal["2026-06", "unsafe-latest"],
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -698,6 +715,7 @@ class AsyncRecipesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return await self._post(
             "/v1/recipes/ad_localization",
             body=await async_maybe_transform(
@@ -722,6 +740,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         output_count: int | Omit = omit,
         quality: Literal["low", "medium", "high"] | Omit = omit,
         reference_image: recipe_marketing_stock_image_params.ReferenceImage | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -757,6 +776,7 @@ class AsyncRecipesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return await self._post(
             "/v1/recipes/marketing_stock_image",
             body=await async_maybe_transform(
@@ -786,6 +806,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         duration: Literal[5, 10, 15] | Omit = omit,
         first_frame: recipe_multi_shot_video_params.Variant0FirstFrame | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "960:960", "1920:1080", "1080:1920", "1440:1440"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -837,6 +858,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         duration: Literal[5, 10, 15] | Omit = omit,
         first_frame: recipe_multi_shot_video_params.Variant1FirstFrame | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "960:960", "1920:1080", "1080:1920", "1440:1440"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -891,6 +913,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         | recipe_multi_shot_video_params.Variant1FirstFrame
         | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "960:960", "1920:1080", "1080:1920", "1440:1440"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         shots: Iterable[recipe_multi_shot_video_params.Variant1Shot] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -899,6 +922,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncNewTaskCreatedResponse:
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return await self._post(
             "/v1/recipes/multi_shot_video",
             body=await async_maybe_transform(
@@ -934,6 +958,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         | Omit = omit,
         style_images: Iterable[recipe_product_ad_params.StyleImage] | Omit = omit,
         user_concept: str | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -977,6 +1002,7 @@ class AsyncRecipesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return await self._post(
             "/v1/recipes/product_ad",
             body=await async_maybe_transform(
@@ -1004,6 +1030,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         image: recipe_product_campaign_image_params.Image,
         prompt: str,
         version: Literal["2026-06", "unsafe-latest"],
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1032,6 +1059,7 @@ class AsyncRecipesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return await self._post(
             "/v1/recipes/product_campaign_image",
             body=await async_maybe_transform(
@@ -1058,6 +1086,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         audio: bool | Omit = omit,
         duration: int | Omit = omit,
         resolution: Literal["720p", "1080p"] | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1099,6 +1128,7 @@ class AsyncRecipesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return await self._post(
             "/v1/recipes/product_swap",
             body=await async_maybe_transform(
@@ -1130,6 +1160,7 @@ class AsyncRecipesResource(AsyncAPIResource):
         product_info: str | Omit = omit,
         ratio: Literal["720:1280", "1080:1920"] | Omit = omit,
         user_concept: str | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1173,6 +1204,7 @@ class AsyncRecipesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return await self._post(
             "/v1/recipes/product_ugc",
             body=await async_maybe_transform(

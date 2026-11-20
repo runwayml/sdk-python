@@ -41,3 +41,5 @@ class VideoToAudioCreateParams(TypedDict, total=False):
 
     seed: int
     """A seed for reproducible generation."""
+
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]

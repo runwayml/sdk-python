@@ -195,8 +195,8 @@ class RoutersResource(SyncAPIResource):
     def list(
         self,
         *,
-        limit: int,
         cursor: str | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -209,9 +209,9 @@ class RoutersResource(SyncAPIResource):
         cursor-based pagination.
 
         Args:
-          limit: The maximum number of items to return per page.
-
           cursor: Cursor from a previous response for fetching the next page of results.
+
+          limit: The maximum number of items to return per page.
 
           extra_headers: Send extra headers
 
@@ -231,8 +231,8 @@ class RoutersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "limit": limit,
                         "cursor": cursor,
+                        "limit": limit,
                     },
                     router_list_params.RouterListParams,
                 ),
@@ -280,8 +280,8 @@ class RoutersResource(SyncAPIResource):
         self,
         id: str,
         *,
-        limit: int,
         cursor: str | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -294,9 +294,9 @@ class RoutersResource(SyncAPIResource):
         failures). Playground dry runs are not recorded.
 
         Args:
-          limit: The maximum number of items to return per page.
-
           cursor: Cursor from a previous response for fetching the next page of results.
+
+          limit: The maximum number of items to return per page.
 
           extra_headers: Send extra headers
 
@@ -318,8 +318,8 @@ class RoutersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "limit": limit,
                         "cursor": cursor,
+                        "limit": limit,
                     },
                     router_list_requests_params.RouterListRequestsParams,
                 ),
@@ -495,8 +495,8 @@ class AsyncRoutersResource(AsyncAPIResource):
     def list(
         self,
         *,
-        limit: int,
         cursor: str | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -509,9 +509,9 @@ class AsyncRoutersResource(AsyncAPIResource):
         cursor-based pagination.
 
         Args:
-          limit: The maximum number of items to return per page.
-
           cursor: Cursor from a previous response for fetching the next page of results.
+
+          limit: The maximum number of items to return per page.
 
           extra_headers: Send extra headers
 
@@ -531,8 +531,8 @@ class AsyncRoutersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "limit": limit,
                         "cursor": cursor,
+                        "limit": limit,
                     },
                     router_list_params.RouterListParams,
                 ),
@@ -580,8 +580,8 @@ class AsyncRoutersResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        limit: int,
         cursor: str | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -594,9 +594,9 @@ class AsyncRoutersResource(AsyncAPIResource):
         failures). Playground dry runs are not recorded.
 
         Args:
-          limit: The maximum number of items to return per page.
-
           cursor: Cursor from a previous response for fetching the next page of results.
+
+          limit: The maximum number of items to return per page.
 
           extra_headers: Send extra headers
 
@@ -618,8 +618,8 @@ class AsyncRoutersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "limit": limit,
                         "cursor": cursor,
+                        "limit": limit,
                     },
                     router_list_requests_params.RouterListRequestsParams,
                 ),

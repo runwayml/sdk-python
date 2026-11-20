@@ -134,9 +134,7 @@ client = RunwayML()
 
 all_routers = []
 # Automatically fetches more pages as needed.
-for router in client.routers.list(
-    limit=1,
-):
+for router in client.routers.list():
     # Do something with router here
     all_routers.append(router)
 print(all_routers)
@@ -154,9 +152,7 @@ client = AsyncRunwayML()
 async def main() -> None:
     all_routers = []
     # Iterate through items across all pages, issuing requests as needed.
-    async for router in client.routers.list(
-        limit=1,
-    ):
+    async for router in client.routers.list():
         all_routers.append(router)
     print(all_routers)
 
@@ -167,9 +163,7 @@ asyncio.run(main())
 Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
 
 ```python
-first_page = await client.routers.list(
-    limit=1,
-)
+first_page = await client.routers.list()
 if first_page.has_next_page():
     print(f"will fetch next page using these details: {first_page.next_page_info()}")
     next_page = await first_page.get_next_page()
@@ -181,9 +175,7 @@ if first_page.has_next_page():
 Or just work directly with the returned data:
 
 ```python
-first_page = await client.routers.list(
-    limit=1,
-)
+first_page = await client.routers.list()
 
 print(f"next page cursor: {first_page.next_cursor}")  # => "next page cursor: ..."
 for router in first_page.data:

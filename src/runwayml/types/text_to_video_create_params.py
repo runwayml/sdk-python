@@ -86,6 +86,10 @@ __all__ = [
     "Hailuo3LiteReferenceAudio",
     "Hailuo3LiteReference",
     "Hailuo3LiteReferenceVideo",
+    "Seedance2_5Flash",
+    "Seedance2_5FlashReferenceAudio",
+    "Seedance2_5FlashReference",
+    "Seedance2_5FlashReferenceVideo",
 ]
 
 
@@ -174,6 +178,8 @@ class Gen4_5(TypedDict, total=False):
     produce similar results.
     """
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class Gen4_5ContentModeration(TypedDict, total=False):
     """Settings that affect the behavior of the content moderation system."""
@@ -214,6 +220,8 @@ class Veo3_1(TypedDict, total=False):
     produce similar results.
     """
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class Veo3_1Fast(TypedDict, total=False):
     model: Required[Literal["veo3.1_fast"]]
@@ -244,6 +252,8 @@ class Veo3_1Fast(TypedDict, total=False):
     produce similar results.
     """
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class KlingO3_4k(TypedDict, total=False):
     model: Required[Literal["klingO3_4k"]]
@@ -262,6 +272,8 @@ class KlingO3_4k(TypedDict, total=False):
 
     provider_settings: Annotated[KlingO3_4kProviderSettings, PropertyInfo(alias="providerSettings")]
     """Provider-specific settings for multishot video generation."""
+
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class KlingO3_4kProviderSettingsMultiPrompt(TypedDict, total=False):
@@ -333,6 +345,8 @@ class Hailuo3(TypedDict, total=False):
     - `2K` - Deprecated: Use "2k" instead.
     """
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class Hailuo3ReferenceAudio(TypedDict, total=False):
     """
@@ -398,6 +412,8 @@ class Kling3_0_4k(TypedDict, total=False):
     provider_settings: Annotated[Kling3_0_4kProviderSettings, PropertyInfo(alias="providerSettings")]
     """Provider-specific settings for multishot video generation."""
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class Kling3_0_4kProviderSettingsMultiPrompt(TypedDict, total=False):
     duration: Required[int]
@@ -451,6 +467,8 @@ class Happyhorse1_0(TypedDict, total=False):
     ]
     """The resolution of the output video."""
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class Kling2_5TurboPro(TypedDict, total=False):
     model: Required[Literal["kling2.5_turbo_pro"]]
@@ -469,6 +487,8 @@ class Kling2_5TurboPro(TypedDict, total=False):
     """The duration of the output video in seconds. Defaults to 5."""
 
     ratio: Literal["1920:1080", "1440:1440", "1080:1920", "1280:720", "720:720", "720:1280"]
+
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Kling3_0Pro(TypedDict, total=False):
@@ -495,6 +515,8 @@ class Kling3_0Pro(TypedDict, total=False):
 
     provider_settings: Annotated[Kling3_0ProProviderSettings, PropertyInfo(alias="providerSettings")]
     """Provider-specific settings for multishot video generation."""
+
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Kling3_0ProProviderSettingsMultiPrompt(TypedDict, total=False):
@@ -548,6 +570,8 @@ class Kling3_0Standard(TypedDict, total=False):
     provider_settings: Annotated[Kling3_0StandardProviderSettings, PropertyInfo(alias="providerSettings")]
     """Provider-specific settings for multishot video generation."""
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class Kling3_0StandardProviderSettingsMultiPrompt(TypedDict, total=False):
     duration: Required[int]
@@ -593,6 +617,8 @@ class KlingO3Pro(TypedDict, total=False):
     provider_settings: Annotated[KlingO3ProProviderSettings, PropertyInfo(alias="providerSettings")]
     """Provider-specific settings for multishot video generation."""
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class KlingO3ProProviderSettingsMultiPrompt(TypedDict, total=False):
     duration: Required[int]
@@ -637,6 +663,8 @@ class KlingO3Standard(TypedDict, total=False):
 
     provider_settings: Annotated[KlingO3StandardProviderSettings, PropertyInfo(alias="providerSettings")]
     """Provider-specific settings for multishot video generation."""
+
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class KlingO3StandardProviderSettingsMultiPrompt(TypedDict, total=False):
@@ -745,6 +773,8 @@ class Seedance2(TypedDict, total=False):
     request parameters. Using the same seed integer for an identical request will
     produce similar results.
     """
+
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Seedance2ReferenceAudio(TypedDict, total=False):
@@ -858,6 +888,8 @@ class Seedance2Fast(TypedDict, total=False):
     produce similar results.
     """
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class Seedance2FastReferenceAudio(TypedDict, total=False):
     """
@@ -970,6 +1002,8 @@ class Seedance2Mini(TypedDict, total=False):
     produce similar results.
     """
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class Seedance2MiniReferenceAudio(TypedDict, total=False):
     """
@@ -1025,6 +1059,8 @@ class GeminiOmniFlash(TypedDict, total=False):
     (portrait).
     """
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class GrokImagine1_5(TypedDict, total=False):
     model: Required[Literal["grok_imagine_1_5"]]
@@ -1054,6 +1090,8 @@ class GrokImagine1_5(TypedDict, total=False):
 
     resolution: Literal["480p", "720p", "1080p"]
     """The output resolution. Requests with image references are capped at 720p."""
+
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class GrokImagine1_5ReferenceAudio(TypedDict, total=False):
@@ -1137,6 +1175,8 @@ class Wan3(TypedDict, total=False):
     See [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class Wan3ReferenceAudio(TypedDict, total=False):
     """
@@ -1196,6 +1236,8 @@ class GeminiOmniFlash1_1(TypedDict, total=False):
     references: Iterable[GeminiOmniFlash1_1Reference]
 
     reference_videos: Annotated[Iterable[GeminiOmniFlash1_1ReferenceVideo], PropertyInfo(alias="referenceVideos")]
+
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class GeminiOmniFlash1_1Reference(TypedDict, total=False):
@@ -1273,6 +1315,8 @@ class Wan3Prime(TypedDict, total=False):
     See [our docs](/assets/inputs#videos) on video inputs for more information.
     """
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class Wan3PrimeReferenceAudio(TypedDict, total=False):
     """
@@ -1340,6 +1384,8 @@ class H3Max(TypedDict, total=False):
     Identical results also need promptExpansionMode set to disabled; balanced and
     quality rewrite the prompt and will not repeat.
     """
+
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Seedance2_5(TypedDict, total=False):
@@ -1441,6 +1487,8 @@ class Seedance2_5(TypedDict, total=False):
     produce similar results.
     """
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class Seedance2_5ReferenceAudio(TypedDict, total=False):
     """
@@ -1518,6 +1566,8 @@ class GrokImagine1_5Lite(TypedDict, total=False):
     The 1080p sizes are rendered at 720p and upscaled.
     """
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class Kling4(TypedDict, total=False):
     model: Required[Literal["kling_4"]]
@@ -1558,6 +1608,8 @@ class Kling4(TypedDict, total=False):
     together at most 30 seconds long.
     """
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class Kling4Reference(TypedDict, total=False):
     uri: Required[str]
@@ -1587,6 +1639,8 @@ class GeminiOmniFlash1_2(TypedDict, total=False):
     references: Iterable[GeminiOmniFlash1_2Reference]
 
     reference_videos: Annotated[Iterable[GeminiOmniFlash1_2ReferenceVideo], PropertyInfo(alias="referenceVideos")]
+
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class GeminiOmniFlash1_2Reference(TypedDict, total=False):
@@ -1627,6 +1681,8 @@ class Kling4Flash(TypedDict, total=False):
 
     reference_videos: Annotated[Iterable[Kling4FlashReferenceVideo], PropertyInfo(alias="referenceVideos")]
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class Kling4FlashReference(TypedDict, total=False):
     uri: Required[str]
@@ -1664,6 +1720,8 @@ class Hailuo3Highspeed(TypedDict, total=False):
 
     resolution: Literal["480p", "768p"]
     """The output video resolution."""
+
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Hailuo3HighspeedReferenceAudio(TypedDict, total=False):
@@ -1716,6 +1774,8 @@ class Hailuo3Lite(TypedDict, total=False):
     resolution: Literal["480p", "768p"]
     """The output video resolution."""
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class Hailuo3LiteReferenceAudio(TypedDict, total=False):
     type: Required[Literal["audio"]]
@@ -1738,6 +1798,120 @@ class Hailuo3LiteReference(TypedDict, total=False):
 
 
 class Hailuo3LiteReferenceVideo(TypedDict, total=False):
+    type: Required[Literal["video"]]
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:video/mp4;base64,...`, up to 5MB) containing an encoded video. See
+    [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+
+class Seedance2_5Flash(TypedDict, total=False):
+    model: Required[Literal["seedance2_5_flash"]]
+
+    audio: bool
+    """Whether to generate audio for the video. Defaults to `true`."""
+
+    duration: Union[int, Literal["auto"]]
+    """Seconds of video to generate, or `auto` to let the model choose.
+
+    `auto` is billed at the variant maximum up front; unused credits are refunded
+    after the generation finishes. Defaults to 5.
+    """
+
+    output_format: Annotated[Literal["mp4", "mov"], PropertyInfo(alias="outputFormat")]
+    """Container for the output video.
+
+    `mov` keeps high colour precision for grading and compositing. Defaults to
+    `mp4`.
+    """
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """
+    An optional text prompt up to 15000 characters describing what should appear in
+    the output.
+    """
+
+    ratio: Literal[
+        "992:432",
+        "854:480",
+        "752:560",
+        "640:640",
+        "560:752",
+        "480:854",
+        "1470:630",
+        "1280:720",
+        "1112:834",
+        "960:960",
+        "834:1112",
+        "720:1280",
+    ]
+    """The resolution of the output video.
+
+    Seedance 2.5 Flash supports 480p and 720p. Defaults to `1280:720`.
+    """
+
+    reference_audio: Annotated[Iterable[Seedance2_5FlashReferenceAudio], PropertyInfo(alias="referenceAudio")]
+    """An optional array of audio references.
+
+    The total combined duration must be less than 30 seconds.
+    """
+
+    references: Iterable[Seedance2_5FlashReference]
+    """An optional array of image references (up to 10).
+
+    See [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    reference_videos: Annotated[Iterable[Seedance2_5FlashReferenceVideo], PropertyInfo(alias="referenceVideos")]
+    """An optional array of video references.
+
+    The combined duration across all video references must not exceed 30 seconds.
+    See [our docs](/assets/inputs#videos) on video inputs for more information.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
+    """
+
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
+
+class Seedance2_5FlashReferenceAudio(TypedDict, total=False):
+    """
+    An audio reference allows the model to use the audio as additional context for the output.
+    """
+
+    type: Required[Literal["audio"]]
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
+    [our docs](/assets/inputs#audio) on audio inputs for more information.
+    """
+
+
+class Seedance2_5FlashReference(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class Seedance2_5FlashReferenceVideo(TypedDict, total=False):
+    """
+    A video reference allows the model to use the video as additional context for the output.
+    """
+
     type: Required[Literal["video"]]
 
     uri: Required[str]
@@ -1777,4 +1951,5 @@ TextToVideoCreateParams: TypeAlias = Union[
     Kling4Flash,
     Hailuo3Highspeed,
     Hailuo3Lite,
+    Seedance2_5Flash,
 ]

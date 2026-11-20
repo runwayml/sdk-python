@@ -51,6 +51,8 @@ class Variant0(TypedDict, total=False):
     `1280:720`.
     """
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class Variant0FirstFrame(TypedDict, total=False):
     """Optional image used as the first frame of the output video.
@@ -102,6 +104,8 @@ class Variant1(TypedDict, total=False):
     ratios (`1920:1080`, `1080:1920`, `1440:1440`) use the pro tier. Defaults to
     `1280:720`.
     """
+
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
 
 
 class Variant1Shot(TypedDict, total=False):

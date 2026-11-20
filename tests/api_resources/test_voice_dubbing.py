@@ -35,6 +35,7 @@ class TestVoiceDubbing:
             disable_voice_cloning=True,
             drop_background_audio=True,
             num_speakers=1,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(VoiceDubbingCreateResponse, voice_dubbing, path=["response"])
 
@@ -90,6 +91,7 @@ class TestAsyncVoiceDubbing:
             disable_voice_cloning=True,
             drop_background_audio=True,
             num_speakers=1,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(VoiceDubbingCreateResponse, voice_dubbing, path=["response"])
 

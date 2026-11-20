@@ -15,7 +15,7 @@ from runwayml.lib.polling import (
 
 from ..types import video_upscale_create_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import required_args, maybe_transform, async_maybe_transform
+from .._utils import required_args, maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -64,6 +64,7 @@ class VideoUpscaleResource(SyncAPIResource):
         resolution: Literal["720p", "1k", "2k", "4k"] | Omit = omit,
         sharpen: int | Omit = omit,
         smart_grain: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -111,6 +112,7 @@ class VideoUpscaleResource(SyncAPIResource):
         model: Literal["enhance_frame_rate"],
         target_framerate: Literal["24", "25", "30", "48", "50", "60", "120", "23_98", "29_97", "59_94"],
         video_uri: str,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -152,6 +154,7 @@ class VideoUpscaleResource(SyncAPIResource):
         resolution: Literal["720p", "1k", "2k", "4k"] | Omit = omit,
         sharpen: int | Omit = omit,
         smart_grain: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         target_framerate: Literal["24", "25", "30", "48", "50", "60", "120", "23_98", "29_97", "59_94"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -160,6 +163,7 @@ class VideoUpscaleResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> NewTaskCreatedResponse:
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return self._post(
             "/v1/video_upscale",
             body=maybe_transform(
@@ -217,6 +221,7 @@ class AsyncVideoUpscaleResource(AsyncAPIResource):
         resolution: Literal["720p", "1k", "2k", "4k"] | Omit = omit,
         sharpen: int | Omit = omit,
         smart_grain: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -264,6 +269,7 @@ class AsyncVideoUpscaleResource(AsyncAPIResource):
         model: Literal["enhance_frame_rate"],
         target_framerate: Literal["24", "25", "30", "48", "50", "60", "120", "23_98", "29_97", "59_94"],
         video_uri: str,
+        x_runway_tags: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -305,6 +311,7 @@ class AsyncVideoUpscaleResource(AsyncAPIResource):
         resolution: Literal["720p", "1k", "2k", "4k"] | Omit = omit,
         sharpen: int | Omit = omit,
         smart_grain: int | Omit = omit,
+        x_runway_tags: str | Omit = omit,
         target_framerate: Literal["24", "25", "30", "48", "50", "60", "120", "23_98", "29_97", "59_94"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -313,6 +320,7 @@ class AsyncVideoUpscaleResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncNewTaskCreatedResponse:
+        extra_headers = {**strip_not_given({"X-Runway-Tags": x_runway_tags}), **(extra_headers or {})}
         return await self._post(
             "/v1/video_upscale",
             body=await async_maybe_transform(

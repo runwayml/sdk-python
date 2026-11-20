@@ -65,7 +65,9 @@ class AuditLogsResource(SyncAPIResource):
 
         Args:
           organization_id: Organization to report on. Optional when this API project is linked to a single
-              organization; required when it is linked to more than one.
+              organization; required when it is linked to more than one. If it is missing
+              then, the 400 response lists the IDs and names of the linked organizations in
+              `details.organizations`.
 
           extra_headers: Send extra headers
 
@@ -94,11 +96,11 @@ class AuditLogsResource(SyncAPIResource):
     def list(
         self,
         *,
-        limit: int,
         actions: str | Omit = omit,
         actor_emails: str | Omit = omit,
         cursor: str | Omit = omit,
         from_: Union[str, datetime] | Omit = omit,
+        limit: int | Omit = omit,
         organization_id: str | Omit = omit,
         to: Union[str, datetime] | Omit = omit,
         workspace_ids: str | Omit = omit,
@@ -115,12 +117,12 @@ class AuditLogsResource(SyncAPIResource):
         workspace.
 
         Args:
-          limit: The maximum number of items to return per page.
-
           actions: Restrict results to these audit log actions, as a comma-separated list of up to
-              50 actions. Allowed values: `UserLogin`, `PasswordChanged`,
-              `EmailChangeRequested`, `EmailChanged`, `UserRegistered`, `UserAccountDeleted`,
-              `WorkspaceCreated`, `WorkspaceDeleted`, `MemberInvited`,
+              50 actions. Allowed values: `AgentArtifactCommentCreated`,
+              `AgentArtifactCreated`, `AgentArtifactVersionSaved`,
+              `AgentArtifactSessionAttached`, `AgentArtifactSessionDetached`, `UserLogin`,
+              `PasswordChanged`, `EmailChangeRequested`, `EmailChanged`, `UserRegistered`,
+              `UserAccountDeleted`, `WorkspaceCreated`, `WorkspaceDeleted`, `MemberInvited`,
               `MemberInviteReminderSent`, `MemberRemoved`, `MemberRoleChanged`,
               `InviteAccepted`, `MemberJoinedViaDomain`, `TeamSettingsUpdated`,
               `InviteLinkToggled`, `UserGroupCreated`, `UserGroupUpdated`, `UserGroupDeleted`,
@@ -136,10 +138,10 @@ class AuditLogsResource(SyncAPIResource):
               `PermissionAccepted`, `SubscriptionCancelled`,
               `SubscriptionReactivatedWithOffer`, `SubscriptionPlanSwitched`,
               `CreditsTransferred`, `SeatsTransferred`, `SessionShared`, `SessionUnshared`,
-              `VideoProjectShared`, `VideoProjectUnshared`, `BrandKitShared`,
-              `BrandKitUnshared`, `AgentCustomSkillCreated`, `AgentCustomSkillDeleted`,
-              `AgentCustomSkillShared`, `AgentCustomSkillUnshared`, `AgentSessionShared`,
-              `AgentSessionUnshared`, `AgentConnectorLinkTokenCreated`,
+              `SessionMadePrivateByAdmin`, `VideoProjectShared`, `VideoProjectUnshared`,
+              `BrandKitShared`, `BrandKitUnshared`, `AgentCustomSkillCreated`,
+              `AgentCustomSkillDeleted`, `AgentCustomSkillShared`, `AgentCustomSkillUnshared`,
+              `AgentSessionShared`, `AgentSessionUnshared`, `AgentConnectorLinkTokenCreated`,
               `AgentConnectorConnected`, `AgentConnectorDisconnected`,
               `AgentConnectorAssetExported`, `AgentConnectorSessionEnabled`,
               `AgentConnectorSessionDisabled`, `GenerationCreated`, `StudioSessionOpened`,
@@ -147,22 +149,28 @@ class AuditLogsResource(SyncAPIResource):
               `AppStudioAppVisibilityChanged`, `AppStudioAppRenamed`, `AppStudioAppDeleted`,
               `AppStudioAppCoOwnerChanged`, `AppStudioAppSecretChanged`,
               `AppStudioAppRunwayAccessGranted`, `AppStudioAppRunwayAccessRevoked`,
+              `AppStudioConnectorConnected`, `AppStudioConnectorDisconnected`,
+              `AppStudioConnectorAppGranted`, `AppStudioConnectorAppRevoked`,
+              `AppStudioConnectorPolicyChanged`, `AppStudioConnectorToolCalled`,
               `AccountLinkCreated`, `AccountLinkDeleted`, `AdConnectionAuthorizationStarted`,
               `AdConnectionConnected`, `AdAccountSelectionUpdated`, `AdAccountSyncRequested`,
               `AdConnectionDisconnected`, `AdWorkspaceOnboardingUpdated`,
               `AdCreativeReviewSubmitted`, `AdCreativeReviewCancelled`,
               `AdCreativeReviewDecided`, `AdCreativeApprovalRevoked`, `AdCreativeArchived`,
               `AdCreativeUnarchived`, `AdPublishBatchQueued`, `AdPublishBatchCancelled`,
-              `AdPublishBatchRetried`, `AdStatusChanged`, `OrganizationSettingsUpdated`,
-              `OrganizationDisabledModelsUpdated`, `OrganizationAgentSandboxUpdated`,
-              `OrganizationApiAccountReleased`, `OrganizationApiAccountMemberInvited`,
+              `AdPublishBatchRetried`, `AdStatusChanged`, `AdCampaignSetupDrafted`,
+              `AdCampaignSetupDiscarded`, `AdCampaignSetupConfirmed`,
+              `AdCampaignSetupCancelled`, `AdCampaignSetupRetried`,
+              `OrganizationSettingsUpdated`, `OrganizationDisabledModelsUpdated`,
+              `OrganizationAgentSandboxUpdated`, `OrganizationApiAccountReleased`,
+              `OrganizationApiAccountMemberInvited`,
               `OrganizationApiAccountMemberRoleChanged`,
               `OrganizationApiAccountMemberRemoved`, `WorkspaceCountryLockUpdated`,
               `WorkspaceTagCreated`, `WorkspaceTagUpdated`, `WorkspaceTagDeleted`,
               `WorkspaceTagAssigned`, `WorkspaceTagUnassigned`, `MeteredBillingConfigUpdated`,
               `MeteredBillingRefillTriggered`, `MeteredBillingRetryTriggered`,
               `EnterpriseSpendCapEnforcementUpdated`, `OnboardingBonusGranted`,
-              `AwsMarketplaceEnterpriseSubscriptionLinked`.
+              `PromotionCreditsGranted`, `AwsMarketplaceEnterpriseSubscriptionLinked`.
 
           actor_emails: Restrict results to entries performed by the users with these emails, as a
               comma-separated list of up to 50 emails.
@@ -171,8 +179,12 @@ class AuditLogsResource(SyncAPIResource):
 
           from_: Start of the time window (inclusive), ISO-8601 datetime.
 
+          limit: The maximum number of items to return per page.
+
           organization_id: Organization to report on. Optional when this API project is linked to a single
-              organization; required when it is linked to more than one.
+              organization; required when it is linked to more than one. If it is missing
+              then, the 400 response lists the IDs and names of the linked organizations in
+              `details.organizations`.
 
           to: End of the time window (exclusive), ISO-8601 datetime.
 
@@ -197,11 +209,11 @@ class AuditLogsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "limit": limit,
                         "actions": actions,
                         "actor_emails": actor_emails,
                         "cursor": cursor,
                         "from_": from_,
+                        "limit": limit,
                         "organization_id": organization_id,
                         "to": to,
                         "workspace_ids": workspace_ids,
@@ -252,7 +264,9 @@ class AsyncAuditLogsResource(AsyncAPIResource):
 
         Args:
           organization_id: Organization to report on. Optional when this API project is linked to a single
-              organization; required when it is linked to more than one.
+              organization; required when it is linked to more than one. If it is missing
+              then, the 400 response lists the IDs and names of the linked organizations in
+              `details.organizations`.
 
           extra_headers: Send extra headers
 
@@ -281,11 +295,11 @@ class AsyncAuditLogsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        limit: int,
         actions: str | Omit = omit,
         actor_emails: str | Omit = omit,
         cursor: str | Omit = omit,
         from_: Union[str, datetime] | Omit = omit,
+        limit: int | Omit = omit,
         organization_id: str | Omit = omit,
         to: Union[str, datetime] | Omit = omit,
         workspace_ids: str | Omit = omit,
@@ -302,12 +316,12 @@ class AsyncAuditLogsResource(AsyncAPIResource):
         workspace.
 
         Args:
-          limit: The maximum number of items to return per page.
-
           actions: Restrict results to these audit log actions, as a comma-separated list of up to
-              50 actions. Allowed values: `UserLogin`, `PasswordChanged`,
-              `EmailChangeRequested`, `EmailChanged`, `UserRegistered`, `UserAccountDeleted`,
-              `WorkspaceCreated`, `WorkspaceDeleted`, `MemberInvited`,
+              50 actions. Allowed values: `AgentArtifactCommentCreated`,
+              `AgentArtifactCreated`, `AgentArtifactVersionSaved`,
+              `AgentArtifactSessionAttached`, `AgentArtifactSessionDetached`, `UserLogin`,
+              `PasswordChanged`, `EmailChangeRequested`, `EmailChanged`, `UserRegistered`,
+              `UserAccountDeleted`, `WorkspaceCreated`, `WorkspaceDeleted`, `MemberInvited`,
               `MemberInviteReminderSent`, `MemberRemoved`, `MemberRoleChanged`,
               `InviteAccepted`, `MemberJoinedViaDomain`, `TeamSettingsUpdated`,
               `InviteLinkToggled`, `UserGroupCreated`, `UserGroupUpdated`, `UserGroupDeleted`,
@@ -323,10 +337,10 @@ class AsyncAuditLogsResource(AsyncAPIResource):
               `PermissionAccepted`, `SubscriptionCancelled`,
               `SubscriptionReactivatedWithOffer`, `SubscriptionPlanSwitched`,
               `CreditsTransferred`, `SeatsTransferred`, `SessionShared`, `SessionUnshared`,
-              `VideoProjectShared`, `VideoProjectUnshared`, `BrandKitShared`,
-              `BrandKitUnshared`, `AgentCustomSkillCreated`, `AgentCustomSkillDeleted`,
-              `AgentCustomSkillShared`, `AgentCustomSkillUnshared`, `AgentSessionShared`,
-              `AgentSessionUnshared`, `AgentConnectorLinkTokenCreated`,
+              `SessionMadePrivateByAdmin`, `VideoProjectShared`, `VideoProjectUnshared`,
+              `BrandKitShared`, `BrandKitUnshared`, `AgentCustomSkillCreated`,
+              `AgentCustomSkillDeleted`, `AgentCustomSkillShared`, `AgentCustomSkillUnshared`,
+              `AgentSessionShared`, `AgentSessionUnshared`, `AgentConnectorLinkTokenCreated`,
               `AgentConnectorConnected`, `AgentConnectorDisconnected`,
               `AgentConnectorAssetExported`, `AgentConnectorSessionEnabled`,
               `AgentConnectorSessionDisabled`, `GenerationCreated`, `StudioSessionOpened`,
@@ -334,22 +348,28 @@ class AsyncAuditLogsResource(AsyncAPIResource):
               `AppStudioAppVisibilityChanged`, `AppStudioAppRenamed`, `AppStudioAppDeleted`,
               `AppStudioAppCoOwnerChanged`, `AppStudioAppSecretChanged`,
               `AppStudioAppRunwayAccessGranted`, `AppStudioAppRunwayAccessRevoked`,
+              `AppStudioConnectorConnected`, `AppStudioConnectorDisconnected`,
+              `AppStudioConnectorAppGranted`, `AppStudioConnectorAppRevoked`,
+              `AppStudioConnectorPolicyChanged`, `AppStudioConnectorToolCalled`,
               `AccountLinkCreated`, `AccountLinkDeleted`, `AdConnectionAuthorizationStarted`,
               `AdConnectionConnected`, `AdAccountSelectionUpdated`, `AdAccountSyncRequested`,
               `AdConnectionDisconnected`, `AdWorkspaceOnboardingUpdated`,
               `AdCreativeReviewSubmitted`, `AdCreativeReviewCancelled`,
               `AdCreativeReviewDecided`, `AdCreativeApprovalRevoked`, `AdCreativeArchived`,
               `AdCreativeUnarchived`, `AdPublishBatchQueued`, `AdPublishBatchCancelled`,
-              `AdPublishBatchRetried`, `AdStatusChanged`, `OrganizationSettingsUpdated`,
-              `OrganizationDisabledModelsUpdated`, `OrganizationAgentSandboxUpdated`,
-              `OrganizationApiAccountReleased`, `OrganizationApiAccountMemberInvited`,
+              `AdPublishBatchRetried`, `AdStatusChanged`, `AdCampaignSetupDrafted`,
+              `AdCampaignSetupDiscarded`, `AdCampaignSetupConfirmed`,
+              `AdCampaignSetupCancelled`, `AdCampaignSetupRetried`,
+              `OrganizationSettingsUpdated`, `OrganizationDisabledModelsUpdated`,
+              `OrganizationAgentSandboxUpdated`, `OrganizationApiAccountReleased`,
+              `OrganizationApiAccountMemberInvited`,
               `OrganizationApiAccountMemberRoleChanged`,
               `OrganizationApiAccountMemberRemoved`, `WorkspaceCountryLockUpdated`,
               `WorkspaceTagCreated`, `WorkspaceTagUpdated`, `WorkspaceTagDeleted`,
               `WorkspaceTagAssigned`, `WorkspaceTagUnassigned`, `MeteredBillingConfigUpdated`,
               `MeteredBillingRefillTriggered`, `MeteredBillingRetryTriggered`,
               `EnterpriseSpendCapEnforcementUpdated`, `OnboardingBonusGranted`,
-              `AwsMarketplaceEnterpriseSubscriptionLinked`.
+              `PromotionCreditsGranted`, `AwsMarketplaceEnterpriseSubscriptionLinked`.
 
           actor_emails: Restrict results to entries performed by the users with these emails, as a
               comma-separated list of up to 50 emails.
@@ -358,8 +378,12 @@ class AsyncAuditLogsResource(AsyncAPIResource):
 
           from_: Start of the time window (inclusive), ISO-8601 datetime.
 
+          limit: The maximum number of items to return per page.
+
           organization_id: Organization to report on. Optional when this API project is linked to a single
-              organization; required when it is linked to more than one.
+              organization; required when it is linked to more than one. If it is missing
+              then, the 400 response lists the IDs and names of the linked organizations in
+              `details.organizations`.
 
           to: End of the time window (exclusive), ISO-8601 datetime.
 
@@ -384,11 +408,11 @@ class AsyncAuditLogsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "limit": limit,
                         "actions": actions,
                         "actor_emails": actor_emails,
                         "cursor": cursor,
                         "from_": from_,
+                        "limit": limit,
                         "organization_id": organization_id,
                         "to": to,
                         "workspace_ids": workspace_ids,

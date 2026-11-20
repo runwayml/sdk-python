@@ -35,6 +35,16 @@ class TestRecipes:
         assert_matches_type(RecipeAdLocalizationResponse, recipe, path=["response"])
 
     @parametrize
+    def test_method_ad_localization_with_all_params(self, client: RunwayML) -> None:
+        recipe = client.recipes.ad_localization(
+            reference_image={"uri": "https://example.com/image.jpg"},
+            target_language="ar",
+            version="2026-06",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
+        )
+        assert_matches_type(RecipeAdLocalizationResponse, recipe, path=["response"])
+
+    @parametrize
     def test_raw_response_ad_localization(self, client: RunwayML) -> None:
         response = client.recipes.with_raw_response.ad_localization(
             reference_image={"uri": "https://example.com/image.jpg"},
@@ -78,6 +88,7 @@ class TestRecipes:
             output_count=1,
             quality="low",
             reference_image={"uri": "https://example.com/image.jpg"},
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(RecipeMarketingStockImageResponse, recipe, path=["response"])
 
@@ -126,6 +137,7 @@ class TestRecipes:
             duration=5,
             first_frame={"uri": "https://example.com/image.jpg"},
             ratio="1280:720",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(RecipeMultiShotVideoResponse, recipe, path=["response"])
 
@@ -202,6 +214,7 @@ class TestRecipes:
             duration=5,
             first_frame={"uri": "https://example.com/image.jpg"},
             ratio="1280:720",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(RecipeMultiShotVideoResponse, recipe, path=["response"])
 
@@ -278,6 +291,7 @@ class TestRecipes:
             ratio="1280:720",
             style_images=[{"uri": "https://example.com/image.jpg"}],
             user_concept="userConcept",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(RecipeProductAdResponse, recipe, path=["response"])
 
@@ -313,6 +327,16 @@ class TestRecipes:
             image={"uri": "https://example.com/image.jpg"},
             prompt="x",
             version="2026-06",
+        )
+        assert_matches_type(RecipeProductCampaignImageResponse, recipe, path=["response"])
+
+    @parametrize
+    def test_method_product_campaign_image_with_all_params(self, client: RunwayML) -> None:
+        recipe = client.recipes.product_campaign_image(
+            image={"uri": "https://example.com/image.jpg"},
+            prompt="x",
+            version="2026-06",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(RecipeProductCampaignImageResponse, recipe, path=["response"])
 
@@ -369,6 +393,7 @@ class TestRecipes:
             audio=True,
             duration=4,
             resolution="720p",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(RecipeProductSwapResponse, recipe, path=["response"])
 
@@ -422,6 +447,7 @@ class TestRecipes:
             product_info="productInfo",
             ratio="720:1280",
             user_concept="userConcept",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(RecipeProductUgcResponse, recipe, path=["response"])
 
@@ -469,6 +495,16 @@ class TestAsyncRecipes:
         assert_matches_type(RecipeAdLocalizationResponse, recipe, path=["response"])
 
     @parametrize
+    async def test_method_ad_localization_with_all_params(self, async_client: AsyncRunwayML) -> None:
+        recipe = await async_client.recipes.ad_localization(
+            reference_image={"uri": "https://example.com/image.jpg"},
+            target_language="ar",
+            version="2026-06",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
+        )
+        assert_matches_type(RecipeAdLocalizationResponse, recipe, path=["response"])
+
+    @parametrize
     async def test_raw_response_ad_localization(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.recipes.with_raw_response.ad_localization(
             reference_image={"uri": "https://example.com/image.jpg"},
@@ -512,6 +548,7 @@ class TestAsyncRecipes:
             output_count=1,
             quality="low",
             reference_image={"uri": "https://example.com/image.jpg"},
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(RecipeMarketingStockImageResponse, recipe, path=["response"])
 
@@ -560,6 +597,7 @@ class TestAsyncRecipes:
             duration=5,
             first_frame={"uri": "https://example.com/image.jpg"},
             ratio="1280:720",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(RecipeMultiShotVideoResponse, recipe, path=["response"])
 
@@ -636,6 +674,7 @@ class TestAsyncRecipes:
             duration=5,
             first_frame={"uri": "https://example.com/image.jpg"},
             ratio="1280:720",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(RecipeMultiShotVideoResponse, recipe, path=["response"])
 
@@ -712,6 +751,7 @@ class TestAsyncRecipes:
             ratio="1280:720",
             style_images=[{"uri": "https://example.com/image.jpg"}],
             user_concept="userConcept",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(RecipeProductAdResponse, recipe, path=["response"])
 
@@ -747,6 +787,16 @@ class TestAsyncRecipes:
             image={"uri": "https://example.com/image.jpg"},
             prompt="x",
             version="2026-06",
+        )
+        assert_matches_type(RecipeProductCampaignImageResponse, recipe, path=["response"])
+
+    @parametrize
+    async def test_method_product_campaign_image_with_all_params(self, async_client: AsyncRunwayML) -> None:
+        recipe = await async_client.recipes.product_campaign_image(
+            image={"uri": "https://example.com/image.jpg"},
+            prompt="x",
+            version="2026-06",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(RecipeProductCampaignImageResponse, recipe, path=["response"])
 
@@ -803,6 +853,7 @@ class TestAsyncRecipes:
             audio=True,
             duration=4,
             resolution="720p",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(RecipeProductSwapResponse, recipe, path=["response"])
 
@@ -856,6 +907,7 @@ class TestAsyncRecipes:
             product_info="productInfo",
             ratio="720:1280",
             user_concept="userConcept",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(RecipeProductUgcResponse, recipe, path=["response"])
 

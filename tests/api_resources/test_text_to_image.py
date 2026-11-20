@@ -41,6 +41,7 @@ class TestTextToImage:
             ],
             content_moderation={"public_figure_threshold": "auto"},
             seed=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -97,6 +98,7 @@ class TestTextToImage:
                 }
             ],
             seed=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -152,6 +154,7 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -206,6 +209,7 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -255,6 +259,7 @@ class TestTextToImage:
             output_count=1,
             output_format="webp",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -305,6 +310,7 @@ class TestTextToImage:
             output_count=1,
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -355,6 +361,7 @@ class TestTextToImage:
             output_count=1,
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -405,6 +412,7 @@ class TestTextToImage:
             output_count=1,
             quality="low",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -459,6 +467,7 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -513,6 +522,7 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -568,6 +578,7 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -623,6 +634,7 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -672,6 +684,7 @@ class TestTextToImage:
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
             seed=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -720,6 +733,7 @@ class TestTextToImage:
             ratio="1024:1024",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
             seed=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -766,6 +780,7 @@ class TestTextToImage:
             quality="low",
             ratio="2048:2048",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -815,6 +830,7 @@ class TestTextToImage:
             quality="very_low",
             ratio="1024:1024",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -862,6 +878,7 @@ class TestTextToImage:
             output_count=1,
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -916,6 +933,7 @@ class TestTextToImage:
                 }
             ],
             thinking_level="minimal",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -967,6 +985,7 @@ class TestTextToImage:
             output_count=1,
             output_format="webp",
             seed=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1014,6 +1033,7 @@ class TestTextToImage:
             background_color="#E1CB97",
             colors=["#E1CB97"],
             ratio="1024:1024",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1060,6 +1080,7 @@ class TestTextToImage:
             ratio="auto",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
             seed=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1117,6 +1138,7 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1176,6 +1198,7 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1224,6 +1247,7 @@ class TestTextToImage:
             output_format="png",
             prompt_text="x",
             resolution="auto",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1256,6 +1280,154 @@ class TestTextToImage:
     @parametrize
     def test_method_create_overload_25(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
+            model="seedream5.5",
+            prompt_text="x",
+            ratio="1024:1024",
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_25(self, client: RunwayML) -> None:
+        text_to_image = client.text_to_image.create(
+            model="seedream5.5",
+            prompt_text="x",
+            ratio="1024:1024",
+            background="transparent",
+            output_count=1,
+            output_format="png",
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_25(self, client: RunwayML) -> None:
+        response = client.text_to_image.with_raw_response.create(
+            model="seedream5.5",
+            prompt_text="x",
+            ratio="1024:1024",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        text_to_image = response.parse()
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_25(self, client: RunwayML) -> None:
+        with client.text_to_image.with_streaming_response.create(
+            model="seedream5.5",
+            prompt_text="x",
+            ratio="1024:1024",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            text_to_image = response.parse()
+            assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_26(self, client: RunwayML) -> None:
+        text_to_image = client.text_to_image.create(
+            model="seedream5.5_layers",
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_26(self, client: RunwayML) -> None:
+        text_to_image = client.text_to_image.create(
+            model="seedream5.5_layers",
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
+            max_images=2,
+            output_format="png",
+            prompt_text="x",
+            resolution="auto",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_26(self, client: RunwayML) -> None:
+        response = client.text_to_image.with_raw_response.create(
+            model="seedream5.5_layers",
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        text_to_image = response.parse()
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_26(self, client: RunwayML) -> None:
+        with client.text_to_image.with_streaming_response.create(
+            model="seedream5.5_layers",
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            text_to_image = response.parse()
+            assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_27(self, client: RunwayML) -> None:
+        text_to_image = client.text_to_image.create(
+            model="minimax_h3_image",
+            prompt_text="x",
+            ratio="1024:1024",
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_27(self, client: RunwayML) -> None:
+        text_to_image = client.text_to_image.create(
+            model="minimax_h3_image",
+            prompt_text="x",
+            ratio="1024:1024",
+            highspeed=True,
+            output_count=1,
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_27(self, client: RunwayML) -> None:
+        response = client.text_to_image.with_raw_response.create(
+            model="minimax_h3_image",
+            prompt_text="x",
+            ratio="1024:1024",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        text_to_image = response.parse()
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_overload_27(self, client: RunwayML) -> None:
+        with client.text_to_image.with_streaming_response.create(
+            model="minimax_h3_image",
+            prompt_text="x",
+            ratio="1024:1024",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            text_to_image = response.parse()
+            assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_overload_28(self, client: RunwayML) -> None:
+        text_to_image = client.text_to_image.create(
             model="gemini_2.5_flash",
             prompt_text="x",
             ratio="1344:768",
@@ -1263,7 +1435,7 @@ class TestTextToImage:
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params_overload_25(self, client: RunwayML) -> None:
+    def test_method_create_with_all_params_overload_28(self, client: RunwayML) -> None:
         text_to_image = client.text_to_image.create(
             model="gemini_2.5_flash",
             prompt_text="x",
@@ -1274,11 +1446,12 @@ class TestTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    def test_raw_response_create_overload_25(self, client: RunwayML) -> None:
+    def test_raw_response_create_overload_28(self, client: RunwayML) -> None:
         response = client.text_to_image.with_raw_response.create(
             model="gemini_2.5_flash",
             prompt_text="x",
@@ -1291,7 +1464,7 @@ class TestTextToImage:
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_overload_25(self, client: RunwayML) -> None:
+    def test_streaming_response_create_overload_28(self, client: RunwayML) -> None:
         with client.text_to_image.with_streaming_response.create(
             model="gemini_2.5_flash",
             prompt_text="x",
@@ -1335,6 +1508,7 @@ class TestAsyncTextToImage:
             ],
             content_moderation={"public_figure_threshold": "auto"},
             seed=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1391,6 +1565,7 @@ class TestAsyncTextToImage:
                 }
             ],
             seed=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1446,6 +1621,7 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1500,6 +1676,7 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1549,6 +1726,7 @@ class TestAsyncTextToImage:
             output_count=1,
             output_format="webp",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1599,6 +1777,7 @@ class TestAsyncTextToImage:
             output_count=1,
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1649,6 +1828,7 @@ class TestAsyncTextToImage:
             output_count=1,
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1699,6 +1879,7 @@ class TestAsyncTextToImage:
             output_count=1,
             quality="low",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1753,6 +1934,7 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1807,6 +1989,7 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1862,6 +2045,7 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1917,6 +2101,7 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -1966,6 +2151,7 @@ class TestAsyncTextToImage:
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
             seed=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2014,6 +2200,7 @@ class TestAsyncTextToImage:
             ratio="1024:1024",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
             seed=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2060,6 +2247,7 @@ class TestAsyncTextToImage:
             quality="low",
             ratio="2048:2048",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2109,6 +2297,7 @@ class TestAsyncTextToImage:
             quality="very_low",
             ratio="1024:1024",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2156,6 +2345,7 @@ class TestAsyncTextToImage:
             output_count=1,
             output_format="png",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2210,6 +2400,7 @@ class TestAsyncTextToImage:
                 }
             ],
             thinking_level="minimal",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2261,6 +2452,7 @@ class TestAsyncTextToImage:
             output_count=1,
             output_format="webp",
             seed=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2308,6 +2500,7 @@ class TestAsyncTextToImage:
             background_color="#E1CB97",
             colors=["#E1CB97"],
             ratio="1024:1024",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2354,6 +2547,7 @@ class TestAsyncTextToImage:
             ratio="auto",
             reference_images=[{"uri": "https://example.com/image.jpg"}],
             seed=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2411,6 +2605,7 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2470,6 +2665,7 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2518,6 +2714,7 @@ class TestAsyncTextToImage:
             output_format="png",
             prompt_text="x",
             resolution="auto",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
@@ -2550,6 +2747,154 @@ class TestAsyncTextToImage:
     @parametrize
     async def test_method_create_overload_25(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
+            model="seedream5.5",
+            prompt_text="x",
+            ratio="1024:1024",
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_25(self, async_client: AsyncRunwayML) -> None:
+        text_to_image = await async_client.text_to_image.create(
+            model="seedream5.5",
+            prompt_text="x",
+            ratio="1024:1024",
+            background="transparent",
+            output_count=1,
+            output_format="png",
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_25(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.text_to_image.with_raw_response.create(
+            model="seedream5.5",
+            prompt_text="x",
+            ratio="1024:1024",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        text_to_image = await response.parse()
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_25(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.text_to_image.with_streaming_response.create(
+            model="seedream5.5",
+            prompt_text="x",
+            ratio="1024:1024",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            text_to_image = await response.parse()
+            assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_26(self, async_client: AsyncRunwayML) -> None:
+        text_to_image = await async_client.text_to_image.create(
+            model="seedream5.5_layers",
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_26(self, async_client: AsyncRunwayML) -> None:
+        text_to_image = await async_client.text_to_image.create(
+            model="seedream5.5_layers",
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
+            max_images=2,
+            output_format="png",
+            prompt_text="x",
+            resolution="auto",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_26(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.text_to_image.with_raw_response.create(
+            model="seedream5.5_layers",
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        text_to_image = await response.parse()
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_26(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.text_to_image.with_streaming_response.create(
+            model="seedream5.5_layers",
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            text_to_image = await response.parse()
+            assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_27(self, async_client: AsyncRunwayML) -> None:
+        text_to_image = await async_client.text_to_image.create(
+            model="minimax_h3_image",
+            prompt_text="x",
+            ratio="1024:1024",
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_27(self, async_client: AsyncRunwayML) -> None:
+        text_to_image = await async_client.text_to_image.create(
+            model="minimax_h3_image",
+            prompt_text="x",
+            ratio="1024:1024",
+            highspeed=True,
+            output_count=1,
+            reference_images=[{"uri": "https://example.com/image.jpg"}],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
+        )
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_27(self, async_client: AsyncRunwayML) -> None:
+        response = await async_client.text_to_image.with_raw_response.create(
+            model="minimax_h3_image",
+            prompt_text="x",
+            ratio="1024:1024",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        text_to_image = await response.parse()
+        assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_overload_27(self, async_client: AsyncRunwayML) -> None:
+        async with async_client.text_to_image.with_streaming_response.create(
+            model="minimax_h3_image",
+            prompt_text="x",
+            ratio="1024:1024",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            text_to_image = await response.parse()
+            assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_overload_28(self, async_client: AsyncRunwayML) -> None:
+        text_to_image = await async_client.text_to_image.create(
             model="gemini_2.5_flash",
             prompt_text="x",
             ratio="1344:768",
@@ -2557,7 +2902,7 @@ class TestAsyncTextToImage:
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params_overload_25(self, async_client: AsyncRunwayML) -> None:
+    async def test_method_create_with_all_params_overload_28(self, async_client: AsyncRunwayML) -> None:
         text_to_image = await async_client.text_to_image.create(
             model="gemini_2.5_flash",
             prompt_text="x",
@@ -2568,11 +2913,12 @@ class TestAsyncTextToImage:
                     "tag": "tag",
                 }
             ],
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_overload_25(self, async_client: AsyncRunwayML) -> None:
+    async def test_raw_response_create_overload_28(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.text_to_image.with_raw_response.create(
             model="gemini_2.5_flash",
             prompt_text="x",
@@ -2585,7 +2931,7 @@ class TestAsyncTextToImage:
         assert_matches_type(TextToImageCreateResponse, text_to_image, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_overload_25(self, async_client: AsyncRunwayML) -> None:
+    async def test_streaming_response_create_overload_28(self, async_client: AsyncRunwayML) -> None:
         async with async_client.text_to_image.with_streaming_response.create(
             model="gemini_2.5_flash",
             prompt_text="x",

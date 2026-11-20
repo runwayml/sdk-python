@@ -29,3 +29,5 @@ class TextToMusicCreateParams(TypedDict, total=False):
 
     When omitted, the model decides from the prompt.
     """
+
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]

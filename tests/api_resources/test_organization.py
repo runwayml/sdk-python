@@ -55,7 +55,9 @@ class TestOrganization:
     def test_method_retrieve_usage_with_all_params(self, client: RunwayML) -> None:
         organization = client.organization.retrieve_usage(
             before_date=parse_date("2019-12-27"),
+            group_by="TAG",
             start_date=parse_date("2019-12-27"),
+            tags=["sQ__.w-lZ.//:B//u0-"],
         )
         assert_matches_type(OrganizationRetrieveUsageResponse, organization, path=["response"])
 
@@ -119,7 +121,9 @@ class TestAsyncOrganization:
     async def test_method_retrieve_usage_with_all_params(self, async_client: AsyncRunwayML) -> None:
         organization = await async_client.organization.retrieve_usage(
             before_date=parse_date("2019-12-27"),
+            group_by="TAG",
             start_date=parse_date("2019-12-27"),
+            tags=["sQ__.w-lZ.//:B//u0-"],
         )
         assert_matches_type(OrganizationRetrieveUsageResponse, organization, path=["response"])
 

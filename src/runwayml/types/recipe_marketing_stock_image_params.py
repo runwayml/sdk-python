@@ -43,6 +43,8 @@ class RecipeMarketingStockImageParams(TypedDict, total=False):
     See [our docs](/assets/inputs#images) on image inputs.
     """
 
+    x_runway_tags: Annotated[str, PropertyInfo(alias="X-Runway-Tags")]
+
 
 class ReferenceImage(TypedDict, total=False):
     """Optional brand logo image to guide the generated marketing stock image.

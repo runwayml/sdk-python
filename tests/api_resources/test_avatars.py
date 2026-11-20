@@ -185,24 +185,20 @@ class TestAvatars:
 
     @parametrize
     def test_method_list(self, client: RunwayML) -> None:
-        avatar = client.avatars.list(
-            limit=1,
-        )
+        avatar = client.avatars.list()
         assert_matches_type(SyncCursorPage[AvatarListResponse], avatar, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: RunwayML) -> None:
         avatar = client.avatars.list(
-            limit=1,
             cursor="x",
+            limit=1,
         )
         assert_matches_type(SyncCursorPage[AvatarListResponse], avatar, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: RunwayML) -> None:
-        response = client.avatars.with_raw_response.list(
-            limit=1,
-        )
+        response = client.avatars.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -211,9 +207,7 @@ class TestAvatars:
 
     @parametrize
     def test_streaming_response_list(self, client: RunwayML) -> None:
-        with client.avatars.with_streaming_response.list(
-            limit=1,
-        ) as response:
+        with client.avatars.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -460,24 +454,20 @@ class TestAsyncAvatars:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncRunwayML) -> None:
-        avatar = await async_client.avatars.list(
-            limit=1,
-        )
+        avatar = await async_client.avatars.list()
         assert_matches_type(AsyncCursorPage[AvatarListResponse], avatar, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncRunwayML) -> None:
         avatar = await async_client.avatars.list(
-            limit=1,
             cursor="x",
+            limit=1,
         )
         assert_matches_type(AsyncCursorPage[AvatarListResponse], avatar, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncRunwayML) -> None:
-        response = await async_client.avatars.with_raw_response.list(
-            limit=1,
-        )
+        response = await async_client.avatars.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -486,9 +476,7 @@ class TestAsyncAvatars:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncRunwayML) -> None:
-        async with async_client.avatars.with_streaming_response.list(
-            limit=1,
-        ) as response:
+        async with async_client.avatars.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

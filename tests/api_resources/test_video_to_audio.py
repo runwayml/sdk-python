@@ -38,6 +38,7 @@ class TestVideoToAudio:
             preserve_speech=True,
             prompt_text="x",
             seed=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(VideoToAudioCreateResponse, video_to_audio, path=["response"])
 
@@ -96,6 +97,7 @@ class TestAsyncVideoToAudio:
             preserve_speech=True,
             prompt_text="x",
             seed=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(VideoToAudioCreateResponse, video_to_audio, path=["response"])
 

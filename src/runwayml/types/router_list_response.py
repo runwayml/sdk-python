@@ -35,12 +35,14 @@ class SettingsMaxCreditsPerGeneration(BaseModel):
 
     image: Optional[int] = None
 
+    mesh: Optional[int] = None
+
     video: Optional[int] = None
 
 
 class SettingsModels(BaseModel):
     """
-    When mode is allow_new_except, ids are excluded; when allowlist_only, ids are the only allowed values. Each id must be a known public video or image model name (unknown ids are rejected on create/update).
+    When mode is allow_new_except, ids are excluded; when allowlist_only, ids are the only allowed values. Each id must be a known public video, image, audio, or mesh model name (unknown ids are rejected on create/update).
     """
 
     ids: List[str]
@@ -69,8 +71,8 @@ class Settings(BaseModel):
     models: Optional[SettingsModels] = None
     """
     When mode is allow_new_except, ids are excluded; when allowlist_only, ids are
-    the only allowed values. Each id must be a known public video or image model
-    name (unknown ids are rejected on create/update).
+    the only allowed values. Each id must be a known public video, image, audio, or
+    mesh model name (unknown ids are rejected on create/update).
     """
 
     optimize_for: Optional[Literal["cost", "latency", "quality"]] = FieldInfo(alias="optimizeFor", default=None)

@@ -23,7 +23,6 @@ class TestWebapp:
     def test_method_list_usage(self, client: RunwayML) -> None:
         webapp = client.organization.webapp.list_usage(
             from_=parse_datetime("2019-12-27T18:11:19.117Z"),
-            limit=1,
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(SyncCursorPage[WebappListUsageResponse], webapp, path=["response"])
@@ -32,9 +31,9 @@ class TestWebapp:
     def test_method_list_usage_with_all_params(self, client: RunwayML) -> None:
         webapp = client.organization.webapp.list_usage(
             from_=parse_datetime("2019-12-27T18:11:19.117Z"),
-            limit=1,
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
             cursor="x",
+            limit=1,
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             workspace_ids="workspaceIds",
         )
@@ -44,7 +43,6 @@ class TestWebapp:
     def test_raw_response_list_usage(self, client: RunwayML) -> None:
         response = client.organization.webapp.with_raw_response.list_usage(
             from_=parse_datetime("2019-12-27T18:11:19.117Z"),
-            limit=1,
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
 
@@ -57,7 +55,6 @@ class TestWebapp:
     def test_streaming_response_list_usage(self, client: RunwayML) -> None:
         with client.organization.webapp.with_streaming_response.list_usage(
             from_=parse_datetime("2019-12-27T18:11:19.117Z"),
-            limit=1,
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
         ) as response:
             assert not response.is_closed
@@ -78,7 +75,6 @@ class TestAsyncWebapp:
     async def test_method_list_usage(self, async_client: AsyncRunwayML) -> None:
         webapp = await async_client.organization.webapp.list_usage(
             from_=parse_datetime("2019-12-27T18:11:19.117Z"),
-            limit=1,
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(AsyncCursorPage[WebappListUsageResponse], webapp, path=["response"])
@@ -87,9 +83,9 @@ class TestAsyncWebapp:
     async def test_method_list_usage_with_all_params(self, async_client: AsyncRunwayML) -> None:
         webapp = await async_client.organization.webapp.list_usage(
             from_=parse_datetime("2019-12-27T18:11:19.117Z"),
-            limit=1,
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
             cursor="x",
+            limit=1,
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             workspace_ids="workspaceIds",
         )
@@ -99,7 +95,6 @@ class TestAsyncWebapp:
     async def test_raw_response_list_usage(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.organization.webapp.with_raw_response.list_usage(
             from_=parse_datetime("2019-12-27T18:11:19.117Z"),
-            limit=1,
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
 
@@ -112,7 +107,6 @@ class TestAsyncWebapp:
     async def test_streaming_response_list_usage(self, async_client: AsyncRunwayML) -> None:
         async with async_client.organization.webapp.with_streaming_response.list_usage(
             from_=parse_datetime("2019-12-27T18:11:19.117Z"),
-            limit=1,
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
         ) as response:
             assert not response.is_closed

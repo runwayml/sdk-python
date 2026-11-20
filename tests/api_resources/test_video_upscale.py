@@ -36,6 +36,7 @@ class TestVideoUpscale:
             resolution="720p",
             sharpen=0,
             smart_grain=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(VideoUpscaleCreateResponse, video_upscale, path=["response"])
 
@@ -71,6 +72,16 @@ class TestVideoUpscale:
             model="enhance_frame_rate",
             target_framerate="24",
             video_uri="https://example.com/video.mp4",
+        )
+        assert_matches_type(VideoUpscaleCreateResponse, video_upscale, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_2(self, client: RunwayML) -> None:
+        video_upscale = client.video_upscale.create(
+            model="enhance_frame_rate",
+            target_framerate="24",
+            video_uri="https://example.com/video.mp4",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(VideoUpscaleCreateResponse, video_upscale, path=["response"])
 
@@ -127,6 +138,7 @@ class TestAsyncVideoUpscale:
             resolution="720p",
             sharpen=0,
             smart_grain=0,
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(VideoUpscaleCreateResponse, video_upscale, path=["response"])
 
@@ -162,6 +174,16 @@ class TestAsyncVideoUpscale:
             model="enhance_frame_rate",
             target_framerate="24",
             video_uri="https://example.com/video.mp4",
+        )
+        assert_matches_type(VideoUpscaleCreateResponse, video_upscale, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncRunwayML) -> None:
+        video_upscale = await async_client.video_upscale.create(
+            model="enhance_frame_rate",
+            target_framerate="24",
+            video_uri="https://example.com/video.mp4",
+            x_runway_tags="team:growth,env:prod,campaign-q4",
         )
         assert_matches_type(VideoUpscaleCreateResponse, video_upscale, path=["response"])
 
