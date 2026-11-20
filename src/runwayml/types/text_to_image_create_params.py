@@ -58,6 +58,12 @@ __all__ = [
     "GptImage2_6FlareReferenceImage",
     "Seedream5ProLayers",
     "Seedream5ProLayersReferenceImage",
+    "Seedream5_5",
+    "Seedream5_5ReferenceImage",
+    "Seedream5_5Layers",
+    "Seedream5_5LayersReferenceImage",
+    "MinimaxH3Image",
+    "MinimaxH3ImageReferenceImage",
     "Gemini2_5Flash",
     "Gemini2_5FlashReferenceImage",
 ]
@@ -1741,6 +1747,224 @@ class Seedream5ProLayersReferenceImage(TypedDict, total=False):
     """
 
 
+class Seedream5_5(TypedDict, total=False):
+    model: Required[Literal["seedream5.5"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A description of the image you want to generate."""
+
+    ratio: Required[
+        Literal[
+            "1024:1024",
+            "1152:864",
+            "864:1152",
+            "1424:800",
+            "800:1424",
+            "1248:832",
+            "832:1248",
+            "1568:672",
+            "1536:1536",
+            "1792:1344",
+            "1344:1792",
+            "2048:1152",
+            "1152:2048",
+            "1872:1248",
+            "1248:1872",
+            "2352:1008",
+            "2048:2048",
+            "2368:1776",
+            "1776:2368",
+            "2816:1584",
+            "1584:2816",
+            "2496:1664",
+            "1664:2496",
+            "3136:1344",
+            "auto_1k",
+            "auto_1.5k",
+            "auto_2k",
+        ]
+    ]
+    """The resolution of the output image, expressed as `<width>:<height>`.
+
+    Use `auto_1k`, `auto_1.5k` or `auto_2k` to let the model pick the aspect ratio
+    at a fixed resolution tier.
+    """
+
+    background: Literal["transparent", "opaque"]
+    """Whether the image has a transparent or an opaque background.
+
+    A transparent background needs the png output format. Omit to let the model
+    decide from the prompt.
+    """
+
+    output_count: Annotated[int, PropertyInfo(alias="outputCount")]
+    """The number of images to generate.
+
+    Increasing this number will affect the number of credits consumed by the
+    generation.
+    """
+
+    output_format: Annotated[Literal["png", "jpeg"], PropertyInfo(alias="outputFormat")]
+    """The file format of the output image. Defaults to png."""
+
+    reference_images: Annotated[Iterable[Seedream5_5ReferenceImage], PropertyInfo(alias="referenceImages")]
+    """Images to edit or combine.
+
+    Refer to them in the prompt by upload order (Figure 1, Figure 2, and so on).
+    """
+
+
+class Seedream5_5ReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class Seedream5_5Layers(TypedDict, total=False):
+    model: Required[Literal["seedream5.5_layers"]]
+
+    reference_images: Required[
+        Annotated[Iterable[Seedream5_5LayersReferenceImage], PropertyInfo(alias="referenceImages")]
+    ]
+    """The image to split into editable layers.
+
+    Layer ordering and positioning are returned in the completed task’s layers
+    field.
+    """
+
+    max_images: Annotated[int, PropertyInfo(alias="maxImages")]
+    """The most images the task may return, counting the base image.
+
+    Each returned image is billed separately. Defaults to 30.
+    """
+
+    output_format: Annotated[Literal["png", "jpeg"], PropertyInfo(alias="outputFormat")]
+    """Base image format; defaults to png.
+
+    Separated layers always use PNG with transparency.
+    """
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """Optional instructions describing which elements to separate.
+
+    Omit to split the image automatically.
+    """
+
+    resolution: Literal["auto", "1k", "1.5k", "2k"]
+    """Output resolution tier.
+
+    Defaults to auto, which adapts to the input image. The base image and layers
+    preserve their respective aspect ratios.
+    """
+
+
+class Seedream5_5LayersReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
+class MinimaxH3Image(TypedDict, total=False):
+    model: Required[Literal["minimax_h3_image"]]
+
+    prompt_text: Required[Annotated[str, PropertyInfo(alias="promptText")]]
+    """A non-empty text prompt describing what should appear in the output image."""
+
+    ratio: Required[
+        Literal[
+            "1024:1024",
+            "1152:928",
+            "928:1152",
+            "1184:896",
+            "896:1184",
+            "1248:832",
+            "832:1248",
+            "1376:768",
+            "768:1376",
+            "1440:736",
+            "736:1440",
+            "1568:672",
+            "672:1568",
+            "1760:576",
+            "576:1760",
+            "2048:2048",
+            "2304:1824",
+            "1824:2304",
+            "2368:1760",
+            "1760:2368",
+            "2496:1664",
+            "1664:2496",
+            "2720:1536",
+            "1536:2720",
+            "2912:1440",
+            "1440:2912",
+            "3136:1344",
+            "1344:3136",
+            "3552:1184",
+            "1184:3552",
+            "4096:4096",
+            "4576:3648",
+            "3648:4576",
+            "4736:3552",
+            "3552:4736",
+            "5024:3360",
+            "3360:5024",
+            "5472:3072",
+            "3072:5472",
+            "5792:2912",
+            "2912:5792",
+            "6272:2688",
+            "2688:6272",
+            "7104:2368",
+            "2368:7104",
+            "auto_1k",
+            "auto_2k",
+            "auto_4k",
+        ]
+    ]
+    """The resolution of the output image, expressed as `<width>:<height>`.
+
+    4K ratios cost more credits per image than 1K and 2K. Use `auto_1k`, `auto_2k`
+    or `auto_4k` to pick a resolution tier and let the model choose the framing from
+    the prompt.
+    """
+
+    highspeed: bool
+    """
+    When true, generate with the faster MiniMax H3 Image Highspeed model, which
+    costs more credits per image. Defaults to false.
+    """
+
+    output_count: Annotated[int, PropertyInfo(alias="outputCount")]
+    """The number of images to generate.
+
+    Increasing this number will affect the number of credits consumed by the
+    generation.
+    """
+
+    reference_images: Annotated[Iterable[MinimaxH3ImageReferenceImage], PropertyInfo(alias="referenceImages")]
+    """Up to 16 images to edit or combine.
+
+    Refer to them in the prompt by upload order (image 1, image 2, and so on). Each
+    reference image adds to the credits per image.
+    """
+
+
+class MinimaxH3ImageReferenceImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+
 class Gemini2_5Flash(TypedDict, total=False):
     model: Required[Literal["gemini_2.5_flash"]]
 
@@ -1812,5 +2036,8 @@ TextToImageCreateParams: TypeAlias = Union[
     GptImage2_6Sunburst,
     GptImage2_6Flare,
     Seedream5ProLayers,
+    Seedream5_5,
+    Seedream5_5Layers,
+    MinimaxH3Image,
     Gemini2_5Flash,
 ]

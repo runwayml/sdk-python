@@ -42,6 +42,7 @@ class TestRouters:
                 "max_credits_per_generation": {
                     "audio": 1,
                     "image": 1,
+                    "mesh": 1,
                     "video": 1,
                 },
                 "models": {
@@ -134,6 +135,7 @@ class TestRouters:
                 "max_credits_per_generation": {
                     "audio": 1,
                     "image": 1,
+                    "mesh": 1,
                     "video": 1,
                 },
                 "models": {
@@ -179,24 +181,20 @@ class TestRouters:
 
     @parametrize
     def test_method_list(self, client: RunwayML) -> None:
-        router = client.routers.list(
-            limit=1,
-        )
+        router = client.routers.list()
         assert_matches_type(SyncCursorPage[RouterListResponse], router, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: RunwayML) -> None:
         router = client.routers.list(
-            limit=1,
             cursor="x",
+            limit=1,
         )
         assert_matches_type(SyncCursorPage[RouterListResponse], router, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: RunwayML) -> None:
-        response = client.routers.with_raw_response.list(
-            limit=1,
-        )
+        response = client.routers.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -205,9 +203,7 @@ class TestRouters:
 
     @parametrize
     def test_streaming_response_list(self, client: RunwayML) -> None:
-        with client.routers.with_streaming_response.list(
-            limit=1,
-        ) as response:
+        with client.routers.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -258,7 +254,6 @@ class TestRouters:
     def test_method_list_requests(self, client: RunwayML) -> None:
         router = client.routers.list_requests(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            limit=1,
         )
         assert_matches_type(SyncCursorPage[RouterListRequestsResponse], router, path=["response"])
 
@@ -266,8 +261,8 @@ class TestRouters:
     def test_method_list_requests_with_all_params(self, client: RunwayML) -> None:
         router = client.routers.list_requests(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            limit=1,
             cursor="x",
+            limit=1,
         )
         assert_matches_type(SyncCursorPage[RouterListRequestsResponse], router, path=["response"])
 
@@ -275,7 +270,6 @@ class TestRouters:
     def test_raw_response_list_requests(self, client: RunwayML) -> None:
         response = client.routers.with_raw_response.list_requests(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            limit=1,
         )
 
         assert response.is_closed is True
@@ -287,7 +281,6 @@ class TestRouters:
     def test_streaming_response_list_requests(self, client: RunwayML) -> None:
         with client.routers.with_streaming_response.list_requests(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            limit=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -302,7 +295,6 @@ class TestRouters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.routers.with_raw_response.list_requests(
                 id="",
-                limit=1,
             )
 
 
@@ -329,6 +321,7 @@ class TestAsyncRouters:
                 "max_credits_per_generation": {
                     "audio": 1,
                     "image": 1,
+                    "mesh": 1,
                     "video": 1,
                 },
                 "models": {
@@ -421,6 +414,7 @@ class TestAsyncRouters:
                 "max_credits_per_generation": {
                     "audio": 1,
                     "image": 1,
+                    "mesh": 1,
                     "video": 1,
                 },
                 "models": {
@@ -466,24 +460,20 @@ class TestAsyncRouters:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncRunwayML) -> None:
-        router = await async_client.routers.list(
-            limit=1,
-        )
+        router = await async_client.routers.list()
         assert_matches_type(AsyncCursorPage[RouterListResponse], router, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncRunwayML) -> None:
         router = await async_client.routers.list(
-            limit=1,
             cursor="x",
+            limit=1,
         )
         assert_matches_type(AsyncCursorPage[RouterListResponse], router, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncRunwayML) -> None:
-        response = await async_client.routers.with_raw_response.list(
-            limit=1,
-        )
+        response = await async_client.routers.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -492,9 +482,7 @@ class TestAsyncRouters:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncRunwayML) -> None:
-        async with async_client.routers.with_streaming_response.list(
-            limit=1,
-        ) as response:
+        async with async_client.routers.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -545,7 +533,6 @@ class TestAsyncRouters:
     async def test_method_list_requests(self, async_client: AsyncRunwayML) -> None:
         router = await async_client.routers.list_requests(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            limit=1,
         )
         assert_matches_type(AsyncCursorPage[RouterListRequestsResponse], router, path=["response"])
 
@@ -553,8 +540,8 @@ class TestAsyncRouters:
     async def test_method_list_requests_with_all_params(self, async_client: AsyncRunwayML) -> None:
         router = await async_client.routers.list_requests(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            limit=1,
             cursor="x",
+            limit=1,
         )
         assert_matches_type(AsyncCursorPage[RouterListRequestsResponse], router, path=["response"])
 
@@ -562,7 +549,6 @@ class TestAsyncRouters:
     async def test_raw_response_list_requests(self, async_client: AsyncRunwayML) -> None:
         response = await async_client.routers.with_raw_response.list_requests(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            limit=1,
         )
 
         assert response.is_closed is True
@@ -574,7 +560,6 @@ class TestAsyncRouters:
     async def test_streaming_response_list_requests(self, async_client: AsyncRunwayML) -> None:
         async with async_client.routers.with_streaming_response.list_requests(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            limit=1,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -589,5 +574,4 @@ class TestAsyncRouters:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.routers.with_raw_response.list_requests(
                 id="",
-                limit=1,
             )

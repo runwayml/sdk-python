@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Union
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
@@ -12,15 +12,14 @@ __all__ = ["AuditLogListParams"]
 
 
 class AuditLogListParams(TypedDict, total=False):
-    limit: Required[int]
-    """The maximum number of items to return per page."""
-
     actions: str
     """
     Restrict results to these audit log actions, as a comma-separated list of up to
-    50 actions. Allowed values: `UserLogin`, `PasswordChanged`,
-    `EmailChangeRequested`, `EmailChanged`, `UserRegistered`, `UserAccountDeleted`,
-    `WorkspaceCreated`, `WorkspaceDeleted`, `MemberInvited`,
+    50 actions. Allowed values: `AgentArtifactCommentCreated`,
+    `AgentArtifactCreated`, `AgentArtifactVersionSaved`,
+    `AgentArtifactSessionAttached`, `AgentArtifactSessionDetached`, `UserLogin`,
+    `PasswordChanged`, `EmailChangeRequested`, `EmailChanged`, `UserRegistered`,
+    `UserAccountDeleted`, `WorkspaceCreated`, `WorkspaceDeleted`, `MemberInvited`,
     `MemberInviteReminderSent`, `MemberRemoved`, `MemberRoleChanged`,
     `InviteAccepted`, `MemberJoinedViaDomain`, `TeamSettingsUpdated`,
     `InviteLinkToggled`, `UserGroupCreated`, `UserGroupUpdated`, `UserGroupDeleted`,
@@ -36,10 +35,10 @@ class AuditLogListParams(TypedDict, total=False):
     `PermissionAccepted`, `SubscriptionCancelled`,
     `SubscriptionReactivatedWithOffer`, `SubscriptionPlanSwitched`,
     `CreditsTransferred`, `SeatsTransferred`, `SessionShared`, `SessionUnshared`,
-    `VideoProjectShared`, `VideoProjectUnshared`, `BrandKitShared`,
-    `BrandKitUnshared`, `AgentCustomSkillCreated`, `AgentCustomSkillDeleted`,
-    `AgentCustomSkillShared`, `AgentCustomSkillUnshared`, `AgentSessionShared`,
-    `AgentSessionUnshared`, `AgentConnectorLinkTokenCreated`,
+    `SessionMadePrivateByAdmin`, `VideoProjectShared`, `VideoProjectUnshared`,
+    `BrandKitShared`, `BrandKitUnshared`, `AgentCustomSkillCreated`,
+    `AgentCustomSkillDeleted`, `AgentCustomSkillShared`, `AgentCustomSkillUnshared`,
+    `AgentSessionShared`, `AgentSessionUnshared`, `AgentConnectorLinkTokenCreated`,
     `AgentConnectorConnected`, `AgentConnectorDisconnected`,
     `AgentConnectorAssetExported`, `AgentConnectorSessionEnabled`,
     `AgentConnectorSessionDisabled`, `GenerationCreated`, `StudioSessionOpened`,
@@ -47,22 +46,28 @@ class AuditLogListParams(TypedDict, total=False):
     `AppStudioAppVisibilityChanged`, `AppStudioAppRenamed`, `AppStudioAppDeleted`,
     `AppStudioAppCoOwnerChanged`, `AppStudioAppSecretChanged`,
     `AppStudioAppRunwayAccessGranted`, `AppStudioAppRunwayAccessRevoked`,
+    `AppStudioConnectorConnected`, `AppStudioConnectorDisconnected`,
+    `AppStudioConnectorAppGranted`, `AppStudioConnectorAppRevoked`,
+    `AppStudioConnectorPolicyChanged`, `AppStudioConnectorToolCalled`,
     `AccountLinkCreated`, `AccountLinkDeleted`, `AdConnectionAuthorizationStarted`,
     `AdConnectionConnected`, `AdAccountSelectionUpdated`, `AdAccountSyncRequested`,
     `AdConnectionDisconnected`, `AdWorkspaceOnboardingUpdated`,
     `AdCreativeReviewSubmitted`, `AdCreativeReviewCancelled`,
     `AdCreativeReviewDecided`, `AdCreativeApprovalRevoked`, `AdCreativeArchived`,
     `AdCreativeUnarchived`, `AdPublishBatchQueued`, `AdPublishBatchCancelled`,
-    `AdPublishBatchRetried`, `AdStatusChanged`, `OrganizationSettingsUpdated`,
-    `OrganizationDisabledModelsUpdated`, `OrganizationAgentSandboxUpdated`,
-    `OrganizationApiAccountReleased`, `OrganizationApiAccountMemberInvited`,
+    `AdPublishBatchRetried`, `AdStatusChanged`, `AdCampaignSetupDrafted`,
+    `AdCampaignSetupDiscarded`, `AdCampaignSetupConfirmed`,
+    `AdCampaignSetupCancelled`, `AdCampaignSetupRetried`,
+    `OrganizationSettingsUpdated`, `OrganizationDisabledModelsUpdated`,
+    `OrganizationAgentSandboxUpdated`, `OrganizationApiAccountReleased`,
+    `OrganizationApiAccountMemberInvited`,
     `OrganizationApiAccountMemberRoleChanged`,
     `OrganizationApiAccountMemberRemoved`, `WorkspaceCountryLockUpdated`,
     `WorkspaceTagCreated`, `WorkspaceTagUpdated`, `WorkspaceTagDeleted`,
     `WorkspaceTagAssigned`, `WorkspaceTagUnassigned`, `MeteredBillingConfigUpdated`,
     `MeteredBillingRefillTriggered`, `MeteredBillingRetryTriggered`,
     `EnterpriseSpendCapEnforcementUpdated`, `OnboardingBonusGranted`,
-    `AwsMarketplaceEnterpriseSubscriptionLinked`.
+    `PromotionCreditsGranted`, `AwsMarketplaceEnterpriseSubscriptionLinked`.
     """
 
     actor_emails: Annotated[str, PropertyInfo(alias="actorEmails")]
@@ -77,11 +82,15 @@ class AuditLogListParams(TypedDict, total=False):
     from_: Annotated[Union[str, datetime], PropertyInfo(alias="from", format="iso8601")]
     """Start of the time window (inclusive), ISO-8601 datetime."""
 
+    limit: int
+    """The maximum number of items to return per page."""
+
     organization_id: Annotated[str, PropertyInfo(alias="organizationId")]
     """Organization to report on.
 
     Optional when this API project is linked to a single organization; required when
-    it is linked to more than one.
+    it is linked to more than one. If it is missing then, the 400 response lists the
+    IDs and names of the linked organizations in `details.organizations`.
     """
 
     to: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]

@@ -14,5 +14,6 @@ class AuditLogRetrieveParams(TypedDict, total=False):
     """Organization to report on.
 
     Optional when this API project is linked to a single organization; required when
-    it is linked to more than one.
+    it is linked to more than one. If it is missing then, the 400 response lists the
+    IDs and names of the linked organizations in `details.organizations`.
     """

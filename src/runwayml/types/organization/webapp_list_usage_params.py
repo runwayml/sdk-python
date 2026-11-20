@@ -20,9 +20,6 @@ class WebappListUsageParams(TypedDict, total=False):
     A date means midnight UTC.
     """
 
-    limit: Required[int]
-    """The maximum number of items to return per page."""
-
     to: Required[Annotated[Union[Union[str, datetime], Union[str, date]], PropertyInfo(format="iso8601")]]
     """End of the time window (exclusive), ISO-8601 datetime or date.
 
@@ -33,11 +30,15 @@ class WebappListUsageParams(TypedDict, total=False):
     cursor: str
     """Cursor from a previous response for fetching the next page of results."""
 
+    limit: int
+    """The maximum number of items to return per page."""
+
     organization_id: Annotated[str, PropertyInfo(alias="organizationId")]
     """Organization to report on.
 
     Optional when this API project is linked to a single organization; required when
-    it is linked to more than one.
+    it is linked to more than one. If it is missing then, the 400 response lists the
+    IDs and names of the linked organizations in `details.organizations`.
     """
 
     workspace_ids: Annotated[str, PropertyInfo(alias="workspaceIds")]

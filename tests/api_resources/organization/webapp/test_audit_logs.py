@@ -70,19 +70,17 @@ class TestAuditLogs:
 
     @parametrize
     def test_method_list(self, client: RunwayML) -> None:
-        audit_log = client.organization.webapp.audit_logs.list(
-            limit=1,
-        )
+        audit_log = client.organization.webapp.audit_logs.list()
         assert_matches_type(SyncCursorPage[AuditLogListResponse], audit_log, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: RunwayML) -> None:
         audit_log = client.organization.webapp.audit_logs.list(
-            limit=1,
             actions="actions",
             actor_emails="actorEmails",
             cursor="x",
             from_=parse_datetime("2019-12-27T18:11:19.117Z"),
+            limit=1,
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
             workspace_ids="workspaceIds",
@@ -91,9 +89,7 @@ class TestAuditLogs:
 
     @parametrize
     def test_raw_response_list(self, client: RunwayML) -> None:
-        response = client.organization.webapp.audit_logs.with_raw_response.list(
-            limit=1,
-        )
+        response = client.organization.webapp.audit_logs.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -102,9 +98,7 @@ class TestAuditLogs:
 
     @parametrize
     def test_streaming_response_list(self, client: RunwayML) -> None:
-        with client.organization.webapp.audit_logs.with_streaming_response.list(
-            limit=1,
-        ) as response:
+        with client.organization.webapp.audit_logs.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -167,19 +161,17 @@ class TestAsyncAuditLogs:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncRunwayML) -> None:
-        audit_log = await async_client.organization.webapp.audit_logs.list(
-            limit=1,
-        )
+        audit_log = await async_client.organization.webapp.audit_logs.list()
         assert_matches_type(AsyncCursorPage[AuditLogListResponse], audit_log, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncRunwayML) -> None:
         audit_log = await async_client.organization.webapp.audit_logs.list(
-            limit=1,
             actions="actions",
             actor_emails="actorEmails",
             cursor="x",
             from_=parse_datetime("2019-12-27T18:11:19.117Z"),
+            limit=1,
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
             workspace_ids="workspaceIds",
@@ -188,9 +180,7 @@ class TestAsyncAuditLogs:
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncRunwayML) -> None:
-        response = await async_client.organization.webapp.audit_logs.with_raw_response.list(
-            limit=1,
-        )
+        response = await async_client.organization.webapp.audit_logs.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -199,9 +189,7 @@ class TestAsyncAuditLogs:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncRunwayML) -> None:
-        async with async_client.organization.webapp.audit_logs.with_streaming_response.list(
-            limit=1,
-        ) as response:
+        async with async_client.organization.webapp.audit_logs.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

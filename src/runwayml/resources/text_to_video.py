@@ -1561,6 +1561,84 @@ class TextToVideoResource(SyncAPIResource):
         """
         ...
 
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["seedance2_5_flash"],
+        audio: bool | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
+        output_format: Literal["mp4", "mov"] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        ratio: Literal[
+            "992:432",
+            "854:480",
+            "752:560",
+            "640:640",
+            "560:752",
+            "480:854",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+        ]
+        | Omit = omit,
+        reference_audio: Iterable[text_to_video_create_params.Seedance2_5FlashReferenceAudio] | Omit = omit,
+        references: Iterable[text_to_video_create_params.Seedance2_5FlashReference] | Omit = omit,
+        reference_videos: Iterable[text_to_video_create_params.Seedance2_5FlashReferenceVideo] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate a video from a text prompt.
+
+        Args:
+          audio: Whether to generate audio for the video. Defaults to `true`.
+
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes. Defaults to 5.
+
+          output_format: Container for the output video. `mov` keeps high colour precision for grading
+              and compositing. Defaults to `mp4`.
+
+          prompt_text: An optional text prompt up to 15000 characters describing what should appear in
+              the output.
+
+          ratio: The resolution of the output video. Seedance 2.5 Flash supports 480p and 720p.
+              Defaults to `1280:720`.
+
+          reference_audio: An optional array of audio references. The total combined duration must be less
+              than 30 seconds.
+
+          references: An optional array of image references (up to 10). See
+              [our docs](/assets/inputs#images) on image inputs for more information.
+
+          reference_videos: An optional array of video references. The combined duration across all video
+              references must not exceed 30 seconds. See [our docs](/assets/inputs#videos) on
+              video inputs for more information.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["duration", "model", "prompt_text", "ratio"],
         ["model", "prompt_text", "ratio"],
@@ -1604,7 +1682,8 @@ class TextToVideoResource(SyncAPIResource):
         | Literal["gemini_omni_flash_1.2"]
         | Literal["kling_4_flash"]
         | Literal["hailuo3_highspeed"]
-        | Literal["hailuo3_lite"],
+        | Literal["hailuo3_lite"]
+        | Literal["seedance2_5_flash"],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
@@ -1750,6 +1829,20 @@ class TextToVideoResource(SyncAPIResource):
         ]
         | Literal["1280:720", "720:1280", "960:960", "1464:628", "auto_720p", "940:940", "1460:624"]
         | Literal["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"]
+        | Literal[
+            "992:432",
+            "854:480",
+            "752:560",
+            "640:640",
+            "560:752",
+            "480:854",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+        ]
         | Omit = omit,
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
         output_format: Literal[
@@ -1789,6 +1882,7 @@ class TextToVideoResource(SyncAPIResource):
         | Iterable[text_to_video_create_params.Seedance2_5ReferenceAudio]
         | Iterable[text_to_video_create_params.Hailuo3HighspeedReferenceAudio]
         | Iterable[text_to_video_create_params.Hailuo3LiteReferenceAudio]
+        | Iterable[text_to_video_create_params.Seedance2_5FlashReferenceAudio]
         | Omit = omit,
         references: Iterable[text_to_video_create_params.Hailuo3Reference]
         | Iterable[text_to_video_create_params.Seedance2Reference]
@@ -1804,6 +1898,7 @@ class TextToVideoResource(SyncAPIResource):
         | Iterable[text_to_video_create_params.Kling4FlashReference]
         | Iterable[text_to_video_create_params.Hailuo3HighspeedReference]
         | Iterable[text_to_video_create_params.Hailuo3LiteReference]
+        | Iterable[text_to_video_create_params.Seedance2_5FlashReference]
         | Omit = omit,
         reference_videos: Iterable[text_to_video_create_params.Hailuo3ReferenceVideo]
         | Iterable[text_to_video_create_params.Seedance2ReferenceVideo]
@@ -1818,6 +1913,7 @@ class TextToVideoResource(SyncAPIResource):
         | Iterable[text_to_video_create_params.Kling4FlashReferenceVideo]
         | Iterable[text_to_video_create_params.Hailuo3HighspeedReferenceVideo]
         | Iterable[text_to_video_create_params.Hailuo3LiteReferenceVideo]
+        | Iterable[text_to_video_create_params.Seedance2_5FlashReferenceVideo]
         | Omit = omit,
         resolution: Literal["768p", "2k", "768P", "2K"]
         | Literal["480p", "720p", "1080p"]
@@ -3400,6 +3496,84 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         """
         ...
 
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["seedance2_5_flash"],
+        audio: bool | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
+        output_format: Literal["mp4", "mov"] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        ratio: Literal[
+            "992:432",
+            "854:480",
+            "752:560",
+            "640:640",
+            "560:752",
+            "480:854",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+        ]
+        | Omit = omit,
+        reference_audio: Iterable[text_to_video_create_params.Seedance2_5FlashReferenceAudio] | Omit = omit,
+        references: Iterable[text_to_video_create_params.Seedance2_5FlashReference] | Omit = omit,
+        reference_videos: Iterable[text_to_video_create_params.Seedance2_5FlashReferenceVideo] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate a video from a text prompt.
+
+        Args:
+          audio: Whether to generate audio for the video. Defaults to `true`.
+
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes. Defaults to 5.
+
+          output_format: Container for the output video. `mov` keeps high colour precision for grading
+              and compositing. Defaults to `mp4`.
+
+          prompt_text: An optional text prompt up to 15000 characters describing what should appear in
+              the output.
+
+          ratio: The resolution of the output video. Seedance 2.5 Flash supports 480p and 720p.
+              Defaults to `1280:720`.
+
+          reference_audio: An optional array of audio references. The total combined duration must be less
+              than 30 seconds.
+
+          references: An optional array of image references (up to 10). See
+              [our docs](/assets/inputs#images) on image inputs for more information.
+
+          reference_videos: An optional array of video references. The combined duration across all video
+              references must not exceed 30 seconds. See [our docs](/assets/inputs#videos) on
+              video inputs for more information.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["duration", "model", "prompt_text", "ratio"],
         ["model", "prompt_text", "ratio"],
@@ -3443,7 +3617,8 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Literal["gemini_omni_flash_1.2"]
         | Literal["kling_4_flash"]
         | Literal["hailuo3_highspeed"]
-        | Literal["hailuo3_lite"],
+        | Literal["hailuo3_lite"]
+        | Literal["seedance2_5_flash"],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280"]
         | Literal["1280:720", "720:1280", "1080:1920", "1920:1080"]
@@ -3589,6 +3764,20 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         ]
         | Literal["1280:720", "720:1280", "960:960", "1464:628", "auto_720p", "940:940", "1460:624"]
         | Literal["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"]
+        | Literal[
+            "992:432",
+            "854:480",
+            "752:560",
+            "640:640",
+            "560:752",
+            "480:854",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+        ]
         | Omit = omit,
         content_moderation: text_to_video_create_params.Gen4_5ContentModeration | Omit = omit,
         output_format: Literal[
@@ -3628,6 +3817,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Iterable[text_to_video_create_params.Seedance2_5ReferenceAudio]
         | Iterable[text_to_video_create_params.Hailuo3HighspeedReferenceAudio]
         | Iterable[text_to_video_create_params.Hailuo3LiteReferenceAudio]
+        | Iterable[text_to_video_create_params.Seedance2_5FlashReferenceAudio]
         | Omit = omit,
         references: Iterable[text_to_video_create_params.Hailuo3Reference]
         | Iterable[text_to_video_create_params.Seedance2Reference]
@@ -3643,6 +3833,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Iterable[text_to_video_create_params.Kling4FlashReference]
         | Iterable[text_to_video_create_params.Hailuo3HighspeedReference]
         | Iterable[text_to_video_create_params.Hailuo3LiteReference]
+        | Iterable[text_to_video_create_params.Seedance2_5FlashReference]
         | Omit = omit,
         reference_videos: Iterable[text_to_video_create_params.Hailuo3ReferenceVideo]
         | Iterable[text_to_video_create_params.Seedance2ReferenceVideo]
@@ -3657,6 +3848,7 @@ class AsyncTextToVideoResource(AsyncAPIResource):
         | Iterable[text_to_video_create_params.Kling4FlashReferenceVideo]
         | Iterable[text_to_video_create_params.Hailuo3HighspeedReferenceVideo]
         | Iterable[text_to_video_create_params.Hailuo3LiteReferenceVideo]
+        | Iterable[text_to_video_create_params.Seedance2_5FlashReferenceVideo]
         | Omit = omit,
         resolution: Literal["768p", "2k", "768P", "2K"]
         | Literal["480p", "720p", "1080p"]

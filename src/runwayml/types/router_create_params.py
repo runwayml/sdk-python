@@ -59,12 +59,14 @@ class SettingsMaxCreditsPerGeneration(TypedDict, total=False):
 
     image: int
 
+    mesh: int
+
     video: int
 
 
 class SettingsModels(TypedDict, total=False):
     """
-    When mode is allow_new_except, ids are excluded; when allowlist_only, ids are the only allowed values. Each id must be a known public video or image model name (unknown ids are rejected on create/update).
+    When mode is allow_new_except, ids are excluded; when allowlist_only, ids are the only allowed values. Each id must be a known public video, image, audio, or mesh model name (unknown ids are rejected on create/update).
     """
 
     ids: Required[SequenceNotStr[str]]
@@ -95,8 +97,8 @@ class Settings(TypedDict, total=False):
     models: SettingsModels
     """
     When mode is allow_new_except, ids are excluded; when allowlist_only, ids are
-    the only allowed values. Each id must be a known public video or image model
-    name (unknown ids are rejected on create/update).
+    the only allowed values. Each id must be a known public video, image, audio, or
+    mesh model name (unknown ids are rejected on create/update).
     """
 
     optimize_for: Annotated[Literal["cost", "latency", "quality"], PropertyInfo(alias="optimizeFor")]

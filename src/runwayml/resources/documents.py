@@ -176,10 +176,10 @@ class DocumentsResource(SyncAPIResource):
     def list(
         self,
         *,
-        limit: int,
-        order: Literal["asc", "desc"],
-        sort: Literal["createdAt", "updatedAt"],
         cursor: str | Omit = omit,
+        limit: int | Omit = omit,
+        order: Literal["asc", "desc"] | Omit = omit,
+        sort: Literal["createdAt", "updatedAt"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -192,13 +192,13 @@ class DocumentsResource(SyncAPIResource):
         pagination.
 
         Args:
+          cursor: Cursor from a previous response for fetching the next page of results.
+
           limit: The maximum number of items to return per page.
 
           order: Sort direction.
 
           sort: Field to sort results by.
-
-          cursor: Cursor from a previous response for fetching the next page of results.
 
           extra_headers: Send extra headers
 
@@ -218,10 +218,10 @@ class DocumentsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "cursor": cursor,
                         "limit": limit,
                         "order": order,
                         "sort": sort,
-                        "cursor": cursor,
                     },
                     document_list_params.DocumentListParams,
                 ),
@@ -416,10 +416,10 @@ class AsyncDocumentsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        limit: int,
-        order: Literal["asc", "desc"],
-        sort: Literal["createdAt", "updatedAt"],
         cursor: str | Omit = omit,
+        limit: int | Omit = omit,
+        order: Literal["asc", "desc"] | Omit = omit,
+        sort: Literal["createdAt", "updatedAt"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -432,13 +432,13 @@ class AsyncDocumentsResource(AsyncAPIResource):
         pagination.
 
         Args:
+          cursor: Cursor from a previous response for fetching the next page of results.
+
           limit: The maximum number of items to return per page.
 
           order: Sort direction.
 
           sort: Field to sort results by.
-
-          cursor: Cursor from a previous response for fetching the next page of results.
 
           extra_headers: Send extra headers
 
@@ -458,10 +458,10 @@ class AsyncDocumentsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "cursor": cursor,
                         "limit": limit,
                         "order": order,
                         "sort": sort,
-                        "cursor": cursor,
                     },
                     document_list_params.DocumentListParams,
                 ),

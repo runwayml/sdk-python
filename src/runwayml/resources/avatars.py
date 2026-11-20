@@ -240,8 +240,8 @@ class AvatarsResource(SyncAPIResource):
     def list(
         self,
         *,
-        limit: int,
         cursor: str | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -253,9 +253,9 @@ class AvatarsResource(SyncAPIResource):
         List avatars for the authenticated user with cursor-based pagination.
 
         Args:
-          limit: The maximum number of items to return per page.
-
           cursor: Cursor from a previous response for fetching the next page of results.
+
+          limit: The maximum number of items to return per page.
 
           extra_headers: Send extra headers
 
@@ -275,8 +275,8 @@ class AvatarsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "limit": limit,
                         "cursor": cursor,
+                        "limit": limit,
                     },
                     avatar_list_params.AvatarListParams,
                 ),
@@ -577,8 +577,8 @@ class AsyncAvatarsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        limit: int,
         cursor: str | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -590,9 +590,9 @@ class AsyncAvatarsResource(AsyncAPIResource):
         List avatars for the authenticated user with cursor-based pagination.
 
         Args:
-          limit: The maximum number of items to return per page.
-
           cursor: Cursor from a previous response for fetching the next page of results.
+
+          limit: The maximum number of items to return per page.
 
           extra_headers: Send extra headers
 
@@ -612,8 +612,8 @@ class AsyncAvatarsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "limit": limit,
                         "cursor": cursor,
+                        "limit": limit,
                     },
                     avatar_list_params.AvatarListParams,
                 ),

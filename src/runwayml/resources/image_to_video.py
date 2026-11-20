@@ -1637,6 +1637,78 @@ class ImageToVideoResource(SyncAPIResource):
         """
         ...
 
+    @overload
+    def create(
+        self,
+        *,
+        model: Literal["seedance2_5_flash"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Seedance2_5FlashPromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
+        output_format: Literal["mp4", "mov"] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        ratio: Literal[
+            "992:432",
+            "854:480",
+            "752:560",
+            "640:640",
+            "560:752",
+            "480:854",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+        ]
+        | Omit = omit,
+        reference_audio: Iterable[image_to_video_create_params.Seedance2_5FlashReferenceAudio] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: An image or array of images. Use position `first`/`last` for keyframe mode, or
+              omit position for reference images. The two modes cannot be mixed.
+
+          audio: Whether to generate audio for the video.
+
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
+
+          output_format: Container for the output video. `mov` keeps high colour precision for grading
+              and compositing. Defaults to `mp4`.
+
+          prompt_text: An optional text prompt up to 15000 characters describing what should appear in
+              the output.
+
+          ratio: The resolution of the output video. Seedance 2.5 Flash supports 480p and 720p.
+
+          reference_audio: An optional array of audio references. The total combined duration must be less
+              than 30 seconds.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["duration", "model", "prompt_image", "prompt_text", "ratio"],
         ["model", "prompt_image", "ratio"],
@@ -1680,7 +1752,8 @@ class ImageToVideoResource(SyncAPIResource):
         | Literal["gemini_omni_flash_1.2"]
         | Literal["kling_4_flash"]
         | Literal["hailuo3_highspeed"]
-        | Literal["hailuo3_lite"],
+        | Literal["hailuo3_lite"]
+        | Literal["seedance2_5_flash"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
@@ -1706,7 +1779,8 @@ class ImageToVideoResource(SyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlash1_2PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Kling4FlashPromptImageUnionMember1]]
         | Union[str, Iterable[image_to_video_create_params.Hailuo3HighspeedPromptImageUnionMember1]]
-        | Union[str, Iterable[image_to_video_create_params.Hailuo3LitePromptImageUnionMember1]],
+        | Union[str, Iterable[image_to_video_create_params.Hailuo3LitePromptImageUnionMember1]]
+        | Union[str, Iterable[image_to_video_create_params.Seedance2_5FlashPromptImagePromptImage]],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
         | Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
@@ -1806,6 +1880,20 @@ class ImageToVideoResource(SyncAPIResource):
         | Literal["auto_480p", "auto_720p", "auto_1080p"]
         | Literal["auto_720p", "auto_1080p"]
         | Literal["auto_720p"]
+        | Literal[
+            "992:432",
+            "854:480",
+            "752:560",
+            "640:640",
+            "560:752",
+            "480:854",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+        ]
         | Omit = omit,
         content_moderation: image_to_video_create_params.Gen4_5ContentModeration
         | image_to_video_create_params.Gen4TurboContentModeration
@@ -1854,6 +1942,7 @@ class ImageToVideoResource(SyncAPIResource):
         | Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio]
         | Iterable[image_to_video_create_params.Hailuo3HighspeedReferenceAudio]
         | Iterable[image_to_video_create_params.Hailuo3LiteReferenceAudio]
+        | Iterable[image_to_video_create_params.Seedance2_5FlashReferenceAudio]
         | Omit = omit,
         resolution: Literal["768p", "2k", "768P", "2K"]
         | Literal["720p", "1080p", "720P", "1080P"]
@@ -3519,6 +3608,78 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         """
         ...
 
+    @overload
+    async def create(
+        self,
+        *,
+        model: Literal["seedance2_5_flash"],
+        prompt_image: Union[str, Iterable[image_to_video_create_params.Seedance2_5FlashPromptImagePromptImage]],
+        audio: bool | Omit = omit,
+        duration: Union[int, Literal["auto"]] | Omit = omit,
+        output_format: Literal["mp4", "mov"] | Omit = omit,
+        prompt_text: str | Omit = omit,
+        ratio: Literal[
+            "992:432",
+            "854:480",
+            "752:560",
+            "640:640",
+            "560:752",
+            "480:854",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+        ]
+        | Omit = omit,
+        reference_audio: Iterable[image_to_video_create_params.Seedance2_5FlashReferenceAudio] | Omit = omit,
+        seed: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncNewTaskCreatedResponse:
+        """
+        This endpoint will start a new task to generate a video from an image.
+
+        Args:
+          prompt_image: An image or array of images. Use position `first`/`last` for keyframe mode, or
+              omit position for reference images. The two modes cannot be mixed.
+
+          audio: Whether to generate audio for the video.
+
+          duration: Seconds of video to generate, or `auto` to let the model choose. `auto` is
+              billed at the variant maximum up front; unused credits are refunded after the
+              generation finishes.
+
+          output_format: Container for the output video. `mov` keeps high colour precision for grading
+              and compositing. Defaults to `mp4`.
+
+          prompt_text: An optional text prompt up to 15000 characters describing what should appear in
+              the output.
+
+          ratio: The resolution of the output video. Seedance 2.5 Flash supports 480p and 720p.
+
+          reference_audio: An optional array of audio references. The total combined duration must be less
+              than 30 seconds.
+
+          seed: If unspecified, a random number is chosen. Varying the seed integer is a way to
+              get different results for the same other request parameters. Using the same seed
+              integer for an identical request will produce similar results.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     @required_args(
         ["duration", "model", "prompt_image", "prompt_text", "ratio"],
         ["model", "prompt_image", "ratio"],
@@ -3562,7 +3723,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Literal["gemini_omni_flash_1.2"]
         | Literal["kling_4_flash"]
         | Literal["hailuo3_highspeed"]
-        | Literal["hailuo3_lite"],
+        | Literal["hailuo3_lite"]
+        | Literal["seedance2_5_flash"],
         prompt_image: Union[str, Iterable[image_to_video_create_params.Gen4_5PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Gen4TurboPromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Veo3_1PromptImagePromptImage]]
@@ -3588,7 +3750,8 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Union[str, Iterable[image_to_video_create_params.GeminiOmniFlash1_2PromptImagePromptImage]]
         | Union[str, Iterable[image_to_video_create_params.Kling4FlashPromptImageUnionMember1]]
         | Union[str, Iterable[image_to_video_create_params.Hailuo3HighspeedPromptImageUnionMember1]]
-        | Union[str, Iterable[image_to_video_create_params.Hailuo3LitePromptImageUnionMember1]],
+        | Union[str, Iterable[image_to_video_create_params.Hailuo3LitePromptImageUnionMember1]]
+        | Union[str, Iterable[image_to_video_create_params.Seedance2_5FlashPromptImagePromptImage]],
         prompt_text: str | Omit = omit,
         ratio: Literal["1280:720", "720:1280", "1104:832", "960:960", "832:1104", "1584:672"]
         | Literal["1280:720", "720:1280", "1104:832", "832:1104", "960:960", "1584:672"]
@@ -3688,6 +3851,20 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Literal["auto_480p", "auto_720p", "auto_1080p"]
         | Literal["auto_720p", "auto_1080p"]
         | Literal["auto_720p"]
+        | Literal[
+            "992:432",
+            "854:480",
+            "752:560",
+            "640:640",
+            "560:752",
+            "480:854",
+            "1470:630",
+            "1280:720",
+            "1112:834",
+            "960:960",
+            "834:1112",
+            "720:1280",
+        ]
         | Omit = omit,
         content_moderation: image_to_video_create_params.Gen4_5ContentModeration
         | image_to_video_create_params.Gen4TurboContentModeration
@@ -3736,6 +3913,7 @@ class AsyncImageToVideoResource(AsyncAPIResource):
         | Iterable[image_to_video_create_params.Seedance2_5ReferenceAudio]
         | Iterable[image_to_video_create_params.Hailuo3HighspeedReferenceAudio]
         | Iterable[image_to_video_create_params.Hailuo3LiteReferenceAudio]
+        | Iterable[image_to_video_create_params.Seedance2_5FlashReferenceAudio]
         | Omit = omit,
         resolution: Literal["768p", "2k", "768P", "2K"]
         | Literal["720p", "1080p", "720P", "1080P"]

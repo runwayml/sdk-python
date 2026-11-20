@@ -98,6 +98,9 @@ __all__ = [
     "Hailuo3LiteReferenceAudio",
     "Hailuo3LiteReference",
     "Hailuo3LiteReferenceVideo",
+    "Seedance2_5Flash",
+    "Seedance2_5FlashPromptImagePromptImage",
+    "Seedance2_5FlashReferenceAudio",
 ]
 
 
@@ -2146,6 +2149,103 @@ class Hailuo3LiteReferenceVideo(TypedDict, total=False):
     """
 
 
+class Seedance2_5Flash(TypedDict, total=False):
+    model: Required[Literal["seedance2_5_flash"]]
+
+    prompt_image: Required[
+        Annotated[Union[str, Iterable[Seedance2_5FlashPromptImagePromptImage]], PropertyInfo(alias="promptImage")]
+    ]
+    """An image or array of images.
+
+    Use position `first`/`last` for keyframe mode, or omit position for reference
+    images. The two modes cannot be mixed.
+    """
+
+    audio: bool
+    """Whether to generate audio for the video."""
+
+    duration: Union[int, Literal["auto"]]
+    """Seconds of video to generate, or `auto` to let the model choose.
+
+    `auto` is billed at the variant maximum up front; unused credits are refunded
+    after the generation finishes.
+    """
+
+    output_format: Annotated[Literal["mp4", "mov"], PropertyInfo(alias="outputFormat")]
+    """Container for the output video.
+
+    `mov` keeps high colour precision for grading and compositing. Defaults to
+    `mp4`.
+    """
+
+    prompt_text: Annotated[str, PropertyInfo(alias="promptText")]
+    """
+    An optional text prompt up to 15000 characters describing what should appear in
+    the output.
+    """
+
+    ratio: Literal[
+        "992:432",
+        "854:480",
+        "752:560",
+        "640:640",
+        "560:752",
+        "480:854",
+        "1470:630",
+        "1280:720",
+        "1112:834",
+        "960:960",
+        "834:1112",
+        "720:1280",
+    ]
+    """The resolution of the output video. Seedance 2.5 Flash supports 480p and 720p."""
+
+    reference_audio: Annotated[Iterable[Seedance2_5FlashReferenceAudio], PropertyInfo(alias="referenceAudio")]
+    """An optional array of audio references.
+
+    The total combined duration must be less than 30 seconds.
+    """
+
+    seed: int
+    """If unspecified, a random number is chosen.
+
+    Varying the seed integer is a way to get different results for the same other
+    request parameters. Using the same seed integer for an identical request will
+    produce similar results.
+    """
+
+
+class Seedance2_5FlashPromptImagePromptImage(TypedDict, total=False):
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:image/png;base64,...`, up to 5MB) containing an encoded image. See
+    [our docs](/assets/inputs#images) on image inputs for more information.
+    """
+
+    position: Literal["first", "last"]
+    """The position of the image in the output video.
+
+    "first" will use the image as the first frame, "last" as the last frame. Omit
+    for a reference image.
+    """
+
+
+class Seedance2_5FlashReferenceAudio(TypedDict, total=False):
+    """
+    An audio reference allows the model to use the audio as additional context for the output.
+    """
+
+    type: Required[Literal["audio"]]
+
+    uri: Required[str]
+    """A HTTPS URL, Runway upload URI, or base64 data URI (e.g.
+
+    `data:audio/mp3;base64,...`, up to 5MB) containing an encoded audio. See
+    [our docs](/assets/inputs#audio) on audio inputs for more information.
+    """
+
+
 ImageToVideoCreateParams: TypeAlias = Union[
     Gen4_5,
     Gen4Turbo,
@@ -2176,4 +2276,5 @@ ImageToVideoCreateParams: TypeAlias = Union[
     Kling4Flash,
     Hailuo3Highspeed,
     Hailuo3Lite,
+    Seedance2_5Flash,
 ]

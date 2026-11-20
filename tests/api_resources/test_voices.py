@@ -166,24 +166,20 @@ class TestVoices:
 
     @parametrize
     def test_method_list(self, client: RunwayML) -> None:
-        voice = client.voices.list(
-            limit=1,
-        )
+        voice = client.voices.list()
         assert_matches_type(SyncCursorPage[VoiceListResponse], voice, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: RunwayML) -> None:
         voice = client.voices.list(
-            limit=1,
             cursor="x",
+            limit=1,
         )
         assert_matches_type(SyncCursorPage[VoiceListResponse], voice, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: RunwayML) -> None:
-        response = client.voices.with_raw_response.list(
-            limit=1,
-        )
+        response = client.voices.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -192,9 +188,7 @@ class TestVoices:
 
     @parametrize
     def test_streaming_response_list(self, client: RunwayML) -> None:
-        with client.voices.with_streaming_response.list(
-            limit=1,
-        ) as response:
+        with client.voices.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -423,24 +417,20 @@ class TestAsyncVoices:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncRunwayML) -> None:
-        voice = await async_client.voices.list(
-            limit=1,
-        )
+        voice = await async_client.voices.list()
         assert_matches_type(AsyncCursorPage[VoiceListResponse], voice, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncRunwayML) -> None:
         voice = await async_client.voices.list(
-            limit=1,
             cursor="x",
+            limit=1,
         )
         assert_matches_type(AsyncCursorPage[VoiceListResponse], voice, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncRunwayML) -> None:
-        response = await async_client.voices.with_raw_response.list(
-            limit=1,
-        )
+        response = await async_client.voices.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -449,9 +439,7 @@ class TestAsyncVoices:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncRunwayML) -> None:
-        async with async_client.voices.with_streaming_response.list(
-            limit=1,
-        ) as response:
+        async with async_client.voices.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
